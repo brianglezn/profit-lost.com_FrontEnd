@@ -1,0 +1,166 @@
+/* ---------- HERO ---------- */
+.hero {
+  display: flex;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__title h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+.hero__title p {
+  text-align: center;
+}
+/* ---------- FIN HERO ---------- */
+
+/* ---------- SECTION 1 ---------- */
+.section1 {
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.section1__container {
+  display: flex;
+  max-width: 80%;
+  align-items: center;
+}
+
+.section1__div-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.section1__div-img img {
+  width: 40vw;
+}
+/* ---------- FIN SECTION 1 ---------- */
+
+/* ---------- FEATURES ---------- */
+.section__features {
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem 0 3rem 0;
+}
+
+article {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-white);
+  line-height: 2;
+  border-radius: 15px;
+  margin: 3rem 0.5rem;
+  transition: transform 0.2s ease-out;
+  box-shadow: 0px 8px 17px rgba(23, 26, 31, 0.15),
+    0px 0px 2px rgba(23, 26, 31, 0.12);
+}
+article figure {
+  display: flex;
+  width: 120px;
+  height: 120px;
+  border-radius: 60%;
+  margin-top: -60px;
+  position: relative;
+  background-color: var(--color-orange);
+  align-items: center;
+  justify-content: center;
+}
+article figure svg {
+  width: 80px;
+  height: 80px;
+  color: var(--color-white);
+}
+article div {
+  text-align: center;
+  margin: 1rem;
+}
+article div h1 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+/* ---------- FIN FEATURES ---------- */
+
+/* ---------- PREVIEW ---------- */
+.section__preview {
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- FIN PREVIEW ---------- */
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 767px) {
+  /* Estilos para dispositivos móviles */
+  /* hero */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+  }
+  .hero__title {
+    padding: 3vh;
+  }
+  .hero__title h1 {
+    font-size: 3vh;
+    margin-bottom: 3vh;
+  }
+  .hero__login {
+    padding-bottom: 10vh;
+  }
+  /* section1 */
+  .section1__container {
+    display: flex;
+    flex-direction: column-reverse;
+    min-width: 90%;
+  }
+  .section1__div-img {
+    margin: 0;
+    padding: 0;
+  }
+  .section1__div-img img {
+    width: 40vh;
+  }
+  .section1__div-text {
+    width: 90%;
+  }
+  .section1__div-text h1 {
+    font-size: 2.5vh;
+    margin: 0;
+  }
+  /* features */
+
+  /* preview */
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero__login {
+    display: none;
+  }
+  /* section1 */
+  .section1__container {
+    display: flex;
+    flex-direction: column-reverse;
+    min-width: 80%;
+  }
+  .section1__div-img img {
+    width: 40vh;
+  }
+  .section1__div-text h1 {
+    font-size: 2.5vh;
+    margin: 0;
+  }
+  /* features */
+
+  /* preview */
+}
+/* ---------- FIN RESPONSIVE ---------- */

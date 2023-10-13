@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --color-white: #fff;
+  --color-bg: #f7f7f7;
+  --color-black: #000;
+  --color-grey: #383d46;
+  --color-grey-sec: #a3a3a3;
+  --color-orange: #fe6f14;
+  --color-dark_orange: #c84f03;
+  --color-light_orange: rgba(255, 198, 158, 0.382);
+  --color-brown: #5d3719;
+  --color-green: rgb(0, 142, 0);
+  --color-light_green: rgba(0, 250, 0, 0.193);
+  --color-red: rgb(231, 0, 0);
+  --color-light_red: rgba(255, 119, 119, 0.376);
+
+  background-color: var(--color-bg);
+  color: var(--color-grey);
+  font-family: "Rubik", sans-serif;
+
+  scroll-behavior: smooth;
+
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: var(--color-light_orange);
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  color: var(--color-orange);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+a {
+  color: var(--color-orange);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-dark_orange);
+  cursor: pointer;
+}
