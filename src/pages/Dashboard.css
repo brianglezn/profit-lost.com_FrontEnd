@@ -24,22 +24,30 @@
   color: var(--color-orange);
 }
 
-.dashboard__header span {
-  transition: transform 0.3s ease-in-out;
-}
-.dashboard__header span:hover {
-  transform: scale(1.1);
-}
-.dashboard__header span.material-symbols-rounded:hover {
-  color: var(--color-orange);
-}
-
 .dashboard__header-date {
   padding: 10px;
   background-color: var(--color-light_orange);
   color: var(--color-orange);
   margin-right: 20px;
   border-radius: 8px;
+}
+
+.dashboard__header span {
+  transition: transform 0.3s ease-in-out;
+}
+.dashboard__header span:hover {
+  transform: scale(1.1);
+  color: var(--color-orange);
+}
+
+.dashboard__header div {
+  cursor: pointer;
+  margin: 0 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+.dashboard__header div:hover {
+  transform: scale(1.1);
 }
 
 .dashboard__nav {

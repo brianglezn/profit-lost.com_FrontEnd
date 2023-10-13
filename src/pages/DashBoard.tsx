@@ -1,4 +1,5 @@
 import { SetStateAction, useState } from "react";
+import Avatar from "@mui/material/Avatar";
 
 import "./Dashboard.css";
 import logo2 from "../assets/logo/logo_profit-lost2.svg";
@@ -45,7 +46,13 @@ function Dashboard() {
           >
             settings
           </span>
-          {/* avatar */}
+          <Avatar
+            onClick={() => handleMenuItemClick("Profile")}
+            sx={{ bgcolor: "var(--color-orange)", width: 35, height: 35 }}
+            variant="rounded"
+          >
+            B
+          </Avatar>
         </header>
         <nav className="dashboard__nav">
           <div className="dashboard__nav-img">
