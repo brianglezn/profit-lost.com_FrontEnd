@@ -3,7 +3,7 @@ import "./Settings.css";
 function Settings() {
   return (
     <>
-      <section className="Settings">
+      <section className="settings">
         <h1>Settings</h1>
       </section>
     </>

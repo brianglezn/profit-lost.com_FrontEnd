@@ -3,7 +3,7 @@ import "./DashHome.css";
 function DashHome() {
   return (
     <>
-      <section className="DashHome">
+      <section className="dashHome">
         <h1>DashHome</h1>
       </section>
     </>
