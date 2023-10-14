@@ -35,64 +35,68 @@ function Dashboard() {
   return (
     <>
       <section className="dashboard">
-        <header className="dashboard__header">
-          <p className="dashboard__header-date">{currentDate}</p>
-          <span
-            className={`material-symbols-rounded ${
-              activeSection === "Settings" ? "active" : ""
-            }`}
-            onClick={() => handleMenuItemClick("Settings")}
-            style={{ cursor: "pointer" }}
-          >
-            settings
-          </span>
-          <Avatar
-            onClick={() => handleMenuItemClick("Profile")}
-            sx={{ bgcolor: "var(--color-orange)", width: 35, height: 35 }}
-            variant="rounded"
-          >
-            B
-          </Avatar>
-        </header>
-        <nav className="dashboard__nav">
-          <div className="dashboard__nav-img">
-            <img src={logo2} alt="Profit&Lost" />
-          </div>
-          <div className="dashboard__nav-nav">
-            <ul>
-              <li
-                onClick={() => handleMenuItemClick("Dashboard")}
-                className={activeSection === "Dashboard" ? "active" : ""}
-              >
-                <span className="material-symbols-rounded">home</span>
-                DashBoard
-              </li>
-              <li
-                onClick={() => handleMenuItemClick("AnnualReport")}
-                className={activeSection === "AnnualReport" ? "active" : ""}
-              >
-                <span className="material-symbols-rounded">
-                  bar_chart_4_bars
-                </span>
-                Annual Report
-              </li>
-              <li
-                onClick={() => handleMenuItemClick("Movements")}
-                className={activeSection === "Movements" ? "active" : ""}
-              >
-                <span className="material-symbols-rounded">receipt_long</span>
-                Movements
-              </li>
-              <li
-                onClick={() => handleMenuItemClick("Accounts")}
-                className={activeSection === "Accounts" ? "active" : ""}
-              >
-                <span className="material-symbols-rounded">credit_card</span>
-                Accounts
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <div className="dashboard__container-header">
+          <header className="dashboard__header">
+            <p className="dashboard__header-date">{currentDate}</p>
+            <span
+              className={`material-symbols-rounded ${
+                activeSection === "Settings" ? "active" : ""
+              }`}
+              onClick={() => handleMenuItemClick("Settings")}
+              style={{ cursor: "pointer" }}
+            >
+              settings
+            </span>
+            <Avatar
+              onClick={() => handleMenuItemClick("Profile")}
+              sx={{ bgcolor: "var(--color-orange)", width: 35, height: 35 }}
+              variant="rounded"
+            >
+              B
+            </Avatar>
+          </header>
+        </div>
+        <div className="dashboard__container-nav">
+          <nav className="dashboard__nav">
+            <div className="dashboard__nav-img">
+              <img src={logo2} alt="Profit&Lost" />
+            </div>
+            <div className="dashboard__nav-nav">
+              <ul>
+                <li
+                  onClick={() => handleMenuItemClick("Dashboard")}
+                  className={activeSection === "Dashboard" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">home</span>
+                  DashBoard
+                </li>
+                <li
+                  onClick={() => handleMenuItemClick("AnnualReport")}
+                  className={activeSection === "AnnualReport" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">
+                    bar_chart_4_bars
+                  </span>
+                  Annual Report
+                </li>
+                <li
+                  onClick={() => handleMenuItemClick("Movements")}
+                  className={activeSection === "Movements" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">receipt_long</span>
+                  Movements
+                </li>
+                <li
+                  onClick={() => handleMenuItemClick("Accounts")}
+                  className={activeSection === "Accounts" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">credit_card</span>
+                  Accounts
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
         <section className="dashboard_container">
           {activeSection === "Dashboard" && <DashHome />}
           {activeSection === "AnnualReport" && <AnnualReport />}

@@ -7,7 +7,7 @@
 .annualReport__main {
   background-color: var(--color-white);
   margin-top: 20px;
-  width: 95%;
+  width: 98%;
   border-radius: 25px;
   padding: 20px 0 20px 0;
 
@@ -15,23 +15,26 @@
   flex-direction: column;
   align-items: center;
 
-  box-shadow: 0px 8px 17px rgba(23, 26, 31, 0.15),
-    0px 0px 2px rgba(23, 26, 31, 0.12);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .annualReport__main-year {
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  width: 90%;
+  justify-content: flex-end;
 }
-.annualReport__main-year p {
-  font-weight: bold;
+.annualReport__main-year div > div > div {
+  padding: 10px 30px 10px 15px;
+}
+.annualReport__main-year div > label:active {
+  color: var(--color-white);
 }
 
 .annualReport__main-balance {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+  margin-top: 1rem;
 }
 .annualReport__main-balance span {
   padding: 9px 10px;
@@ -47,10 +50,18 @@
   color: var(--color-red);
 }
 
+.annualReport__main-chart {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-top: 2rem;
+}
+
 .annualReport__category {
   background-color: var(--color-white);
   margin-top: 20px;
-  width: 95%;
+  width: 98%;
   padding: 20px 0 20px 0;
   border-radius: 25px;
 
@@ -58,8 +69,7 @@
   flex-direction: column;
   justify-content: space-around;
 
-  box-shadow: 0px 8px 17px rgba(23, 26, 31, 0.15),
-    0px 0px 2px rgba(23, 26, 31, 0.12);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .annualReport__category-text {
