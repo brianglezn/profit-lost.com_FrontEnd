@@ -87,6 +87,9 @@ header {
   box-shadow: var(--color-dark_orange) 0px 3px 2px,
     var(--color-black) 0px 3px 5px;
 }
+.form__link a{
+margin-left: 10px;
+}
 
 .form__box a {
   color: var(--color-orange);
@@ -107,7 +110,7 @@ header {
 
   /* main */
   .container__form {
-    width: 80%;
+    width: 90%;
   }
   .container__form .form__title {
     font-size: 1.5rem;

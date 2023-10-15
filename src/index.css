@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
 :root {
   --color-white: #fff;
@@ -8,21 +8,25 @@
   --color-grey-sec: #a3a3a3;
   --color-orange: #fe6f14;
   --color-dark_orange: #c84f03;
-  --color-light_orange: rgba(255, 198, 158, 0.382);
+  --color-light_orange: #ffc69e61;
   --color-brown: #5d3719;
-  --color-green: rgb(0, 142, 0);
-  --color-light_green: rgba(0, 250, 0, 0.193);
-  --color-red: rgb(231, 0, 0);
-  --color-light_red: rgba(255, 119, 119, 0.376);
+  --color-green: #008e00;
+  --color-light_green: #00fa0031;
+  --color-red: #e70000;
+  --color-light_red: #ff777760;
 
   background-color: var(--color-bg);
   color: var(--color-grey);
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 
   scroll-behavior: smooth;
 
   margin: 0;
   padding: 0;
+}
+
+::selection {
+  background-color: var(--color-light_orange);
 }
 
 button {
@@ -37,7 +41,7 @@ button {
 button:hover {
   background-color: var(--color-orange);
   color: var(--color-white);
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
 a {

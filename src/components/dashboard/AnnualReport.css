@@ -8,7 +8,7 @@
 .annualReport__containerMain {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 20px;
   width: 98%;
 }
@@ -47,9 +47,10 @@
 }
 .annualReport__containerMain__containerBalance {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  width: 40%;
+  gap: 20px;
+  width: 35%;
   height: 4rem;
   border-radius: 20px;
   padding: 20px 0 20px 0;
@@ -117,12 +118,9 @@
     margin-left: 5px;
   }
   .annualReport__containerMain__containerBalance {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
     width: 45%;
     height: 3rem;
+    gap: 10px;
     padding: 20px 0 20px 0;
   }
   .annualReport__containerMain__containerBalance span {
@@ -133,12 +131,15 @@
   }
 }
 @media (min-width: 491px) and (max-width: 767px) {
-  /* Estilos para tablets */
+  /* Estilos para tablets pequeñas */
   .dashboard_container {
     margin-top: 0;
   }
   .annualReport__category {
     margin-bottom: 5rem;
+  }
+  .annualReport__containerMain__containerBalance {
+    gap: 10px;
   }
   .annualReport__containerMain__containerBalance span {
     font-size: 2.2rem;
