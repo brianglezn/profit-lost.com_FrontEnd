@@ -65,7 +65,7 @@ header {
   text-decoration: none;
   color: var(--color-grey);
 }
-.container__form input[type="submit"] {
+.container__form input[type='submit'] {
   background-color: var(--color-orange);
   color: var(--color-white);
   padding: 3%;
@@ -76,13 +76,13 @@ header {
   box-shadow: 0 0.4rem var(--color-dark_orange);
   opacity: 0.8;
 }
-.container__form input[type="submit"]:hover {
+.container__form input[type='submit']:hover {
   background-color: var(--color-orange);
   font-weight: bold;
   box-shadow: 0 0.4rem var(--color-dark_orange);
   opacity: 1;
 }
-.container__form input[type="submit"]:active {
+.container__form input[type='submit']:active {
   transform: translatey(5px);
   box-shadow: var(--color-dark_orange) 0px 3px 2px,
     var(--color-black) 0px 3px 5px;

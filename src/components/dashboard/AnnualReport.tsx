@@ -1,25 +1,27 @@
-import React from "react";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import { BarChart } from "@mui/x-charts/BarChart";
+import React from 'react';
+import { BarChart } from '@mui/x-charts/BarChart';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import "./AnnualReport.css";
+import './AnnualReport.css';
 
 function AnnualReport() {
-  
   // Select Year ----------------
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
+  const [date, setDate] = React.useState(currentYear.toString());
 
-  const [date, setDate] = React.useState(currentYear);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(event.target.value);
-    setDate(newValue);
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setDate(event.target.value);
   };
+
+  const years = Array.from(
+    { length: currentYear - 2020 },
+    (_, index) => currentYear - index
+  );
 
   // Data Chart ----------------
 
@@ -32,65 +34,66 @@ function AnnualReport() {
     1086.58, 1294.67, 1201, 1365,
   ];
   const xLabels = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   return (
     <>
-      <section className="annualReport">
-        <div className="annualReport__main">
-          <div className="annualReport__main-year">
-            <FormControl>
-              <InputLabel id="demo-simple-select-label">Year</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={date}
-                label="Year"
-                onChange={handleChange}
-              >
-                <MenuItem value={2023}>2023</MenuItem>
-                <MenuItem value={2022}>2022</MenuItem>
-                <MenuItem value={2021}>2021</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className="annualReport__main-balance">
-            <span className="annualReport__main-balance income">
-              18.659,85 €
-            </span>
-            <span className="annualReport__main-balance expenses">
-              15.817,42 €
-            </span>
-          </div>
-          <div className="annualReport__main-chart">
+      <section className='annualReport'>
+        <div className='annualReport__containerMain'>
+          <FormControl fullWidth>
+            <InputLabel id='demo-simple-select-label'>Year</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={date}
+              label='Year'
+              onChange={handleChange}
+            >
+              {years.map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <div className='annualReport__containerMain-chart'>
             <BarChart
               width={500}
               height={300}
               series={[
-                { data: inData, label: "Income", id: "inId" },
-                { data: outData, label: "Expenses", id: "outId" },
+                { data: inData, label: 'Income', id: 'inId' },
+                { data: outData, label: 'Expenses', id: 'outId' },
               ]}
-              xAxis={[{ data: xLabels, scaleType: "band" }]}
+              xAxis={[{ data: xLabels, scaleType: 'band' }]}
             />
           </div>
-        </div>
-        <div className="annualReport__category">
-          <div className="annualReport__category-text">
-            <p>Categories</p>
-            <span className="material-symbols-rounded">new_window</span>
+          <div className='annualReport__containerMain__containerBalance income'>
+            <span className='material-symbols-rounded'>download</span>
+            <p>18.659,85 €</p>
           </div>
+          <div className='annualReport__containerMain__containerBalance expenses'>
+            <span className='material-symbols-rounded'>upload</span>
+            <p>15.817,42 €</p>
+          </div>
+        </div>
+        <div className='annualReport__category'>
+          <div className='annualReport__category-text'>
+            <p>Categories</p>
+            <span className='material-symbols-rounded'>new_window</span>
+          </div>
+          <div className='annualReport__category-table'></div>
         </div>
       </section>
     </>

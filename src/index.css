@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   --color-white: #fff;
@@ -17,7 +17,7 @@
 
   background-color: var(--color-bg);
   color: var(--color-grey);
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
 
   scroll-behavior: smooth;
 

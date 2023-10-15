@@ -1,4 +1,4 @@
-import "./ForgotPassword.css";
+import './ForgotPassword.css';
 
 import Footer from '../components/landing//Footer';
 

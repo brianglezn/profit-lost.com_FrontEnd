@@ -1,9 +1,9 @@
-import "./DashHome.css";
+import './DashHome.css';
 
 function DashHome() {
   return (
     <>
-      <section className="dashHome">
+      <section className='dashHome'>
         <h1>DashHome</h1>
       </section>
     </>
