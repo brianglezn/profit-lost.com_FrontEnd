@@ -27,24 +27,25 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--color-white);
 }
-.css-10vg0a6-MuiResponsiveChart-container .css-1vuxth3-MuiBarElement-root {
-  fill: var(--color-orange);
-}
-.css-10vg0a6-MuiResponsiveChart-container .css-6kig8r-MuiBarElement-root {
-  fill: var(--color-dark_orange);
-}
 .MuiChartsLegend-series:first-child rect {
-  fill: var(--color-orange);
+  fill: var(--color-orange-400);
 }
 .MuiChartsLegend-series:last-child rect {
-  fill: var(--color-dark_orange);
+  fill: var(--color-orange-800);
+}
+.css-10vg0a6-MuiResponsiveChart-container .css-1vuxth3-MuiBarElement-root {
+  fill: var(--color-orange-400);
+}
+.css-10vg0a6-MuiResponsiveChart-container .css-6kig8r-MuiBarElement-root {
+  fill: var(--color-orange-800);
 }
 .css-k7cvcj-MuiChartsTooltip-mark {
   background-color: var(--color-orange) !important;
 }
 .css-1vc7vxh-MuiChartsTooltip-mark {
-  background-color: var(--color-dark_orange) !important;
+  background-color: var(--color-orange-800) !important;
 }
+
 .annualReport__containerMain__containerBalance {
   display: flex;
   justify-content: center;
@@ -61,10 +62,10 @@
   font-size: 3rem;
 }
 .income span {
-  color: var(--color-orange);
+  color: var(--color-orange-400);
 }
 .expenses span {
-  color: var(--color-dark_orange);
+  color: var(--color-orange-900);
 }
 .annualReport__containerMain__containerBalance p {
   font-size: 1.5rem;

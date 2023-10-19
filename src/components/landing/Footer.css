@@ -33,7 +33,7 @@
   min-width: 15vh;
   border-radius: 4vh;
   margin-right: 1vh;
-  box-shadow: var(--color-dark_orange) 0px 3px 2px,
+  box-shadow: var(--color-orange-600) 0px 3px 2px,
     var(--color-black) 0px 1px 5px;
 }
 
@@ -69,7 +69,7 @@
 }
 .footer__links__2-rrss svg:hover {
   cursor: pointer;
-  background-color: var(--color-dark_orange);
+  background-color: var(--color-orange-600);
   transition-timing-function: ease;
   transition-duration: 0.5s;
   transform: scale(0.9);

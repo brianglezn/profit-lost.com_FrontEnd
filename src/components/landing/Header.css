@@ -38,7 +38,7 @@ header {
   transition-duration: 0.8s;
   transition-timing-function: ease;
   letter-spacing: 0.5vh;
-  color: var(--color-dark_orange);
+  color: var(--color-orange-600);
 }
 
 .header__login {
@@ -59,7 +59,7 @@ header {
   transition: 0.1s;
   opacity: 0.8;
   letter-spacing: 1px;
-  box-shadow: var(--color-dark_orange) 0px 7px 2px,
+  box-shadow: var(--color-orange-600) 0px 7px 2px,
     var(--color-black) 0px 8px 5px;
 }
 .header__login-btn2 {
@@ -72,7 +72,7 @@ header {
 }
 .header__login-btn:active {
   transform: translatey(5px);
-  box-shadow: var(--color-dark_orange) 0px 3px 2px,
+  box-shadow: var(--color-orange-600) 0px 3px 2px,
     var(--color-black) 0px 3px 5px;
 }
 

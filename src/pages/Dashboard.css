@@ -105,6 +105,7 @@
 .dashboard__nav-nav li:hover {
   color: var(--color-orange);
 }
+
 .dashboard__nav-nav .active {
   color: var(--color-white);
   background-color: var(--color-orange);

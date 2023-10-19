@@ -6,15 +6,21 @@
   --color-black: #000;
   --color-grey: #383d46;
   --color-grey-sec: #a3a3a3;
-  --color-orange: #fe6f14;
-  --color-dark_orange: #c84f03;
-  --color-light_orange: #ffc69e61;
-  --color-brown: #5d3719;
-  --color-green: #008e00;
-  --color-light_green: #00fa0031;
-  --color-red: #e70000;
-  --color-light_red: #ff777760;
 
+  --color-orange: #fe6f14;
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffecd4;
+  --color-orange-200: #ffd5a8;
+  --color-orange-300: #ffb771;
+  --color-orange-400: #ff8e38;
+  --color-orange-500: #ef5107;
+  --color-orange-600: #c84f03;
+  --color-orange-700: #c63b08;
+  --color-orange-800: #9d300f;
+  --color-orange-900: #7e2a10;
+  --color-orange-950: #441206;
+  --color-light_orange: #ffc69e61;
+  
   background-color: var(--color-bg);
   color: var(--color-grey);
   font-family: "Rubik", sans-serif;
@@ -30,16 +36,16 @@
 }
 
 button {
-  background-color: var(--color-light_orange);
+  background-color: var(--color-orange);
   padding: 8px 10px;
   border: none;
   border-radius: 8px;
-  color: var(--color-orange);
+  color: var(--color-white);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 button:hover {
-  background-color: var(--color-orange);
+  background-color: var(--color-orange-600);
   color: var(--color-white);
   transform: scale(1.03);
 }
@@ -49,6 +55,6 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: var(--color-dark_orange);
+  color: var(--color-orange-600);
   cursor: pointer;
 }
