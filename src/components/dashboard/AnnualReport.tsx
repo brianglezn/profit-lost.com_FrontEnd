@@ -1,11 +1,11 @@
-import React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import React from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-import './AnnualReport.css';
+import "./AnnualReport.css";
 
 function AnnualReport() {
   // Select Year ----------------
@@ -34,31 +34,35 @@ function AnnualReport() {
     1086.58, 1294.67, 1201, 1365,
   ];
   const xLabels = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
+
+  // Data Categories ----------------
+
+
 
   return (
     <>
-      <section className='annualReport'>
-        <div className='annualReport__containerMain'>
+      <section className="annualReport">
+        <div className="annualReport__containerMain">
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Year</InputLabel>
+            <InputLabel id="demo-simple-select-label">Year</InputLabel>
             <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               value={date}
-              label='Year'
+              label="Year"
               onChange={handleChange}
             >
               {years.map((year) => (
@@ -68,32 +72,32 @@ function AnnualReport() {
               ))}
             </Select>
           </FormControl>
-          <div className='annualReport__containerMain-chart'>
+          <div className="annualReport__containerMain-chart">
             <BarChart
               width={500}
               height={300}
               series={[
-                { data: inData, label: 'Income', id: 'inId' },
-                { data: outData, label: 'Expenses', id: 'outId' },
+                { data: inData, label: "Income", id: "inId" },
+                { data: outData, label: "Expenses", id: "outId" },
               ]}
-              xAxis={[{ data: xLabels, scaleType: 'band' }]}
+              xAxis={[{ data: xLabels, scaleType: "band" }]}
             />
           </div>
-          <div className='annualReport__containerMain__containerBalance income'>
-            <span className='material-symbols-rounded'>download</span>
+          <div className="annualReport__containerMain__containerBalance income">
+            <span className="material-symbols-rounded">download</span>
             <p>18.659,85 €</p>
           </div>
-          <div className='annualReport__containerMain__containerBalance expenses'>
-            <span className='material-symbols-rounded'>upload</span>
+          <div className="annualReport__containerMain__containerBalance expenses">
+            <span className="material-symbols-rounded">upload</span>
             <p>15.817,42 €</p>
           </div>
         </div>
-        <div className='annualReport__category'>
-          <div className='annualReport__category-text'>
+        <div className="annualReport__category">
+          <div className="annualReport__category-text">
             <p>Categories</p>
-            <span className='material-symbols-rounded'>new_window</span>
+            <span className="material-symbols-rounded">new_window</span>
           </div>
-          <div className='annualReport__category-table'></div>
+          <div className="annualReport__category-table"></div>
         </div>
       </section>
     </>

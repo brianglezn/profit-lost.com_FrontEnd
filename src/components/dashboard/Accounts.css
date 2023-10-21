@@ -70,22 +70,24 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 0 1rem;
 }
 
 .accounts__base-container-account {
   margin: 15px;
   width: 300px;
-  height: 130px;
+  height: 10rem;
   border-radius: 20px;
   cursor: pointer;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: transform 0.3s ease-in-out;
 }
 .accounts__base-container-account:hover {
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 .accounts__base-container-account p {
   font-size: 1.5rem;

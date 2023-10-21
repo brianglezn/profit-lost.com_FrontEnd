@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 interface AccountItemProps {
   accountName: string;
-  balance: string;
+  balance: GLfloat;
   customBackgroundColor: string;
   customColor: string;
 }
