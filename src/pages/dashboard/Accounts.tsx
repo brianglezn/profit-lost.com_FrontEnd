@@ -1,13 +1,8 @@
-import { useState } from "react";
-
 import "./Accounts.css";
 
-import AccountItem from "./AccountItem.tsx";
+import AccountItem from "../../components/dashboard/AccountItem.tsx";
 
 function Accounts() {
-  const [accountBgColor, setAccountBgColor] = useState("var(--color-orange)"); //setColor se usará para ponerle el color que el usuario quiera
-  const [accountColor, setAccountColor] = useState("var(--color-white)"); //setColor se usará para ponerle el color que el usuario quiera
-
   const balanceValue = "4.100,75";
   const balanceAsFloat = parseFloat(balanceValue.replace(",", "."));
   const isPositive = balanceAsFloat >= 0;
@@ -37,7 +32,7 @@ function Accounts() {
 
   // Data Accounts
 
-  const accountsData: AccountData[] = [
+  const accountsData = [
     {
       accountName: "ImaginBank",
       balance: 13715.56,
@@ -57,13 +52,6 @@ function Accounts() {
       customColor: "var(--color-white)",
     },
   ];
-
-  interface AccountData {
-    accountName: string;
-    balance: GLfloat;
-    customBackgroundColor: string;
-    customColor: string;
-  }
 
   const accountItems = accountsData.map((account, index) => (
     <AccountItem

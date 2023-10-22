@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import './Login-Register.css';
 import logo2 from '../assets/logo/logo_profit-lost2.svg';
 
-import Footer from '../components/landing/Footer';
+import Footer from '../../components/landing/Footer';
 
-function Login() {
+function Register() {
   return (
     <>
       <header className='header'>
@@ -18,31 +18,36 @@ function Login() {
 
       <div className='container__form'>
         <form className='form__box' method='post'>
-          <h2 className='form__title'>Log in</h2>
+          <h2 className='form__title'>Create an account</h2>
+          <input
+            className='form__name'
+            type='text'
+            id='username-register'
+            placeholder='Username'
+            required
+          />
           <input
             className='form__email'
             type='email'
             name='email'
-            id='email-login'
-            placeholder='E-mail'
+            id='email-register'
+            placeholder='Email'
             required
           />
+
           <input
             className='form__password'
             type='password'
             name='password'
-            id='password-login'
+            id='password-register'
             placeholder='Password'
             required
           />
-          <Link to='/forgot-password' className='form__forgot'>
-            Forgot password?
-          </Link>
           <input className='form__submit' type='submit' value="Let's go!" />
           <p className='form__link'>
-            Don&apos;t have an account?
-            <Link to='/register' className='form__link--color'>
-              Sign up
+            Already have an account?
+            <Link to='/login' className='form__link--color'>
+              Sign in
             </Link>
           </p>
         </form>
@@ -53,4 +58,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

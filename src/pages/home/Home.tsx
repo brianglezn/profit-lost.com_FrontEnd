@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
 import "./Home.css";
-import money_dash from "../assets/illustrations/money-dash.svg";
+import money_dash from "../../assets/illustrations/money-dash.svg";
 
-import Header from "../components/landing/Header";
-import Footer from "../components/landing/Footer";
+import Header from "../../components/landing/Header";
+import Footer from "../../components/landing/Footer";
 
 function Home() {
   return (

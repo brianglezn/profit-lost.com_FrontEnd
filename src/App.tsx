@@ -2,12 +2,12 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import DashBoard from "./pages/DashBoard";
-import Cookies from "./pages/Cookies";
-import ForgotPassword from "./pages/ForgotPassword";
+import Home from "./pages/home/Home";
+import Login from "./pages/home/Login";
+import Register from "./pages/home/Register";
+import DashBoard from "./pages/dashboard/DashBoard";
+import Cookies from "./pages/home/Cookies";
+import ForgotPassword from "./pages/home/ForgotPassword";
 
 function App() {
   const theme = createTheme({

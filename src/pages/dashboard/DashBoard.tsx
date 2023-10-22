@@ -2,14 +2,14 @@ import { SetStateAction, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 
 import "./Dashboard.css";
-import logo2 from "../assets/logo/logo_profit-lost2.svg";
+import logo2 from "../../assets/logo/logo_profit-lost2.svg";
 
-import DashHome from "../components/dashboard/DashHome";
-import Accounts from "../components/dashboard/Accounts";
-import AnnualReport from "../components/dashboard/AnnualReport";
-import Movements from "../components/dashboard/Movements";
-import Profile from "../components/dashboard/Profile";
-import Settings from "../components/dashboard/Settings";
+import DashHome from "./DashHome";
+import Accounts from "./Accounts";
+import AnnualReport from "./AnnualReport";
+import Movements from "./Movements";
+import Profile from "./Profile";
+import Settings from "./Settings";
 
 function Dashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");

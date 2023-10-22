@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './Cookies.css';
 
-import Footer from '../components/landing/Footer';
+import Footer from '../../components/landing/Footer';
 
 function Cookies() {
   return (
