@@ -4,6 +4,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 import "./AnnualReport.css";
 
@@ -50,6 +51,17 @@ function AnnualReport() {
 
   // Data Categories ----------------
 
+  const rows: GridRowsProp = [
+    { id: 1, Category: "Work", Balance: "15711,18", InOut: "⬆" },
+    { id: 2, Category: "House", Balance: "-581,75", InOut: "⬇‍️" },
+  ];
+
+  const columns: GridColDef[] = [
+    { field: "Category", headerName: "Category", flex: 1.5 },
+    { field: "Balance", headerName: "Balance", flex: 1 },
+    { field: "InOut", headerName: "InOut", flex: 1 },
+  ];
+
   return (
     <>
       <section className="annualReport">
@@ -95,7 +107,9 @@ function AnnualReport() {
             <p>Categories</p>
             <span className="material-symbols-rounded">new_window</span>
           </div>
-          <div className="annualReport__category-table"></div>
+          <div className="annualReport__category-table">
+            <DataGrid rows={rows} columns={columns} />
+          </div>
         </div>
       </section>
     </>

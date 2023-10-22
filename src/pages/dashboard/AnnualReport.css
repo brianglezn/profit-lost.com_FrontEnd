@@ -101,6 +101,10 @@
   color: var(--color-orange);
 }
 
+.annualReport__category-table {
+  padding: 0 2rem 1rem 2rem;
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 490px) {
   /* Estilos para dispositivos móviles */
@@ -129,6 +133,10 @@
   }
   .annualReport__containerMain__containerBalance p {
     font-size: 1rem;
+  }
+
+  .annualReport__category-table {
+    padding: 0 1rem 1rem 1rem;
   }
 }
 @media (min-width: 491px) and (max-width: 767px) {

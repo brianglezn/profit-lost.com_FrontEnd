@@ -118,6 +118,7 @@
 
 .dashboard__container-nav2 {
   display: none;
+  z-index: 9999;
 }
 
 .dashboard_container {

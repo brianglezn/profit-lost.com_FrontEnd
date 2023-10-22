@@ -57,7 +57,10 @@ function Accounts() {
     <AccountItem
       key={index}
       accountName={account.accountName}
-      balance={account.balance}
+      balance={`${account.balance.toLocaleString("es-ES", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })} €`}
       customBackgroundColor={account.customBackgroundColor}
       customColor={account.customColor}
     />
