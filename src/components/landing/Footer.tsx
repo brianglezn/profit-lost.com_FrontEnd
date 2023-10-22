@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 import "./Footer.css";
-// import Brian from '../../assets/img/Brian.jpg';
-// import logo1 from '../../assets/logo/logo_profit-lost.svg';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +10,6 @@ function Footer() {
       <footer className="footer">
         <div className="footer__container1">
           <div className="footer__img">
-            {/* <img src={logo1} alt='logo' /> */}
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost.svg"
               alt="logo"
@@ -20,7 +17,6 @@ function Footer() {
           </div>
           <div className="footer__links">
             <div className="footer__links__1">
-              {/* <img src={Brian} alt='brian' /> */}
               <img
                 src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/img/brian.jpg"
                 alt="logo"

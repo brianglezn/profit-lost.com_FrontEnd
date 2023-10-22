@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import "./Login-Register.css";
-// import logo2 from '../assets/logo/logo_profit-lost2.svg';
 
 import Footer from "../../components/landing/Footer";
 
@@ -11,7 +10,6 @@ function Register() {
       <header className="header">
         <div className="header__container">
           <Link to="/" className="header__logo">
-            {/* <img src={logo2} alt='Profit&Lost' /> */}
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
               alt="logo"
