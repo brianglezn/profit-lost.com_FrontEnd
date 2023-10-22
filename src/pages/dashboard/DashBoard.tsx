@@ -2,7 +2,7 @@ import { SetStateAction, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 
 import "./Dashboard.css";
-import logo2 from "../../assets/logo/logo_profit-lost2.svg";
+// import logo2 from '../../assets/logo/logo_profit-lost2.svg';
 
 import DashHome from "./DashHome";
 import Accounts from "./Accounts";
@@ -61,7 +61,11 @@ function Dashboard() {
         <div className="dashboard__container-nav">
           <nav className="dashboard__nav">
             <div className="dashboard__nav-img">
-              <img src={logo2} alt="Profit&Lost" />
+              {/* <img src={logo2} alt='Profit&Lost' /> */}
+              <img
+                src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+                alt="logo"
+              />
             </div>
             <div className="dashboard__nav-nav">
               <ul>

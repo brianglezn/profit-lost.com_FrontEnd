@@ -50,8 +50,6 @@ function AnnualReport() {
 
   // Data Categories ----------------
 
-
-
   return (
     <>
       <section className="annualReport">

@@ -1,9 +1,9 @@
-import './Movements.css';
+import "./Movements.css";
 
 function Movements() {
   return (
     <>
-      <section className='movements'>
+      <section className="movements">
         <h1>Movements</h1>
       </section>
     </>

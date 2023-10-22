@@ -1,25 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import './Cookies.css';
+import "./Cookies.css";
 
-import Footer from '../../components/landing/Footer';
+import Footer from "../../components/landing/Footer";
 
 function Cookies() {
   return (
     <>
-      <Link to='/' className='backHome'>
+      <Link to="/" className="backHome">
         --HOME
       </Link>
-      <h1 className='title'>COOKIES</h1>
-      <section className='legal'>
+      <h1 className="title">COOKIES</h1>
+      <section className="legal">
         <h3>AVISO DE COOKIES</h3>
         <p>
           En cumplimiento con lo dispuesto en el artículo 22.2 de la Ley
           34/2002, de 11 de julio, de Servicios de la Sociedad de la Información
-          y de Comercio Electrónico,{' '}
-          <a href='https://profit-lost.com' target='_blank' rel='noreferrer'>
+          y de Comercio Electrónico,{" "}
+          <a href="https://profit-lost.com" target="_blank" rel="noreferrer">
             profit-lost.com
-          </a>{' '}
+          </a>{" "}
           le informa, en esta sección, sobre la política de recogida y
           tratamiento de cookies.
         </p>

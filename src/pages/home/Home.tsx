@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import "./Home.css";
-import money_dash from "../../assets/illustrations/money-dash.svg";
+// import money_dash from '../../assets/illustrations/money-dash.svg';
 
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
@@ -35,7 +35,11 @@ function Home() {
             </p>
           </div>
           <div className="section1__div-img">
-            <img src={money_dash} alt="Imagen de ejemplo" />
+            {/* <img src={money_dash} alt='Imagen de ejemplo' /> */}
+            <img
+              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/illustrations/money-dash.svg"
+              alt="logo"
+            />
           </div>
         </div>
       </section>
