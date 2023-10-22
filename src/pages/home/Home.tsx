@@ -4,7 +4,6 @@ import "./Home.css";
 
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
-import DashBoard from "./pages/dashboard/DashBoard";
 
 function Home() {
   return (
