@@ -4,6 +4,7 @@ import "./Home.css";
 
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
+import DashBoard from "./pages/dashboard/DashBoard";
 
 function Home() {
   return (
@@ -68,6 +69,11 @@ function Home() {
       {/* <!-- SECTION PREVIEW--> */}
       <section className="section__preview" id="preview">
         <div>preview</div>
+        <Link
+          to="/dashboard"
+        >
+          Dashboard
+        </Link>
       </section>
       {/* <!-- FIN SECTION PREVIEW--> */}
 
