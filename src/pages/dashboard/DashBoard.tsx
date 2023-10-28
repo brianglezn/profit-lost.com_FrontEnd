@@ -8,7 +8,7 @@ import Accounts from "./Accounts";
 import AnnualReport from "./AnnualReport";
 import Movements from "./Movements";
 import Profile from "./Profile";
-import Settings from "./Settings";
+import Goals from "./Goals";
 
 function Dashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");
@@ -37,15 +37,6 @@ function Dashboard() {
         <div className="dashboard__container-header">
           <header className="dashboard__header">
             <p className="dashboard__header-date">{currentDate}</p>
-            <span
-              className={`material-symbols-rounded ${
-                activeSection === "Settings" ? "active" : ""
-              }`}
-              onClick={() => handleMenuItemClick("Settings")}
-              style={{ cursor: "pointer" }}
-            >
-              settings
-            </span>
             <Avatar
               onClick={() => handleMenuItemClick("Profile")}
               sx={{ bgcolor: "var(--color-orange)", width: 35, height: 35 }}
@@ -97,6 +88,13 @@ function Dashboard() {
                   <span className="material-symbols-rounded">credit_card</span>
                   Accounts
                 </li>
+                <li
+                  onClick={() => handleMenuItemClick("Goals")}
+                  className={activeSection === "Goals" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">inventory</span>
+                  Goals
+                </li>
               </ul>
             </div>
           </nav>
@@ -131,10 +129,10 @@ function Dashboard() {
               <span className="material-symbols-rounded">credit_card</span>
             </span>
             <span
-              onClick={() => handleMenuItemClick("Settings")}
-              className={activeSection === "Settings" ? "active" : ""}
+              onClick={() => handleMenuItemClick("Goals")}
+              className={activeSection === "Goals" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">settings</span>
+              <span className="material-symbols-rounded">inventory</span>
             </span>
           </nav>
         </div>
@@ -146,7 +144,7 @@ function Dashboard() {
           {activeSection === "Movements" && <Movements />}
           {activeSection === "Accounts" && <Accounts />}
           {activeSection === "Profile" && <Profile />}
-          {activeSection === "Settings" && <Settings />}
+          {activeSection === "Goals" && <Goals />}
         </section>
       </section>
     </>

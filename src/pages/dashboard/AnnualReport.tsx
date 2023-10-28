@@ -1,5 +1,14 @@
 import React from "react";
-import { BarChart } from "@mui/x-charts/BarChart";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -9,7 +18,158 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import "./AnnualReport.css";
 
 function AnnualReport() {
-  // Select Year ----------------
+  // Data Chart ----------------
+  const dataChart = [
+    // ------ 2023
+    {
+      name: "Jan",
+      year: 2023,
+      Income: 1575.02,
+      Expenses: 1402.58,
+    },
+    {
+      name: "Feb",
+      year: 2023,
+      Income: 1505.67,
+      Expenses: 1054.03,
+    },
+    {
+      name: "Mar",
+      year: 2023,
+      Income: 1341.68,
+      Expenses: 1547.36,
+    },
+    {
+      name: "Apr",
+      year: 2023,
+      Income: 1757.31,
+      Expenses: 1482.13,
+    },
+    {
+      name: "May",
+      year: 2023,
+      Income: 1606.85,
+      Expenses: 1445.96,
+    },
+    {
+      name: "Jun",
+      year: 2023,
+      Income: 1650.61,
+      Expenses: 1906.09,
+    },
+    {
+      name: "Jul",
+      year: 2023,
+      Income: 1687.14,
+      Expenses: 1231.87,
+    },
+    {
+      name: "Aug",
+      year: 2023,
+      Income: 1708.57,
+      Expenses: 633.6,
+    },
+    {
+      name: "Sep",
+      year: 2023,
+      Income: 1893.27,
+      Expenses: 1086.58,
+    },
+    {
+      name: "Oct",
+      year: 2023,
+      Income: 1500,
+      Expenses: 1294.67,
+    },
+    {
+      name: "Nov",
+      year: 2023,
+      Income: 1300,
+      Expenses: 1201,
+    },
+    {
+      name: "Dec",
+      year: 2023,
+      Income: 1700,
+      Expenses: 1365,
+    },
+
+    // ------ 2022
+    {
+      name: "Jan",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Feb",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Mar",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Apr",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "May",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Jun",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Jul",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Aug",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Sep",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Oct",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Nov",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+    {
+      name: "Dec",
+      year: 2022,
+      Income: 1000,
+      Expenses: 900,
+    },
+  ];
+
+  // Selector Year/Data ----------------
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -19,35 +179,13 @@ function AnnualReport() {
     setDate(event.target.value);
   };
 
-  const years = Array.from(
-    { length: currentYear - 2020 },
-    (_, index) => currentYear - index
+  const yearsWithData = [...new Set(dataChart.map((item) => item.year))];
+
+  const years = yearsWithData.filter((year) => year >= 2020);
+
+  const filteredData = dataChart.filter(
+    (item) => item.year === parseInt(date, 10)
   );
-
-  // Data Chart ----------------
-
-  const inData = [
-    1575.02, 1505.67, 1341.68, 1757.31, 1606.85, 1650.61, 1687.14, 1708.57,
-    1893.27, 1500, 1300, 1700,
-  ];
-  const outData = [
-    1402.58, 1054.03, 1547.36, 1482.13, 1445.96, 1906.09, 1231.87, 633.6,
-    1086.58, 1294.67, 1201, 1365,
-  ];
-  const xLabels = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   // Data Categories ----------------
 
@@ -83,15 +221,25 @@ function AnnualReport() {
             </Select>
           </FormControl>
           <div className="annualReport__containerMain-chart">
-            <BarChart
-              width={500}
-              height={300}
-              series={[
-                { data: inData, label: "Income", id: "inId" },
-                { data: outData, label: "Expenses", id: "outId" },
-              ]}
-              xAxis={[{ data: xLabels, scaleType: "band" }]}
-            />
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={filteredData}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Income" fill="var(--color-orange-400)" />
+                <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
           <div className="annualReport__containerMain__containerBalance income">
             <span className="material-symbols-rounded">download</span>

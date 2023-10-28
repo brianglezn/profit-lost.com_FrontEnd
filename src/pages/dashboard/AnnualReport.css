@@ -20,30 +20,13 @@
 .annualReport__containerMain-chart {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 20rem;
+  height: 22rem;
+  padding-top: 1rem;
   border-radius: 20px;
-  padding: 20px 0 20px 0;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--color-white);
-}
-.MuiChartsLegend-series:first-child rect {
-  fill: var(--color-orange-400);
-}
-.MuiChartsLegend-series:last-child rect {
-  fill: var(--color-orange-800);
-}
-.css-10vg0a6-MuiResponsiveChart-container .css-1vuxth3-MuiBarElement-root {
-  fill: var(--color-orange-400);
-}
-.css-10vg0a6-MuiResponsiveChart-container .css-6kig8r-MuiBarElement-root {
-  fill: var(--color-orange-800);
-}
-.css-k7cvcj-MuiChartsTooltip-mark {
-  background-color: var(--color-orange) !important;
-}
-.css-1vc7vxh-MuiChartsTooltip-mark {
-  background-color: var(--color-orange-800) !important;
 }
 
 .annualReport__containerMain__containerBalance {
@@ -113,14 +96,6 @@
   }
   .annualReport__category {
     margin-bottom: 5rem;
-  }
-  .annualReport__containerMain-chart {
-    display: flex;
-    padding: 20px 0 0 0;
-    height: 14rem;
-  }
-  .annualReport__containerMain-chart > div {
-    margin-left: 5px;
   }
   .annualReport__containerMain__containerBalance {
     width: 45%;
