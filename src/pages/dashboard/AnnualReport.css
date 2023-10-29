@@ -14,8 +14,8 @@
 }
 
 /* select mui */
-.css-1a2qpli {
-  border-radius: 15px !important;
+div.MuiInputBase-root.css-1a2qpli {
+  border-radius: 15px;
 }
 /* dev */
 .css-q8hpuo-MuiFormControl-root > div {
