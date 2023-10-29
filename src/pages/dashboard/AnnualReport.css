@@ -15,7 +15,7 @@
 
 /* select mui */
 .css-1a2qpli {
-  border-radius: 15px;
+  border-radius: 15px !important;
 }
 /* dev */
 .css-q8hpuo-MuiFormControl-root > div {
