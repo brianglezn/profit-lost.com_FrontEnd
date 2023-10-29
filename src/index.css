@@ -58,3 +58,8 @@ a:hover {
   color: var(--color-orange-600);
   cursor: pointer;
 }
+
+/* select mui */
+.css-1a2qpli {
+  border-radius: 15px;
+}
