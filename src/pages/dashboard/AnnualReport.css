@@ -34,7 +34,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 35%;
+  width: 30%;
   height: 4rem;
   border-radius: 20px;
   padding: 20px 0 20px 0;
@@ -49,6 +49,13 @@
 }
 .expenses span {
   color: var(--color-orange-900);
+}
+.negative {
+  color: red;
+}
+
+.positive {
+  color: green;
 }
 .annualReport__containerMain__containerBalance p {
   font-size: 1.5rem;
@@ -102,12 +109,13 @@
     height: 3rem;
     gap: 10px;
     padding: 20px 0 20px 0;
+    width: 90%;
   }
   .annualReport__containerMain__containerBalance span {
     font-size: 2rem;
   }
   .annualReport__containerMain__containerBalance p {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .annualReport__category-table {
@@ -124,6 +132,7 @@
   }
   .annualReport__containerMain__containerBalance {
     gap: 10px;
+    width: 40%;
   }
   .annualReport__containerMain__containerBalance span {
     font-size: 2.2rem;

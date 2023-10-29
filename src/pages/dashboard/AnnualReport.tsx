@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -19,6 +19,7 @@ import "./AnnualReport.css";
 
 function AnnualReport() {
   // Data Chart ----------------
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const dataChart = [
     // ------ 2023
     {
@@ -174,9 +175,12 @@ function AnnualReport() {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const [date, setDate] = React.useState(currentYear.toString());
+  const [balanceIncome, setBalanceIncome] = useState(0);
+  const [balanceExpenses, setBalanceExpenses] = useState(0);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setDate(event.target.value);
+    const selectedYear = event.target.value;
+    setDate(selectedYear);
   };
 
   const yearsWithData = [...new Set(dataChart.map((item) => item.year))];
@@ -186,6 +190,43 @@ function AnnualReport() {
   const filteredData = dataChart.filter(
     (item) => item.year === parseInt(date, 10)
   );
+
+  useEffect(() => {
+    const selectedYearData = dataChart.filter(
+      (item) => item.year === parseInt(date, 10)
+    );
+    const incomeSum = selectedYearData.reduce(
+      (sum, item) => sum + item.Income,
+      0
+    );
+    const expensesSum = selectedYearData.reduce(
+      (sum, item) => sum + item.Expenses,
+      0
+    );
+    setBalanceIncome(incomeSum);
+    setBalanceExpenses(expensesSum);
+  }, [date, dataChart]);
+
+  // Balance Formater ----------------
+
+  const balanceFinal: number = balanceIncome - balanceExpenses;
+
+  const formattedBalanceIncome = balanceIncome.toLocaleString("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+  });
+  const formattedBalanceExpenses = balanceExpenses.toLocaleString("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+  });
+  const formattedBalanceFinal = balanceFinal.toLocaleString("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    useGrouping: true,
+  });
 
   // Data Categories ----------------
 
@@ -243,11 +284,21 @@ function AnnualReport() {
           </div>
           <div className="annualReport__containerMain__containerBalance income">
             <span className="material-symbols-rounded">download</span>
-            <p>18.659,85 €</p>
+            <p>{formattedBalanceIncome}</p>
           </div>
           <div className="annualReport__containerMain__containerBalance expenses">
             <span className="material-symbols-rounded">upload</span>
-            <p>15.817,42 €</p>
+            <p>{formattedBalanceExpenses}</p>
+          </div>
+          <div className="annualReport__containerMain__containerBalance edbita">
+            <span
+              className={`material-symbols-rounded ${
+                parseFloat(formattedBalanceFinal) < 0 ? "negative" : "positive"
+              }`}
+            >
+              savings
+            </span>
+            <p>{formattedBalanceFinal}</p>
           </div>
         </div>
         <div className="annualReport__category">
