@@ -55,6 +55,15 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
+/* select mui */
+.css-1a2qpli {
+  border-radius: 15px;
+}
+/* dev */
+.css-q8hpuo-MuiFormControl-root > div {
+  border-radius: 15px;
+}
+
 .accounts__base-text {
   display: flex;
   justify-content: space-between;
