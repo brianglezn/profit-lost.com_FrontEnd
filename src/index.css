@@ -20,7 +20,7 @@
   --color-orange-900: #7e2a10;
   --color-orange-950: #441206;
   --color-light_orange: #ffc69e61;
-  
+
   background-color: var(--color-bg);
   color: var(--color-grey);
   font-family: "Rubik", sans-serif;
@@ -59,3 +59,10 @@ a:hover {
   cursor: pointer;
 }
 
+.negative {
+  color: red;
+}
+
+.positive {
+  color: green;
+}

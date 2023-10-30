@@ -225,20 +225,6 @@ function Accounts() {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
     return monthNames[previousMonth];
   }
 

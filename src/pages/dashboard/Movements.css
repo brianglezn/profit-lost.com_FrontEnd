@@ -2,6 +2,101 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-
   margin: 20px 30px;
 }
+
+.movements__containerMain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 98%;
+}
+
+.movements__containerMain-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  gap: 20px;
+  width: 98%;
+}
+/* select mui */
+div.MuiInputBase-root.css-1a2qpli {
+  border-radius: 15px;
+}
+/* dev */
+.css-q8hpuo-MuiFormControl-root > div {
+  border-radius: 15px;
+}
+
+.movements__containerMain-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 45%;
+  height: 22rem;
+  padding: 1rem 0;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--color-white);
+}
+.movements__containerMain-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-grow: 1;
+
+  width: 45%;
+  height: 22rem;
+  padding: 1rem 0;
+}
+.movements__containerMainBalance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 4rem;
+  border-radius: 20px;
+  padding: 20px 0 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--color-white);
+}
+
+.movements__containerMainBalance span {
+  font-size: 3rem;
+}
+.income span {
+  color: var(--color-orange-400);
+}
+.expenses span {
+  color: var(--color-orange-900);
+}
+.movements__containerMainBalance p {
+  font-size: 1.5rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 767px) {
+  /* Estilos para dispositivos móviles */
+  .movements__containerMain {
+    flex-direction: column;
+  }
+  .movements__containerMain-chart {
+    width: 98%;
+  }
+  .movements__containerMain-balance {
+    width: 98%;
+  }
+  .movements__containerMain-balance {
+    height: 17rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Estilos para tablets */
+}
+
+/* ---------- FIN RESPONSIVE ---------- */
