@@ -243,7 +243,7 @@ function Movements() {
       <section className="movements">
         <div className="movements__containerMain">
           <div className="movements__containerMain-selector">
-            <FormControl fullWidth style={{ flex: 1, marginRight: "5px" }}>
+            <FormControl fullWidth style={{ flex: 1 }}>
               <InputLabel id="demo-simple-select-label">Year</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -260,7 +260,7 @@ function Movements() {
               </Select>
             </FormControl>
 
-            <FormControl fullWidth style={{ flex: 1, marginRight: "5px" }}>
+            <FormControl fullWidth style={{ flex: 1 }}>
               <InputLabel id="demo-simple-select-label">Month</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -290,7 +290,6 @@ function Movements() {
               </Select>
             </FormControl>
           </div>
-
           <div className="movements__containerMain-chart">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
@@ -315,15 +314,15 @@ function Movements() {
             </ResponsiveContainer>
           </div>
           <div className="movements__containerMain-balance">
-            <div className="movements__containerMainBalance income">
+            <div className="movements__balance income">
               <span className="material-symbols-rounded">download</span>
               <p>{formattedBalanceIncome}</p>
             </div>
-            <div className="movements__containerMainBalance expenses">
+            <div className="movements__balance expenses">
               <span className="material-symbols-rounded">upload</span>
               <p>{formattedBalanceExpenses}</p>
             </div>
-            <div className="movements__containerMainBalance edbita">
+            <div className="movements__balance edbita">
               <span
                 className={`material-symbols-rounded ${
                   parseFloat(formattedBalanceFinal) < 0
@@ -334,6 +333,14 @@ function Movements() {
                 savings
               </span>
               <p>{formattedBalanceFinal}</p>
+            </div>
+          </div>
+          <div className="movements__containerMain-movements">
+            <div className="movements__movements-text">
+              <p>Movements</p>
+              <span className="material-symbols-rounded">new_window</span>
+            </div>
+            <div className="movements__movements-table">
             </div>
           </div>
         </div>

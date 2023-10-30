@@ -244,7 +244,7 @@ function Accounts() {
   return (
     <>
       <section className="accounts">
-        <div className="accounts__baseMain">
+        <div className="movements__containerMain">
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Year</InputLabel>
             <Select
@@ -298,12 +298,12 @@ function Accounts() {
             </ResponsiveContainer>
           </div>
         </div>
-        <div className="accounts__base">
-          <div className="accounts__base-text">
+        <div className="accounts__containerAccounts">
+          <div className="accounts__accounts-text">
             <p>Accounts</p>
             <span className="material-symbols-rounded">new_window</span>
           </div>
-          <div className="accounts__base-container">{accountItems}</div>
+          <div className="accounts__accounts-container">{accountItems}</div>
         </div>
       </section>
     </>

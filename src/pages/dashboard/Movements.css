@@ -19,7 +19,7 @@
   justify-content: space-evenly;
   flex-grow: 1;
   gap: 20px;
-  width: 98%;
+  width: 100%;
 }
 
 .movements__containerMain-chart {
@@ -45,20 +45,20 @@
   height: 22rem;
   padding: 1rem 0;
 }
-.movements__containerMainBalance {
+.movements__balance {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  height: 5rem;
   width: 100%;
-  height: 4rem;
   border-radius: 20px;
   padding: 20px 0 20px 0;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--color-white);
 }
 
-.movements__containerMainBalance span {
+.movements__balance span {
   font-size: 3rem;
 }
 .income span {
@@ -67,8 +67,37 @@
 .expenses span {
   color: var(--color-orange-900);
 }
-.movements__containerMainBalance p {
-  font-size: 1.5rem;
+.movements__balance p {
+  font-size: 1.7rem;
+}
+.movements__containerMain-movements {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px 0 20px 0;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--color-white);
+}
+.movements__movements-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-bottom: 20px;
+}
+.movements__movements-text p {
+  font-weight: bold;
+}
+.movements__movements-text span {
+  cursor: pointer;
+}
+.movements__movements-text span:hover {
+  color: var(--color-orange);
+}
+.movements__movements-table {
+  padding: 0 2rem 1rem 2rem;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -77,18 +106,37 @@
   .movements__containerMain {
     flex-direction: column;
   }
+  .movements__containerMain-selector {
+    flex-direction: column;
+  }
   .movements__containerMain-chart {
-    width: 98%;
+    width: 100%;
   }
   .movements__containerMain-balance {
-    width: 98%;
+    width: 100%;
+    gap: 10px;
+    padding: 0;
+    height: 11rem;
   }
-  .movements__containerMain-balance {
-    height: 17rem;
+  .movements__containerMain-balance div {
+    width: 100%;
+    height: 3rem;
+  }
+  .movements__balance span {
+    font-size: 2.2rem;
+  }
+  .movements__balance p {
+    font-size: 1.2rem;
+  }
+  .movements__containerMain-movements {
+    margin-bottom: 5rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para tablets */
+  .movements__containerMain-movements {
+    margin-bottom: 5rem;
+  }
 }
 
 /* ---------- FIN RESPONSIVE ---------- */

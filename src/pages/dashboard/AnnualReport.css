@@ -25,10 +25,18 @@
   background-color: var(--color-white);
 }
 
-.annualReport__containerMain__containerBalance {
+.annualReport__containerMain-balance {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+.annualReport__balance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
   gap: 20px;
   width: 30%;
   height: 4rem;
@@ -37,7 +45,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--color-white);
 }
-.annualReport__containerMain__containerBalance span {
+.annualReport__balance span {
   font-size: 3rem;
 }
 .income span {
@@ -46,27 +54,26 @@
 .expenses span {
   color: var(--color-orange-900);
 }
-.annualReport__containerMain__containerBalance p {
+.annualReport__balance p {
   font-size: 1.5rem;
 }
 
-.annualReport__category {
-  background-color: var(--color-white);
+.annualReport__containerCategory {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin-top: 20px;
   width: 98%;
   padding: 20px 0 20px 0;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--color-white);
 }
 
 .annualReport__category-text {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 0 40px;
   margin-bottom: 20px;
 }
@@ -85,56 +92,42 @@
 }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width: 490px) {
+@media (max-width: 767px) {
   /* Estilos para dispositivos móviles */
-  .dashboard_container {
-    margin-top: 0;
-  }
-  .annualReport__category {
-    margin-bottom: 5rem;
-  }
-  .annualReport__containerMain__containerBalance {
-    height: 3rem;
+  .annualReport__containerMain-balance {
+    flex-direction: column;
+    height: 11rem;
     gap: 10px;
-    padding: 20px 0 20px 0;
+    padding: 0;
+  }
+  .annualReport__containerMain-balance div {
+    height: 3rem;
+  }
+  .annualReport__balance {
     width: 100%;
   }
-  .annualReport__containerMain__containerBalance span {
+  .annualReport__balance span {
     font-size: 2rem;
   }
-  .annualReport__containerMain__containerBalance p {
+  .annualReport__balance p {
     font-size: 1.2rem;
   }
-
+  .annualReport__containerCategory {
+    margin-bottom: 5rem;
+  }
   .annualReport__category-table {
     padding: 0 1rem 1rem 1rem;
   }
 }
-@media (min-width: 491px) and (max-width: 767px) {
-  /* Estilos para tablets pequeñas */
-  .dashboard_container {
-    margin-top: 0;
-  }
-  .annualReport__category {
-    margin-bottom: 5rem;
-  }
-  .annualReport__containerMain__containerBalance {
-    gap: 10px;
-    width: 40%;
-  }
-  .annualReport__containerMain__containerBalance span {
-    font-size: 2.2rem;
-  }
-  .annualReport__containerMain__containerBalance p {
-    font-size: 1.2rem;
-  }
-}
 @media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para tablets */
-  .dashboard_container {
-    margin-top: 0;
+  .annualReport__containerMain-balance {
+    gap: 10px;
   }
-  .annualReport__category {
+  .annualReport__balance {
+    width: 100%;
+  }
+  .annualReport__containerCategory {
     margin-bottom: 5rem;
   }
 }

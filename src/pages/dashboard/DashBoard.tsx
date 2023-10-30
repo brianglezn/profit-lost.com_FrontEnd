@@ -138,7 +138,7 @@ function Dashboard() {
         </div>
         {/* FIN NAV RESPONSIVE */}
 
-        <section className="dashboard_container">
+        <section className="dashboard__container">
           {activeSection === "Dashboard" && <DashHome />}
           {activeSection === "AnnualReport" && <AnnualReport />}
           {activeSection === "Movements" && <Movements />}

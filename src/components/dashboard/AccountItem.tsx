@@ -12,7 +12,7 @@ function AccountItem(props: AccountItemProps) {
 
   return (
     <div
-      className="accounts__base-container-account"
+      className="accounts__account-container"
       style={{ backgroundColor: customBackgroundColor, color: customColor }}
     >
       <p>{accountName}</p>

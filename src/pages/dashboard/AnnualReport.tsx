@@ -282,26 +282,30 @@ function AnnualReport() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="annualReport__containerMain__containerBalance income">
-            <span className="material-symbols-rounded">download</span>
-            <p>{formattedBalanceIncome}</p>
-          </div>
-          <div className="annualReport__containerMain__containerBalance expenses">
-            <span className="material-symbols-rounded">upload</span>
-            <p>{formattedBalanceExpenses}</p>
-          </div>
-          <div className="annualReport__containerMain__containerBalance edbita">
-            <span
-              className={`material-symbols-rounded ${
-                parseFloat(formattedBalanceFinal) < 0 ? "negative" : "positive"
-              }`}
-            >
-              savings
-            </span>
-            <p>{formattedBalanceFinal}</p>
+          <div className="annualReport__containerMain-balance">
+            <div className="annualReport__balance income">
+              <span className="material-symbols-rounded">download</span>
+              <p>{formattedBalanceIncome}</p>
+            </div>
+            <div className="annualReport__balance expenses">
+              <span className="material-symbols-rounded">upload</span>
+              <p>{formattedBalanceExpenses}</p>
+            </div>
+            <div className="annualReport__balance edbita">
+              <span
+                className={`material-symbols-rounded ${
+                  parseFloat(formattedBalanceFinal) < 0
+                    ? "negative"
+                    : "positive"
+                }`}
+              >
+                savings
+              </span>
+              <p>{formattedBalanceFinal}</p>
+            </div>
           </div>
         </div>
-        <div className="annualReport__category">
+        <div className="annualReport__containerCategory">
           <div className="annualReport__category-text">
             <p>Categories</p>
             <span className="material-symbols-rounded">new_window</span>

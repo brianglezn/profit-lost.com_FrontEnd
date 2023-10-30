@@ -4,7 +4,7 @@
   flex-direction: column;
   margin: 20px 30px;
 }
-.accounts__baseMain {
+.movements__containerMain {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -43,7 +43,7 @@
   background-color: var(--color-light_orange);
 }
 
-.accounts__base {
+.accounts__containerAccounts {
   background-color: var(--color-white);
   margin-top: 20px;
   width: 98%;
@@ -64,31 +64,31 @@ div.MuiInputBase-root.css-1a2qpli {
   border-radius: 15px;
 }
 
-.accounts__base-text {
+.accounts__accounts-text {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
   margin-bottom: 20px;
 }
-.accounts__base-text p {
+.accounts__accounts-text p {
   font-weight: bold;
 }
-.accounts__base-text span {
+.accounts__accounts-text span {
   cursor: pointer;
 }
-.accounts__base-text span:hover {
+.accounts__accounts-text span:hover {
   color: var(--color-orange);
 }
 
-.accounts__base-container {
+.accounts__accounts-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 1rem;
 }
 
-.accounts__base-container-account {
+.accounts__account-container {
   margin: 15px;
   width: 300px;
   height: 10rem;
@@ -101,16 +101,16 @@ div.MuiInputBase-root.css-1a2qpli {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: transform 0.3s ease-in-out;
 }
-.accounts__base-container-account:hover {
+.accounts__account-container:hover {
   transform: scale(1.02);
 }
-.accounts__base-container-account p {
+.accounts__account-container p {
   font-size: 1.5rem;
   text-align: left;
   font-weight: bold;
   margin: 20px 0 0 20px;
 }
-.accounts__base-container-account span {
+.accounts__account-container span {
   font-size: 1.5rem;
   font-weight: bold;
   text-align: right;
@@ -120,21 +120,20 @@ div.MuiInputBase-root.css-1a2qpli {
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
   /* Estilos para dispositivos móviles */
-  .dashboard_container {
-    margin-top: 0;
-  }
-  .accounts__base {
+  .accounts__containerAccounts {
     margin-bottom: 5rem;
   }
-  .accounts__base-container-account:hover {
+  .accounts__account-container:hover {
     transform: none;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para tablets */
-  .dashboard_container {
-    margin-top: 0;
+  .accounts__containerAccounts {
+    margin-bottom: 5rem;
+  }
+  .accounts__account-container:hover {
+    transform: none;
   }
 }
-
 /* ---------- FIN RESPONSIVE ---------- */
