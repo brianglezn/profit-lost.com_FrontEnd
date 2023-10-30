@@ -21,14 +21,6 @@
   gap: 20px;
   width: 98%;
 }
-/* select mui */
-div.MuiInputBase-root.css-1a2qpli {
-  border-radius: 15px;
-}
-/* dev */
-.css-q8hpuo-MuiFormControl-root > div {
-  border-radius: 15px;
-}
 
 .movements__containerMain-chart {
   display: flex;
