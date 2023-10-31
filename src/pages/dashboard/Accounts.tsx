@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FormControl,
   Select,
@@ -18,114 +18,42 @@ import {
 } from "recharts";
 
 import "./Accounts.css";
+import dataAccountsFile from "../../data/dataAccounts.json";
 
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 
 function Accounts() {
-  // dataAccounts
-  type AccountData = {
+  // dataAccountsFile
+  type DataAccountItem = {
     accountName: string;
     data: {
-      [year: number]: {
+      [year: string]: {
         [month: string]: number;
       };
     };
     customBackgroundColor: string;
     customColor: string;
   };
-  const dataAccounts: AccountData[] = [
-    {
-      accountName: "ImaginBank",
-      data: {
-        "2023": {
-          Jan: 2171.04,
-          Feb: 1926.91,
-          Mar: 2160.19,
-          Apr: 1551.73,
-          May: 1723.36,
-          Jun: 1799.18,
-          Jul: 1442.65,
-          Aug: 1811.17,
-          Sep: 2632.97,
-          Oct: 3311.64,
-          Nov: 0,
-          Dec: 0,
-        },
-        "2022": {
-          Jan: 3134.4,
-          Feb: 1804.33,
-          Mar: 1679.46,
-          Apr: 1688.23,
-          May: 1699.9,
-          Jun: 1460.2,
-          Jul: 1465.05,
-          Aug: 1616.38,
-          Sep: 2624.04,
-          Oct: 1602.29,
-          Nov: 1711.34,
-          Dec: 1552.45,
-        },
-      },
-      customBackgroundColor: "var(--color-orange-800)",
-      customColor: "var(--color-white)",
-    },
-    {
-      accountName: "Abanca",
-      data: {
-        "2023": {
-          Jan: 300,
-          Feb: 300,
-          Mar: 300,
-          Apr: 300,
-          May: 300,
-          Jun: 300,
-          Jul: 300,
-          Aug: 300,
-          Sep: 300,
-          Oct: 300,
-          Nov: 0,
-          Dec: 0,
-        },
-        "2022": {
-          Jan: 100,
-          Feb: 200,
-          Mar: 300,
-          Apr: 100,
-          May: 200,
-          Jun: 100,
-          Jul: 100,
-          Aug: 100,
-          Sep: 100,
-          Oct: 100,
-          Nov: 100,
-          Dec: 100,
-        },
-      },
-      customBackgroundColor: "var(--color-orange-500)",
-      customColor: "var(--color-white)",
-    },
-    {
-      accountName: "Savings",
-      data: {
-        "2023": {
-          Jan: 100,
-          Feb: 200,
-          Mar: 300,
-          Apr: 400,
-          May: 500,
-          Jun: 600,
-          Jul: 700,
-          Aug: 800,
-          Sep: 900,
-          Oct: 1000,
-          Nov: 0,
-          Dec: 0,
-        },
-      },
-      customBackgroundColor: "var(--color-orange-400)",
-      customColor: "var(--color-white)",
-    },
-  ];
+  const [dataAccounts, setDataAccounts] = useState<DataAccountItem[]>([]);
+  useEffect(() => {
+    const formattedData = dataAccountsFile.map((item: DataAccountItem) => {
+      const formattedData: Record<string, Record<string, number>> = {};
+
+      for (const year in item.data) {
+        const monthlyData = item.data[year] || {};
+        formattedData[year] = monthlyData;
+      }
+
+      return {
+        accountName: item.accountName,
+        data: formattedData,
+        customBackgroundColor: item.customBackgroundColor,
+        customColor: item.customColor,
+      };
+    });
+
+    setDataAccounts(formattedData);
+  }, []);
 
   // Sacamos una variable de currentDate, currentYear y currentMonth(name)
   const currentDate = new Date();

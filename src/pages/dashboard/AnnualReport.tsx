@@ -16,156 +16,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 import "./AnnualReport.css";
+import dataAnnualReportFile from "../../data/dataAnnualReport.json";
 
 function AnnualReport() {
-  // dataAnnualReport
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const dataAnnualReport = [
-    {
-      month: "Jan",
-      year: 2023,
-      Income: 1575.02,
-      Expenses: 1402.58,
-    },
-    {
-      month: "Feb",
-      year: 2023,
-      Income: 1505.67,
-      Expenses: 1054.03,
-    },
-    {
-      month: "Mar",
-      year: 2023,
-      Income: 1341.6,
-      Expenses: 1547.36,
-    },
-    {
-      month: "Apr",
-      year: 2023,
-      Income: 1757.31,
-      Expenses: 1482.13,
-    },
-    {
-      month: "May",
-      year: 2023,
-      Income: 1606.85,
-      Expenses: 1445.96,
-    },
-    {
-      month: "Jun",
-      year: 2023,
-      Income: 1650.61,
-      Expenses: 1906.09,
-    },
-    {
-      month: "Jul",
-      year: 2023,
-      Income: 1687.14,
-      Expenses: 1231.87,
-    },
-    {
-      month: "Aug",
-      year: 2023,
-      Income: 1708.57,
-      Expenses: 633.6,
-    },
-    {
-      month: "Sep",
-      year: 2023,
-      Income: 1893.27,
-      Expenses: 1086.58,
-    },
-    {
-      month: "Oct",
-      year: 2023,
-      Income: 1496.18,
-      Expenses: 1638.35,
-    },
-    {
-      month: "Nov",
-      year: 2023,
-      Income: 0,
-      Expenses: 0,
-    },
-    {
-      month: "Dec",
-      year: 2023,
-      Income: 0,
-      Expenses: 0,
-    },
-    {
-      month: "Jan",
-      year: 2022,
-      Income: 1333.08,
-      Expenses: 940.72,
-    },
-    {
-      month: "Feb",
-      year: 2022,
-      Income: 1290.46,
-      Expenses: 1088.64,
-    },
-    {
-      month: "Mar",
-      year: 2022,
-      Income: 1869.88,
-      Expenses: 1426.53,
-    },
-    {
-      month: "Apr",
-      year: 2022,
-      Income: 2025.48,
-      Expenses: 1420.56,
-    },
-    {
-      month: "May",
-      year: 2022,
-      Income: 1065.76,
-      Expenses: 923.4,
-    },
-    {
-      month: "Jun",
-      year: 2022,
-      Income: 1046.82,
-      Expenses: 982.95,
-    },
-    {
-      month: "Jul",
-      year: 2022,
-      Income: 1840.19,
-      Expenses: 1661.52,
-    },
-    {
-      month: "Aug",
-      year: 2022,
-      Income: 1830.11,
-      Expenses: 591.55,
-    },
-    {
-      month: "Sep",
-      year: 2022,
-      Income: 1361.44,
-      Expenses: 2161.2,
-    },
-    {
-      month: "Oct",
-      year: 2022,
-      Income: 1392.82,
-      Expenses: 1559.95,
-    },
-    {
-      month: "Nov",
-      year: 2022,
-      Income: 1251.68,
-      Expenses: 1332.67,
-    },
-    {
-      month: "Dec",
-      year: 2022,
-      Income: 2352.13,
-      Expenses: 1727.75,
-    },
-  ];
   // Sacamos el currentYear e inicializamos la variable year con el año actual
   // handleChange es el evento que cambiará el año en el <Select>
   const currentDate = new Date();
@@ -181,7 +34,7 @@ function AnnualReport() {
   const [balanceExpenses, setBalanceExpenses] = useState(0);
   // useEffect recalcula el balance de ingresos y gastos cada vez que cambia el año seleccionado
   useEffect(() => {
-    const selectedYearData = dataAnnualReport.filter(
+    const selectedYearData = dataAnnualReportFile.filter(
       (item) => item.year === parseInt(year, 10)
     );
     const incomeSum = selectedYearData.reduce(
@@ -194,12 +47,14 @@ function AnnualReport() {
     );
     setBalanceIncome(incomeSum);
     setBalanceExpenses(expensesSum);
-  }, [year, dataAnnualReport]);
+  }, [year]);
 
   // Crea un array con los años unicos dentro de dataAnnualReport
-  const yearsWithData = [...new Set(dataAnnualReport.map((item) => item.year))];
+  const yearsWithData = [
+    ...new Set(dataAnnualReportFile.map((item) => item.year)),
+  ];
   // Filtra los datos anual de dataAnnualReport para obtener solo los datos del año seleccionado
-  const filteredData = dataAnnualReport.filter(
+  const filteredData = dataAnnualReportFile.filter(
     (item) => item.year === parseInt(year, 10)
   );
 
