@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -35,6 +35,7 @@ function Movements() {
   };
 
   // dataAnnualReport
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const dataAnnualReport = [
     // ------ 2023
     {
@@ -188,12 +189,8 @@ function Movements() {
   // Pilla los años dentro de dataAnnualReport y hace un array con los años únicos para despues mostrarlos en el selector
   const uniqueYears = [...new Set(dataAnnualReport.map((item) => item.year))];
 
-  // Si el usuario no selecciona ningun año, se seleccionará el actual
-  const selectedYear = year || currentYear;
-  // Seleccion del mes actual y lo convierte en número
-  const selectedMonth = Number(month);
-
   // Nombre de los meses
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const monthNames = [
     "Jan",
     "Feb",
@@ -210,18 +207,25 @@ function Movements() {
   ];
 
   // Filtra los datos de dataAnnualReport de tal manera que solo se muestren los del mes y año seleccionado
-  const filteredData = dataAnnualReport.filter((item) => {
-    return (
-      item.year === selectedYear && item.name === monthNames[selectedMonth - 1]
-    );
-  });
-  // console.log(filteredData);
-  // ERROR: Cuando se carga el componente NO se muestran datos en filteredData Hasta que se selecciona un year en el Select
+  const [dataGraph, setDataGraph] = useState<
+    {
+      name: string;
+      year: number;
+      Income: number;
+      Expenses: number;
+    }[]
+  >([]);
+  useEffect(() => {
+    const dataFilter = dataAnnualReport.filter((item) => {
+      return item.year === +year && item.name === monthNames[+month - 1];
+    });
+    setDataGraph(dataFilter);
+  }, [year, month, dataAnnualReport, monthNames]);
 
   // Inicializamos las variables y despues recorremos filteredData y le asignamos a esas variables los datos, después se calcular el balanceFinal
   let balanceIncome = 0;
   let balanceExpenses = 0;
-  for (const data of filteredData) {
+  for (const data of dataGraph) {
     balanceIncome += data.Income;
     balanceExpenses += data.Expenses;
   }
@@ -323,7 +327,7 @@ function Movements() {
               <BarChart
                 width={500}
                 height={300}
-                data={filteredData}
+                data={dataGraph}
                 margin={{
                   top: 20,
                   right: 30,
