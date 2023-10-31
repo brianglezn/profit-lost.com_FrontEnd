@@ -37,7 +37,7 @@ function Accounts() {
     {
       accountName: "ImaginBank",
       data: {
-        2023: {
+        "2023": {
           Jan: 2171.04,
           Feb: 1926.91,
           Mar: 2160.19,
@@ -51,19 +51,19 @@ function Accounts() {
           Nov: 0,
           Dec: 0,
         },
-        2022: {
-          Jan: 1000,
-          Feb: 1000,
-          Mar: 1000,
-          Apr: 1000,
-          May: 1000,
-          Jun: 1000,
-          Jul: 1000,
-          Aug: 1000,
-          Sep: 1000,
-          Oct: 1000,
-          Nov: 1000,
-          Dec: 1000,
+        "2022": {
+          Jan: 3134.4,
+          Feb: 1804.33,
+          Mar: 1679.46,
+          Apr: 1688.23,
+          May: 1699.9,
+          Jun: 1460.2,
+          Jul: 1465.05,
+          Aug: 1616.38,
+          Sep: 2624.04,
+          Oct: 1602.29,
+          Nov: 1711.34,
+          Dec: 1552.45,
         },
       },
       customBackgroundColor: "var(--color-orange-800)",
@@ -72,7 +72,7 @@ function Accounts() {
     {
       accountName: "Abanca",
       data: {
-        2023: {
+        "2023": {
           Jan: 300,
           Feb: 300,
           Mar: 300,
@@ -86,19 +86,19 @@ function Accounts() {
           Nov: 0,
           Dec: 0,
         },
-        2022: {
-          Jan: 1000,
-          Feb: 1000,
-          Mar: 1000,
-          Apr: 1000,
-          May: 1000,
-          Jun: 1000,
-          Jul: 1000,
-          Aug: 1000,
-          Sep: 1000,
-          Oct: 1000,
-          Nov: 1000,
-          Dec: 1000,
+        "2022": {
+          Jan: 100,
+          Feb: 200,
+          Mar: 300,
+          Apr: 100,
+          May: 200,
+          Jun: 100,
+          Jul: 100,
+          Aug: 100,
+          Sep: 100,
+          Oct: 100,
+          Nov: 100,
+          Dec: 100,
         },
       },
       customBackgroundColor: "var(--color-orange-500)",
@@ -107,7 +107,7 @@ function Accounts() {
     {
       accountName: "Savings",
       data: {
-        2023: {
+        "2023": {
           Jan: 100,
           Feb: 200,
           Mar: 300,
