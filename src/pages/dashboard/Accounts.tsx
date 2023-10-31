@@ -22,8 +22,7 @@ import "./Accounts.css";
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 
 function Accounts() {
-  // Data Accounts
-
+  // dataAccounts
   type AccountData = {
     accountName: string;
     data: {
@@ -34,8 +33,7 @@ function Accounts() {
     customBackgroundColor: string;
     customColor: string;
   };
-
-  const accountsData: AccountData[] = [
+  const dataAccounts: AccountData[] = [
     {
       accountName: "ImaginBank",
       data: {
@@ -129,8 +127,9 @@ function Accounts() {
     },
   ];
 
+  // Sacamos una variable de currentDate, currentYear y currentMonth(name)
   const currentDate = new Date();
-  const selectedYear: number = currentDate.getFullYear();
+  const currentYear: number = currentDate.getFullYear();
   const monthNames = [
     "Jan",
     "Feb",
@@ -145,13 +144,14 @@ function Accounts() {
     "Nov",
     "Dec",
   ];
-  const currentMonth: string = monthNames[currentDate.getMonth()];
+  const currentMonthName: string = monthNames[currentDate.getMonth()];
 
-  const accountItems = accountsData.map((account, index) => (
+  // Se crea una lista de Cuentas con los datos de dataAccounts
+  const accountItems = dataAccounts.map((account, index) => (
     <AccountItem
       key={index}
       accountName={account.accountName}
-      balance={`${account.data[selectedYear][currentMonth].toLocaleString(
+      balance={`${account.data[currentYear][currentMonthName].toLocaleString(
         "es-ES",
         {
           minimumFractionDigits: 2,
@@ -163,35 +163,32 @@ function Accounts() {
     />
   ));
 
-  const totalBalance = accountsData.reduce((acc, account) => {
-    const balance = account.data[selectedYear][currentMonth]; // Balance actual
+  // Calcula el saldo todal de todas las cuentas segun año y mes actual, y se formatea a €
+  const totalBalance = dataAccounts.reduce((acc, account) => {
+    const balance = account.data[currentYear][currentMonthName];
     return acc + balance;
   }, 0);
-
   const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
-  // Selector Year/Data ----------------
-  const currentYear = currentDate.getFullYear();
-
+  // Se crea una variable que contiene los años unicos que tienen datos en dataAccounts para despues mostrarlo en el selector
   const uniqueYears = Array.from(
-    new Set(accountsData.flatMap((account) => Object.keys(account.data)))
+    new Set(dataAccounts.flatMap((account) => Object.keys(account.data)))
   ).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
-
   // Establece el año actual como valor inicial para el selector
   const [year, setYear] = React.useState(currentYear.toString());
-
+  // Actualiza el año según la seleccion en el Selector
   const handleChange = (event: SelectChangeEvent) => {
     setYear(event.target.value as string);
   };
 
-  // Data Chart ----------------
+  // Se utiliza dataChart para almacenar el objeto que representa el conjunto de datos del gráfico, con el nombre del mes y los datos de todas las cuentas por cada mes
   const dataChart = monthNames.map((month) => {
     const data: Record<string, number> = {};
 
-    accountsData.forEach((account) => {
+    dataAccounts.forEach((account) => {
       if (
         account.data[parseInt(year)] &&
         account.data[parseInt(year)][month] !== undefined
@@ -208,8 +205,9 @@ function Accounts() {
     };
   });
 
+  // Se transforma dataChart a chartData para poder usarlo en el <BarChart>
   const chartData = dataChart.map((item) => {
-    const balance = accountsData.reduce((acc, account) => {
+    const balance = dataAccounts.reduce((acc, account) => {
       const value =
         account.data[parseInt(year)] &&
         account.data[parseInt(year)][item.name] !== undefined
@@ -217,28 +215,29 @@ function Accounts() {
           : 0;
       return acc + (typeof value === "number" ? value : 0);
     }, 0);
-
     return { ...item, balance };
   });
 
+  // Creamos getPreviousMonth() para obtener el nombre del mes anterior al mes actual.
   function getPreviousMonth() {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1;
     return monthNames[previousMonth];
   }
-
   const previousMonth = getPreviousMonth();
 
-  const currentMonthBalance = accountsData.reduce((total, account) => {
-    return total + (account.data[currentYear]?.[currentMonth] || 0);
+  // Se suma el balance en las cuentas en el mes actual
+  const currentMonthBalance = dataAccounts.reduce((total, account) => {
+    return total + (account.data[currentYear]?.[currentMonthName] || 0);
   }, 0);
-
-  const previousMonthBalance = accountsData.reduce((total, account) => {
+  // Se suma el balance en las cuentas en el mes anterior
+  const previousMonthBalance = dataAccounts.reduce((total, account) => {
     return total + (account.data[currentYear]?.[previousMonth] || 0);
   }, 0);
-
+  // Calcula la diferencia entre el balance del mes actual y el del mes anterior
   const balanceDifference = currentMonthBalance - previousMonthBalance;
+  // Determina si balanceDifference es positivo o negativo
   const isPositive = balanceDifference > 0;
 
   return (
@@ -286,7 +285,7 @@ function Accounts() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                {accountsData.map((account) => (
+                {dataAccounts.map((account) => (
                   <Bar
                     key={account.accountName}
                     dataKey={account.accountName}

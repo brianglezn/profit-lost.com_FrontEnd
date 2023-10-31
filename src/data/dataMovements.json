@@ -2,25 +2,31 @@
   {
     "category": "Work",
     "year": "2023",
-    "month": "Ene",
+    "month": "Jan",
     "Ammount": 1489.58
   },
   {
     "category": "Home",
     "year": "2023",
-    "month": "Ene",
+    "month": "Jan",
     "Ammount": -359.58
   },
   {
     "category": "Super",
     "year": "2023",
-    "month": "Ene",
+    "month": "January",
     "Ammount": -59.58
   },
   {
     "category": "Super",
     "year": "2023",
-    "month": "Ene",
+    "month": "Jan",
     "Ammount": -8.58
+  },
+  {
+    "category": "Super",
+    "year": "2023",
+    "month": "Feb",
+    "Ammount": -9.58
   }
 ]

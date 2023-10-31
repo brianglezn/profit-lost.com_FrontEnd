@@ -3,8 +3,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
-import "./Movements.css";
 import {
   Bar,
   BarChart,
@@ -15,23 +13,29 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+
+import "./Movements.css";
 
 function Movements() {
-  // Select Year/Month
-  const [year, setYear] = useState(new Date().getFullYear().toString());
-  const [month, setMonth] = useState((new Date().getMonth() + 1).toString());
+  // Pillamos el año y mes actual (number)
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
 
+  // Inicializa las variables de year y month con los valores de mes y año actual
+  const [year, setYear] = useState(currentYear.toString());
+  const [month, setMonth] = useState(currentMonth.toString());
+
+  // Actualiza el año y mes según la seleccion en el Selector
   const handleChangeYear = (event: SelectChangeEvent) => {
     setYear(event.target.value as string);
   };
-
   const handleChangeMonth = (event: SelectChangeEvent) => {
     setMonth(event.target.value as string);
   };
 
-  // Chart
-
-  const dataChart = [
+  // dataAnnualReport
+  const dataAnnualReport = [
     // ------ 2023
     {
       name: "Jan",
@@ -181,11 +185,15 @@ function Movements() {
     },
   ];
 
-  const uniqueYears = [...new Set(dataChart.map((item) => item.year))];
+  // Pilla los años dentro de dataAnnualReport y hace un array con los años únicos para despues mostrarlos en el selector
+  const uniqueYears = [...new Set(dataAnnualReport.map((item) => item.year))];
 
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
+  // Si el usuario no selecciona ningun año, se seleccionará el actual
+  const selectedYear = year || currentYear;
+  // Seleccion del mes actual y lo convierte en número
+  const selectedMonth = Number(month);
 
+  // Nombre de los meses
   const monthNames = [
     "Jan",
     "Feb",
@@ -201,26 +209,25 @@ function Movements() {
     "Dec",
   ];
 
-  const selectedMonth = Number(month);
-  const selectedYear = year || currentYear;
-
-  const filteredData = dataChart.filter((item) => {
+  // Filtra los datos de dataAnnualReport de tal manera que solo se muestren los del mes y año seleccionado
+  const filteredData = dataAnnualReport.filter((item) => {
     return (
       item.year === selectedYear && item.name === monthNames[selectedMonth - 1]
     );
   });
+  // console.log(filteredData);
+  // ERROR: Cuando se carga el componente NO se muestran datos en filteredData Hasta que se selecciona un year en el Select
 
-  // Balance
-
+  // Inicializamos las variables y despues recorremos filteredData y le asignamos a esas variables los datos, después se calcular el balanceFinal
   let balanceIncome = 0;
   let balanceExpenses = 0;
-
   for (const data of filteredData) {
     balanceIncome += data.Income;
     balanceExpenses += data.Expenses;
   }
   const balanceFinal: number = balanceIncome - balanceExpenses;
 
+  // Formateamos a € los balances
   const formattedBalanceIncome = balanceIncome.toLocaleString("es-ES", {
     style: "currency",
     currency: "EUR",
@@ -237,6 +244,27 @@ function Movements() {
     minimumFractionDigits: 2,
     useGrouping: true,
   });
+
+  // Data Table Movements
+  const rows: GridRowsProp = [
+    {
+      id: 1,
+      Category: "Work",
+      Balance: 1489.58,
+      InOut: "IN",
+    },
+    {
+      id: 2,
+      Category: "Home",
+      Balance: -359.58,
+      InOut: "OUT",
+    },
+  ];
+  const columns: GridColDef[] = [
+    { field: "Category", headerName: "Category", flex: 2 },
+    { field: "Balance", headerName: "Balance", flex: 2 },
+    { field: "InOut", headerName: "InOut", flex: 0.5 },
+  ];
 
   return (
     <>
@@ -341,6 +369,7 @@ function Movements() {
               <span className="material-symbols-rounded">new_window</span>
             </div>
             <div className="movements__movements-table">
+              <DataGrid rows={rows} columns={columns} />
             </div>
           </div>
         </div>

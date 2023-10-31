@@ -11,12 +11,13 @@ import Profile from "./Profile";
 import Goals from "./Goals";
 
 function Dashboard() {
+  // useState se usa para controlar la selección de dash activa en la alicación
   const [activeSection, setActiveSection] = useState("Dashboard");
-
   const handleMenuItemClick = (sectionName: SetStateAction<string>) => {
     setActiveSection(sectionName);
   };
 
+  // Función para utilizar una fecha formateada
   function getCurrentDate() {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "short",
@@ -25,10 +26,9 @@ function Dashboard() {
       day: "numeric",
     };
 
-    const today = new Date().toLocaleDateString("en-US", options);
+    const today = new Date().toLocaleDateString("es-ES", options);
     return today;
   }
-
   const currentDate = getCurrentDate();
 
   return (

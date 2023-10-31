@@ -18,9 +18,9 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import "./AnnualReport.css";
 
 function AnnualReport() {
-  // Data Chart ----------------
+  // dataAnnualReport
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const dataChart = [
+  const dataAnnualReport = [
     // ------ 2023
     {
       name: "Jan",
@@ -170,30 +170,23 @@ function AnnualReport() {
     },
   ];
 
-  // Selector Year/Data ----------------
-
+  // Sacamos el currentYear e inicializamos la variable year con el año actual
+  // handleChange es el evento que cambiará el año en el <Select>
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  const [date, setDate] = React.useState(currentYear.toString());
-  const [balanceIncome, setBalanceIncome] = useState(0);
-  const [balanceExpenses, setBalanceExpenses] = useState(0);
-
+  const [year, setYear] = React.useState(currentYear.toString());
   const handleChange = (event: SelectChangeEvent<string>) => {
     const selectedYear = event.target.value;
-    setDate(selectedYear);
+    setYear(selectedYear);
   };
 
-  const yearsWithData = [...new Set(dataChart.map((item) => item.year))];
-
-  const years = yearsWithData.filter((year) => year >= 2020);
-
-  const filteredData = dataChart.filter(
-    (item) => item.year === parseInt(date, 10)
-  );
-
+  // Incializamos las variables
+  const [balanceIncome, setBalanceIncome] = useState(0);
+  const [balanceExpenses, setBalanceExpenses] = useState(0);
+  // useEffect recalcula el balance de ingresos y gastos cada vez que cambia el año seleccionado
   useEffect(() => {
-    const selectedYearData = dataChart.filter(
-      (item) => item.year === parseInt(date, 10)
+    const selectedYearData = dataAnnualReport.filter(
+      (item) => item.year === parseInt(year, 10)
     );
     const incomeSum = selectedYearData.reduce(
       (sum, item) => sum + item.Income,
@@ -205,12 +198,18 @@ function AnnualReport() {
     );
     setBalanceIncome(incomeSum);
     setBalanceExpenses(expensesSum);
-  }, [date, dataChart]);
+  }, [year, dataAnnualReport]);
 
-  // Balance Formater ----------------
+  // Crea un array con los años unicos dentro de dataAnnualReport
+  const yearsWithData = [...new Set(dataAnnualReport.map((item) => item.year))];
+  // Filtra los datos anual de dataAnnualReport para obtener solo los datos del año seleccionado
+  const filteredData = dataAnnualReport.filter(
+    (item) => item.year === parseInt(year, 10)
+  );
 
+  // Sacamos la diferencia entre balanceIncome y balanceExpenses;
   const balanceFinal: number = balanceIncome - balanceExpenses;
-
+  // Formateamos los balances a €
   const formattedBalanceIncome = balanceIncome.toLocaleString("es-ES", {
     style: "currency",
     currency: "EUR",
@@ -228,17 +227,15 @@ function AnnualReport() {
     useGrouping: true,
   });
 
-  // Data Categories ----------------
-
+  // Data Table Categories
   const rows: GridRowsProp = [
-    { id: 1, Category: "Work", Balance: "15711,18", InOut: "⬆" },
-    { id: 2, Category: "House", Balance: "-581,75", InOut: "⬇‍️" },
+    { id: 1, Category: "Work", Balance: "15711,18", InOut: "IN" },
+    { id: 2, Category: "House", Balance: "-581,75", InOut: "OUT" },
   ];
-
   const columns: GridColDef[] = [
-    { field: "Category", headerName: "Category", flex: 1.5 },
-    { field: "Balance", headerName: "Balance", flex: 1 },
-    { field: "InOut", headerName: "InOut", flex: 1 },
+    { field: "Category", headerName: "Category", flex: 2 },
+    { field: "Balance", headerName: "Balance", flex: 2 },
+    { field: "InOut", headerName: "InOut", flex: 0.5 },
   ];
 
   return (
@@ -250,11 +247,11 @@ function AnnualReport() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={date}
+              value={year}
               label="Year"
               onChange={handleChange}
             >
-              {years.map((year) => (
+              {yearsWithData.map((year) => (
                 <MenuItem key={year} value={year}>
                   {year}
                 </MenuItem>
