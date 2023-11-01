@@ -1,32 +1,1590 @@
 [
   {
-    "category": "Work",
-    "year": "2023",
-    "month": "Jan",
-    "Ammount": 1489.58
+    "2022": [
+      {
+        "Jan": [
+          {
+            "category": "Work",
+            "Ammount": 1013.85
+          },
+          {
+            "category": "Work2",
+            "Ammount": 150
+          },
+          {
+            "category": "Other",
+            "Ammount": 70
+          },
+          {
+            "category": "Party",
+            "Ammount": 40.41
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 58.82
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -149.79
+          },
+          {
+            "category": "Home",
+            "Ammount": -344.97
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Transport",
+            "Ammount": -70.56
+          },
+          {
+            "category": "Health",
+            "Ammount": -2.5
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -14.95
+          },
+          {
+            "category": "Transport",
+            "Ammount": -47.36
+          },
+          {
+            "category": "Other",
+            "Ammount": -30.04
+          },
+          {
+            "category": "Work2",
+            "Ammount": -42.83
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -89.37
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -14.45
+          },
+          {
+            "category": "Party",
+            "Ammount": -22.4
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -80
+          }
+        ]
+      },
+      {
+        "Feb": [
+          {
+            "category": "Work",
+            "Ammount": 1009.69
+          },
+          {
+            "category": "Other",
+            "Ammount": 260
+          },
+          {
+            "category": "Home",
+            "Ammount": 20.77
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -108.51
+          },
+          {
+            "category": "Home",
+            "Ammount": -213.43
+          },
+          {
+            "category": "Transport",
+            "Ammount": -122
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -10
+          },
+          {
+            "category": "Transport",
+            "Ammount": -74.55
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -14.95
+          },
+          {
+            "category": "Health",
+            "Ammount": -5.81
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -178.02
+          },
+          {
+            "category": "Other",
+            "Ammount": -98.31
+          },
+          {
+            "category": "Education",
+            "Ammount": -49.9
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -25.6
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -80
+          },
+          {
+            "category": "Party",
+            "Ammount": -73.06
+          },
+          {
+            "category": "Home",
+            "Ammount": -3
+          }
+        ]
+      },
+      {
+        "Mar": [
+          {
+            "category": "Work",
+            "Ammount": 1016.71
+          },
+          {
+            "category": "Other",
+            "Ammount": 266
+          },
+          {
+            "category": "Home",
+            "Ammount": 587.17
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -132.01
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -10
+          },
+          {
+            "category": "Home",
+            "Ammount": -238.19
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -37.27
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -10.5
+          },
+          {
+            "category": "Transport",
+            "Ammount": -20
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -158.7
+          },
+          {
+            "category": "Other",
+            "Ammount": -604.36
+          },
+          {
+            "category": "Party",
+            "Ammount": -35.4
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -67.35
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -80
+          }
+        ]
+      },
+      {
+        "Apr": [
+          {
+            "category": "Work",
+            "Ammount": 1683.06
+          },
+          {
+            "category": "Other",
+            "Ammount": 146.68
+          },
+          {
+            "category": "Management",
+            "Ammount": 195.74
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Health",
+            "Ammount": -2.5
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -80
+          },
+          {
+            "category": "Home",
+            "Ammount": -603.78
+          },
+          {
+            "category": "Management",
+            "Ammount": -35
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -67.18
+          },
+          {
+            "category": "Transport",
+            "Ammount": -130.61
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -9.95
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -90.54
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -51.35
+          },
+          {
+            "category": "Other",
+            "Ammount": -45.27
+          },
+          {
+            "category": "Presents",
+            "Ammount": -30.91
+          },
+          {
+            "category": "Party",
+            "Ammount": -65.99
+          },
+          {
+            "category": "Travel",
+            "Ammount": -117.98
+          }
+        ]
+      },
+      {
+        "May": [
+          {
+            "category": "Work",
+            "Ammount": 1051.69
+          },
+          {
+            "category": "Other",
+            "Ammount": 14.07
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -106.8
+          },
+          {
+            "category": "Health",
+            "Ammount": -2.5
+          },
+          {
+            "category": "Home",
+            "Ammount": -271.13
+          },
+          {
+            "category": "Transport",
+            "Ammount": -279.62
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -48.17
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -10.5
+          },
+          {
+            "category": "Other",
+            "Ammount": -87.25
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -54.43
+          },
+          {
+            "category": "Party",
+            "Ammount": -7
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -24.5
+          }
+        ]
+      },
+      {
+        "Jun": [
+          {
+            "category": "Work",
+            "Ammount": 1025.07
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 20
+          },
+          {
+            "category": "Other",
+            "Ammount": 1.75
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -127.04
+          },
+          {
+            "category": "Home",
+            "Ammount": -254.72
+          },
+          {
+            "category": "Health",
+            "Ammount": -7.2
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -35.05
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -10.5
+          },
+          {
+            "category": "Travel",
+            "Ammount": -218.39
+          },
+          {
+            "category": "Travel",
+            "Ammount": -116.38
+          },
+          {
+            "category": "Party",
+            "Ammount": -27.35
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -49.35
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -105.47
+          }
+        ]
+      },
+      {
+        "Jul": [
+          {
+            "category": "Work",
+            "Ammount": 1652.61
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 80.49
+          },
+          {
+            "category": "Home",
+            "Ammount": 69.14
+          },
+          {
+            "category": "Other",
+            "Ammount": 37.95
+          },
+          {
+            "category": "Gym",
+            "Ammount": -31.5
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -116.77
+          },
+          {
+            "category": "Home",
+            "Ammount": -235.61
+          },
+          {
+            "category": "Transport",
+            "Ammount": -196.78
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -35.45
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -10.5
+          },
+          {
+            "category": "Party",
+            "Ammount": -135.25
+          },
+          {
+            "category": "Other",
+            "Ammount": -171.71
+          },
+          {
+            "category": "Presents",
+            "Ammount": -29
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -102.45
+          },
+          {
+            "category": "Travel",
+            "Ammount": -587.3
+          }
+        ]
+      },
+      {
+        "Aug": [
+          {
+            "category": "Work",
+            "Ammount": 1511.76
+          },
+          {
+            "category": "Management",
+            "Ammount": 200
+          },
+          {
+            "category": "Party",
+            "Ammount": 13
+          },
+          {
+            "category": "Home",
+            "Ammount": 12.5
+          },
+          {
+            "category": "Other",
+            "Ammount": 77.36
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 15.49
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -3.87
+          },
+          {
+            "category": "Transport",
+            "Ammount": -173.13
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -11
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -34.24
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -105.2
+          },
+          {
+            "category": "Other",
+            "Ammount": -139.08
+          },
+          {
+            "category": "Party",
+            "Ammount": -39.66
+          },
+          {
+            "category": "Presents",
+            "Ammount": -32.4
+          },
+          {
+            "category": "Travel",
+            "Ammount": -46.22
+          },
+          {
+            "category": "Gym",
+            "Ammount": -5.5
+          }
+        ]
+      },
+      {
+        "Sep": [
+          {
+            "category": "Work",
+            "Ammount": 1151.54
+          },
+          {
+            "category": "Home",
+            "Ammount": 37
+          },
+          {
+            "category": "Other",
+            "Ammount": 167.9
+          },
+          {
+            "category": "Presents",
+            "Ammount": 5
+          },
+          {
+            "category": "Transport",
+            "Ammount": -461.85
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -461.85
+          },
+          {
+            "category": "Home",
+            "Ammount": -691.67
+          },
+          {
+            "category": "Health",
+            "Ammount": -2.5
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -310
+          },
+          {
+            "category": "Education",
+            "Ammount": -4
+          },
+          {
+            "category": "Other",
+            "Ammount": -129.27
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -110.51
+          },
+          {
+            "category": "Party",
+            "Ammount": -147.62
+          },
+          {
+            "category": "Travel",
+            "Ammount": -36.49
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -52.84
+          }
+        ]
+      },
+      {
+        "Oct": [
+          {
+            "category": "Work",
+            "Ammount": 1486.18
+          },
+          {
+            "category": "Home",
+            "Ammount": 253.79
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 34.95
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -422.99
+          },
+          {
+            "category": "Gym",
+            "Ammount": -55.45
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -156.5
+          },
+          {
+            "category": "Other",
+            "Ammount": -57.22
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -15
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -11.97
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Transport",
+            "Ammount": -140.81
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -180.66
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -244.54
+          },
+          {
+            "category": "Presents",
+            "Ammount": -13.14
+          },
+          {
+            "category": "Work2",
+            "Ammount": -13.25
+          },
+          {
+            "category": "Party",
+            "Ammount": -83.28
+          }
+        ]
+      },
+      {
+        "Nov": [
+          {
+            "category": "Work",
+            "Ammount": 1168.83
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 82.85
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -386.8
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -114.4
+          },
+          {
+            "category": "Transport",
+            "Ammount": -54.97
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -94.71
+          },
+          {
+            "category": "Management",
+            "Ammount": -12.05
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -38
+          },
+          {
+            "category": "Presents",
+            "Ammount": -37
+          },
+          {
+            "category": "Other",
+            "Ammount": -97.48
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -59.75
+          },
+          {
+            "category": "Travel",
+            "Ammount": -187.52
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -26.05
+          },
+          {
+            "category": "Home",
+            "Ammount": -8.85
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -25
+          }
+        ]
+      },
+      {
+        "Dec": [
+          {
+            "category": "Work",
+            "Ammount": 2322.13
+          },
+          {
+            "category": "Other",
+            "Ammount": 30
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -370
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Transport",
+            "Ammount": -332.94
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -90.24
+          },
+          {
+            "category": "Health",
+            "Ammount": -2.5
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -18.79
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -53.4
+          },
+          {
+            "category": "Party",
+            "Ammount": -228.5
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -99.9
+          },
+          {
+            "category": "Other",
+            "Ammount": -51.1
+          },
+          {
+            "category": "Travel",
+            "Ammount": -199.79
+          },
+          {
+            "category": "Presents",
+            "Ammount": -79.8
+          }
+        ]
+      }
+    ]
   },
   {
-    "category": "Home",
-    "year": "2023",
-    "month": "Jan",
-    "Ammount": -359.58
-  },
-  {
-    "category": "Super",
-    "year": "2023",
-    "month": "January",
-    "Ammount": -59.58
-  },
-  {
-    "category": "Super",
-    "year": "2023",
-    "month": "Jan",
-    "Ammount": -8.58
-  },
-  {
-    "category": "Super",
-    "year": "2023",
-    "month": "Feb",
-    "Ammount": -9.58
+    "2023": [
+      {
+        "Jan": [
+          {
+            "category": "Work",
+            "Ammount": 1496.02
+          },
+          {
+            "category": "Work",
+            "Ammount": 1496.02
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -412.43
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Transport",
+            "Ammount": -46.75
+          },
+          {
+            "category": "Transport",
+            "Ammount": -34
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -51.57
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -86.44
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -15
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -37.15
+          },
+          {
+            "category": "Transport",
+            "Ammount": -18.9
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -11.98
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -26.58
+          },
+          {
+            "category": "Education",
+            "Ammount": -42.83
+          },
+          {
+            "category": "Other",
+            "Ammount": -2.2
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -9.57
+          },
+          {
+            "category": "Other",
+            "Ammount": -12.99
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -6
+          },
+          {
+            "category": "Other",
+            "Ammount": -19.88
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -6
+          },
+          {
+            "category": "Presents",
+            "Ammount": -7.8
+          },
+          {
+            "category": "Other",
+            "Ammount": -10.99
+          },
+          {
+            "category": "Education",
+            "Ammount": -23.5
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -26.58
+          },
+          {
+            "category": "Other",
+            "Ammount": -2.98
+          },
+          {
+            "category": "Transport",
+            "Ammount": -10
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -290
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -26.95
+          },
+          {
+            "category": "Other",
+            "Ammount": 33
+          },
+          {
+            "category": "Other",
+            "Ammount": 36
+          },
+          {
+            "category": "Clothing",
+            "Ammount": 10
+          }
+        ]
+      },
+      {
+        "Feb": [
+          {
+            "category": "Work",
+            "Ammount": 1505.67
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -410.47
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -94.79
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Transport",
+            "Ammount": -78.56
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -11.95
+          },
+          {
+            "category": "Travel",
+            "Ammount": -70.5
+          },
+          {
+            "category": "Other",
+            "Ammount": -41
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -60.15
+          },
+          {
+            "category": "Travel",
+            "Ammount": -48.42
+          },
+          {
+            "category": "Transport",
+            "Ammount": -8
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -2
+          }
+        ]
+      },
+      {
+        "Mar": [
+          {
+            "category": "Work",
+            "Ammount": 1339.68
+          },
+          {
+            "category": "Other",
+            "Ammount": 1.92
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -370
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -85.19
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Health",
+            "Ammount": -72.5
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Transport",
+            "Ammount": -22.28
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -15
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -11.95
+          },
+          {
+            "category": "Management",
+            "Ammount": -35
+          },
+          {
+            "category": "Transport",
+            "Ammount": -28.18
+          }
+        ]
+      },
+      {
+        "Apr": [
+          {
+            "category": "Work",
+            "Ammount": 1612.48
+          },
+          {
+            "category": "Other",
+            "Ammount": 7
+          },
+          {
+            "category": "Management",
+            "Ammount": 137.83
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.39
+          },
+          {
+            "category": "Home",
+            "Ammount": -499.65
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -140.43
+          },
+          {
+            "category": "Transport",
+            "Ammount": -86.21
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Health",
+            "Ammount": -9.95
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -90.99
+          },
+          {
+            "category": "Management",
+            "Ammount": -5.9
+          },
+          {
+            "category": "Other",
+            "Ammount": -97.33
+          },
+          {
+            "category": "Presents",
+            "Ammount": -85
+          },
+          {
+            "category": "Transport",
+            "Ammount": -8
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -45.99
+          },
+          {
+            "category": "Party",
+            "Ammount": -23.39
+          },
+          {
+            "category": "Transport",
+            "Ammount": -171.75
+          }
+        ]
+      },
+      {
+        "May": [
+          {
+            "category": "Work",
+            "Ammount": 1381.16
+          },
+          {
+            "category": "Other",
+            "Ammount": 200
+          },
+          {
+            "category": "Other",
+            "Ammount": 25.69
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -413.02
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -161.03
+          },
+          {
+            "category": "Transport",
+            "Ammount": -54.17
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -15
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -11.95
+          },
+          {
+            "category": "Other",
+            "Ammount": -419.94
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -63.44
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -58.47
+          },
+          {
+            "category": "Transport",
+            "Ammount": -50
+          },
+          {
+            "category": "Presents",
+            "Ammount": -8.35
+          }
+        ]
+      },
+      {
+        "Jun": [
+          {
+            "category": "Work",
+            "Ammount": 1482.89
+          },
+          {
+            "category": "Other",
+            "Ammount": 100
+          },
+          {
+            "category": "Other",
+            "Ammount": 25.17
+          },
+          {
+            "category": "Travel",
+            "Ammount": 42.55
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -441.05
+          },
+          {
+            "category": "Transport",
+            "Ammount": -151.98
+          },
+          {
+            "category": "Travel",
+            "Ammount": -75.99
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -16
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -12.03
+          },
+          {
+            "category": "Transport",
+            "Ammount": -120.48
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -14
+          },
+          {
+            "category": "Other",
+            "Ammount": -561.73
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -55.83
+          },
+          {
+            "category": "Transport",
+            "Ammount": -148.56
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -22.98
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -5.84
+          },
+          {
+            "category": "Party",
+            "Ammount": -117.88
+          }
+        ]
+      },
+      {
+        "Jul": [
+          {
+            "category": "Work",
+            "Ammount": 1595.91
+          },
+          {
+            "category": "Other",
+            "Ammount": 91.23
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Transport",
+            "Ammount": -123.19
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -12.1
+          },
+          {
+            "category": "Home",
+            "Ammount": -65.03
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -16
+          },
+          {
+            "category": "Other",
+            "Ammount": -489.84
+          },
+          {
+            "category": "Transport",
+            "Ammount": -29.66
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -98.01
+          },
+          {
+            "category": "Party",
+            "Ammount": -143.09
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -3.56
+          },
+          {
+            "category": "Transport",
+            "Ammount": -89.7
+          }
+        ]
+      },
+      {
+        "Aug": [
+          {
+            "category": "Work",
+            "Ammount": 1653.46
+          },
+          {
+            "category": "Party",
+            "Ammount": 15.7
+          },
+          {
+            "category": "Travel",
+            "Ammount": 39.41
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Transport",
+            "Ammount": -122.66
+          },
+          {
+            "category": "Education",
+            "Ammount": -9.99
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -11.95
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -16
+          },
+          {
+            "category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -40.05
+          },
+          {
+            "category": "Other",
+            "Ammount": -30
+          },
+          {
+            "category": "Party",
+            "Ammount": -77.3
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -114.84
+          },
+          {
+            "category": "Travel",
+            "Ammount": -34.63
+          },
+          {
+            "category": "Presents",
+            "Ammount": -7.04
+          }
+        ]
+      },
+      {
+        "Sep": [
+          {
+            "category": "Work",
+            "Ammount": 1443.27
+          },
+          {
+            "category": "Work2",
+            "Ammount": 150
+          },
+          {
+            "category": "Work2",
+            "Ammount": 300
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Transport",
+            "Ammount": -572.96
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -22.6
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -16
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -9.95
+          },
+          {
+            "category": "Other",
+            "Ammount": -91.39
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -98.05
+          },
+          {
+            "category": "Party",
+            "Ammount": -20.94
+          },
+          {
+            "category": "Clothing",
+            "Ammount": -65.85
+          }
+        ]
+      },
+      {
+        "Oct": [
+          {
+            "category": "Work",
+            "Ammount": 1486.18
+          },
+          {
+            "category": "Other",
+            "Ammount": 10
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -385
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Supermarket",
+            "Ammount": -179
+          },
+          {
+            "category": "Transport",
+            "Ammount": -59.52
+          },
+          {
+            "category": "Home",
+            "Ammount": -33.69
+          },
+          {
+            "category": "Mobile",
+            "Ammount": -9.95
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -15.5
+          },
+          {
+            "category": "Health",
+            "Ammount": -2.5
+          },
+          {
+            "category": "Beauty",
+            "Ammount": -420
+          },
+          {
+            "category": "Other",
+            "Ammount": -114.15
+          },
+          {
+            "category": "Restaurant",
+            "Ammount": -102.65
+          },
+          {
+            "category": "Travel",
+            "Ammount": -55.99
+          },
+          {
+            "category": "Party",
+            "Ammount": -63.4
+          },
+          {
+            "category": "Presents",
+            "Ammount": -26.94
+          }
+        ]
+      },
+      {
+        "Nov": [
+          {
+            "category": "Work",
+            "Ammount": 0
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -365
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          },
+          {
+            "category": "Presents",
+            "Ammount": -13.47
+          }
+        ]
+      },
+      {
+        "Dec": [
+          {
+            "category": "Work",
+            "Ammount": 0
+          },
+          {
+            "category": "Education",
+            "Ammount": -163.89
+          },
+          {
+            "category": "Home",
+            "Ammount": -365
+          },
+          {
+            "category": "Gym",
+            "Ammount": -24.95
+          }
+        ]
+      }
+    ]
   }
 ]
