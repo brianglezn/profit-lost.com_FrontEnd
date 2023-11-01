@@ -13,10 +13,16 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridRowsProp,
+  GridColDef,
+  GridValidRowModel,
+} from "@mui/x-data-grid";
 
 import "./AnnualReport.css";
 import dataAnnualReportFile from "../../data/dataAnnualReport.json";
+import dataMovementsFile from "../../data/dataMovements.json";
 
 function AnnualReport() {
   // Sacamos el currentYear e inicializamos la variable year con el año actual
@@ -61,28 +67,33 @@ function AnnualReport() {
   // Sacamos la diferencia entre balanceIncome y balanceExpenses;
   const balanceFinal: number = balanceIncome - balanceExpenses;
   // Formateamos los balances a €
-  const formattedBalanceIncome = balanceIncome.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-  });
-  const formattedBalanceExpenses = balanceExpenses.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-  });
-  const formattedBalanceFinal = balanceFinal.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-    useGrouping: true,
-  });
+  function formatCurrency(value: number) {
+    return value.toLocaleString("es-ES", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      useGrouping: true,
+    });
+  }
+  const formattedBalanceIncome = formatCurrency(balanceIncome);
+  const formattedBalanceExpenses = formatCurrency(balanceExpenses);
+  const formattedBalanceFinal = formatCurrency(balanceFinal);
 
   // Data Table Categories
-  const rows: GridRowsProp = [
-    { id: 1, Category: "Work", Balance: "15711,18", InOut: "IN" },
-    { id: 2, Category: "House", Balance: "-581,75", InOut: "OUT" },
-  ];
+  const [tableRows, setTableRows] = useState<GridRowsProp>([]);
+
+  useEffect(() => {
+    if (year) {
+      const selectedYearData = dataMovementsFile.find(
+        (entry) => entry[year as keyof typeof entry]
+      );
+      if (selectedYearData) {
+        console.log(selectedYearData);
+        //seguir aquí
+      }
+    }
+  }, [year]);
+
   const columns: GridColDef[] = [
     { field: "Category", headerName: "Category", flex: 2 },
     { field: "Balance", headerName: "Balance", flex: 2 },
@@ -159,7 +170,7 @@ function AnnualReport() {
             <span className="material-symbols-rounded">new_window</span>
           </div>
           <div className="annualReport__category-table">
-            <DataGrid rows={rows} columns={columns} />
+            <DataGrid rows={tableRows} columns={columns} />
           </div>
         </div>
       </section>

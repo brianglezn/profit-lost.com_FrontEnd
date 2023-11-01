@@ -17,6 +17,7 @@ import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 
 import "./Movements.css";
 import dataAnnualReportFile from "../../data/dataAnnualReport.json";
+import dataMovementsFile from "../../data/dataMovements.json";
 
 function Movements() {
   // Pillamos el año y mes actual (number)
@@ -73,7 +74,7 @@ function Movements() {
     setDataGraph(dataFilter);
   }, [year, month, monthNames]);
 
-  // Inicializamos las variables y despues recorremos filteredData y le asignamos a esas variables los datos, después se calcular el balanceFinal
+  // Inicializamos las variables y despues recorremos filteredData y le asignamos a esas variables los datos ya filtrados, después se calcula el balanceFinal
   let balanceIncome = 0;
   let balanceExpenses = 0;
   for (const data of dataGraph) {
@@ -83,38 +84,65 @@ function Movements() {
   const balanceFinal: number = balanceIncome - balanceExpenses;
 
   // Formateamos a € los balances
-  const formattedBalanceIncome = balanceIncome.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-  });
-  const formattedBalanceExpenses = balanceExpenses.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-  });
-  const formattedBalanceFinal = balanceFinal.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-    useGrouping: true,
-  });
+
+  function formatCurrency(value: number) {
+    return value.toLocaleString("es-ES", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      useGrouping: true,
+    });
+  }
+
+  const formattedBalanceIncome = formatCurrency(balanceIncome);
+  const formattedBalanceExpenses = formatCurrency(balanceExpenses);
+  const formattedBalanceFinal = formatCurrency(balanceFinal);
 
   // Data Table Movements
-  const rows: GridRowsProp = [
-    {
-      id: 1,
-      Category: "Work",
-      Balance: 1489.58,
-      InOut: "IN",
-    },
-    {
-      id: 2,
-      Category: "Home",
-      Balance: -359.58,
-      InOut: "OUT",
-    },
-  ];
+  const [tableRows, setTableRows] = useState<GridRowsProp>([]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const monthMapping: Record<number, string> = {
+    1: "Jan",
+    2: "Feb",
+    3: "Mar",
+    4: "Apr",
+    5: "May",
+    6: "Jun",
+    7: "Jul",
+    8: "Aug",
+    9: "Sep",
+    10: "Oct",
+    11: "Nov",
+    12: "Dec",
+  };
+  useEffect(() => {
+    if (year && month) {
+      const selectedYearData = dataMovementsFile.find(
+        (entry) => entry[year as keyof typeof entry]
+      );
+      if (selectedYearData) {
+        const monthData =
+          selectedYearData[year as keyof typeof selectedYearData];
+        if (monthData) {
+          const selectedMonthData = monthData.find(
+            (entry) => entry[monthMapping[month]]
+          );
+          if (selectedMonthData) {
+            const rows = selectedMonthData[monthMapping[month]].map(
+              (item: { Category: string; Ammount: number }, index: number) => ({
+                id: index + 1,
+                Category: item.Category,
+                Balance: item.Ammount,
+                InOut: item.Ammount >= 0 ? "IN" : "OUT",
+              })
+            );
+
+            setTableRows(rows || []);
+          }
+        }
+      }
+    }
+  }, [year, month, monthMapping]);
   const columns: GridColDef[] = [
     { field: "Category", headerName: "Category", flex: 2 },
     { field: "Balance", headerName: "Balance", flex: 2 },
@@ -142,7 +170,6 @@ function Movements() {
                 ))}
               </Select>
             </FormControl>
-
             <FormControl fullWidth style={{ flex: 1 }}>
               <InputLabel id="demo-simple-select-label">Month</InputLabel>
               <Select
@@ -224,7 +251,7 @@ function Movements() {
               <span className="material-symbols-rounded">new_window</span>
             </div>
             <div className="movements__movements-table">
-              <DataGrid rows={rows} columns={columns} />
+              <DataGrid rows={tableRows} columns={columns} />
             </div>
           </div>
         </div>

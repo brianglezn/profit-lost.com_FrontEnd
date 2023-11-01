@@ -20,10 +20,6 @@
   flex-direction: column;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
 }
 .accounts__main h2 {
   font-size: 2.5rem;
