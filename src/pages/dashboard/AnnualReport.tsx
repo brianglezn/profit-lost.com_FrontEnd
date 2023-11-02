@@ -13,12 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import {
-  DataGrid,
-  GridRowsProp,
-  GridColDef,
-  GridValidRowModel,
-} from "@mui/x-data-grid";
+import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 import "./AnnualReport.css";
 import dataAnnualReportFile from "../../data/dataAnnualReport.json";
@@ -82,14 +77,47 @@ function AnnualReport() {
   // Data Table Categories
   const [tableRows, setTableRows] = useState<GridRowsProp>([]);
 
+  type CategoryBalance = {
+    Category: string;
+    Balance: number;
+    InOut: string;
+  };
+
   useEffect(() => {
     if (year) {
       const selectedYearData = dataMovementsFile.find(
         (entry) => entry[year as keyof typeof entry]
       );
       if (selectedYearData) {
-        console.log(selectedYearData);
-        //seguir aquí
+        // El valor es un array de objetos del mes, necesitamos aplanarlos y sumar los montos por categoría
+        const monthEntries = selectedYearData[year];
+        const categoryBalances = monthEntries.flatMap((monthEntry) =>
+          Object.entries(monthEntry).flatMap(([month, transactions]) =>
+            transactions.map((transaction) => ({
+              ...transaction,
+              Month: month,
+            }))
+          )
+        );
+
+        // Calcular balance por categoría
+        const categoriesBalance: { [key: string]: CategoryBalance } =
+          categoryBalances.reduce((acc, transaction) => {
+            const { Category, Ammount } = transaction;
+            if (!acc[Category]) {
+              acc[Category] = { Category, Balance: 0, InOut: "" };
+            }
+            acc[Category].Balance += Ammount;
+            acc[Category].InOut = acc[Category].Balance >= 0 ? "IN" : "OUT";
+            return acc;
+          }, {});
+
+        const rows = Object.values(categoriesBalance).map((balance, index) => ({
+          id: index,
+          ...balance,
+          Balance: formatCurrency(balance.Balance), // Formateamos el Balance como moneda
+        }));
+        setTableRows(rows);
       }
     }
   }, [year]);
@@ -170,7 +198,28 @@ function AnnualReport() {
             <span className="material-symbols-rounded">new_window</span>
           </div>
           <div className="annualReport__category-table">
-            <DataGrid rows={tableRows} columns={columns} />
+          <DataGrid
+                rows={tableRows}
+                columns={columns.map((column) => {
+                  if (column.field === "InOut") {
+                    return {
+                      ...column,
+                      renderCell: (params) => (
+                        <div
+                          className={
+                            params.row.InOut === "IN"
+                              ? "positive"
+                              : "negative"
+                          }
+                        >
+                          {params.row.InOut}
+                        </div>
+                      ),
+                    };
+                  }
+                  return column;
+                })}
+              />
           </div>
         </div>
       </section>

@@ -132,7 +132,7 @@ function Movements() {
               (item: { Category: string; Ammount: number }, index: number) => ({
                 id: index + 1,
                 Category: item.Category,
-                Balance: item.Ammount,
+                Balance: formatCurrency(item.Ammount),
                 InOut: item.Ammount >= 0 ? "IN" : "OUT",
               })
             );
@@ -251,7 +251,28 @@ function Movements() {
               <span className="material-symbols-rounded">new_window</span>
             </div>
             <div className="movements__movements-table">
-              <DataGrid rows={tableRows} columns={columns} />
+              <DataGrid
+                rows={tableRows}
+                columns={columns.map((column) => {
+                  if (column.field === "InOut") {
+                    return {
+                      ...column,
+                      renderCell: (params) => (
+                        <div
+                          className={
+                            params.row.InOut === "IN"
+                              ? "positive"
+                              : "negative"
+                          }
+                        >
+                          {params.row.InOut}
+                        </div>
+                      ),
+                    };
+                  }
+                  return column;
+                })}
+              />
             </div>
           </div>
         </div>
