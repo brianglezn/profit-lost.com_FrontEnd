@@ -33,28 +33,38 @@ function AnnualReport() {
   // Incializamos las variables
   const [balanceIncome, setBalanceIncome] = useState(0);
   const [balanceExpenses, setBalanceExpenses] = useState(0);
-  // useEffect recalcula el balance de ingresos y gastos cada vez que cambia el año seleccionado
+  // filtramos los datos de dataMovementsFile pasa sacar el ingreso y el gasto anual
   useEffect(() => {
-    const selectedYearData = dataAnnualReportFile.filter(
-      (item) => item.year === parseInt(year, 10)
+    const selectedYearData = dataMovementsFile.find(
+      (y) => Object.keys(y)[0] === year.toString()
     );
-    const incomeSum = selectedYearData.reduce(
-      (sum, item) => sum + item.Income,
-      0
-    );
-    const expensesSum = selectedYearData.reduce(
-      (sum, item) => sum + item.Expenses,
-      0
-    );
+    const monthlyData = selectedYearData[year.toString()];
+
+    let incomeSum = 0;
+    let expensesSum = 0;
+
+    for (const monthObj of monthlyData) {
+      for (const month in monthObj) {
+        for (const movement of monthObj[month]) {
+          if (movement.Ammount > 0) {
+            incomeSum += movement.Ammount;
+          } else {
+            expensesSum += Math.abs(movement.Ammount);
+          }
+        }
+      }
+    }
+
     setBalanceIncome(incomeSum);
     setBalanceExpenses(expensesSum);
   }, [year]);
 
-  // Crea un array con los años unicos dentro de dataAnnualReport
+  // // Crea un array con los años unicos dentro de dataAnnualReport
   const yearsWithData = [
-    ...new Set(dataAnnualReportFile.map((item) => item.year)),
-  ];
-  // Filtra los datos anual de dataAnnualReport para obtener solo los datos del año seleccionado
+    ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
+  ].sort((a, b) => Number(b) - Number(a));
+
+  // // Filtra los datos anual de dataAnnualReport para obtener solo los datos del año seleccionado
   const filteredData = dataAnnualReportFile.filter(
     (item) => item.year === parseInt(year, 10)
   );
@@ -198,28 +208,26 @@ function AnnualReport() {
             <span className="material-symbols-rounded">new_window</span>
           </div>
           <div className="annualReport__category-table">
-          <DataGrid
-                rows={tableRows}
-                columns={columns.map((column) => {
-                  if (column.field === "InOut") {
-                    return {
-                      ...column,
-                      renderCell: (params) => (
-                        <div
-                          className={
-                            params.row.InOut === "IN"
-                              ? "positive"
-                              : "negative"
-                          }
-                        >
-                          {params.row.InOut}
-                        </div>
-                      ),
-                    };
-                  }
-                  return column;
-                })}
-              />
+            <DataGrid
+              rows={tableRows}
+              columns={columns.map((column) => {
+                if (column.field === "InOut") {
+                  return {
+                    ...column,
+                    renderCell: (params) => (
+                      <div
+                        className={
+                          params.row.InOut === "IN" ? "positive" : "negative"
+                        }
+                      >
+                        {params.row.InOut}
+                      </div>
+                    ),
+                  };
+                }
+                return column;
+              })}
+            />
           </div>
         </div>
       </section>

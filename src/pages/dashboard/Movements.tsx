@@ -43,21 +43,6 @@ function Movements() {
 
   // Nombre de los meses
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const monthNames = [
-  //   "Jan",
-  //   "Feb",
-  //   "Mar",
-  //   "Apr",
-  //   "May",
-  //   "Jun",
-  //   "Jul",
-  //   "Aug",
-  //   "Sep",
-  //   "Oct",
-  //   "Nov",
-  //   "Dec",
-  // ];
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const monthMapping: Record<number, string> = {
     1: "Jan",
     2: "Feb",
