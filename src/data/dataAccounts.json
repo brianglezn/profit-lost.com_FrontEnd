@@ -30,41 +30,41 @@
         "Dec": 1552.45
       }
     },
-    "customBackgroundColor": "var(--color-orange-800)",
+    "customBackgroundColor": "var(--color-orange-700)",
     "customColor": "var(--color-white)"
   },
   {
     "accountName": "Abanca",
     "data": {
       "2023": {
-        "Jan": 300,
-        "Feb": 0,
+        "Jan": 0,
+        "Feb": 101,
         "Mar": 0,
         "Apr": 0,
         "May": 0,
         "Jun": 0,
         "Jul": 0,
-        "Aug": 300,
+        "Aug": 0,
         "Sep": 0,
         "Oct": 0,
         "Nov": 0
       },
       "2022": {
-        "Jan": 100,
-        "Feb": 200,
-        "Mar": 300,
-        "Apr": 100,
-        "May": 200,
-        "Jun": 100,
-        "Jul": 100,
-        "Aug": 100,
-        "Sep": 100,
-        "Oct": 100,
-        "Nov": 100,
-        "Dec": 100
+        "Jan": 0,
+        "Feb": 0,
+        "Mar": 201,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
       }
     },
-    "customBackgroundColor": "var(--color-orange-500)",
+    "customBackgroundColor": "var(--color-orange-400)",
     "customColor": "var(--color-white)"
   },
   {
@@ -81,10 +81,44 @@
         "Aug": 800,
         "Sep": 900,
         "Oct": 1000,
-        "Nov": 1200
+        "Nov": 1100
       }
     },
-    "customBackgroundColor": "var(--color-orange-400)",
+    "customBackgroundColor": "var(--color-orange-200)",
+    "customColor": "var(--color-black)"
+  },
+  {
+    "accountName": "Crypto",
+    "data": {
+      "2023": {
+        "Jan": 1500,
+        "Feb": 2120,
+        "Mar": 2335,
+        "Apr": 2649.7,
+        "May": 2852,
+        "Jun": 2746,
+        "Jul": 2932,
+        "Aug": 2795,
+        "Sep": 2600,
+        "Oct": 2754,
+        "Nov": 3469.28
+      },
+      "2022": {
+        "Jan": 763.74,
+        "Feb": 2145,
+        "Mar": 2479,
+        "Apr": 3060,
+        "May": 2830,
+        "Jun": 1960,
+        "Jul": 1606,
+        "Aug": 2020,
+        "Sep": 1941,
+        "Oct": 2050,
+        "Nov": 2155,
+        "Dec": 1647
+      }
+    },
+    "customBackgroundColor": "var(--color-orange-900)",
     "customColor": "var(--color-white)"
   }
 ]
