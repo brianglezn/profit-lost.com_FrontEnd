@@ -43,22 +43,37 @@ function Movements() {
 
   // Nombre de los meses
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  // const monthNames = [
+  //   "Jan",
+  //   "Feb",
+  //   "Mar",
+  //   "Apr",
+  //   "May",
+  //   "Jun",
+  //   "Jul",
+  //   "Aug",
+  //   "Sep",
+  //   "Oct",
+  //   "Nov",
+  //   "Dec",
+  // ];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const monthMapping: Record<number, string> = {
+    1: "Jan",
+    2: "Feb",
+    3: "Mar",
+    4: "Apr",
+    5: "May",
+    6: "Jun",
+    7: "Jul",
+    8: "Aug",
+    9: "Sep",
+    10: "Oct",
+    11: "Nov",
+    12: "Dec",
+  };
 
-  // Filtra los datos de dataAnnualReport de tal manera que solo se muestren los del mes y año seleccionado
+  // Filtra los datos de dataMovements de tal manera que solo se muestren los del mes y año seleccionado
   const [dataGraph, setDataGraph] = useState<
     {
       month: string;
@@ -67,12 +82,52 @@ function Movements() {
       Expenses: number;
     }[]
   >([]);
+  const [dataProcessed, setDataProcessed] = useState(false);
+
   useEffect(() => {
-    const dataFilter = dataAnnualReportFile.filter((item) => {
-      return item.year === +year && item.month === monthNames[+month - 1];
-    });
-    setDataGraph(dataFilter);
-  }, [year, month, monthNames]);
+    if (!dataProcessed && year && month) {
+      const selectedYearData = dataMovementsFile.find(
+        (y) => Object.keys(y)[0] === year.toString()
+      );
+
+      if (selectedYearData) {
+        const monthIndex = parseInt(month, 10) - 1;
+        const monthName = monthMapping[parseInt(month, 10)];
+        const transactionsObject = selectedYearData[year][monthIndex];
+
+        if (transactionsObject && transactionsObject[monthName]) {
+          const transactionsArray = transactionsObject[monthName];
+          const totalIncome = transactionsArray.reduce((acc, current) => {
+            return current.Ammount > 0 ? acc + current.Ammount : acc;
+          }, 0);
+
+          const totalExpenses = transactionsArray.reduce((acc, current) => {
+            return current.Ammount < 0 ? acc + Math.abs(current.Ammount) : acc;
+          }, 0);
+
+          setDataGraph(() => [
+            {
+              month: monthName,
+              year: parseInt(year, 10),
+              Income: totalIncome,
+              Expenses: totalExpenses,
+            },
+          ]);
+
+          setDataProcessed(true);
+        } else {
+          console.error(
+            "Transactions object does not have the expected month property:",
+            transactionsObject
+          );
+        }
+      }
+    }
+  }, [year, month, monthMapping, dataProcessed]);
+
+  useEffect(() => {
+    setDataProcessed(false);
+  }, [year, month]);
 
   // Inicializamos las variables y despues recorremos filteredData y le asignamos a esas variables los datos ya filtrados, después se calcula el balanceFinal
   let balanceIncome = 0;
@@ -100,21 +155,7 @@ function Movements() {
 
   // Data Table Movements
   const [tableRows, setTableRows] = useState<GridRowsProp>([]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const monthMapping: Record<number, string> = {
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-    12: "Dec",
-  };
+
   useEffect(() => {
     if (year && month) {
       const selectedYearData = dataMovementsFile.find(
@@ -260,9 +301,7 @@ function Movements() {
                       renderCell: (params) => (
                         <div
                           className={
-                            params.row.InOut === "IN"
-                              ? "positive"
-                              : "negative"
+                            params.row.InOut === "IN" ? "positive" : "negative"
                           }
                         >
                           {params.row.InOut}

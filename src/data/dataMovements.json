@@ -828,10 +828,6 @@
             "Ammount": 1496.02
           },
           {
-            "Category": "Work",
-            "Ammount": 1496.02
-          },
-          {
             "Category": "Education",
             "Ammount": -163.89
           },
@@ -1045,19 +1041,15 @@
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Ammount": -2.5
           },
           {
             "Category": "Health",
             "Ammount": -72.5
           },
           {
-            "Category": "Health",
-            "Ammount": -1.25
-          },
-          {
             "Category": "Transport",
-            "Ammount": -22.28
+            "Ammount": -58.46
           },
           {
             "Category": "Beauty",
@@ -1072,8 +1064,24 @@
             "Ammount": -35
           },
           {
-            "Category": "Transport",
-            "Ammount": -28.18
+            "Category": "Travel",
+            "Ammount": -433.05
+          },
+          {
+            "Category": "Other",
+            "Ammount": -37.5
+          },
+          {
+            "Category": "Clothing",
+            "Ammount": -54.9
+          },
+          {
+            "Category": "Restaurant",
+            "Ammount": -111.68
+          },
+          {
+            "Category": "Party",
+            "Ammount": -70.79
           }
         ]
       },
