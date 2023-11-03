@@ -43,7 +43,7 @@ function Movements() {
 
   // Nombre de los meses
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const monthMapping: Record<number, string> = {
+  const monthMapping: Record<number, Months> = {
     1: "Jan",
     2: "Feb",
     3: "Mar",
@@ -69,19 +69,50 @@ function Movements() {
   >([]);
   const [dataProcessed, setDataProcessed] = useState(false);
 
+  type MonthlyTransaction = {
+    Category: string;
+    Ammount: number;
+  }[];
+
+  type Months =
+    | "Jan"
+    | "Feb"
+    | "Mar"
+    | "Apr"
+    | "May"
+    | "Jun"
+    | "Jul"
+    | "Aug"
+    | "Sep"
+    | "Oct"
+    | "Nov"
+    | "Dec";
+
+  type DataMovement = {
+    [key: string]: {
+      [month in Months]?: MonthlyTransaction;
+    }[];
+  };
+
   useEffect(() => {
     if (!dataProcessed && year && month) {
       const selectedYearData = dataMovementsFile.find(
         (y) => Object.keys(y)[0] === year.toString()
-      );
+      ) as DataMovement | unknown;
 
       if (selectedYearData) {
         const monthIndex = parseInt(month, 10) - 1;
-        const monthName = monthMapping[parseInt(month, 10)];
-        const transactionsObject = selectedYearData[year][monthIndex];
+        const monthName: Months = monthMapping[parseInt(month, 10)];
+        const transactionsObject = (selectedYearData as DataMovement)[year][
+          monthIndex
+        ];
+        const transactionsArray = transactionsObject[monthName];
 
-        if (transactionsObject && transactionsObject[monthName]) {
-          const transactionsArray = transactionsObject[monthName];
+        if (transactionsArray) {
+          const transactionsArray = (transactionsObject as MonthlyTransaction)[
+            monthName
+          ];
+
           const totalIncome = transactionsArray.reduce(
             (acc: string, current: { Ammount: number }) => {
               return current.Ammount > 0 ? acc + current.Ammount : acc;

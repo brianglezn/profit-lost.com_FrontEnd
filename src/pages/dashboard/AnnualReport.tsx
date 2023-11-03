@@ -35,76 +35,50 @@ function AnnualReport() {
   const [balanceExpenses, setBalanceExpenses] = useState(0);
   // filtramos los datos de dataMovementsFile pasa sacar el ingreso y el gasto anual
 
+  type MonthlyTransaction = {
+    Category: string;
+    Ammount: number;
+  }[];
+  type Month =
+    | "Jan"
+    | "Feb"
+    | "Mar"
+    | "Apr"
+    | "May"
+    | "Jun"
+    | "Jul"
+    | "Aug"
+    | "Sep"
+    | "Oct"
+    | "Nov"
+    | "Dec";
+
   type DataMovement = {
     [key: string]: {
-      Jan?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Feb?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Mar?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Apr?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      May?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Jun?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Jul?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Ago?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Sep?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Oct?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Nov?: {
-        Category: string;
-        Ammount: number;
-      }[];
-      Dec?: {
-        Category: string;
-        Ammount: number;
-      }[];
+      [month in Month]?: MonthlyTransaction;
     }[];
   };
-
   useEffect(() => {
-    const selectedYearData: DataMovement  = dataMovementsFile.find(
+    const selectedYearData = dataMovementsFile.find(
       (y) => Object.keys(y)[0] === year.toString()
-    );
+    ) as DataMovement | unknown;
+
     if (!selectedYearData) return;
-    const monthlyData = selectedYearData[year];
+    const monthlyData = (selectedYearData as DataMovement)[year];
 
     let incomeSum = 0;
     let expensesSum = 0;
 
     for (const monthObj of monthlyData) {
       for (const month in monthObj) {
-        for (const movement of monthObj[month]) {
-          if (movement.Ammount > 0) {
-            incomeSum += movement.Ammount;
-          } else {
-            expensesSum += Math.abs(movement.Ammount);
+        const transactions = monthObj[month as Month];
+        if (transactions) {
+          for (const movement of transactions) {
+            if (movement.Ammount > 0) {
+              incomeSum += movement.Ammount;
+            } else {
+              expensesSum += Math.abs(movement.Ammount);
+            }
           }
         }
       }
@@ -149,13 +123,13 @@ function AnnualReport() {
   };
   useEffect(() => {
     if (year) {
-      const selectedYearData: DataMovement = dataMovementsFile.find(
+      const selectedYearData = dataMovementsFile.find(
         (y) => Object.keys(y)[0] === year.toString()
-      );
+      ) as DataMovement | unknown;
       if (!selectedYearData) return;
 
       if (selectedYearData) {
-        const monthEntries = selectedYearData[year];
+        const monthEntries = (selectedYearData as DataMovement)[year];
         const categoryBalances = monthEntries.flatMap((monthEntry) =>
           Object.entries(monthEntry).flatMap(([month, transactions]) =>
             transactions.map((transaction) => ({

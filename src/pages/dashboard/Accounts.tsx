@@ -47,8 +47,7 @@ function Accounts() {
           const monthlyData: Record<string, number> = {};
 
           for (const month in item.data[year]) {
-            const value = item.data[year][month];
-
+            const value = item.data[year]?.[month];
             if (typeof value === "number") {
               monthlyData[month] = value;
             }
@@ -105,7 +104,8 @@ function Accounts() {
 
   // Calcula el saldo todal de todas las cuentas segun año y mes actual, y se formatea a €
   const totalBalance = dataAccounts.reduce((acc, account) => {
-    const balance = account.data[currentYear][currentMonthName];
+    const balance = account.data[currentYear]?.[currentMonthName] || 0;
+
     return acc + balance;
   }, 0);
   const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
