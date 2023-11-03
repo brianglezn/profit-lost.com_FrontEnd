@@ -82,13 +82,21 @@ function Movements() {
 
         if (transactionsObject && transactionsObject[monthName]) {
           const transactionsArray = transactionsObject[monthName];
-          const totalIncome = transactionsArray.reduce((acc, current) => {
-            return current.Ammount > 0 ? acc + current.Ammount : acc;
-          }, 0);
+          const totalIncome = transactionsArray.reduce(
+            (acc: string, current: { Ammount: number }) => {
+              return current.Ammount > 0 ? acc + current.Ammount : acc;
+            },
+            0
+          );
 
-          const totalExpenses = transactionsArray.reduce((acc, current) => {
-            return current.Ammount < 0 ? acc + Math.abs(current.Ammount) : acc;
-          }, 0);
+          const totalExpenses = transactionsArray.reduce(
+            (acc: string, current: { Ammount: number }) => {
+              return current.Ammount < 0
+                ? acc + Math.abs(current.Ammount)
+                : acc;
+            },
+            0
+          );
 
           setDataGraph(() => [
             {

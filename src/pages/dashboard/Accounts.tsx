@@ -27,21 +27,34 @@ function Accounts() {
   type DataAccountItem = {
     accountName: string;
     data: {
-      [year: string]: {
-        [month: string]: number;
-      };
+      [year: string]:
+        | {
+            [month: string]: number | undefined;
+          }
+        | undefined;
     };
     customBackgroundColor: string;
     customColor: string;
   };
+
   const [dataAccounts, setDataAccounts] = useState<DataAccountItem[]>([]);
   useEffect(() => {
     const formattedData = dataAccountsFile.map((item: DataAccountItem) => {
       const formattedData: Record<string, Record<string, number>> = {};
 
       for (const year in item.data) {
-        const monthlyData = item.data[year] || {};
-        formattedData[year] = monthlyData;
+        if (item.data[year]) {
+          const monthlyData: Record<string, number> = {};
+
+          for (const month in item.data[year]) {
+            const value = item.data[year][month];
+
+            if (typeof value === "number") {
+              monthlyData[month] = value;
+            }
+          }
+          formattedData[year] = monthlyData;
+        }
       }
 
       return {
@@ -111,38 +124,19 @@ function Accounts() {
     setYear(event.target.value as string);
   };
 
-  // Se utiliza dataChart para almacenar el objeto que representa el conjunto de datos del gráfico, con el nombre del mes y los datos de todas las cuentas por cada mes
-  const dataChart = monthNames.map((month) => {
+  // Usamos chartData para añadirlo a <BarChart>
+  const chartData = monthNames.map((month) => {
     const data: Record<string, number> = {};
 
     dataAccounts.forEach((account) => {
-      if (
-        account.data[parseInt(year)] &&
-        account.data[parseInt(year)][month] !== undefined
-      ) {
-        data[account.accountName] = account.data[parseInt(year)][month];
-      } else {
-        data[account.accountName] = 0;
-      }
+      const value = account.data[parseInt(year)]?.[month] ?? 0;
+      data[account.accountName] = value;
     });
 
     return {
       name: month,
       ...data,
     };
-  });
-
-  // Se transforma dataChart a chartData para poder usarlo en el <BarChart>
-  const chartData = dataChart.map((item) => {
-    const balance = dataAccounts.reduce((acc, account) => {
-      const value =
-        account.data[parseInt(year)] &&
-        account.data[parseInt(year)][item.name] !== undefined
-          ? account.data[parseInt(year)][item.name]
-          : 0;
-      return acc + (typeof value === "number" ? value : 0);
-    }, 0);
-    return { ...item, balance };
   });
 
   // Creamos getPreviousMonth() para obtener el nombre del mes anterior al mes actual.

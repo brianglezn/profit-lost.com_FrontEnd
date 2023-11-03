@@ -34,6 +34,7 @@ function AnnualReport() {
   const [balanceIncome, setBalanceIncome] = useState(0);
   const [balanceExpenses, setBalanceExpenses] = useState(0);
   // filtramos los datos de dataMovementsFile pasa sacar el ingreso y el gasto anual
+
   useEffect(() => {
     const selectedYearData = dataMovementsFile.find(
       (y) => Object.keys(y)[0] === year.toString()
@@ -112,15 +113,26 @@ function AnnualReport() {
 
         // Calcular balance por categoría
         const categoriesBalance: { [key: string]: CategoryBalance } =
-          categoryBalances.reduce((acc, transaction) => {
-            const { Category, Ammount } = transaction;
-            if (!acc[Category]) {
-              acc[Category] = { Category, Balance: 0, InOut: "" };
-            }
-            acc[Category].Balance += Ammount;
-            acc[Category].InOut = acc[Category].Balance >= 0 ? "IN" : "OUT";
-            return acc;
-          }, {});
+          categoryBalances.reduce(
+            (
+              acc: {
+                [x: string]: {
+                  InOut: string;
+                  Balance: number;
+                };
+              },
+              transaction: { Category: string; Ammount: number }
+            ) => {
+              const { Category, Ammount } = transaction;
+              if (!acc[Category]) {
+                acc[Category] = { Category, Balance: 0, InOut: "" };
+              }
+              acc[Category].Balance += Ammount;
+              acc[Category].InOut = acc[Category].Balance >= 0 ? "IN" : "OUT";
+              return acc;
+            },
+            {}
+          );
 
         const rows = Object.values(categoriesBalance).map((balance, index) => ({
           id: index,
