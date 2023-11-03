@@ -35,11 +35,65 @@ function AnnualReport() {
   const [balanceExpenses, setBalanceExpenses] = useState(0);
   // filtramos los datos de dataMovementsFile pasa sacar el ingreso y el gasto anual
 
+  type DataMovement = {
+    [key: string]: {
+      Jan?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Feb?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Mar?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Apr?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      May?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Jun?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Jul?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Ago?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Sep?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Oct?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Nov?: {
+        Category: string;
+        Ammount: number;
+      }[];
+      Dec?: {
+        Category: string;
+        Ammount: number;
+      }[];
+    }[];
+  };
+
   useEffect(() => {
-    const selectedYearData = dataMovementsFile.find(
+    const selectedYearData: DataMovement  = dataMovementsFile.find(
       (y) => Object.keys(y)[0] === year.toString()
     );
-    const monthlyData = selectedYearData[year.toString()];
+    if (!selectedYearData) return;
+    const monthlyData = selectedYearData[year];
 
     let incomeSum = 0;
     let expensesSum = 0;
@@ -93,14 +147,14 @@ function AnnualReport() {
     Balance: number;
     InOut: string;
   };
-
   useEffect(() => {
     if (year) {
-      const selectedYearData = dataMovementsFile.find(
-        (entry) => entry[year as keyof typeof entry]
+      const selectedYearData: DataMovement = dataMovementsFile.find(
+        (y) => Object.keys(y)[0] === year.toString()
       );
+      if (!selectedYearData) return;
+
       if (selectedYearData) {
-        // El valor es un array de objetos del mes, necesitamos aplanarlos y sumar los montos por categoría
         const monthEntries = selectedYearData[year];
         const categoryBalances = monthEntries.flatMap((monthEntry) =>
           Object.entries(monthEntry).flatMap(([month, transactions]) =>
@@ -111,12 +165,12 @@ function AnnualReport() {
           )
         );
 
-        // Calcular balance por categoría
         const categoriesBalance: { [key: string]: CategoryBalance } =
           categoryBalances.reduce(
             (
               acc: {
                 [x: string]: {
+                  Category: string;
                   InOut: string;
                   Balance: number;
                 };
