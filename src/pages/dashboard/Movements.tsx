@@ -69,11 +69,10 @@ function Movements() {
   >([]);
   const [dataProcessed, setDataProcessed] = useState(false);
 
-  type MonthlyTransaction = {
+  type MonthlyTransactionEntry = {
     Category: string;
     Ammount: number;
-  }[];
-
+  };
   type Months =
     | "Jan"
     | "Feb"
@@ -87,7 +86,9 @@ function Movements() {
     | "Oct"
     | "Nov"
     | "Dec";
-
+  type MonthlyTransaction = {
+    [key in Months]?: MonthlyTransactionEntry[];
+  };
   type DataMovement = {
     [key: string]: {
       [month in Months]?: MonthlyTransaction;
@@ -107,21 +108,20 @@ function Movements() {
           monthIndex
         ];
         const transactionsArray = transactionsObject[monthName];
-
         if (transactionsArray) {
           const transactionsArray = (transactionsObject as MonthlyTransaction)[
             monthName
           ];
 
-          const totalIncome = transactionsArray.reduce(
-            (acc: string, current: { Ammount: number }) => {
+          const totalIncome = (transactionsArray || []).reduce(
+            (acc: number, current: { Ammount: number }) => {
               return current.Ammount > 0 ? acc + current.Ammount : acc;
             },
             0
           );
 
-          const totalExpenses = transactionsArray.reduce(
-            (acc: string, current: { Ammount: number }) => {
+          const totalExpenses = (transactionsArray || []).reduce(
+            (acc: number, current: { Ammount: number }) => {
               return current.Ammount < 0
                 ? acc + Math.abs(current.Ammount)
                 : acc;
