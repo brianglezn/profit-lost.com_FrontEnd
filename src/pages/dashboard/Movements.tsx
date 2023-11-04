@@ -18,6 +18,55 @@ import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import "./Movements.css";
 import dataMovementsFile from "../../data/dataMovements.json";
 
+type MonthlyTransactionEntry = {
+  Category: string;
+  Ammount: number;
+};
+type Months =
+  | "Jan"
+  | "Feb"
+  | "Mar"
+  | "Apr"
+  | "May"
+  | "Jun"
+  | "Jul"
+  | "Aug"
+  | "Sep"
+  | "Oct"
+  | "Nov"
+  | "Dec";
+type MonthlyTransaction = {
+  [key in Months]?: MonthlyTransactionEntry[];
+};
+type DataMovement = {
+  [key: string]: {
+    [month in Months]?: MonthlyTransaction;
+  }[];
+};
+const monthMapping: Record<number, Months> = {
+  1: "Jan",
+  2: "Feb",
+  3: "Mar",
+  4: "Apr",
+  5: "May",
+  6: "Jun",
+  7: "Jul",
+  8: "Aug",
+  9: "Sep",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
+};
+
+function formatCurrency(value: number) {
+  return value.toLocaleString("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    useGrouping: true,
+  });
+}
+
 function Movements() {
   // Pillamos el año y mes actual (number)
   const currentYear = new Date().getFullYear();
@@ -40,23 +89,6 @@ function Movements() {
     ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
   ].sort((a, b) => Number(b) - Number(a));
 
-  // Nombre de los meses
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const monthMapping: Record<number, Months> = {
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-    12: "Dec",
-  };
-
   // Filtra los datos de dataMovements de tal manera que solo se muestren los del mes y año seleccionado
   const [dataGraph, setDataGraph] = useState<
     {
@@ -67,32 +99,6 @@ function Movements() {
     }[]
   >([]);
   const [dataProcessed, setDataProcessed] = useState(false);
-
-  type MonthlyTransactionEntry = {
-    Category: string;
-    Ammount: number;
-  };
-  type Months =
-    | "Jan"
-    | "Feb"
-    | "Mar"
-    | "Apr"
-    | "May"
-    | "Jun"
-    | "Jul"
-    | "Aug"
-    | "Sep"
-    | "Oct"
-    | "Nov"
-    | "Dec";
-  type MonthlyTransaction = {
-    [key in Months]?: MonthlyTransactionEntry[];
-  };
-  type DataMovement = {
-    [key: string]: {
-      [month in Months]?: MonthlyTransaction;
-    }[];
-  };
 
   useEffect(() => {
     if (!dataProcessed && year && month) {
@@ -132,8 +138,8 @@ function Movements() {
             {
               month: monthName,
               year: parseInt(year, 10),
-              Income: totalIncome,
-              Expenses: totalExpenses,
+              Income: +totalIncome.toFixed(2),
+              Expenses: +totalExpenses.toFixed(2),
             },
           ]);
 
@@ -146,7 +152,7 @@ function Movements() {
         }
       }
     }
-  }, [year, month, monthMapping, dataProcessed]);
+  }, [year, month, dataProcessed]);
 
   useEffect(() => {
     setDataProcessed(false);
@@ -159,22 +165,12 @@ function Movements() {
     balanceIncome += data.Income;
     balanceExpenses += data.Expenses;
   }
-  const balanceFinal: number = balanceIncome - balanceExpenses;
 
   // Formateamos a € los balances
 
-  function formatCurrency(value: number) {
-    return value.toLocaleString("es-ES", {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-      useGrouping: true,
-    });
-  }
-
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
-  const formattedBalanceFinal = formatCurrency(balanceFinal);
+  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
   // Data Table Movements
   const [tableRows, setTableRows] = useState<GridRowsProp>([]);
@@ -207,7 +203,7 @@ function Movements() {
         }
       }
     }
-  }, [year, month, monthMapping]);
+  }, [year, month]);
 
   const columns: GridColDef[] = [
     { field: "Category", headerName: "Category", flex: 2 },

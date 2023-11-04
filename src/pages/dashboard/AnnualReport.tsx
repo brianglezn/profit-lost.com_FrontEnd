@@ -110,6 +110,10 @@ function AnnualReport() {
             });
           }
 
+          // Hacemos que el resutado solo tenga 2 decimales
+          monthlyIncome = +monthlyIncome.toFixed(2);
+          monthlyExpenses = +monthlyExpenses.toFixed(2);
+
           // Retornamos un objeto con los datos del mes para el gráfico.
           return {
             month,
