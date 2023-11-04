@@ -1502,6 +1502,10 @@
           {
             "Category": "Supermarket",
             "Ammount": -36.19
+          },
+          {
+            "Category": "Home",
+            "Ammount": -1.8
           }
         ]
       },

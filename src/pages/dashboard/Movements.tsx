@@ -189,11 +189,12 @@ function Movements() {
         const monthData =
           selectedYearData[year as keyof typeof selectedYearData];
         if (monthData) {
-          const selectedMonthData = monthData.find(
-            (entry) => entry[monthMapping[month]]
-          );
+          const parameter = monthMapping[Number(month)];
+          const selectedMonthData = monthData.find((entry) => {
+            return entry[parameter];
+          });
           if (selectedMonthData) {
-            const rows = selectedMonthData[monthMapping[month]].map(
+            const rows = selectedMonthData[parameter]?.map(
               (item: { Category: string; Ammount: number }, index: number) => ({
                 id: index + 1,
                 Category: item.Category,
@@ -208,6 +209,7 @@ function Movements() {
       }
     }
   }, [year, month, monthMapping]);
+
   const columns: GridColDef[] = [
     { field: "Category", headerName: "Category", flex: 2 },
     { field: "Balance", headerName: "Balance", flex: 2 },
