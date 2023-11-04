@@ -10,6 +10,19 @@ import Movements from "./Movements";
 import Profile from "./Profile";
 import Goals from "./Goals";
 
+// Función para utilizar una fecha formateada
+function getCurrentDate() {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+
+  const today = new Date().toLocaleDateString("es-ES", options);
+  return today;
+}
+
 function Dashboard() {
   // useState se usa para controlar la selección de dash activa en la alicación
   const [activeSection, setActiveSection] = useState("Dashboard");
@@ -17,18 +30,6 @@ function Dashboard() {
     setActiveSection(sectionName);
   };
 
-  // Función para utilizar una fecha formateada
-  function getCurrentDate() {
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "short",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    };
-
-    const today = new Date().toLocaleDateString("es-ES", options);
-    return today;
-  }
   const currentDate = getCurrentDate();
 
   return (

@@ -1,6 +1,44 @@
 [
   {
-    "category": "Work",
-    "color": "#fff"
+    "category": "Work"
+  },
+  {
+    "category": "Work2"
+  },
+  {
+    "category": "Education"
+  },
+  {
+    "category": "Other"
+  },
+  {
+    "category": "Party"
+  },
+  {
+    "category": "Clothing"
+  },
+  {
+    "category": "Supermarket"
+  },
+  {
+    "category": "Home"
+  },
+  {
+    "category": "Gym"
+  },
+  {
+    "category": "Transport"
+  },
+  {
+    "category": "Health"
+  },
+  {
+    "category": "Mobile"
+  },
+  {
+    "category": "Restaurant"
+  },
+  {
+    "category": "Beauty"
   }
 ]

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -18,10 +18,12 @@ import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import "./Movements.css";
 import dataMovementsFile from "../../data/dataMovements.json";
 
+// Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
   Category: string;
   Ammount: number;
 };
+// Definición de tipo para los meses del año
 type Months =
   | "Jan"
   | "Feb"
@@ -35,14 +37,17 @@ type Months =
   | "Oct"
   | "Nov"
   | "Dec";
+// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
 type MonthlyTransaction = {
   [key in Months]?: MonthlyTransactionEntry[];
 };
+// Definición de tipo para el movimiento de datos, que es un objeto que tiene una clave de tipo string y un valor que es un arreglo de objetos MonthlyTransaction indexados por los meses
 type DataMovement = {
   [key: string]: {
     [month in Months]?: MonthlyTransaction;
   }[];
 };
+// Objeto para mapear el número del mes a su correspondiente nombre
 const monthMapping: Record<number, Months> = {
   1: "Jan",
   2: "Feb",
@@ -58,6 +63,7 @@ const monthMapping: Record<number, Months> = {
   12: "Dec",
 };
 
+// Función para formatear números a formato de moneda local
 function formatCurrency(value: number) {
   return value.toLocaleString("es-ES", {
     style: "currency",
@@ -68,28 +74,29 @@ function formatCurrency(value: number) {
 }
 
 function Movements() {
-  // Pillamos el año y mes actual (number)
+  // Estado para el año actual y mes actual
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
 
-  // Inicializa las variables de year y month con los valores de mes y año actual
+  // Estados para el año y mes seleccionados
   const [year, setYear] = useState(currentYear.toString());
   const [month, setMonth] = useState(currentMonth.toString());
 
-  // Actualiza el año y mes según la seleccion en el Selector
-  const handleChangeYear = (event: SelectChangeEvent) => {
+  // Manejadores de cambio para el año y mes
+  const handleChangeYear = (event: SelectChangeEvent) =>
     setYear(event.target.value as string);
-  };
-  const handleChangeMonth = (event: SelectChangeEvent) => {
+  const handleChangeMonth = (event: SelectChangeEvent) =>
     setMonth(event.target.value as string);
-  };
 
-  // Pilla los años dentro de dataAnnualReport y hace un array con los años únicos para despues mostrarlos en el selector
-  const yearsWithData = [
-    ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
-  ].sort((a, b) => Number(b) - Number(a));
+  // useMemo para obtener años con datos
+  const yearsWithData = useMemo(() => {
+    // Extracción de años de dataMovementsFile
+    const years = dataMovementsFile.map((item) => Object.keys(item)[0]);
+    // Eliminación de duplicados y ordenamiento
+    return [...new Set(years)].sort((a, b) => Number(b) - Number(a));
+  }, []);
 
-  // Filtra los datos de dataMovements de tal manera que solo se muestren los del mes y año seleccionado
+  // Estado para los datos del gráfico
   const [dataGraph, setDataGraph] = useState<
     {
       month: string;
@@ -98,33 +105,42 @@ function Movements() {
       Expenses: number;
     }[]
   >([]);
+  // Estado para verificar si los datos han sido procesados
   const [dataProcessed, setDataProcessed] = useState(false);
 
+  // Efecto para procesar datos cuando el año y mes han sido seleccionados
   useEffect(() => {
+    // Verifica si los datos no han sido procesados y si año y mes están definidos
     if (!dataProcessed && year && month) {
+      // Encuentra los datos del año seleccionado
       const selectedYearData = dataMovementsFile.find(
         (y) => Object.keys(y)[0] === year.toString()
       ) as DataMovement | unknown;
 
+      // Si se encuentran datos para el año seleccionado
       if (selectedYearData) {
+        // Obtención del índice y nombre del mes seleccionado
         const monthIndex = parseInt(month, 10) - 1;
         const monthName: Months = monthMapping[parseInt(month, 10)];
+        // Obtención de las transacciones para el mes seleccionado
         const transactionsObject = (selectedYearData as DataMovement)[year][
           monthIndex
         ];
         const transactionsArray = transactionsObject[monthName];
+        // Si existen transacciones para ese mes
         if (transactionsArray) {
+          // Procesamiento de ingresos y gastos totales
           const transactionsArray = (transactionsObject as MonthlyTransaction)[
             monthName
           ];
-
+          // Cálculo del ingreso total
           const totalIncome = (transactionsArray || []).reduce(
             (acc: number, current: { Ammount: number }) => {
               return current.Ammount > 0 ? acc + current.Ammount : acc;
             },
             0
           );
-
+          // Cálculo del gasto total
           const totalExpenses = (transactionsArray || []).reduce(
             (acc: number, current: { Ammount: number }) => {
               return current.Ammount < 0
@@ -134,6 +150,7 @@ function Movements() {
             0
           );
 
+          // Configuración de datos para el gráfico
           setDataGraph(() => [
             {
               month: monthName,
@@ -143,8 +160,10 @@ function Movements() {
             },
           ]);
 
+          // Marcar los datos como procesados
           setDataProcessed(true);
         } else {
+          // Registrar un error si al objeto de transacciones le falta la propiedad del mes
           console.error(
             "Transactions object does not have the expected month property:",
             transactionsObject
@@ -154,41 +173,48 @@ function Movements() {
     }
   }, [year, month, dataProcessed]);
 
+  // Restablecer dataProcessed a falso cuando cambian el año o el mes
   useEffect(() => {
     setDataProcessed(false);
   }, [year, month]);
 
-  // Inicializamos las variables y despues recorremos filteredData y le asignamos a esas variables los datos ya filtrados, después se calcula el balanceFinal
+  // Inicializar los saldos de ingresos y gastos
   let balanceIncome = 0;
   let balanceExpenses = 0;
+  // Calcular el ingreso total y los gastos a partir de los datos del gráfico
   for (const data of dataGraph) {
     balanceIncome += data.Income;
     balanceExpenses += data.Expenses;
   }
 
-  // Formateamos a € los balances
-
+  // Formatear el ingreso total y los gastos a moneda
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
-  // Data Table Movements
+  // Estado para almacenar las filas del componente de tabla
   const [tableRows, setTableRows] = useState<GridRowsProp>([]);
 
+  // Efecto para actualizar las filas de la tabla basado en el año y mes seleccionados
   useEffect(() => {
     if (year && month) {
+      // Buscar los datos para el año seleccionado
       const selectedYearData = dataMovementsFile.find(
         (entry) => entry[year as keyof typeof entry]
       );
       if (selectedYearData) {
+        // Buscar los datos para el mes seleccionado dentro del año seleccionado
         const monthData =
           selectedYearData[year as keyof typeof selectedYearData];
         if (monthData) {
+          // Obtener la clave correcta para el mes del mapeo de meses
           const parameter = monthMapping[Number(month)];
+          // Buscar los datos para el mes especificado
           const selectedMonthData = monthData.find((entry) => {
             return entry[parameter];
           });
           if (selectedMonthData) {
+            // Mapear los datos al formato de fila requerido por el componente de tabla
             const rows = selectedMonthData[parameter]?.map(
               (item: { Category: string; Ammount: number }, index: number) => ({
                 id: index + 1,
@@ -205,6 +231,7 @@ function Movements() {
     }
   }, [year, month]);
 
+  // Definiciones de columnas para el componente de la tabla
   const columns: GridColDef[] = [
     { field: "Category", headerName: "Category", flex: 2 },
     { field: "Balance", headerName: "Balance", flex: 2 },
