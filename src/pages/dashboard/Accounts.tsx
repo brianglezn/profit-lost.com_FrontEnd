@@ -19,7 +19,6 @@ import {
 
 import "./Accounts.css";
 import dataAccountsFile from "../../data/dataAccounts.json";
-
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 
 function Accounts() {

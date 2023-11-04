@@ -16,7 +16,6 @@ import {
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 
 import "./Movements.css";
-import dataAnnualReportFile from "../../data/dataAnnualReport.json";
 import dataMovementsFile from "../../data/dataMovements.json";
 
 function Movements() {
@@ -37,9 +36,9 @@ function Movements() {
   };
 
   // Pilla los años dentro de dataAnnualReport y hace un array con los años únicos para despues mostrarlos en el selector
-  const uniqueYears = [
-    ...new Set(dataAnnualReportFile.map((item) => item.year)),
-  ];
+  const yearsWithData = [
+    ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
+  ].sort((a, b) => Number(b) - Number(a));
 
   // Nombre de los meses
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -226,11 +225,11 @@ function Movements() {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={year || currentYear.toString()}
+                value={year}
                 label="Year"
                 onChange={handleChangeYear}
               >
-                {uniqueYears.map((year) => (
+                {yearsWithData.map((year) => (
                   <MenuItem key={year} value={year}>
                     {year}
                   </MenuItem>

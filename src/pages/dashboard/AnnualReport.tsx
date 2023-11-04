@@ -16,7 +16,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 import "./AnnualReport.css";
-import dataAnnualReportFile from "../../data/dataAnnualReport.json";
 import dataMovementsFile from "../../data/dataMovements.json";
 
 function AnnualReport() {
@@ -88,15 +87,54 @@ function AnnualReport() {
     setBalanceExpenses(expensesSum);
   }, [year]);
 
-  // // Crea un array con los años unicos dentro de dataAnnualReport
+  // Crea un array con los años unicos dentro de dataAnnualReport
   const yearsWithData = [
     ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
   ].sort((a, b) => Number(b) - Number(a));
 
-  // // Filtra los datos anual de dataAnnualReport para obtener solo los datos del año seleccionado
-  const filteredData = dataAnnualReportFile.filter(
-    (item) => item.year === parseInt(year, 10)
-  );
+  // Filtra los datos anual de dataMovementsFile para obtener solo los datos del año seleccionado
+  type ChartDataItem = {
+    month: string;
+    Income: number;
+    Expenses: number;
+  };
+  const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+
+  useEffect(() => {
+    const selectedYearData = dataMovementsFile.find(
+      (y) => Object.keys(y)[0] === year.toString()
+    ) as DataMovement | undefined;
+
+    if (selectedYearData && year.toString() in selectedYearData) {
+      const monthlyDataArray = selectedYearData[year.toString()];
+
+      if (Array.isArray(monthlyDataArray)) {
+        const incomeExpensesByMonth = monthlyDataArray.map((monthEntry) => {
+          const [month, transactions] = Object.entries(monthEntry)[0];
+
+          let monthlyIncome = 0;
+          let monthlyExpenses = 0;
+
+          if (Array.isArray(transactions)) {
+            transactions.forEach((transaction) => {
+              if (transaction.Ammount > 0) {
+                monthlyIncome += transaction.Ammount;
+              } else {
+                monthlyExpenses += Math.abs(transaction.Ammount);
+              }
+            });
+          }
+
+          return {
+            month,
+            Income: monthlyIncome,
+            Expenses: monthlyExpenses,
+          };
+        });
+        setChartData(incomeExpensesByMonth);
+      }
+    }
+  }, [year]);
 
   // Sacamos la diferencia entre balanceIncome y balanceExpenses;
   const balanceFinal: number = balanceIncome - balanceExpenses;
@@ -201,7 +239,7 @@ function AnnualReport() {
           <div className="annualReport__containerMain-chart">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
-                data={filteredData}
+                data={chartData}
                 margin={{
                   top: 5,
                   right: 30,
