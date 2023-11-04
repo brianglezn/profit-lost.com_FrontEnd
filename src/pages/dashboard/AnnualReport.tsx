@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
   BarChart,
   Bar,
@@ -18,93 +18,77 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import "./AnnualReport.css";
 import dataMovementsFile from "../../data/dataMovements.json";
 
-function AnnualReport() {
-  // Sacamos el currentYear e inicializamos la variable year con el año actual
-  // handleChange es el evento que cambiará el año en el <Select>
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const [year, setYear] = React.useState(currentYear.toString());
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    const selectedYear = event.target.value;
-    setYear(selectedYear);
-  };
+// Definimos los tipos para las transacciones mensuales y la estructura de los datos.
+type MonthlyTransaction = {
+  Category: string;
+  Ammount: number;
+}[];
+type Month =
+  | "Jan"
+  | "Feb"
+  | "Mar"
+  | "Apr"
+  | "May"
+  | "Jun"
+  | "Jul"
+  | "Aug"
+  | "Sep"
+  | "Oct"
+  | "Nov"
+  | "Dec";
 
-  // Incializamos las variables
-  const [balanceIncome, setBalanceIncome] = useState(0);
-  const [balanceExpenses, setBalanceExpenses] = useState(0);
-  // filtramos los datos de dataMovementsFile pasa sacar el ingreso y el gasto anual
-
-  type MonthlyTransaction = {
-    Category: string;
-    Ammount: number;
+type DataMovement = {
+  [key: string]: {
+    [month in Month]?: MonthlyTransaction;
   }[];
-  type Month =
-    | "Jan"
-    | "Feb"
-    | "Mar"
-    | "Apr"
-    | "May"
-    | "Jun"
-    | "Jul"
-    | "Aug"
-    | "Sep"
-    | "Oct"
-    | "Nov"
-    | "Dec";
+};
+type ChartDataItem = {
+  month: string;
+  Income: number;
+  Expenses: number;
+};
+type CategoryBalance = {
+  Category: string;
+  Balance: number;
+  InOut: string;
+};
 
-  type DataMovement = {
-    [key: string]: {
-      [month in Month]?: MonthlyTransaction;
-    }[];
+// Función para formatear números a formato de moneda.
+function formatCurrency(value: number) {
+  return value.toLocaleString("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    useGrouping: true,
+  });
+}
+
+function AnnualReport() {
+  // Estado para el año actual y la función para actualizarlo.
+  const currentYear = new Date().getFullYear().toString();
+  const [year, setYear] = useState(currentYear);
+
+  // useMemo para calcular los años con datos disponibles, para evitar recálculos innecesarios.
+  const yearsWithData = useMemo(() => {
+    return [
+      ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
+    ].sort((a, b) => Number(b) - Number(a));
+  }, []);
+
+  // Función para manejar el cambio de año seleccionado en el menú desplegable.
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setYear(event.target.value);
   };
-  useEffect(() => {
-    const selectedYearData = dataMovementsFile.find(
-      (y) => Object.keys(y)[0] === year.toString()
-    ) as DataMovement | unknown;
 
-    if (!selectedYearData) return;
-    const monthlyData = (selectedYearData as DataMovement)[year];
-
-    let incomeSum = 0;
-    let expensesSum = 0;
-
-    for (const monthObj of monthlyData) {
-      for (const month in monthObj) {
-        const transactions = monthObj[month as Month];
-        if (transactions) {
-          for (const movement of transactions) {
-            if (movement.Ammount > 0) {
-              incomeSum += movement.Ammount;
-            } else {
-              expensesSum += Math.abs(movement.Ammount);
-            }
-          }
-        }
-      }
-    }
-
-    setBalanceIncome(incomeSum);
-    setBalanceExpenses(expensesSum);
-  }, [year]);
-
-  // Crea un array con los años unicos dentro de dataAnnualReport
-  const yearsWithData = [
-    ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
-  ].sort((a, b) => Number(b) - Number(a));
-
-  // Filtra los datos anual de dataMovementsFile para obtener solo los datos del año seleccionado
-  type ChartDataItem = {
-    month: string;
-    Income: number;
-    Expenses: number;
-  };
+  // Estado para almacenar los datos del gráfico.
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
-
   useEffect(() => {
+    // Calculamos los datos para el gráfico cuando el año cambia.
     const selectedYearData = dataMovementsFile.find(
       (y) => Object.keys(y)[0] === year.toString()
     ) as DataMovement | undefined;
 
+    // Si hay datos para el año seleccionado, los procesamos para el gráfico.
     if (selectedYearData && year.toString() in selectedYearData) {
       const monthlyDataArray = selectedYearData[year.toString()];
 
@@ -115,6 +99,7 @@ function AnnualReport() {
           let monthlyIncome = 0;
           let monthlyExpenses = 0;
 
+          // Sumamos los ingresos y restamos los gastos para cada mes.
           if (Array.isArray(transactions)) {
             transactions.forEach((transaction) => {
               if (transaction.Ammount > 0) {
@@ -125,6 +110,7 @@ function AnnualReport() {
             });
           }
 
+          // Retornamos un objeto con los datos del mes para el gráfico.
           return {
             month,
             Income: monthlyIncome,
@@ -136,38 +122,67 @@ function AnnualReport() {
     }
   }, [year]);
 
-  // Sacamos la diferencia entre balanceIncome y balanceExpenses;
-  const balanceFinal: number = balanceIncome - balanceExpenses;
-  // Formateamos los balances a €
-  function formatCurrency(value: number) {
-    return value.toLocaleString("es-ES", {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-      useGrouping: true,
-    });
-  }
+  // Estados para los totales de ingresos y gastos.
+  const [balanceIncome, setBalanceIncome] = useState(0);
+  const [balanceExpenses, setBalanceExpenses] = useState(0);
+
+  // Calculamos el balance de ingresos y gastos al cargar los datos o cambiar el año.
+  useEffect(() => {
+    const selectedYearData = dataMovementsFile.find(
+      (y) => Object.keys(y)[0] === year.toString()
+    ) as DataMovement | unknown;
+
+    // Si no encuentra datos para ese año, termina la ejecución del bloque aquí.
+    if (!selectedYearData) return;
+
+    const monthlyData = (selectedYearData as DataMovement)[year];
+    let incomeSum = 0;
+    let expensesSum = 0;
+
+    // Recorre los objetos mensuales de los datos financieros.
+    for (const monthObj of monthlyData) {
+      for (const month in monthObj) {
+        const transactions = monthObj[month as Month];
+        // Si hay transacciones, suma los montos a los acumuladores respectivos.
+        if (transactions) {
+          for (const movement of transactions) {
+            if (movement.Ammount > 0) {
+              // Si el monto es positivo, lo suma a los ingresos.
+              incomeSum += movement.Ammount;
+            } else {
+              // Si el monto es negativo, lo suma a los gastos (después de convertirlo a positivo).
+              expensesSum += Math.abs(movement.Ammount);
+            }
+          }
+        }
+      }
+    }
+
+    setBalanceIncome(incomeSum);
+    setBalanceExpenses(expensesSum);
+  }, [year]);
+
+  // Formatea los balances de ingresos y gastos totales a formato de moneda.
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
-  const formattedBalanceFinal = formatCurrency(balanceFinal);
+  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
-  // Data Table Categories
+  // Estados para las filas de una tabla y su inicialización.
   const [tableRows, setTableRows] = useState<GridRowsProp>([]);
-
-  type CategoryBalance = {
-    Category: string;
-    Balance: number;
-    InOut: string;
-  };
+  // useEffect se encarga de calcular las filas de la tabla de balances por categoría.
   useEffect(() => {
     if (year) {
       const selectedYearData = dataMovementsFile.find(
         (y) => Object.keys(y)[0] === year.toString()
       ) as DataMovement | unknown;
+
+      // Si no encuentra datos para ese año, termina la ejecución del bloque aquí.
       if (!selectedYearData) return;
 
       if (selectedYearData) {
+        // Recoge los datos del año seleccionado.
         const monthEntries = (selectedYearData as DataMovement)[year];
+        // Aplana y transforma los datos para obtener el balance por categoría.
         const categoryBalances = monthEntries.flatMap((monthEntry) =>
           Object.entries(monthEntry).flatMap(([month, transactions]) =>
             transactions.map((transaction) => ({
@@ -177,6 +192,7 @@ function AnnualReport() {
           )
         );
 
+        // Reduce la lista de transacciones a un objeto que acumula los balances por categoría.
         const categoriesBalance: { [key: string]: CategoryBalance } =
           categoryBalances.reduce(
             (
@@ -190,6 +206,7 @@ function AnnualReport() {
               transaction: { Category: string; Ammount: number }
             ) => {
               const { Category, Ammount } = transaction;
+              // Inicializa la categoría si es la primera vez que aparece.
               if (!acc[Category]) {
                 acc[Category] = { Category, Balance: 0, InOut: "" };
               }
@@ -200,21 +217,25 @@ function AnnualReport() {
             {}
           );
 
+        // Transforma los balances acumulados en filas para la tabla.
         const rows = Object.values(categoriesBalance).map((balance, index) => ({
           id: index,
           ...balance,
-          Balance: formatCurrency(balance.Balance), // Formateamos el Balance como moneda
+          Balance: formatCurrency(balance.Balance),
         }));
         setTableRows(rows);
       }
     }
   }, [year]);
-
-  const columns: GridColDef[] = [
-    { field: "Category", headerName: "Category", flex: 2 },
-    { field: "Balance", headerName: "Balance", flex: 2 },
-    { field: "InOut", headerName: "InOut", flex: 0.5 },
-  ];
+  // Configura las columnas de la tabla de datos utilizando `useMemo` para evitar cálculos innecesarios.
+  const columns: GridColDef[] = useMemo(
+    () => [
+      { field: "Category", headerName: "Category", flex: 2 },
+      { field: "Balance", headerName: "Balance", flex: 2 },
+      { field: "InOut", headerName: "InOut", flex: 0.5 },
+    ],
+    []
+  );
 
   return (
     <>
