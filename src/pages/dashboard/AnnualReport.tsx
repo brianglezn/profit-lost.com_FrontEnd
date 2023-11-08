@@ -46,6 +46,7 @@ type ChartDataItem = {
   month: string;
   Income: number;
   Expenses: number;
+  hasData: boolean;
 };
 type CategoryBalance = {
   Category: string;
@@ -98,6 +99,7 @@ function AnnualReport() {
 
           let monthlyIncome = 0;
           let monthlyExpenses = 0;
+          const hasData = transactions && transactions.length > 0;
 
           // Sumamos los ingresos y restamos los gastos para cada mes.
           if (Array.isArray(transactions)) {
@@ -119,6 +121,7 @@ function AnnualReport() {
             month,
             Income: monthlyIncome,
             Expenses: monthlyExpenses,
+            hasData,
           };
         });
         setChartData(incomeExpensesByMonth);
@@ -262,25 +265,28 @@ function AnnualReport() {
             </Select>
           </FormControl>
           <div className="annualReport__containerMain-chart">
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart
-                data={chartData}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="Income" fill="var(--color-orange-400)" />
-                <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
-              </BarChart>
-            </ResponsiveContainer>
+            {chartData.some((data) => data.hasData) ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  data={chartData}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Income" fill="var(--color-orange-400)" />
+                  <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
+                </BarChart>
+              </ResponsiveContainer>) : (
+              <p>No data available for this year.</p>
+            )}
           </div>
           <div className="annualReport__containerMain-balance">
             <div className="annualReport__balance income">
@@ -289,15 +295,14 @@ function AnnualReport() {
             </div>
             <div className="annualReport__balance expenses">
               <span className="material-symbols-rounded">upload</span>
-              <p>{formattedBalanceExpenses}</p>
+              <p>-{formattedBalanceExpenses}</p>
             </div>
             <div className="annualReport__balance edbita">
               <span
-                className={`material-symbols-rounded ${
-                  parseFloat(formattedBalanceFinal) < 0
-                    ? "negative"
-                    : "positive"
-                }`}
+                className={`material-symbols-rounded ${parseFloat(formattedBalanceFinal) < 0
+                  ? "negative"
+                  : "positive"
+                  }`}
               >
                 savings
               </span>
@@ -311,26 +316,29 @@ function AnnualReport() {
             <span className="material-symbols-rounded">new_window</span>
           </div>
           <div className="annualReport__category-table">
-            <DataGrid
-              rows={tableRows}
-              columns={columns.map((column) => {
-                if (column.field === "InOut") {
-                  return {
-                    ...column,
-                    renderCell: (params) => (
-                      <div
-                        className={
-                          params.row.InOut === "IN" ? "positive" : "negative"
-                        }
-                      >
-                        {params.row.InOut}
-                      </div>
-                    ),
-                  };
-                }
-                return column;
-              })}
-            />
+            {chartData.some((data) => data.hasData) ? (
+              <DataGrid
+                rows={tableRows}
+                columns={columns.map((column) => {
+                  if (column.field === "InOut") {
+                    return {
+                      ...column,
+                      renderCell: (params) => (
+                        <div
+                          className={
+                            params.row.InOut === "IN" ? "positive" : "negative"
+                          }
+                        >
+                          {params.row.InOut}
+                        </div>
+                      ),
+                    };
+                  }
+                  return column;
+                })}
+              />) : (
+              <p>No data available for this year.</p>
+            )}
           </div>
         </div>
       </section>

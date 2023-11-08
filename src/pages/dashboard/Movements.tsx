@@ -7,7 +7,10 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
   Legend,
+  Pie,
+  PieChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -16,13 +19,14 @@ import {
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 
 import "./Movements.css";
-import dataMovementsFile from "../../data/dataMovements.json";
+import dataMovementsJson from "../../data/dataMovements.json";
 
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
   Category: string;
   Ammount: number;
 };
+
 // Definición de tipo para los meses del año
 type Months =
   | "Jan"
@@ -37,16 +41,6 @@ type Months =
   | "Oct"
   | "Nov"
   | "Dec";
-// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
-type MonthlyTransaction = {
-  [key in Months]?: MonthlyTransactionEntry[];
-};
-// Definición de tipo para el movimiento de datos, que es un objeto que tiene una clave de tipo string y un valor que es un arreglo de objetos MonthlyTransaction indexados por los meses
-type DataMovement = {
-  [key: string]: {
-    [month in Months]?: MonthlyTransaction;
-  }[];
-};
 // Objeto para mapear el número del mes a su correspondiente nombre
 const monthMapping: Record<number, Months> = {
   1: "Jan",
@@ -62,7 +56,30 @@ const monthMapping: Record<number, Months> = {
   11: "Nov",
   12: "Dec",
 };
+// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
+type MonthlyTransactions = {
+  [key in Months]?: MonthlyTransactionEntry[];
+};
 
+// Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
+type YearData = {
+  [year: string]: MonthlyTransactions[];
+};
+
+// El archivo de datos es un arreglo de YearData
+type DataMovementsFile = YearData[];
+const dataMovementsFile: DataMovementsFile =
+  dataMovementsJson as unknown as DataMovementsFile;
+
+// Definir un tipo para el objeto que almacena los ingresos y gastos acumulados
+type IncomeExpenses = {
+  [category: string]: number;
+};
+// Definir un tipo para los pares de categoría y cantidad para los estados de ingresos y gastos
+type CategoryAmountPair = {
+  name: string;
+  value: number;
+};
 // Función para formatear números a formato de moneda local
 function formatCurrency(value: number) {
   return value.toLocaleString("es-ES", {
@@ -96,6 +113,107 @@ function Movements() {
     return [...new Set(years)].sort((a, b) => Number(b) - Number(a));
   }, []);
 
+  // CATEGORIAS PIE ------------------------------------------------------------------
+  // Estados para las categorías de ingresos y gastos con tipos específicos
+  const [dataCategoryIncome, setDataCategoryIncome] = useState<CategoryAmountPair[]>([]);
+  const [dataCategoryExpenses, setDataCategoryExpenses] = useState<CategoryAmountPair[]>([]);
+
+  useEffect(() => {
+    if (year && month) {
+      // Buscar en dataMovementsFile el objeto que corresponde al año seleccionado.
+      const yearDataWrapper = dataMovementsFile.find(
+        (yearData) => Object.keys(yearData)[0] === year
+      );
+
+      if (yearDataWrapper) {
+        // Acceder al arreglo de MonthlyTransactions para el año seleccionado.
+        const monthlyTransactionsArray = yearDataWrapper[year];
+
+        // Suponiendo que hay un solo objeto MonthlyTransactions por mes en el arreglo
+        const transactionsForMonth = monthlyTransactionsArray.find(
+          (monthlyTransactions) => monthMapping[Number(month)] in monthlyTransactions
+        );
+
+        if (transactionsForMonth) {
+          // Acceder a las transacciones para el mes seleccionado
+          const transactions = transactionsForMonth[monthMapping[Number(month)]];
+
+          if (transactions) {
+            const income: IncomeExpenses = {}; // Inicializar aquí
+            const expenses: IncomeExpenses = {}; // Inicializar aquí
+
+            // Recorrer las transacciones y clasificar entre ingresos y gastos
+            transactions.forEach((transaction) => {
+              const category = transaction.Category;
+              const amount = transaction.Ammount;
+
+              if (amount >= 0) {
+                income[category] = (income[category] || 0) + amount;
+              } else {
+                expenses[category] = (expenses[category] || 0) + Math.abs(amount);
+              }
+            });
+
+            // Transformar los objetos acumulados en arrays para los gráficos
+            setDataCategoryIncome(
+              Object.entries(income).map(([name, value]) => ({ name, value }))
+            );
+            setDataCategoryExpenses(
+              Object.entries(expenses).map(([name, value]) => ({ name, value }))
+            );
+          }
+        }
+      }
+    }
+  }, [year, month]);
+
+  const Colors = [
+    "var(--color-orange-300)",
+    "var(--color-orange)",
+    "var(--color-orange-200)",
+    "var(--color-orange-700)",
+    "var(--color-orange-800)",
+    "var(--color-orange-400)",
+    "var(--color-orange-100)",
+  ];
+
+  interface LabelProps {
+    cx: number;
+    cy: number;
+    midAngle: number;
+    innerRadius: number;
+    outerRadius: number;
+    percent: number;
+    name: string;
+  }
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    name,
+  }: LabelProps) => {
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="none"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {name} ({(percent * 100).toFixed(0)}%)
+      </text>
+    );
+  };
+  // FIN CATEGORIAS PIE ------------------------------------------------------------------
+
   // Estado para los datos del gráfico
   const [dataGraph, setDataGraph] = useState<
     {
@@ -110,68 +228,61 @@ function Movements() {
 
   // Efecto para procesar datos cuando el año y mes han sido seleccionados
   useEffect(() => {
-    // Verifica si los datos no han sido procesados y si año y mes están definidos
     if (!dataProcessed && year && month) {
-      // Encuentra los datos del año seleccionado
       const selectedYearData = dataMovementsFile.find(
-        (y) => Object.keys(y)[0] === year.toString()
-      ) as DataMovement | unknown;
+        (data) => Object.prototype.hasOwnProperty.call(data, year)
+      );
 
-      // Si se encuentran datos para el año seleccionado
       if (selectedYearData) {
-        // Obtención del índice y nombre del mes seleccionado
-        const monthIndex = parseInt(month, 10) - 1;
         const monthName: Months = monthMapping[parseInt(month, 10)];
-        // Obtención de las transacciones para el mes seleccionado
-        const transactionsObject = (selectedYearData as DataMovement)[year][
-          monthIndex
-        ];
-        const transactionsArray = transactionsObject[monthName];
-        // Si existen transacciones para ese mes
-        if (transactionsArray) {
-          // Procesamiento de ingresos y gastos totales
-          const transactionsArray = (transactionsObject as MonthlyTransaction)[
-            monthName
-          ];
-          // Cálculo del ingreso total
-          const totalIncome = (transactionsArray || []).reduce(
-            (acc: number, current: { Ammount: number }) => {
-              return current.Ammount > 0 ? acc + current.Ammount : acc;
-            },
-            0
-          );
-          // Cálculo del gasto total
-          const totalExpenses = (transactionsArray || []).reduce(
-            (acc: number, current: { Ammount: number }) => {
-              return current.Ammount < 0
-                ? acc + Math.abs(current.Ammount)
-                : acc;
-            },
-            0
-          );
+        const transactionsForMonth = selectedYearData[year].find((monthlyTransactions) =>
+          Object.prototype.hasOwnProperty.call(monthlyTransactions, monthName)
+        );
 
-          // Configuración de datos para el gráfico
-          setDataGraph(() => [
-            {
-              month: monthName,
-              year: parseInt(year, 10),
-              Income: +totalIncome.toFixed(2),
-              Expenses: +totalExpenses.toFixed(2),
-            },
-          ]);
+        if (transactionsForMonth && transactionsForMonth[monthName]) {
+          const transactionsArray = transactionsForMonth[monthName];
 
-          // Marcar los datos como procesados
+          if (transactionsArray && transactionsArray.length > 0) {
+            const totalIncome = transactionsArray.reduce((acc, transaction) => {
+              return transaction.Ammount > 0 ? acc + transaction.Ammount : acc;
+            }, 0);
+
+            const totalExpenses = transactionsArray.reduce((acc, transaction) => {
+              return transaction.Ammount < 0 ? acc + Math.abs(transaction.Ammount) : acc;
+            }, 0);
+
+            setDataGraph([
+              {
+                month: monthName,
+                year: parseInt(year, 10),
+                Income: totalIncome,
+                Expenses: totalExpenses,
+              },
+            ]);
+          } else {
+            // Establecer un estado que indica que no hay datos para mostrar
+            setDataGraph([
+              {
+                month: monthName,
+                year: parseInt(year, 10),
+                Income: 0,
+                Expenses: 0,
+              },
+            ]);
+          }
           setDataProcessed(true);
         } else {
-          // Registrar un error si al objeto de transacciones le falta la propiedad del mes
-          console.error(
-            "Transactions object does not have the expected month property:",
-            transactionsObject
-          );
+          console.error("No transactions found for the selected month:", monthName);
+          // Podrías también establecer un estado para manejar este caso y mostrar un mensaje en la interfaz de usuario
         }
       }
     }
   }, [year, month, dataProcessed]);
+
+  const isDataEmpty = dataGraph.every((data) => data.Income === 0 && data.Expenses === 0);
+
+
+
 
   // Restablecer dataProcessed a falso cuando cambian el año o el mes
   useEffect(() => {
@@ -289,28 +400,83 @@ function Movements() {
               </Select>
             </FormControl>
           </div>
+          <div className="movements__containerMain-category">
+            {isDataEmpty ? (
+              <p>No data available for this month.</p>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart width={400} height={400}>
+                  <Pie
+                    data={dataCategoryIncome}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius="80%"
+                    dataKey="value"
+                  >
+                    {dataCategoryIncome.map((_entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={Colors[index % Colors.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>)}
+          </div>
+          <div className="movements__containerMain-category">
+            {isDataEmpty ? (
+              <p>No data available for this month.</p>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart width={400} height={400}>
+                  <Pie
+                    data={dataCategoryExpenses}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius="80%"
+                    dataKey="value"
+                  >
+                    {dataCategoryExpenses.map((_entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={Colors[index % Colors.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>)}
+          </div>
           <div className="movements__containerMain-chart">
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart
-                width={500}
-                height={300}
-                data={dataGraph}
-                margin={{
-                  top: 20,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="Income" fill="var(--color-orange-400)" />
-                <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
-              </BarChart>
-            </ResponsiveContainer>
+            {isDataEmpty ? (
+              <p>No data available for this month.</p>
+            ) : (
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={dataGraph}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Income" fill="var(--color-orange-400)" />
+                  <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
+                </BarChart>
+              </ResponsiveContainer>)}
           </div>
           <div className="movements__containerMain-balance">
             <div className="movements__balance income">
@@ -319,15 +485,14 @@ function Movements() {
             </div>
             <div className="movements__balance expenses">
               <span className="material-symbols-rounded">upload</span>
-              <p>{formattedBalanceExpenses}</p>
+              <p>-{formattedBalanceExpenses}</p>
             </div>
             <div className="movements__balance edbita">
               <span
-                className={`material-symbols-rounded ${
-                  parseFloat(formattedBalanceFinal) < 0
-                    ? "negative"
-                    : "positive"
-                }`}
+                className={`material-symbols-rounded ${parseFloat(formattedBalanceFinal) < 0
+                  ? "negative"
+                  : "positive"
+                  }`}
               >
                 savings
               </span>
@@ -340,26 +505,29 @@ function Movements() {
               <span className="material-symbols-rounded">new_window</span>
             </div>
             <div className="movements__movements-table">
-              <DataGrid
-                rows={tableRows}
-                columns={columns.map((column) => {
-                  if (column.field === "InOut") {
-                    return {
-                      ...column,
-                      renderCell: (params) => (
-                        <div
-                          className={
-                            params.row.InOut === "IN" ? "positive" : "negative"
-                          }
-                        >
-                          {params.row.InOut}
-                        </div>
-                      ),
-                    };
-                  }
-                  return column;
-                })}
-              />
+              {isDataEmpty ? (
+                <p>No data available for this month.</p>
+              ) : (
+                <DataGrid
+                  rows={tableRows}
+                  columns={columns.map((column) => {
+                    if (column.field === "InOut") {
+                      return {
+                        ...column,
+                        renderCell: (params) => (
+                          <div
+                            className={
+                              params.row.InOut === "IN" ? "positive" : "negative"
+                            }
+                          >
+                            {params.row.InOut}
+                          </div>
+                        ),
+                      };
+                    }
+                    return column;
+                  })}
+                />)}
             </div>
           </div>
         </div>

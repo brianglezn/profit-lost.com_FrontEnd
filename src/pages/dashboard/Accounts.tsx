@@ -26,10 +26,10 @@ type DataAccountItem = {
   accountName: string;
   data: {
     [year: string]:
-      | {
-          [month: string]: number | undefined;
-        }
-      | undefined;
+    | {
+      [month: string]: number | undefined;
+    }
+    | undefined;
   };
   customBackgroundColor: string;
   customColor: string;
@@ -59,6 +59,9 @@ function getPreviousMonth() {
 }
 
 function Accounts() {
+  // Estado para rastrear si hay datos disponibles
+  const [isDataAvailable, setIsDataAvailable] = useState(true);
+
   // Hook de estado para manejar los datos de las cuentas
   const [dataAccounts, setDataAccounts] = useState<DataAccountItem[]>([]);
   // Hook de efecto para formatear y establecer datos de las cuentas a partir de un archivo de datos
@@ -104,10 +107,15 @@ function Accounts() {
 
   // Hook useMemo para calcular el saldo total actual basándose en los datos de las cuentas y el mes actual
   const totalBalance = useMemo(() => {
-    return dataAccounts.reduce((acc, account) => {
-      const balance = account.data[currentYear]?.[currentMonthName] || 0;
-      return acc + balance;
+    let hasData = false;
+    const balance = dataAccounts.reduce((acc, account) => {
+      const monthBalance = account.data[currentYear]?.[currentMonthName] || 0;
+      if (monthBalance !== 0) hasData = true;
+      return acc + monthBalance;
     }, 0);
+    // Actualiza el estado basándose en si encontramos algún saldo para el mes actual
+    setIsDataAvailable(hasData);
+    return balance;
   }, [dataAccounts, currentYear, currentMonthName]);
 
   const uniqueYears = useMemo(() => {
@@ -172,15 +180,14 @@ function Accounts() {
       <AccountItem
         key={index}
         accountName={account.accountName}
-        balance={`${
-          account.data[currentYear]?.[currentMonthName]?.toLocaleString(
-            "es-ES",
-            {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }
-          ) ?? "N/A"
-        } €`}
+        balance={`${account.data[currentYear]?.[currentMonthName]?.toLocaleString(
+          "es-ES",
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }
+        ) ?? "N/A"
+          } €`}
         customBackgroundColor={account.customBackgroundColor}
         customColor={account.customColor}
       />
@@ -207,42 +214,47 @@ function Accounts() {
               ))}
             </Select>
           </FormControl>
-          <div className="accounts__main">
-            <h2>{formattedTotalBalance} €</h2>
-            <p className={isPositive ? "positive-balance" : "negative-balance"}>
-              {balanceDifference > 0
-                ? `+${balanceDifference.toFixed(2)}`
-                : balanceDifference.toFixed(2)}{" "}
-              € <span>{previousMonth}</span>
-            </p>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart
-                width={500}
-                height={300}
-                data={chartData}
-                margin={{
-                  top: 20,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                {dataAccounts.map((account) => (
-                  <Bar
-                    key={account.accountName}
-                    dataKey={account.accountName}
-                    stackId="a"
-                    fill={account.customBackgroundColor}
-                  />
-                ))}
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          {isDataAvailable ? (
+            <div className="accounts__main">
+
+              <h2>{formattedTotalBalance} €</h2>
+              <p className={isPositive ? "positive-balance" : "negative-balance"}>
+                {balanceDifference > 0
+                  ? `+${balanceDifference.toFixed(2)}`
+                  : balanceDifference.toFixed(2)}{" "}
+                € <span>{previousMonth}</span>
+              </p>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={chartData}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  {dataAccounts.map((account) => (
+                    <Bar
+                      key={account.accountName}
+                      dataKey={account.accountName}
+                      stackId="a"
+                      fill={account.customBackgroundColor}
+                    />
+                  ))}
+                </BarChart>
+              </ResponsiveContainer>
+            </div>) : (
+            <p>No data available for the current year.</p>
+          )}
+
         </div>
         <div className="accounts__containerAccounts">
           <div className="accounts__accounts-text">

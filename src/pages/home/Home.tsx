@@ -22,7 +22,7 @@ function Home() {
       {/* <!-- FIN HERO --> */}
 
       {/* <!-- SECTION 1 --> */}
-      <section className="section1">
+      <section className="section1" id="features">
         <div className="section1__container">
           <div className="section1__div-text">
             <h1>Este es el título de la sección</h1>
@@ -44,7 +44,7 @@ function Home() {
       {/* <!-- FIN SECTION 1 --> */}
 
       {/* <!-- SECTION FEATURES --> */}
-      <section className="section__features" id="features">
+      <section className="section__features">
         <article>
           <figure>
             <span className="material-symbols-rounded">dashboard</span>
