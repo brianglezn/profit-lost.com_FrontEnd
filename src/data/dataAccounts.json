@@ -84,7 +84,7 @@
         "Nov": 1100
       }
     },
-    "customBackgroundColor": "var(--color-orange-200)",
+    "customBackgroundColor": "var(--color-orange-300)",
     "customColor": "var(--color-black)"
   },
   {

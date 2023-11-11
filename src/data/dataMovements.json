@@ -1506,6 +1506,42 @@
           {
             "Category": "Home",
             "Ammount": -1.8
+          },
+          {
+            "Category": "Other",
+            "Ammount": -61.98
+          },
+          {
+            "Category": "Other",
+            "Ammount": -18
+          },
+          {
+            "Category": "Other",
+            "Ammount": -24.95
+          },
+          {
+            "Category": "Other",
+            "Ammount": -8.67
+          },
+          {
+            "Category": "Supermarket",
+            "Ammount": -8.68
+          },
+          {
+            "Category": "Supermarket",
+            "Ammount": -7.85
+          },
+          {
+            "Category": "Transport",
+            "Ammount": -17.14
+          },
+          {
+            "Category": "Health",
+            "Ammount": -1.25
+          },
+          {
+            "Category": "Supermarket",
+            "Ammount": -32.2
           }
         ]
       },
