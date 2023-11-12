@@ -4,9 +4,8 @@ import dataMovementsJson from "../../data/dataMovements.json";
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
   Category: string;
-  Ammount: number;
+  Amount: number;
 };
-
 // Definición de tipo para los meses del año
 type Months =
   | "Jan"
@@ -40,12 +39,10 @@ const monthMapping: Record<number, Months> = {
 type MonthlyTransactions = {
   [key in Months]?: MonthlyTransactionEntry[];
 };
-
 // Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
 type YearData = {
   [year: string]: MonthlyTransactions[];
 };
-
 // El archivo de datos es un arreglo de YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
@@ -62,18 +59,20 @@ const useDataMovements = (year: string, month: string) => {
     }[]
   >([]);
   // Estado para verificar si los datos han sido procesados
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [dataProcessed, setDataProcessed] = useState(false);
 
   // Efecto para procesar datos cuando el año y mes han sido seleccionados
   useEffect(() => {
     if (!dataProcessed && year && month) {
+      // Busca los datos del año seleccionado
       const selectedYearData = dataMovementsFile.find((data) =>
         Object.prototype.hasOwnProperty.call(data, year)
       );
 
       if (selectedYearData) {
+        // Convierte el número del mes al nombre correspondiente
         const monthName: Months = monthMapping[parseInt(month, 10)];
+        // Busca las transacciones para el mes seleccionado
         const transactionsForMonth = selectedYearData[year].find(
           (monthlyTransactions) =>
             Object.prototype.hasOwnProperty.call(monthlyTransactions, monthName)
@@ -83,19 +82,21 @@ const useDataMovements = (year: string, month: string) => {
           const transactionsArray = transactionsForMonth[monthName];
 
           if (transactionsArray && transactionsArray.length > 0) {
+            // Calcula el total de ingresos y gastos
             const totalIncome = transactionsArray.reduce((acc, transaction) => {
-              return transaction.Ammount > 0 ? acc + transaction.Ammount : acc;
+              return transaction.Amount > 0 ? acc + transaction.Amount : acc;
             }, 0);
 
             const totalExpenses = transactionsArray.reduce(
               (acc, transaction) => {
-                return transaction.Ammount < 0
-                  ? acc + Math.abs(transaction.Ammount)
+                return transaction.Amount < 0
+                  ? acc + Math.abs(transaction.Amount)
                   : acc;
               },
               0
             );
 
+            // Actualiza el estado con los datos del gráfico
             setDataGraph([
               {
                 month: monthName,
@@ -105,7 +106,7 @@ const useDataMovements = (year: string, month: string) => {
               },
             ]);
           } else {
-            // Establecer un estado que indica que no hay datos para mostrar
+            // Establece un estado que indica que no hay datos para mostrar
             setDataGraph([
               {
                 month: monthName,
@@ -115,6 +116,7 @@ const useDataMovements = (year: string, month: string) => {
               },
             ]);
           }
+          // Marca los datos como procesados
           setDataProcessed(true);
         } else {
           console.error(
@@ -125,6 +127,11 @@ const useDataMovements = (year: string, month: string) => {
       }
     }
   }, [year, month, dataProcessed]);
+
+  // Efecto para restablecer dataProcessed cuando cambian el año o el mes
+  useEffect(() => {
+    setDataProcessed(false);
+  }, [year, month]);
 
   return { dataGraph };
 };

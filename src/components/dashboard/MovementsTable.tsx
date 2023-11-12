@@ -6,9 +6,8 @@ import { useEffect, useState } from "react";
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
     Category: string;
-    Ammount: number;
+    Amount: number;
 };
-
 // Definición de tipo para los meses del año
 type Months =
     | "Jan"
@@ -42,21 +41,22 @@ const monthMapping: Record<number, Months> = {
 type MonthlyTransactions = {
     [key in Months]?: MonthlyTransactionEntry[];
 };
-
 // Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
 type YearData = {
     [year: string]: MonthlyTransactions[];
 };
-
 // El archivo de datos es un arreglo de YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
     dataMovementsJson as unknown as DataMovementsFile;
+
+// Propiedades del componente
 interface MovementsProps {
     year: string;
     month: string;
     isDataEmpty: boolean;
 }
+
 // Función para formatear números a formato de moneda local
 function formatCurrency(value: number) {
     return value.toLocaleString("es-ES", {
@@ -69,6 +69,7 @@ function formatCurrency(value: number) {
 
 function MovementsTable(props: MovementsProps) {
 
+    // Desestructuración de las propiedades para un acceso más fácil
     const { year, month, isDataEmpty } = props;
 
     // Estado para almacenar las filas del componente de tabla
@@ -95,11 +96,11 @@ function MovementsTable(props: MovementsProps) {
                     if (selectedMonthData) {
                         // Mapear los datos al formato de fila requerido por el componente de tabla
                         const rows = selectedMonthData[parameter]?.map(
-                            (item: { Category: string; Ammount: number }, index: number) => ({
+                            (item: { Category: string; Amount: number }, index: number) => ({
                                 id: index + 1,
                                 Category: item.Category,
-                                Balance: formatCurrency(item.Ammount),
-                                InOut: item.Ammount >= 0 ? "IN" : "OUT",
+                                Balance: formatCurrency(item.Amount),
+                                InOut: item.Amount >= 0 ? "IN" : "OUT",
                             })
                         );
 

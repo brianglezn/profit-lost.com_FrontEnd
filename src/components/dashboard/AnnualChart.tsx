@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // Definimos los tipos para las transacciones mensuales y la estructura de los datos.
 type MonthlyTransaction = {
     Category: string;
-    Ammount: number;
+    Amount: number;
 }[];
 type Month =
     | "Jan"
@@ -65,10 +65,10 @@ function AnnualChart(props: AnnualChartProps) {
                     // Sumamos los ingresos y restamos los gastos para cada mes.
                     if (Array.isArray(transactions)) {
                         transactions.forEach((transaction) => {
-                            if (transaction.Ammount > 0) {
-                                monthlyIncome += transaction.Ammount;
+                            if (transaction.Amount > 0) {
+                                monthlyIncome += transaction.Amount;
                             } else {
-                                monthlyExpenses += Math.abs(transaction.Ammount);
+                                monthlyExpenses += Math.abs(transaction.Amount);
                             }
                         });
                     }

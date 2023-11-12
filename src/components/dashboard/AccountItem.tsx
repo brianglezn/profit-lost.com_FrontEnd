@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+// Definición de la interfaz para las propiedades del componente AccountItem
 interface AccountItemProps {
   accountName: string;
   balance: string;
@@ -8,6 +9,8 @@ interface AccountItemProps {
 }
 
 function AccountItem(props: AccountItemProps) {
+
+  // Desestructuración de las propiedades para un acceso más fácil
   const { accountName, balance, customBackgroundColor, customColor } = props;
 
   return (
@@ -21,6 +24,7 @@ function AccountItem(props: AccountItemProps) {
   );
 }
 
+// Validación de tipos de propiedades usando PropTypes
 AccountItem.propTypes = {
   accountName: PropTypes.string.isRequired,
   balance: PropTypes.string.isRequired,

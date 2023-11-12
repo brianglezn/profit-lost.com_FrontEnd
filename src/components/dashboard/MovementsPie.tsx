@@ -6,9 +6,8 @@ import dataMovementsJson from "../../data/dataMovements.json";
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
     Category: string;
-    Ammount: number;
+    Amount: number;
 };
-
 // Definición de tipo para los meses del año
 type Months =
     | "Jan"
@@ -42,17 +41,14 @@ const monthMapping: Record<number, Months> = {
 type MonthlyTransactions = {
     [key in Months]?: MonthlyTransactionEntry[];
 };
-
 // Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
 type YearData = {
     [year: string]: MonthlyTransactions[];
 };
-
 // El archivo de datos es un arreglo de YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
     dataMovementsJson as unknown as DataMovementsFile;
-
 // Definir un tipo para el objeto que almacena los ingresos y gastos acumulados
 type IncomeExpenses = {
     [category: string]: number;
@@ -62,6 +58,8 @@ type CategoryAmountPair = {
     name: string;
     value: number;
 };
+
+// Propiedades del componente
 interface MovementsProps {
     year: string;
     month: string;
@@ -70,6 +68,7 @@ interface MovementsProps {
 
 function MovementsPie(props: MovementsProps) {
 
+    // Desestructuración de las propiedades para un acceso más fácil
     const { year, month, isDataEmpty } = props;
 
     // Estados para las categorías de ingresos y gastos con tipos específicos
@@ -103,7 +102,7 @@ function MovementsPie(props: MovementsProps) {
                         // Recorrer las transacciones y clasificar entre ingresos y gastos
                         transactions.forEach((transaction) => {
                             const category = transaction.Category;
-                            const amount = transaction.Ammount;
+                            const amount = transaction.Amount;
 
                             if (amount >= 0) {
                                 income[category] = (income[category] || 0) + amount;

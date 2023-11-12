@@ -15,9 +15,8 @@ import MovementsTable from "../../components/dashboard/MovementsTable";
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
   Category: string;
-  Ammount: number;
+  Amount: number;
 };
-
 // Definición de tipo para los meses del año
 type Months =
   | "Jan"
@@ -36,12 +35,10 @@ type Months =
 type MonthlyTransactions = {
   [key in Months]?: MonthlyTransactionEntry[];
 };
-
 // Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
 type YearData = {
   [year: string]: MonthlyTransactions[];
 };
-
 // El archivo de datos es un arreglo de YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
@@ -62,7 +59,7 @@ function Movements() {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
 
-  // Estados para el año y mes seleccionados
+  // Estados para el año y mes seleccionados por el usuario inicializado con el actual
   const [year, setYear] = useState(currentYear.toString());
   const [month, setMonth] = useState(currentMonth.toString());
 
@@ -76,6 +73,7 @@ function Movements() {
     setMonth(event.target.value as string);
 
   // useMemo para obtener años con datos
+  // Evita recalcular los años disponibles a menos que dataMovementsFile cambie
   const yearsWithData = useMemo(() => {
     // Extracción de años de dataMovementsFile
     const years = dataMovementsFile.map((item) => Object.keys(item)[0]);

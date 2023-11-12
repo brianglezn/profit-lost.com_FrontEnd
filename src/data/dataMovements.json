@@ -5,75 +5,75 @@
         "Jan": [
           {
             "Category": "Work",
-            "Ammount": 1013.85
+            "Amount": 1013.85
           },
           {
             "Category": "Work2",
-            "Ammount": 150
+            "Amount": 150
           },
           {
             "Category": "Other",
-            "Ammount": 70
+            "Amount": 70
           },
           {
             "Category": "Party",
-            "Ammount": 40.41
+            "Amount": 40.41
           },
           {
             "Category": "Clothing",
-            "Ammount": 58.82
+            "Amount": 58.82
           },
           {
             "Category": "Supermarket",
-            "Ammount": -149.79
+            "Amount": -149.79
           },
           {
             "Category": "Home",
-            "Ammount": -344.97
+            "Amount": -344.97
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Transport",
-            "Ammount": -70.56
+            "Amount": -70.56
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Mobile",
-            "Ammount": -14.95
+            "Amount": -14.95
           },
           {
             "Category": "Transport",
-            "Ammount": -47.36
+            "Amount": -47.36
           },
           {
             "Category": "Other",
-            "Ammount": -30.04
+            "Amount": -30.04
           },
           {
             "Category": "Work2",
-            "Ammount": -42.83
+            "Amount": -42.83
           },
           {
             "Category": "Clothing",
-            "Ammount": -89.37
+            "Amount": -89.37
           },
           {
             "Category": "Restaurant",
-            "Ammount": -14.45
+            "Amount": -14.45
           },
           {
             "Category": "Party",
-            "Ammount": -22.4
+            "Amount": -22.4
           },
           {
             "Category": "Beauty",
-            "Ammount": -80
+            "Amount": -80
           }
         ]
       },
@@ -81,75 +81,75 @@
         "Feb": [
           {
             "Category": "Work",
-            "Ammount": 1009.69
+            "Amount": 1009.69
           },
           {
             "Category": "Other",
-            "Ammount": 260
+            "Amount": 260
           },
           {
             "Category": "Home",
-            "Ammount": 20.77
+            "Amount": 20.77
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Supermarket",
-            "Ammount": -108.51
+            "Amount": -108.51
           },
           {
             "Category": "Home",
-            "Ammount": -213.43
+            "Amount": -213.43
           },
           {
             "Category": "Transport",
-            "Ammount": -122
+            "Amount": -122
           },
           {
             "Category": "Beauty",
-            "Ammount": -10
+            "Amount": -10
           },
           {
             "Category": "Transport",
-            "Ammount": -74.55
+            "Amount": -74.55
           },
           {
             "Category": "Mobile",
-            "Ammount": -14.95
+            "Amount": -14.95
           },
           {
             "Category": "Health",
-            "Ammount": -5.81
+            "Amount": -5.81
           },
           {
             "Category": "Clothing",
-            "Ammount": -178.02
+            "Amount": -178.02
           },
           {
             "Category": "Other",
-            "Ammount": -98.31
+            "Amount": -98.31
           },
           {
             "Category": "Education",
-            "Ammount": -49.9
+            "Amount": -49.9
           },
           {
             "Category": "Restaurant",
-            "Ammount": -25.6
+            "Amount": -25.6
           },
           {
             "Category": "Beauty",
-            "Ammount": -80
+            "Amount": -80
           },
           {
             "Category": "Party",
-            "Ammount": -73.06
+            "Amount": -73.06
           },
           {
             "Category": "Home",
-            "Ammount": -3
+            "Amount": -3
           }
         ]
       },
@@ -157,63 +157,63 @@
         "Mar": [
           {
             "Category": "Work",
-            "Ammount": 1016.71
+            "Amount": 1016.71
           },
           {
             "Category": "Other",
-            "Ammount": 266
+            "Amount": 266
           },
           {
             "Category": "Home",
-            "Ammount": 587.17
+            "Amount": 587.17
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Supermarket",
-            "Ammount": -132.01
+            "Amount": -132.01
           },
           {
             "Category": "Beauty",
-            "Ammount": -10
+            "Amount": -10
           },
           {
             "Category": "Home",
-            "Ammount": -238.19
+            "Amount": -238.19
           },
           {
             "Category": "Mobile",
-            "Ammount": -37.27
+            "Amount": -37.27
           },
           {
             "Category": "Beauty",
-            "Ammount": -10.5
+            "Amount": -10.5
           },
           {
             "Category": "Transport",
-            "Ammount": -20
+            "Amount": -20
           },
           {
             "Category": "Clothing",
-            "Ammount": -158.7
+            "Amount": -158.7
           },
           {
             "Category": "Other",
-            "Ammount": -604.36
+            "Amount": -604.36
           },
           {
             "Category": "Party",
-            "Ammount": -35.4
+            "Amount": -35.4
           },
           {
             "Category": "Restaurant",
-            "Ammount": -67.35
+            "Amount": -67.35
           },
           {
             "Category": "Beauty",
-            "Ammount": -80
+            "Amount": -80
           }
         ]
       },
@@ -221,71 +221,71 @@
         "Apr": [
           {
             "Category": "Work",
-            "Ammount": 1683.06
+            "Amount": 1683.06
           },
           {
             "Category": "Other",
-            "Ammount": 146.68
+            "Amount": 146.68
           },
           {
             "Category": "Management",
-            "Ammount": 195.74
+            "Amount": 195.74
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Beauty",
-            "Ammount": -80
+            "Amount": -80
           },
           {
             "Category": "Home",
-            "Ammount": -603.78
+            "Amount": -603.78
           },
           {
             "Category": "Management",
-            "Ammount": -35
+            "Amount": -35
           },
           {
             "Category": "Supermarket",
-            "Ammount": -67.18
+            "Amount": -67.18
           },
           {
             "Category": "Transport",
-            "Ammount": -130.61
+            "Amount": -130.61
           },
           {
             "Category": "Mobile",
-            "Ammount": -9.95
+            "Amount": -9.95
           },
           {
             "Category": "Clothing",
-            "Ammount": -90.54
+            "Amount": -90.54
           },
           {
             "Category": "Restaurant",
-            "Ammount": -51.35
+            "Amount": -51.35
           },
           {
             "Category": "Other",
-            "Ammount": -45.27
+            "Amount": -45.27
           },
           {
             "Category": "Presents",
-            "Ammount": -30.91
+            "Amount": -30.91
           },
           {
             "Category": "Party",
-            "Ammount": -65.99
+            "Amount": -65.99
           },
           {
             "Category": "Travel",
-            "Ammount": -117.98
+            "Amount": -117.98
           }
         ]
       },
@@ -293,55 +293,55 @@
         "May": [
           {
             "Category": "Work",
-            "Ammount": 1051.69
+            "Amount": 1051.69
           },
           {
             "Category": "Other",
-            "Ammount": 14.07
+            "Amount": 14.07
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Supermarket",
-            "Ammount": -106.8
+            "Amount": -106.8
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Home",
-            "Ammount": -271.13
+            "Amount": -271.13
           },
           {
             "Category": "Transport",
-            "Ammount": -279.62
+            "Amount": -279.62
           },
           {
             "Category": "Mobile",
-            "Ammount": -48.17
+            "Amount": -48.17
           },
           {
             "Category": "Beauty",
-            "Ammount": -10.5
+            "Amount": -10.5
           },
           {
             "Category": "Other",
-            "Ammount": -87.25
+            "Amount": -87.25
           },
           {
             "Category": "Restaurant",
-            "Ammount": -54.43
+            "Amount": -54.43
           },
           {
             "Category": "Party",
-            "Ammount": -7
+            "Amount": -7
           },
           {
             "Category": "Clothing",
-            "Ammount": -24.5
+            "Amount": -24.5
           }
         ]
       },
@@ -349,59 +349,59 @@
         "Jun": [
           {
             "Category": "Work",
-            "Ammount": 1025.07
+            "Amount": 1025.07
           },
           {
             "Category": "Clothing",
-            "Ammount": 20
+            "Amount": 20
           },
           {
             "Category": "Other",
-            "Ammount": 1.75
+            "Amount": 1.75
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Supermarket",
-            "Ammount": -127.04
+            "Amount": -127.04
           },
           {
             "Category": "Home",
-            "Ammount": -254.72
+            "Amount": -254.72
           },
           {
             "Category": "Health",
-            "Ammount": -7.2
+            "Amount": -7.2
           },
           {
             "Category": "Mobile",
-            "Ammount": -35.05
+            "Amount": -35.05
           },
           {
             "Category": "Beauty",
-            "Ammount": -10.5
+            "Amount": -10.5
           },
           {
             "Category": "Travel",
-            "Ammount": -218.39
+            "Amount": -218.39
           },
           {
             "Category": "Travel",
-            "Ammount": -116.38
+            "Amount": -116.38
           },
           {
             "Category": "Party",
-            "Ammount": -27.35
+            "Amount": -27.35
           },
           {
             "Category": "Restaurant",
-            "Ammount": -49.35
+            "Amount": -49.35
           },
           {
             "Category": "Clothing",
-            "Ammount": -105.47
+            "Amount": -105.47
           }
         ]
       },
@@ -409,63 +409,63 @@
         "Jul": [
           {
             "Category": "Work",
-            "Ammount": 1652.61
+            "Amount": 1652.61
           },
           {
             "Category": "Clothing",
-            "Ammount": 80.49
+            "Amount": 80.49
           },
           {
             "Category": "Home",
-            "Ammount": 69.14
+            "Amount": 69.14
           },
           {
             "Category": "Other",
-            "Ammount": 37.95
+            "Amount": 37.95
           },
           {
             "Category": "Gym",
-            "Ammount": -31.5
+            "Amount": -31.5
           },
           {
             "Category": "Supermarket",
-            "Ammount": -116.77
+            "Amount": -116.77
           },
           {
             "Category": "Home",
-            "Ammount": -235.61
+            "Amount": -235.61
           },
           {
             "Category": "Transport",
-            "Ammount": -196.78
+            "Amount": -196.78
           },
           {
             "Category": "Mobile",
-            "Ammount": -35.45
+            "Amount": -35.45
           },
           {
             "Category": "Beauty",
-            "Ammount": -10.5
+            "Amount": -10.5
           },
           {
             "Category": "Party",
-            "Ammount": -135.25
+            "Amount": -135.25
           },
           {
             "Category": "Other",
-            "Ammount": -171.71
+            "Amount": -171.71
           },
           {
             "Category": "Presents",
-            "Ammount": -29
+            "Amount": -29
           },
           {
             "Category": "Clothing",
-            "Ammount": -102.45
+            "Amount": -102.45
           },
           {
             "Category": "Travel",
-            "Ammount": -587.3
+            "Amount": -587.3
           }
         ]
       },
@@ -473,71 +473,71 @@
         "Aug": [
           {
             "Category": "Work",
-            "Ammount": 1511.76
+            "Amount": 1511.76
           },
           {
             "Category": "Management",
-            "Ammount": 200
+            "Amount": 200
           },
           {
             "Category": "Party",
-            "Ammount": 13
+            "Amount": 13
           },
           {
             "Category": "Home",
-            "Ammount": 12.5
+            "Amount": 12.5
           },
           {
             "Category": "Other",
-            "Ammount": 77.36
+            "Amount": 77.36
           },
           {
             "Category": "Clothing",
-            "Ammount": 15.49
+            "Amount": 15.49
           },
           {
             "Category": "Clothing",
-            "Ammount": -3.87
+            "Amount": -3.87
           },
           {
             "Category": "Transport",
-            "Ammount": -173.13
+            "Amount": -173.13
           },
           {
             "Category": "Beauty",
-            "Ammount": -11
+            "Amount": -11
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Amount": -1.25
           },
           {
             "Category": "Mobile",
-            "Ammount": -34.24
+            "Amount": -34.24
           },
           {
             "Category": "Restaurant",
-            "Ammount": -105.2
+            "Amount": -105.2
           },
           {
             "Category": "Other",
-            "Ammount": -139.08
+            "Amount": -139.08
           },
           {
             "Category": "Party",
-            "Ammount": -39.66
+            "Amount": -39.66
           },
           {
             "Category": "Presents",
-            "Ammount": -32.4
+            "Amount": -32.4
           },
           {
             "Category": "Travel",
-            "Ammount": -46.22
+            "Amount": -46.22
           },
           {
             "Category": "Gym",
-            "Ammount": -5.5
+            "Amount": -5.5
           }
         ]
       },
@@ -545,63 +545,63 @@
         "Sep": [
           {
             "Category": "Work",
-            "Ammount": 1151.54
+            "Amount": 1151.54
           },
           {
             "Category": "Home",
-            "Ammount": 37
+            "Amount": 37
           },
           {
             "Category": "Other",
-            "Ammount": 167.9
+            "Amount": 167.9
           },
           {
             "Category": "Presents",
-            "Ammount": 5
+            "Amount": 5
           },
           {
             "Category": "Transport",
-            "Ammount": -461.85
+            "Amount": -461.85
           },
           {
             "Category": "Supermarket",
-            "Ammount": -461.85
+            "Amount": -461.85
           },
           {
             "Category": "Home",
-            "Ammount": -691.67
+            "Amount": -691.67
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Beauty",
-            "Ammount": -310
+            "Amount": -310
           },
           {
             "Category": "Education",
-            "Ammount": -4
+            "Amount": -4
           },
           {
             "Category": "Other",
-            "Ammount": -129.27
+            "Amount": -129.27
           },
           {
             "Category": "Restaurant",
-            "Ammount": -110.51
+            "Amount": -110.51
           },
           {
             "Category": "Party",
-            "Ammount": -147.62
+            "Amount": -147.62
           },
           {
             "Category": "Travel",
-            "Ammount": -36.49
+            "Amount": -36.49
           },
           {
             "Category": "Clothing",
-            "Ammount": -52.84
+            "Amount": -52.84
           }
         ]
       },
@@ -609,71 +609,71 @@
         "Oct": [
           {
             "Category": "Work",
-            "Ammount": 1486.18
+            "Amount": 1486.18
           },
           {
             "Category": "Home",
-            "Ammount": 253.79
+            "Amount": 253.79
           },
           {
             "Category": "Clothing",
-            "Ammount": 34.95
+            "Amount": 34.95
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -422.99
+            "Amount": -422.99
           },
           {
             "Category": "Gym",
-            "Ammount": -55.45
+            "Amount": -55.45
           },
           {
             "Category": "Supermarket",
-            "Ammount": -156.5
+            "Amount": -156.5
           },
           {
             "Category": "Other",
-            "Ammount": -57.22
+            "Amount": -57.22
           },
           {
             "Category": "Beauty",
-            "Ammount": -15
+            "Amount": -15
           },
           {
             "Category": "Mobile",
-            "Ammount": -11.97
+            "Amount": -11.97
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Amount": -1.25
           },
           {
             "Category": "Transport",
-            "Ammount": -140.81
+            "Amount": -140.81
           },
           {
             "Category": "Restaurant",
-            "Ammount": -180.66
+            "Amount": -180.66
           },
           {
             "Category": "Clothing",
-            "Ammount": -244.54
+            "Amount": -244.54
           },
           {
             "Category": "Presents",
-            "Ammount": -13.14
+            "Amount": -13.14
           },
           {
             "Category": "Work2",
-            "Ammount": -13.25
+            "Amount": -13.25
           },
           {
             "Category": "Party",
-            "Ammount": -83.28
+            "Amount": -83.28
           }
         ]
       },
@@ -681,75 +681,75 @@
         "Nov": [
           {
             "Category": "Work",
-            "Ammount": 1168.83
+            "Amount": 1168.83
           },
           {
             "Category": "Clothing",
-            "Ammount": 82.85
+            "Amount": 82.85
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -386.8
+            "Amount": -386.8
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Amount": -1.25
           },
           {
             "Category": "Beauty",
-            "Ammount": -114.4
+            "Amount": -114.4
           },
           {
             "Category": "Transport",
-            "Ammount": -54.97
+            "Amount": -54.97
           },
           {
             "Category": "Supermarket",
-            "Ammount": -94.71
+            "Amount": -94.71
           },
           {
             "Category": "Management",
-            "Ammount": -12.05
+            "Amount": -12.05
           },
           {
             "Category": "Beauty",
-            "Ammount": -38
+            "Amount": -38
           },
           {
             "Category": "Presents",
-            "Ammount": -37
+            "Amount": -37
           },
           {
             "Category": "Other",
-            "Ammount": -97.48
+            "Amount": -97.48
           },
           {
             "Category": "Restaurant",
-            "Ammount": -59.75
+            "Amount": -59.75
           },
           {
             "Category": "Travel",
-            "Ammount": -187.52
+            "Amount": -187.52
           },
           {
             "Category": "Clothing",
-            "Ammount": -26.05
+            "Amount": -26.05
           },
           {
             "Category": "Home",
-            "Ammount": -8.85
+            "Amount": -8.85
           },
           {
             "Category": "Beauty",
-            "Ammount": -25
+            "Amount": -25
           }
         ]
       },
@@ -757,63 +757,63 @@
         "Dec": [
           {
             "Category": "Work",
-            "Ammount": 2322.13
+            "Amount": 2322.13
           },
           {
             "Category": "Other",
-            "Ammount": 30
+            "Amount": 30
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -370
+            "Amount": -370
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Transport",
-            "Ammount": -332.94
+            "Amount": -332.94
           },
           {
             "Category": "Supermarket",
-            "Ammount": -90.24
+            "Amount": -90.24
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Beauty",
-            "Ammount": -18.79
+            "Amount": -18.79
           },
           {
             "Category": "Restaurant",
-            "Ammount": -53.4
+            "Amount": -53.4
           },
           {
             "Category": "Party",
-            "Ammount": -228.5
+            "Amount": -228.5
           },
           {
             "Category": "Clothing",
-            "Ammount": -99.9
+            "Amount": -99.9
           },
           {
             "Category": "Other",
-            "Ammount": -51.1
+            "Amount": -51.1
           },
           {
             "Category": "Travel",
-            "Ammount": -199.79
+            "Amount": -199.79
           },
           {
             "Category": "Presents",
-            "Ammount": -79.8
+            "Amount": -79.8
           }
         ]
       }
@@ -825,67 +825,67 @@
         "Jan": [
           {
             "Category": "Work",
-            "Ammount": 1496.02
+            "Amount": 1496.02
           },
           {
             "Category": "Education",
-            "Ammount": -187.39
+            "Amount": -187.39
           },
           {
             "Category": "Home",
-            "Ammount": -412.43
+            "Amount": -412.43
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Transport",
-            "Ammount": -109.65
+            "Amount": -109.65
           },
           {
             "Category": "Supermarket",
-            "Ammount": -175.16
+            "Amount": -175.16
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Amount": -1.25
           },
           {
             "Category": "Beauty",
-            "Ammount": -305
+            "Amount": -305
           },
           {
             "Category": "Mobile",
-            "Ammount": -11.98
+            "Amount": -11.98
           },
           {
             "Category": "Clothing",
-            "Ammount": -80.11
+            "Amount": -80.11
           },
           {
             "Category": "Other",
-            "Ammount": -49.04
+            "Amount": -49.04
           },
           {
             "Category": "Restaurant",
-            "Ammount": -21.57
+            "Amount": -21.57
           },
           {
             "Category": "Presents",
-            "Ammount": -7.8
+            "Amount": -7.8
           },
           {
             "Category": "Work2",
-            "Ammount": -42.83
+            "Amount": -42.83
           },
           {
             "Category": "Other",
-            "Ammount": 69
+            "Amount": 69
           },
           {
             "Category": "Clothing",
-            "Ammount": 10
+            "Amount": 10
           }
         ]
       },
@@ -893,55 +893,55 @@
         "Feb": [
           {
             "Category": "Work",
-            "Ammount": 1505.67
+            "Amount": 1505.67
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -410.47
+            "Amount": -410.47
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Supermarket",
-            "Ammount": -94.79
+            "Amount": -94.79
           },
           {
             "Category": "Health",
-            "Ammount": -39.25
+            "Amount": -39.25
           },
           {
             "Category": "Transport",
-            "Ammount": -86.56
+            "Amount": -86.56
           },
           {
             "Category": "Mobile",
-            "Ammount": -12.05
+            "Amount": -12.05
           },
           {
             "Category": "Travel",
-            "Ammount": -118.92
+            "Amount": -118.92
           },
           {
             "Category": "Other",
-            "Ammount": -41
+            "Amount": -41
           },
           {
             "Category": "Restaurant",
-            "Ammount": -60.15
+            "Amount": -60.15
           },
           {
             "Category": "Clothing",
-            "Ammount": -2
+            "Amount": -2
           },
           {
             "Category": "Investments",
-            "Ammount": -101
+            "Amount": -101
           }
         ]
       },
@@ -949,71 +949,71 @@
         "Mar": [
           {
             "Category": "Work",
-            "Ammount": 1339.68
+            "Amount": 1339.68
           },
           {
             "Category": "Other",
-            "Ammount": 1.92
+            "Amount": 1.92
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -370
+            "Amount": -370
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Supermarket",
-            "Ammount": -85.19
+            "Amount": -85.19
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Health",
-            "Ammount": -72.5
+            "Amount": -72.5
           },
           {
             "Category": "Transport",
-            "Ammount": -58.46
+            "Amount": -58.46
           },
           {
             "Category": "Beauty",
-            "Ammount": -15
+            "Amount": -15
           },
           {
             "Category": "Mobile",
-            "Ammount": -11.95
+            "Amount": -11.95
           },
           {
             "Category": "Management",
-            "Ammount": -35
+            "Amount": -35
           },
           {
             "Category": "Travel",
-            "Ammount": -433.05
+            "Amount": -433.05
           },
           {
             "Category": "Other",
-            "Ammount": -37.5
+            "Amount": -37.5
           },
           {
             "Category": "Clothing",
-            "Ammount": -54.9
+            "Amount": -54.9
           },
           {
             "Category": "Restaurant",
-            "Ammount": -111.68
+            "Amount": -111.68
           },
           {
             "Category": "Party",
-            "Ammount": -70.79
+            "Amount": -70.79
           }
         ]
       },
@@ -1021,79 +1021,79 @@
         "Apr": [
           {
             "Category": "Work",
-            "Ammount": 1612.48
+            "Amount": 1612.48
           },
           {
             "Category": "Other",
-            "Ammount": 7
+            "Amount": 7
           },
           {
             "Category": "Management",
-            "Ammount": 137.83
+            "Amount": 137.83
           },
           {
             "Category": "Education",
-            "Ammount": -163.39
+            "Amount": -163.39
           },
           {
             "Category": "Home",
-            "Ammount": -499.65
+            "Amount": -499.65
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Beauty",
-            "Ammount": -15.5
+            "Amount": -15.5
           },
           {
             "Category": "Mobile",
-            "Ammount": -11.95
+            "Amount": -11.95
           },
           {
             "Category": "Supermarket",
-            "Ammount": -140.43
+            "Amount": -140.43
           },
           {
             "Category": "Transport",
-            "Ammount": -94.21
+            "Amount": -94.21
           },
           {
             "Category": "Health",
-            "Ammount": -11.2
+            "Amount": -11.2
           },
           {
             "Category": "Restaurant",
-            "Ammount": -90.99
+            "Amount": -90.99
           },
           {
             "Category": "Management",
-            "Ammount": -5.9
+            "Amount": -5.9
           },
           {
             "Category": "Other",
-            "Ammount": -97.33
+            "Amount": -97.33
           },
           {
             "Category": "Presents",
-            "Ammount": -85
+            "Amount": -85
           },
           {
             "Category": "Clothing",
-            "Ammount": -45.99
+            "Amount": -45.99
           },
           {
             "Category": "Party",
-            "Ammount": -23.39
+            "Amount": -23.39
           },
           {
             "Category": "Travel",
-            "Ammount": -171.75
+            "Amount": -171.75
           },
           {
             "Category": "Investments",
-            "Ammount": -201
+            "Amount": -201
           }
         ]
       },
@@ -1101,55 +1101,55 @@
         "May": [
           {
             "Category": "Work",
-            "Ammount": 1381.16
+            "Amount": 1381.16
           },
           {
             "Category": "Other",
-            "Ammount": 225.69
+            "Amount": 225.69
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -413.02
+            "Amount": -413.02
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Supermarket",
-            "Ammount": -161.03
+            "Amount": -161.03
           },
           {
             "Category": "Transport",
-            "Ammount": -104.17
+            "Amount": -104.17
           },
           {
             "Category": "Beauty",
-            "Ammount": -15.5
+            "Amount": -15.5
           },
           {
             "Category": "Mobile",
-            "Ammount": -11.95
+            "Amount": -11.95
           },
           {
             "Category": "Other",
-            "Ammount": -419.94
+            "Amount": -419.94
           },
           {
             "Category": "Clothing",
-            "Ammount": -63.44
+            "Amount": -63.44
           },
           {
             "Category": "Restaurant",
-            "Ammount": -58.47
+            "Amount": -58.47
           },
           {
             "Category": "Presents",
-            "Ammount": -8.35
+            "Amount": -8.35
           }
         ]
       },
@@ -1157,75 +1157,75 @@
         "Jun": [
           {
             "Category": "Work",
-            "Ammount": 1482.89
+            "Amount": 1482.89
           },
           {
             "Category": "Other",
-            "Ammount": 100
+            "Amount": 100
           },
           {
             "Category": "Other",
-            "Ammount": 25.17
+            "Amount": 25.17
           },
           {
             "Category": "Travel",
-            "Ammount": 42.55
+            "Amount": 42.55
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -441.05
+            "Amount": -441.05
           },
           {
             "Category": "Transport",
-            "Ammount": -151.98
+            "Amount": -151.98
           },
           {
             "Category": "Travel",
-            "Ammount": -75.99
+            "Amount": -75.99
           },
           {
             "Category": "Beauty",
-            "Ammount": -16
+            "Amount": -16
           },
           {
             "Category": "Mobile",
-            "Ammount": -12.03
+            "Amount": -12.03
           },
           {
             "Category": "Transport",
-            "Ammount": -120.48
+            "Amount": -120.48
           },
           {
             "Category": "Supermarket",
-            "Ammount": -14
+            "Amount": -14
           },
           {
             "Category": "Other",
-            "Ammount": -561.73
+            "Amount": -561.73
           },
           {
             "Category": "Restaurant",
-            "Ammount": -55.83
+            "Amount": -55.83
           },
           {
             "Category": "Transport",
-            "Ammount": -148.56
+            "Amount": -148.56
           },
           {
             "Category": "Clothing",
-            "Ammount": -22.98
+            "Amount": -22.98
           },
           {
             "Category": "Supermarket",
-            "Ammount": -5.84
+            "Amount": -5.84
           },
           {
             "Category": "Party",
-            "Ammount": -117.88
+            "Amount": -117.88
           }
         ]
       },
@@ -1233,55 +1233,55 @@
         "Jul": [
           {
             "Category": "Work",
-            "Ammount": 1595.91
+            "Amount": 1595.91
           },
           {
             "Category": "Other",
-            "Ammount": 91.23
+            "Amount": 91.23
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Transport",
-            "Ammount": -123.19
+            "Amount": -123.19
           },
           {
             "Category": "Mobile",
-            "Ammount": -12.1
+            "Amount": -12.1
           },
           {
             "Category": "Home",
-            "Ammount": -65.03
+            "Amount": -65.03
           },
           {
             "Category": "Beauty",
-            "Ammount": -16
+            "Amount": -16
           },
           {
             "Category": "Other",
-            "Ammount": -489.84
+            "Amount": -489.84
           },
           {
             "Category": "Transport",
-            "Ammount": -29.66
+            "Amount": -29.66
           },
           {
             "Category": "Restaurant",
-            "Ammount": -98.01
+            "Amount": -98.01
           },
           {
             "Category": "Party",
-            "Ammount": -143.09
+            "Amount": -143.09
           },
           {
             "Category": "Supermarket",
-            "Ammount": -3.56
+            "Amount": -3.56
           },
           {
             "Category": "Transport",
-            "Ammount": -89.7
+            "Amount": -89.7
           }
         ]
       },
@@ -1289,63 +1289,63 @@
         "Aug": [
           {
             "Category": "Work",
-            "Ammount": 1653.46
+            "Amount": 1653.46
           },
           {
             "Category": "Party",
-            "Ammount": 15.7
+            "Amount": 15.7
           },
           {
             "Category": "Travel",
-            "Ammount": 39.41
+            "Amount": 39.41
           },
           {
             "Category": "Education",
-            "Ammount": -173.88
+            "Amount": -173.88
           },
           {
             "Category": "Transport",
-            "Ammount": -122.66
+            "Amount": -122.66
           },
           {
             "Category": "Mobile",
-            "Ammount": -11.95
+            "Amount": -11.95
           },
           {
             "Category": "Beauty",
-            "Ammount": -16
+            "Amount": -16
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Amount": -1.25
           },
           {
             "Category": "Restaurant",
-            "Ammount": -40.05
+            "Amount": -40.05
           },
           {
             "Category": "Other",
-            "Ammount": -33
+            "Amount": -33
           },
           {
             "Category": "Party",
-            "Ammount": -77.3
+            "Amount": -77.3
           },
           {
             "Category": "Clothing",
-            "Ammount": -115.84
+            "Amount": -115.84
           },
           {
             "Category": "Presents",
-            "Ammount": -7.04
+            "Amount": -7.04
           },
           {
             "Category": "Travel",
-            "Ammount": -34.63
+            "Amount": -34.63
           },
           {
             "Category": "Investments",
-            "Ammount": -101
+            "Amount": -101
           }
         ]
       },
@@ -1353,55 +1353,55 @@
         "Sep": [
           {
             "Category": "Work",
-            "Ammount": 1443.27
+            "Amount": 1443.27
           },
           {
             "Category": "Work2",
-            "Ammount": 150
+            "Amount": 150
           },
           {
             "Category": "Work2",
-            "Ammount": 300
+            "Amount": 300
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Transport",
-            "Ammount": -572.96
+            "Amount": -572.96
           },
           {
             "Category": "Supermarket",
-            "Ammount": -22.6
+            "Amount": -22.6
           },
           {
             "Category": "Beauty",
-            "Ammount": -16
+            "Amount": -16
           },
           {
             "Category": "Mobile",
-            "Ammount": -9.95
+            "Amount": -9.95
           },
           {
             "Category": "Other",
-            "Ammount": -91.39
+            "Amount": -91.39
           },
           {
             "Category": "Restaurant",
-            "Ammount": -98.05
+            "Amount": -98.05
           },
           {
             "Category": "Party",
-            "Ammount": -20.94
+            "Amount": -20.94
           },
           {
             "Category": "Clothing",
-            "Ammount": -65.85
+            "Amount": -65.85
           }
         ]
       },
@@ -1409,71 +1409,71 @@
         "Oct": [
           {
             "Category": "Work",
-            "Ammount": 1486.18
+            "Amount": 1486.18
           },
           {
             "Category": "Other",
-            "Ammount": 10
+            "Amount": 10
           },
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -385
+            "Amount": -385
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Supermarket",
-            "Ammount": -179.09
+            "Amount": -179.09
           },
           {
             "Category": "Transport",
-            "Ammount": -59.52
+            "Amount": -59.52
           },
           {
             "Category": "Home",
-            "Ammount": -33.69
+            "Amount": -33.69
           },
           {
             "Category": "Mobile",
-            "Ammount": -9.95
+            "Amount": -9.95
           },
           {
             "Category": "Beauty",
-            "Ammount": -15.5
+            "Amount": -15.5
           },
           {
             "Category": "Health",
-            "Ammount": -2.5
+            "Amount": -2.5
           },
           {
             "Category": "Beauty",
-            "Ammount": -420
+            "Amount": -420
           },
           {
             "Category": "Other",
-            "Ammount": -114.15
+            "Amount": -114.15
           },
           {
             "Category": "Restaurant",
-            "Ammount": -102.65
+            "Amount": -102.65
           },
           {
             "Category": "Travel",
-            "Ammount": -55.99
+            "Amount": -55.99
           },
           {
             "Category": "Party",
-            "Ammount": -63.4
+            "Amount": -63.4
           },
           {
             "Category": "Presents",
-            "Ammount": -26.94
+            "Amount": -26.94
           }
         ]
       },
@@ -1481,67 +1481,67 @@
         "Nov": [
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -365
+            "Amount": -365
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Presents",
-            "Ammount": 13.47
+            "Amount": 13.47
           },
           {
             "Category": "Education",
-            "Ammount": -22.99
+            "Amount": -22.99
           },
           {
             "Category": "Supermarket",
-            "Ammount": -36.19
+            "Amount": -36.19
           },
           {
             "Category": "Home",
-            "Ammount": -1.8
+            "Amount": -1.8
           },
           {
             "Category": "Other",
-            "Ammount": -61.98
+            "Amount": -61.98
           },
           {
             "Category": "Other",
-            "Ammount": -18
+            "Amount": -18
           },
           {
             "Category": "Other",
-            "Ammount": -24.95
+            "Amount": -24.95
           },
           {
             "Category": "Other",
-            "Ammount": -8.67
+            "Amount": -8.67
           },
           {
             "Category": "Supermarket",
-            "Ammount": -8.68
+            "Amount": -8.68
           },
           {
             "Category": "Supermarket",
-            "Ammount": -7.85
+            "Amount": -7.85
           },
           {
             "Category": "Transport",
-            "Ammount": -17.14
+            "Amount": -17.14
           },
           {
             "Category": "Health",
-            "Ammount": -1.25
+            "Amount": -1.25
           },
           {
             "Category": "Supermarket",
-            "Ammount": -32.2
+            "Amount": -32.2
           }
         ]
       },
@@ -1549,15 +1549,15 @@
         "Dec": [
           {
             "Category": "Education",
-            "Ammount": -163.89
+            "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Ammount": -365
+            "Amount": -365
           },
           {
             "Category": "Gym",
-            "Ammount": -24.95
+            "Amount": -24.95
           }
         ]
       }

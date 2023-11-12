@@ -3,9 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 
 import dataMovementsFile from "../../data/dataMovements.json";
 
+// Definición de tipos para las transacciones y estructuras de datos
 type MonthlyTransaction = {
     Category: string;
-    Ammount: number;
+    Amount: number;
 }[];
 type Month =
     | "Jan"
@@ -37,6 +38,8 @@ type CategoryBalance = {
     Balance: number;
     InOut: string;
 };
+
+// Propiedades del componente
 interface AnnualMovementsProps {
     year: string;
 }
@@ -77,10 +80,10 @@ function AnnualMovements(props: AnnualMovementsProps) {
                     // Sumamos los ingresos y restamos los gastos para cada mes.
                     if (Array.isArray(transactions)) {
                         transactions.forEach((transaction) => {
-                            if (transaction.Ammount > 0) {
-                                monthlyIncome += transaction.Ammount;
+                            if (transaction.Amount > 0) {
+                                monthlyIncome += transaction.Amount;
                             } else {
-                                monthlyExpenses += Math.abs(transaction.Ammount);
+                                monthlyExpenses += Math.abs(transaction.Amount);
                             }
                         });
                     }
@@ -139,14 +142,14 @@ function AnnualMovements(props: AnnualMovementsProps) {
                                     Balance: number;
                                 };
                             },
-                            transaction: { Category: string; Ammount: number }
+                            transaction: { Category: string; Amount: number }
                         ) => {
-                            const { Category, Ammount } = transaction;
+                            const { Category, Amount } = transaction;
                             // Inicializa la categoría si es la primera vez que aparece.
                             if (!acc[Category]) {
                                 acc[Category] = { Category, Balance: 0, InOut: "" };
                             }
-                            acc[Category].Balance += Ammount;
+                            acc[Category].Balance += Amount;
                             acc[Category].InOut = acc[Category].Balance >= 0 ? "IN" : "OUT";
                             return acc;
                         },

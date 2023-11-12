@@ -12,7 +12,7 @@ import AnnualMovements from "../../components/dashboard/AnnualMovements";
 // Definimos los tipos para las transacciones mensuales y la estructura de los datos.
 type MonthlyTransaction = {
   Category: string;
-  Ammount: number;
+  Amount: number;
 }[];
 type Month =
   | "Jan"
@@ -27,7 +27,6 @@ type Month =
   | "Oct"
   | "Nov"
   | "Dec";
-
 type DataMovement = {
   [key: string]: {
     [month in Month]?: MonthlyTransaction;
@@ -85,12 +84,12 @@ function AnnualReport() {
         // Si hay transacciones, suma los montos a los acumuladores respectivos.
         if (transactions) {
           for (const movement of transactions) {
-            if (movement.Ammount > 0) {
+            if (movement.Amount > 0) {
               // Si el monto es positivo, lo suma a los ingresos.
-              incomeSum += movement.Ammount;
+              incomeSum += movement.Amount;
             } else {
               // Si el monto es negativo, lo suma a los gastos (después de convertirlo a positivo).
-              expensesSum += Math.abs(movement.Ammount);
+              expensesSum += Math.abs(movement.Amount);
             }
           }
         }
