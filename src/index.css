@@ -68,6 +68,7 @@ a:hover {
 }
 
 /* bordes mui */
-div.css-igs3ac {
+div.css-igs3ac,
+div.fieldset.css-igs3ac {
   border-radius: 15px;
 }
