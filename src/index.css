@@ -67,11 +67,10 @@ a:hover {
   color: green;
 }
 
-/* select mui */
+/* bordes mui */
 div.MuiInputBase-root.css-1a2qpli {
   border-radius: 15px;
 }
-/* dev */
-.css-q8hpuo-MuiFormControl-root > div {
+div.css-i44wyl {
   border-radius: 15px;
 }
