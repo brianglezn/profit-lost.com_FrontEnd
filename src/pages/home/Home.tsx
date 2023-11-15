@@ -13,11 +13,14 @@ function Home() {
       {/* <!-- HERO --> */}
       <section className="hero">
         <div className="hero__title">
-          <h1>Manage all your personal finances from one place</h1>
+          <h1>Manage All Your Personal Finances in One Place</h1>
+          <Link
+            to="/dashboard"
+            className="liveDemo"
+          >
+            Live Demo
+          </Link>
         </div>
-        <Link to="/login" className="header__login-btn header__login-btn2">
-          Log in
-        </Link>
       </section>
       {/* <!-- FIN HERO --> */}
 
@@ -68,11 +71,6 @@ function Home() {
       {/* <!-- SECTION PREVIEW--> */}
       <section className="section__preview" id="preview">
         <div>preview</div>
-        <Link
-          to="/dashboard"
-        >
-          Dashboard
-        </Link>
       </section>
       {/* <!-- FIN SECTION PREVIEW--> */}
 

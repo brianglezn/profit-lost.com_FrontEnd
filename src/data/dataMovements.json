@@ -1542,6 +1542,46 @@
           {
             "Category": "Supermarket",
             "Amount": -32.2
+          },
+          {
+            "Category": "Supermarket",
+            "Amount": -7.12
+          },
+          {
+            "Category": "Supermarket",
+            "Amount": -1.3
+          },
+          {
+            "Category": "Supermarket",
+            "Amount": -1.3
+          },
+          {
+            "Category": "Supermarket",
+            "Amount": -2.89
+          },
+          {
+            "Category": "Other",
+            "Amount": -10.77
+          },
+          {
+            "Category": "Restaurant",
+            "Amount": -10
+          },
+          {
+            "Category": "Travel",
+            "Amount": -6
+          },
+          {
+            "Category": "Travel",
+            "Amount": -60.55
+          },
+          {
+            "Category": "Transport",
+            "Amount": -100
+          },
+          {
+            "Category": "Other",
+            "Amount": -3
           }
         ]
       },
@@ -1558,6 +1598,10 @@
           {
             "Category": "Gym",
             "Amount": -24.95
+          },
+          {
+            "Category": "Other",
+            "Amount": -3
           }
         ]
       }

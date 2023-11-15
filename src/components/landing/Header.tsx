@@ -16,10 +16,13 @@ function Header() {
           <nav className="header__nav">
             <ul>
               <li>
-                <a href="#features">Features</a>
+                <a href="#features">FEATURES</a>
               </li>
               <li>
-                <a href="#preview">Preview</a>
+                <a href="/dashboard">DEMO</a>
+              </li>
+              <li>
+                <a href="#preview">PREVIEW</a>
               </li>
             </ul>
           </nav>

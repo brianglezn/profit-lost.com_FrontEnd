@@ -6,12 +6,19 @@
   align-items: center;
 }
 
+.hero__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 1rem;
+}
 .hero__title h1 {
   text-align: center;
   font-size: 3rem;
 }
-.hero__title p {
-  text-align: center;
+.hero__title .liveDemo {
+  display: none;
 }
 /* ---------- FIN HERO ---------- */
 
@@ -117,6 +124,9 @@ article div h1 {
   .hero__login {
     padding-bottom: 10vh;
   }
+  .hero__title .liveDemo {
+    display: block;
+  }
   /* section1 */
   .section1__container {
     display: flex;
@@ -142,9 +152,6 @@ article div h1 {
   /* preview */
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .hero__login {
-    display: none;
-  }
   /* section1 */
   .section1__container {
     display: flex;
