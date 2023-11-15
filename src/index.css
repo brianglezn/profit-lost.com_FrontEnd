@@ -68,7 +68,7 @@ a:hover {
 }
 
 /* bordes mui */
-div.css-igs3ac,
-div.fieldset.css-igs3ac {
-  border-radius: 15px !important;
+div.MuiInputBase-root.css-1a2qpli,
+fieldset.css-igs3ac {
+  border-radius: 15px;
 }
