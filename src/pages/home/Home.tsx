@@ -68,12 +68,6 @@ function Home() {
       </section>
       {/* <!-- FIN SECTION FEATURES--> */}
 
-      {/* <!-- SECTION PREVIEW--> */}
-      <section className="section__preview" id="preview">
-        <div>preview</div>
-      </section>
-      {/* <!-- FIN SECTION PREVIEW--> */}
-
       <Footer />
     </>
   );

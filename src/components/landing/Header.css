@@ -61,6 +61,7 @@ header {
   letter-spacing: 1px;
   box-shadow: var(--color-orange-600) 0px 7px 2px,
     var(--color-black) 0px 8px 5px;
+  margin-bottom: 8px;
 }
 .header__login-btn2 {
   display: none;

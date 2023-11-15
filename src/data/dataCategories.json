@@ -1,53 +1,53 @@
 [
   {
-    "category": "Work"
+    "name": "Work"
   },
   {
-    "category": "Work2"
+    "name": "Work2"
   },
   {
-    "category": "Education"
+    "name": "Education"
   },
   {
-    "category": "Other"
+    "name": "Other"
   },
   {
-    "category": "Party"
+    "name": "Party"
   },
   {
-    "category": "Clothing"
+    "name": "Clothing"
   },
   {
-    "category": "Supermarket"
+    "name": "Supermarket"
   },
   {
-    "category": "Home"
+    "name": "Home"
   },
   {
-    "category": "Gym"
+    "name": "Gym"
   },
   {
-    "category": "Transport"
+    "name": "Transport"
   },
   {
-    "category": "Health"
+    "name": "Health"
   },
   {
-    "category": "Mobile"
+    "name": "Mobile"
   },
   {
-    "category": "Restaurant"
+    "name": "Restaurant"
   },
   {
-    "category": "Beauty"
+    "name": "Beauty"
   },
   {
-    "category": "Presents"
+    "name": "Presents"
   },
   {
-    "category": "Travel"
+    "name": "Travel"
   },
   {
-    "category": "Management"
+    "name": "Management"
   }
 ]

@@ -49,6 +49,9 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--color-white);
 }
+.movements__containerMain-category p {
+  text-align: center;
+}
 
 .movements__containerMain-balance {
   display: flex;

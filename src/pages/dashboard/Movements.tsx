@@ -11,6 +11,7 @@ import useDataMovements from "../../components/dashboard/useDataMovements";
 import MovementsChart from "../../components/dashboard/MovementsChart";
 import MovementsPie from "../../components/dashboard/MovementsPie";
 import MovementsTable from "../../components/dashboard/MovementsTable";
+import FormMovements from "../../components/dashboard/FormMovements";
 
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
@@ -99,6 +100,7 @@ function Movements() {
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
 
+
   return (
     <>
       <section className="movements">
@@ -183,6 +185,8 @@ function Movements() {
             </div>
 
             <MovementsTable year={year} month={month} isDataEmpty={isDataEmpty} />
+
+            <FormMovements />
 
           </div>
         </div>

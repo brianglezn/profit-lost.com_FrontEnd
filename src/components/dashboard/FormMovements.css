@@ -1,0 +1,24 @@
+.formMovements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  width: 350px;
+  border-radius: 15px;
+  background-color: rgb(114, 114, 114);
+}
+
+.formMovements-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.formMovements-category {
+  width: 80%;
+}
+
+.formMovements-balance {
+  width: 80%;
+}

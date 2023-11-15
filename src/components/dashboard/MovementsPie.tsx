@@ -173,8 +173,8 @@ function MovementsPie(props: MovementsProps) {
     return (
         <>
             <div className="movements__containerMain-category">
-                {isDataEmpty ? (
-                    <p>No data available for this month.</p>
+                {isDataEmpty || dataCategoryIncome.length === 0 ? (
+                    <p>No income data available for this month.</p>
                 ) : (
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart width={400} height={400}>
@@ -199,8 +199,8 @@ function MovementsPie(props: MovementsProps) {
                     </ResponsiveContainer>)}
             </div>
             <div className="movements__containerMain-category">
-                {isDataEmpty ? (
-                    <p>No data available for this month.</p>
+                {isDataEmpty || dataCategoryExpenses.length === 0 ? (
+                    <p>No expenses data available for this month.</p>
                 ) : (
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart width={400} height={400}>

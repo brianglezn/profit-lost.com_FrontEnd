@@ -21,9 +21,6 @@ function Header() {
               <li>
                 <a href="/dashboard">DEMO</a>
               </li>
-              <li>
-                <a href="#preview">PREVIEW</a>
-              </li>
             </ul>
           </nav>
           <div className="header__login">
