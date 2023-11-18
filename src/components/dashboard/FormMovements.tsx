@@ -6,7 +6,11 @@ import "./FormMovements.css";
 
 import dataCategoriesJson from "../../data/dataCategories.json";
 
-function FormMovements() {
+interface FormMovementsProps {
+    onClose: () => void;
+}
+
+function FormMovements({ onClose }: FormMovementsProps) {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [transactionType, setTransactionType] = useState('Income');
     const [balance, setBalance] = useState('');
@@ -20,18 +24,28 @@ function FormMovements() {
     };
 
     const handleBalanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBalance(event.target.value);
+        let value = event.target.value;
+        value = value.replace(/,/g, '.');
+        const regex = /^\d*\.?\d{0,2}$/;
+        if (value === '' || regex.test(value)) {
+            setBalance(value);
+        }
     };
 
     return (
         <>
             <form className="formMovements">
+                <span className="material-symbols-rounded formMovements-closeButton" onClick={onClose}>
+                    close
+                </span>
 
                 <div className="formMovements-buttons">
+
                     <Button
                         variant={transactionType === 'Income' ? 'contained' : 'outlined'}
                         onClick={() => handleTransactionTypeChange('Income')}
                         sx={{
+                            color: transactionType === 'Income' ? 'white' : 'var(--color-orange-500)',
                             ...(transactionType !== 'Income' && {
                                 '&:hover': {
                                     color: 'var(--color-orange-500)',
@@ -45,6 +59,7 @@ function FormMovements() {
                         variant={transactionType === 'Expense' ? 'contained' : 'outlined'}
                         onClick={() => handleTransactionTypeChange('Expense')}
                         sx={{
+                            color: transactionType === 'Expense' ? 'white' : 'var(--color-orange-500)',
                             ...(transactionType !== 'Expense' && {
                                 '&:hover': {
                                     color: 'var(--color-orange-500)',
@@ -85,7 +100,21 @@ function FormMovements() {
                         shrink: true,
                     }}
                 />
-            </form>
+                <Button
+                    className="formMovements-send"
+                    sx={{
+                        borderColor: 'var(--color-orange-400)',
+                        borderWidth: 1,
+                        borderStyle: 'solid',
+                        '&:hover': {
+                            color: 'var(--color-white)',
+                            backgroundColor: 'var(--color-orange)',
+                        },
+                    }}
+                >
+                    Save
+                </Button>
+            </form >
         </>
     );
 }

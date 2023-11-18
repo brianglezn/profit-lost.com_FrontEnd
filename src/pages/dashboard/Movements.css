@@ -112,6 +112,7 @@
 .movements__movements-text span:hover {
   color: var(--color-orange);
 }
+
 .movements__movements-table {
   padding: 0 2rem 1rem 2rem;
 }

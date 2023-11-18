@@ -1,13 +1,16 @@
-import { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { Box, Modal } from "@mui/material";
 
 import "./AnnualReport.css";
 import dataMovementsFile from "../../data/dataMovements.json";
+
 import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";
+import FormCategory from "../../components/dashboard/FormCategory";
 
 // Definimos los tipos para las transacciones mensuales y la estructura de los datos.
 type MonthlyTransaction = {
@@ -105,6 +108,25 @@ function AnnualReport() {
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
+  const styleBox = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "var(--color-bg)",
+    boxShadow: 15,
+    p: 2,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "15px"
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
 
   return (
     <>
@@ -152,7 +174,12 @@ function AnnualReport() {
         <div className="annualReport__containerCategory">
           <div className="annualReport__category-text">
             <p>Categories</p>
-            <span className="material-symbols-rounded">new_window</span>
+            <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
+            <Modal open={open} onClose={handleCloseModal}>
+              <Box sx={styleBox}>
+                <FormCategory onClose={handleCloseModal} />
+              </Box>
+            </Modal>
           </div>
           <AnnualMovements year={year} />
         </div>

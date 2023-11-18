@@ -1,8 +1,10 @@
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 import "./Movements.css";
 import dataMovementsJson from "../../data/dataMovements.json";
@@ -100,6 +102,25 @@ function Movements() {
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
 
+  const styleBox = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "var(--color-bg)",
+    boxShadow: 15,
+    p: 2,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "15px"
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
 
   return (
     <>
@@ -181,12 +202,17 @@ function Movements() {
           <div className="movements__containerMain-movements">
             <div className="movements__movements-text">
               <p>Movements</p>
-              <span className="material-symbols-rounded">new_window</span>
+              <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
+              <Modal open={open} onClose={handleCloseModal}>
+                <Box sx={styleBox}>
+                  <FormMovements onClose={handleCloseModal} />
+                </Box>
+              </Modal>
             </div>
 
             <MovementsTable year={year} month={month} isDataEmpty={isDataEmpty} />
 
-            <FormMovements />
+
 
           </div>
         </div>
