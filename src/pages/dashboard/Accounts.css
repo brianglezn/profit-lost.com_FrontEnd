@@ -107,6 +107,9 @@
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
   /* Estilos para dispositivos móviles */
+  .accounts {
+    margin: 20px 15px;
+  }
   .accounts__containerAccounts {
     margin-bottom: 5rem;
   }

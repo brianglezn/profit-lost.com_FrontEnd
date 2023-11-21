@@ -116,10 +116,19 @@
 .movements__movements-table {
   padding: 0 2rem 1rem 2rem;
 }
+.row-even {
+  background-color: var(--color-orange-100);
+}
+.row-odd {
+  background-color: #ffffff;
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
   /* Estilos para dispositivos móviles */
+  .movements {
+    margin: 20px 15px;
+  }
   .movements__containerMain {
     flex-direction: column;
   }

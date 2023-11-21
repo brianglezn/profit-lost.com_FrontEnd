@@ -18,6 +18,7 @@ import FormMovements from "../../components/dashboard/FormMovements";
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
   Category: string;
+  Description: string;
   Amount: number;
 };
 // Definición de tipo para los meses del año
@@ -211,8 +212,6 @@ function Movements() {
             </div>
 
             <MovementsTable year={year} month={month} isDataEmpty={isDataEmpty} />
-
-
 
           </div>
         </div>

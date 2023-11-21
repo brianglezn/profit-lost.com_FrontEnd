@@ -199,6 +199,9 @@ function AnnualMovements(props: AnnualMovementsProps) {
                             }
                             return column;
                         })}
+                        getRowClassName={(params) =>
+                            params.indexRelativeToCurrentPage % 2 === 0 ? 'row-even' : 'row-odd'
+                        }
                     />) : (
                     <p>No data available for this year.</p>
                 )}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
     Category: string;
+    Description: string;
     Amount: number;
 };
 // Definición de tipo para los meses del año
@@ -96,11 +97,14 @@ function MovementsTable(props: MovementsProps) {
                     if (selectedMonthData) {
                         // Mapear los datos al formato de fila requerido por el componente de tabla
                         const rows = selectedMonthData[parameter]?.map(
-                            (item: { Category: string; Amount: number }, index: number) => ({
+                            (item: {
+                                Description: string; Category: string; Amount: number
+                            }, index: number) => ({
                                 id: index + 1,
                                 Category: item.Category,
                                 Balance: formatCurrency(item.Amount),
                                 InOut: item.Amount >= 0 ? "IN" : "OUT",
+                                Description: item.Description,
                             })
                         );
 
@@ -114,6 +118,7 @@ function MovementsTable(props: MovementsProps) {
     // Definiciones de columnas para el componente de la tabla
     const columns: GridColDef[] = [
         { field: "Category", headerName: "Category", flex: 2 },
+        { field: "Description", headerName: "Description", flex: 2 },
         { field: "Balance", headerName: "Balance", flex: 2 },
         { field: "InOut", headerName: "InOut", flex: 0.5 },
     ];
@@ -143,6 +148,9 @@ function MovementsTable(props: MovementsProps) {
                             }
                             return column;
                         })}
+                        getRowClassName={(params) =>
+                            params.indexRelativeToCurrentPage % 2 === 0 ? 'row-even' : 'row-odd'
+                        }
                     />
                 )}
             </div>
