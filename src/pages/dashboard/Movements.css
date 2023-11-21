@@ -163,6 +163,9 @@
   .movements__containerMain-movements {
     margin-bottom: 5rem;
   }
+  .movements__movements-table {
+    padding: 0 1rem 1rem;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para tablets */

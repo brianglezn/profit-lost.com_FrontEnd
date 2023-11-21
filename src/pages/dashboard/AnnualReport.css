@@ -124,6 +124,9 @@
   .annualReport__containerCategory {
     margin-bottom: 5rem;
   }
+  .annualReport__category-table {
+    padding: 0 1rem 1rem;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para tablets */
