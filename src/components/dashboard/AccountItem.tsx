@@ -65,7 +65,7 @@ function AccountItem(props: AccountItemProps) {
         <Box sx={styleBox}>
           <form className="formAccount">
 
-            <AccountsTable year={""} isDataEmpty={false} />
+            <AccountsTable />
 
             <Button
               className="formAccounts-send"
