@@ -72,3 +72,11 @@ div.MuiInputBase-root.css-1a2qpli,
 fieldset.css-igs3ac {
   border-radius: 15px;
 }
+
+/* TABLA mui */
+.row-even {
+  background-color: var(--color-orange-50);
+}
+.row-odd {
+  background-color: #ffffff;
+}

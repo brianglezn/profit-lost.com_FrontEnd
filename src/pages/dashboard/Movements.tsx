@@ -102,7 +102,7 @@ function Movements() {
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
-
+  // Modal
   const styleBox = {
     position: "absolute",
     top: "50%",
@@ -122,6 +122,11 @@ function Movements() {
   const [open, setOpen] = React.useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
+
+  const backdropStyle = {
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
+    backdropFilter: 'blur(4px)',
+  };
 
   return (
     <>
@@ -204,7 +209,14 @@ function Movements() {
             <div className="movements__movements-text">
               <p>Movements</p>
               <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
-              <Modal open={open} onClose={handleCloseModal}>
+              <Modal
+                open={open}
+                onClose={handleCloseModal}
+                componentsProps={{
+                  backdrop: {
+                    style: backdropStyle,
+                  },
+                }}>
                 <Box sx={styleBox}>
                   <FormMovements onClose={handleCloseModal} />
                 </Box>

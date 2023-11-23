@@ -5,6 +5,8 @@ import {
   MenuItem,
   SelectChangeEvent,
   InputLabel,
+  Modal,
+  Box,
 } from "@mui/material";
 import {
   BarChart,
@@ -20,6 +22,7 @@ import {
 import "./Accounts.css";
 import dataAccountsFile from "../../data/dataAccounts.json";
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
+import FormAccounts from "../../components/dashboard/FormAccounts.tsx";
 
 // Creamos un tipo para los elementos de datos de la cuenta.
 type DataAccountItem = {
@@ -133,13 +136,15 @@ function Accounts() {
 
   // Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
   const chartData = monthNames.map((month) => {
-    const data: Record<string, number> = {};
+    const data: Record<string, number> = { "TOTAL": 0 };
 
     dataAccounts.forEach((account) => {
       // Obtiene el valor para el mes y año seleccionados o 0 si no está definido
       const value = account.data[parseInt(year)]?.[month] ?? 0;
       // Asigna el valor al nombre de la cuenta correspondiente en el objeto de datos
       data[account.accountName] = value;
+      // Acumula el valor en el total
+      data["TOTAL"] += value;
     });
 
     // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
@@ -193,6 +198,32 @@ function Accounts() {
       />
     ));
   }, [dataAccounts, currentYear, currentMonthName]);
+
+  // Modal
+  const styleBox = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "var(--color-bg)",
+    boxShadow: 15,
+    p: 2,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "15px"
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
+
+  const backdropStyle = {
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
+    backdropFilter: 'blur(4px)',
+  };
 
   return (
     <>
@@ -259,7 +290,19 @@ function Accounts() {
         <div className="accounts__containerAccounts">
           <div className="accounts__accounts-text">
             <p>Accounts</p>
-            <span className="material-symbols-rounded">new_window</span>
+            <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
+            <Modal
+              open={open}
+              onClose={handleCloseModal}
+              componentsProps={{
+                backdrop: {
+                  style: backdropStyle,
+                },
+              }}>
+              <Box sx={styleBox}>
+                <FormAccounts onClose={handleCloseModal} />
+              </Box>
+            </Modal>
           </div>
           <div className="accounts__accounts-container">{accountItems}</div>
         </div>

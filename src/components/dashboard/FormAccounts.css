@@ -1,0 +1,23 @@
+.formAccounts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  width: 350px;
+  border-radius: 15px;
+}
+
+.formAccounts-closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px 15px 0 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.formAccounts-closeButton:hover {
+  color: var(--color-orange);
+}
