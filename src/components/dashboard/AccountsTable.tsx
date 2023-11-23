@@ -5,19 +5,19 @@ interface AccountsProps {
 }
 
 // Función para formatear números a formato de moneda local
-function formatCurrency(value: number) {
-    return value.toLocaleString("es-ES", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2,
-        useGrouping: true,
-    });
-}
+// function formatCurrency(value: number) {
+//     return value.toLocaleString("es-ES", {
+//         style: "currency",
+//         currency: "EUR",
+//         minimumFractionDigits: 2,
+//         useGrouping: true,
+//     });
+// }
 
 function AccountsTable(props: AccountsProps) {
 
     // Desestructuración de las propiedades para un acceso más fácil
-    const { year } = props;
+    // const { year } = props;
 
     return (
         <>
