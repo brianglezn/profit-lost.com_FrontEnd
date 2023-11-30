@@ -1827,178 +1827,223 @@
         "Nov": [
           {
             "Category": "Education",
-            "Description": "Universae",
+            "Description": "",
             "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Description": "M.Servet",
+            "Description": "",
             "Amount": -365
           },
           {
             "Category": "Gym",
-            "Description": "SmartFit",
+            "Description": "",
             "Amount": -24.95
           },
           {
             "Category": "Presents",
-            "Description": "Padres",
+            "Description": "",
             "Amount": 13.47
           },
           {
             "Category": "Education",
-            "Description": "ChatGPT",
+            "Description": "",
             "Amount": -22.99
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -36.19
           },
           {
             "Category": "Home",
-            "Description": "Pincel Comida",
+            "Description": "",
             "Amount": -1.8
           },
           {
             "Category": "Other",
-            "Description": "Amazon",
+            "Description": "",
             "Amount": -61.98
           },
           {
             "Category": "Other",
-            "Description": "Escalada",
+            "Description": "",
             "Amount": -18
           },
           {
             "Category": "Other",
-            "Description": "Bizum Amazon",
+            "Description": "",
             "Amount": -24.95
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -8.68
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -7.85
           },
           {
             "Category": "Transport",
-            "Description": "Gasolina",
+            "Description": "",
             "Amount": -17.14
           },
           {
             "Category": "Health",
-            "Description": "Pastillas",
+            "Description": "",
             "Amount": -1.25
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -32.2
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -7.12
           },
           {
             "Category": "Supermarket",
-            "Description": "Panaderia",
+            "Description": "",
             "Amount": -1.3
           },
           {
             "Category": "Supermarket",
-            "Description": "Panaderia",
+            "Description": "",
             "Amount": -1.3
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -2.89
           },
           {
             "Category": "Other",
-            "Description": "3xHBO",
+            "Description": "",
             "Amount": -10.77
           },
           {
             "Category": "Restaurant",
-            "Description": "Comida",
+            "Description": "",
             "Amount": -10
           },
           {
             "Category": "Travel",
-            "Description": "Renfe",
+            "Description": "",
             "Amount": -6
           },
           {
             "Category": "Travel",
-            "Description": "Renfe Oviedo-Madrid",
+            "Description": "",
             "Amount": -60.55
           },
           {
             "Category": "Transport",
-            "Description": "Multa",
+            "Description": "",
             "Amount": -100
           },
           {
             "Category": "Other",
-            "Description": "Spotify",
+            "Description": "",
             "Amount": -3
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -38.56
           },
           {
             "Category": "Mobile",
-            "Description": "Lowi",
+            "Description": "",
             "Amount": -9.95
           },
           {
             "Category": "Supermarket",
-            "Description": "Mercadona",
+            "Description": "",
             "Amount": -34.45
           },
           {
             "Category": "Transport",
-            "Description": "Metro Madrid",
+            "Description": "",
             "Amount": -8
           },
           {
             "Category": "Other",
-            "Description": "Cervezas",
+            "Description": "",
             "Amount": -10
           },
           {
             "Category": "Restaurant",
-            "Description": "Chino",
+            "Description": "",
             "Amount": -26.56
           },
           {
             "Category": "Other",
-            "Description": "Vino Cerveza",
+            "Description": "",
             "Amount": -7.4
           },
           {
             "Category": "Other",
-            "Description": "Carretas",
+            "Description": "",
             "Amount": -14
           },
           {
             "Category": "Restaurant",
-            "Description": "Savatico",
+            "Description": "",
             "Amount": -14
           },
           {
             "Category": "Beauty",
-            "Description": "Peluquería",
+            "Description": "",
             "Amount": -15.5
+          },
+          {
+            "Category": "Supermarket",
+            "Description": "",
+            "Amount": -34.45
+          },
+          {
+            "Category": "Health",
+            "Description": "",
+            "Amount": -1.25
+          },
+          {
+            "Category": "Transport",
+            "Description": "",
+            "Amount": -18.83
+          },
+          {
+            "Category": "Supermarket",
+            "Description": "",
+            "Amount": -15.8
+          },
+          {
+            "Category": "Supermarket",
+            "Description": "",
+            "Amount": -15.35
+          },
+          {
+            "Category": "Other",
+            "Description": "",
+            "Amount": -10.86
+          },
+          {
+            "Category": "Restaurant",
+            "Description": "",
+            "Amount": -5
+          },
+          {
+            "Category": "Work",
+            "Description": "",
+            "Amount": 1439.32
+          },
+          {
+            "Category": "Other",
+            "Description": "",
+            "Amount": 9
           }
         ]
       },
@@ -2006,22 +2051,22 @@
         "Dec": [
           {
             "Category": "Education",
-            "Description": "Universae",
+            "Description": "",
             "Amount": -163.89
           },
           {
             "Category": "Home",
-            "Description": "M.Servet",
+            "Description": "",
             "Amount": -365
           },
           {
             "Category": "Gym",
-            "Description": "SmartFit",
+            "Description": "",
             "Amount": -24.95
           },
           {
             "Category": "Other",
-            "Description": "Spotify",
+            "Description": "",
             "Amount": -3
           }
         ]
