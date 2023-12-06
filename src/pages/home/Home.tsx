@@ -28,14 +28,10 @@ function Home() {
       <section className="section1" id="features">
         <div className="section1__container">
           <div className="section1__div-text">
-            <h1>Este es el título de la sección</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis
-              totam dolore quis ab nam nemo adipisci voluptatum repellendus
-              facilis reiciendis mollitia asperiores sed recusandae, quaerat
-              minima repudiandae deserunt, excepturi neque.
-            </p>
+            <h2>Transforming Personal Financial Management</h2>
+            <p>With Profit&Lost, you can manage your personal finances with ease and efficiency. Our intuitive platform helps you to control income, expenses, and savings, all in one place. Start making smarter financial decisions today!</p>
           </div>
+
           <div className="section1__div-img">
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/illustrations/money-dash.svg"
