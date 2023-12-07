@@ -24,45 +24,69 @@ function Home() {
       </section>
       {/* <!-- FIN HERO --> */}
 
-      {/* <!-- SECTION 1 --> */}
-      <section className="section1" id="features">
-        <div className="section1__container">
-          <div className="section1__div-text">
-            <h2>Transforming Personal Financial Management</h2>
-            <p>With Profit&Lost, you can manage your personal finances with ease and efficiency. Our intuitive platform helps you to control income, expenses, and savings, all in one place. Start making smarter financial decisions today!</p>
-          </div>
+      <div className="container__sections">
+        {/* <!-- SECTION 1 --> */}
+        <section className="section1" id="features">
+          <div className="section1__container">
+            <div className="section1__div-text">
+              <h2>Transforming Personal Financial Management</h2>
+              <p>With Profit&Lost, you can manage your personal finances with ease and efficiency. Our intuitive platform helps you to control income, expenses, and savings, all in one place. Start making smarter financial decisions today!</p>
+            </div>
 
-          <div className="section1__div-img">
-            <img
-              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/illustrations/money-dash.svg"
-              alt="logo"
-            />
+            <div className="section1__div-img">
+              <img
+                src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/illustrations/money-dash.svg"
+                alt="logo"
+              />
+            </div>
           </div>
-        </div>
-      </section>
-      {/* <!-- FIN SECTION 1 --> */}
+        </section>
+        {/* <!-- FIN SECTION 1 --> */}
 
-      {/* <!-- SECTION FEATURES --> */}
-      <section className="section__features">
-        <article>
-          <figure>
-            <span className="material-symbols-rounded">dashboard</span>
-          </figure>
-          <div>
-            <h1>friendly dashboard</h1>
-          </div>
-        </article>
+        {/* <!-- SECTION FEATURES --> */}
+        <section className="section__features">
+          <article>
+            <figure>
+              <span className="material-symbols-rounded">devices</span>
+            </figure>
+            <div>
+              <h3>Multidevice</h3>
+            </div>
+          </article>
+          <article>
+            <figure>
+              <span className="material-symbols-rounded">dashboard</span>
+            </figure>
+            <div>
+              <h3>Friendly Dashboard</h3>
+            </div>
+          </article>
+          <article>
+            <figure>
+              <span className="material-symbols-rounded">sentiment_very_satisfied</span>
+            </figure>
+            <div>
+              <h3>Easy to Use</h3>
+            </div>
+          </article>
+        </section>
+        {/* <!-- FIN SECTION FEATURES--> */}
 
-        <article>
-          <figure>
-            <span className="material-symbols-rounded">cloud</span>
-          </figure>
-          <div>
-            <h1>Cloud storage</h1>
+        {/* <!-- SECTION PREVIEW--> */}
+        <section className="section__preview">
+          <div className="preview__img">
+            <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1701969108/profit-lost.com/img/AnnualReport.png" alt="annual_report-img" />
           </div>
-        </article>
-      </section>
-      {/* <!-- FIN SECTION FEATURES--> */}
+          <div className="preview__img">
+            <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1701969605/profit-lost.com/img/Movements.png" alt="movements-img" />
+          </div>
+          <div className="preview__img">
+            <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1701969605/profit-lost.com/img/Movements.png" alt="movements-img" />
+          </div>
+        </section>
+        {/* <!-- FIN SECTION PREVIEW--> */}
+
+      </div>
 
       <Footer />
     </>

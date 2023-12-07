@@ -19,7 +19,7 @@ function getCurrentDate() {
     day: "numeric",
   };
 
-  const today = new Date().toLocaleDateString("es-ES", options);
+  const today = new Date().toLocaleDateString("en-EN", options);
   return today;
 }
 

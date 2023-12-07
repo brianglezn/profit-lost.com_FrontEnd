@@ -25,11 +25,18 @@
 
 /* ---------- FIN HERO ---------- */
 
+.container__sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* ---------- SECTION 1 ---------- */
 .section1 {
   background: var(--color-white);
   display: flex;
   justify-content: center;
+  width: 95%;
   min-height: 60vh;
   border-radius: 150px 150px 0 0;
 }
@@ -58,8 +65,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 95%;
   padding: 1rem 0 3rem 0;
-  border-radius: 0 0 150px 150px;
 }
 
 article {
@@ -98,10 +105,37 @@ article div {
   margin: 1rem;
 }
 
-article div h1 {
+article div h3 {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
+}
+
+/* ---------- FIN FEATURES ---------- */
+
+/* ---------- FEATURES ---------- */
+.section__preview {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--color-white);
+  width: 95%;
+  border-radius: 0 0 150px 150px;
+  padding: 1rem 0 6rem 0;
+}
+
+.preview__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 45vh;
+}
+.preview__img img {
+  height: 100%;
+  border-radius: 7px;
 }
 
 /* ---------- FIN FEATURES ---------- */
@@ -163,9 +197,16 @@ article div h1 {
     margin: 0;
   }
 
-  /* features */
-  .section__features {
+  /* preview */
+  .section__preview {
     border-radius: 0 0 80px 80px;
+    flex-direction: column;
+  }
+  .preview__img {
+    height: 20vh;
+  }
+  .preview__img img {
+    border-radius: 7px;
   }
 }
 
@@ -196,9 +237,16 @@ article div h1 {
     margin: 0;
   }
 
-  /* features */
-  .section__features {
+  /* preview */
+  .section__preview {
     border-radius: 0 0 100px 100px;
+    flex-direction: column;
+}
+  .preview__img {
+    height: 30vh;
+  }
+  .preview__img img {
+    border-radius: 7px;
   }
 }
 
