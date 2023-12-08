@@ -160,7 +160,7 @@ function AnnualMovements(props: AnnualMovementsProps) {
                 const rows = Object.values(categoriesBalance).map((balance, index) => ({
                     id: index,
                     ...balance,
-                    Balance: formatCurrency(balance.Balance),
+                    Balance: balance.Balance,
                 }));
                 setTableRows(rows);
             }
@@ -170,7 +170,12 @@ function AnnualMovements(props: AnnualMovementsProps) {
     const columns: GridColDef[] = useMemo(
         () => [
             { field: "Category", headerName: "Category", flex: 2 },
-            { field: "Balance", headerName: "Balance", flex: 2 },
+            {
+                field: "Balance",
+                headerName: "Balance",
+                flex: 2,
+                renderCell: (params) => formatCurrency(params.row.Balance),
+            },
             { field: "InOut", headerName: "InOut", flex: 0.5 },
         ],
         []

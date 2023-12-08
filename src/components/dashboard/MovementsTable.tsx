@@ -102,7 +102,7 @@ function MovementsTable(props: MovementsProps) {
                             }, index: number) => ({
                                 id: index + 1,
                                 Category: item.Category,
-                                Balance: formatCurrency(item.Amount),
+                                Balance: item.Amount,
                                 InOut: item.Amount >= 0 ? "IN" : "OUT",
                                 Description: item.Description,
                             })
@@ -119,7 +119,7 @@ function MovementsTable(props: MovementsProps) {
     const columns: GridColDef[] = [
         { field: "Category", headerName: "Category", flex: 2 },
         { field: "Description", headerName: "Description", flex: 2 },
-        { field: "Balance", headerName: "Balance", flex: 2 },
+        { field: "Balance", headerName: "Balance", flex: 2, renderCell: (params) => formatCurrency(params.row.Balance), },
         { field: "InOut", headerName: "InOut", flex: 0.5 },
     ];
 
