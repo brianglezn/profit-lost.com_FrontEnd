@@ -196,7 +196,8 @@ function MovementsPie(props: MovementsProps) {
                             </Pie>
                             <Tooltip />
                         </PieChart>
-                    </ResponsiveContainer>)}
+                    </ResponsiveContainer>
+                )}
             </div>
             <div className="movements__containerMain-category">
                 {isDataEmpty || dataCategoryExpenses.length === 0 ? (
@@ -222,7 +223,8 @@ function MovementsPie(props: MovementsProps) {
                             </Pie>
                             <Tooltip />
                         </PieChart>
-                    </ResponsiveContainer>)}
+                    </ResponsiveContainer>
+                )}
             </div>
         </>
     );

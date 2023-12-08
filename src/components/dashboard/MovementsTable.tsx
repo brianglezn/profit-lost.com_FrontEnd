@@ -1,7 +1,8 @@
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
-import dataMovementsJson from "../../data/dataMovements.json";
 import { useEffect, useState } from "react";
+import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import LinearProgress from '@mui/material/LinearProgress';
 
+import dataMovementsJson from "../../data/dataMovements.json";
 
 // Definición de tipo para las entradas de transacciones mensuales con categoría y monto
 type MonthlyTransactionEntry = {
@@ -127,7 +128,10 @@ function MovementsTable(props: MovementsProps) {
         <>
             <div className="movements__movements-table">
                 {isDataEmpty ? (
-                    <p>No data available for this month.</p>
+                    <>
+                        <p>No data available for this month.</p>
+                        <LinearProgress />
+                    </>
                 ) : (
                     <DataGrid
                         rows={tableRows}

@@ -1,5 +1,6 @@
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { useEffect, useMemo, useState } from "react";
+import LinearProgress from '@mui/material/LinearProgress';
 
 import dataMovementsFile from "../../data/dataMovements.json";
 
@@ -208,7 +209,10 @@ function AnnualMovements(props: AnnualMovementsProps) {
                             params.indexRelativeToCurrentPage % 2 === 0 ? 'row-even' : 'row-odd'
                         }
                     />) : (
-                    <p>No data available for this year.</p>
+                    <>
+                        <p>No data available for this year.</p>
+                        <LinearProgress />
+                    </>
                 )}
             </div>
         </>

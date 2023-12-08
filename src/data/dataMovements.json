@@ -2049,26 +2049,7 @@
       },
       {
         "Dec": [
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -365
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -3
-          }
+         
         ]
       }
     ]
