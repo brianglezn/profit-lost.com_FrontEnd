@@ -3,18 +3,18 @@
     "accountName": "ImaginBank",
     "data": {
       "2023": {
-        "Jan": 0,
-        "Feb": 0,
-        "Mar": 0,
-        "Apr": 0,
-        "May": 0,
-        "Jun": 0,
-        "Jul": 0,
-        "Aug": 0,
-        "Sep": 0,
-        "Oct": 0,
-        "Nov": 0,
-        "Dec": 0
+        "Jan": 2171.04,
+        "Feb": 1926.91,
+        "Mar": 2160.19,
+        "Apr": 1551.73,
+        "May": 1723.36,
+        "Jun": 1799.18,
+        "Jul": 1442.65,
+        "Aug": 1811.17,
+        "Sep": 2632.97,
+        "Oct": 3311.64,
+        "Nov": 3096.2,
+        "Dec": 3158
       },
       "2022": {
         "Jan": 3134.4,
@@ -39,7 +39,7 @@
     "data": {
       "2023": {
         "Jan": 0,
-        "Feb": 0,
+        "Feb": 101,
         "Mar": 0,
         "Apr": 0,
         "May": 0,
@@ -73,18 +73,18 @@
     "accountName": "Savings",
     "data": {
       "2023": {
-        "Jan": 0,
-        "Feb": 0,
-        "Mar": 0,
-        "Apr": 0,
-        "May": 0,
-        "Jun": 0,
-        "Jul": 0,
-        "Aug": 0,
-        "Sep": 0,
-        "Oct": 0,
-        "Nov": 0,
-        "Dec": 0
+        "Jan": 100,
+        "Feb": 200,
+        "Mar": 300,
+        "Apr": 400,
+        "May": 500,
+        "Jun": 600,
+        "Jul": 700,
+        "Aug": 800,
+        "Sep": 900,
+        "Oct": 1000,
+        "Nov": 1100,
+        "Dec": 1200
       }
     },
     "customBackgroundColor": "var(--color-orange-300)",
@@ -94,18 +94,18 @@
     "accountName": "Investments",
     "data": {
       "2023": {
-        "Jan": 0,
-        "Feb": 0,
-        "Mar": 0,
-        "Apr": 0,
-        "May": 0,
-        "Jun": 0,
-        "Jul": 0,
-        "Aug": 0,
-        "Sep": 0,
-        "Oct": 0,
-        "Nov": 0,
-        "Dec": 0
+        "Jan": 1500,
+        "Feb": 2120,
+        "Mar": 2335,
+        "Apr": 2649.7,
+        "May": 2852,
+        "Jun": 2746,
+        "Jul": 2932,
+        "Aug": 2795,
+        "Sep": 2600,
+        "Oct": 2754,
+        "Nov": 3469.28,
+        "Dec": 3801
       },
       "2022": {
         "Jan": 763.74,

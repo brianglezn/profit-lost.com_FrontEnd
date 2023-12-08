@@ -20,7 +20,9 @@ function MovementsChart(props: MovementsProps) {
         <>
             <div className="movements__containerMain-chart">
                 {isDataEmpty ? (
-                    <p>No data available for this month.</p>
+                    <span className="material-symbols-rounded">
+                        mobiledata_off
+                    </span>
                 ) : (
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart

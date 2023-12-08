@@ -174,7 +174,9 @@ function MovementsPie(props: MovementsProps) {
         <>
             <div className="movements__containerMain-category">
                 {isDataEmpty || dataCategoryIncome.length === 0 ? (
-                    <p>No income data available for this month.</p>
+                    <span className="material-symbols-rounded">
+                        mobiledata_off
+                    </span>
                 ) : (
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart width={400} height={400}>
@@ -201,7 +203,9 @@ function MovementsPie(props: MovementsProps) {
             </div>
             <div className="movements__containerMain-category">
                 {isDataEmpty || dataCategoryExpenses.length === 0 ? (
-                    <p>No expenses data available for this month.</p>
+                    <span className="material-symbols-rounded">
+                        mobiledata_off
+                    </span>
                 ) : (
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart width={400} height={400}>

@@ -62,6 +62,17 @@ function getPreviousMonth() {
 }
 
 function Accounts() {
+  // Extrae la fecha actual, el año actual y el nombre del mes actual
+  const currentDate = new Date();
+  const currentYear: number = currentDate.getFullYear();
+  const currentMonthName: string = monthNames[currentDate.getMonth()];
+
+  // Hook de estado y función manejadora para el cambio de año seleccionado en la interfaz de usuario
+  const [year, setYear] = React.useState(currentYear.toString());
+  const handleChange = (event: SelectChangeEvent) => {
+    setYear(event.target.value as string);
+  };
+
   // Estado para rastrear si hay datos disponibles
   const [isDataAvailable, setIsDataAvailable] = useState(true);
 
@@ -101,13 +112,14 @@ function Accounts() {
     });
 
     setDataAccounts(formattedData);
-  }, []);
 
-  // Extrae la fecha actual, el año actual y el nombre del mes actual
-  const currentDate = new Date();
-  const currentYear: number = currentDate.getFullYear();
-  const currentMonthName: string = monthNames[currentDate.getMonth()];
+    // Verifica si hay datos disponibles para el año seleccionado
+    const hasDataForSelectedYear = formattedData.some((account) => 
+    year in account.data
+  );
 
+    setIsDataAvailable(hasDataForSelectedYear);
+  }, [dataAccountsFile, year]);
   // Hook useMemo para calcular el saldo total actual basándose en los datos de las cuentas y el mes actual
   const totalBalance = useMemo(() => {
     let hasData = false;
@@ -127,12 +139,6 @@ function Accounts() {
       new Set(dataAccounts.flatMap((account) => Object.keys(account.data)))
     ).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
   }, [dataAccounts]);
-
-  // Hook de estado y función manejadora para el cambio de año seleccionado en la interfaz de usuario
-  const [year, setYear] = React.useState(currentYear.toString());
-  const handleChange = (event: SelectChangeEvent) => {
-    setYear(event.target.value as string);
-  };
 
   // Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
   const chartData = monthNames.map((month) => {
@@ -292,7 +298,11 @@ function Accounts() {
                 </BarChart>
               </ResponsiveContainer>
             </div>) : (
-            <p>No data available for the current year.</p>
+            <div className="accounts__main">
+              <span className="material-symbols-rounded">
+                mobiledata_off
+              </span>
+            </div>
           )}
 
         </div>
