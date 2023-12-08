@@ -147,9 +147,18 @@ function Accounts() {
       data["TOTAL"] += value;
     });
 
+    // Concatena el total al nombre del mes
+    const monthWithTotal = `${month}: ${data["TOTAL"].toLocaleString("es-ES", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      useGrouping: true,
+    })}`;
+
+
     // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
     return {
-      name: month,
+      name: monthWithTotal,
       ...data,
     };
   });
