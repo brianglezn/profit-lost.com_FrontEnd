@@ -1,14 +1,21 @@
-import { SetStateAction, useState } from "react";
+import React, { Suspense, SetStateAction, useState } from "react";
 import Avatar from "@mui/material/Avatar";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import "./Dashboard.css";
 
-import DashHome from "./DashHome";
-import Accounts from "./Accounts";
-import AnnualReport from "./AnnualReport";
-import Movements from "./Movements";
-import Profile from "./Profile";
-import Goals from "./Goals";
+const DashHome = React.lazy(() => import('./DashHome'));
+const Accounts = React.lazy(() => import('./Accounts'));
+const AnnualReport = React.lazy(() => import('./AnnualReport'));
+const Movements = React.lazy(() => import('./Movements'));
+const Profile = React.lazy(() => import('./Profile'));
+const Goals = React.lazy(() => import('./Goals'));
+// import DashHome from "./DashHome";
+// import Accounts from "./Accounts";
+// import AnnualReport from "./AnnualReport";
+// import Movements from "./Movements";
+// import Profile from "./Profile";
+// import Goals from "./Goals";
 
 // Función para utilizar una fecha formateada
 function getCurrentDate() {
@@ -139,14 +146,24 @@ function Dashboard() {
         </div>
         {/* FIN NAV RESPONSIVE */}
 
-        <section className="dashboard__container">
-          {activeSection === "Dashboard" && <DashHome />}
-          {activeSection === "AnnualReport" && <AnnualReport />}
-          {activeSection === "Movements" && <Movements />}
-          {activeSection === "Accounts" && <Accounts />}
-          {activeSection === "Profile" && <Profile />}
-          {activeSection === "Goals" && <Goals />}
-        </section>
+        <Suspense fallback={
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%'
+          }}>
+            <CircularProgress />
+          </div>}>
+          <section className="dashboard__container">
+            {activeSection === "Dashboard" && <DashHome />}
+            {activeSection === "AnnualReport" && <AnnualReport />}
+            {activeSection === "Movements" && <Movements />}
+            {activeSection === "Accounts" && <Accounts />}
+            {activeSection === "Profile" && <Profile />}
+            {activeSection === "Goals" && <Goals />}
+          </section>
+        </Suspense>
       </section>
     </>
   );
