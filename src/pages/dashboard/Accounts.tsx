@@ -73,9 +73,6 @@ function Accounts() {
     setYear(event.target.value as string);
   };
 
-  // Estado para rastrear si hay datos disponibles
-  const [isDataAvailable, setIsDataAvailable] = useState(true);
-
   // Hook de estado para manejar los datos de las cuentas
   const [dataAccounts, setDataAccounts] = useState<DataAccountItem[]>([]);
   // Hook de efecto para formatear y establecer datos de las cuentas a partir de un archivo de datos
@@ -112,14 +109,8 @@ function Accounts() {
     });
 
     setDataAccounts(formattedData);
-
-    // Verifica si hay datos disponibles para el año seleccionado
-    const hasDataForSelectedYear = formattedData.some((account) => 
-    year in account.data
-  );
-
-    setIsDataAvailable(hasDataForSelectedYear);
   }, [dataAccountsFile, year]);
+
   // Hook useMemo para calcular el saldo total actual basándose en los datos de las cuentas y el mes actual
   const totalBalance = useMemo(() => {
     let hasData = false;
@@ -128,8 +119,6 @@ function Accounts() {
       if (monthBalance !== 0) hasData = true;
       return acc + monthBalance;
     }, 0);
-    // Actualiza el estado basándose en si encontramos algún saldo para el mes actual
-    setIsDataAvailable(hasData);
     return balance;
   }, [dataAccounts, currentYear, currentMonthName]);
 
@@ -140,35 +129,38 @@ function Accounts() {
     ).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
   }, [dataAccounts]);
 
-  // Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
-  const chartData = monthNames.map((month) => {
-    const data: Record<string, number> = { "TOTAL": 0 };
+// Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
+const chartData = monthNames.map((month) => {
+  const data: Record<string, number | string> = {};
 
-    dataAccounts.forEach((account) => {
-      // Obtiene el valor para el mes y año seleccionados o 0 si no está definido
-      const value = account.data[parseInt(year)]?.[month] ?? 0;
-      // Asigna el valor al nombre de la cuenta correspondiente en el objeto de datos
-      data[account.accountName] = value;
-      // Acumula el valor en el total
-      data["TOTAL"] += value;
-    });
-
-    // Concatena el total al nombre del mes
-    const monthWithTotal = `${month}: ${data["TOTAL"].toLocaleString("es-ES", {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-      useGrouping: true,
-    })}`;
-
-
-    // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
-    return {
-      name: monthWithTotal,
-      ...data,
-    };
+  dataAccounts.forEach((account) => {
+    // Obtiene el valor para el mes y año seleccionados o 0 si no está definido
+    const value = account.data[parseInt(year)]?.[month] ?? 0;
+    // Asigna el valor al nombre de la cuenta correspondiente en el objeto de datos
+    data[account.accountName] = value;
   });
 
+  // Concatena el total al nombre del mes
+  const monthWithTotal = `${month}: ${Object.values(data).reduce((acc, val) => {
+    // Asegurarse de que ambos valores sean números antes de sumarlos
+    const numAcc = typeof acc === 'number' ? acc : parseFloat(acc);
+    const numVal = typeof val === 'number' ? val : parseFloat(val);
+    return numAcc + numVal;
+  }, 0).toLocaleString("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    useGrouping: true,
+  })}`;
+
+  // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
+  return {
+    name: monthWithTotal,
+    ...data,
+  };
+});
+
+  console.log(chartData)
   // Formatea el saldo total para mostrarlo en el formato de moneda local
   const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
     minimumFractionDigits: 2,
@@ -260,50 +252,42 @@ function Accounts() {
               ))}
             </Select>
           </FormControl>
-          {isDataAvailable ? (
-            <div className="accounts__main">
-
-              <h2>{formattedTotalBalance} €</h2>
-              <p className={isPositive ? "positive-balance" : "negative-balance"}>
-                {balanceDifference > 0
-                  ? `+${balanceDifference.toFixed(2)}`
-                  : balanceDifference.toFixed(2)}{" "}
-                € <span>{previousMonth}</span>
-              </p>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart
-                  width={500}
-                  height={300}
-                  data={chartData}
-                  margin={{
-                    top: 20,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  {dataAccounts.map((account) => (
-                    <Bar
-                      key={account.accountName}
-                      dataKey={account.accountName}
-                      stackId="a"
-                      fill={account.customBackgroundColor}
-                    />
-                  ))}
-                </BarChart>
-              </ResponsiveContainer>
-            </div>) : (
-            <div className="accounts__main">
-              <span className="material-symbols-rounded">
-                mobiledata_off
-              </span>
-            </div>
-          )}
+          <div className="accounts__main">
+            <h2>{formattedTotalBalance} €</h2>
+            <p className={isPositive ? "positive-balance" : "negative-balance"}>
+              {balanceDifference > 0
+                ? `+${balanceDifference.toFixed(2)}`
+                : balanceDifference.toFixed(2)}{" "}
+              € <span>{previousMonth}</span>
+            </p>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                width={500}
+                height={300}
+                data={chartData}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                {dataAccounts.map((account) => (
+                  <Bar
+                    key={account.accountName}
+                    dataKey={account.accountName}
+                    stackId="a"
+                    fill={account.customBackgroundColor}
+                  />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
 
         </div>
         <div className="accounts__containerAccounts">

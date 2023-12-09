@@ -25,6 +25,12 @@
   background-color: var(--color-white);
 }
 
+.annualReport__containerMain-chart .material-symbols-rounded {
+  text-align: center;
+  font-size: 80px;
+  opacity: 0.3;
+}
+
 .annualReport__containerMain-balance {
   display: flex;
   justify-content: center;
@@ -32,6 +38,7 @@
   gap: 20px;
   width: 100%;
 }
+
 .annualReport__balance {
   display: flex;
   justify-content: center;
@@ -45,15 +52,19 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: var(--color-white);
 }
+
 .annualReport__balance span {
   font-size: 3rem;
 }
+
 .income span {
   color: var(--color-orange-400);
 }
+
 .expenses span {
   color: var(--color-orange-900);
 }
+
 .annualReport__balance p {
   font-size: 1.5rem;
 }
@@ -77,12 +88,15 @@
   padding: 0 40px;
   margin-bottom: 20px;
 }
+
 .annualReport__category-text p {
   font-weight: bold;
 }
+
 .annualReport__category-text span {
   cursor: pointer;
 }
+
 .annualReport__category-text span:hover {
   color: var(--color-orange);
 }
@@ -93,43 +107,55 @@
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
+
   /* Estilos para dispositivos móviles */
   .annualReport {
     margin: 20px 15px;
   }
+
   .annualReport__containerMain-balance {
     flex-direction: column;
     height: 11rem;
     gap: 10px;
     padding: 0;
   }
+
   .annualReport__containerMain-balance div {
     height: 3rem;
   }
+
   .annualReport__balance {
     width: 100%;
   }
+
   .annualReport__balance span {
     font-size: 2rem;
   }
+
   .annualReport__balance p {
     font-size: 1.2rem;
   }
+
   .annualReport__containerCategory {
     margin-bottom: 5rem;
   }
+
   .annualReport__category-table {
     padding: 0 1rem 1rem;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
+
   /* Estilos para tablets */
   .annualReport__containerMain-balance {
     gap: 10px;
   }
+
   .annualReport__balance {
     width: 100%;
   }
+
   .annualReport__containerCategory {
     margin-bottom: 5rem;
   }
