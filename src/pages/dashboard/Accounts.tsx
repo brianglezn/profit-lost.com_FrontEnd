@@ -113,10 +113,8 @@ function Accounts() {
 
   // Hook useMemo para calcular el saldo total actual basándose en los datos de las cuentas y el mes actual
   const totalBalance = useMemo(() => {
-    let hasData = false;
     const balance = dataAccounts.reduce((acc, account) => {
       const monthBalance = account.data[currentYear]?.[currentMonthName] || 0;
-      if (monthBalance !== 0) hasData = true;
       return acc + monthBalance;
     }, 0);
     return balance;
@@ -129,36 +127,36 @@ function Accounts() {
     ).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
   }, [dataAccounts]);
 
-// Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
-const chartData = monthNames.map((month) => {
-  const data: Record<string, number | string> = {};
+  // Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
+  const chartData = monthNames.map((month) => {
+    const data: Record<string, number | string> = {};
 
-  dataAccounts.forEach((account) => {
-    // Obtiene el valor para el mes y año seleccionados o 0 si no está definido
-    const value = account.data[parseInt(year)]?.[month] ?? 0;
-    // Asigna el valor al nombre de la cuenta correspondiente en el objeto de datos
-    data[account.accountName] = value;
+    dataAccounts.forEach((account) => {
+      // Obtiene el valor para el mes y año seleccionados o 0 si no está definido
+      const value = account.data[parseInt(year)]?.[month] ?? 0;
+      // Asigna el valor al nombre de la cuenta correspondiente en el objeto de datos
+      data[account.accountName] = value;
+    });
+
+    // Concatena el total al nombre del mes
+    const monthWithTotal = `${month}: ${Object.values(data).reduce((acc, val) => {
+      // Asegurarse de que ambos valores sean números antes de sumarlos
+      const numAcc = typeof acc === 'number' ? acc : parseFloat(acc);
+      const numVal = typeof val === 'number' ? val : parseFloat(val);
+      return numAcc + numVal;
+    }, 0).toLocaleString("es-ES", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      useGrouping: true,
+    })}`;
+
+    // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
+    return {
+      name: monthWithTotal,
+      ...data,
+    };
   });
-
-  // Concatena el total al nombre del mes
-  const monthWithTotal = `${month}: ${Object.values(data).reduce((acc, val) => {
-    // Asegurarse de que ambos valores sean números antes de sumarlos
-    const numAcc = typeof acc === 'number' ? acc : parseFloat(acc);
-    const numVal = typeof val === 'number' ? val : parseFloat(val);
-    return numAcc + numVal;
-  }, 0).toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-    useGrouping: true,
-  })}`;
-
-  // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
-  return {
-    name: monthWithTotal,
-    ...data,
-  };
-});
 
   console.log(chartData)
   // Formatea el saldo total para mostrarlo en el formato de moneda local
