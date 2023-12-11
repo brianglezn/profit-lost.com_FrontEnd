@@ -4,6 +4,7 @@ import "./Home.css";
 
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
+import Preview from "../../components/landing/Preview";
 
 function Home() {
   return (
@@ -74,15 +75,7 @@ function Home() {
 
         {/* <!-- SECTION PREVIEW--> */}
         <section className="section__preview">
-          <div className="preview__img">
-            <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1701969108/profit-lost.com/img/AnnualReport.png" alt="annual_report-img" />
-          </div>
-          <div className="preview__img">
-            <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1701969605/profit-lost.com/img/Movements.png" alt="movements-img" />
-          </div>
-          <div className="preview__img">
-            <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1701969605/profit-lost.com/img/Movements.png" alt="movements-img" />
-          </div>
+          <Preview />
         </section>
         {/* <!-- FIN SECTION PREVIEW--> */}
 
