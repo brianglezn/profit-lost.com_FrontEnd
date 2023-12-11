@@ -64,11 +64,11 @@
 
 .dashboard__nav-img {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 .dashboard__nav-img img {
-  object-fit: contain;
-  max-height: 9vh;
-  min-width: 20vh;
+  width: 80%;
 }
 
 .dashboard__nav-nav {

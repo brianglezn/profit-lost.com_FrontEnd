@@ -10,12 +10,6 @@ const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
 const Profile = React.lazy(() => import('./Profile'));
 const Goals = React.lazy(() => import('./Goals'));
-// import DashHome from "./DashHome";
-// import Accounts from "./Accounts";
-// import AnnualReport from "./AnnualReport";
-// import Movements from "./Movements";
-// import Profile from "./Profile";
-// import Goals from "./Goals";
 
 // Función para utilizar una fecha formateada
 function getCurrentDate() {
