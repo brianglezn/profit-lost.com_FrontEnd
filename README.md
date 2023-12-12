@@ -1,27 +1,37 @@
-# React + TypeScript + Vite
+<h1>Profit-Lost.com - Proyecto de finde curso de Desarrollo de Aplicaciones Web</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>Descripción</h2>
+Profit-Lost.com es una aplicación web avanzada desarrollada en TypeScript, centrada en la gestión y visualización de datos financieros. Esta aplicación está diseñada para proporcionar a los usuarios una herramienta intuitiva y eficaz para el seguimiento de sus finanzas personales o empresariales, con énfasis en la claridad y la facilidad de uso.
 
-Currently, two official plugins are available:
+<h2>Características Principales</h2>
+- **Visualización de Datos Financieros**: La aplicación permite a los usuarios visualizar sus datos financieros de manera interactiva, utilizando gráficos y tablas para una mejor comprensión.
+- **Interfaz de Usuario Personalizable y Responsiva**: Gracias a Material-UI, la aplicación ofrece una interfaz elegante y adaptable a diferentes dispositivos.
+- **Gráficos Dinámicos**: Con Recharts, los usuarios pueden ver sus datos financieros en diversos formatos gráficos, facilitando el análisis y la toma de decisiones.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2>Tecnologías Utilizadas</h2>
+- React
+- TypeScript
+- Material-UI
+- Recharts
+- Vite
+- Node.js
+- Posteriormente agregaremos MongoDB y Express
 
-## Expanding the ESLint configuration
+<h2>Prerrequisitos</h2>
+Antes de comenzar, asegúrate de tener instalado [Node.js](https://nodejs.org/) en tu sistema.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<h2>Desarrollo y Contribuciones</h2>
+1. Clona el repositorio:
+   (`git clone https://github.com/brianglezn/profit-lost.com_TS.git`)
+3. Navega al directorio del proyecto:
+   (`cd profit-lost.com_TS`)
+4. Instala las dependencias del proyecto:
+   (`npm install`)
+6. Ejecuta la aplicación en modo de desarrollo:
+   (`npm run dev`)
+   
+Licencia
+Este proyecto está bajo la Licencia MIT.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Contacto
+Brian Glezn - brianglezn@gmail.com
