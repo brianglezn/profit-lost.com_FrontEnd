@@ -5,16 +5,45 @@
   margin: 20px 25px;
 }
 
+.profile__avatar {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "avatar name";
+  width: 80%;
+}
+
+.avatar {
+  grid-area: avatar;
+}
+
+.avatar div {
+  border-radius: 30px;
+  font-size: 3rem;
+}
+
+.name {
+  grid-area: name;
+}
+
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
+
   /* Estilos para dispositivos móviles */
   .profile {
     margin: 20px 15px;
   }
-  
+
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para tablets */
 
 }
+
 /* ---------- FIN RESPONSIVE ---------- */

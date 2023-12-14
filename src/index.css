@@ -44,6 +44,7 @@ button {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
+
 button:hover {
   background-color: var(--color-orange-600);
   color: var(--color-white);
@@ -54,6 +55,7 @@ a {
   color: var(--color-orange);
   text-decoration: none;
 }
+
 a:hover {
   color: var(--color-orange-600);
   cursor: pointer;
@@ -67,7 +69,7 @@ a:hover {
   color: green;
 }
 
-/* bordes mui */
+/* mui selector*/
 div.MuiInputBase-root.css-1a2qpli,
 fieldset.css-igs3ac {
   border-radius: 15px;
@@ -77,6 +79,7 @@ fieldset.css-igs3ac {
 .row-even {
   background-color: var(--color-orange-50);
 }
+
 .row-odd {
   background-color: #ffffff;
 }
