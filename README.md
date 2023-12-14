@@ -1,27 +1,39 @@
-# React + TypeScript + Vite
+<h1>Profit-Lost.com - TFC DAW</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>Descripción</h2>
+Profit-Lost.com es una aplicación web avanzada desarrollada en React con Typescript, centrada en la gestión y visualización de datos financieros. Esta aplicación está diseñada para proporcionar a los usuarios una herramienta intuitiva y eficaz para el seguimiento de sus finanzas personales o empresariales, con énfasis en la claridad y la facilidad de uso.
 
-Currently, two official plugins are available:
+<h2>Características Principales</h2>
+<ul>
+  <li>Visualización de Datos Financieros</li>
+  <li>Interfaz de Usuario Personalizable y Responsiva</li>
+  <li>Gráficos Dinámicos</li>
+</ul>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2>Tecnologías Utilizadas</h2>
+<ul>
+  <li>React</li>
+  <li>TypeScript</li>
+  <li>Material-UI</li>
+  <li>Recharts</li>
+  <li>Vite</li>
+  <li>Node.js</li>
+  <li>Posteriormente agregaremos MongoDB y Express</li>
+</ul>
 
-## Expanding the ESLint configuration
+<h2>Prerrequisitos</h2>
+Antes de comenzar, asegúrate de tener instalado [Node.js](https://nodejs.org/) en tu sistema.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<h2>Desarrollo y Contribuciones</h2>
+<ol>
+  <li>Clona el repositorio: <code>git clone https://github.com/brianglezn/profit-lost.com_TS.git</code></li>
+  <li>Navega al directorio del proyecto: <code>cd profit-lost.com_TS</code></li>
+  <li>Instala las dependencias del proyecto: <code>npm install</code></li>
+  <li>Ejecuta la aplicación en modo de desarrollo: <code>npm run dev</code></li>
+</ol>
+   
+<h2>Licencia</h2>
+Este proyecto está bajo la Licencia MIT.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<h2>Contacto</h2>
+Brian González Novoa - brianglezn@gmail.com
