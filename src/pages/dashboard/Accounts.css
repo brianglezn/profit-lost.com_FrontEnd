@@ -2,15 +2,17 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 20px 25px;
+  margin: 1rem 2rem;
 }
+
 .movements__containerMain {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 20px;
-  width: 98%;
+  width: 100%;
 }
+
 .accounts__main {
   background-color: var(--color-white);
   width: 100%;
@@ -21,22 +23,27 @@
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-.accounts__main .material-symbols-rounded{
+
+.accounts__main .material-symbols-rounded {
   text-align: center;
   font-size: 80px;
   opacity: 0.3;
 }
+
 .accounts__main h2 {
   font-size: 2.5rem;
   margin: 1rem;
 }
+
 .accounts__main p.positive-balance {
   color: green;
 }
+
 .accounts__main p.negative-balance {
   color: red;
 }
-.accounts__main p > span {
+
+.accounts__main p>span {
   padding: 3px 7px;
   border-radius: 5px;
   -webkit-border-radius: 8px;
@@ -47,7 +54,7 @@
 .accounts__containerAccounts {
   background-color: var(--color-white);
   margin-top: 20px;
-  width: 98%;
+  width: 100%;
   padding: 20px 0 20px 0;
   border-radius: 20px;
   display: flex;
@@ -63,12 +70,15 @@
   padding: 0 40px;
   margin-bottom: 20px;
 }
+
 .accounts__accounts-text p {
   font-weight: bold;
 }
+
 .accounts__accounts-text span {
   cursor: pointer;
 }
+
 .accounts__accounts-text span:hover {
   color: var(--color-orange);
 }
@@ -93,15 +103,18 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: transform 0.3s ease-in-out;
 }
+
 .accounts__account-container:hover {
   transform: scale(1.02);
 }
+
 .accounts__account-container p {
   font-size: 1.5rem;
   text-align: left;
   font-weight: bold;
   margin: 20px 0 0 20px;
 }
+
 .accounts__account-container span {
   font-size: 1.5rem;
   font-weight: bold;
@@ -111,27 +124,35 @@
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
+
   /* Estilos para dispositivos móviles */
   .accounts {
     margin: 20px 15px;
   }
+
   .accounts__containerAccounts {
     margin-bottom: 5rem;
   }
+
   .accounts__account-container:hover {
     transform: none;
   }
+
   .accounts__accounts-container {
     padding: 0;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
+
   /* Estilos para tablets */
   .accounts__containerAccounts {
     margin-bottom: 5rem;
   }
+
   .accounts__account-container:hover {
     transform: none;
   }
 }
+
 /* ---------- FIN RESPONSIVE ---------- */

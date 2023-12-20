@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 20px 25px;
+  margin: 1rem 2rem;
 }
 
 .movements__containerMain {
@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  width: 98%;
+  width: 100%;
 }
 
 .movements__containerMain-selector {
