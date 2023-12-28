@@ -1,6 +1,8 @@
 [
   {
-    "accountName": "ImaginBank",
+    "accountName": "Banco1",
+    "customBackgroundColor": "var(--color-orange-700)",
+    "customColor": "var(--color-white)",
     "data": {
       "2023": {
         "Jan": 2171.04,
@@ -30,12 +32,12 @@
         "Nov": 1711.34,
         "Dec": 1552.45
       }
-    },
-    "customBackgroundColor": "var(--color-orange-700)",
-    "customColor": "var(--color-white)"
+    }
   },
   {
-    "accountName": "Abanca",
+    "accountName": "Banco2",
+    "customBackgroundColor": "var(--color-orange-400)",
+    "customColor": "var(--color-white)",
     "data": {
       "2023": {
         "Jan": 0,
@@ -65,12 +67,12 @@
         "Nov": 0,
         "Dec": 0
       }
-    },
-    "customBackgroundColor": "var(--color-orange-400)",
-    "customColor": "var(--color-white)"
+    }
   },
   {
-    "accountName": "Savings",
+    "accountName": "Banco3",
+    "customBackgroundColor": "var(--color-orange-300)",
+    "customColor": "var(--color-black)",
     "data": {
       "2023": {
         "Jan": 100,
@@ -86,12 +88,12 @@
         "Nov": 1100,
         "Dec": 1200
       }
-    },
-    "customBackgroundColor": "var(--color-orange-300)",
-    "customColor": "var(--color-black)"
+    }
   },
   {
-    "accountName": "Investments",
+    "accountName": "Banco4",
+    "customBackgroundColor": "var(--color-orange-900)",
+    "customColor": "var(--color-white)",
     "data": {
       "2023": {
         "Jan": 1500,
@@ -121,8 +123,6 @@
         "Nov": 2155,
         "Dec": 1647
       }
-    },
-    "customBackgroundColor": "var(--color-orange-900)",
-    "customColor": "var(--color-white)"
+    }
   }
 ]

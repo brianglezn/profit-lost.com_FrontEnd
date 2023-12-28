@@ -1,10 +1,9 @@
-[
-  {
-    "username": "brianglezn",
-    "email": "brianglezn@gmail.com",
-    "password": "abc123",
-    "name": "Brian",
-    "surname": "González Novoa",
-    "photo": ""
-  }
-]
+{
+  "_id": "userId1",
+  "username": "brianglezn",
+  "email": "brianglezn@gmail.com",
+  "password": "abc123",
+  "categorias": ["categoryId1", "categoryId2"],
+  "cuentas": ["accountId1", "accountId2"],
+  "movimientos": ["movementId1", "movementId2"]
+}

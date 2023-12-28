@@ -1,0 +1,7 @@
+{
+  "_id": "movementId1",
+  "cuentaId": "accountId1",
+  "categoriaId": "categoryId1",
+  "monto": 100,
+  "fecha": "2023-01-01"
+}
