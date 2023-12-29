@@ -39,7 +39,7 @@ function App() {
 
   const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
     const { authToken } = useAuth();
-    return authToken ? children : <Navigate to="/login" />;
+    return authToken ? <>{children}</> : <Navigate to="/login" />;
   };
 
   return (
