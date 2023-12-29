@@ -12,11 +12,11 @@ function Profile() {
               sx={{ bgcolor: "var(--color-orange)", width: 100, height: 100 }}
               variant="rounded"
             >
-              B
+              P 1
             </Avatar>
           </div>
           <div className="name">
-            <h2>Brian González Novoa </h2>
+            <h2>Prueba 1</h2>
           </div>
         </div>
       </section>
