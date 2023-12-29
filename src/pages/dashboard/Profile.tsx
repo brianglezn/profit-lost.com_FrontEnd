@@ -1,8 +1,19 @@
 import Avatar from "@mui/material/Avatar";
+import { useNavigate } from 'react-router-dom';
 
 import "./Profile.css";
 
 function Profile() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Eliminar el token del almacenamiento local
+    localStorage.removeItem('token');
+
+    // Redirigir al usuario a la página de inicio o a cualquier otra página
+    navigate('/login'); // Ajusta esta ruta según sea necesario
+  };
+
   return (
     <>
       <section className="profile">
@@ -19,6 +30,11 @@ function Profile() {
             <h2>Prueba 1</h2>
           </div>
         </div>
+
+        {/* Botón de Logout */}
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
       </section>
     </>
   );

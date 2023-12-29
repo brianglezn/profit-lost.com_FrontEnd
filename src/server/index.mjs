@@ -4,11 +4,14 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
+
+const JWT_KEY = "rFP7oijih7854GORk23z";
 
 app.post("/register", async (req, res) => {
   try {
@@ -44,17 +47,23 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const usersCollection = client.db(DB_NAME).collection("users");
     const user = await usersCollection.findOne({ email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
-      // Aquí deberías generar un token o iniciar una sesión
-      res.send("Login successful");
+    if (user && await bcrypt.compare(password, user.password)) {
+      // Generar un token JWT
+      const token = jwt.sign(
+        { userId: user._id },
+        JWT_KEY,
+        { expiresIn: '1h' }
+      );
+
+      res.json({ token }); // Enviar el token al cliente
     } else {
       res.status(401).send("Invalid email or password");
     }
   } catch (e) {
+    console.error(e);
     res.status(500).send("Error during login");
   }
 });

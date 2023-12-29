@@ -20,7 +20,9 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
 
+      const data = await response.json();
       if (response.ok) {
+        localStorage.setItem('token', data.token);
         // Login successful
         console.log('Login successful');
         navigate('/dashboard'); // Redirect to dashboard or home page
