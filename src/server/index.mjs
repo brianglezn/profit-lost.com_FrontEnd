@@ -50,13 +50,11 @@ app.post("/login", async (req, res) => {
     const usersCollection = client.db(DB_NAME).collection("users");
     const user = await usersCollection.findOne({ email });
 
-    if (user && await bcrypt.compare(password, user.password)) {
+    if (user && (await bcrypt.compare(password, user.password))) {
       // Generar un token JWT
-      const token = jwt.sign(
-        { userId: user._id },
-        JWT_KEY,
-        { expiresIn: '1h' }
-      );
+      const token = jwt.sign({ userId: user._id }, JWT_KEY, {
+        expiresIn: "1h",
+      });
 
       res.json({ token }); // Enviar el token al cliente
     } else {
