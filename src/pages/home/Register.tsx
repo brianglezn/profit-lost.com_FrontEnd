@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login-Register.css';
 import Footer from '../../components/landing/Footer';
 
@@ -8,6 +8,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +30,21 @@ function Register() {
       console.error('Failed to register');
     }
   };
+
+  // Función para cerrar el popup
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  useEffect(() => {
+    // Verificar si el usuario tiene un bloqueador de anuncios activado (esto es un ejemplo, puedes usar una librería para detectar bloqueadores de anuncios)
+    const adBlockEnabled = true; // Cambiar a tu lógica de detección
+
+    if (adBlockEnabled) {
+      // Mostrar el popup
+      setShowPopup(true);
+    }
+  }, []);
 
   return (
     <>
@@ -84,6 +100,18 @@ function Register() {
       </div>
 
       <Footer />
+
+      {showPopup && (
+        <div className="popup">
+          <h2>¡Desactiva tu Bloqueador de Anuncios!</h2>
+          <p>
+            Para poder Registrarte nuestra aplicación necesita que desactives tu bloqueador de anuncios.
+            Por favor, desactívalo para continuar.
+          </p>
+          <button onClick={closePopup}>Cerrar</button>
+        </div>
+      )}
+
     </>
   );
 }

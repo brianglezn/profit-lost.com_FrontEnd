@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login-Register.css';
 import Footer from '../../components/landing/Footer';
@@ -7,6 +7,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,6 +35,19 @@ function Login() {
       console.error('There was an error logging in', error);
     }
   };
+
+  // Ad Popup function
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  useEffect(() => {
+    const adBlockEnabled = true;
+
+    if (adBlockEnabled) {
+      setShowPopup(true);
+    }
+  }, []);
 
   return (
     <>
@@ -81,6 +95,17 @@ function Login() {
       </div>
 
       <Footer />
+
+      {showPopup && (
+        <div className="popup">
+          <h2>¡Desactiva tu Bloqueador de Anuncios!</h2>
+          <p>
+            Para poder Loguearte nuestra aplicación necesita que desactives tu bloqueador de anuncios.
+            Por favor, desactívalo para continuar.
+          </p>
+          <button onClick={closePopup}>Cerrar</button>
+        </div>
+      )}
     </>
   );
 }
