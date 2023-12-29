@@ -1,4 +1,0 @@
-[build]
-  command = "npm run build"  # Comando para construir tu Frontend
-  functions = "src/server"   # Carpeta donde se encuentran las funciones del Backend
-  publish = "build"          # Carpeta donde se encuentra la build del Frontend
