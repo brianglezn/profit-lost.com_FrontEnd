@@ -1,10 +1,35 @@
-import { Link } from "react-router-dom";
-
-import "./Login-Register.css";
-
-import Footer from "../../components/landing/Footer";
+import React, { useState } from 'react';
+import { Link, useNavigate  } from 'react-router-dom';
+import './Login-Register.css';
+import Footer from '../../components/landing/Footer';
 
 function Register() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const response = await fetch('http://localhost:3000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
+
+    if (response.ok) {
+      // Registro exitoso
+      console.log('User registered successfully');
+      navigate('/login'); // Redirige al usuario a la página de inicio de sesión
+    } else {
+      // Manejar errores
+      console.error('Failed to register');
+    }
+  };
+
   return (
     <>
       <header className="header">
@@ -19,7 +44,7 @@ function Register() {
       </header>
 
       <div className="container__form">
-        <form className="form__box" method="post">
+        <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Create an account</h2>
           <input
             className="form__name"
@@ -27,23 +52,26 @@ function Register() {
             id="username-register"
             placeholder="Username"
             required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             className="form__email"
             type="email"
-            name="email"
             id="email-register"
             placeholder="Email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-
           <input
             className="form__password"
             type="password"
-            name="password"
             id="password-register"
             placeholder="Password"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input className="form__submit" type="submit" value="Let's go!" />
           <p className="form__link">
