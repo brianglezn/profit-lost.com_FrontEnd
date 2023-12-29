@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp _redirects dist/",
-    "start": "node index.mjs",
+    "start": "npm run start-frontend",
+    "start-frontend": "react-scripts start",
+    "build": "npm run build-frontend && npm run build-backend",
+    "build-frontend": "tsc && vite build && cp _redirects dist/",
+    "build-backend": "cd src/server && node index.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
