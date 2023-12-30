@@ -13,7 +13,7 @@ function Register() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:3000/register', {
+    const response = await fetch('https://profit-lost-d0e034025a79.herokuapp.com/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
