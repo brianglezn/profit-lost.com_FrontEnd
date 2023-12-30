@@ -2049,7 +2049,91 @@
       },
       {
         "Dec": [
-         
+          {
+            "Category": "Education",
+            "Description": "",
+            "Amount": -163.89
+          },
+          {
+            "Category": "Home",
+            "Description": "",
+            "Amount": -396.59
+          },
+          {
+            "Category": "Gym",
+            "Description": "",
+            "Amount": -24.95
+          },
+          {
+            "Category": "Supermarket",
+            "Description": "",
+            "Amount": -69.83
+          },
+          {
+            "Category": "Supermarket",
+            "Description": "",
+            "Amount": -69.83
+          },
+          {
+            "Category": "Beauty",
+            "Description": "",
+            "Amount": -20.5
+          },
+          {
+            "Category": "Transport",
+            "Description": "",
+            "Amount": -37.57
+          },
+          {
+            "Category": "Mobile",
+            "Description": "",
+            "Amount": -9.95
+          },
+          {
+            "Category": "Transport",
+            "Description": "",
+            "Amount": -51.99
+          },
+          {
+            "Category": "Home",
+            "Description": "",
+            "Amount": -29.23
+          },
+          {
+            "Category": "Health",
+            "Description": "",
+            "Amount": -219.39
+          },
+          {
+            "Category": "Education",
+            "Description": "",
+            "Amount": -22.99
+          },
+          {
+            "Category": "Other",
+            "Description": "",
+            "Amount": -145.42
+          },
+          {
+            "Category": "Restaurant",
+            "Description": "",
+            "Amount": -170.53
+          },
+          {
+            "Category": "Clothing",
+            "Description": "",
+            "Amount": -44.8
+          },
+          {
+            "Category": "Party",
+            "Description": "",
+            "Amount": -36.54
+          },
+          {
+            "Category": "Work",
+            "Description": "",
+            "Amount": 1404.98
+          }
         ]
       }
     ]
