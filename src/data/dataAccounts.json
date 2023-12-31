@@ -1,6 +1,6 @@
 [
   {
-    "accountName": "ImaginBank",
+    "accountName": "Banco1",
     "data": {
       "2023": {
         "Jan": 2171.04,
@@ -35,7 +35,7 @@
     "customColor": "var(--color-white)"
   },
   {
-    "accountName": "Abanca",
+    "accountName": "Banco2",
     "data": {
       "2023": {
         "Jan": 0,
@@ -70,7 +70,7 @@
     "customColor": "var(--color-white)"
   },
   {
-    "accountName": "Savings",
+    "accountName": "Banco3",
     "data": {
       "2023": {
         "Jan": 100,
@@ -91,7 +91,7 @@
     "customColor": "var(--color-black)"
   },
   {
-    "accountName": "Investments",
+    "accountName": "Banco4",
     "data": {
       "2023": {
         "Jan": 1500,
