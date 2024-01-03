@@ -158,7 +158,6 @@ function Accounts() {
     };
   });
 
-  console.log(chartData)
   // Formatea el saldo total para mostrarlo en el formato de moneda local
   const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
     minimumFractionDigits: 2,
