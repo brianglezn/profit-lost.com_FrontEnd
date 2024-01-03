@@ -109,7 +109,7 @@ function Accounts() {
     });
 
     setDataAccounts(formattedData);
-  }, [dataAccountsFile, year]);
+  }, [year]);
 
   // Hook useMemo para calcular el saldo total actual basándose en los datos de las cuentas y el mes actual
   const totalBalance = useMemo(() => {

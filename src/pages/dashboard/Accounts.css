@@ -54,7 +54,7 @@
 .accounts__containerAccounts {
   background-color: var(--color-white);
   margin-top: 20px;
-  width: 100%;
+  width: 99%;
   padding: 20px 0 20px 0;
   border-radius: 20px;
   display: flex;
