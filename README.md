@@ -26,7 +26,7 @@ Profit-Lost.com es una aplicación web avanzada desarrollada en React con Typesc
 
 <h2>Desarrollo y Contribuciones</h2>
 <ol>
-  <li>Clona el repositorio: <code>git clone https://github.com/brianglezn/profit-lost.com_TS.git</code></li>
+  <li>Clona el repositorio: <code>git clone https://github.com/brianglezn/profit-lost.com_FrontEnd.git</code></li>
   <li>Navega al directorio del proyecto: <code>cd profit-lost.com_TS</code></li>
   <li>Instala las dependencias del proyecto: <code>npm install</code></li>
   <li>Ejecuta la aplicación en modo de desarrollo: <code>npm run dev</code></li>
