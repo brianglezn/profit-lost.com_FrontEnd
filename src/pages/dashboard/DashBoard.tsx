@@ -25,7 +25,7 @@ function getCurrentDate() {
 }
 
 function Dashboard() {
-  // useState se usa para controlar la selección de dash activa en la alicación
+  // useState se usa para controlar la selección de dash activa en la aplicación
   const [activeSection, setActiveSection] = useState("Dashboard");
   const handleMenuItemClick = (sectionName: SetStateAction<string>) => {
     setActiveSection(sectionName);

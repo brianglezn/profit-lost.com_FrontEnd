@@ -7,7 +7,7 @@
     "Nav Dashboard";
 }
 
-.dashboard__container--header {
+.dashboard__container-header {
   grid-area: Header;
 }
 
@@ -48,6 +48,10 @@
 
 .dashboard__container-nav {
   grid-area: Nav;
+  position: fixed;
+  width: 250px;
+  height: calc(100vh - 60px);
+  z-index: 1000;
 }
 
 .dashboard__nav {
