@@ -59,17 +59,17 @@ export default function BasicTabs() {
             </Box>
             <CustomTabPanel value={value} index={0}>
                 <div className="preview__img">
-                    <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1703143414/profit-lost.com/img/AnnualReport.png" alt="annual_report-img" />
+                    <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1704652663/profit-lost.com/img/preview/annual_report.png" alt="annual_report-img" />
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
                 <div className="preview__img">
-                    <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1703143171/profit-lost.com/img/Movements.png" alt="movements-img" />
+                    <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1704652663/profit-lost.com/img/preview/movements.png" alt="movements-img" />
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
                 <div className="preview__img">
-                    <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1703142929/profit-lost.com/img/Accounts.png" alt="movements-img" />
+                    <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1704652663/profit-lost.com/img/preview/accounts.png" alt="accounts-img" />
                 </div>
             </CustomTabPanel>
         </Box>
