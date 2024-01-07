@@ -113,7 +113,7 @@ function AnnualChart(props: AnnualChartProps) {
                             <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
                         </BarChart>
                     </ResponsiveContainer>) : (
-                    <span className="material-symbols-rounded">
+                    <span className="material-symbols-rounded no-select">
                         mobiledata_off
                     </span>
                 )}

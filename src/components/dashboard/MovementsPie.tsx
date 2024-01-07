@@ -174,7 +174,7 @@ function MovementsPie(props: MovementsProps) {
         <>
             <div className="movements__containerMain-category">
                 {isDataEmpty || dataCategoryIncome.length === 0 ? (
-                    <span className="material-symbols-rounded">
+                    <span className="material-symbols-rounded no-select">
                         mobiledata_off
                     </span>
                 ) : (
@@ -203,7 +203,7 @@ function MovementsPie(props: MovementsProps) {
             </div>
             <div className="movements__containerMain-category">
                 {isDataEmpty || dataCategoryExpenses.length === 0 ? (
-                    <span className="material-symbols-rounded">
+                    <span className="material-symbols-rounded no-select">
                         mobiledata_off
                     </span>
                 ) : (

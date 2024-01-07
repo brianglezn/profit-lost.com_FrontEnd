@@ -20,7 +20,7 @@ function MovementsChart(props: MovementsProps) {
         <>
             <div className="movements__containerMain-chart">
                 {isDataEmpty ? (
-                    <span className="material-symbols-rounded">
+                    <span className="material-symbols-rounded no-select">
                         mobiledata_off
                     </span>
                 ) : (

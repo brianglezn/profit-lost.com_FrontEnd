@@ -69,6 +69,10 @@ a:hover {
   color: green;
 }
 
+.no-select {
+  user-select: none;
+}
+
 /* mui selector*/
 div.MuiInputBase-root.css-1a2qpli,
 fieldset.css-igs3ac {

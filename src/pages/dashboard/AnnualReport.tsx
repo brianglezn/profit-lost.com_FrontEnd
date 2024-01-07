@@ -157,16 +157,16 @@ function AnnualReport() {
           <AnnualChart year={year} />
           <div className="annualReport__containerMain-balance">
             <div className="annualReport__balance income">
-              <span className="material-symbols-rounded">download</span>
+              <span className="material-symbols-rounded no-select">download</span>
               <p>{formattedBalanceIncome}</p>
             </div>
             <div className="annualReport__balance expenses">
-              <span className="material-symbols-rounded">upload</span>
+              <span className="material-symbols-rounded no-select">upload</span>
               <p>-{formattedBalanceExpenses}</p>
             </div>
             <div className="annualReport__balance edbita">
               <span
-                className={`material-symbols-rounded ${parseFloat(formattedBalanceFinal) < 0
+                className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
                   ? "negative"
                   : "positive"
                   }`}
@@ -180,7 +180,7 @@ function AnnualReport() {
         <div className="annualReport__containerCategory">
           <div className="annualReport__category-text">
             <p>Categories</p>
-            <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
+            <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
             <Modal
               open={open}
               onClose={handleCloseModal}

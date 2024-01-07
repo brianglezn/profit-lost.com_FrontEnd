@@ -51,7 +51,7 @@ function Dashboard() {
 
         {/* NAV PC */}
         <div className="dashboard__container-nav">
-          <nav className="dashboard__nav">
+          <nav className="dashboard__nav no-select">
             <div className="dashboard__nav-img">
               <img
                 src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"

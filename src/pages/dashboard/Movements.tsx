@@ -186,16 +186,16 @@ function Movements() {
 
           <div className="movements__containerMain-balance">
             <div className="movements__balance income">
-              <span className="material-symbols-rounded">download</span>
+              <span className="material-symbols-rounded no-select">download</span>
               <p>{formattedBalanceIncome}</p>
             </div>
             <div className="movements__balance expenses">
-              <span className="material-symbols-rounded">upload</span>
+              <span className="material-symbols-rounded no-select">upload</span>
               <p>-{formattedBalanceExpenses}</p>
             </div>
             <div className="movements__balance edbita">
               <span
-                className={`material-symbols-rounded ${parseFloat(formattedBalanceFinal) < 0
+                className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
                   ? "negative"
                   : "positive"
                   }`}
@@ -208,7 +208,7 @@ function Movements() {
           <div className="movements__containerMain-movements">
             <div className="movements__movements-text">
               <p>Movements</p>
-              <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
+              <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
               <Modal
                 open={open}
                 onClose={handleCloseModal}

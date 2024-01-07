@@ -290,7 +290,7 @@ function Accounts() {
         <div className="accounts__containerAccounts">
           <div className="accounts__accounts-text">
             <p>Accounts</p>
-            <span className="material-symbols-rounded" onClick={handleOpenModal}>new_window</span>
+            <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
             <Modal
               open={open}
               onClose={handleCloseModal}

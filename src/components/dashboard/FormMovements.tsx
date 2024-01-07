@@ -35,7 +35,7 @@ function FormMovements({ onClose }: FormMovementsProps) {
     return (
         <>
             <form className="formMovements">
-                <span className="material-symbols-rounded formMovements-closeButton" onClick={onClose}>
+                <span className="material-symbols-rounded no-select formMovements-closeButton" onClick={onClose}>
                     close
                 </span>
 

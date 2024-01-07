@@ -23,7 +23,7 @@ function FormCategory({ onClose }: FormCategoryProps) {
     return (
         <>
             <form className="formCategory">
-                <span className="material-symbols-rounded formCategory-closeButton" onClick={onClose}>
+                <span className="material-symbols-rounded no-select formCategory-closeButton" onClick={onClose}>
                     close
                 </span>
 

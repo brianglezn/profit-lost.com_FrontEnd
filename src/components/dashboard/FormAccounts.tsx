@@ -13,7 +13,7 @@ function FormAccounts({ onClose }: FormAccountsProps) {
     return (
         <>
             <form className="formAccounts">
-                <span className="material-symbols-rounded formAccounts-closeButton" onClick={onClose}>
+                <span className="material-symbols-rounded no-select formAccounts-closeButton" onClick={onClose}>
                     close
                 </span>
 
