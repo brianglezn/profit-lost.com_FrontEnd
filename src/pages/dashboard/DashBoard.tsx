@@ -11,7 +11,7 @@ const Movements = React.lazy(() => import('./Movements'));
 const Profile = React.lazy(() => import('./Profile'));
 const Goals = React.lazy(() => import('./Goals'));
 
-// Función para utilizar una fecha formateada
+// Function to use a formatted date
 function getCurrentDate() {
   const options: Intl.DateTimeFormatOptions = {
     weekday: "short",
@@ -25,7 +25,7 @@ function getCurrentDate() {
 }
 
 function Dashboard() {
-  // useState se usa para controlar la selección de dash activa en la aplicación
+// useState is used to control the active dash selection in the application.
   const [activeSection, setActiveSection] = useState("Dashboard");
   const handleMenuItemClick = (sectionName: SetStateAction<string>) => {
     setActiveSection(sectionName);

@@ -23,7 +23,7 @@
   display: none;
 }
 
-/* ---------- FIN HERO ---------- */
+/* ---------- END HERO ---------- */
 
 .container__sections {
   display: flex;
@@ -57,7 +57,7 @@
   width: 40vw;
 }
 
-/* ---------- FIN SECTION 1 ---------- */
+/* ---------- END SECTION 1 ---------- */
 
 /* ---------- FEATURES ---------- */
 .section__features {
@@ -111,7 +111,7 @@ article div h3 {
   letter-spacing: 0.05rem;
 }
 
-/* ---------- FIN FEATURES ---------- */
+/* ---------- END FEATURES ---------- */
 
 /* ---------- FEATURES ---------- */
 .section__preview {
@@ -133,17 +133,18 @@ article div h3 {
   width: 100%;
   height: 50vh;
 }
+
 .preview__img img {
   height: 100%;
   border-radius: 7px;
 }
 
-/* ---------- FIN FEATURES ---------- */
+/* ---------- END FEATURES ---------- */
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
 
-  /* Estilos para dispositivos móviles */
+  /* Styles for mobile devices */
   /* hero */
   .hero {
     display: flex;
@@ -202,9 +203,11 @@ article div h3 {
     border-radius: 0 0 80px 80px;
     flex-direction: column;
   }
+
   .preview__img {
     height: 20vh;
   }
+
   .preview__img img {
     border-radius: 7px;
   }
@@ -241,13 +244,15 @@ article div h3 {
   .section__preview {
     border-radius: 0 0 100px 100px;
     flex-direction: column;
-}
+  }
+
   .preview__img {
     height: 30vh;
   }
+
   .preview__img img {
     border-radius: 7px;
   }
 }
 
-/* ---------- FIN RESPONSIVE ---------- */
+/* ---------- END RESPONSIVE ---------- */

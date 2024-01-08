@@ -8,6 +8,7 @@
   transition: letter-spacing 0.3s ease;
   letter-spacing: normal;
 }
+
 .backHome:hover {
   letter-spacing: 2px;
 }
@@ -21,6 +22,7 @@
 .legal {
   margin: 2vw 10vw;
 }
+
 .legal h3 {
   margin-top: 3rem;
 }

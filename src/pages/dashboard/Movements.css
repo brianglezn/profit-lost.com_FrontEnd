@@ -134,8 +134,6 @@
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
-
-  /* Estilos para dispositivos móviles */
   .movements {
     margin: 20px 15px;
   }
@@ -190,11 +188,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-
-  /* Estilos para tablets */
   .movements__containerMain-movements {
     margin-bottom: 5rem;
   }
 }
 
-/* ---------- FIN RESPONSIVE ---------- */
+/* ---------- END RESPONSIVE ---------- */

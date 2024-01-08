@@ -7,17 +7,12 @@
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
-
-  /* Estilos para dispositivos móviles */
   .goals {
     margin: 20px 15px;
   }
 
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  /* Estilos para tablets */
+@media (min-width: 768px) and (max-width: 991px) {}
 
-}
-
-/* ---------- FIN RESPONSIVE ---------- */
+/* ---------- END RESPONSIVE ---------- */

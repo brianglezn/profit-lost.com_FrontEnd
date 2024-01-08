@@ -17,7 +17,7 @@ function FormCategory({ onClose }: FormCategoryProps) {
     };
 
     const handleSaveCategory = () => {
-        // Aquí manejarías la lógica para añadir la nueva categoría
+        // Here you would handle the logic to add the new category
         console.log(newCategory);
     };
     return (

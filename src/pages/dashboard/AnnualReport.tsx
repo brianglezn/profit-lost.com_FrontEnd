@@ -12,7 +12,7 @@ import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";
 import FormCategory from "../../components/dashboard/FormCategory";
 
-// Definimos los tipos para las transacciones mensuales y la estructura de los datos.
+// We define the types for the monthly transactions and the data structure.
 type MonthlyTransaction = {
   Category: string;
   Amount: number;
@@ -36,7 +36,7 @@ type DataMovement = {
   }[];
 };
 
-// Función para formatear números a formato de moneda.
+// Function to format numbers to currency format.
 function formatCurrency(value: number) {
   return value.toLocaleString("es-ES", {
     style: "currency",
@@ -47,51 +47,51 @@ function formatCurrency(value: number) {
 }
 
 function AnnualReport() {
-  // Estado para el año actual y la función para actualizarlo.
+  // Status for the current year and the function to update it.
   const currentYear = new Date().getFullYear().toString();
   const [year, setYear] = useState(currentYear);
 
-  // useMemo para calcular los años con datos disponibles, para evitar recálculos innecesarios.
+  // useMemo to calculate the years with available data, to avoid unnecessary recalculations.
   const yearsWithData = useMemo(() => {
     return [
       ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
     ].sort((a, b) => Number(b) - Number(a));
   }, []);
 
-  // Función para manejar el cambio de año seleccionado en el menú desplegable.
+  // Function to handle the change of year selected in the drop-down menu.
   const handleChange = (event: SelectChangeEvent<string>) => {
     setYear(event.target.value);
   };
 
-  // Estados para los totales de ingresos y gastos.
+  // Statements for income and expense totals.
   const [balanceIncome, setBalanceIncome] = useState(0);
   const [balanceExpenses, setBalanceExpenses] = useState(0);
 
-  // Calculamos el balance de ingresos y gastos al cargar los datos o cambiar el año.
+  // We calculate the balance of income and expenses when loading data or changing the year.
   useEffect(() => {
     const selectedYearData = dataMovementsFile.find(
       (y) => Object.keys(y)[0] === year.toString()
     ) as DataMovement | unknown;
 
-    // Si no encuentra datos para ese año, termina la ejecución del bloque aquí.
+    // If no data is found for that year, terminate the execution of the block here.
     if (!selectedYearData) return;
 
     const monthlyData = (selectedYearData as DataMovement)[year];
     let incomeSum = 0;
     let expensesSum = 0;
 
-    // Recorre los objetos mensuales de los datos financieros.
+    // Scroll through the monthly financial data objects.
     for (const monthObj of monthlyData) {
       for (const month in monthObj) {
         const transactions = monthObj[month as Month];
-        // Si hay transacciones, suma los montos a los acumuladores respectivos.
+        // If there are transactions, add the amounts to the respective accumulators.
         if (transactions) {
           for (const movement of transactions) {
             if (movement.Amount > 0) {
-              // Si el monto es positivo, lo suma a los ingresos.
+              // If the amount is positive, add it to income.
               incomeSum += movement.Amount;
             } else {
-              // Si el monto es negativo, lo suma a los gastos (después de convertirlo a positivo).
+              // If the amount is negative, add it to expenses (after converting it to positive).
               expensesSum += Math.abs(movement.Amount);
             }
           }
@@ -103,7 +103,7 @@ function AnnualReport() {
     setBalanceExpenses(expensesSum);
   }, [year]);
 
-  // Formatea los balances de ingresos y gastos totales a formato de moneda.
+  // Format the total income and expense balances to currency format.
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);

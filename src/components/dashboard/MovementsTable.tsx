@@ -4,13 +4,13 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import dataMovementsJson from "../../data/dataMovements.json";
 
-// Definición de tipo para las entradas de transacciones mensuales con categoría y monto
+// Type definition for monthly transaction entries with category and amount
 type MonthlyTransactionEntry = {
     Category: string;
     Description: string;
     Amount: number;
 };
-// Definición de tipo para los meses del año
+// Type definition for the months of the year
 type Months =
     | "Jan"
     | "Feb"
@@ -24,7 +24,7 @@ type Months =
     | "Oct"
     | "Nov"
     | "Dec";
-// Objeto para mapear el número del mes a su correspondiente nombre
+// Object to map the number of the month to its corresponding name
 const monthMapping: Record<number, Months> = {
     1: "Jan",
     2: "Feb",
@@ -39,27 +39,26 @@ const monthMapping: Record<number, Months> = {
     11: "Nov",
     12: "Dec",
 };
-// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
+// Type definition for the monthly transactions, which is an object with keys of type Months and values that are an array of MonthlyTransactionEntry
 type MonthlyTransactions = {
     [key in Months]?: MonthlyTransactionEntry[];
 };
-// Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
+// Type definition for the annual data object, where each year is a key pointing to an array of MonthlyTransactions
 type YearData = {
     [year: string]: MonthlyTransactions[];
 };
-// El archivo de datos es un arreglo de YearData
+// The data file is an array of YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
     dataMovementsJson as unknown as DataMovementsFile;
-
-// Propiedades del componente
+// Component properties
 interface MovementsProps {
     year: string;
     month: string;
     isDataEmpty: boolean;
 }
 
-// Función para formatear números a formato de moneda local
+// Function for formatting numbers to local currency format
 function formatCurrency(value: number) {
     return value.toLocaleString("es-ES", {
         style: "currency",
@@ -71,13 +70,13 @@ function formatCurrency(value: number) {
 
 function MovementsTable(props: MovementsProps) {
 
-    // Desestructuración de las propiedades para un acceso más fácil
+    // Destructuring of properties for easier access
     const { year, month, isDataEmpty } = props;
 
-    // Estado para almacenar las filas del componente de tabla
+    // State for storing the rows of the table component
     const [tableRows, setTableRows] = useState<GridRowsProp>([]);
 
-    // Efecto para actualizar las filas de la tabla basado en el año y mes seleccionados
+    // Effect to update the table rows based on the selected year and month.
     useEffect(() => {
         if (year && month) {
             // Buscar los datos para el año seleccionado
@@ -85,18 +84,18 @@ function MovementsTable(props: MovementsProps) {
                 (entry) => entry[year as keyof typeof entry]
             );
             if (selectedYearData) {
-                // Buscar los datos para el mes seleccionado dentro del año seleccionado
+                // Search data for the selected month within the selected year
                 const monthData =
                     selectedYearData[year as keyof typeof selectedYearData];
                 if (monthData) {
-                    // Obtener la clave correcta para el mes del mapeo de meses
+                    // Get the correct key for the month from month mapping
                     const parameter = monthMapping[Number(month)];
-                    // Buscar los datos para el mes especificado
+                    // Search the data for the specified month
                     const selectedMonthData = monthData.find((entry) => {
                         return entry[parameter];
                     });
                     if (selectedMonthData) {
-                        // Mapear los datos al formato de fila requerido por el componente de tabla
+                        // Map the data to the row format required by the table component
                         const rows = selectedMonthData[parameter]?.map(
                             (item: {
                                 Description: string; Category: string; Amount: number
@@ -116,7 +115,7 @@ function MovementsTable(props: MovementsProps) {
         }
     }, [year, month]);
 
-    // Definiciones de columnas para el componente de la tabla
+    // Column definitions for the table component
     const columns: GridColDef[] = [
         { field: "Category", headerName: "Category", flex: 2 },
         { field: "Description", headerName: "Description", flex: 2 },

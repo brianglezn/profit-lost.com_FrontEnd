@@ -1,6 +1,6 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-// Definición de la interfaz para las propiedades que recibe el componente
+// Definition of the interface for the properties received by the component
 interface MovementsProps {
     dataGraph: {
         month: string;
@@ -13,7 +13,7 @@ interface MovementsProps {
 
 function MovementsChart(props: MovementsProps) {
 
-    // Desestructuración de las propiedades recibidas
+    // Destructuring of received properties
     const { isDataEmpty, dataGraph } = props;
 
     return (

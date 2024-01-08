@@ -7,11 +7,11 @@ function Profile() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Eliminar el token del almacenamiento local
+    // Remove token from local storage
     localStorage.removeItem('token');
 
-    // Redirigir al usuario a la página de inicio o a cualquier otra página
-    navigate('/login'); // Ajusta esta ruta según sea necesario
+    // Redirect the user to the home page or any other page
+    navigate('/login');
   };
 
   return (

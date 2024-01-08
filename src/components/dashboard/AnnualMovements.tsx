@@ -4,7 +4,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import dataMovementsFile from "../../data/dataMovements.json";
 
-// Definición de tipos para las transacciones y estructuras de datos
+// Definition of types for transactions and data structures
 type MonthlyTransaction = {
     Category: string;
     Amount: number;
@@ -40,12 +40,12 @@ type CategoryBalance = {
     InOut: string;
 };
 
-// Propiedades del componente
+// Component properties
 interface AnnualMovementsProps {
     year: string;
 }
 
-// Función para formatear números a formato de moneda.
+// Function to format numbers to currency format.
 function formatCurrency(value: number) {
     return value.toLocaleString("es-ES", {
         style: "currency",
@@ -58,15 +58,15 @@ function formatCurrency(value: number) {
 function AnnualMovements(props: AnnualMovementsProps) {
     const { year } = props;
 
-    // Estado para almacenar los datos del gráfico.
+    // State to store the chart data.
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
     useEffect(() => {
-        // Calculamos los datos para el gráfico cuando el año cambia.
+        // We calculate the data for the graph when the year changes.
         const selectedYearData = dataMovementsFile.find(
             (y) => Object.keys(y)[0] === year.toString()
         ) as DataMovement | undefined;
 
-        // Si hay datos para el año seleccionado, los procesamos para el gráfico.
+        // If there is data for the selected year, we process it for the chart.
         if (selectedYearData && year.toString() in selectedYearData) {
             const monthlyDataArray = selectedYearData[year.toString()];
 
@@ -78,7 +78,7 @@ function AnnualMovements(props: AnnualMovementsProps) {
                     let monthlyExpenses = 0;
                     const hasData = transactions && transactions.length > 0;
 
-                    // Sumamos los ingresos y restamos los gastos para cada mes.
+                    // We add the income and subtract the expenses for each month.
                     if (Array.isArray(transactions)) {
                         transactions.forEach((transaction) => {
                             if (transaction.Amount > 0) {
@@ -89,11 +89,11 @@ function AnnualMovements(props: AnnualMovementsProps) {
                         });
                     }
 
-                    // Hacemos que el resutado solo tenga 2 decimales
+                    // We make the result only have 2 decimal places
                     monthlyIncome = +monthlyIncome.toFixed(2);
                     monthlyExpenses = +monthlyExpenses.toFixed(2);
 
-                    // Retornamos un objeto con los datos del mes para el gráfico.
+                    // We return an object with the month's data for the chart.
                     return {
                         month,
                         Income: monthlyIncome,
@@ -107,22 +107,22 @@ function AnnualMovements(props: AnnualMovementsProps) {
     }, [year]);
 
 
-    // Estados para las filas de una tabla y su inicialización.
+    // States for the rows of a table and their initialization.
     const [tableRows, setTableRows] = useState<GridRowsProp>([]);
-    // useEffect se encarga de calcular las filas de la tabla de balances por categoría.
+    // useEffect is responsible for calculating the rows of the balance table by category.
     useEffect(() => {
         if (year) {
             const selectedYearData = dataMovementsFile.find(
                 (y) => Object.keys(y)[0] === year.toString()
             ) as DataMovement | unknown;
 
-            // Si no encuentra datos para ese año, termina la ejecución del bloque aquí.
+            // If no data is found for that year, terminate the execution of the block here.
             if (!selectedYearData) return;
 
             if (selectedYearData) {
-                // Recoge los datos del año seleccionado.
+                // Collects data for the selected year.
                 const monthEntries = (selectedYearData as DataMovement)[year];
-                // Aplana y transforma los datos para obtener el balance por categoría.
+                // Flatten and transform the data to obtain the balance by category.
                 const categoryBalances = monthEntries.flatMap((monthEntry) =>
                     Object.entries(monthEntry).flatMap(([month, transactions]) =>
                         transactions.map((transaction) => ({
@@ -132,7 +132,7 @@ function AnnualMovements(props: AnnualMovementsProps) {
                     )
                 );
 
-                // Reduce la lista de transacciones a un objeto que acumula los balances por categoría.
+                // Reduces the list of transactions to an object that accumulates the balances by category.
                 const categoriesBalance: { [key: string]: CategoryBalance } =
                     categoryBalances.reduce(
                         (
@@ -146,7 +146,7 @@ function AnnualMovements(props: AnnualMovementsProps) {
                             transaction: { Category: string; Amount: number }
                         ) => {
                             const { Category, Amount } = transaction;
-                            // Inicializa la categoría si es la primera vez que aparece.
+                            // Initializes the category if this is the first time it appears.
                             if (!acc[Category]) {
                                 acc[Category] = { Category, Balance: 0, InOut: "" };
                             }
@@ -157,7 +157,7 @@ function AnnualMovements(props: AnnualMovementsProps) {
                         {}
                     );
 
-                // Transforma los balances acumulados en filas para la tabla.
+                // Transforms the accumulated balances into rows for the table.
                 const rows = Object.values(categoriesBalance).map((balance, index) => ({
                     id: index,
                     ...balance,
@@ -167,7 +167,7 @@ function AnnualMovements(props: AnnualMovementsProps) {
             }
         }
     }, [year]);
-    // Configura las columnas de la tabla de datos utilizando `useMemo` para evitar cálculos innecesarios.
+    // Configure the columns of the data table using `useMemo` to avoid unnecessary calculations.
     const columns: GridColDef[] = useMemo(
         () => [
             { field: "Category", headerName: "Category", flex: 2 },

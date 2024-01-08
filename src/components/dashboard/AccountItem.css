@@ -9,9 +9,9 @@
   border-radius: 15px;
 }
 
-.formAccount > p {
- font-size: 1.5rem;
- margin-bottom: 0;
+.formAccount>p {
+  font-size: 1.5rem;
+  margin-bottom: 0;
 }
 
 .formAccount-closeButton {
@@ -23,7 +23,7 @@
   border: none;
   cursor: pointer;
 }
+
 .formAccount-closeButton:hover {
   color: var(--color-orange);
 }
-

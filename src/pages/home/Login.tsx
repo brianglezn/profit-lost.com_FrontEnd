@@ -24,11 +24,9 @@ function Login() {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        // Login successful
         console.log('Login successful');
-        navigate('/dashboard'); // Redirect to dashboard or home page
+        navigate('/dashboard');
       } else {
-        // Handle errors (e.g., invalid credentials)
         console.error('Failed to login');
       }
     } catch (error) {
@@ -98,12 +96,12 @@ function Login() {
 
       {showPopup && (
         <div className="popup">
-          <h2>¡Desactiva tu Bloqueador de Anuncios!</h2>
+          <h2>Disable your Ad Blocker!</h2>
           <p>
-            Para poder Loguearte nuestra aplicación necesita que desactives tu bloqueador de anuncios.
-            Por favor, desactívalo para continuar.
+            In order to Loguearte our application needs you to disable your ad blocker.
+            Please disable it to continue.
           </p>
-          <button onClick={closePopup}>Cerrar</button>
+          <button onClick={closePopup}>Close</button>
         </div>
       )}
     </>

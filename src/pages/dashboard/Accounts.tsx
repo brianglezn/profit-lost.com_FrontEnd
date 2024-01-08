@@ -24,7 +24,7 @@ import dataAccountsFile from "../../data/dataAccounts.json";
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 import FormAccounts from "../../components/dashboard/FormAccounts.tsx";
 
-// Creamos un tipo para los elementos de datos de la cuenta.
+// We create a type for the account data elements.
 type DataAccountItem = {
   accountName: string;
   data: {
@@ -38,7 +38,7 @@ type DataAccountItem = {
   customColor: string;
 };
 
-// Array de nombres de los meses
+// Array of month names
 const monthNames = [
   "Jan",
   "Feb",
@@ -53,7 +53,7 @@ const monthNames = [
   "Nov",
   "Dec",
 ];
-// Función para obtener el nombre del mes anterior.
+// Function to get the name of the previous month.
 function getPreviousMonth() {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
@@ -62,44 +62,44 @@ function getPreviousMonth() {
 }
 
 function Accounts() {
-  // Extrae la fecha actual, el año actual y el nombre del mes actual
+  // Extracts the current date, the current year and the current month's name
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
 
-  // Hook de estado y función manejadora para el cambio de año seleccionado en la interfaz de usuario
+  // Status hook and handler function for the selected year change in the user interface
   const [year, setYear] = React.useState(currentYear.toString());
   const handleChange = (event: SelectChangeEvent) => {
     setYear(event.target.value as string);
   };
 
-  // Hook de estado para manejar los datos de las cuentas
+  // Status hook for managing account data
   const [dataAccounts, setDataAccounts] = useState<DataAccountItem[]>([]);
-  // Hook de efecto para formatear y establecer datos de las cuentas a partir de un archivo de datos
+  // Hook effect for formatting and setting account data from a data file
   useEffect(() => {
     const formattedData = dataAccountsFile.map((item: DataAccountItem) => {
-      // Inicializa el objeto de datos formateados para un año
+      // Initializes the formatted data object for one year
       const formattedData: Record<string, Record<string, number>> = {};
 
-      // Itera sobre cada año en los datos de la cuenta
+      // Iterate over each year in the account data.
       for (const year in item.data) {
         if (item.data[year]) {
-          // Inicializa el objeto de datos mensuales para un año específico
+          // Initializes the monthly data object for a specific year
           const monthlyData: Record<string, number> = {};
-          // Itera sobre cada mes en los datos del año
+          // Iterate over each month in the year's data.
           for (const month in item.data[year]) {
             const value = item.data[year]?.[month];
             if (typeof value === "number") {
-              // Si el valor es un número, lo añade al objeto de datos mensuales
+              // If the value is a number, adds it to the monthly data object
               monthlyData[month] = value;
             }
           }
-          // Añade los datos mensuales formateados al objeto de datos del año
+          // Add the formatted monthly data to the year data object
           formattedData[year] = monthlyData;
         }
       }
 
-      // Devuelve un nuevo objeto con los datos formateados y las propiedades de estilo
+      // Returns a new object with the formatted data and style properties
       return {
         accountName: item.accountName,
         data: formattedData,
@@ -111,7 +111,7 @@ function Accounts() {
     setDataAccounts(formattedData);
   }, [year]);
 
-  // Hook useMemo para calcular el saldo total actual basándose en los datos de las cuentas y el mes actual
+  // Hook useMemo to calculate the current total balance based on account data and the current month.
   const totalBalance = useMemo(() => {
     const balance = dataAccounts.reduce((acc, account) => {
       const monthBalance = account.data[currentYear]?.[currentMonthName] || 0;
@@ -121,26 +121,26 @@ function Accounts() {
   }, [dataAccounts, currentYear, currentMonthName]);
 
   const uniqueYears = useMemo(() => {
-    // Crea un conjunto de años para eliminar duplicados y luego lo convierte en un array ordenado
+    // Creates a set of years to remove duplicates and then converts it to a sorted array
     return Array.from(
       new Set(dataAccounts.flatMap((account) => Object.keys(account.data)))
     ).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
   }, [dataAccounts]);
 
-  // Genera los datos para el gráfico a partir de los datos de las cuentas y el año seleccionado
+  // Generates the data for the chart from the selected year and account data
   const chartData = monthNames.map((month) => {
     const data: Record<string, number | string> = {};
 
     dataAccounts.forEach((account) => {
-      // Obtiene el valor para el mes y año seleccionados o 0 si no está definido
+      // Gets the value for the selected month and year, or 0 if not defined.
       const value = account.data[parseInt(year)]?.[month] ?? 0;
-      // Asigna el valor al nombre de la cuenta correspondiente en el objeto de datos
+      // Assigns the value to the corresponding account name in the data object
       data[account.accountName] = value;
     });
 
-    // Concatena el total al nombre del mes
+    // Concatenates the total to the month name
     const monthWithTotal = `${month}: ${Object.values(data).reduce((acc, val) => {
-      // Asegurarse de que ambos valores sean números antes de sumarlos
+      // Make sure that both values are numbers before adding them together.
       const numAcc = typeof acc === 'number' ? acc : parseFloat(acc);
       const numVal = typeof val === 'number' ? val : parseFloat(val);
       return numAcc + numVal;
@@ -151,40 +151,40 @@ function Accounts() {
       useGrouping: true,
     })}`;
 
-    // Devuelve un objeto con el nombre del mes y los datos acumulados de todas las cuentas
+    // Returns an object with the name of the month and the accumulated data of all accounts
     return {
       name: monthWithTotal,
       ...data,
     };
   });
 
-  // Formatea el saldo total para mostrarlo en el formato de moneda local
+  // Format the total balance to display it in local currency format.
   const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
-  // Obtiene el nombre del mes anterior para calcular la diferencia de saldo
+  // Gets the name of the previous month to calculate the difference in balance
   const previousMonth = getPreviousMonth();
 
-  // Hook useMemo para calcular la diferencia de saldo entre el mes actual y el anterior
+  // Hook useMemo to calculate the balance difference between the current month and the previous month.
   const balanceDifference = useMemo(() => {
-    // Calcula el saldo del mes actual sumando los saldos de todas las cuentas
+    // Calculates the current month's balance by adding up the balances of all accounts
     const currentMonthBalance = dataAccounts.reduce((total, account) => {
       return total + (account.data[currentYear]?.[currentMonthName] || 0);
     }, 0);
-    // Calcula el saldo del mes anterior sumando los saldos de todas las cuentas
+    // Calculates the previous month's balance by adding up the balances of all accounts
     const previousMonthBalance = dataAccounts.reduce((total, account) => {
       return total + (account.data[currentYear]?.[previousMonth] || 0);
     }, 0);
-    // Devuelve la diferencia entre el saldo actual y el anterior
+    // Returns the difference between the current balance and the previous balance
     return currentMonthBalance - previousMonthBalance;
   }, [dataAccounts, currentYear, currentMonthName, previousMonth]);
   const isPositive = balanceDifference > 0;
 
-  // Hook useMemo para generar elementos de la cuenta para la interfaz de usuario
+  // Hook useMemo to generate account elements for the UI
   const accountItems = useMemo(() => {
-    // Mapea los datos de las cuentas para crear un elemento de cuenta para cada uno
+    // Map the account data to create an account element for each one.
     return dataAccounts.map((account, index) => (
       <AccountItem
         key={index}

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./AccountItem.css";
 import AccountsTable from "./AccountsTable";
 
-// Definición de la interfaz para las propiedades del componente AccountItem
+// Definition of the interface for the properties of the AccountItem component
 interface AccountItemProps {
   accountName: string;
   balance: string;
@@ -13,7 +13,7 @@ interface AccountItemProps {
   customColor: string;
 }
 
-// Validación de tipos de propiedades usando PropTypes
+// Validation of property types using PropTypes
 AccountItem.propTypes = {
   accountName: PropTypes.string.isRequired,
   balance: PropTypes.string.isRequired,
@@ -23,7 +23,7 @@ AccountItem.propTypes = {
 
 function AccountItem(props: AccountItemProps) {
 
-  // Desestructuración de las propiedades para un acceso más fácil
+  // Destructuring of properties for easier access
   const { accountName, balance, customBackgroundColor, customColor } = props;
 
   // Modal

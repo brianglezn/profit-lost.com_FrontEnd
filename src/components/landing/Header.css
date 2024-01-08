@@ -21,11 +21,13 @@ header {
   padding: 0;
   margin: 0;
 }
+
 .header__nav li {
   display: inline-flex;
   padding-left: 4vh;
   padding-right: 4vh;
 }
+
 .header__nav li a {
   text-decoration: none;
   color: var(--color-orange);
@@ -34,6 +36,7 @@ header {
   transition-duration: 0.5s;
   transition-timing-function: ease;
 }
+
 .header__nav li a:hover {
   transition-duration: 0.8s;
   transition-timing-function: ease;
@@ -46,6 +49,7 @@ header {
   width: 20vh;
   justify-content: center;
 }
+
 .header__login-btn {
   background-color: var(--color-orange);
   color: var(--color-white);
@@ -63,14 +67,17 @@ header {
     var(--color-black) 0px 8px 5px;
   margin-bottom: 8px;
 }
+
 .header__login-btn2 {
   display: none;
 }
+
 .header__login-btn:hover {
   opacity: 1;
   font-weight: bold;
   color: var(--color-white);
 }
+
 .header__login-btn:active {
   transform: translatey(5px);
   box-shadow: var(--color-orange-600) 0px 3px 2px,
@@ -78,19 +85,21 @@ header {
 }
 
 @media (max-width: 767px) {
-  /* Estilos para dispositivos móviles */
   .header__container {
     justify-content: center;
   }
+
   .header__nav {
     display: none;
   }
+
   .header__login-btn {
     padding: 8px 20px;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
-  /* Estilos para tabletas */
+
   .header__nav {
     display: none;
   }

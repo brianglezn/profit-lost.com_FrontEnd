@@ -15,13 +15,13 @@ import MovementsPie from "../../components/dashboard/MovementsPie";
 import MovementsTable from "../../components/dashboard/MovementsTable";
 import FormMovements from "../../components/dashboard/FormMovements";
 
-// Definición de tipo para las entradas de transacciones mensuales con categoría y monto
+// Type definition for monthly transaction entries with category and amount
 type MonthlyTransactionEntry = {
   Category: string;
   Description: string;
   Amount: number;
 };
-// Definición de tipo para los meses del año
+// Type definition for the months of the year
 type Months =
   | "Jan"
   | "Feb"
@@ -35,20 +35,20 @@ type Months =
   | "Oct"
   | "Nov"
   | "Dec";
-// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
+// Type definition for the monthly transactions, which is an object with keys of type Months and values that are an array of MonthlyTransactionEntry
 type MonthlyTransactions = {
   [key in Months]?: MonthlyTransactionEntry[];
 };
-// Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
+// Type definition for the annual data object, where each year is a key pointing to an array of MonthlyTransactions
 type YearData = {
   [year: string]: MonthlyTransactions[];
 };
-// El archivo de datos es un arreglo de YearData
+// The data file is an array of YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
   dataMovementsJson as unknown as DataMovementsFile;
 
-// Función para formatear números a formato de moneda local
+// Function for formatting numbers to local currency format
 function formatCurrency(value: number) {
   return value.toLocaleString("es-ES", {
     style: "currency",
@@ -59,45 +59,45 @@ function formatCurrency(value: number) {
 }
 
 function Movements() {
-  // Estado para el año actual y mes actual
+  // Status for current year and current month
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
 
-  // Estados para el año y mes seleccionados por el usuario inicializado con el actual
+  // States for the year and month selected by the user initialized with the current one
   const [year, setYear] = useState(currentYear.toString());
   const [month, setMonth] = useState(currentMonth.toString());
 
-  // Datos de movements
+  // Movement data
   const { dataGraph } = useDataMovements(year, month);
 
-  // Manejadores de cambio para el año y mes
+  // Change handles for year and month
   const handleChangeYear = (event: SelectChangeEvent) =>
     setYear(event.target.value as string);
   const handleChangeMonth = (event: SelectChangeEvent) =>
     setMonth(event.target.value as string);
 
-  // useMemo para obtener años con datos
-  // Evita recalcular los años disponibles a menos que dataMovementsFile cambie
+  // useMemo to get years with data
+  // Avoid recalculating available years unless dataMovementsFile changes
   const yearsWithData = useMemo(() => {
-    // Extracción de años de dataMovementsFile
+    // Extraction of years from dataMovementsFile
     const years = dataMovementsFile.map((item) => Object.keys(item)[0]);
-    // Eliminación de duplicados y ordenamiento
+    // Duplicate elimination and sorting
     return [...new Set(years)].sort((a, b) => Number(b) - Number(a));
   }, []);
 
-  // Comprobamos si hay datos en dataGraph
+  // We check if there is data in dataGraph
   const isDataEmpty = dataGraph.every((data) => data.Income === 0 && data.Expenses === 0);
 
-  // Inicializar los saldos de ingresos y gastos
+  // Initialize income and expense balances
   let balanceIncome = 0;
   let balanceExpenses = 0;
-  // Calcular el ingreso total y los gastos a partir de los datos del gráfico
+  // Calculate total income and expenses from the data in the graph
   for (const data of dataGraph) {
     balanceIncome += data.Income;
     balanceExpenses += data.Expenses;
   }
 
-  // Formatear el ingreso total y los gastos a moneda
+  // Format total income and expenses to currency
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);

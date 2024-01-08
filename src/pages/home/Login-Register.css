@@ -18,7 +18,7 @@ header {
   max-height: 9vh;
   min-width: 20vh;
 }
-/* ---------- FIN HEADER ---------- */
+/* ---------- END HEADER ---------- */
 
 /* ---------- MAIN ---------- */
 .container__form {
@@ -99,11 +99,10 @@ header {
 .form__box a:hover {
   color: var(--color-orange-600);
 }
-/* ---------- FIN MAIN ---------- */
+/* ---------- END MAIN ---------- */
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
-  /* Estilos para dispositivos móviles */
   /* header */
   .header__container_login,
   .header__container_register {
@@ -119,8 +118,7 @@ header {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* Estilos para tabletas */
-  /* header */
+    /* header */
   .header__container_login,
   .header__container_register {
     justify-content: center;
@@ -135,4 +133,4 @@ header {
   }
 }
 
-/* ---------- FIN RESPONSIVE ---------- */
+/* ---------- END RESPONSIVE ---------- */

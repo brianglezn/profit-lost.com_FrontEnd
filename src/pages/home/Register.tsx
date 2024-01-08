@@ -22,26 +22,24 @@ function Register() {
     });
 
     if (response.ok) {
-      // Registro exitoso
       console.log('User registered successfully');
-      navigate('/login'); // Redirige al usuario a la página de inicio de sesión
+      navigate('/login');
     } else {
-      // Manejar errores
       console.error('Failed to register');
     }
   };
 
-  // Función para cerrar el popup
+  // Function to close the popup
   const closePopup = () => {
     setShowPopup(false);
   };
 
   useEffect(() => {
-    // Verificar si el usuario tiene un bloqueador de anuncios activado (esto es un ejemplo, puedes usar una librería para detectar bloqueadores de anuncios)
-    const adBlockEnabled = true; // Cambiar a tu lógica de detección
+    // Check if the user has an ad blocker enabled
+    const adBlockEnabled = true; // temporaly
 
     if (adBlockEnabled) {
-      // Mostrar el popup
+      // Show popup
       setShowPopup(true);
     }
   }, []);
@@ -103,12 +101,12 @@ function Register() {
 
       {showPopup && (
         <div className="popup">
-          <h2>¡Desactiva tu Bloqueador de Anuncios!</h2>
+          <h2>Disable your Ad Blocker!</h2>
           <p>
-            Para poder Registrarte nuestra aplicación necesita que desactives tu bloqueador de anuncios.
-            Por favor, desactívalo para continuar.
+            In order to Register our application requires you to disable your ad blocker.
+            Please disable it to continue.
           </p>
-          <button onClick={closePopup}>Cerrar</button>
+          <button onClick={closePopup}>Close</button>
         </div>
       )}
 

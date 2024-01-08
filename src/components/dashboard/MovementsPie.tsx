@@ -3,12 +3,12 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import dataMovementsJson from "../../data/dataMovements.json";
 
-// Definición de tipo para las entradas de transacciones mensuales con categoría y monto
+// Type definition for monthly transaction entries with category and amount
 type MonthlyTransactionEntry = {
     Category: string;
     Amount: number;
 };
-// Definición de tipo para los meses del año
+// Type definition for the months of the year
 type Months =
     | "Jan"
     | "Feb"
@@ -22,7 +22,7 @@ type Months =
     | "Oct"
     | "Nov"
     | "Dec";
-// Objeto para mapear el número del mes a su correspondiente nombre
+// Object to map the number of the month to its corresponding name
 const monthMapping: Record<number, Months> = {
     1: "Jan",
     2: "Feb",
@@ -37,29 +37,29 @@ const monthMapping: Record<number, Months> = {
     11: "Nov",
     12: "Dec",
 };
-// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
+// Type definition for the monthly transactions, which is an object with keys of type Months and values that are an array of MonthlyTransactionEntry
 type MonthlyTransactions = {
     [key in Months]?: MonthlyTransactionEntry[];
 };
-// Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
+// Type definition for the annual data object, where each year is a key pointing to an array of MonthlyTransactions
 type YearData = {
     [year: string]: MonthlyTransactions[];
 };
-// El archivo de datos es un arreglo de YearData
+// The data file is an array of YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
     dataMovementsJson as unknown as DataMovementsFile;
-// Definir un tipo para el objeto que almacena los ingresos y gastos acumulados
+// Define a type for the object storing the accumulated income and expenses
 type IncomeExpenses = {
     [category: string]: number;
 };
-// Definir un tipo para los pares de categoría y cantidad para los estados de ingresos y gastos
+// Define a type for the category and amount pairs for the income and expense statements
 type CategoryAmountPair = {
     name: string;
     value: number;
 };
 
-// Propiedades del componente
+// Component properties
 interface MovementsProps {
     year: string;
     month: string;
@@ -68,38 +68,38 @@ interface MovementsProps {
 
 function MovementsPie(props: MovementsProps) {
 
-    // Desestructuración de las propiedades para un acceso más fácil
+    // Destructuring of properties for easier access
     const { year, month, isDataEmpty } = props;
 
-    // Estados para las categorías de ingresos y gastos con tipos específicos
+    // Statements for income and expense categories with specific rates
     const [dataCategoryIncome, setDataCategoryIncome] = useState<CategoryAmountPair[]>([]);
     const [dataCategoryExpenses, setDataCategoryExpenses] = useState<CategoryAmountPair[]>([]);
 
     useEffect(() => {
         if (year && month) {
-            // Buscar en dataMovementsFile el objeto que corresponde al año seleccionado.
+            // Search in dataMovementsFile for the object corresponding to the selected year.
             const yearDataWrapper = dataMovementsFile.find(
                 (yearData) => Object.keys(yearData)[0] === year
             );
 
             if (yearDataWrapper) {
-                // Acceder al arreglo de MonthlyTransactions para el año seleccionado.
+                // Access the MonthlyTransactions array for the selected year.
                 const monthlyTransactionsArray = yearDataWrapper[year];
 
-                // Suponiendo que hay un solo objeto MonthlyTransactions por mes en el arreglo
+                // Assuming that there is only one MonthlyTransactions object per month in the array
                 const transactionsForMonth = monthlyTransactionsArray.find(
                     (monthlyTransactions) => monthMapping[Number(month)] in monthlyTransactions
                 );
 
                 if (transactionsForMonth) {
-                    // Acceder a las transacciones para el mes seleccionado
+                    // Access to transactions for the selected month
                     const transactions = transactionsForMonth[monthMapping[Number(month)]];
 
                     if (transactions) {
-                        const income: IncomeExpenses = {}; // Inicializar aquí
-                        const expenses: IncomeExpenses = {}; // Inicializar aquí
+                        const income: IncomeExpenses = {};
+                        const expenses: IncomeExpenses = {};
 
-                        // Recorrer las transacciones y clasificar entre ingresos y gastos
+                        // Go through the transactions and classify between income and expenses.
                         transactions.forEach((transaction) => {
                             const category = transaction.Category;
                             const amount = transaction.Amount;
@@ -111,7 +111,7 @@ function MovementsPie(props: MovementsProps) {
                             }
                         });
 
-                        // Transformar los objetos acumulados en arrays para los gráficos
+                        // Transform accumulated objects into arrays for graphics
                         setDataCategoryIncome(
                             Object.entries(income).map(([name, value]) => ({ name, value }))
                         );

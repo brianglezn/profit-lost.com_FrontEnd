@@ -12,121 +12,61 @@ function Cookies() {
       </Link>
       <h1 className="title">COOKIES</h1>
       <section className="legal">
-        <h3>AVISO DE COOKIES</h3>
+        <h3>COOKIE NOTICE</h3>
         <p>
-          En cumplimiento con lo dispuesto en el artículo 22.2 de la Ley
-          34/2002, de 11 de julio, de Servicios de la Sociedad de la Información
-          y de Comercio Electrónico,{" "}
-          <a href="https://profit-lost.com" target="_blank" rel="noreferrer">
-            profit-lost.com
-          </a>{" "}
-          le informa, en esta sección, sobre la política de recogida y
-          tratamiento de cookies.
+          In compliance with the provisions of Article 22.2 of Law 34/2002, of July 11, Services of the Information Society and Electronic Commerce,{" "}<a href="https://profit-lost.com" target="_blank" rel="noreferrer"> profit-lost.com</a>{" "} informs you, in this section, about the policy of collection and treatment of cookies.
         </p>
 
-        <h3>¿QUÉ SON LAS COOKIES?</h3>
+        <h3>WHAT ARE COOKIES?</h3>.
         <p>
-          Una cookie es un fichero que se descarga en su ordenador al acceder a
-          determinadas páginas web. Las cookies permiten a una página web, entre
-          otras cosas, almacenar y recuperar información sobre los hábitos de
-          navegación de un usuario o de su equipo y, dependiendo de la
-          información que contengan y de la forma en que utilice su equipo,
-          pueden utilizarse para reconocer al usuario.
+          A cookie is a file that is downloaded to your computer when you access certain web pages. Cookies allow a website, among other things, to store and retrieve information about the browsing habits of a user or their computer and, depending on the information they contain and the way you use your computer, can be used to recognize the user.
         </p>
 
-        <h3>¿QUÉ TIPOS DE COOKIES UTILIZA ESTA PÁGINA WEB?</h3>
+        <h3>WHICH TYPES OF COOKIES DOES THIS WEBSITE USE?</h3>.
         <p>
-          Esta página web utiliza los siguientes tipos de cookies: Cookies de
-          análisis: Son aquéllas que bien tratadas por nosotros o por terceros,
-          nos permiten cuantificar el número de usuarios y así realizar la
-          medición y análisis estadístico de la utilización que hacen los
-          usuarios del servicio ofertado. Para ello se analiza su navegación en
-          nuestra página web con el fin de mejorar la oferta de productos o
-          servicios que le ofrecemos.
+          This website uses the following types of cookies: Cookies of analysis: These are those that are well treated by us or by third parties, allow us to quantify the number of users and thus carry out the statistical analysis of the use made by users of the service offered. use made by users of the service offered. To do this, we analyze your browsing on our website in order to  our website in order to improve the range of products or services we offer you. services that we offer.
         </p>
         <p>
-          Cookies técnicas: Son aquellas que permiten al usuario la navegación a
-          través del área restringida y la utilización de sus diferentes
-          funciones, como por ejemplo, llevar a cambio el proceso de compra de
-          un artículo.
+          Technical Cookies: These are those that allow the user to navigate through the restricted area and the use of its different functions, such as, for example, to carry out the purchase process of an article.
         </p>
         <p>
-          Cookies de personalización: Son aquellas que permiten al usuario
-          acceder al servicio con algunas características de carácter general
-          predefinidas en función de una serie de criterios en el terminal del
-          usuario como por ejemplo serian el idioma o el tipo de navegador a
-          través del cual se conecta al servicio.
+          Personalization Cookies: These are those that allow the user to access the service with some general characteristics. access to the service with some general characteristics predefined according to predefined according to a series of criteria in the user's terminal such as the such as the language or the type of browser through which the user connects to the service. through which the user connects to the service.
         </p>
         <p>
-          Cookies publicitarias: Son aquéllas que, bien tratadas por esta web o
-          por terceros, permiten gestionar de la forma más eficaz posible la
-          oferta de los espacios publicitarios que hay en la página web,
-          adecuando el contenido del anuncio al contenido del servicio
-          solicitado o al uso que realice de nuestra página web. Para ello
-          podemos analizar sus hábitos de navegación en Internet y podemos
-          mostrarle publicidad relacionada con su perfil de navegación.
+          Advertising Cookies: These are those that, either treated by this website or by third parties, allow us to manage by third parties, allow to manage in the most efficient way possible the offer of advertising spaces on the website, adapting the content of the advertisement to the content of the service requested or the use you make of our website. In order to do so, we may analyze your Internet browsing habits. we can analyze your browsing habits on the Internet and we can show you advertising related to your browsing profile.
         </p>
         <p>
-          Cookies de publicidad comportamental: Son aquellas que permiten la
-          gestión, de la forma más eficaz posible, de los espacios publicitarios
-          que, en su caso, el editor haya incluido en una página web, aplicación
-          o plataforma desde la que presta el servicio solicitado. Este tipo de
-          cookies almacenan información del comportamiento de los visitantes
-          obtenida a través de la observación continuada de sus hábitos de
-          navegación, lo que permite desarrollar un perfil específico para
-          mostrar avisos publicitarios en función del mismo.
+          Behavioral advertising cookies: These are those that allow the management, in the most management, in the most effective way possible, of the advertising spaces that, where appropriate, the that, where appropriate, the editor has included in a web page, application or platform from or platform from which the requested service is provided. This type of cookies store information on the behavior of visitors obtained through obtained through the continuous observation of their browsing habits, which allows the browsing habits, which makes it possible to develop a specific profile in order to display ads based on the same.
         </p>
 
-        <h3>DESACTIVAR LAS COOKIES</h3>
+        <h3>DISABLE COOKIES</h3>
         <p>
-          Puede usted permitir, bloquear o eliminar las cookies instaladas en su
-          equipo mediante la configuración de las opciones del navegador
-          instalado en su ordenador.
+          You can allow, block or delete cookies installed on your computer by setting your browser by configuring the options of the browser installed on your computer. installed on your computer.
         </p>
         <p>
-          En la mayoría de los navegadores web se ofrece la posibilidad de
-          permitir, bloquear o eliminar las cookies instaladas en su equipo.
+          Most web browsers offer the possibility to allow, block or delete cookies installed on your computer.
         </p>
         <p>
-          A continuación puede acceder a la configuración de los navegadores
-          webs más frecuentes para aceptar, instalar o desactivar las cookies:
-          Configurar cookies en Google Chrome Configurar cookies en Microsoft
-          Internet Explorer Configurar cookies en Mozilla Firefox Configurar
-          cookies en Safari (Apple)
+          Below you can access the configuration of browsers to accept, install or disable cookies: Configure cookies in Google Chrome Configure cookies in Microsoft Internet Explorer Set cookies in Mozilla Firefox Set cookies in Safari (Apple) Set cookies in Safari (Apple) cookies in Safari (Apple)
         </p>
 
-        <h3>COOKIES DE TERCEROS</h3>
+        <h3>THIRD PARTY COOKIES</h3>
         <p>
-          Esta página web utiliza servicios de terceros para recopilar
-          información con fines estadísticos y de uso de la web. Se usan cookies
-          de DoubleClick para mejorar la publicidad que se incluye en el sitio
-          web. Son utilizadas para orientar la publicidad según el contenido que
-          es relevante para un usuario, mejorando así la calidad de experiencia
-          en el uso del mismo.
+          This website uses third party services to collect information for statistical information for statistical and web usage purposes. Cookies are used DoubleClick cookies are used to improve the advertising included on the website. website. They are used to target advertising according to the content that is relevant to a user, thereby relevant to a user, thus improving the quality of the user experience. in the use of the site.
         </p>
         <p>
-          En concreto, usamos los servicios de Google Adsense y de Google
-          Analytics para nuestras estadísticas y publicidad. Algunas cookies son
-          esenciales para el funcionamiento del sitio, por ejemplo el buscador
-          incorporado.
+          In particular, we use the services of Google Adsense and Google Analytics for our statistics and advertising. Some cookies are essential for the operation of the site, for example the built-in search engine. incorporated.
         </p>
         <p>
-          Nuestro sitio incluye otras funcionalidades proporcionadas por
-          terceros. Usted puede fácilmente compartir el contenido en redes
-          sociales como Facebook, Twitter o Google +, con los botones que hemos
-          incluido a tal efecto.
+          Our site includes other functionality provided by third parties. third parties. You can easily share the content on social networks such as Facebook, Twitter or Google +, with the buttons we have included for this purpose. included for this purpose.
         </p>
 
-        <h3>ADVERTENCIA SOBRE ELIMINAR COOKIES</h3>
+        <h3>WARNING ABOUT DELETING COOKIES</h3>
         <p>
-          Usted puede eliminar y bloquear todas las cookies de este sitio, pero
-          parte del sitio no funcionará o la calidad de la página web puede
-          verse afectada.
+          You can delete and block all cookies from this site, but part of the site will not work or the quality of the web page may be affected. be affected.
         </p>
         <p>
-          Si tiene cualquier duda acerca de nuestra política de cookies, puede
-          contactar con esta página web a través de nuestros canales de
-          contacto.
+          If you have any questions about our cookie policy, you can contact this website through our contact this website through our contact channels.
         </p>
       </section>
       <Footer />

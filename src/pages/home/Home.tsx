@@ -23,7 +23,7 @@ function Home() {
           </Link>
         </div>
       </section>
-      {/* <!-- FIN HERO --> */}
+      {/* <!-- END HERO --> */}
 
       <div className="container__sections">
         {/* <!-- SECTION 1 --> */}
@@ -42,7 +42,7 @@ function Home() {
             </div>
           </div>
         </section>
-        {/* <!-- FIN SECTION 1 --> */}
+        {/* <!-- END SECTION 1 --> */}
 
         {/* <!-- SECTION FEATURES --> */}
         <section className="section__features">
@@ -71,13 +71,13 @@ function Home() {
             </div>
           </article>
         </section>
-        {/* <!-- FIN SECTION FEATURES--> */}
+        {/* <!-- END SECTION FEATURES--> */}
 
         {/* <!-- SECTION PREVIEW--> */}
         <section className="section__preview">
           <Preview />
         </section>
-        {/* <!-- FIN SECTION PREVIEW--> */}
+        {/* <!-- END SECTION PREVIEW--> */}
 
       </div>
 

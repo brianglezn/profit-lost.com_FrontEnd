@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import dataMovementsJson from "../../data/dataMovements.json";
 
-// Definición de tipo para las entradas de transacciones mensuales con categoría y monto
+// Type definition for monthly transaction entries with category and amount
 type MonthlyTransactionEntry = {
   Category: string;
   Amount: number;
 };
-// Definición de tipo para los meses del año
+// Type definition for the months of the year
 type Months =
   | "Jan"
   | "Feb"
@@ -20,7 +20,7 @@ type Months =
   | "Oct"
   | "Nov"
   | "Dec";
-// Objeto para mapear el número del mes a su correspondiente nombre
+// Object to map the number of the month to its corresponding name
 const monthMapping: Record<number, Months> = {
   1: "Jan",
   2: "Feb",
@@ -35,21 +35,21 @@ const monthMapping: Record<number, Months> = {
   11: "Nov",
   12: "Dec",
 };
-// Definición de tipo para las transacciones mensuales, que es un objeto con claves de tipo Months y valores que son un arreglo de MonthlyTransactionEntry
+// Type definition for the monthly transactions, which is an object with keys of type Months and values that are an array of MonthlyTransactionEntry
 type MonthlyTransactions = {
   [key in Months]?: MonthlyTransactionEntry[];
 };
-// Definición de tipo para el objeto de datos anuales, donde cada año es una clave que apunta a un arreglo de MonthlyTransactions
+// Type definition for the annual data object, where each year is a key pointing to an array of MonthlyTransactions
 type YearData = {
   [year: string]: MonthlyTransactions[];
 };
-// El archivo de datos es un arreglo de YearData
+// The data file is an array of YearData
 type DataMovementsFile = YearData[];
 const dataMovementsFile: DataMovementsFile =
   dataMovementsJson as unknown as DataMovementsFile;
 
 const useDataMovements = (year: string, month: string) => {
-  // Estado para los datos del gráfico
+  // Status for chart data
   const [dataGraph, setDataGraph] = useState<
     {
       month: string;
@@ -58,21 +58,21 @@ const useDataMovements = (year: string, month: string) => {
       Expenses: number;
     }[]
   >([]);
-  // Estado para verificar si los datos han sido procesados
+  // Status to check if the data has been processed
   const [dataProcessed, setDataProcessed] = useState(false);
 
-  // Efecto para procesar datos cuando el año y mes han sido seleccionados
+  // Effect to process data when the year and month have been selected
   useEffect(() => {
     if (!dataProcessed && year && month) {
-      // Busca los datos del año seleccionado
+      // Search the data for the selected year
       const selectedYearData = dataMovementsFile.find((data) =>
         Object.prototype.hasOwnProperty.call(data, year)
       );
 
       if (selectedYearData) {
-        // Convierte el número del mes al nombre correspondiente
+        // Converts the month number to the corresponding name
         const monthName: Months = monthMapping[parseInt(month, 10)];
-        // Busca las transacciones para el mes seleccionado
+        // Search transactions for the selected month
         const transactionsForMonth = selectedYearData[year].find(
           (monthlyTransactions) =>
             Object.prototype.hasOwnProperty.call(monthlyTransactions, monthName)
@@ -82,7 +82,7 @@ const useDataMovements = (year: string, month: string) => {
           const transactionsArray = transactionsForMonth[monthName];
 
           if (transactionsArray && transactionsArray.length > 0) {
-            // Calcula el total de ingresos y gastos
+            // Calculates total income and expenses
             const totalIncome = transactionsArray.reduce((acc, transaction) => {
               return transaction.Amount > 0 ? acc + transaction.Amount : acc;
             }, 0);
@@ -96,7 +96,7 @@ const useDataMovements = (year: string, month: string) => {
               0
             );
 
-            // Actualiza el estado con los datos del gráfico
+            // Update the status with the data from the chart
             setDataGraph([
               {
                 month: monthName,
@@ -106,7 +106,7 @@ const useDataMovements = (year: string, month: string) => {
               },
             ]);
           } else {
-            // Establece un estado que indica que no hay datos para mostrar
+            // Sets a status indicating that there is no data to show
             setDataGraph([
               {
                 month: monthName,
@@ -116,7 +116,7 @@ const useDataMovements = (year: string, month: string) => {
               },
             ]);
           }
-          // Marca los datos como procesados
+          // Mark data as processed
           setDataProcessed(true);
         } else {
           console.error(
@@ -128,7 +128,7 @@ const useDataMovements = (year: string, month: string) => {
     }
   }, [year, month, dataProcessed]);
 
-  // Efecto para restablecer dataProcessed cuando cambian el año o el mes
+  // Effect to reset dataProcessed when year or month change
   useEffect(() => {
     setDataProcessed(false);
   }, [year, month]);

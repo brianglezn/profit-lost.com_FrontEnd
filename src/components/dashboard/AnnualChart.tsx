@@ -3,7 +3,7 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import dataMovementsFile from "../../data/dataMovements.json";
 import { useEffect, useState } from "react";
 
-// Definimos los tipos para las transacciones mensuales y la estructura de los datos.
+// We define the types for the monthly transactions and the data structure.
 type MonthlyTransaction = {
     Category: string;
     Amount: number;
@@ -42,15 +42,15 @@ function AnnualChart(props: AnnualChartProps) {
 
     const { year } = props;
 
-    // Estado para almacenar los datos del gráfico.
+    // State to store the chart data.
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
     useEffect(() => {
-        // Calculamos los datos para el gráfico cuando el año cambia.
+        // We calculate the data for the graph when the year changes.
         const selectedYearData = dataMovementsFile.find(
             (y) => Object.keys(y)[0] === year.toString()
         ) as DataMovement | undefined;
 
-        // Si hay datos para el año seleccionado, los procesamos para el gráfico.
+        // If there is data for the selected year, we process it for the chart.
         if (selectedYearData && year.toString() in selectedYearData) {
             const monthlyDataArray = selectedYearData[year.toString()];
 
@@ -62,7 +62,7 @@ function AnnualChart(props: AnnualChartProps) {
                     let monthlyExpenses = 0;
                     const hasData = transactions && transactions.length > 0;
 
-                    // Sumamos los ingresos y restamos los gastos para cada mes.
+                    // We add the income and subtract the expenses for each month.
                     if (Array.isArray(transactions)) {
                         transactions.forEach((transaction) => {
                             if (transaction.Amount > 0) {
@@ -73,11 +73,11 @@ function AnnualChart(props: AnnualChartProps) {
                         });
                     }
 
-                    // Hacemos que el resutado solo tenga 2 decimales
+                    // We make the result only have 2 decimal places
                     monthlyIncome = +monthlyIncome.toFixed(2);
                     monthlyExpenses = +monthlyExpenses.toFixed(2);
 
-                    // Retornamos un objeto con los datos del mes para el gráfico.
+                    // We return an object with the month's data for the chart.
                     return {
                         month,
                         Income: monthlyIncome,
