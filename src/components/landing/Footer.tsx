@@ -9,23 +9,23 @@ function Footer() {
     <>
       <footer className="footer">
         <div className="footer__container1">
-          <div className="footer__img">
+          <div className="footer__img no-select">
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost.svg"
               alt="logo"
             />
           </div>
           <div className="footer__links">
-            <div className="footer__links__1">
+            <div className="footer__links__1 no-select">
               <img
                 src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/img/brian.jpg"
-                alt="logo"
+                alt="brian gonzalez novoa"
               />
             </div>
             <div className="footer__links__2">
               <b>Brian González Novoa</b>
               <p>Web Developer</p>
-              <div className="footer__links__2-rrss">
+              <div className="footer__links__2-rrss no-select">
                 <a
                   href="https://www.linkedin.com/in/brianglezn/"
                   target="_blank"

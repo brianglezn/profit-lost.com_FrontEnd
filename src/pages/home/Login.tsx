@@ -51,7 +51,7 @@ function Login() {
     <>
       <header className="header">
         <div className="header__container_login">
-          <Link to="/" className="header__logo">
+          <Link to="/" className="header__logo no-select">
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
               alt="logo"

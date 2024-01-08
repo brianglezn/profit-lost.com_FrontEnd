@@ -7,7 +7,7 @@ function Header() {
     <>
       <header className="header">
         <div className="header__container">
-          <a href="/" className="header__logo">
+          <a href="/" className="header__logo no-select">
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
               alt="logo"
@@ -23,7 +23,7 @@ function Header() {
               </li>
             </ul>
           </nav>
-          <div className="header__login">
+          <div className="header__login no-select">
             <Link to="/login" className="header__login-btn">
               Log in
             </Link>

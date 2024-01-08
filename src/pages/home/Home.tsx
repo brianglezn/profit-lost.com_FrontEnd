@@ -34,7 +34,7 @@ function Home() {
               <p>With Profit&Lost, you can manage your personal finances with ease and efficiency. Our intuitive platform helps you to control income, expenses, and savings, all in one place. Start making smarter financial decisions today!</p>
             </div>
 
-            <div className="section1__div-img">
+            <div className="section1__div-img no-select">
               <img
                 src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/illustrations/money-dash.svg"
                 alt="logo"
@@ -48,7 +48,7 @@ function Home() {
         <section className="section__features">
           <article>
             <figure>
-              <span className="material-symbols-rounded">devices</span>
+              <span className="material-symbols-rounded no-select">devices</span>
             </figure>
             <div>
               <h3>Multidevice</h3>
@@ -56,7 +56,7 @@ function Home() {
           </article>
           <article>
             <figure>
-              <span className="material-symbols-rounded">dashboard</span>
+              <span className="material-symbols-rounded no-select">dashboard</span>
             </figure>
             <div>
               <h3>Friendly Dashboard</h3>
@@ -64,7 +64,7 @@ function Home() {
           </article>
           <article>
             <figure>
-              <span className="material-symbols-rounded">sentiment_very_satisfied</span>
+              <span className="material-symbols-rounded no-select">sentiment_very_satisfied</span>
             </figure>
             <div>
               <h3>Easy to Use</h3>
@@ -74,7 +74,7 @@ function Home() {
         {/* <!-- END SECTION FEATURES--> */}
 
         {/* <!-- SECTION PREVIEW--> */}
-        <section className="section__preview">
+        <section className="section__preview no-select">
           <Preview />
         </section>
         {/* <!-- END SECTION PREVIEW--> */}

@@ -7,7 +7,7 @@ import Footer from "../../components/landing/Footer";
 function Cookies() {
   return (
     <>
-      <Link to="/" className="backHome">
+      <Link to="/" className="backHome no-select">
         --HOME
       </Link>
       <h1 className="title">COOKIES</h1>
@@ -17,12 +17,12 @@ function Cookies() {
           In compliance with the provisions of Article 22.2 of Law 34/2002, of July 11, Services of the Information Society and Electronic Commerce,{" "}<a href="https://profit-lost.com" target="_blank" rel="noreferrer"> profit-lost.com</a>{" "} informs you, in this section, about the policy of collection and treatment of cookies.
         </p>
 
-        <h3>WHAT ARE COOKIES?</h3>.
+        <h3>WHAT ARE COOKIES?</h3>
         <p>
           A cookie is a file that is downloaded to your computer when you access certain web pages. Cookies allow a website, among other things, to store and retrieve information about the browsing habits of a user or their computer and, depending on the information they contain and the way you use your computer, can be used to recognize the user.
         </p>
 
-        <h3>WHICH TYPES OF COOKIES DOES THIS WEBSITE USE?</h3>.
+        <h3>WHICH TYPES OF COOKIES DOES THIS WEBSITE USE?</h3>
         <p>
           This website uses the following types of cookies: Cookies of analysis: These are those that are well treated by us or by third parties, allow us to quantify the number of users and thus carry out the statistical analysis of the use made by users of the service offered. use made by users of the service offered. To do this, we analyze your browsing on our website in order to  our website in order to improve the range of products or services we offer you. services that we offer.
         </p>
