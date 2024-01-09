@@ -51,6 +51,20 @@
   {
     "accountName": "Banco2",
     "data": {
+      "2024": {
+        "Jan": 0,
+        "Feb": 0,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
       "2023": {
         "Jan": 0,
         "Feb": 101,
@@ -86,6 +100,20 @@
   {
     "accountName": "Banco3",
     "data": {
+      "2024": {
+        "Jan": 0,
+        "Feb": 0,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
       "2023": {
         "Jan": 100,
         "Feb": 200,
@@ -107,6 +135,20 @@
   {
     "accountName": "Banco4",
     "data": {
+      "2024": {
+        "Jan": 0,
+        "Feb": 0,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
       "2023": {
         "Jan": 1500,
         "Feb": 2120,
