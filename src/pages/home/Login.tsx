@@ -13,7 +13,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://profit-lost-d0e034025a79.herokuapp.com/login', {
+      const response = await fetch('https://profit-lost-backend.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
