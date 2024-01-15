@@ -56,7 +56,8 @@ function App() {
               <PrivateRoute>
                 <DashBoard />
               </PrivateRoute>
-            }></Route>
+            }>
+            </Route>
             <Route path="/cookies" element={<Cookies />}></Route>
           </Routes>
         </ThemeProvider>
