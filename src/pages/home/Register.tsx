@@ -103,7 +103,7 @@ function Register() {
         <div className="popup">
           <h2>Disable your Ad Blocker!</h2>
           <p>
-            In order to Register our application requires you to disable your ad blocker.
+            To register in our application you need to disable your ad blocker.
             Please disable it to continue.
           </p>
           <button onClick={closePopup}>Close</button>

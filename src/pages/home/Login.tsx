@@ -98,7 +98,7 @@ function Login() {
         <div className="popup">
           <h2>Disable your Ad Blocker!</h2>
           <p>
-            In order to Loguearte our application needs you to disable your ad blocker.
+            To login to our application you need to disable your ad blocker.
             Please disable it to continue.
           </p>
           <button onClick={closePopup}>Close</button>
