@@ -1,0 +1,2620 @@
+[
+  {
+    "date": "2022-01",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1013.85,
+    "transactionId": "unique_transaction_identifier_d4164db9"
+  },
+  {
+    "date": "2022-01",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": 150,
+    "transactionId": "unique_transaction_identifier_39ebdd24"
+  },
+  {
+    "date": "2022-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 70,
+    "transactionId": "unique_transaction_identifier_fbad9fb5"
+  },
+  {
+    "date": "2022-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 40.41,
+    "transactionId": "unique_transaction_identifier_ae0f4fbe"
+  },
+  {
+    "date": "2022-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 58.82,
+    "transactionId": "unique_transaction_identifier_5fd02902"
+  },
+  {
+    "date": "2022-01",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -149.79,
+    "transactionId": "unique_transaction_identifier_5832243b"
+  },
+  {
+    "date": "2022-01",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -344.97,
+    "transactionId": "unique_transaction_identifier_b589e718"
+  },
+  {
+    "date": "2022-01",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_5e769433"
+  },
+  {
+    "date": "2022-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -70.56,
+    "transactionId": "unique_transaction_identifier_0f4f4330"
+  },
+  {
+    "date": "2022-01",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_55684991"
+  },
+  {
+    "date": "2022-01",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -14.95,
+    "transactionId": "unique_transaction_identifier_fb11c3ad"
+  },
+  {
+    "date": "2022-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -47.36,
+    "transactionId": "unique_transaction_identifier_8ce47512"
+  },
+  {
+    "date": "2022-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -30.04,
+    "transactionId": "unique_transaction_identifier_f355dc8c"
+  },
+  {
+    "date": "2022-01",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": -42.83,
+    "transactionId": "unique_transaction_identifier_5e0a293c"
+  },
+  {
+    "date": "2022-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -89.37,
+    "transactionId": "unique_transaction_identifier_cdaf5457"
+  },
+  {
+    "date": "2022-01",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -14.45,
+    "transactionId": "unique_transaction_identifier_04c4018f"
+  },
+  {
+    "date": "2022-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -22.4,
+    "transactionId": "unique_transaction_identifier_a9bd2baf"
+  },
+  {
+    "date": "2022-01",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80,
+    "transactionId": "unique_transaction_identifier_2c30d026"
+  },
+  {
+    "date": "2022-02",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1009.69,
+    "transactionId": "unique_transaction_identifier_161d1a27"
+  },
+  {
+    "date": "2022-02",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 260,
+    "transactionId": "unique_transaction_identifier_9aa44066"
+  },
+  {
+    "date": "2022-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 20.77,
+    "transactionId": "unique_transaction_identifier_6a7904aa"
+  },
+  {
+    "date": "2022-02",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_48e6a70b"
+  },
+  {
+    "date": "2022-02",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -108.51,
+    "transactionId": "unique_transaction_identifier_f735b133"
+  },
+  {
+    "date": "2022-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -213.43,
+    "transactionId": "unique_transaction_identifier_21e454ea"
+  },
+  {
+    "date": "2022-02",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -122,
+    "transactionId": "unique_transaction_identifier_b4e4b9ee"
+  },
+  {
+    "date": "2022-02",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10,
+    "transactionId": "unique_transaction_identifier_1a6b2a76"
+  },
+  {
+    "date": "2022-02",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -74.55,
+    "transactionId": "unique_transaction_identifier_e580dfa2"
+  },
+  {
+    "date": "2022-02",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -14.95,
+    "transactionId": "unique_transaction_identifier_03b6be91"
+  },
+  {
+    "date": "2022-02",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -5.81,
+    "transactionId": "unique_transaction_identifier_14147a6a"
+  },
+  {
+    "date": "2022-02",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -178.02,
+    "transactionId": "unique_transaction_identifier_fdacb0cd"
+  },
+  {
+    "date": "2022-02",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -98.31,
+    "transactionId": "unique_transaction_identifier_48722780"
+  },
+  {
+    "date": "2022-02",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -49.9,
+    "transactionId": "unique_transaction_identifier_2c618517"
+  },
+  {
+    "date": "2022-02",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -25.6,
+    "transactionId": "unique_transaction_identifier_96ef19a0"
+  },
+  {
+    "date": "2022-02",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80,
+    "transactionId": "unique_transaction_identifier_699382d8"
+  },
+  {
+    "date": "2022-02",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -73.06,
+    "transactionId": "unique_transaction_identifier_86aa42e0"
+  },
+  {
+    "date": "2022-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -3,
+    "transactionId": "unique_transaction_identifier_7c6fd49d"
+  },
+  {
+    "date": "2022-03",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1016.71,
+    "transactionId": "unique_transaction_identifier_0d9cc697"
+  },
+  {
+    "date": "2022-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 266,
+    "transactionId": "unique_transaction_identifier_22a86705"
+  },
+  {
+    "date": "2022-03",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 587.17,
+    "transactionId": "unique_transaction_identifier_0acddc6f"
+  },
+  {
+    "date": "2022-03",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_998671d9"
+  },
+  {
+    "date": "2022-03",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -132.01,
+    "transactionId": "unique_transaction_identifier_00cad103"
+  },
+  {
+    "date": "2022-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10,
+    "transactionId": "unique_transaction_identifier_86e94c22"
+  },
+  {
+    "date": "2022-03",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -238.19,
+    "transactionId": "unique_transaction_identifier_e55bf620"
+  },
+  {
+    "date": "2022-03",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -37.27,
+    "transactionId": "unique_transaction_identifier_2fac0d39"
+  },
+  {
+    "date": "2022-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5,
+    "transactionId": "unique_transaction_identifier_18446548"
+  },
+  {
+    "date": "2022-03",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -20,
+    "transactionId": "unique_transaction_identifier_48e60bb4"
+  },
+  {
+    "date": "2022-03",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -158.7,
+    "transactionId": "unique_transaction_identifier_0d1ffce9"
+  },
+  {
+    "date": "2022-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -604.36,
+    "transactionId": "unique_transaction_identifier_47384028"
+  },
+  {
+    "date": "2022-03",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -35.4,
+    "transactionId": "unique_transaction_identifier_e9a94c01"
+  },
+  {
+    "date": "2022-03",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -67.35,
+    "transactionId": "unique_transaction_identifier_82405ed8"
+  },
+  {
+    "date": "2022-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80,
+    "transactionId": "unique_transaction_identifier_288ffca1"
+  },
+  {
+    "date": "2022-04",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1683.06,
+    "transactionId": "unique_transaction_identifier_d20e54df"
+  },
+  {
+    "date": "2022-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 146.68,
+    "transactionId": "unique_transaction_identifier_f95246cf"
+  },
+  {
+    "date": "2022-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": 195.74,
+    "transactionId": "unique_transaction_identifier_2a67b97a"
+  },
+  {
+    "date": "2022-04",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_4c9e81a1"
+  },
+  {
+    "date": "2022-04",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_bf4a84ba"
+  },
+  {
+    "date": "2022-04",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80,
+    "transactionId": "unique_transaction_identifier_3fc1d8a5"
+  },
+  {
+    "date": "2022-04",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -603.78,
+    "transactionId": "unique_transaction_identifier_1634e6a1"
+  },
+  {
+    "date": "2022-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -35,
+    "transactionId": "unique_transaction_identifier_0a941256"
+  },
+  {
+    "date": "2022-04",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -67.18,
+    "transactionId": "unique_transaction_identifier_daa9807c"
+  },
+  {
+    "date": "2022-04",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -130.61,
+    "transactionId": "unique_transaction_identifier_e0fdbe2a"
+  },
+  {
+    "date": "2022-04",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95,
+    "transactionId": "unique_transaction_identifier_5b2aeb4b"
+  },
+  {
+    "date": "2022-04",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -90.54,
+    "transactionId": "unique_transaction_identifier_cac68074"
+  },
+  {
+    "date": "2022-04",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -51.35,
+    "transactionId": "unique_transaction_identifier_4740b011"
+  },
+  {
+    "date": "2022-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -45.27,
+    "transactionId": "unique_transaction_identifier_7145f4ff"
+  },
+  {
+    "date": "2022-04",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -30.91,
+    "transactionId": "unique_transaction_identifier_1948eba4"
+  },
+  {
+    "date": "2022-04",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -65.99,
+    "transactionId": "unique_transaction_identifier_2e42dd56"
+  },
+  {
+    "date": "2022-04",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -117.98,
+    "transactionId": "unique_transaction_identifier_1610b9c8"
+  },
+  {
+    "date": "2022-05",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1051.69,
+    "transactionId": "unique_transaction_identifier_6d60443b"
+  },
+  {
+    "date": "2022-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 14.07,
+    "transactionId": "unique_transaction_identifier_56781f96"
+  },
+  {
+    "date": "2022-05",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_0ad81c74"
+  },
+  {
+    "date": "2022-05",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -106.8,
+    "transactionId": "unique_transaction_identifier_2889a734"
+  },
+  {
+    "date": "2022-05",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_57efce0f"
+  },
+  {
+    "date": "2022-05",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -271.13,
+    "transactionId": "unique_transaction_identifier_25420de4"
+  },
+  {
+    "date": "2022-05",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -279.62,
+    "transactionId": "unique_transaction_identifier_d347554c"
+  },
+  {
+    "date": "2022-05",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -48.17,
+    "transactionId": "unique_transaction_identifier_5dbfcd04"
+  },
+  {
+    "date": "2022-05",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5,
+    "transactionId": "unique_transaction_identifier_5ff83e31"
+  },
+  {
+    "date": "2022-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -87.25,
+    "transactionId": "unique_transaction_identifier_72da5f04"
+  },
+  {
+    "date": "2022-05",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -54.43,
+    "transactionId": "unique_transaction_identifier_29aefa6b"
+  },
+  {
+    "date": "2022-05",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -7,
+    "transactionId": "unique_transaction_identifier_304bcb09"
+  },
+  {
+    "date": "2022-05",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -24.5,
+    "transactionId": "unique_transaction_identifier_f1e82845"
+  },
+  {
+    "date": "2022-06",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1025.07,
+    "transactionId": "unique_transaction_identifier_0ea3fda3"
+  },
+  {
+    "date": "2022-06",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 20,
+    "transactionId": "unique_transaction_identifier_b36fb386"
+  },
+  {
+    "date": "2022-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 1.75,
+    "transactionId": "unique_transaction_identifier_fd2dfd7f"
+  },
+  {
+    "date": "2022-06",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_fd5614bd"
+  },
+  {
+    "date": "2022-06",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -127.04,
+    "transactionId": "unique_transaction_identifier_2ee22dcd"
+  },
+  {
+    "date": "2022-06",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -254.72,
+    "transactionId": "unique_transaction_identifier_0c1bcc46"
+  },
+  {
+    "date": "2022-06",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -7.2,
+    "transactionId": "unique_transaction_identifier_451af73c"
+  },
+  {
+    "date": "2022-06",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -35.05,
+    "transactionId": "unique_transaction_identifier_f4dc36db"
+  },
+  {
+    "date": "2022-06",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5,
+    "transactionId": "unique_transaction_identifier_cd834d1b"
+  },
+  {
+    "date": "2022-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -218.39,
+    "transactionId": "unique_transaction_identifier_8167f698"
+  },
+  {
+    "date": "2022-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -116.38,
+    "transactionId": "unique_transaction_identifier_d5fb041b"
+  },
+  {
+    "date": "2022-06",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -27.35,
+    "transactionId": "unique_transaction_identifier_985a6b00"
+  },
+  {
+    "date": "2022-06",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -49.35,
+    "transactionId": "unique_transaction_identifier_4072942d"
+  },
+  {
+    "date": "2022-06",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -105.47,
+    "transactionId": "unique_transaction_identifier_af45a2e7"
+  },
+  {
+    "date": "2022-07",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1652.61,
+    "transactionId": "unique_transaction_identifier_55711905"
+  },
+  {
+    "date": "2022-07",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 80.49,
+    "transactionId": "unique_transaction_identifier_e8ea81ba"
+  },
+  {
+    "date": "2022-07",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 69.14,
+    "transactionId": "unique_transaction_identifier_cbc5dd2a"
+  },
+  {
+    "date": "2022-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 37.95,
+    "transactionId": "unique_transaction_identifier_f5ccb057"
+  },
+  {
+    "date": "2022-07",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5,
+    "transactionId": "unique_transaction_identifier_2cdc3ff5"
+  },
+  {
+    "date": "2022-07",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -116.77,
+    "transactionId": "unique_transaction_identifier_b77978c4"
+  },
+  {
+    "date": "2022-07",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -235.61,
+    "transactionId": "unique_transaction_identifier_1dd6b5a7"
+  },
+  {
+    "date": "2022-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -196.78,
+    "transactionId": "unique_transaction_identifier_3bf6e2ed"
+  },
+  {
+    "date": "2022-07",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -35.45,
+    "transactionId": "unique_transaction_identifier_f84990b9"
+  },
+  {
+    "date": "2022-07",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5,
+    "transactionId": "unique_transaction_identifier_5224ca46"
+  },
+  {
+    "date": "2022-07",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -135.25,
+    "transactionId": "unique_transaction_identifier_4fb863ca"
+  },
+  {
+    "date": "2022-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -171.71,
+    "transactionId": "unique_transaction_identifier_71c1ed0b"
+  },
+  {
+    "date": "2022-07",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -29,
+    "transactionId": "unique_transaction_identifier_b598395f"
+  },
+  {
+    "date": "2022-07",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -102.45,
+    "transactionId": "unique_transaction_identifier_3decb55f"
+  },
+  {
+    "date": "2022-07",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -587.3,
+    "transactionId": "unique_transaction_identifier_69543f7e"
+  },
+  {
+    "date": "2022-08",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1511.76,
+    "transactionId": "unique_transaction_identifier_f1ed7356"
+  },
+  {
+    "date": "2022-08",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": 200,
+    "transactionId": "unique_transaction_identifier_a2a50768"
+  },
+  {
+    "date": "2022-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 13,
+    "transactionId": "unique_transaction_identifier_05bb8011"
+  },
+  {
+    "date": "2022-08",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 12.5,
+    "transactionId": "unique_transaction_identifier_9553afa3"
+  },
+  {
+    "date": "2022-08",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 77.36,
+    "transactionId": "unique_transaction_identifier_e555f683"
+  },
+  {
+    "date": "2022-08",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 15.49,
+    "transactionId": "unique_transaction_identifier_a8931593"
+  },
+  {
+    "date": "2022-08",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -3.87,
+    "transactionId": "unique_transaction_identifier_9a9a7c00"
+  },
+  {
+    "date": "2022-08",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -173.13,
+    "transactionId": "unique_transaction_identifier_5fe76d3e"
+  },
+  {
+    "date": "2022-08",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -11,
+    "transactionId": "unique_transaction_identifier_da455839"
+  },
+  {
+    "date": "2022-08",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25,
+    "transactionId": "unique_transaction_identifier_700a9ea1"
+  },
+  {
+    "date": "2022-08",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -34.24,
+    "transactionId": "unique_transaction_identifier_32ad32ca"
+  },
+  {
+    "date": "2022-08",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -105.2,
+    "transactionId": "unique_transaction_identifier_29157995"
+  },
+  {
+    "date": "2022-08",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -139.08,
+    "transactionId": "unique_transaction_identifier_1ce0081b"
+  },
+  {
+    "date": "2022-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -39.66,
+    "transactionId": "unique_transaction_identifier_c9831ee8"
+  },
+  {
+    "date": "2022-08",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -32.4,
+    "transactionId": "unique_transaction_identifier_0164f93c"
+  },
+  {
+    "date": "2022-08",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -46.22,
+    "transactionId": "unique_transaction_identifier_a184a650"
+  },
+  {
+    "date": "2022-08",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -5.5,
+    "transactionId": "unique_transaction_identifier_2561e6eb"
+  },
+  {
+    "date": "2022-09",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1151.54,
+    "transactionId": "unique_transaction_identifier_58e1804e"
+  },
+  {
+    "date": "2022-09",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 37,
+    "transactionId": "unique_transaction_identifier_e27f4943"
+  },
+  {
+    "date": "2022-09",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 167.9,
+    "transactionId": "unique_transaction_identifier_06136e97"
+  },
+  {
+    "date": "2022-09",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": 5,
+    "transactionId": "unique_transaction_identifier_d8911080"
+  },
+  {
+    "date": "2022-09",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -461.85,
+    "transactionId": "unique_transaction_identifier_0b09faed"
+  },
+  {
+    "date": "2022-09",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -461.85,
+    "transactionId": "unique_transaction_identifier_4331cd1d"
+  },
+  {
+    "date": "2022-09",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -691.67,
+    "transactionId": "unique_transaction_identifier_fd0987c4"
+  },
+  {
+    "date": "2022-09",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_f4b7804b"
+  },
+  {
+    "date": "2022-09",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -310,
+    "transactionId": "unique_transaction_identifier_8902ea7b"
+  },
+  {
+    "date": "2022-09",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -4,
+    "transactionId": "unique_transaction_identifier_f2609490"
+  },
+  {
+    "date": "2022-09",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -129.27,
+    "transactionId": "unique_transaction_identifier_24797d25"
+  },
+  {
+    "date": "2022-09",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -110.51,
+    "transactionId": "unique_transaction_identifier_7a7a739b"
+  },
+  {
+    "date": "2022-09",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -147.62,
+    "transactionId": "unique_transaction_identifier_ffe857fe"
+  },
+  {
+    "date": "2022-09",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -36.49,
+    "transactionId": "unique_transaction_identifier_e2ccacad"
+  },
+  {
+    "date": "2022-09",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -52.84,
+    "transactionId": "unique_transaction_identifier_274cb2ce"
+  },
+  {
+    "date": "2022-10",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1486.18,
+    "transactionId": "unique_transaction_identifier_2655c957"
+  },
+  {
+    "date": "2022-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 253.79,
+    "transactionId": "unique_transaction_identifier_c875adfd"
+  },
+  {
+    "date": "2022-10",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 34.95,
+    "transactionId": "unique_transaction_identifier_85c4f746"
+  },
+  {
+    "date": "2022-10",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_9b9e13eb"
+  },
+  {
+    "date": "2022-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -422.99,
+    "transactionId": "unique_transaction_identifier_83f0dcc5"
+  },
+  {
+    "date": "2022-10",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -55.45,
+    "transactionId": "unique_transaction_identifier_6b1cf13e"
+  },
+  {
+    "date": "2022-10",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -156.5,
+    "transactionId": "unique_transaction_identifier_234eeffe"
+  },
+  {
+    "date": "2022-10",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -57.22,
+    "transactionId": "unique_transaction_identifier_ff9a4734"
+  },
+  {
+    "date": "2022-10",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15,
+    "transactionId": "unique_transaction_identifier_d0eb146d"
+  },
+  {
+    "date": "2022-10",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.97,
+    "transactionId": "unique_transaction_identifier_b2467c53"
+  },
+  {
+    "date": "2022-10",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25,
+    "transactionId": "unique_transaction_identifier_f1fc08b9"
+  },
+  {
+    "date": "2022-10",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -140.81,
+    "transactionId": "unique_transaction_identifier_0e071059"
+  },
+  {
+    "date": "2022-10",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -180.66,
+    "transactionId": "unique_transaction_identifier_10b6449d"
+  },
+  {
+    "date": "2022-10",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -244.54,
+    "transactionId": "unique_transaction_identifier_ac19a041"
+  },
+  {
+    "date": "2022-10",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -13.14,
+    "transactionId": "unique_transaction_identifier_e2634609"
+  },
+  {
+    "date": "2022-10",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": -13.25,
+    "transactionId": "unique_transaction_identifier_eb5ea64d"
+  },
+  {
+    "date": "2022-10",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -83.28,
+    "transactionId": "unique_transaction_identifier_c97722ae"
+  },
+  {
+    "date": "2022-11",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1168.83,
+    "transactionId": "unique_transaction_identifier_9c9171d6"
+  },
+  {
+    "date": "2022-11",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 82.85,
+    "transactionId": "unique_transaction_identifier_e5267641"
+  },
+  {
+    "date": "2022-11",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_67e40018"
+  },
+  {
+    "date": "2022-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -386.8,
+    "transactionId": "unique_transaction_identifier_cd702192"
+  },
+  {
+    "date": "2022-11",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_5fa97946"
+  },
+  {
+    "date": "2022-11",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25,
+    "transactionId": "unique_transaction_identifier_4c23d5c5"
+  },
+  {
+    "date": "2022-11",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -114.4,
+    "transactionId": "unique_transaction_identifier_393dee1a"
+  },
+  {
+    "date": "2022-11",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -54.97,
+    "transactionId": "unique_transaction_identifier_b9aaee13"
+  },
+  {
+    "date": "2022-11",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -94.71,
+    "transactionId": "unique_transaction_identifier_a2fb3a31"
+  },
+  {
+    "date": "2022-11",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -12.05,
+    "transactionId": "unique_transaction_identifier_73c95938"
+  },
+  {
+    "date": "2022-11",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -38,
+    "transactionId": "unique_transaction_identifier_4c9b8e08"
+  },
+  {
+    "date": "2022-11",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -37,
+    "transactionId": "unique_transaction_identifier_655a1d73"
+  },
+  {
+    "date": "2022-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -97.48,
+    "transactionId": "unique_transaction_identifier_b425370f"
+  },
+  {
+    "date": "2022-11",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -59.75,
+    "transactionId": "unique_transaction_identifier_315ca6ef"
+  },
+  {
+    "date": "2022-11",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -187.52,
+    "transactionId": "unique_transaction_identifier_b1c6680f"
+  },
+  {
+    "date": "2022-11",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -26.05,
+    "transactionId": "unique_transaction_identifier_0457c064"
+  },
+  {
+    "date": "2022-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -8.85,
+    "transactionId": "unique_transaction_identifier_0c744faf"
+  },
+  {
+    "date": "2022-11",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -25,
+    "transactionId": "unique_transaction_identifier_a7c316b3"
+  },
+  {
+    "date": "2022-12",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 2322.13,
+    "transactionId": "unique_transaction_identifier_1cdddf8f"
+  },
+  {
+    "date": "2022-12",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 30,
+    "transactionId": "unique_transaction_identifier_c935d4cb"
+  },
+  {
+    "date": "2022-12",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_78008b1e"
+  },
+  {
+    "date": "2022-12",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -370,
+    "transactionId": "unique_transaction_identifier_778a738b"
+  },
+  {
+    "date": "2022-12",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_f3d437ba"
+  },
+  {
+    "date": "2022-12",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -332.94,
+    "transactionId": "unique_transaction_identifier_9e636474"
+  },
+  {
+    "date": "2022-12",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -90.24,
+    "transactionId": "unique_transaction_identifier_bfc2e2b6"
+  },
+  {
+    "date": "2022-12",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_dea9684a"
+  },
+  {
+    "date": "2022-12",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -18.79,
+    "transactionId": "unique_transaction_identifier_25335622"
+  },
+  {
+    "date": "2022-12",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -53.4,
+    "transactionId": "unique_transaction_identifier_56483f54"
+  },
+  {
+    "date": "2022-12",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -228.5,
+    "transactionId": "unique_transaction_identifier_1fa26177"
+  },
+  {
+    "date": "2022-12",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -99.9,
+    "transactionId": "unique_transaction_identifier_f485fd3e"
+  },
+  {
+    "date": "2022-12",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -51.1,
+    "transactionId": "unique_transaction_identifier_b41742fa"
+  },
+  {
+    "date": "2022-12",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -199.79,
+    "transactionId": "unique_transaction_identifier_27d598d4"
+  },
+  {
+    "date": "2022-12",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -79.8,
+    "transactionId": "unique_transaction_identifier_5b6ca8a3"
+  },
+  {
+    "date": "2023-01",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1496.02,
+    "transactionId": "unique_transaction_identifier_1e2f110c"
+  },
+  {
+    "date": "2023-01",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -187.39,
+    "transactionId": "unique_transaction_identifier_a189b1f4"
+  },
+  {
+    "date": "2023-01",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -412.43,
+    "transactionId": "unique_transaction_identifier_3859d948"
+  },
+  {
+    "date": "2023-01",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_ba920521"
+  },
+  {
+    "date": "2023-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -109.65,
+    "transactionId": "unique_transaction_identifier_b56773e3"
+  },
+  {
+    "date": "2023-01",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -175.16,
+    "transactionId": "unique_transaction_identifier_5da702a8"
+  },
+  {
+    "date": "2023-01",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25,
+    "transactionId": "unique_transaction_identifier_8c82dbd4"
+  },
+  {
+    "date": "2023-01",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -305,
+    "transactionId": "unique_transaction_identifier_5fb62092"
+  },
+  {
+    "date": "2023-01",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.98,
+    "transactionId": "unique_transaction_identifier_4592f946"
+  },
+  {
+    "date": "2023-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -80.11,
+    "transactionId": "unique_transaction_identifier_b3c13a8f"
+  },
+  {
+    "date": "2023-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -49.04,
+    "transactionId": "unique_transaction_identifier_ee8a811d"
+  },
+  {
+    "date": "2023-01",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -21.57,
+    "transactionId": "unique_transaction_identifier_910a718a"
+  },
+  {
+    "date": "2023-01",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -7.8,
+    "transactionId": "unique_transaction_identifier_5e2c52f5"
+  },
+  {
+    "date": "2023-01",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": -42.83,
+    "transactionId": "unique_transaction_identifier_be40a0b5"
+  },
+  {
+    "date": "2023-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 69,
+    "transactionId": "unique_transaction_identifier_39f1cbb2"
+  },
+  {
+    "date": "2023-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 10,
+    "transactionId": "unique_transaction_identifier_75394825"
+  },
+  {
+    "date": "2023-02",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1505.67,
+    "transactionId": "unique_transaction_identifier_0634e1c8"
+  },
+  {
+    "date": "2023-02",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_f7bffd33"
+  },
+  {
+    "date": "2023-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -410.47,
+    "transactionId": "unique_transaction_identifier_9c8a4336"
+  },
+  {
+    "date": "2023-02",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_0beeb8bb"
+  },
+  {
+    "date": "2023-02",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -94.79,
+    "transactionId": "unique_transaction_identifier_ba0a4267"
+  },
+  {
+    "date": "2023-02",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -39.25,
+    "transactionId": "unique_transaction_identifier_099298f0"
+  },
+  {
+    "date": "2023-02",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -86.56,
+    "transactionId": "unique_transaction_identifier_ef3cac8f"
+  },
+  {
+    "date": "2023-02",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -12.05,
+    "transactionId": "unique_transaction_identifier_74929e8f"
+  },
+  {
+    "date": "2023-02",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -118.92,
+    "transactionId": "unique_transaction_identifier_6f57977a"
+  },
+  {
+    "date": "2023-02",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -41,
+    "transactionId": "unique_transaction_identifier_25f7b1e0"
+  },
+  {
+    "date": "2023-02",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -60.15,
+    "transactionId": "unique_transaction_identifier_3db74b40"
+  },
+  {
+    "date": "2023-02",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -2,
+    "transactionId": "unique_transaction_identifier_a512d747"
+  },
+  {
+    "date": "2023-02",
+    "category": "Investments",
+    "description": "Descripción de la transacción",
+    "amount": -101,
+    "transactionId": "unique_transaction_identifier_ab533edf"
+  },
+  {
+    "date": "2023-03",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1339.68,
+    "transactionId": "unique_transaction_identifier_ae01f616"
+  },
+  {
+    "date": "2023-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 1.92,
+    "transactionId": "unique_transaction_identifier_b5e21b57"
+  },
+  {
+    "date": "2023-03",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_b032132a"
+  },
+  {
+    "date": "2023-03",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -370,
+    "transactionId": "unique_transaction_identifier_fea2d2aa"
+  },
+  {
+    "date": "2023-03",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_2f898b61"
+  },
+  {
+    "date": "2023-03",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -85.19,
+    "transactionId": "unique_transaction_identifier_1c95fbdc"
+  },
+  {
+    "date": "2023-03",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_acd1289f"
+  },
+  {
+    "date": "2023-03",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -72.5,
+    "transactionId": "unique_transaction_identifier_29aa6062"
+  },
+  {
+    "date": "2023-03",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -58.46,
+    "transactionId": "unique_transaction_identifier_21e3b609"
+  },
+  {
+    "date": "2023-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15,
+    "transactionId": "unique_transaction_identifier_85518715"
+  },
+  {
+    "date": "2023-03",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95,
+    "transactionId": "unique_transaction_identifier_810d3bf2"
+  },
+  {
+    "date": "2023-03",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -35,
+    "transactionId": "unique_transaction_identifier_47509b66"
+  },
+  {
+    "date": "2023-03",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -433.05,
+    "transactionId": "unique_transaction_identifier_d7d497a6"
+  },
+  {
+    "date": "2023-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -37.5,
+    "transactionId": "unique_transaction_identifier_cf9625f0"
+  },
+  {
+    "date": "2023-03",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -54.9,
+    "transactionId": "unique_transaction_identifier_45cf7e13"
+  },
+  {
+    "date": "2023-03",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -111.68,
+    "transactionId": "unique_transaction_identifier_bafeae3b"
+  },
+  {
+    "date": "2023-03",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -70.79,
+    "transactionId": "unique_transaction_identifier_c5a3ebef"
+  },
+  {
+    "date": "2023-04",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1612.48,
+    "transactionId": "unique_transaction_identifier_b96c862d"
+  },
+  {
+    "date": "2023-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 7,
+    "transactionId": "unique_transaction_identifier_fb710d82"
+  },
+  {
+    "date": "2023-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": 137.83,
+    "transactionId": "unique_transaction_identifier_320c7450"
+  },
+  {
+    "date": "2023-04",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.39,
+    "transactionId": "unique_transaction_identifier_3ad18754"
+  },
+  {
+    "date": "2023-04",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -499.65,
+    "transactionId": "unique_transaction_identifier_28990d89"
+  },
+  {
+    "date": "2023-04",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_655a99af"
+  },
+  {
+    "date": "2023-04",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5,
+    "transactionId": "unique_transaction_identifier_4f5b8cdd"
+  },
+  {
+    "date": "2023-04",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95,
+    "transactionId": "unique_transaction_identifier_d6129c07"
+  },
+  {
+    "date": "2023-04",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -140.43,
+    "transactionId": "unique_transaction_identifier_eb6260e9"
+  },
+  {
+    "date": "2023-04",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -94.21,
+    "transactionId": "unique_transaction_identifier_14af3709"
+  },
+  {
+    "date": "2023-04",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -11.2,
+    "transactionId": "unique_transaction_identifier_78c0523f"
+  },
+  {
+    "date": "2023-04",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -90.99,
+    "transactionId": "unique_transaction_identifier_8e761097"
+  },
+  {
+    "date": "2023-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -5.9,
+    "transactionId": "unique_transaction_identifier_0fb2461b"
+  },
+  {
+    "date": "2023-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -97.33,
+    "transactionId": "unique_transaction_identifier_b6499706"
+  },
+  {
+    "date": "2023-04",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -85,
+    "transactionId": "unique_transaction_identifier_c23c15d0"
+  },
+  {
+    "date": "2023-04",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -45.99,
+    "transactionId": "unique_transaction_identifier_331800ae"
+  },
+  {
+    "date": "2023-04",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -23.39,
+    "transactionId": "unique_transaction_identifier_ade2306c"
+  },
+  {
+    "date": "2023-04",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -171.75,
+    "transactionId": "unique_transaction_identifier_686a97de"
+  },
+  {
+    "date": "2023-04",
+    "category": "Investments",
+    "description": "Descripción de la transacción",
+    "amount": -201,
+    "transactionId": "unique_transaction_identifier_3fb8e4a7"
+  },
+  {
+    "date": "2023-05",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1381.16,
+    "transactionId": "unique_transaction_identifier_961ecf0d"
+  },
+  {
+    "date": "2023-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 225.69,
+    "transactionId": "unique_transaction_identifier_e5b87e95"
+  },
+  {
+    "date": "2023-05",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_cc5a8cec"
+  },
+  {
+    "date": "2023-05",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -413.02,
+    "transactionId": "unique_transaction_identifier_2fac517b"
+  },
+  {
+    "date": "2023-05",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_50742632"
+  },
+  {
+    "date": "2023-05",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -161.03,
+    "transactionId": "unique_transaction_identifier_d3aa2b0b"
+  },
+  {
+    "date": "2023-05",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -104.17,
+    "transactionId": "unique_transaction_identifier_259d249e"
+  },
+  {
+    "date": "2023-05",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5,
+    "transactionId": "unique_transaction_identifier_d85f8c66"
+  },
+  {
+    "date": "2023-05",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95,
+    "transactionId": "unique_transaction_identifier_a9063389"
+  },
+  {
+    "date": "2023-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -419.94,
+    "transactionId": "unique_transaction_identifier_38f16d8d"
+  },
+  {
+    "date": "2023-05",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -63.44,
+    "transactionId": "unique_transaction_identifier_01e56352"
+  },
+  {
+    "date": "2023-05",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -58.47,
+    "transactionId": "unique_transaction_identifier_1982fa0c"
+  },
+  {
+    "date": "2023-05",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -8.35,
+    "transactionId": "unique_transaction_identifier_5e352a7a"
+  },
+  {
+    "date": "2023-06",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1482.89,
+    "transactionId": "unique_transaction_identifier_8c70cdb4"
+  },
+  {
+    "date": "2023-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 100,
+    "transactionId": "unique_transaction_identifier_f9c1aaf4"
+  },
+  {
+    "date": "2023-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 25.17,
+    "transactionId": "unique_transaction_identifier_2c77f4d2"
+  },
+  {
+    "date": "2023-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 42.55,
+    "transactionId": "unique_transaction_identifier_9f75fd9f"
+  },
+  {
+    "date": "2023-06",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_544b1a51"
+  },
+  {
+    "date": "2023-06",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -441.05,
+    "transactionId": "unique_transaction_identifier_58ac6d9b"
+  },
+  {
+    "date": "2023-06",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -151.98,
+    "transactionId": "unique_transaction_identifier_fd337b16"
+  },
+  {
+    "date": "2023-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -75.99,
+    "transactionId": "unique_transaction_identifier_c1d09fc0"
+  },
+  {
+    "date": "2023-06",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16,
+    "transactionId": "unique_transaction_identifier_e3b80979"
+  },
+  {
+    "date": "2023-06",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -12.03,
+    "transactionId": "unique_transaction_identifier_229bcc4e"
+  },
+  {
+    "date": "2023-06",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -120.48,
+    "transactionId": "unique_transaction_identifier_4764cf9e"
+  },
+  {
+    "date": "2023-06",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -14,
+    "transactionId": "unique_transaction_identifier_5b59f283"
+  },
+  {
+    "date": "2023-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -561.73,
+    "transactionId": "unique_transaction_identifier_0b44488b"
+  },
+  {
+    "date": "2023-06",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -55.83,
+    "transactionId": "unique_transaction_identifier_7747db50"
+  },
+  {
+    "date": "2023-06",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -148.56,
+    "transactionId": "unique_transaction_identifier_6719d428"
+  },
+  {
+    "date": "2023-06",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -22.98,
+    "transactionId": "unique_transaction_identifier_7f640c28"
+  },
+  {
+    "date": "2023-06",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -5.84,
+    "transactionId": "unique_transaction_identifier_f156f8c3"
+  },
+  {
+    "date": "2023-06",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -117.88,
+    "transactionId": "unique_transaction_identifier_650f23f4"
+  },
+  {
+    "date": "2023-07",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1595.91,
+    "transactionId": "unique_transaction_identifier_30ecb012"
+  },
+  {
+    "date": "2023-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 91.23,
+    "transactionId": "unique_transaction_identifier_f34ac912"
+  },
+  {
+    "date": "2023-07",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_b0952765"
+  },
+  {
+    "date": "2023-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -123.19,
+    "transactionId": "unique_transaction_identifier_8a5fbc22"
+  },
+  {
+    "date": "2023-07",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -12.1,
+    "transactionId": "unique_transaction_identifier_c69c65fe"
+  },
+  {
+    "date": "2023-07",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -65.03,
+    "transactionId": "unique_transaction_identifier_1059ef11"
+  },
+  {
+    "date": "2023-07",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16,
+    "transactionId": "unique_transaction_identifier_426789bb"
+  },
+  {
+    "date": "2023-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -489.84,
+    "transactionId": "unique_transaction_identifier_f4dc6b6e"
+  },
+  {
+    "date": "2023-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -29.66,
+    "transactionId": "unique_transaction_identifier_b6e96985"
+  },
+  {
+    "date": "2023-07",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -98.01,
+    "transactionId": "unique_transaction_identifier_c8cc9fb2"
+  },
+  {
+    "date": "2023-07",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -143.09,
+    "transactionId": "unique_transaction_identifier_31a30346"
+  },
+  {
+    "date": "2023-07",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -3.56,
+    "transactionId": "unique_transaction_identifier_c81619fd"
+  },
+  {
+    "date": "2023-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -89.7,
+    "transactionId": "unique_transaction_identifier_a54109c9"
+  },
+  {
+    "date": "2023-08",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1653.46,
+    "transactionId": "unique_transaction_identifier_384d2fa9"
+  },
+  {
+    "date": "2023-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 15.7,
+    "transactionId": "unique_transaction_identifier_559d8103"
+  },
+  {
+    "date": "2023-08",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 39.41,
+    "transactionId": "unique_transaction_identifier_a3587442"
+  },
+  {
+    "date": "2023-08",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -173.88,
+    "transactionId": "unique_transaction_identifier_949e38fd"
+  },
+  {
+    "date": "2023-08",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -122.66,
+    "transactionId": "unique_transaction_identifier_26fd7495"
+  },
+  {
+    "date": "2023-08",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95,
+    "transactionId": "unique_transaction_identifier_590cb2a8"
+  },
+  {
+    "date": "2023-08",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16,
+    "transactionId": "unique_transaction_identifier_582bc776"
+  },
+  {
+    "date": "2023-08",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25,
+    "transactionId": "unique_transaction_identifier_ca15b5c9"
+  },
+  {
+    "date": "2023-08",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -40.05,
+    "transactionId": "unique_transaction_identifier_b3e7203d"
+  },
+  {
+    "date": "2023-08",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -33,
+    "transactionId": "unique_transaction_identifier_fcd89eea"
+  },
+  {
+    "date": "2023-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -77.3,
+    "transactionId": "unique_transaction_identifier_98bbd863"
+  },
+  {
+    "date": "2023-08",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -115.84,
+    "transactionId": "unique_transaction_identifier_ba313357"
+  },
+  {
+    "date": "2023-08",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -7.04,
+    "transactionId": "unique_transaction_identifier_6f26f5c2"
+  },
+  {
+    "date": "2023-08",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -34.63,
+    "transactionId": "unique_transaction_identifier_a9dc3c15"
+  },
+  {
+    "date": "2023-08",
+    "category": "Investments",
+    "description": "Descripción de la transacción",
+    "amount": -101,
+    "transactionId": "unique_transaction_identifier_118e8543"
+  },
+  {
+    "date": "2023-09",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1443.27,
+    "transactionId": "unique_transaction_identifier_cb35e7c0"
+  },
+  {
+    "date": "2023-09",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": 150,
+    "transactionId": "unique_transaction_identifier_7d57e809"
+  },
+  {
+    "date": "2023-09",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": 300,
+    "transactionId": "unique_transaction_identifier_87f1f119"
+  },
+  {
+    "date": "2023-09",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_27216ce4"
+  },
+  {
+    "date": "2023-09",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_8e3d59b2"
+  },
+  {
+    "date": "2023-09",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -572.96,
+    "transactionId": "unique_transaction_identifier_a2c05521"
+  },
+  {
+    "date": "2023-09",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -22.6,
+    "transactionId": "unique_transaction_identifier_64a03a64"
+  },
+  {
+    "date": "2023-09",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16,
+    "transactionId": "unique_transaction_identifier_c0119743"
+  },
+  {
+    "date": "2023-09",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95,
+    "transactionId": "unique_transaction_identifier_d9c066e0"
+  },
+  {
+    "date": "2023-09",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -91.39,
+    "transactionId": "unique_transaction_identifier_b7dd6689"
+  },
+  {
+    "date": "2023-09",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -98.05,
+    "transactionId": "unique_transaction_identifier_3ac747d6"
+  },
+  {
+    "date": "2023-09",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -20.94,
+    "transactionId": "unique_transaction_identifier_21b77286"
+  },
+  {
+    "date": "2023-09",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -65.85,
+    "transactionId": "unique_transaction_identifier_25bea45f"
+  },
+  {
+    "date": "2023-10",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1486.18,
+    "transactionId": "unique_transaction_identifier_3981c670"
+  },
+  {
+    "date": "2023-10",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 10,
+    "transactionId": "unique_transaction_identifier_772c0d24"
+  },
+  {
+    "date": "2023-10",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_ecdfa179"
+  },
+  {
+    "date": "2023-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -385,
+    "transactionId": "unique_transaction_identifier_65791fb1"
+  },
+  {
+    "date": "2023-10",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_5e6ba35c"
+  },
+  {
+    "date": "2023-10",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -179.09,
+    "transactionId": "unique_transaction_identifier_41afe8e9"
+  },
+  {
+    "date": "2023-10",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -59.52,
+    "transactionId": "unique_transaction_identifier_8514b391"
+  },
+  {
+    "date": "2023-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -33.69,
+    "transactionId": "unique_transaction_identifier_05afde73"
+  },
+  {
+    "date": "2023-10",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95,
+    "transactionId": "unique_transaction_identifier_7972f232"
+  },
+  {
+    "date": "2023-10",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5,
+    "transactionId": "unique_transaction_identifier_f5c75ef6"
+  },
+  {
+    "date": "2023-10",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5,
+    "transactionId": "unique_transaction_identifier_2a47b313"
+  },
+  {
+    "date": "2023-10",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -420,
+    "transactionId": "unique_transaction_identifier_167848e8"
+  },
+  {
+    "date": "2023-10",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -114.15,
+    "transactionId": "unique_transaction_identifier_c69f6ca6"
+  },
+  {
+    "date": "2023-10",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -102.65,
+    "transactionId": "unique_transaction_identifier_0a3f3bd8"
+  },
+  {
+    "date": "2023-10",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -55.99,
+    "transactionId": "unique_transaction_identifier_0711ae5d"
+  },
+  {
+    "date": "2023-10",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -63.4,
+    "transactionId": "unique_transaction_identifier_9e572db3"
+  },
+  {
+    "date": "2023-10",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -26.94,
+    "transactionId": "unique_transaction_identifier_f7e8c0b1"
+  },
+  {
+    "date": "2023-11",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_7f849a7c"
+  },
+  {
+    "date": "2023-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -365,
+    "transactionId": "unique_transaction_identifier_0a98d46e"
+  },
+  {
+    "date": "2023-11",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_685678aa"
+  },
+  {
+    "date": "2023-11",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": 13.47,
+    "transactionId": "unique_transaction_identifier_a96c7c17"
+  },
+  {
+    "date": "2023-11",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -22.99,
+    "transactionId": "unique_transaction_identifier_1d79af1b"
+  },
+  {
+    "date": "2023-11",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -36.19,
+    "transactionId": "unique_transaction_identifier_3f45fbab"
+  },
+  {
+    "date": "2023-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -1.8,
+    "transactionId": "unique_transaction_identifier_e980a22d"
+  },
+  {
+    "date": "2023-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -61.98,
+    "transactionId": "unique_transaction_identifier_a938ecb8"
+  },
+  {
+    "date": "2023-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -18,
+    "transactionId": "unique_transaction_identifier_95b2cc4e"
+  },
+  {
+    "date": "2023-11",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1439.32,
+    "transactionId": "unique_transaction_identifier_6feba060"
+  },
+  {
+    "date": "2023-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 9,
+    "transactionId": "unique_transaction_identifier_300da858"
+  },
+  {
+    "date": "2023-12",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_158c0240"
+  },
+  {
+    "date": "2023-12",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -396.59,
+    "transactionId": "unique_transaction_identifier_912776ea"
+  },
+  {
+    "date": "2023-12",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_bcc2d2c0"
+  },
+  {
+    "date": "2023-12",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -69.83,
+    "transactionId": "unique_transaction_identifier_cb0819be"
+  },
+  {
+    "date": "2023-12",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -69.83,
+    "transactionId": "unique_transaction_identifier_e17adacd"
+  },
+  {
+    "date": "2023-12",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -20.5,
+    "transactionId": "unique_transaction_identifier_fc57e586"
+  },
+  {
+    "date": "2023-12",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -37.57,
+    "transactionId": "unique_transaction_identifier_3ff08f26"
+  },
+  {
+    "date": "2023-12",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95,
+    "transactionId": "unique_transaction_identifier_34e3c334"
+  },
+  {
+    "date": "2023-12",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -51.99,
+    "transactionId": "unique_transaction_identifier_43cc43ab"
+  },
+  {
+    "date": "2023-12",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -29.23,
+    "transactionId": "unique_transaction_identifier_188b5d5c"
+  },
+  {
+    "date": "2023-12",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -219.39,
+    "transactionId": "unique_transaction_identifier_520c86b7"
+  },
+  {
+    "date": "2023-12",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -22.99,
+    "transactionId": "unique_transaction_identifier_e22e591c"
+  },
+  {
+    "date": "2023-12",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -145.42,
+    "transactionId": "unique_transaction_identifier_6a4ed135"
+  },
+  {
+    "date": "2023-12",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -170.53,
+    "transactionId": "unique_transaction_identifier_1368feae"
+  },
+  {
+    "date": "2023-12",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -44.8,
+    "transactionId": "unique_transaction_identifier_bfa2ea8a"
+  },
+  {
+    "date": "2023-12",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -36.54,
+    "transactionId": "unique_transaction_identifier_60ab7c7f"
+  },
+  {
+    "date": "2023-12",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1404.98,
+    "transactionId": "unique_transaction_identifier_d840b939"
+  }
+]

@@ -5,6 +5,7 @@
     "password": "abc123",
     "name": "Brian",
     "surname": "González Novoa",
-    "photo": ""
+    "photo": "",
+    "UserId": "unique_transaction_identifier_001"
   }
 ]

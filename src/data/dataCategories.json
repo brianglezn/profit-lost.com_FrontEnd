@@ -1,53 +1,70 @@
 [
   {
-    "name": "Work"
+    "name": "Work",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Work2"
+    "name": "Work2",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Education"
+    "name": "Education",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Other"
+    "name": "Other",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Party"
+    "name": "Party",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Clothing"
+    "name": "Clothing",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Supermarket"
+    "name": "Supermarket",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Home"
+    "name": "Home",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Gym"
+    "name": "Gym",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Transport"
+    "name": "Transport",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Health"
+    "name": "Health",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Mobile"
+    "name": "Mobile",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Restaurant"
+    "name": "Restaurant",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Beauty"
+    "name": "Beauty",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Presents"
+    "name": "Presents",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Travel"
+    "name": "Travel",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   },
   {
-    "name": "Management"
+    "name": "Management",
+    "CategoryId": "unique_transaction_identifier_d4164db9"
   }
 ]
