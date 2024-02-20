@@ -2615,6 +2615,181 @@
     "category": "Work",
     "description": "Descripción de la transacción",
     "amount": 1404.98,
+    "transactionId": "unique_transaction_identifier_d8430b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1664.90,
     "transactionId": "unique_transaction_identifier_d840b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 102,
+    "transactionId": "unique_transaction_identifier_d840b4939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 36.34,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 60,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 123,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 123,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 123,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 30,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -365,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -66.86,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -120.64,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -47.95,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -316.73,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -30.49,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -22.99,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -228.53,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -13.04,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -0.97,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -567.91,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-02",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89,
+    "transactionId": "unique_transaction_identifier_d8403b939"
   }
 ]
