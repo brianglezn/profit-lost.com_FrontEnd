@@ -16,21 +16,38 @@ type AccumulatorType = {
     [key: string]: { Income: number; Expenses: number };
 };
 
+
 function AnnualChart({ year }: AnnualChartProps) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+
+    const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
 
     useEffect(() => {
         const processedData = dataMovementsFile
             .filter(transaction => new Date(transaction.date).getFullYear().toString() === year)
             .reduce((acc: AccumulatorType, { date, amount }) => {
-                const month = new Date(date).toLocaleString('default', { month: 'short' });
-                if (!acc[month]) {
-                    acc[month] = { Income: 0, Expenses: 0 };
+                const month = new Date(date).getMonth(); // Obtener el índice del mes (0 para enero, 1 para febrero, etc.)
+                const monthName = monthNames[month]; // Obtener el nombre completo del mes
+                if (!acc[monthName]) {
+                    acc[monthName] = { Income: 0, Expenses: 0 };
                 }
                 if (amount > 0) {
-                    acc[month].Income += amount;
+                    acc[monthName].Income += amount;
                 } else {
-                    acc[month].Expenses += Math.abs(amount);
+                    acc[monthName].Expenses += Math.abs(amount);
                 }
                 return acc;
             }, {});

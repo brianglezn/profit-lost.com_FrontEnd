@@ -2791,5 +2791,19 @@
     "description": "Descripción de la transacción",
     "amount": -163.89,
     "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-02",
+    "category": "Home",
+    "description": "BORRAR",
+    "amount": -365,
+    "transactionId": "unique_transaction_identifier_d8403b939"
+  },
+  {
+    "date": "2024-02",
+    "category": "Work",
+    "description": "BORRAR",
+    "amount": 1800,
+    "transactionId": "unique_transaction_identifier_d8403b939"
   }
 ]
