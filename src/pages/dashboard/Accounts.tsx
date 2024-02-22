@@ -32,11 +32,6 @@ function Accounts() {
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
 
-  const currentMonthIndex = new Date().getMonth();
-  const previousMonthIndex = currentMonthIndex === 0 ? 11 : currentMonthIndex - 1;
-  const previousMonth = monthNames[previousMonthIndex];
-
-
   const [year, setYear] = React.useState(currentYear.toString());
   const handleChange = (event: SelectChangeEvent) => {
     setYear(event.target.value as string);
@@ -57,16 +52,16 @@ function Accounts() {
   const totalBalance = useMemo(() => {
     const currentYear = new Date().getFullYear();
     const currentMonthName = monthNames[new Date().getMonth()];
-  
+
     return dataAccounts.reduce((totalBalance, account) => {
       const totalForAccountThisMonthAndYear = account.records
         .filter(record => record.year === currentYear && record.month === currentMonthName)
         .reduce((total, record) => total + record.value, 0);
-  
+
       return totalBalance + totalForAccountThisMonthAndYear;
     }, 0);
   }, [dataAccounts]);
-  
+
   const chartData = useMemo(() => {
     return monthNames.map(month => {
       const monthData: { name: string;[key: string]: any } = {
@@ -103,26 +98,6 @@ function Accounts() {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-
-  const balanceDifference = useMemo(() => {
-    const currentMonthBalance = dataAccounts.reduce((total, account) => {
-      const valueForMonth = account.records
-        .filter(record => record.year === parseInt(year) && record.month === currentMonthName)
-        .reduce((sum, record) => sum + record.value, 0);
-      return total + valueForMonth;
-    }, 0);
-
-    const previousMonthBalance = dataAccounts.reduce((total, account) => {
-      const valueForPreviousMonth = account.records
-        .filter(record => record.year === parseInt(year) && record.month === previousMonth)
-        .reduce((sum, record) => sum + record.value, 0);
-      return total + valueForPreviousMonth;
-    }, 0);
-
-    return currentMonthBalance - previousMonthBalance;
-  }, [dataAccounts, year, currentMonthName, previousMonth]);
-
-  const isPositive = balanceDifference > 0;
 
   const accountItems = useMemo(() => {
     return dataAccounts.map((account, index) => {
@@ -192,13 +167,7 @@ function Accounts() {
             </Select>
           </FormControl>
           <div className="accounts__main">
-            <h2>{formattedTotalBalance} €</h2>
-            <p className={isPositive ? "positive-balance" : "negative-balance"}>
-              {balanceDifference > 0
-                ? `+${balanceDifference.toFixed(2)}`
-                : balanceDifference.toFixed(2)}{" "}
-              € <span>{previousMonth}</span>
-            </p>
+            <h2>{currentMonthName} {currentYear} - {formattedTotalBalance} €</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 width={500}
