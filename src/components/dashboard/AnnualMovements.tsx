@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import LinearProgress from "@mui/material/LinearProgress";
 
-import dataMovementsFile from "../../data/dataMovements2.json";
+import dataMovementsFile from "../../data/dataMovements.json";
 
 type Transaction = {
     date: string;

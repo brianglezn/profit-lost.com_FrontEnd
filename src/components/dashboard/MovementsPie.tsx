@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import dataMovementsJson from "../../data/dataMovements2.json"; // Asegúrate de actualizar la ruta según sea necesario
+import dataMovementsJson from "../../data/dataMovements.json"; // Asegúrate de actualizar la ruta según sea necesario
 
 // Nuevo tipo basado en la estructura de dataMovements2.json
 type Transaction = {

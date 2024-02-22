@@ -6,7 +6,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Box, Modal } from "@mui/material";
 
 import "./AnnualReport.css";
-import dataMovementsFile from "../../data/dataMovements2.json";
+import dataMovementsFile from "../../data/dataMovements.json";
 
 import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";

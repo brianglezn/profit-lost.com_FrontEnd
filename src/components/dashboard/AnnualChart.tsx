@@ -1,6 +1,6 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
-import dataMovementsFile from "../../data/dataMovements2.json";
+import dataMovementsFile from "../../data/dataMovements.json";
 
 type ChartDataItem = {
     month: string;

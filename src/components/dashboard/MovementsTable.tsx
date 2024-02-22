@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import LinearProgress from '@mui/material/LinearProgress';
 
-import dataMovementsJson from "../../data/dataMovements2.json";
+import dataMovementsJson from "../../data/dataMovements.json";
 
 // Actualización del tipo para reflejar la nueva estructura de datos
 type Transaction = {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import './Login-Register.css';
+
 import Footer from '../../components/landing/Footer';
 
 function Register() {

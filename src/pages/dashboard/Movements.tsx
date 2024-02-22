@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 import "./Movements.css";
-import dataMovementsJson from "../../data/dataMovements2.json";
+import dataMovementsJson from "../../data/dataMovements.json";
 
 import MovementsChart from "../../components/dashboard/MovementsChart";
 import MovementsPie from "../../components/dashboard/MovementsPie";
