@@ -39,8 +39,8 @@ function AnnualChart({ year }: AnnualChartProps) {
         const processedData = dataMovementsFile
             .filter(transaction => new Date(transaction.date).getFullYear().toString() === year)
             .reduce((acc: AccumulatorType, { date, amount }) => {
-                const month = new Date(date).getMonth(); // Obtener el índice del mes (0 para enero, 1 para febrero, etc.)
-                const monthName = monthNames[month]; // Obtener el nombre completo del mes
+                const month = new Date(date).getMonth();
+                const monthName = monthNames[month];
                 if (!acc[monthName]) {
                     acc[monthName] = { Income: 0, Expenses: 0 };
                 }

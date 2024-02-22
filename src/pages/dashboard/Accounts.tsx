@@ -1,208 +1,149 @@
 import React, { useEffect, useState, useMemo } from "react";
-import {
-  FormControl,
-  Select,
-  MenuItem,
-  SelectChangeEvent,
-  InputLabel,
-  Modal,
-  Box,
-} from "@mui/material";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, Modal, Box, } from "@mui/material";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 
 import "./Accounts.css";
 import dataAccountsFile from "../../data/dataAccounts.json";
-
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 import FormAccounts from "../../components/dashboard/FormAccounts.tsx";
 
-// We create a type for the account data elements.
-type DataAccountItem = {
-  accountName: string;
-  data: {
-    [year: string]:
-    | {
-      [month: string]: number | undefined;
-    }
-    | undefined;
-  };
-  customBackgroundColor: string;
-  customColor: string;
+type AccountConfiguration = {
+  backgroundColor: string;
+  color: string;
 };
 
-// Array of month names
-const monthNames = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-// Function to get the name of the previous month.
-function getPreviousMonth() {
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-  return monthNames[previousMonth];
-}
+type AccountRecord = {
+  year: number;
+  month: string;
+  value: number;
+};
+
+type DataAccount = {
+  accountName: string;
+  records: AccountRecord[];
+  configuration: AccountConfiguration;
+  AccountId: string;
+};
+
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function Accounts() {
-  // Extracts the current date, the current year and the current month's name
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
 
-  // Status hook and handler function for the selected year change in the user interface
+  const currentMonthIndex = new Date().getMonth();
+  const previousMonthIndex = currentMonthIndex === 0 ? 11 : currentMonthIndex - 1;
+  const previousMonth = monthNames[previousMonthIndex];
+
+
   const [year, setYear] = React.useState(currentYear.toString());
   const handleChange = (event: SelectChangeEvent) => {
     setYear(event.target.value as string);
   };
 
-  // Status hook for managing account data
-  const [dataAccounts, setDataAccounts] = useState<DataAccountItem[]>([]);
-  // Hook effect for formatting and setting account data from a data file
+  const [dataAccounts, setDataAccounts] = useState<DataAccount[]>(dataAccountsFile);
+
   useEffect(() => {
-    const formattedData = dataAccountsFile.map((item: DataAccountItem) => {
-      // Initializes the formatted data object for one year
-      const formattedData: Record<string, Record<string, number>> = {};
-
-      // Iterate over each year in the account data.
-      for (const year in item.data) {
-        if (item.data[year]) {
-          // Initializes the monthly data object for a specific year
-          const monthlyData: Record<string, number> = {};
-          // Iterate over each month in the year's data.
-          for (const month in item.data[year]) {
-            const value = item.data[year]?.[month];
-            if (typeof value === "number") {
-              // If the value is a number, adds it to the monthly data object
-              monthlyData[month] = value;
-            }
-          }
-          // Add the formatted monthly data to the year data object
-          formattedData[year] = monthlyData;
-        }
-      }
-
-      // Returns a new object with the formatted data and style properties
-      return {
-        accountName: item.accountName,
-        data: formattedData,
-        customBackgroundColor: item.customBackgroundColor,
-        customColor: item.customColor,
-      };
-    });
-
-    setDataAccounts(formattedData);
-  }, [year]);
-
-  // Hook useMemo to calculate the current total balance based on account data and the current month.
-  const totalBalance = useMemo(() => {
-    const balance = dataAccounts.reduce((acc, account) => {
-      const monthBalance = account.data[currentYear]?.[currentMonthName] || 0;
-      return acc + monthBalance;
-    }, 0);
-    return balance;
-  }, [dataAccounts, currentYear, currentMonthName]);
+    setDataAccounts(dataAccountsFile);
+  }, []);
 
   const uniqueYears = useMemo(() => {
-    // Creates a set of years to remove duplicates and then converts it to a sorted array
-    return Array.from(
-      new Set(dataAccounts.flatMap((account) => Object.keys(account.data)))
-    ).sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
+    const years = new Set<number>();
+    dataAccounts.forEach(account => account.records.forEach(record => years.add(record.year)));
+    return Array.from(years).sort((a, b) => b - a);
   }, [dataAccounts]);
 
-  // Generates the data for the chart from the selected year and account data
-  const chartData = monthNames.map((month) => {
-    const data: Record<string, number | string> = {};
+  const totalBalance = useMemo(() => {
+    const currentYear = new Date().getFullYear();
+    const currentMonthName = monthNames[new Date().getMonth()];
+  
+    return dataAccounts.reduce((totalBalance, account) => {
+      const totalForAccountThisMonthAndYear = account.records
+        .filter(record => record.year === currentYear && record.month === currentMonthName)
+        .reduce((total, record) => total + record.value, 0);
+  
+      return totalBalance + totalForAccountThisMonthAndYear;
+    }, 0);
+  }, [dataAccounts]);
+  
+  const chartData = useMemo(() => {
+    return monthNames.map(month => {
+      const monthData: { name: string;[key: string]: any } = {
+        name: month,
+      };
 
-    dataAccounts.forEach((account) => {
-      // Gets the value for the selected month and year, or 0 if not defined.
-      const value = account.data[parseInt(year)]?.[month] ?? 0;
-      // Assigns the value to the corresponding account name in the data object
-      data[account.accountName] = value;
+      dataAccounts.forEach(account => {
+        const totalForMonthAndAccount = account.records
+          .filter(record => record.year === parseInt(year) && record.month === month)
+          .reduce((sum, { value }) => sum + value, 0);
+
+        if (totalForMonthAndAccount > 0) {
+          monthData[account.accountName] = totalForMonthAndAccount;
+        }
+      });
+
+      const totalForMonth = Object.keys(monthData).reduce((acc, key) => {
+        if (key !== 'name') acc += monthData[key];
+        return acc;
+      }, 0);
+
+      monthData.name += `: ${totalForMonth.toLocaleString("es-ES", {
+        style: "currency",
+        currency: "EUR",
+        minimumFractionDigits: 2,
+        useGrouping: true,
+      })}`;
+
+      return monthData;
     });
+  }, [dataAccounts, year]);
 
-    // Concatenates the total to the month name
-    const monthWithTotal = `${month}: ${Object.values(data).reduce((acc, val) => {
-      // Make sure that both values are numbers before adding them together.
-      const numAcc = typeof acc === 'number' ? acc : parseFloat(acc);
-      const numVal = typeof val === 'number' ? val : parseFloat(val);
-      return numAcc + numVal;
-    }, 0).toLocaleString("es-ES", {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-      useGrouping: true,
-    })}`;
-
-    // Returns an object with the name of the month and the accumulated data of all accounts
-    return {
-      name: monthWithTotal,
-      ...data,
-    };
-  });
-
-  // Format the total balance to display it in local currency format.
   const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
-  // Gets the name of the previous month to calculate the difference in balance
-  const previousMonth = getPreviousMonth();
-
-  // Hook useMemo to calculate the balance difference between the current month and the previous month.
   const balanceDifference = useMemo(() => {
-    // Calculates the current month's balance by adding up the balances of all accounts
     const currentMonthBalance = dataAccounts.reduce((total, account) => {
-      return total + (account.data[currentYear]?.[currentMonthName] || 0);
+      const valueForMonth = account.records
+        .filter(record => record.year === parseInt(year) && record.month === currentMonthName)
+        .reduce((sum, record) => sum + record.value, 0);
+      return total + valueForMonth;
     }, 0);
-    // Calculates the previous month's balance by adding up the balances of all accounts
+
     const previousMonthBalance = dataAccounts.reduce((total, account) => {
-      return total + (account.data[currentYear]?.[previousMonth] || 0);
+      const valueForPreviousMonth = account.records
+        .filter(record => record.year === parseInt(year) && record.month === previousMonth)
+        .reduce((sum, record) => sum + record.value, 0);
+      return total + valueForPreviousMonth;
     }, 0);
-    // Returns the difference between the current balance and the previous balance
+
     return currentMonthBalance - previousMonthBalance;
-  }, [dataAccounts, currentYear, currentMonthName, previousMonth]);
+  }, [dataAccounts, year, currentMonthName, previousMonth]);
+
   const isPositive = balanceDifference > 0;
 
-  // Hook useMemo to generate account elements for the UI
   const accountItems = useMemo(() => {
-    // Map the account data to create an account element for each one.
-    return dataAccounts.map((account, index) => (
-      <AccountItem
-        key={index}
-        accountName={account.accountName}
-        balance={`${account.data[currentYear]?.[currentMonthName]?.toLocaleString(
-          "es-ES",
-          {
+    return dataAccounts.map((account, index) => {
+      const balanceForMonth = account.records
+        .filter(record => record.year === parseInt(year) && record.month === currentMonthName)
+        .reduce((sum, record) => sum + record.value, 0);
+
+      return (
+        <AccountItem
+          key={index}
+          accountName={account.accountName}
+          balance={`${balanceForMonth.toLocaleString("es-ES", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
-          }
-        ) ?? "N/A"
-          } €`}
-        customBackgroundColor={account.customBackgroundColor}
-        customColor={account.customColor}
-      />
-    ));
-  }, [dataAccounts, currentYear, currentMonthName]);
+          })} €`}
+          customBackgroundColor={account.configuration.backgroundColor}
+          customColor={account.configuration.color}
+        />
+      );
+    });
+  }, [dataAccounts, year, currentMonthName]);
 
   // Modal
   const styleBox = {
@@ -280,7 +221,7 @@ function Accounts() {
                     key={account.accountName}
                     dataKey={account.accountName}
                     stackId="a"
-                    fill={account.customBackgroundColor}
+                    fill={account.configuration.backgroundColor}
                   />
                 ))}
               </BarChart>

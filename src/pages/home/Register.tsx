@@ -31,17 +31,15 @@ function Register() {
     }
   };
 
-  // Function to close the popup
+  // Ad Popup function
   const closePopup = () => {
     setShowPopup(false);
   };
 
   useEffect(() => {
-    // Check if the user has an ad blocker enabled
-    const adBlockEnabled = true; // temporaly
+    const adBlockEnabled = true; 
 
     if (adBlockEnabled) {
-      // Show popup
       setShowPopup(true);
     }
   }, []);

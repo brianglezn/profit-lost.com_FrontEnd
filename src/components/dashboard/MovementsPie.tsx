@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import dataMovementsJson from "../../data/dataMovements.json"; // Asegúrate de actualizar la ruta según sea necesario
+import dataMovementsJson from "../../data/dataMovements.json";
 
-// Nuevo tipo basado en la estructura de dataMovements2.json
 type Transaction = {
     date: string;
     category: string;
@@ -16,7 +15,6 @@ type DataMovementsFile = Transaction[];
 
 const dataMovements: DataMovementsFile = dataMovementsJson as unknown as DataMovementsFile;
 
-// Define un tipo para las categorías de ingresos y gastos
 type CategoryAmountPair = {
     name: string;
     value: number;

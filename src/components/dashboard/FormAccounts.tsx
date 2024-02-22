@@ -1,7 +1,6 @@
 import { Button, TextField } from "@mui/material";
 
 import "./FormAccounts.css";
-
 // import dataCategoriesJson from "../../data/dataCategories.json";
 
 interface FormAccountsProps {

@@ -14,7 +14,6 @@ import MovementsPie from "../../components/dashboard/MovementsPie";
 import MovementsTable from "../../components/dashboard/MovementsTable";
 import FormMovements from "../../components/dashboard/FormMovements";
 
-// Define el tipo de datos para las transacciones
 type TransactionData = {
   date: string;
   category: string;
@@ -23,7 +22,6 @@ type TransactionData = {
   transactionId: string;
 };
 
-// Función para formatear moneda
 function formatCurrency(value: number) {
   return value.toLocaleString("es-ES", {
     style: "currency",
@@ -55,10 +53,8 @@ function Movements() {
     setDataGraph(filteredData);
   }, [year, month]);
 
-  // Calcular si los datos están vacíos después del filtrado
   const isDataEmpty = dataGraph.length === 0;
 
-  // Funciones para manejar la selección de año y mes
   const handleChangeYear = (event: SelectChangeEvent) => setYear(event.target.value);
   const handleChangeMonth = (event: SelectChangeEvent) => setMonth(event.target.value);;
 

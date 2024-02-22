@@ -4,7 +4,6 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import dataMovementsJson from "../../data/dataMovements.json";
 
-// Actualización del tipo para reflejar la nueva estructura de datos
 type Transaction = {
     date: string;
     category: string;

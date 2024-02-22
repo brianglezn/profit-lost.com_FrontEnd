@@ -1,0 +1,184 @@
+[
+  {
+    "accountName": "Banco1",
+    "data": {
+      "2024": {
+        "Jan": 2883.77,
+        "Feb": 2634.13,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
+      "2023": {
+        "Jan": 2171.04,
+        "Feb": 1926.91,
+        "Mar": 2160.19,
+        "Apr": 1551.73,
+        "May": 1723.36,
+        "Jun": 1799.18,
+        "Jul": 1442.65,
+        "Aug": 1811.17,
+        "Sep": 2632.97,
+        "Oct": 3311.64,
+        "Nov": 3096.2,
+        "Dec": 3158
+      },
+      "2022": {
+        "Jan": 3134.4,
+        "Feb": 1804.33,
+        "Mar": 1679.46,
+        "Apr": 1688.23,
+        "May": 1699.9,
+        "Jun": 1460.2,
+        "Jul": 1465.05,
+        "Aug": 1616.38,
+        "Sep": 2624.04,
+        "Oct": 1602.29,
+        "Nov": 1711.34,
+        "Dec": 1552.45
+      }
+    },
+    "customBackgroundColor": "var(--color-orange-700)",
+    "customColor": "var(--color-white)"
+  },
+  {
+    "accountName": "Banco2",
+    "data": {
+      "2024": {
+        "Jan": 0,
+        "Feb": 0,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
+      "2023": {
+        "Jan": 0,
+        "Feb": 101,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
+      "2022": {
+        "Jan": 0,
+        "Feb": 0,
+        "Mar": 201,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      }
+    },
+    "customBackgroundColor": "var(--color-orange-400)",
+    "customColor": "var(--color-white)"
+  },
+  {
+    "accountName": "Banco3",
+    "data": {
+      "2024": {
+        "Jan": 1301.87,
+        "Feb": 1516.98,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
+      "2023": {
+        "Jan": 100,
+        "Feb": 200,
+        "Mar": 300,
+        "Apr": 400,
+        "May": 500,
+        "Jun": 600,
+        "Jul": 700,
+        "Aug": 800,
+        "Sep": 900,
+        "Oct": 1000,
+        "Nov": 1100,
+        "Dec": 1200
+      }
+    },
+    "customBackgroundColor": "var(--color-orange-300)",
+    "customColor": "var(--color-black)"
+  },
+  {
+    "accountName": "Banco4",
+    "data": {
+      "2024": {
+        "Jan": 4377.94,
+        "Feb": 4469.51,
+        "Mar": 0,
+        "Apr": 0,
+        "May": 0,
+        "Jun": 0,
+        "Jul": 0,
+        "Aug": 0,
+        "Sep": 0,
+        "Oct": 0,
+        "Nov": 0,
+        "Dec": 0
+      },
+      "2023": {
+        "Jan": 1500,
+        "Feb": 2120,
+        "Mar": 2335,
+        "Apr": 2649.7,
+        "May": 2852,
+        "Jun": 2746,
+        "Jul": 2932,
+        "Aug": 2795,
+        "Sep": 2600,
+        "Oct": 2754,
+        "Nov": 3469.28,
+        "Dec": 3801
+      },
+      "2022": {
+        "Jan": 763.74,
+        "Feb": 2145,
+        "Mar": 2479,
+        "Apr": 3060,
+        "May": 2830,
+        "Jun": 1960,
+        "Jul": 1606,
+        "Aug": 2020,
+        "Sep": 1941,
+        "Oct": 2050,
+        "Nov": 2155,
+        "Dec": 1647
+      }
+    },
+    "customBackgroundColor": "var(--color-orange-900)",
+    "customColor": "var(--color-white)"
+  }
+]

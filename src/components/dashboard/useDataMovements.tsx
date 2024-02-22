@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import dataMovementsJson from "../../data/dataMovements.json";
 
-// Actualización del tipo de transacción para reflejar la nueva estructura de datos
 type Transaction = {
   date: string;
   category: string;
@@ -19,13 +18,11 @@ const useDataMovements = (year: string, month: string) => {
   }>>([]);
 
   useEffect(() => {
-    // Filtrar transacciones por año y mes seleccionados
     const filteredTransactions = dataMovementsJson.filter((transaction: Transaction) => {
       const transactionDate = new Date(transaction.date);
       return transactionDate.getFullYear().toString() === year && (transactionDate.getMonth() + 1).toString() === month;
     });
 
-    // Calcular ingresos y gastos totales
     const totalIncome = filteredTransactions.reduce((acc, transaction) => {
       return transaction.amount > 0 ? acc + transaction.amount : acc;
     }, 0);
@@ -34,7 +31,6 @@ const useDataMovements = (year: string, month: string) => {
       return transaction.amount < 0 ? acc + Math.abs(transaction.amount) : acc;
     }, 0);
 
-    // Actualizar dataGraph con los nuevos valores calculados
     setDataGraph([{
       month: month,
       year: parseInt(year),
