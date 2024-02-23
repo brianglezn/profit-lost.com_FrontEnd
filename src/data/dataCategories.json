@@ -1,70 +1,121 @@
 [
   {
-    "name": "Work",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebbccd5a6afdf83bea02"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Work"
   },
   {
-    "name": "Work2",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebc9cd5a6afdf83bea03"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Work2"
   },
   {
-    "name": "Education",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebd1cd5a6afdf83bea04"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Education"
   },
   {
-    "name": "Other",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebd8cd5a6afdf83bea05"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Other"
   },
   {
-    "name": "Party",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebe0cd5a6afdf83bea06"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Party"
   },
   {
-    "name": "Clothing",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebe7cd5a6afdf83bea07"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Clothing"
   },
   {
-    "name": "Supermarket",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ebfacd5a6afdf83bea08"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Supermarket"
   },
   {
-    "name": "Home",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec08cd5a6afdf83bea09"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Home"
   },
   {
-    "name": "Gym",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec0fcd5a6afdf83bea0a"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Gym"
   },
   {
-    "name": "Transport",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec16cd5a6afdf83bea0b"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Transport"
   },
   {
-    "name": "Health",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec1ecd5a6afdf83bea0c"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Health"
   },
   {
-    "name": "Mobile",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec25cd5a6afdf83bea0d"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Mobile"
   },
   {
-    "name": "Restaurant",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec2bcd5a6afdf83bea0e"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Restaurant"
   },
   {
-    "name": "Beauty",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec32cd5a6afdf83bea0f"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Beauty"
   },
   {
-    "name": "Presents",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec39cd5a6afdf83bea10"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Presents"
   },
   {
-    "name": "Travel",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec3fcd5a6afdf83bea11"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Travel"
   },
   {
-    "name": "Management",
-    "CategoryId": "unique_transaction_identifier_d4164db9"
+    "_id": {
+      "$oid": "65d8ec46cd5a6afdf83bea12"
+    },
+    "user_id": "65d8d7a1a0824cc55467639e",
+    "name": "Management"
   }
 ]

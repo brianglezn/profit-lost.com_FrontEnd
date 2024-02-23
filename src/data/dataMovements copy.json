@@ -2243,153 +2243,186 @@
     "description": "Descripción de la transacción",
     "amount": 1404.98
   },
+
+
+
+
+
+
+
+
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Work",
+    "category": "65d8ebbccd5a6afdf83bea02",
     "description": "Descripción de la transacción",
     "amount": 1664.90
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Travel",
+    "category": "65d8ec3fcd5a6afdf83bea11",
     "description": "Descripción de la transacción",
     "amount": 102
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Travel",
+    "category": "65d8ec3fcd5a6afdf83bea11",
     "description": "Descripción de la transacción",
     "amount": 36.34
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Party",
+    "category": "65d8ebe0cd5a6afdf83bea06",
     "description": "Descripción de la transacción",
     "amount": 60
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Party",
+    "category": "65d8ebe0cd5a6afdf83bea06",
     "description": "Descripción de la transacción",
     "amount": 123
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Party",
+    "category": "65d8ebe0cd5a6afdf83bea06",
     "description": "Descripción de la transacción",
     "amount": 123
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Party",
+    "category": "65d8ebe0cd5a6afdf83bea06",
     "description": "Descripción de la transacción",
     "amount": 123
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Other",
+    "category": "65d8ebd8cd5a6afdf83bea05",
     "description": "Descripción de la transacción",
     "amount": 30
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Education",
+    "category": "65d8ebd1cd5a6afdf83bea04",
     "description": "Descripción de la transacción",
     "amount": -163.89
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Home",
+    "category": "65d8ec08cd5a6afdf83bea09",
     "description": "Descripción de la transacción",
     "amount": -365
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Gym",
+    "category": "65d8ec0fcd5a6afdf83bea0a",
     "description": "Descripción de la transacción",
     "amount": -24.95
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Transport",
+    "category": "65d8ec16cd5a6afdf83bea0b",
     "description": "Descripción de la transacción",
     "amount": -66.86
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Supermarket",
+    "category": "65d8ebfacd5a6afdf83bea08",
     "description": "Descripción de la transacción",
     "amount": -120.64
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Transport",
+    "category": "65d8ec16cd5a6afdf83bea0b",
     "description": "Descripción de la transacción",
     "amount": -47.95
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Travel",
+    "category": "65d8ec3fcd5a6afdf83bea11",
     "description": "Descripción de la transacción",
     "amount": -316.73
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Health",
+    "category": "65d8ec1ecd5a6afdf83bea0c",
     "description": "Descripción de la transacción",
     "amount": -1.25
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Beauty",
+    "category": "65d8ec32cd5a6afdf83bea0f",
     "description": "Descripción de la transacción",
     "amount": -15.5
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Mobile",
+    "category": "65d8ec25cd5a6afdf83bea0d",
     "description": "Descripción de la transacción",
     "amount": -9.95
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Other",
+    "category": "65d8ebd8cd5a6afdf83bea05",
     "description": "Descripción de la transacción",
     "amount": -30.49
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Education",
+    "category": "65d8ebd1cd5a6afdf83bea04",
     "description": "Descripción de la transacción",
     "amount": -22.99
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Restaurant",
+    "category": "65d8ec2bcd5a6afdf83bea0e",
     "description": "Descripción de la transacción",
     "amount": -228.53
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Transport",
+    "category": "65d8ec16cd5a6afdf83bea0b",
     "description": "Descripción de la transacción",
     "amount": -13.04
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Clothing",
+    "category": "65d8ebe7cd5a6afdf83bea07",
     "description": "Descripción de la transacción",
     "amount": -0.97
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-01",
-    "category": "Party",
+    "category": "65d8ebe0cd5a6afdf83bea06",
     "description": "Descripción de la transacción",
     "amount": -567.91
   },
   {
+    "user_id": "65d8d7a1a0824cc55467639e",
     "date": "2024-02",
-    "category": "Education",
+    "category": "65d8ebd1cd5a6afdf83bea04",
     "description": "Descripción de la transacción",
     "amount": -163.89
   }
