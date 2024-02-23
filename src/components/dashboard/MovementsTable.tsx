@@ -9,7 +9,6 @@ type Transaction = {
     category: string;
     description: string;
     amount: number;
-    transactionId: string;
 };
 
 const dataMovements: Transaction[] = dataMovementsJson;
@@ -33,8 +32,7 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
             id: index,
             category: transaction.category,
             description: transaction.description,
-            amount: transaction.amount,
-            transactionId: transaction.transactionId
+            amount: transaction.amount
         }));
 
         setTableRows(rows);

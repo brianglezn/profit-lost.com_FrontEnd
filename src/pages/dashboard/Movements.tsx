@@ -19,7 +19,6 @@ type TransactionData = {
   category: string;
   description: string;
   amount: number;
-  transactionId: string;
 };
 
 function formatCurrency(value: number) {

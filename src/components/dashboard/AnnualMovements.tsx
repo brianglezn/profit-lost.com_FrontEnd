@@ -9,7 +9,6 @@ type Transaction = {
     category: string;
     description: string;
     amount: number;
-    transactionId: string;
 };
 
 type CategoryBalance = {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button, TextField } from "@mui/material";
 
 import "./FormCategory.css";
-// import dataCategoriesJson from "../../data/dataCategories.json";
 
 interface FormCategoryProps {
     onClose: () => void;
