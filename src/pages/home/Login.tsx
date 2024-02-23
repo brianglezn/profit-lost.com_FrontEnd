@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './Login-Register.css';
-
+import { useAuth } from '../../context/AuthContext';
 import Footer from '../../components/landing/Footer';
 
 function Login() {
@@ -10,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const { login } = useAuth();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,6 +27,7 @@ function Login() {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem('token', data.token);
+        login(data.token);
         console.log('Login successful');
         navigate('/dashboard');
       } else {
