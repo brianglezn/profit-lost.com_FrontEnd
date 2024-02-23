@@ -6,7 +6,6 @@ type Transaction = {
   category: string;
   description: string;
   amount: number;
-  transactionId: string;
 };
 
 const useDataMovements = (year: string, month: string) => {
