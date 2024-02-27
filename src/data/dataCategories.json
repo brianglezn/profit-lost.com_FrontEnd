@@ -1,121 +1,126 @@
-[
-  {
-    "_id": {
-      "$oid": "65d8ebbccd5a6afdf83bea02"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Work"
+[{
+  "_id": {
+    "$oid": "65d8ebbccd5a6afdf83bea02"
   },
-  {
-    "_id": {
-      "$oid": "65d8ebc9cd5a6afdf83bea03"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Work2"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Work"
+},
+{
+  "_id": {
+    "$oid": "65d8ebc9cd5a6afdf83bea03"
   },
-  {
-    "_id": {
-      "$oid": "65d8ebd1cd5a6afdf83bea04"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Education"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Work2"
+},
+{
+  "_id": {
+    "$oid": "65d8ebd1cd5a6afdf83bea04"
   },
-  {
-    "_id": {
-      "$oid": "65d8ebd8cd5a6afdf83bea05"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Other"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Education"
+},
+{
+  "_id": {
+    "$oid": "65d8ebd8cd5a6afdf83bea05"
   },
-  {
-    "_id": {
-      "$oid": "65d8ebe0cd5a6afdf83bea06"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Party"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Other"
+},
+{
+  "_id": {
+    "$oid": "65d8ebe0cd5a6afdf83bea06"
   },
-  {
-    "_id": {
-      "$oid": "65d8ebe7cd5a6afdf83bea07"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Clothing"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Party"
+},
+{
+  "_id": {
+    "$oid": "65d8ebe7cd5a6afdf83bea07"
   },
-  {
-    "_id": {
-      "$oid": "65d8ebfacd5a6afdf83bea08"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Supermarket"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Clothing"
+},
+{
+  "_id": {
+    "$oid": "65d8ebfacd5a6afdf83bea08"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec08cd5a6afdf83bea09"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Home"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Supermarket"
+},
+{
+  "_id": {
+    "$oid": "65d8ec08cd5a6afdf83bea09"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec0fcd5a6afdf83bea0a"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Gym"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Home"
+},
+{
+  "_id": {
+    "$oid": "65d8ec0fcd5a6afdf83bea0a"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec16cd5a6afdf83bea0b"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Transport"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Gym"
+},
+{
+  "_id": {
+    "$oid": "65d8ec16cd5a6afdf83bea0b"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec1ecd5a6afdf83bea0c"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Health"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Transport"
+},
+{
+  "_id": {
+    "$oid": "65d8ec1ecd5a6afdf83bea0c"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec25cd5a6afdf83bea0d"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Mobile"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Health"
+},
+{
+  "_id": {
+    "$oid": "65d8ec25cd5a6afdf83bea0d"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec2bcd5a6afdf83bea0e"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Restaurant"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Mobile"
+},
+{
+  "_id": {
+    "$oid": "65d8ec2bcd5a6afdf83bea0e"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec32cd5a6afdf83bea0f"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Beauty"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Restaurant"
+},
+{
+  "_id": {
+    "$oid": "65d8ec32cd5a6afdf83bea0f"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec39cd5a6afdf83bea10"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Presents"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Beauty"
+},
+{
+  "_id": {
+    "$oid": "65d8ec39cd5a6afdf83bea10"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec3fcd5a6afdf83bea11"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Travel"
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Presents"
+},
+{
+  "_id": {
+    "$oid": "65d8ec3fcd5a6afdf83bea11"
   },
-  {
-    "_id": {
-      "$oid": "65d8ec46cd5a6afdf83bea12"
-    },
-    "user_id": "65d8d7a1a0824cc55467639e",
-    "name": "Management"
-  }
-]
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Travel"
+},
+{
+  "_id": {
+    "$oid": "65d8ec46cd5a6afdf83bea12"
+  },
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Management"
+},
+{
+  "_id": {
+    "$oid": "65de2c72a2f4fff9be791b8b"
+  },
+  "user_id": "65d8d7a1a0824cc55467639e",
+  "name": "Investments"
+}]

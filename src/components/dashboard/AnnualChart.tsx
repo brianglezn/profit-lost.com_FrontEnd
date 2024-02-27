@@ -1,64 +1,34 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
-import dataMovementsFile from "../../data/dataMovements.json";
 
-type ChartDataItem = {
+interface ChartDataItem {
     month: string;
     Income: number;
     Expenses: number;
-};
-
-interface AnnualChartProps {
-    year: string;
 }
 
-type AccumulatorType = {
-    [key: string]: { Income: number; Expenses: number };
-};
-
-
-function AnnualChart({ year }: AnnualChartProps) {
+function AnnualChart({ year }: { year: string }) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
 
-    const monthNames = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ];
-
     useEffect(() => {
-        const processedData = dataMovementsFile
-            .filter(transaction => new Date(transaction.date).getFullYear().toString() === year)
-            .reduce((acc: AccumulatorType, { date, amount }) => {
-                const month = new Date(date).getMonth();
-                const monthName = monthNames[month];
-                if (!acc[monthName]) {
-                    acc[monthName] = { Income: 0, Expenses: 0 };
-                }
-                if (amount > 0) {
-                    acc[monthName].Income += amount;
-                } else {
-                    acc[monthName].Expenses += Math.abs(amount);
-                }
-                return acc;
-            }, {});
+        const apiUrl = `https://profit-lost-backend.onrender.com/movements/${year}`;
+        const token = localStorage.getItem('token');
 
-        const chartData = Object.entries(processedData).map(([month, { Income, Expenses }]) => ({
-            month,
-            Income: parseFloat(Income.toFixed(2)),
-            Expenses: parseFloat(Expenses.toFixed(2)),
-        }));
-
-        setChartData(chartData);
+        fetch(apiUrl, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data: ChartDataItem[]) => {
+                setChartData(data);
+            })
+            .catch(error => console.error("Error fetching data:", error));
     }, [year]);
 
     return (
@@ -90,4 +60,3 @@ function AnnualChart({ year }: AnnualChartProps) {
 }
 
 export default AnnualChart;
-
