@@ -34,8 +34,9 @@ function AnnualChart({ year }: { year: string }) {
             })
             .then((data: Movement[]) => {
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
+                const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 data.forEach(movement => {
-                    const month = movement.date.split("-")[1];
+                    const month = monthNames[parseInt(movement.date.split("-")[1], 10) - 1];
                     if (!monthlyData[month]) {
                         monthlyData[month] = { Income: 0, Expenses: 0 };
                     }
@@ -45,10 +46,10 @@ function AnnualChart({ year }: { year: string }) {
                         monthlyData[month].Expenses += Math.abs(movement.amount);
                     }
                 });
-                const formattedData: ChartDataItem[] = Object.keys(monthlyData).map(month => ({
+                const formattedData: ChartDataItem[] = monthNames.map(month => ({
                     month,
-                    Income: monthlyData[month].Income,
-                    Expenses: monthlyData[month].Expenses
+                    Income: monthlyData[month] ? monthlyData[month].Income : 0,
+                    Expenses: monthlyData[month] ? monthlyData[month].Expenses : 0
                 }));
                 setChartData(formattedData);
             })
