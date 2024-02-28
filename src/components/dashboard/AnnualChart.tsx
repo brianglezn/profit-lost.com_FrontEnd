@@ -1,6 +1,13 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
 
+interface Movement {
+    date: string;
+    description: string;
+    amount: number;
+    category: string;
+}
+
 interface ChartDataItem {
     month: string;
     Income: number;
@@ -25,8 +32,25 @@ function AnnualChart({ year }: { year: string }) {
                 }
                 return response.json();
             })
-            .then((data: ChartDataItem[]) => {
-                setChartData(data);
+            .then((data: Movement[]) => {
+                const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
+                data.forEach(movement => {
+                    const month = movement.date.split("-")[1];
+                    if (!monthlyData[month]) {
+                        monthlyData[month] = { Income: 0, Expenses: 0 };
+                    }
+                    if (movement.amount > 0) {
+                        monthlyData[month].Income += movement.amount;
+                    } else {
+                        monthlyData[month].Expenses += Math.abs(movement.amount);
+                    }
+                });
+                const formattedData: ChartDataItem[] = Object.keys(monthlyData).map(month => ({
+                    month,
+                    Income: monthlyData[month].Income,
+                    Expenses: monthlyData[month].Expenses
+                }));
+                setChartData(formattedData);
             })
             .catch(error => console.error("Error fetching data:", error));
     }, [year]);
