@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import LinearProgress from "@mui/material/LinearProgress";
 
-import dataMovementsFile from "../../data/dataMovements.json";
-
 type Transaction = {
     date: string;
     category: string;
@@ -35,21 +33,33 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
     const [tableRows, setTableRows] = useState<GridRowsProp>([]);
 
     useEffect(() => {
-        const filteredTransactions = dataMovementsFile.filter(
-            (transaction: Transaction) => new Date(transaction.date).getFullYear().toString() === year
-        );
+        const token = localStorage.getItem('token');
+        
+        const fetchData = async () => {
+            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
-        const categoryBalances = filteredTransactions.reduce((acc: { [category: string]: CategoryBalance }, transaction, index) => {
-            const { category, amount } = transaction;
-            if (!acc[category]) {
-                acc[category] = { id: index, Category: category, Balance: 0, InOut: "" };
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-            acc[category].Balance += amount;
-            acc[category].InOut = acc[category].Balance >= 0 ? "IN" : "OUT";
-            return acc;
-        }, {});
+            const dataMovements: Transaction[] = await response.json();
 
-        setTableRows(Object.values(categoryBalances));
+            const categoryBalances = dataMovements.reduce((acc: { [category: string]: CategoryBalance }, transaction, index) => {
+                const { category, amount } = transaction;
+                if (!acc[category]) {
+                    acc[category] = { id: index, Category: category, Balance: 0, InOut: amount >= 0 ? "IN" : "OUT" };
+                }
+                acc[category].Balance += amount;
+                return acc;
+            }, {});
+
+            setTableRows(Object.values(categoryBalances));
+        };
+
+        fetchData().catch(console.error);
     }, [year]);
 
     const columns: GridColDef[] = useMemo(() => [
@@ -72,7 +82,6 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
         },
     ], []);
 
-
     return (
         <div className="annualReport__category-table">
             {tableRows.length > 0 ? (
@@ -92,4 +101,3 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
 }
 
 export default AnnualMovements;
-
