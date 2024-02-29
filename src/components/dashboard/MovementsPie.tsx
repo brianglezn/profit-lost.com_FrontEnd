@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import dataMovementsJson from "../../data/dataMovements.json";
-
 type Transaction = {
     date: string;
     category: string;
     description: string;
     amount: number;
 };
-
-type DataMovementsFile = Transaction[];
-
-const dataMovements: DataMovementsFile = dataMovementsJson as unknown as DataMovementsFile;
 
 type CategoryAmountPair = {
     name: string;
@@ -30,24 +24,38 @@ function MovementsPie({ year, month, isDataEmpty }: MovementsProps) {
     const [dataCategoryExpenses, setDataCategoryExpenses] = useState<CategoryAmountPair[]>([]);
 
     useEffect(() => {
-        if (!year || !month) return;
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok. Status: ${response.status}`);
+                }
+                const transactions: Transaction[] = await response.json();
 
-        const fullDate = `${year}-${month.toString().padStart(2, '0')}`;
-        const transactionsForMonth = dataMovements.filter((t) => t.date.startsWith(fullDate));
+                const income: { [key: string]: number } = {};
+                const expenses: { [key: string]: number } = {};
 
-        const income: { [key: string]: number } = {};
-        const expenses: { [key: string]: number } = {};
+                transactions.forEach(({ category, amount }) => {
+                    if (amount > 0) {
+                        income[category] = (income[category] || 0) + amount;
+                    } else {
+                        expenses[category] = (expenses[category] || 0) + Math.abs(amount);
+                    }
+                });
 
-        transactionsForMonth.forEach(({ category, amount }) => {
-            if (amount >= 0) {
-                income[category] = (income[category] || 0) + amount;
-            } else {
-                expenses[category] = (expenses[category] || 0) + Math.abs(amount);
+                setDataCategoryIncome(Object.entries(income).map(([name, value]) => ({ name, value })));
+                setDataCategoryExpenses(Object.entries(expenses).map(([name, value]) => ({ name, value })));
+            } catch (error) {
+                console.error('Error fetching transactions data:', error);
             }
-        });
+        };
 
-        setDataCategoryIncome(Object.entries(income).map(([name, value]) => ({ name, value })));
-        setDataCategoryExpenses(Object.entries(expenses).map(([name, value]) => ({ name, value })));
+        fetchData();
     }, [year, month]);
 
     const Colors = [
