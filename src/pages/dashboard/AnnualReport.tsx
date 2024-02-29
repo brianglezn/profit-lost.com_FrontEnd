@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -6,11 +6,17 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Box, Modal } from "@mui/material";
 
 import "./AnnualReport.css";
-import dataMovementsFile from "../../data/dataMovements.json";
 
 import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";
 import FormCategory from "../../components/dashboard/FormCategory";
+
+interface Movement {
+  date: string;
+  description: string;
+  amount: number;
+  category: string;
+}
 
 function formatCurrency(value: number): string {
   return value.toLocaleString("es-ES", {
@@ -24,13 +30,33 @@ function formatCurrency(value: number): string {
 function AnnualReport() {
   const currentYear = new Date().getFullYear().toString();
   const [year, setYear] = useState(currentYear);
+  const [yearsWithData, setYearsWithData] = useState<string[]>([]);
 
-  const yearsWithData = useMemo(() => {
-    const years = dataMovementsFile.map(transaction => new Date(transaction.date).getFullYear().toString());
-    const yearsSet = new Set(years);
-    yearsSet.add(currentYear);
-    return Array.from(yearsSet).sort((a, b) => Number(b) - Number(a));
-}, [dataMovementsFile, currentYear]);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    const fetchYearsWithData = async () => {
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) throw new Error('Failed to fetch');
+        const dataMovements: Movement[] = await response.json();
+
+        const years = new Set(dataMovements.map((item: Movement) => {
+          return new Date(item.date).getFullYear().toString();
+        }));
+
+        setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
+      } catch (error) {
+        console.error('Error fetching years data:', error);
+      }
+    };
+
+    fetchYearsWithData();
+  }, []);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setYear(event.target.value);
@@ -40,22 +66,36 @@ function AnnualReport() {
   const [balanceExpenses, setBalanceExpenses] = useState(0);
 
   useEffect(() => {
-    const filteredTransactions = dataMovementsFile.filter(
-      (transaction) => new Date(transaction.date).getFullYear().toString() === year
-    );
-
-    const { income, expenses } = filteredTransactions.reduce(
-      (acc, transaction) => {
-        if (transaction.amount > 0) acc.income += transaction.amount;
-        else acc.expenses += Math.abs(transaction.amount);
-        return acc;
-      },
-      { income: 0, expenses: 0 }
-    );
-
-    setBalanceIncome(income);
-    setBalanceExpenses(expenses);
+    const token = localStorage.getItem('token');
+  
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const dataMovements: Movement[] = await response.json();
+  
+        const { income, expenses } = dataMovements.reduce((acc, transaction) => {
+          if (transaction.amount > 0) acc.income += transaction.amount;
+          else acc.expenses += transaction.amount;
+          return acc;
+        }, { income: 0, expenses: 0 });
+  
+        setBalanceIncome(income);
+        setBalanceExpenses(Math.abs(expenses));
+      } catch (error) {
+        console.error('Error fetching transactions data:', error);
+      }
+    };
+  
+    fetchData();
   }, [year]);
+  
 
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
