@@ -2,16 +2,12 @@ import { useEffect, useState } from "react";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import LinearProgress from '@mui/material/LinearProgress';
 
-import dataMovementsJson from "../../data/dataMovements.json";
-
 type Transaction = {
     date: string;
     category: string;
     description: string;
     amount: number;
 };
-
-const dataMovements: Transaction[] = dataMovementsJson;
 
 interface MovementsProps {
     year: string;
@@ -23,19 +19,33 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
     const [tableRows, setTableRows] = useState<GridRowsProp>([]);
 
     useEffect(() => {
-        const filteredTransactions = dataMovements.filter(transaction => {
-            const [transactionYear, transactionMonth] = transaction.date.split("-");
-            return transactionYear === year && transactionMonth.padStart(2, '0') === month.padStart(2, '0');
-        });
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const transactions: Transaction[] = await response.json();
 
-        const rows = filteredTransactions.map((transaction, index) => ({
-            id: index,
-            category: transaction.category,
-            description: transaction.description,
-            amount: transaction.amount
-        }));
+                const rows = transactions.map((transaction, index) => ({
+                    id: index,
+                    category: transaction.category,
+                    description: transaction.description,
+                    amount: transaction.amount
+                }));
 
-        setTableRows(rows);
+                setTableRows(rows);
+            } catch (error) {
+                console.error('Error fetching transactions data:', error);
+            }
+        };
+
+        fetchData();
     }, [year, month]);
 
     const columns: GridColDef[] = [

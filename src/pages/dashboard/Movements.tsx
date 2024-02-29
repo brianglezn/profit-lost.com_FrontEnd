@@ -7,19 +7,18 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 import "./Movements.css";
-import dataMovementsJson from "../../data/dataMovements.json";
 
 import MovementsChart from "../../components/dashboard/MovementsChart";
 import MovementsPie from "../../components/dashboard/MovementsPie";
 import MovementsTable from "../../components/dashboard/MovementsTable";
 import FormMovements from "../../components/dashboard/FormMovements";
 
-type TransactionData = {
+interface Movement {
   date: string;
-  category: string;
   description: string;
   amount: number;
-};
+  category: string;
+}
 
 function formatCurrency(value: number) {
   return value.toLocaleString("es-ES", {
@@ -32,24 +31,58 @@ function formatCurrency(value: number) {
 
 function Movements() {
   const currentYear = new Date().getFullYear().toString();
-  const currentMonth = (new Date().getMonth() + 1).toString();
-
+  const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, '0');
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(currentMonth);
-  const [dataGraph, setDataGraph] = useState<TransactionData[]>([]);
+  const [dataGraph, setDataGraph] = useState<Movement[]>([]);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
 
   useEffect(() => {
-    const years = new Set(dataMovementsJson.map(({ date }) => date.split("-")[0]));
-    setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
+    const token = localStorage.getItem('token');
+
+    const fetchYearsWithData = async () => {
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) throw new Error('Failed to fetch');
+        const dataMovements: Movement[] = await response.json();
+
+        const years = new Set(dataMovements.map((item: Movement) => {
+          return new Date(item.date).getFullYear().toString();
+        }));
+
+        setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
+      } catch (error) {
+        console.error('Error fetching years data:', error);
+      }
+    };
+
+    fetchYearsWithData();
   }, []);
 
   useEffect(() => {
-    const filteredData = dataMovementsJson.filter(({ date }) => {
-      const [y, m] = date.split("-");
-      return y === year && m.padStart(2, '0') === month.padStart(2, '0');
-    });
-    setDataGraph(filteredData);
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const transactions: Movement[] = await response.json();
+        setDataGraph(transactions);
+      } catch (error) {
+        console.error('Error fetching transactions data:', error);
+      }
+    };
+
+    fetchData();
   }, [year, month]);
 
   const isDataEmpty = dataGraph.length === 0;
