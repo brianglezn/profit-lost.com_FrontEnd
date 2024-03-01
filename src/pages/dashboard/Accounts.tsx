@@ -25,11 +25,14 @@ type DataAccount = {
 };
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const fullMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 
 function Accounts() {
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
+  const currentFullMonthName: string = fullMonthNames[currentDate.getMonth()];
 
   const [year, setYear] = React.useState(currentYear.toString());
   const handleChange = (event: SelectChangeEvent) => {
@@ -68,19 +71,6 @@ function Accounts() {
     return Array.from(years).sort((a, b) => b - a);
   }, [dataAccounts]);
 
-  const totalBalance = useMemo(() => {
-    const currentYear = new Date().getFullYear();
-    const currentMonthName = monthNames[new Date().getMonth()];
-
-    return dataAccounts.reduce((totalBalance, account) => {
-      const totalForAccountThisMonthAndYear = account.records
-        .filter(record => record.year === currentYear && record.month === currentMonthName)
-        .reduce((total, record) => total + record.value, 0);
-
-      return totalBalance + totalForAccountThisMonthAndYear;
-    }, 0);
-  }, [dataAccounts]);
-
   const chartData = useMemo(() => {
     return monthNames.map(month => {
       const monthData: { name: string;[key: string]: any } = {
@@ -112,11 +102,6 @@ function Accounts() {
       return monthData;
     });
   }, [dataAccounts, year]);
-
-  const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
 
   const accountItems = useMemo(() => {
     return dataAccounts.map((account, index) => {
@@ -186,7 +171,7 @@ function Accounts() {
             </Select>
           </FormControl>
           <div className="accounts__main">
-            <h2>{currentMonthName} {currentYear}</h2>
+            <h2>{currentFullMonthName} {currentYear}</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 width={500}
