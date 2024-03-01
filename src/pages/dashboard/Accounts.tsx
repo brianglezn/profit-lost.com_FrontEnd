@@ -33,43 +33,43 @@ function Accounts() {
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
   const currentFullMonthName: string = fullMonthNames[currentDate.getMonth()];
-
+  const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [year, setYear] = React.useState(currentYear.toString());
+  const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
+
   const handleChange = (event: SelectChangeEvent) => {
     setYear(event.target.value as string);
   };
 
-  const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/${year}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-        });
+    const fetchAllData = async () => {
+        try {
+            const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/all`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const allAccountsData: DataAccount[] = await response.json();
+
+            setDataAccounts(allAccountsData);
+
+            const years = new Set<number>();
+            allAccountsData.forEach(account => account.records.forEach(record => years.add(record.year)));
+            setUniqueYears(Array.from(years).sort((a, b) => a - b));
+        } catch (error) {
+            console.error('Error fetching all accounts data:', error);
         }
-        const accountsData: DataAccount[] = await response.json();
-        setDataAccounts(accountsData);
-      } catch (error) {
-        console.error('Error fetching accounts data:', error);
-      }
     };
 
-    fetchData();
-  }, [year]);
-
-  const uniqueYears = useMemo(() => {
-    const years = new Set<number>();
-    dataAccounts.forEach(account => account.records.forEach(record => years.add(record.year)));
-    return Array.from(years).sort((a, b) => b - a);
-  }, [dataAccounts]);
+    fetchAllData();
+}, [year]);
 
   const chartData = useMemo(() => {
     return monthNames.map(month => {
