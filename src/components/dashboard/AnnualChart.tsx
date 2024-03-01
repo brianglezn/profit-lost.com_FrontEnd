@@ -48,8 +48,8 @@ function AnnualChart({ year }: { year: string }) {
                 });
                 const formattedData: ChartDataItem[] = monthNames.map(month => ({
                     month,
-                    Income: monthlyData[month] ? monthlyData[month].Income : 0,
-                    Expenses: monthlyData[month] ? monthlyData[month].Expenses : 0
+                    Income: monthlyData[month] ? parseFloat(monthlyData[month].Income.toFixed(2)) : 0,
+                    Expenses: monthlyData[month] ? parseFloat(monthlyData[month].Expenses.toFixed(2)) : 0
                 }));
                 setChartData(formattedData);
             })

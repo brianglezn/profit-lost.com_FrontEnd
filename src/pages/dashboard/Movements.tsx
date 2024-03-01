@@ -94,8 +94,8 @@ function Movements() {
     {
       month,
       year: parseInt(year),
-      Income: dataGraph.reduce((acc, { amount }) => (amount > 0 ? acc + amount : acc), 0),
-      Expenses: dataGraph.reduce((acc, { amount }) => (amount < 0 ? acc + Math.abs(amount) : acc), 0),
+      Income: parseFloat(dataGraph.reduce((acc, { amount }) => (amount > 0 ? acc + amount : acc), 0).toFixed(2)),
+      Expenses: parseFloat(dataGraph.reduce((acc, { amount }) => (amount < 0 ? acc + Math.abs(amount) : acc), 0).toFixed(2)),
     },
   ];
 

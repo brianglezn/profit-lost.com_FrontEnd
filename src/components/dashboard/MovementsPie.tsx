@@ -48,8 +48,16 @@ function MovementsPie({ year, month, isDataEmpty }: MovementsProps) {
                     }
                 });
 
-                setDataCategoryIncome(Object.entries(income).map(([name, value]) => ({ name, value })));
-                setDataCategoryExpenses(Object.entries(expenses).map(([name, value]) => ({ name, value })));
+                setDataCategoryIncome(Object.entries(income).map(([name, value]) => ({
+                    name,
+                    value: parseFloat(value.toFixed(2))
+                })));
+
+                setDataCategoryExpenses(Object.entries(expenses).map(([name, value]) => ({
+                    name,
+                    value: parseFloat(value.toFixed(2))
+                })));
+
             } catch (error) {
                 console.error('Error fetching transactions data:', error);
             }
@@ -57,6 +65,9 @@ function MovementsPie({ year, month, isDataEmpty }: MovementsProps) {
 
         fetchData();
     }, [year, month]);
+
+    console.log(dataCategoryIncome)
+    console.log(dataCategoryExpenses)
 
     const Colors = [
         "var(--color-orange-300)",
