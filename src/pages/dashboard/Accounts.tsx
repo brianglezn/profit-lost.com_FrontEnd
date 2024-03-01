@@ -22,7 +22,6 @@ type DataAccount = {
   accountName: string;
   records: AccountRecord[];
   configuration: AccountConfiguration;
-  AccountId: string;
 };
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -47,19 +46,6 @@ function Accounts() {
     const years = new Set<number>();
     dataAccounts.forEach(account => account.records.forEach(record => years.add(record.year)));
     return Array.from(years).sort((a, b) => b - a);
-  }, [dataAccounts]);
-
-  const totalBalance = useMemo(() => {
-    const currentYear = new Date().getFullYear();
-    const currentMonthName = monthNames[new Date().getMonth()];
-
-    return dataAccounts.reduce((totalBalance, account) => {
-      const totalForAccountThisMonthAndYear = account.records
-        .filter(record => record.year === currentYear && record.month === currentMonthName)
-        .reduce((total, record) => total + record.value, 0);
-
-      return totalBalance + totalForAccountThisMonthAndYear;
-    }, 0);
   }, [dataAccounts]);
 
   const chartData = useMemo(() => {
@@ -93,11 +79,6 @@ function Accounts() {
       return monthData;
     });
   }, [dataAccounts, year]);
-
-  const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
 
   const accountItems = useMemo(() => {
     return dataAccounts.map((account, index) => {
@@ -167,7 +148,7 @@ function Accounts() {
             </Select>
           </FormControl>
           <div className="accounts__main">
-            <h2>{currentMonthName} {currentYear} - {formattedTotalBalance} €</h2>
+            <h2>{currentMonthName} {currentYear}</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 width={500}

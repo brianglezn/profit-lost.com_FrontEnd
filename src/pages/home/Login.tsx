@@ -28,7 +28,6 @@ function Login() {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         login(data.token);
-        console.log('Login successful');
         navigate('/dashboard');
       } else {
         console.error('Failed to login');
