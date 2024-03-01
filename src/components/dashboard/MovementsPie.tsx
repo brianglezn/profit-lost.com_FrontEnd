@@ -66,9 +66,6 @@ function MovementsPie({ year, month, isDataEmpty }: MovementsProps) {
         fetchData();
     }, [year, month]);
 
-    console.log(dataCategoryIncome)
-    console.log(dataCategoryExpenses)
-
     const Colors = [
         "var(--color-orange-300)",
         "var(--color-orange)",

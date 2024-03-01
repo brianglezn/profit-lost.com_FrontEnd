@@ -3,7 +3,6 @@ import { FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, Modal, Bo
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 
 import "./Accounts.css";
-import dataAccountsFile from "../../data/dataAccounts.json";
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 import FormAccounts from "../../components/dashboard/FormAccounts.tsx";
 
@@ -22,6 +21,7 @@ type DataAccount = {
   accountName: string;
   records: AccountRecord[];
   configuration: AccountConfiguration;
+  AccountId: string;
 };
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -36,16 +36,49 @@ function Accounts() {
     setYear(event.target.value as string);
   };
 
-  const [dataAccounts, setDataAccounts] = useState<DataAccount[]>(dataAccountsFile);
+  const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
 
   useEffect(() => {
-    setDataAccounts(dataAccountsFile);
-  }, []);
+    const token = localStorage.getItem('token');
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/${year}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const accountsData: DataAccount[] = await response.json();
+        setDataAccounts(accountsData);
+      } catch (error) {
+        console.error('Error fetching accounts data:', error);
+      }
+    };
+
+    fetchData();
+  }, [year]);
 
   const uniqueYears = useMemo(() => {
     const years = new Set<number>();
     dataAccounts.forEach(account => account.records.forEach(record => years.add(record.year)));
     return Array.from(years).sort((a, b) => b - a);
+  }, [dataAccounts]);
+
+  const totalBalance = useMemo(() => {
+    const currentYear = new Date().getFullYear();
+    const currentMonthName = monthNames[new Date().getMonth()];
+
+    return dataAccounts.reduce((totalBalance, account) => {
+      const totalForAccountThisMonthAndYear = account.records
+        .filter(record => record.year === currentYear && record.month === currentMonthName)
+        .reduce((total, record) => total + record.value, 0);
+
+      return totalBalance + totalForAccountThisMonthAndYear;
+    }, 0);
   }, [dataAccounts]);
 
   const chartData = useMemo(() => {
@@ -79,6 +112,11 @@ function Accounts() {
       return monthData;
     });
   }, [dataAccounts, year]);
+
+  const formattedTotalBalance = totalBalance.toLocaleString("es-ES", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
   const accountItems = useMemo(() => {
     return dataAccounts.map((account, index) => {
