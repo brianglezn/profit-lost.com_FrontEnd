@@ -1,2181 +1,2396 @@
 [
   {
-    "2022": [
-      {
-        "Jan": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1013.85
-          },
-          {
-            "Category": "Work2",
-            "Description": "",
-            "Amount": 150
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 70
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": 40.41
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 58.82
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -149.79
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -344.97
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -70.56
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -14.95
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -47.36
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -30.04
-          },
-          {
-            "Category": "Work2",
-            "Description": "",
-            "Amount": -42.83
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -89.37
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -14.45
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -22.4
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -80
-          }
-        ]
-      },
-      {
-        "Feb": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1009.69
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 260
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": 20.77
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -108.51
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -213.43
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -122
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -10
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -74.55
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -14.95
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -5.81
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -178.02
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -98.31
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -49.9
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -25.6
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -80
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -73.06
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -3
-          }
-        ]
-      },
-      {
-        "Mar": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1016.71
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 266
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": 587.17
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -132.01
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -10
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -238.19
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -37.27
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -10.5
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -20
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -158.7
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -604.36
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -35.4
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -67.35
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -80
-          }
-        ]
-      },
-      {
-        "Apr": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1683.06
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 146.68
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": 195.74
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -80
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -603.78
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": -35
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -67.18
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -130.61
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -9.95
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -90.54
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -51.35
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -45.27
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -30.91
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -65.99
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -117.98
-          }
-        ]
-      },
-      {
-        "May": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1051.69
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 14.07
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -106.8
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -271.13
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -279.62
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -48.17
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -10.5
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -87.25
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -54.43
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -7
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -24.5
-          }
-        ]
-      },
-      {
-        "Jun": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1025.07
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 20
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 1.75
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -127.04
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -254.72
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -7.2
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -35.05
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -10.5
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -218.39
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -116.38
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -27.35
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -49.35
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -105.47
-          }
-        ]
-      },
-      {
-        "Jul": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1652.61
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 80.49
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": 69.14
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 37.95
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -31.5
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -116.77
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -235.61
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -196.78
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -35.45
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -10.5
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -135.25
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -171.71
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -29
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -102.45
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -587.3
-          }
-        ]
-      },
-      {
-        "Aug": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1511.76
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": 200
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": 13
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": 12.5
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 77.36
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 15.49
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -3.87
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -173.13
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -11
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -34.24
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -105.2
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -139.08
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -39.66
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -32.4
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -46.22
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -5.5
-          }
-        ]
-      },
-      {
-        "Sep": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1151.54
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": 37
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 167.9
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": 5
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -461.85
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -461.85
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -691.67
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -310
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -4
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -129.27
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -110.51
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -147.62
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -36.49
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -52.84
-          }
-        ]
-      },
-      {
-        "Oct": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1486.18
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": 253.79
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 34.95
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -422.99
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -55.45
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -156.5
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -57.22
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -15
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -11.97
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -140.81
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -180.66
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -244.54
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -13.14
-          },
-          {
-            "Category": "Work2",
-            "Description": "",
-            "Amount": -13.25
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -83.28
-          }
-        ]
-      },
-      {
-        "Nov": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1168.83
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 82.85
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -386.8
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -114.4
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -54.97
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -94.71
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": -12.05
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -38
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -37
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -97.48
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -59.75
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -187.52
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -26.05
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -8.85
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -25
-          }
-        ]
-      },
-      {
-        "Dec": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 2322.13
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 30
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -370
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -332.94
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -90.24
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -18.79
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -53.4
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -228.5
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -99.9
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -51.1
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -199.79
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -79.8
-          }
-        ]
-      }
-    ]
+    "date": "2022-01",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1013.85
   },
   {
-    "2023": [
-      {
-        "Jan": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1496.02
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -187.39
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -412.43
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -109.65
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -175.16
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -305
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -11.98
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -80.11
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -49.04
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -21.57
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -7.8
-          },
-          {
-            "Category": "Work2",
-            "Description": "",
-            "Amount": -42.83
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 69
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": 10
-          }
-        ]
-      },
-      {
-        "Feb": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1505.67
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -410.47
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -94.79
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -39.25
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -86.56
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -12.05
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -118.92
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -41
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -60.15
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -2
-          },
-          {
-            "Category": "Investments",
-            "Description": "",
-            "Amount": -101
-          }
-        ]
-      },
-      {
-        "Mar": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1339.68
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 1.92
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -370
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -85.19
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -72.5
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -58.46
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -15
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -11.95
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": -35
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -433.05
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -37.5
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -54.9
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -111.68
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -70.79
-          }
-        ]
-      },
-      {
-        "Apr": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1612.48
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 7
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": 137.83
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.39
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -499.65
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -15.5
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -11.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -140.43
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -94.21
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -11.2
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -90.99
-          },
-          {
-            "Category": "Management",
-            "Description": "",
-            "Amount": -5.9
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -97.33
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -85
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -45.99
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -23.39
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -171.75
-          },
-          {
-            "Category": "Investments",
-            "Description": "",
-            "Amount": -201
-          }
-        ]
-      },
-      {
-        "May": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1381.16
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 225.69
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -413.02
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -161.03
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -104.17
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -15.5
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -11.95
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -419.94
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -63.44
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -58.47
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -8.35
-          }
-        ]
-      },
-      {
-        "Jun": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1482.89
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 100
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 25.17
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": 42.55
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -441.05
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -151.98
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -75.99
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -16
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -12.03
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -120.48
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -14
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -561.73
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -55.83
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -148.56
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -22.98
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -5.84
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -117.88
-          }
-        ]
-      },
-      {
-        "Jul": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1595.91
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 91.23
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -123.19
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -12.1
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -65.03
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -16
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -489.84
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -29.66
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -98.01
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -143.09
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -3.56
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -89.7
-          }
-        ]
-      },
-      {
-        "Aug": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1653.46
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": 15.7
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": 39.41
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -173.88
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -122.66
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -11.95
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -16
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -40.05
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -33
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -77.3
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -115.84
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -7.04
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -34.63
-          },
-          {
-            "Category": "Investments",
-            "Description": "",
-            "Amount": -101
-          }
-        ]
-      },
-      {
-        "Sep": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1443.27
-          },
-          {
-            "Category": "Work2",
-            "Description": "",
-            "Amount": 150
-          },
-          {
-            "Category": "Work2",
-            "Description": "",
-            "Amount": 300
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -572.96
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -22.6
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -16
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -9.95
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -91.39
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -98.05
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -20.94
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -65.85
-          }
-        ]
-      },
-      {
-        "Oct": [
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1486.18
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 10
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -385
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -179.09
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -59.52
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -33.69
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -9.95
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -15.5
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -2.5
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -420
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -114.15
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -102.65
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -55.99
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -63.4
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": -26.94
-          }
-        ]
-      },
-      {
-        "Nov": [
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -365
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Presents",
-            "Description": "",
-            "Amount": 13.47
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -22.99
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -36.19
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -1.8
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -61.98
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -18
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -8.68
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -7.85
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -17.14
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -32.2
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -7.12
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -1.3
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -1.3
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -2.89
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -10.77
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -10
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -6
-          },
-          {
-            "Category": "Travel",
-            "Description": "",
-            "Amount": -60.55
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -100
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -3
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -38.56
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -9.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -34.45
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -8
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -10
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -26.56
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -7.4
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -14
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -14
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -15.5
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -34.45
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -1.25
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -18.83
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -15.8
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -15.35
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -10.86
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -5
-          },
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1439.32
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": 9
-          }
-        ]
-      },
-      {
-        "Dec": [
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -163.89
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -396.59
-          },
-          {
-            "Category": "Gym",
-            "Description": "",
-            "Amount": -24.95
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -69.83
-          },
-          {
-            "Category": "Supermarket",
-            "Description": "",
-            "Amount": -69.83
-          },
-          {
-            "Category": "Beauty",
-            "Description": "",
-            "Amount": -20.5
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -37.57
-          },
-          {
-            "Category": "Mobile",
-            "Description": "",
-            "Amount": -9.95
-          },
-          {
-            "Category": "Transport",
-            "Description": "",
-            "Amount": -51.99
-          },
-          {
-            "Category": "Home",
-            "Description": "",
-            "Amount": -29.23
-          },
-          {
-            "Category": "Health",
-            "Description": "",
-            "Amount": -219.39
-          },
-          {
-            "Category": "Education",
-            "Description": "",
-            "Amount": -22.99
-          },
-          {
-            "Category": "Other",
-            "Description": "",
-            "Amount": -145.42
-          },
-          {
-            "Category": "Restaurant",
-            "Description": "",
-            "Amount": -170.53
-          },
-          {
-            "Category": "Clothing",
-            "Description": "",
-            "Amount": -44.8
-          },
-          {
-            "Category": "Party",
-            "Description": "",
-            "Amount": -36.54
-          },
-          {
-            "Category": "Work",
-            "Description": "",
-            "Amount": 1404.98
-          }
-        ]
-      }
-    ]
+    "date": "2022-01",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": 150
   },
   {
-    "2024": [
-      {
-        "Jan": []
-      },
-      {
-        "Feb": []
-      },
-      {
-        "Mar": []
-      },
-      {
-        "Apr": []
-      },
-      {
-        "May": []
-      },
-      {
-        "Jun": []
-      },
-      {
-        "Jul": []
-      },
-      {
-        "Aug": []
-      },
-      {
-        "Sep": []
-      },
-      {
-        "Oct": []
-      },
-      {
-        "Nov": []
-      },
-      {
-        "Dec": []
-      }
-    ]
+    "date": "2022-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 70
+  },
+  {
+    "date": "2022-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 40.41
+  },
+  {
+    "date": "2022-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 58.82
+  },
+  {
+    "date": "2022-01",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -149.79
+  },
+  {
+    "date": "2022-01",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -344.97
+  },
+  {
+    "date": "2022-01",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -70.56
+  },
+  {
+    "date": "2022-01",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2022-01",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -14.95
+  },
+  {
+    "date": "2022-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -47.36
+  },
+  {
+    "date": "2022-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -30.04
+  },
+  {
+    "date": "2022-01",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": -42.83
+  },
+  {
+    "date": "2022-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -89.37
+  },
+  {
+    "date": "2022-01",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -14.45
+  },
+  {
+    "date": "2022-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -22.4
+  },
+  {
+    "date": "2022-01",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80
+  },
+  {
+    "date": "2022-02",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1009.69
+  },
+  {
+    "date": "2022-02",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 260
+  },
+  {
+    "date": "2022-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 20.77
+  },
+  {
+    "date": "2022-02",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-02",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -108.51
+  },
+  {
+    "date": "2022-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -213.43
+  },
+  {
+    "date": "2022-02",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -122
+  },
+  {
+    "date": "2022-02",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10
+  },
+  {
+    "date": "2022-02",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -74.55
+  },
+  {
+    "date": "2022-02",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -14.95
+  },
+  {
+    "date": "2022-02",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -5.81
+  },
+  {
+    "date": "2022-02",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -178.02
+  },
+  {
+    "date": "2022-02",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -98.31
+  },
+  {
+    "date": "2022-02",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -49.9
+  },
+  {
+    "date": "2022-02",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -25.6
+  },
+  {
+    "date": "2022-02",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80
+  },
+  {
+    "date": "2022-02",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -73.06
+  },
+  {
+    "date": "2022-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -3
+  },
+  {
+    "date": "2022-03",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1016.71
+  },
+  {
+    "date": "2022-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 266
+  },
+  {
+    "date": "2022-03",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 587.17
+  },
+  {
+    "date": "2022-03",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-03",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -132.01
+  },
+  {
+    "date": "2022-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10
+  },
+  {
+    "date": "2022-03",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -238.19
+  },
+  {
+    "date": "2022-03",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -37.27
+  },
+  {
+    "date": "2022-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5
+  },
+  {
+    "date": "2022-03",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -20
+  },
+  {
+    "date": "2022-03",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -158.7
+  },
+  {
+    "date": "2022-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -604.36
+  },
+  {
+    "date": "2022-03",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -35.4
+  },
+  {
+    "date": "2022-03",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -67.35
+  },
+  {
+    "date": "2022-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80
+  },
+  {
+    "date": "2022-04",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1683.06
+  },
+  {
+    "date": "2022-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 146.68
+  },
+  {
+    "date": "2022-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": 195.74
+  },
+  {
+    "date": "2022-04",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-04",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2022-04",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -80
+  },
+  {
+    "date": "2022-04",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -603.78
+  },
+  {
+    "date": "2022-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -35
+  },
+  {
+    "date": "2022-04",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -67.18
+  },
+  {
+    "date": "2022-04",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -130.61
+  },
+  {
+    "date": "2022-04",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95
+  },
+  {
+    "date": "2022-04",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -90.54
+  },
+  {
+    "date": "2022-04",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -51.35
+  },
+  {
+    "date": "2022-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -45.27
+  },
+  {
+    "date": "2022-04",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -30.91
+  },
+  {
+    "date": "2022-04",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -65.99
+  },
+  {
+    "date": "2022-04",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -117.98
+  },
+  {
+    "date": "2022-05",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1051.69
+  },
+  {
+    "date": "2022-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 14.07
+  },
+  {
+    "date": "2022-05",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-05",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -106.8
+  },
+  {
+    "date": "2022-05",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2022-05",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -271.13
+  },
+  {
+    "date": "2022-05",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -279.62
+  },
+  {
+    "date": "2022-05",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -48.17
+  },
+  {
+    "date": "2022-05",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5
+  },
+  {
+    "date": "2022-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -87.25
+  },
+  {
+    "date": "2022-05",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -54.43
+  },
+  {
+    "date": "2022-05",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -7
+  },
+  {
+    "date": "2022-05",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -24.5
+  },
+  {
+    "date": "2022-06",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1025.07
+  },
+  {
+    "date": "2022-06",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 20
+  },
+  {
+    "date": "2022-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 1.75
+  },
+  {
+    "date": "2022-06",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-06",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -127.04
+  },
+  {
+    "date": "2022-06",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -254.72
+  },
+  {
+    "date": "2022-06",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -7.2
+  },
+  {
+    "date": "2022-06",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -35.05
+  },
+  {
+    "date": "2022-06",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5
+  },
+  {
+    "date": "2022-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -218.39
+  },
+  {
+    "date": "2022-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -116.38
+  },
+  {
+    "date": "2022-06",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -27.35
+  },
+  {
+    "date": "2022-06",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -49.35
+  },
+  {
+    "date": "2022-06",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -105.47
+  },
+  {
+    "date": "2022-07",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1652.61
+  },
+  {
+    "date": "2022-07",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 80.49
+  },
+  {
+    "date": "2022-07",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 69.14
+  },
+  {
+    "date": "2022-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 37.95
+  },
+  {
+    "date": "2022-07",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -31.5
+  },
+  {
+    "date": "2022-07",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -116.77
+  },
+  {
+    "date": "2022-07",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -235.61
+  },
+  {
+    "date": "2022-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -196.78
+  },
+  {
+    "date": "2022-07",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -35.45
+  },
+  {
+    "date": "2022-07",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -10.5
+  },
+  {
+    "date": "2022-07",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -135.25
+  },
+  {
+    "date": "2022-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -171.71
+  },
+  {
+    "date": "2022-07",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -29
+  },
+  {
+    "date": "2022-07",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -102.45
+  },
+  {
+    "date": "2022-07",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -587.3
+  },
+  {
+    "date": "2022-08",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1511.76
+  },
+  {
+    "date": "2022-08",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": 200
+  },
+  {
+    "date": "2022-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 13
+  },
+  {
+    "date": "2022-08",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 12.5
+  },
+  {
+    "date": "2022-08",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 77.36
+  },
+  {
+    "date": "2022-08",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 15.49
+  },
+  {
+    "date": "2022-08",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -3.87
+  },
+  {
+    "date": "2022-08",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -173.13
+  },
+  {
+    "date": "2022-08",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -11
+  },
+  {
+    "date": "2022-08",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25
+  },
+  {
+    "date": "2022-08",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -34.24
+  },
+  {
+    "date": "2022-08",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -105.2
+  },
+  {
+    "date": "2022-08",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -139.08
+  },
+  {
+    "date": "2022-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -39.66
+  },
+  {
+    "date": "2022-08",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -32.4
+  },
+  {
+    "date": "2022-08",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -46.22
+  },
+  {
+    "date": "2022-08",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -5.5
+  },
+  {
+    "date": "2022-09",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1151.54
+  },
+  {
+    "date": "2022-09",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 37
+  },
+  {
+    "date": "2022-09",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 167.9
+  },
+  {
+    "date": "2022-09",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": 5
+  },
+  {
+    "date": "2022-09",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -461.85
+  },
+  {
+    "date": "2022-09",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -461.85
+  },
+  {
+    "date": "2022-09",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -691.67
+  },
+  {
+    "date": "2022-09",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2022-09",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -310
+  },
+  {
+    "date": "2022-09",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -4
+  },
+  {
+    "date": "2022-09",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -129.27
+  },
+  {
+    "date": "2022-09",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -110.51
+  },
+  {
+    "date": "2022-09",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -147.62
+  },
+  {
+    "date": "2022-09",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -36.49
+  },
+  {
+    "date": "2022-09",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -52.84
+  },
+  {
+    "date": "2022-10",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1486.18
+  },
+  {
+    "date": "2022-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": 253.79
+  },
+  {
+    "date": "2022-10",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 34.95
+  },
+  {
+    "date": "2022-10",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2022-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -422.99
+  },
+  {
+    "date": "2022-10",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -55.45
+  },
+  {
+    "date": "2022-10",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -156.5
+  },
+  {
+    "date": "2022-10",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -57.22
+  },
+  {
+    "date": "2022-10",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15
+  },
+  {
+    "date": "2022-10",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.97
+  },
+  {
+    "date": "2022-10",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25
+  },
+  {
+    "date": "2022-10",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -140.81
+  },
+  {
+    "date": "2022-10",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -180.66
+  },
+  {
+    "date": "2022-10",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -244.54
+  },
+  {
+    "date": "2022-10",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -13.14
+  },
+  {
+    "date": "2022-10",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": -13.25
+  },
+  {
+    "date": "2022-10",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -83.28
+  },
+  {
+    "date": "2022-11",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1168.83
+  },
+  {
+    "date": "2022-11",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 82.85
+  },
+  {
+    "date": "2022-11",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2022-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -386.8
+  },
+  {
+    "date": "2022-11",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2022-11",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25
+  },
+  {
+    "date": "2022-11",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -114.4
+  },
+  {
+    "date": "2022-11",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -54.97
+  },
+  {
+    "date": "2022-11",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -94.71
+  },
+  {
+    "date": "2022-11",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -12.05
+  },
+  {
+    "date": "2022-11",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -38
+  },
+  {
+    "date": "2022-11",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -37
+  },
+  {
+    "date": "2022-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -97.48
+  },
+  {
+    "date": "2022-11",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -59.75
+  },
+  {
+    "date": "2022-11",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -187.52
+  },
+  {
+    "date": "2022-11",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -26.05
+  },
+  {
+    "date": "2022-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -8.85
+  },
+  {
+    "date": "2022-11",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -25
+  },
+  {
+    "date": "2022-12",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 2322.13
+  },
+  {
+    "date": "2022-12",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 30
+  },
+  {
+    "date": "2022-12",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2022-12",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -370
+  },
+  {
+    "date": "2022-12",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2022-12",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -332.94
+  },
+  {
+    "date": "2022-12",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -90.24
+  },
+  {
+    "date": "2022-12",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2022-12",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -18.79
+  },
+  {
+    "date": "2022-12",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -53.4
+  },
+  {
+    "date": "2022-12",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -228.5
+  },
+  {
+    "date": "2022-12",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -99.9
+  },
+  {
+    "date": "2022-12",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -51.1
+  },
+  {
+    "date": "2022-12",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -199.79
+  },
+  {
+    "date": "2022-12",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -79.8
+  },
+  {
+    "date": "2023-01",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1496.02
+  },
+  {
+    "date": "2023-01",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -187.39
+  },
+  {
+    "date": "2023-01",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -412.43
+  },
+  {
+    "date": "2023-01",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -109.65
+  },
+  {
+    "date": "2023-01",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -175.16
+  },
+  {
+    "date": "2023-01",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25
+  },
+  {
+    "date": "2023-01",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -305
+  },
+  {
+    "date": "2023-01",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.98
+  },
+  {
+    "date": "2023-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -80.11
+  },
+  {
+    "date": "2023-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -49.04
+  },
+  {
+    "date": "2023-01",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -21.57
+  },
+  {
+    "date": "2023-01",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -7.8
+  },
+  {
+    "date": "2023-01",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": -42.83
+  },
+  {
+    "date": "2023-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 69
+  },
+  {
+    "date": "2023-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": 10
+  },
+  {
+    "date": "2023-02",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1505.67
+  },
+  {
+    "date": "2023-02",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-02",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -410.47
+  },
+  {
+    "date": "2023-02",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-02",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -94.79
+  },
+  {
+    "date": "2023-02",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -39.25
+  },
+  {
+    "date": "2023-02",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -86.56
+  },
+  {
+    "date": "2023-02",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -12.05
+  },
+  {
+    "date": "2023-02",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -118.92
+  },
+  {
+    "date": "2023-02",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -41
+  },
+  {
+    "date": "2023-02",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -60.15
+  },
+  {
+    "date": "2023-02",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -2
+  },
+  {
+    "date": "2023-02",
+    "category": "Investments",
+    "description": "Descripción de la transacción",
+    "amount": -101
+  },
+  {
+    "date": "2023-03",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1339.68
+  },
+  {
+    "date": "2023-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 1.92
+  },
+  {
+    "date": "2023-03",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-03",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -370
+  },
+  {
+    "date": "2023-03",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-03",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -85.19
+  },
+  {
+    "date": "2023-03",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2023-03",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -72.5
+  },
+  {
+    "date": "2023-03",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -58.46
+  },
+  {
+    "date": "2023-03",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15
+  },
+  {
+    "date": "2023-03",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95
+  },
+  {
+    "date": "2023-03",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -35
+  },
+  {
+    "date": "2023-03",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -433.05
+  },
+  {
+    "date": "2023-03",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -37.5
+  },
+  {
+    "date": "2023-03",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -54.9
+  },
+  {
+    "date": "2023-03",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -111.68
+  },
+  {
+    "date": "2023-03",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -70.79
+  },
+  {
+    "date": "2023-04",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1612.48
+  },
+  {
+    "date": "2023-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 7
+  },
+  {
+    "date": "2023-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": 137.83
+  },
+  {
+    "date": "2023-04",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.39
+  },
+  {
+    "date": "2023-04",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -499.65
+  },
+  {
+    "date": "2023-04",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-04",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5
+  },
+  {
+    "date": "2023-04",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95
+  },
+  {
+    "date": "2023-04",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -140.43
+  },
+  {
+    "date": "2023-04",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -94.21
+  },
+  {
+    "date": "2023-04",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -11.2
+  },
+  {
+    "date": "2023-04",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -90.99
+  },
+  {
+    "date": "2023-04",
+    "category": "Management",
+    "description": "Descripción de la transacción",
+    "amount": -5.9
+  },
+  {
+    "date": "2023-04",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -97.33
+  },
+  {
+    "date": "2023-04",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -85
+  },
+  {
+    "date": "2023-04",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -45.99
+  },
+  {
+    "date": "2023-04",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -23.39
+  },
+  {
+    "date": "2023-04",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -171.75
+  },
+  {
+    "date": "2023-04",
+    "category": "Investments",
+    "description": "Descripción de la transacción",
+    "amount": -201
+  },
+  {
+    "date": "2023-05",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1381.16
+  },
+  {
+    "date": "2023-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 225.69
+  },
+  {
+    "date": "2023-05",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-05",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -413.02
+  },
+  {
+    "date": "2023-05",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-05",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -161.03
+  },
+  {
+    "date": "2023-05",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -104.17
+  },
+  {
+    "date": "2023-05",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5
+  },
+  {
+    "date": "2023-05",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95
+  },
+  {
+    "date": "2023-05",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -419.94
+  },
+  {
+    "date": "2023-05",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -63.44
+  },
+  {
+    "date": "2023-05",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -58.47
+  },
+  {
+    "date": "2023-05",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -8.35
+  },
+  {
+    "date": "2023-06",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1482.89
+  },
+  {
+    "date": "2023-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 100
+  },
+  {
+    "date": "2023-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 25.17
+  },
+  {
+    "date": "2023-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 42.55
+  },
+  {
+    "date": "2023-06",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-06",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -441.05
+  },
+  {
+    "date": "2023-06",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -151.98
+  },
+  {
+    "date": "2023-06",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -75.99
+  },
+  {
+    "date": "2023-06",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16
+  },
+  {
+    "date": "2023-06",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -12.03
+  },
+  {
+    "date": "2023-06",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -120.48
+  },
+  {
+    "date": "2023-06",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -14
+  },
+  {
+    "date": "2023-06",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -561.73
+  },
+  {
+    "date": "2023-06",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -55.83
+  },
+  {
+    "date": "2023-06",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -148.56
+  },
+  {
+    "date": "2023-06",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -22.98
+  },
+  {
+    "date": "2023-06",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -5.84
+  },
+  {
+    "date": "2023-06",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -117.88
+  },
+  {
+    "date": "2023-07",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1595.91
+  },
+  {
+    "date": "2023-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 91.23
+  },
+  {
+    "date": "2023-07",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -123.19
+  },
+  {
+    "date": "2023-07",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -12.1
+  },
+  {
+    "date": "2023-07",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -65.03
+  },
+  {
+    "date": "2023-07",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16
+  },
+  {
+    "date": "2023-07",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -489.84
+  },
+  {
+    "date": "2023-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -29.66
+  },
+  {
+    "date": "2023-07",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -98.01
+  },
+  {
+    "date": "2023-07",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -143.09
+  },
+  {
+    "date": "2023-07",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -3.56
+  },
+  {
+    "date": "2023-07",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -89.7
+  },
+  {
+    "date": "2023-08",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1653.46
+  },
+  {
+    "date": "2023-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 15.7
+  },
+  {
+    "date": "2023-08",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 39.41
+  },
+  {
+    "date": "2023-08",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -173.88
+  },
+  {
+    "date": "2023-08",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -122.66
+  },
+  {
+    "date": "2023-08",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -11.95
+  },
+  {
+    "date": "2023-08",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16
+  },
+  {
+    "date": "2023-08",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25
+  },
+  {
+    "date": "2023-08",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -40.05
+  },
+  {
+    "date": "2023-08",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -33
+  },
+  {
+    "date": "2023-08",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -77.3
+  },
+  {
+    "date": "2023-08",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -115.84
+  },
+  {
+    "date": "2023-08",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -7.04
+  },
+  {
+    "date": "2023-08",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -34.63
+  },
+  {
+    "date": "2023-08",
+    "category": "Investments",
+    "description": "Descripción de la transacción",
+    "amount": -101
+  },
+  {
+    "date": "2023-09",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1443.27
+  },
+  {
+    "date": "2023-09",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": 150
+  },
+  {
+    "date": "2023-09",
+    "category": "Work2",
+    "description": "Descripción de la transacción",
+    "amount": 300
+  },
+  {
+    "date": "2023-09",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-09",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-09",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -572.96
+  },
+  {
+    "date": "2023-09",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -22.6
+  },
+  {
+    "date": "2023-09",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -16
+  },
+  {
+    "date": "2023-09",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95
+  },
+  {
+    "date": "2023-09",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -91.39
+  },
+  {
+    "date": "2023-09",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -98.05
+  },
+  {
+    "date": "2023-09",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -20.94
+  },
+  {
+    "date": "2023-09",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -65.85
+  },
+  {
+    "date": "2023-10",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1486.18
+  },
+  {
+    "date": "2023-10",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 10
+  },
+  {
+    "date": "2023-10",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -385
+  },
+  {
+    "date": "2023-10",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-10",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -179.09
+  },
+  {
+    "date": "2023-10",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -59.52
+  },
+  {
+    "date": "2023-10",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -33.69
+  },
+  {
+    "date": "2023-10",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95
+  },
+  {
+    "date": "2023-10",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5
+  },
+  {
+    "date": "2023-10",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -2.5
+  },
+  {
+    "date": "2023-10",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -420
+  },
+  {
+    "date": "2023-10",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -114.15
+  },
+  {
+    "date": "2023-10",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -102.65
+  },
+  {
+    "date": "2023-10",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -55.99
+  },
+  {
+    "date": "2023-10",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -63.4
+  },
+  {
+    "date": "2023-10",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": -26.94
+  },
+  {
+    "date": "2023-11",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -365
+  },
+  {
+    "date": "2023-11",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-11",
+    "category": "Presents",
+    "description": "Descripción de la transacción",
+    "amount": 13.47
+  },
+  {
+    "date": "2023-11",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -22.99
+  },
+  {
+    "date": "2023-11",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -36.19
+  },
+  {
+    "date": "2023-11",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -1.8
+  },
+  {
+    "date": "2023-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -61.98
+  },
+  {
+    "date": "2023-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -18
+  },
+  {
+    "date": "2023-11",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1439.32
+  },
+  {
+    "date": "2023-11",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 9
+  },
+  {
+    "date": "2023-12",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2023-12",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -396.59
+  },
+  {
+    "date": "2023-12",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2023-12",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -69.83
+  },
+  {
+    "date": "2023-12",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -69.83
+  },
+  {
+    "date": "2023-12",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -20.5
+  },
+  {
+    "date": "2023-12",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -37.57
+  },
+  {
+    "date": "2023-12",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95
+  },
+  {
+    "date": "2023-12",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -51.99
+  },
+  {
+    "date": "2023-12",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -29.23
+  },
+  {
+    "date": "2023-12",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -219.39
+  },
+  {
+    "date": "2023-12",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -22.99
+  },
+  {
+    "date": "2023-12",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -145.42
+  },
+  {
+    "date": "2023-12",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -170.53
+  },
+  {
+    "date": "2023-12",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -44.8
+  },
+  {
+    "date": "2023-12",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -36.54
+  },
+  {
+    "date": "2023-12",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1404.98
+  },
+  {
+    "date": "2024-01",
+    "category": "Work",
+    "description": "Descripción de la transacción",
+    "amount": 1664.90
+  },
+  {
+    "date": "2024-01",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 102
+  },
+  {
+    "date": "2024-01",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": 36.34
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 60
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 123
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 123
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": 123
+  },
+  {
+    "date": "2024-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": 30
+  },
+  {
+    "date": "2024-01",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
+  },
+  {
+    "date": "2024-01",
+    "category": "Home",
+    "description": "Descripción de la transacción",
+    "amount": -365
+  },
+  {
+    "date": "2024-01",
+    "category": "Gym",
+    "description": "Descripción de la transacción",
+    "amount": -24.95
+  },
+  {
+    "date": "2024-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -66.86
+  },
+  {
+    "date": "2024-01",
+    "category": "Supermarket",
+    "description": "Descripción de la transacción",
+    "amount": -120.64
+  },
+  {
+    "date": "2024-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -47.95
+  },
+  {
+    "date": "2024-01",
+    "category": "Travel",
+    "description": "Descripción de la transacción",
+    "amount": -316.73
+  },
+  {
+    "date": "2024-01",
+    "category": "Health",
+    "description": "Descripción de la transacción",
+    "amount": -1.25
+  },
+  {
+    "date": "2024-01",
+    "category": "Beauty",
+    "description": "Descripción de la transacción",
+    "amount": -15.5
+  },
+  {
+    "date": "2024-01",
+    "category": "Mobile",
+    "description": "Descripción de la transacción",
+    "amount": -9.95
+  },
+  {
+    "date": "2024-01",
+    "category": "Other",
+    "description": "Descripción de la transacción",
+    "amount": -30.49
+  },
+  {
+    "date": "2024-01",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -22.99
+  },
+  {
+    "date": "2024-01",
+    "category": "Restaurant",
+    "description": "Descripción de la transacción",
+    "amount": -228.53
+  },
+  {
+    "date": "2024-01",
+    "category": "Transport",
+    "description": "Descripción de la transacción",
+    "amount": -13.04
+  },
+  {
+    "date": "2024-01",
+    "category": "Clothing",
+    "description": "Descripción de la transacción",
+    "amount": -0.97
+  },
+  {
+    "date": "2024-01",
+    "category": "Party",
+    "description": "Descripción de la transacción",
+    "amount": -567.91
+  },
+  {
+    "date": "2024-02",
+    "category": "Education",
+    "description": "Descripción de la transacción",
+    "amount": -163.89
   }
 ]

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import './Login-Register.css';
+
 import Footer from '../../components/landing/Footer';
 
 function Register() {
@@ -29,17 +31,15 @@ function Register() {
     }
   };
 
-  // Function to close the popup
+  // Ad Popup function
   const closePopup = () => {
     setShowPopup(false);
   };
 
   useEffect(() => {
-    // Check if the user has an ad blocker enabled
-    const adBlockEnabled = true; // temporaly
+    const adBlockEnabled = true; 
 
     if (adBlockEnabled) {
-      // Show popup
       setShowPopup(true);
     }
   }, []);

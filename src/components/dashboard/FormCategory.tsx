@@ -3,8 +3,6 @@ import { Button, TextField } from "@mui/material";
 
 import "./FormCategory.css";
 
-// import dataCategoriesJson from "../../data/dataCategories.json";
-
 interface FormCategoryProps {
     onClose: () => void;
 }
@@ -17,7 +15,6 @@ function FormCategory({ onClose }: FormCategoryProps) {
     };
 
     const handleSaveCategory = () => {
-        // Here you would handle the logic to add the new category
         console.log(newCategory);
     };
     return (

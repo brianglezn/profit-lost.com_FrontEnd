@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -6,38 +6,19 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Box, Modal } from "@mui/material";
 
 import "./AnnualReport.css";
-import dataMovementsFile from "../../data/dataMovements.json";
 
 import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";
 import FormCategory from "../../components/dashboard/FormCategory";
 
-// We define the types for the monthly transactions and the data structure.
-type MonthlyTransaction = {
-  Category: string;
-  Amount: number;
-}[];
-type Month =
-  | "Jan"
-  | "Feb"
-  | "Mar"
-  | "Apr"
-  | "May"
-  | "Jun"
-  | "Jul"
-  | "Aug"
-  | "Sep"
-  | "Oct"
-  | "Nov"
-  | "Dec";
-type DataMovement = {
-  [key: string]: {
-    [month in Month]?: MonthlyTransaction;
-  }[];
-};
+interface Movement {
+  date: string;
+  description: string;
+  amount: number;
+  category: string;
+}
 
-// Function to format numbers to currency format.
-function formatCurrency(value: number) {
+function formatCurrency(value: number): string {
   return value.toLocaleString("es-ES", {
     style: "currency",
     currency: "EUR",
@@ -47,63 +28,75 @@ function formatCurrency(value: number) {
 }
 
 function AnnualReport() {
-  // Status for the current year and the function to update it.
   const currentYear = new Date().getFullYear().toString();
   const [year, setYear] = useState(currentYear);
+  const [yearsWithData, setYearsWithData] = useState<string[]>([]);
 
-  // useMemo to calculate the years with available data, to avoid unnecessary recalculations.
-  const yearsWithData = useMemo(() => {
-    return [
-      ...new Set(dataMovementsFile.map((item) => Object.keys(item)[0])),
-    ].sort((a, b) => Number(b) - Number(a));
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    const fetchYearsWithData = async () => {
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!response.ok) throw new Error('Failed to fetch');
+        const dataMovements: Movement[] = await response.json();
+
+        const years = new Set(dataMovements.map((item: Movement) => {
+          return new Date(item.date).getFullYear().toString();
+        }));
+
+        setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
+      } catch (error) {
+        console.error('Error fetching years data:', error);
+      }
+    };
+
+    fetchYearsWithData();
   }, []);
 
-  // Function to handle the change of year selected in the drop-down menu.
   const handleChange = (event: SelectChangeEvent<string>) => {
     setYear(event.target.value);
   };
 
-  // Statements for income and expense totals.
   const [balanceIncome, setBalanceIncome] = useState(0);
   const [balanceExpenses, setBalanceExpenses] = useState(0);
 
-  // We calculate the balance of income and expenses when loading data or changing the year.
   useEffect(() => {
-    const selectedYearData = dataMovementsFile.find(
-      (y) => Object.keys(y)[0] === year.toString()
-    ) as DataMovement | unknown;
-
-    // If no data is found for that year, terminate the execution of the block here.
-    if (!selectedYearData) return;
-
-    const monthlyData = (selectedYearData as DataMovement)[year];
-    let incomeSum = 0;
-    let expensesSum = 0;
-
-    // Scroll through the monthly financial data objects.
-    for (const monthObj of monthlyData) {
-      for (const month in monthObj) {
-        const transactions = monthObj[month as Month];
-        // If there are transactions, add the amounts to the respective accumulators.
-        if (transactions) {
-          for (const movement of transactions) {
-            if (movement.Amount > 0) {
-              // If the amount is positive, add it to income.
-              incomeSum += movement.Amount;
-            } else {
-              // If the amount is negative, add it to expenses (after converting it to positive).
-              expensesSum += Math.abs(movement.Amount);
-            }
+    const token = localStorage.getItem('token');
+  
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
           }
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        const dataMovements: Movement[] = await response.json();
+  
+        const { income, expenses } = dataMovements.reduce((acc, transaction) => {
+          if (transaction.amount > 0) acc.income += transaction.amount;
+          else acc.expenses += transaction.amount;
+          return acc;
+        }, { income: 0, expenses: 0 });
+  
+        setBalanceIncome(income);
+        setBalanceExpenses(Math.abs(expenses));
+      } catch (error) {
+        console.error('Error fetching transactions data:', error);
       }
-    }
-
-    setBalanceIncome(incomeSum);
-    setBalanceExpenses(expensesSum);
+    };
+  
+    fetchData();
   }, [year]);
+  
 
-  // Format the total income and expense balances to currency format.
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
@@ -176,7 +169,7 @@ function AnnualReport() {
               <p>{formattedBalanceFinal}</p>
             </div>
           </div>
-        </div>
+        </div >
         <div className="annualReport__containerCategory">
           <div className="annualReport__category-text">
             <p>Categories</p>

@@ -1,127 +1,69 @@
 import { useEffect, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import dataMovementsJson from "../../data/dataMovements.json";
+type Transaction = {
+    date: string;
+    category: string;
+    description: string;
+    amount: number;
+};
 
-// Type definition for monthly transaction entries with category and amount
-type MonthlyTransactionEntry = {
-    Category: string;
-    Amount: number;
-};
-// Type definition for the months of the year
-type Months =
-    | "Jan"
-    | "Feb"
-    | "Mar"
-    | "Apr"
-    | "May"
-    | "Jun"
-    | "Jul"
-    | "Aug"
-    | "Sep"
-    | "Oct"
-    | "Nov"
-    | "Dec";
-// Object to map the number of the month to its corresponding name
-const monthMapping: Record<number, Months> = {
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-    12: "Dec",
-};
-// Type definition for the monthly transactions, which is an object with keys of type Months and values that are an array of MonthlyTransactionEntry
-type MonthlyTransactions = {
-    [key in Months]?: MonthlyTransactionEntry[];
-};
-// Type definition for the annual data object, where each year is a key pointing to an array of MonthlyTransactions
-type YearData = {
-    [year: string]: MonthlyTransactions[];
-};
-// The data file is an array of YearData
-type DataMovementsFile = YearData[];
-const dataMovementsFile: DataMovementsFile =
-    dataMovementsJson as unknown as DataMovementsFile;
-// Define a type for the object storing the accumulated income and expenses
-type IncomeExpenses = {
-    [category: string]: number;
-};
-// Define a type for the category and amount pairs for the income and expense statements
 type CategoryAmountPair = {
     name: string;
     value: number;
 };
 
-// Component properties
 interface MovementsProps {
     year: string;
     month: string;
     isDataEmpty: boolean;
 }
 
-function MovementsPie(props: MovementsProps) {
-
-    // Destructuring of properties for easier access
-    const { year, month, isDataEmpty } = props;
-
-    // Statements for income and expense categories with specific rates
+function MovementsPie({ year, month, isDataEmpty }: MovementsProps) {
     const [dataCategoryIncome, setDataCategoryIncome] = useState<CategoryAmountPair[]>([]);
     const [dataCategoryExpenses, setDataCategoryExpenses] = useState<CategoryAmountPair[]>([]);
 
     useEffect(() => {
-        if (year && month) {
-            // Search in dataMovementsFile for the object corresponding to the selected year.
-            const yearDataWrapper = dataMovementsFile.find(
-                (yearData) => Object.keys(yearData)[0] === year
-            );
-
-            if (yearDataWrapper) {
-                // Access the MonthlyTransactions array for the selected year.
-                const monthlyTransactionsArray = yearDataWrapper[year];
-
-                // Assuming that there is only one MonthlyTransactions object per month in the array
-                const transactionsForMonth = monthlyTransactionsArray.find(
-                    (monthlyTransactions) => monthMapping[Number(month)] in monthlyTransactions
-                );
-
-                if (transactionsForMonth) {
-                    // Access to transactions for the selected month
-                    const transactions = transactionsForMonth[monthMapping[Number(month)]];
-
-                    if (transactions) {
-                        const income: IncomeExpenses = {};
-                        const expenses: IncomeExpenses = {};
-
-                        // Go through the transactions and classify between income and expenses.
-                        transactions.forEach((transaction) => {
-                            const category = transaction.Category;
-                            const amount = transaction.Amount;
-
-                            if (amount >= 0) {
-                                income[category] = (income[category] || 0) + amount;
-                            } else {
-                                expenses[category] = (expenses[category] || 0) + Math.abs(amount);
-                            }
-                        });
-
-                        // Transform accumulated objects into arrays for graphics
-                        setDataCategoryIncome(
-                            Object.entries(income).map(([name, value]) => ({ name, value }))
-                        );
-                        setDataCategoryExpenses(
-                            Object.entries(expenses).map(([name, value]) => ({ name, value }))
-                        );
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
                     }
+                });
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok. Status: ${response.status}`);
                 }
+                const transactions: Transaction[] = await response.json();
+
+                const income: { [key: string]: number } = {};
+                const expenses: { [key: string]: number } = {};
+
+                transactions.forEach(({ category, amount }) => {
+                    if (amount > 0) {
+                        income[category] = (income[category] || 0) + amount;
+                    } else {
+                        expenses[category] = (expenses[category] || 0) + Math.abs(amount);
+                    }
+                });
+
+                setDataCategoryIncome(Object.entries(income).map(([name, value]) => ({
+                    name,
+                    value: parseFloat(value.toFixed(2))
+                })));
+
+                setDataCategoryExpenses(Object.entries(expenses).map(([name, value]) => ({
+                    name,
+                    value: parseFloat(value.toFixed(2))
+                })));
+
+            } catch (error) {
+                console.error('Error fetching transactions data:', error);
             }
-        }
+        };
+
+        fetchData();
     }, [year, month]);
 
     const Colors = [

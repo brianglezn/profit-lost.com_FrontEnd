@@ -7,10 +7,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Remove token from local storage
     localStorage.removeItem('token');
-
-    // Redirect the user to the home page or any other page
     navigate('/login');
   };
 
@@ -31,7 +28,6 @@ function Profile() {
           </div>
         </div>
 
-        {/* Botón de Logout */}
         <button onClick={handleLogout} className="logout-button">
           Logout
         </button>

@@ -35,22 +35,6 @@
   margin: 1rem;
 }
 
-.accounts__main p.positive-balance {
-  color: green;
-}
-
-.accounts__main p.negative-balance {
-  color: red;
-}
-
-.accounts__main p>span {
-  padding: 3px 7px;
-  border-radius: 5px;
-  -webkit-border-radius: 8px;
-  color: var(--color-grey);
-  background-color: var(--color-light_orange);
-}
-
 .accounts__containerAccounts {
   background-color: var(--color-white);
   margin-top: 20px;
