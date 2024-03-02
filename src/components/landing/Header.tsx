@@ -19,7 +19,7 @@ function Header() {
                 <a href="#features">FEATURES</a>
               </li>
               <li>
-                <a href="/dashboard">DEMO</a>
+                <a href="#demo">DEMO</a>
               </li>
             </ul>
           </nav>

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import "./Home.css";
 
 import Header from "../../components/landing/Header";
@@ -15,12 +13,6 @@ function Home() {
       <section className="hero">
         <div className="hero__title">
           <h1>Manage All Your Personal Finances in One Place</h1>
-          <Link
-            to="/dashboard"
-            className="liveDemo"
-          >
-            Live Demo
-          </Link>
         </div>
       </section>
       {/* <!-- END HERO --> */}
@@ -74,7 +66,7 @@ function Home() {
         {/* <!-- END SECTION FEATURES--> */}
 
         {/* <!-- SECTION PREVIEW--> */}
-        <section className="section__preview no-select">
+        <section className="section__preview no-select" id="demo">
           <Preview />
         </section>
         {/* <!-- END SECTION PREVIEW--> */}
