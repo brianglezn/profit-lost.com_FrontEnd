@@ -1,4 +1,4 @@
-import React, { Suspense, SetStateAction, useState } from "react";
+import React, { Suspense, SetStateAction, useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -11,7 +11,13 @@ const Movements = React.lazy(() => import('./Movements'));
 const Profile = React.lazy(() => import('./Profile'));
 const Goals = React.lazy(() => import('./Goals'));
 
-// Function to use a formatted date
+interface User {
+  username: string;
+  email: string;
+  name: string;
+  surname: string;
+}
+
 function getCurrentDate() {
   const options: Intl.DateTimeFormatOptions = {
     weekday: "short",
@@ -25,13 +31,38 @@ function getCurrentDate() {
 }
 
 function Dashboard() {
-// useState is used to control the active dash selection in the application.
   const [activeSection, setActiveSection] = useState("Dashboard");
+  const [user, setUser] = useState<User | null>(null);
+
   const handleMenuItemClick = (sectionName: SetStateAction<string>) => {
     setActiveSection(sectionName);
   };
 
   const currentDate = getCurrentDate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('https://profit-lost-backend.onrender.com/user/me', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch user data');
+
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <>
@@ -44,7 +75,7 @@ function Dashboard() {
               sx={{ bgcolor: "var(--color-orange)", width: 35, height: 35 }}
               variant="rounded"
             >
-              B
+              {user?.name?.[0] ?? ''}
             </Avatar>
           </header>
         </div>
