@@ -61,7 +61,7 @@ function Footer() {
                   </svg>
                 </a>
                 <a
-                  href="mailto:brianglezn@gmail.com"
+                  href="mailto:hola@profit-lost.com"
                   target="_blank"
                   rel="noreferrer"
                 >

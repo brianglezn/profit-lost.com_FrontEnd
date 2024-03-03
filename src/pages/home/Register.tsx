@@ -7,6 +7,8 @@ import Footer from '../../components/landing/Footer';
 
 function Register() {
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -61,13 +63,31 @@ function Register() {
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Create an account</h2>
           <input
-            className="form__name"
+            className="form__username"
             type="text"
             id="username-register"
             placeholder="Username"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            className="form__name"
+            type="text"
+            id="name-register"
+            placeholder="Name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            className="form__surnaname"
+            type="text"
+            id="surname-register"
+            placeholder="Surname"
+            required
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
           />
           <input
             className="form__email"
