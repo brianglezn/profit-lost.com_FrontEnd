@@ -171,7 +171,6 @@ function Accounts() {
             </Select>
           </FormControl>
           <div className="accounts__main">
-            <h2>{currentFullMonthName} {currentYear}</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 width={500}
