@@ -11,7 +11,7 @@ import "./Movements.css";
 import MovementsChart from "../../components/dashboard/MovementsChart";
 import MovementsPie from "../../components/dashboard/MovementsPie";
 import MovementsTable from "../../components/dashboard/MovementsTable";
-import FormMovements from "../../components/dashboard/FormMovements";
+// import FormMovements from "../../components/dashboard/FormMovements";
 
 interface Movement {
   date: string;
@@ -220,7 +220,7 @@ function Movements() {
                   },
                 }}>
                 <Box sx={styleBox}>
-                  <FormMovements onClose={handleCloseModal} />
+                  {/* <FormMovements onClose={handleCloseModal} /> */}
                 </Box>
               </Modal>
             </div>
