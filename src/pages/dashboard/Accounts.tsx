@@ -25,14 +25,12 @@ type DataAccount = {
 };
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const fullMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
 function Accounts() {
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
-  const currentFullMonthName: string = fullMonthNames[currentDate.getMonth()];
   const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [year, setYear] = React.useState(currentYear.toString());
   const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
