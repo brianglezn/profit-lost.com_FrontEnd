@@ -12,6 +12,21 @@ function Login() {
   const [showPopup, setShowPopup] = useState(false);
   const { login } = useAuth();
 
+  const reiniciarTemporizadorExpiracionToken = () => {
+    const temporizadorExistente = localStorage.getItem('temporizadorToken');
+    if (temporizadorExistente) {
+      clearTimeout(parseInt(temporizadorExistente, 10));
+    }
+
+    const temporizadorId = setTimeout(() => {
+      localStorage.removeItem('token');
+      alert('La sesión ha expirado. Por favor, inicie sesión de nuevo.');
+      navigate('/login');
+    }, 3600000);
+
+    localStorage.setItem('temporizadorToken', temporizadorId.toString());
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -28,6 +43,7 @@ function Login() {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         login(data.token);
+        reiniciarTemporizadorExpiracionToken();
         navigate('/dashboard');
       } else {
         console.error('Failed to login');
