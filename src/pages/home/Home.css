@@ -150,7 +150,7 @@ article div h3 {
 
 .p-tabview.p-component,
 .p-tabview.p-component .p-tabview-panels {
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -225,7 +225,8 @@ article div h3 {
   /* demo */
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     padding: 5px 10px;
-    font-size: 0.8rem;    width: 100%;
+    font-size: 0.8rem;
+    width: 100%;
   }
 
   .demo__img {
