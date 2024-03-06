@@ -7656,7 +7656,7 @@
     }
 
     .p-avatar {
-        background-color: #304562;
+        background-color: var(--primary-color);
         border-radius: 3px;
     }
 
@@ -7673,11 +7673,11 @@
     .p-avatar.p-avatar-xl {
         width: 4rem;
         height: 4rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .p-avatar.p-avatar-xl .p-avatar-icon {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .p-avatar-circle {

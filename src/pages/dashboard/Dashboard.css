@@ -35,14 +35,14 @@
   border-radius: 8px;
 }
 
-.dashboard__header div {
+.dashboard__header-avatar {
   cursor: pointer;
   margin-right: 40px;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
 }
 
-.dashboard__header div:hover {
+.dashboard__header-avatar:hover {
   transform: scale(1.1);
 }
 

@@ -56,6 +56,11 @@ a:hover {
   user-select: none;
 }
 
+/* PrimeReact */
+.custom-spinner .p-progress-spinner-circle {
+  stroke: var(--primary-color) !important;
+}
+
 /* mui selector*/
 div.MuiInputBase-root.css-1a2qpli,
 fieldset.css-igs3ac {
