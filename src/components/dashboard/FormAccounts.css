@@ -20,5 +20,5 @@
 }
 
 .formAccounts-closeButton:hover {
-  color: var(--color-orange);
+  color: var(--primary-color);
 }

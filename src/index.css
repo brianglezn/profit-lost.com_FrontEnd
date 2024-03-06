@@ -1,29 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
 :root {
-  --color-white: #fff;
-  --color-bg: #f7f7f7;
-  --color-black: #000;
-  --color-grey: #383d46;
-  --color-grey-sec: #a3a3a3;
-
-  --color-orange: #fe6f14;
-  --color-orange-50: #fff7ed;
-  --color-orange-100: #ffecd4;
-  --color-orange-200: #ffd5a8;
-  --color-orange-300: #ffb771;
-  --color-orange-400: #ff8e38;
-  --color-orange-500: #ef5107;
-  --color-orange-600: #c84f03;
-  --color-orange-700: #c63b08;
-  --color-orange-800: #9d300f;
-  --color-orange-900: #7e2a10;
-  --color-orange-950: #441206;
-  --color-light_orange: #ffc69e61;
-
-  background-color: var(--color-bg);
-  color: var(--color-grey);
+  background-color: var(--background-color);
+  color: var(--text-color-secondary);
   font-family: "Rubik", sans-serif;
+
+  --negative-color: red;
+  --positive-color: green;
 
   scroll-behavior: smooth;
 
@@ -32,41 +15,41 @@
 }
 
 ::selection {
-  background-color: var(--color-light_orange);
+  background-color: var(--primary-color-light);
 }
 
 button {
-  background-color: var(--color-orange);
+  background-color: var(--primary-color);
   padding: 8px 10px;
   border: none;
   border-radius: 8px;
-  color: var(--color-white);
+  color: var(--text-color-white);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 button:hover {
-  background-color: var(--color-orange-600);
-  color: var(--color-white);
+  background-color: var(--primary-color-600);
+  color: var(--text-color);
   transform: scale(1.03);
 }
 
 a {
-  color: var(--color-orange);
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--color-orange-600);
+  color: var(--primary-color-600);
   cursor: pointer;
 }
 
 .negative {
-  color: red;
+  color: var(--negative-color);
 }
 
 .positive {
-  color: green;
+  color: var(--positive-color);
 }
 
 .no-select {
@@ -81,11 +64,11 @@ fieldset.css-igs3ac {
 
 /* TABLA mui */
 .row-even {
-  background-color: var(--color-orange-50);
+  background-color: var(--primary-color-50);
 }
 
 .row-odd {
-  background-color: #ffffff;
+  background-color: var(--text-color);
 }
 
 /* Popup Styles */
@@ -93,9 +76,9 @@ fieldset.css-igs3ac {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #ffffff;
+  background-color: var(--text-color);
   border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px var(--shadow-color-primary);
   padding: 20px;
   max-width: 400px;
   text-align: center;

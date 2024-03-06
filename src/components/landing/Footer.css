@@ -34,8 +34,8 @@
   min-width: 15vh;
   border-radius: 4vh;
   margin-right: 1vh;
-  box-shadow: var(--color-orange-600) 0px 3px 2px,
-    var(--color-black) 0px 1px 5px;
+  box-shadow: var(--primary-color-600) 0px 3px 2px,
+    var(--text-color-secondary) 0px 1px 5px;
 }
 
 .footer__links__2 {
@@ -46,7 +46,7 @@
 }
 
 .footer__links__2 b {
-  color: var(--color-orange);
+  color: var(--primary-color);
   margin-bottom: 1vh;
 }
 
@@ -63,8 +63,8 @@
 .footer__links__2-rrss svg {
   height: 2rem;
   width: 2rem;
-  color: var(--color-bg);
-  background-color: var(--color-orange);
+  color: var(--background-color);
+  background-color: var(--primary-color);
   padding: 5px;
   border-radius: 1vh;
   transition-duration: 0.5s;
@@ -73,7 +73,7 @@
 
 .footer__links__2-rrss svg:hover {
   cursor: pointer;
-  background-color: var(--color-orange-600);
+  background-color: var(--primary-color-600);
   transition-timing-function: ease;
   transition-duration: 0.5s;
   transform: scale(0.9);
@@ -88,7 +88,7 @@
 .footer__container2 a {
   padding-left: 0.2rem;
   text-decoration: none;
-  color: var(--color-grey);
+  color: var(--text-color-secondary);
 }
 
 /* ---------- RESPONSIVE ---------- */

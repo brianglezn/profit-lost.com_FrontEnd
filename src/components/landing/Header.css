@@ -30,7 +30,7 @@ header {
 
 .header__nav li a {
   text-decoration: none;
-  color: var(--color-orange);
+  color: var(--primary-color);
   font-weight: bold;
   text-transform: uppercase;
   transition-duration: 0.5s;
@@ -41,7 +41,7 @@ header {
   transition-duration: 0.8s;
   transition-timing-function: ease;
   letter-spacing: 0.5vh;
-  color: var(--color-orange-600);
+  color: var(--primary-color-600);
 }
 
 .header__login {
@@ -51,8 +51,8 @@ header {
 }
 
 .header__login-btn {
-  background-color: var(--color-orange);
-  color: var(--color-white);
+  background-color: var(--primary-color);
+  color: var(--text-color-white);
   padding: 1.2vh 3.5vh;
   border-radius: 9px;
   cursor: pointer;
@@ -63,8 +63,8 @@ header {
   transition: 0.1s;
   opacity: 0.8;
   letter-spacing: 1px;
-  box-shadow: var(--color-orange-600) 0px 7px 2px,
-    var(--color-black) 0px 8px 5px;
+  box-shadow: var(--primary-color-600) 0px 7px 2px,
+    var(--text-color-secondary) 0px 8px 5px;
   margin-bottom: 8px;
 }
 
@@ -75,13 +75,13 @@ header {
 .header__login-btn:hover {
   opacity: 1;
   font-weight: bold;
-  color: var(--color-white);
+  color: var(--text-color-white);
 }
 
 .header__login-btn:active {
   transform: translatey(5px);
-  box-shadow: var(--color-orange-600) 0px 3px 2px,
-    var(--color-black) 0px 3px 5px;
+  box-shadow: var(--primary-color-600) 0px 3px 2px,
+    var(--text-color-secondary) 0px 3px 5px;
 }
 
 @media (max-width: 767px) {
