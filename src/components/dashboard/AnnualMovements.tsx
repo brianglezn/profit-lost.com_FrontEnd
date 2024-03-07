@@ -1,103 +1,137 @@
-import { useEffect, useMemo, useState } from "react";
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
-import LinearProgress from "@mui/material/LinearProgress";
+// import { useEffect, useMemo, useState } from "react";
+// import { DataTable } from 'primereact/datatable';
+// import { Column } from 'primereact/column';
+// import { ProgressBar } from 'primereact/progressbar';
 
-type Transaction = {
-    date: string;
-    category: string;
-    description: string;
-    amount: number;
-};
+// import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+// import LinearProgress from "@mui/material/LinearProgress";
 
-type CategoryBalance = {
-    id: number;
-    Category: string;
-    Balance: number;
-    InOut: string;
-};
+// type Transaction = {
+//     date: string;
+//     category: string;
+//     description: string;
+//     amount: number;
+// };
 
-interface AnnualMovementsProps {
-    year: string;
-}
+// type CategoryBalance = {
+//     id: number;
+//     Category: string;
+//     Balance: number;
+//     InOut: string;
+// };
 
-function formatCurrency(value: number) {
-    return value.toLocaleString("es-ES", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2,
-        useGrouping: true,
-    });
-}
+// interface AnnualMovementsProps {
+//     year: string;
+// }
 
-function AnnualMovements({ year }: AnnualMovementsProps) {
-    const [tableRows, setTableRows] = useState<GridRowsProp>([]);
+// function formatCurrency(value: number) {
+//     return value.toLocaleString("es-ES", {
+//         style: "currency",
+//         currency: "EUR",
+//         minimumFractionDigits: 2,
+//         useGrouping: true,
+//     });
+// }
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        
-        const fetchData = async () => {
-            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+// function AnnualMovements({ year }: AnnualMovementsProps) {
+//     const [tableRows, setTableRows] = useState<GridRowsProp>([]);
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const dataMovements: Transaction[] = await response.json();
+//     useEffect(() => {
+//         const token = localStorage.getItem('token');
 
-            const categoryBalances = dataMovements.reduce((acc: { [category: string]: CategoryBalance }, transaction, index) => {
-                const { category, amount } = transaction;
-                if (!acc[category]) {
-                    acc[category] = { id: index, Category: category, Balance: 0, InOut: amount >= 0 ? "IN" : "OUT" };
-                }
-                acc[category].Balance += amount;
-                return acc;
-            }, {});
+//         const fetchData = async () => {
+//             const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
+//                 headers: {
+//                     'Authorization': `Bearer ${token}`
+//                 }
+//             });
 
-            setTableRows(Object.values(categoryBalances));
-        };
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+//             const dataMovements: Transaction[] = await response.json();
 
-        fetchData().catch(console.error);
-    }, [year]);
+//             const categoryBalances = dataMovements.reduce((acc: { [category: string]: CategoryBalance }, transaction, index) => {
+//                 const { category, amount } = transaction;
+//                 if (!acc[category]) {
+//                     acc[category] = { id: index, Category: category, Balance: 0, InOut: amount >= 0 ? "IN" : "OUT" };
+//                 }
+//                 acc[category].Balance += amount;
+//                 return acc;
+//             }, {});
 
-    const columns: GridColDef[] = useMemo(() => [
-        { field: "Category", headerName: "Category", flex: 2 },
-        {
-            field: "Balance",
-            headerName: "Balance",
-            flex: 2,
-            renderCell: (params) => formatCurrency(params.row.Balance),
-        },
-        {
-            field: "InOut",
-            headerName: "InOut",
-            flex: 0.5,
-            renderCell: (params) => (
-                <div className={params.row.InOut === "IN" ? "positive" : "negative"}>
-                    {params.row.InOut}
-                </div>
-            ),
-        },
-    ], []);
+//             setTableRows(Object.values(categoryBalances));
+//         };
 
-    return (
-        <div className="annualReport__category-table">
-            {tableRows.length > 0 ? (
-                <DataGrid
-                    rows={tableRows}
-                    columns={columns}
-                    getRowClassName={(params) =>
-                        params.indexRelativeToCurrentPage % 2 === 0 ? "row-even" : "row-odd"
-                    }
-                    autoHeight
-                />
-            ) : (
-                <LinearProgress />
-            )}
-        </div>
-    );
-}
+//         fetchData().catch(console.error);
+//     }, [year]);
 
-export default AnnualMovements;
+//     const balanceBodyTemplate = (rowData) => {
+//         return formatCurrency(rowData.Balance);
+//     };
+
+//     const textEditor = (options) => {
+//         return (
+//             <InputText
+//                 type="text"
+//                 value={options.rowData['Category']}
+//                 onChange={(e) => onEditorValueChange(options, e.target.value)}
+//             />
+//         );
+//     };
+
+//     const balanceEditor = (options) => {
+//         return (
+//             <InputNumber
+//                 value={options.rowData['Balance']}
+//                 onValueChange={(e) => onEditorValueChange(options, e.value)}
+//                 mode="currency"
+//                 currency="EUR"
+//                 locale="es-ES"
+//             />
+//         );
+//     };
+
+//     const onEditorValueChange = (options, value) => {
+//         let updatedCategories = [...categories];
+//         updatedCategories[options.rowIndex][options.field] = value;
+//         setCategories(updatedCategories);
+//     };
+
+//     const onRowEditComplete = (e) => {
+//         // Actualizar el estado y/o backend aquí
+//     };
+
+//     return (
+//         <>
+//             <ProgressBar mode="indeterminate" style={{ height: '6px' }} />
+
+//             <div className="annualReport__category-table">
+//                 {categories.length > 0 ? (
+//                     <DataTable
+//                         value={categories}
+//                         editMode="row"
+//                         onRowEditComplete={onRowEditComplete}
+//                     >
+//                         <Column field="Category" header="Category" editor={textEditor} />
+//                         <Column
+//                             field="Balance"
+//                             header="Balance"
+//                             body={balanceBodyTemplate}
+//                             editor={balanceEditor}
+//                         />
+//                         <Column
+//                             rowEditor
+//                             headerStyle={{ width: '7rem' }}
+//                             bodyStyle={{ textAlign: 'center' }}
+//                         />
+//                     </DataTable>
+//                 ) : (
+//                     <ProgressBar mode="indeterminate" style={{ height: '6px' }} />
+//                 )}
+//             </div>
+//         </>
+//     );
+// }
+
+// export default AnnualMovements;

@@ -14,6 +14,10 @@ interface ChartDataItem {
     Expenses: number;
 }
 
+const incomeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-400').trim();
+
+const expensesColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-800').trim();
+
 function AnnualChart({ year }: { year: string }) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
 
@@ -73,8 +77,8 @@ function AnnualChart({ year }: { year: string }) {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="Income" fill="var(--color-orange-400)" />
-                        <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
+                        <Bar dataKey="Income" fill={incomeColor} />
+                        <Bar dataKey="Expenses" fill={expensesColor} />
                     </BarChart>
                 </ResponsiveContainer>
             ) : (

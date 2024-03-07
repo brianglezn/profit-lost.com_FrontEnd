@@ -61,6 +61,11 @@ a:hover {
   stroke: var(--primary-color) !important;
 }
 
+/* Rechart */
+.recharts-default-tooltip {
+  border-radius: 15px;
+}
+
 /* TABLA mui */
 .row-even {
   background-color: var(--primary-color-50);
