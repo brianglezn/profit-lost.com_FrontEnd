@@ -1,50 +1,42 @@
 import { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 
 import "./FormCategory.css";
 
-interface FormCategoryProps {
-    onClose: () => void;
-}
-
-function FormCategory({ onClose }: FormCategoryProps) {
+function FormCategory() {
     const [newCategory, setNewCategory] = useState('');
 
-    const handleNewCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setNewCategory(event.target.value);
+    const handleNewCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNewCategory(e.target.value);
     };
 
     const handleSaveCategory = () => {
         console.log(newCategory);
+        // Aquí iría la lógica para guardar la nueva categoría
     };
+
     return (
         <>
-            <form className="formCategory">
-                <span className="material-symbols-rounded no-select formCategory-closeButton" onClick={onClose}>
-                    close
-                </span>
-
-                <TextField
-                    label="New Category"
+            <form className="annualReport__containerCategory-formCategory">
+                <InputText
+                    placeholder="New Category"
                     value={newCategory}
                     onChange={handleNewCategoryChange}
+                    className="w-full"
                 />
-
                 <Button
-                    className="formCategory-send"
+                    label="Save"
                     onClick={handleSaveCategory}
-                    sx={{
+                    className="p-button-outlined p-button-warning"
+                    style={{
                         borderColor: 'var(--color-orange-400)',
                         borderWidth: 1,
                         borderStyle: 'solid',
-                        '&:hover': {
-                            color: 'var(--color-white)',
-                            backgroundColor: 'var(--color-orange)',
-                        },
+                        width: '6rem',
+                        margin:'1rem 0 0 0',
                     }}
-                >
-                    Save
-                </Button>
+                />
             </form>
         </>
     );

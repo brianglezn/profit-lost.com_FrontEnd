@@ -65,7 +65,6 @@ function Dashboard() {
   }, []);
 
   const avatarCommonStyle = {
-    backgroundColor: 'var(--color-orange)',
     color: 'var(--text-color-white)',
     width: '40px',
     height: '40px'
