@@ -69,14 +69,6 @@ a:hover {
   border-radius: 15px;
 }
 
-/* TABLA mui */
-.row-even {
-  background-color: var(--primary-color-50);
-}
-
-.row-odd {
-  background-color: var(--text-color);
-}
 
 /* Popup Styles */
 .popup {

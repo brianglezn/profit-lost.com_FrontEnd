@@ -5,7 +5,7 @@ import { Dialog } from 'primereact/dialog';
 import "./AnnualReport.css";
 
 import AnnualChart from "../../components/dashboard/AnnualChart";
-// import AnnualMovements from "../../components/dashboard/AnnualMovements";
+import AnnualMovements from "../../components/dashboard/AnnualMovements";
 import FormCategory from "../../components/dashboard/FormCategory";
 
 interface Movement {
@@ -148,7 +148,7 @@ function AnnualReport() {
               <FormCategory/>
             </Dialog>
           </div>
-          {/* <AnnualMovements year={year} /> */}
+          <AnnualMovements year={year} />
         </div>
       </section>
     </>
