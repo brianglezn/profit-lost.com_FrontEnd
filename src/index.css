@@ -56,6 +56,14 @@ a:hover {
   user-select: none;
 }
 
+.button-action {
+  cursor: pointer;
+}
+
+.button-action:hover {
+  color: var(--primary-color);
+}
+
 /* PrimeReact */
 .custom-spinner .p-progress-spinner-circle {
   stroke: var(--primary-color) !important;

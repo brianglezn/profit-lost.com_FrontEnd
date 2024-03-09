@@ -97,14 +97,6 @@
   font-weight: bold;
 }
 
-.annualReport__category-text span {
-  cursor: pointer;
-}
-
-.annualReport__category-text span:hover {
-  color: var(--primary-color);
-}
-
 .annualReport__containerCategory-formCategory{
   display: flex;
   flex-direction: column;

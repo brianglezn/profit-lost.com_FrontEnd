@@ -137,7 +137,7 @@ function AnnualReport() {
         <div className="annualReport__containerCategory">
           <div className="annualReport__category-text">
             <p>Categories</p>
-            <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
+            <span className="material-symbols-rounded button-action no-select" onClick={handleOpenModal}>new_window</span>
             <Dialog
               visible={open}
               onHide={handleCloseModal}
