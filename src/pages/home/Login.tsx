@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 import './Login-Register.css';
 import { useAuth } from '../../context/AuthContext';
@@ -10,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
 
   const reiniciarTemporizadorExpiracionToken = () => {
@@ -29,6 +31,7 @@ function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true); // Inicia el spinner
 
     try {
       const response = await fetch('https://profit-lost-backend.onrender.com/login', {
@@ -51,7 +54,10 @@ function Login() {
     } catch (error) {
       console.error('There was an error logging in', error);
     }
+
+    setIsLoading(false); // Finaliza el spinner
   };
+
 
   // Ad Popup function
   const closePopup = () => {
@@ -101,7 +107,14 @@ function Login() {
           <Link to="/forgot-password" className="form__forgot">
             Forgot password?
           </Link>
-          <input className="form__submit" type="submit" value="Let's go!" />
+          <button
+            className="form__submit"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" /> : "Let's go!"}
+          </button>
+
           <p className="form__link">
             Don&apos;t have an account?
             <Link to="/register" className="form__link--color">

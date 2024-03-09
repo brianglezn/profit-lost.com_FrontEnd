@@ -66,7 +66,7 @@ header {
   text-decoration: none;
   color: var(--text-color-secondary);
 }
-.container__form input[type="submit"] {
+.container__form button[type="submit"] {
   background-color: var(--primary-color);
   color: var(--text-color);
   padding: 3%;
@@ -77,13 +77,13 @@ header {
   box-shadow: 0 0.4rem var(--primary-color-600);
   opacity: 0.8;
 }
-.container__form input[type="submit"]:hover {
+.container__form button[type="submit"]:hover {
   background-color: var(--primary-color);
   font-weight: bold;
   box-shadow: 0 0.4rem var(--primary-color-600);
   opacity: 1;
 }
-.container__form input[type="submit"]:active {
+.container__form button[type="submit"]:active {
   transform: translatey(5px);
   box-shadow: var(--primary-color-600) 0px 3px 2px,
     var(--text-color-secondary) 0px 3px 5px;
