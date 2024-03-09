@@ -119,7 +119,7 @@ function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="form__submit" type="submit" disabled={isLoading}>
-            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" /> : "Let's go!"}
+            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary" /> : "Let's go!"}
           </button>
 
           <p className="form__link">

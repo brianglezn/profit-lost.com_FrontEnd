@@ -60,6 +60,9 @@ a:hover {
 .custom-spinner .p-progress-spinner-circle {
   stroke: var(--primary-color) !important;
 }
+.custom-spinner-secondary .p-progress-spinner-circle {
+  stroke: var(--primary-color-800) !important;
+}
 
 /* Rechart */
 .recharts-default-tooltip {
