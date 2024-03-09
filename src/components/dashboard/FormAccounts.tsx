@@ -7,7 +7,7 @@ interface FormAccountsProps {
 }
 
 function FormAccounts({ onClose }: FormAccountsProps) {
-    
+
     return (
         <>
             <form className="formAccounts">
@@ -19,6 +19,7 @@ function FormAccounts({ onClose }: FormAccountsProps) {
                     label="New Account"
                     value={""}
                     // onChange={""}
+                    className="textFieldCustomPadding"
                 />
 
                 <Button

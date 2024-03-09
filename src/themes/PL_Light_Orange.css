@@ -7377,7 +7377,7 @@
     }
 
     .p-toast .p-toast-message .p-toast-message-content {
-        padding: 1rem;
+        padding: 10px;
         border-width: 0 0 0 6px;
     }
 
@@ -7390,8 +7390,8 @@
     }
 
     .p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon.p-icon {
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 
     .p-toast .p-toast-message .p-toast-message-content .p-toast-summary {

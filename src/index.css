@@ -63,6 +63,12 @@ a:hover {
 .custom-spinner-secondary .p-progress-spinner-circle {
   stroke: var(--primary-color-800) !important;
 }
+.textFieldCustomPadding {
+  padding: 12px 10px;
+}
+.p-toast-message .p-toast-icon-close {
+  display: none;
+}
 
 /* Rechart */
 .recharts-default-tooltip {
