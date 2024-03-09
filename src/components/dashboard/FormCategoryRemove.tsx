@@ -9,9 +9,30 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
         e.preventDefault();
 
         const token = localStorage.getItem('token');
+        const checkUrl = `https://profit-lost-backend.onrender.com/movements/category/${categoryId}`;
         const deleteUrl = `https://profit-lost-backend.onrender.com/categories/delete/${categoryId}`;
 
         try {
+            // Comprobar si hay movimientos asociados a la categoría
+            const checkResponse = await fetch(checkUrl, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!checkResponse.ok) {
+                throw new Error('Failed to check category movements.');
+            }
+
+            const { hasMovements } = await checkResponse.json();
+
+            console.log('Category movements:', hasMovements);
+
+            if (hasMovements) {
+                console.log('Category has associated movements. Cannot remove.');
+                return;
+            }
+
             const deleteResponse = await fetch(deleteUrl, {
                 method: 'DELETE',
                 headers: {
