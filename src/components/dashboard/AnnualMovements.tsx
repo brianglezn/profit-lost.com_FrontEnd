@@ -4,10 +4,13 @@ import { Column } from "primereact/column";
 import { ProgressBar } from 'primereact/progressbar';
 
 type Transaction = {
-    date: string;
     category: string;
-    description: string;
     amount: number;
+};
+
+type Category = {
+    _id: string;
+    name: string;
 };
 
 type CategoryBalance = {
@@ -31,42 +34,80 @@ function formatCurrency(value: number) {
 }
 
 function AnnualMovements({ year }: AnnualMovementsProps) {
-    const [transactions, setTransactions] = useState<CategoryBalance[]>([]);
+    const [categories, setCategories] = useState<CategoryBalance[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-    
+        if (!token) {
+            console.error('No authentication token found. Please log in.');
+            return;
+        }
+
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const categoriesData: Category[] = await response.json();
+                const initialCategories = categoriesData.map((category, index) => ({
+                    id: index,
+                    Category: category.name,
+                    Balance: 0,
+                    InOut: "--"
+                }));
+
+                setCategories(initialCategories);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Error retrieving categories:", error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
+    useEffect(() => {
+        if (!isLoading) {
+            fetchMovements();
+        }
+    }, [isLoading, year]);
+
+    const fetchMovements = async () => {
+        const token = localStorage.getItem('token');
+
         const fetchData = async () => {
             const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-    
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const dataMovements: Transaction[] = await response.json();
-    
-            const categoryBalances = dataMovements.reduce((acc: { [key: string]: CategoryBalance }, transaction, index) => {
-                const { category, amount } = transaction;
-                if (!acc[category]) {
-                    acc[category] = { id: index, Category: category, Balance: 0, InOut: "" };
+
+            const updatedCategories = [...categories];
+            dataMovements.forEach(transaction => {
+                const categoryIndex = updatedCategories.findIndex(category => category.Category === transaction.category);
+                if (categoryIndex !== -1) {
+                    updatedCategories[categoryIndex].Balance += transaction.amount;
+                    updatedCategories[categoryIndex].InOut = updatedCategories[categoryIndex].Balance >= 0 ? "IN" : "OUT";
                 }
-                acc[category].Balance += amount;
-                return acc;
-            }, {});
-    
-            Object.values(categoryBalances).forEach(balance => {
-                balance.InOut = balance.Balance >= 0 ? "IN" : "OUT";
             });
-    
-            setTransactions(Object.values(categoryBalances));
+
+            setCategories(updatedCategories);
         };
-    
+
         fetchData().catch(console.error);
-    }, [year]);
-    
+    };
 
     const inOutTemplate = (rowData: CategoryBalance) => {
         return (
@@ -80,17 +121,16 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
         return formatCurrency(rowData.Balance);
     };
 
-
     return (
         <div className="annualReport__category-table">
-            {transactions.length > 0 ? (
-                <DataTable value={transactions} className="p-datatable-gridlines">
+            {isLoading ? (
+                <ProgressBar mode="indeterminate" style={{ height: '6px' }}></ProgressBar>
+            ) : (
+                <DataTable value={categories} className="p-datatable-gridlines">
                     <Column field="Category" header="Category" sortable></Column>
                     <Column field="Balance" header="Balance" body={balanceTemplate} sortable></Column>
                     <Column field="InOut" header="InOut" body={inOutTemplate}></Column>
                 </DataTable>
-            ) : (
-                <ProgressBar mode="indeterminate" style={{ height: '6px' }}></ProgressBar>
             )}
         </div>
     );
