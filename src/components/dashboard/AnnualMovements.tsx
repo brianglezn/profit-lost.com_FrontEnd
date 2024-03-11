@@ -17,13 +17,14 @@ type Category = {
 };
 
 type CategoryBalance = {
-    id: number;
+    id: string;
     Category: string;
     Balance: number;
 };
 
 interface AnnualMovementsProps {
     year: string;
+    reloadFlag: boolean;
 }
 
 function formatCurrency(value: number) {
@@ -35,7 +36,7 @@ function formatCurrency(value: number) {
     });
 }
 
-function AnnualMovements({ year }: AnnualMovementsProps) {
+function AnnualMovements({ year, reloadFlag }: AnnualMovementsProps) {
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
@@ -59,8 +60,8 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
                 }
 
                 const categoriesData: Category[] = await response.json();
-                const initialCategories = categoriesData.map((category, index) => ({
-                    id: index,
+                const initialCategories = categoriesData.map(category => ({
+                    id: category._id,
                     Category: category.name,
                     Balance: 0,
                 }));
@@ -74,7 +75,7 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
         };
 
         fetchCategories();
-    }, []);
+    }, [year, reloadFlag]);
 
     useEffect(() => {
         if (!isLoading) {
@@ -123,7 +124,6 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
         setCategoryToDelete(category);
         setDeleteDialogVisible(true);
     };
-
     return (
         <div className="annualReport__category-table">
             {isLoading ? (

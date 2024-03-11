@@ -9,8 +9,14 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
         e.preventDefault();
 
         const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('Authentication token not found');
+            toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Authentication token not found. Please log in.', life: 3000 });
+            return;
+        }
+
         const checkUrl = `https://profit-lost-backend.onrender.com/movements/category/${categoryId}`;
-        const deleteUrl = `https://profit-lost-backend.onrender.com/categories/delete/${categoryId}`;
+        const deleteUrl = `https://profit-lost-backend.onrender.com/categories/remove/${categoryId}`;
 
         try {
             const checkResponse = await fetch(checkUrl, {
@@ -23,15 +29,6 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
                 throw new Error('Failed to check category movements.');
             }
 
-            const { hasMovements } = await checkResponse.json();
-
-            console.log('Category movements:', hasMovements);
-
-            if (hasMovements) {
-                console.log('Category has associated movements. Cannot remove.');
-                return;
-            }
-
             const deleteResponse = await fetch(deleteUrl, {
                 method: 'DELETE',
                 headers: {
@@ -40,9 +37,8 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
             });
 
             if (!deleteResponse.ok) {
-                if (deleteResponse.status === 404) {
-                    throw new Error('Category not found or does not belong to the user');
-                }
+                const errorData = await deleteResponse.text();
+                console.error('Delete response error:', errorData);
                 throw new Error('Failed to delete the category.');
             }
 
@@ -53,8 +49,11 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
                 life: 3000,
             });
 
-            onClose();
-            onRemove();
+            setTimeout(() => {
+                onClose();
+                onRemove();
+            }, 2000);
+
         } catch (error) {
             console.error('Error during category deletion:', error);
             const errorMessage = error instanceof Error ? error.message : 'An error occurred while trying to remove the category.';
@@ -71,7 +70,7 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
         <>
             <Toast ref={toast} position="bottom-right" />
             <form className="annualReport__containerCategory-formCategory" onSubmit={handleRemoveCategory}>
-                <p>Are you sure you want to remove "{categoryName}"?</p>
+                <p>Are you sure you want to remove the category "<strong>{categoryName}</strong>" ?</p>
                 <Button
                     type="submit"
                     label="Remove"

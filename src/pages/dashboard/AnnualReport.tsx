@@ -6,7 +6,7 @@ import "./AnnualReport.css";
 
 import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";
-import FormCategory from "../../components/dashboard/FormCategory";
+import FormCategoryAdd from "../../components/dashboard/FormCategoryAdd";
 
 interface Movement {
   date: string;
@@ -28,31 +28,35 @@ function AnnualReport() {
   const currentYear = new Date().getFullYear().toString();
   const [year, setYear] = useState(currentYear);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
+  const [reloadFlag, setReloadFlag] = useState(false);
+
+  const reloadCategories = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No authentication token found. Please log in.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) throw new Error('Failed to fetch');
+
+      const dataMovements: Movement[] = await response.json() as Movement[];
+      const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
+      setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
+    } catch (error) {
+      console.error('Error fetching years data:', error);
+    }
+
+    setReloadFlag(!reloadFlag);
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    const fetchYearsWithData = async () => {
-      try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!response.ok) throw new Error('Failed to fetch');
-        const dataMovements: Movement[] = await response.json();
-
-        const years = new Set(dataMovements.map((item: Movement) => {
-          return new Date(item.date).getFullYear().toString();
-        }));
-
-        setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
-      } catch (error) {
-        console.error('Error fetching years data:', error);
-      }
-    };
-
-    fetchYearsWithData();
+    reloadCategories();
   }, []);
 
   const [balanceIncome, setBalanceIncome] = useState(0);
@@ -141,14 +145,14 @@ function AnnualReport() {
             <Dialog
               visible={open}
               onHide={handleCloseModal}
-              style={{ width: '40vw' }} 
+              style={{ width: '40vw' }}
               header="Category"
               modal
               draggable={false}>
-              <FormCategory/>
+              <FormCategoryAdd onCategoryAdded={reloadCategories} />
             </Dialog>
           </div>
-          <AnnualMovements year={year} />
+          <AnnualMovements year={year} reloadFlag={reloadFlag}/>
         </div>
       </section>
     </>

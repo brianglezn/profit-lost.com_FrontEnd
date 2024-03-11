@@ -5,7 +5,7 @@ import { Toast } from 'primereact/toast';
 
 import "./FormCategory.css";
 
-function FormCategory() {
+function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     const [newCategory, setNewCategory] = useState('');
     const toast = useRef<Toast>(null);
 
@@ -15,14 +15,14 @@ function FormCategory() {
 
     const handleSaveCategory = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    
+
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No authentication token found. Please log in.');
             toast.current?.show({ severity: 'error', summary: 'Error', detail: 'No authentication token found. Please log in.', life: 3000 });
             return;
         }
-    
+
         try {
             const response = await fetch('https://profit-lost-backend.onrender.com/categories/add', {
                 method: 'POST',
@@ -32,16 +32,22 @@ function FormCategory() {
                 },
                 body: JSON.stringify({ name: newCategory })
             });
-    
+
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error(errorText || `Error: ${response.status}`);
             }
-    
-            const insertedCategory = await response.json();
-            console.log('Category added:', insertedCategory);
+
             setNewCategory('');
-            toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Category added successfully', life: 3000 });
+            toast.current?.show({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Category added successfully',
+                life: 3000,
+            });
+
+            onCategoryAdded();
+
         } catch (error) {
             console.error('Failed to save the category:', error);
             const message = error instanceof Error ? error.message : 'An error occurred';
@@ -76,4 +82,4 @@ function FormCategory() {
     );
 }
 
-export default FormCategory;
+export default FormCategoryAdd;
