@@ -5439,7 +5439,7 @@
     .p-dialog.p-dialog-maximized .p-dialog-header,
     .p-dialog.p-dialog-maximized .p-dialog-content:last-of-type {
         border-radius: 0;
-}
+    }
 
     .p-dialog.p-confirm-dialog .p-confirm-dialog-icon {
         font-size: 2rem;
@@ -6662,6 +6662,15 @@
             top: 100%;
             left: 0;
             z-index: 1;
+        }
+
+        .p-datatable .p-datatable-tbody>tr>td {
+            padding: 0.5rem 0.5rem;
+            font-size: 0.9rem
+        }
+
+        .p-column-title {
+            font-size: 0.9rem
         }
     }
 

@@ -13,7 +13,6 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
         const deleteUrl = `https://profit-lost-backend.onrender.com/categories/delete/${categoryId}`;
 
         try {
-            // Comprobar si hay movimientos asociados a la categoría
             const checkResponse = await fetch(checkUrl, {
                 headers: {
                     'Authorization': `Bearer ${token}`

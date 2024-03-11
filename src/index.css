@@ -68,12 +68,15 @@ a:hover {
 .custom-spinner .p-progress-spinner-circle {
   stroke: var(--primary-color) !important;
 }
+
 .custom-spinner-secondary .p-progress-spinner-circle {
   stroke: var(--primary-color-800) !important;
 }
+
 .textFieldCustomPadding {
   padding: 12px 10px;
 }
+
 .p-toast-message .p-toast-icon-close {
   display: none;
 }
@@ -106,4 +109,17 @@ a:hover {
 .popup p {
   font-size: 16px;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 960px) {
+  .p-dialog {
+    width: 70vw !important;
+  }
+
+  .p-toast-bottom-right {
+    top: 10px !important;
+    bottom: auto !important;
+    right: 0 !important;
+  }
+
 }

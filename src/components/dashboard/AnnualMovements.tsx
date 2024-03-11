@@ -20,7 +20,6 @@ type CategoryBalance = {
     id: number;
     Category: string;
     Balance: number;
-    InOut: string;
 };
 
 interface AnnualMovementsProps {
@@ -64,7 +63,6 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
                     id: index,
                     Category: category.name,
                     Balance: 0,
-                    InOut: "--"
                 }));
 
                 setCategories(initialCategories);
@@ -104,7 +102,6 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
                 const categoryIndex = updatedCategories.findIndex(category => category.Category === transaction.category);
                 if (categoryIndex !== -1) {
                     updatedCategories[categoryIndex].Balance += transaction.amount;
-                    updatedCategories[categoryIndex].InOut = updatedCategories[categoryIndex].Balance >= 0 ? "IN" : "OUT";
                 }
             });
 
@@ -114,16 +111,12 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
         fetchData().catch(console.error);
     };
 
-    const inOutTemplate = (rowData: CategoryBalance) => {
+    const balanceTemplate = (rowData: CategoryBalance) => {
         return (
-            <span className={rowData.InOut === "IN" ? "positive" : "negative"}>
-                {rowData.InOut}
+            <span className={rowData.Balance >= 0 ? "positive" : "negative"}>
+                {formatCurrency(rowData.Balance)}
             </span>
         );
-    };
-
-    const balanceTemplate = (rowData: CategoryBalance) => {
-        return formatCurrency(rowData.Balance);
     };
 
     const deleteCategory = (category: CategoryBalance) => {
@@ -140,14 +133,11 @@ function AnnualMovements({ year }: AnnualMovementsProps) {
                     <DataTable value={categories} className="p-datatable-gridlines">
                         <Column field="Category" header="Category" sortable></Column>
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable></Column>
-                        <Column field="InOut" header="InOut" body={inOutTemplate} sortable></Column>
                         <Column body={(rowData: CategoryBalance) => (
                             <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>
                                 delete
                             </span>
-                        )} style={{ width: '5%' }}></Column>
-
-
+                        )} style={{ width: '5%', textAlign: 'center' }}></Column>
                     </DataTable>
                     <Dialog
                         visible={deleteDialogVisible}
