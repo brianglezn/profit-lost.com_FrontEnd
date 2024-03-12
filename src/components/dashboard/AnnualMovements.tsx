@@ -36,81 +36,60 @@ function formatCurrency(value: number) {
     });
 }
 
-function AnnualMovements({ year, reloadFlag }: AnnualMovementsProps) {
+const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
     const [categoryToDelete, setCategoryToDelete] = useState<CategoryBalance | null>(null);
 
-    useEffect(() => {
+    const fetchDataAndCalculateBalances = async () => {
+        setIsLoading(true);
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No authentication token found. Please log in.');
+            setIsLoading(false);
             return;
         }
 
-        const fetchCategories = async () => {
-            try {
-                const response = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
+        try {
+            const categoriesResponse = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!categoriesResponse.ok) throw new Error('Failed to fetch categories');
+            const categoriesData: Category[] = await categoriesResponse.json();
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+            const movementsResponse = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!movementsResponse.ok) throw new Error('Failed to fetch movements');
+            const movementsData: Transaction[] = await movementsResponse.json();
 
-                const categoriesData: Category[] = await response.json();
-                const initialCategories = categoriesData.map(category => ({
+            const categoryBalances = categoriesData.map(category => {
+                const balance = movementsData.reduce((acc, movement) => {
+                    if (movement.category === category.name) {
+                        return acc + movement.amount;
+                    }
+                    return acc;
+                }, 0);
+
+                return {
                     id: category._id,
                     Category: category.name,
-                    Balance: 0,
-                }));
+                    Balance: balance,
+                };
+            });
 
-                setCategories(initialCategories);
-                setIsLoading(false);
-            } catch (error) {
-                console.error("Error retrieving categories:", error);
-                setIsLoading(false);
-            }
-        };
-
-        fetchCategories();
-    }, [year, reloadFlag]);
+            setCategories(categoryBalances);
+        } catch (error) {
+            console.error("Error loading data:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        if (!isLoading) {
-            fetchMovements();
-        }
-    }, [isLoading, year]);
-
-    const fetchMovements = async () => {
-        const token = localStorage.getItem('token');
-
-        const fetchData = async () => {
-            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const dataMovements: Transaction[] = await response.json();
-
-            const updatedCategories = [...categories];
-            dataMovements.forEach(transaction => {
-                const categoryIndex = updatedCategories.findIndex(category => category.Category === transaction.category);
-                if (categoryIndex !== -1) {
-                    updatedCategories[categoryIndex].Balance += transaction.amount;
-                }
-            });
-
-            setCategories(updatedCategories);
-        };
-
-        fetchData().catch(console.error);
-    };
+        fetchDataAndCalculateBalances();
+    }, [year, reloadFlag]);
 
     const balanceTemplate = (rowData: CategoryBalance) => {
         return (
@@ -124,6 +103,7 @@ function AnnualMovements({ year, reloadFlag }: AnnualMovementsProps) {
         setCategoryToDelete(category);
         setDeleteDialogVisible(true);
     };
+    
     return (
         <div className="annualReport__category-table">
             {isLoading ? (
