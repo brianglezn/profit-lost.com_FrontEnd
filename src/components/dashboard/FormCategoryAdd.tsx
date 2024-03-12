@@ -3,8 +3,6 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 
-import "./FormCategory.css";
-
 function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     const [newCategory, setNewCategory] = useState('');
     const toast = useRef<Toast>(null);
@@ -58,7 +56,7 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="annualReport__containerCategory-formCategory" onSubmit={handleSaveCategory}>
+            <form className="annualReport__containerCategory-formCategoryAdd" onSubmit={handleSaveCategory}>
                 <InputText
                     placeholder="New Category"
                     value={newCategory}

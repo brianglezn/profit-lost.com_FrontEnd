@@ -1,8 +1,15 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 
-function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { categoryId: string, categoryName: string, onRemove: () => void, onClose: () => void }) {
+interface FormCategoryRemoveProps {
+    categoryId: string;
+    categoryName: string;
+    onRemove: () => void;
+    onClose: () => void;
+}
+
+const FormCategoryRemove: React.FC<FormCategoryRemoveProps> = ({ categoryId, categoryName, onRemove, onClose }) => {
     const toast = useRef<Toast>(null);
 
     const handleRemoveCategory = async (e: React.FormEvent) => {
@@ -15,20 +22,9 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
             return;
         }
 
-        const checkUrl = `https://profit-lost-backend.onrender.com/movements/category/${categoryId}`;
         const deleteUrl = `https://profit-lost-backend.onrender.com/categories/remove/${categoryId}`;
 
         try {
-            const checkResponse = await fetch(checkUrl, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!checkResponse.ok) {
-                throw new Error('Failed to check category movements.');
-            }
-
             const deleteResponse = await fetch(deleteUrl, {
                 method: 'DELETE',
                 headers: {
@@ -37,9 +33,15 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
             });
 
             if (!deleteResponse.ok) {
-                const errorData = await deleteResponse.text();
-                console.error('Delete response error:', errorData);
-                throw new Error('Failed to delete the category.');
+                let errorMessage;
+                const contentType = deleteResponse.headers.get('Content-Type');
+                if (contentType && contentType.includes('application/json')) {
+                    const errorData = await deleteResponse.json();
+                    errorMessage = errorData.message || 'Failed to delete the category.';
+                } else {
+                    errorMessage = await deleteResponse.text();
+                }
+                throw new Error(errorMessage);
             }
 
             toast.current?.show({
@@ -55,8 +57,8 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
             }, 2000);
 
         } catch (error) {
-            console.error('Error during category deletion:', error);
-            const errorMessage = error instanceof Error ? error.message : 'An error occurred while trying to remove the category.';
+            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
+            console.error('Error during category deletion:', errorMessage);
             toast.current?.show({
                 severity: 'error',
                 summary: 'Error Removing Category',
@@ -69,8 +71,8 @@ function FormCategoryRemove({ categoryId, categoryName, onRemove, onClose }: { c
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="annualReport__containerCategory-formCategory" onSubmit={handleRemoveCategory}>
-                <p>Are you sure you want to remove the category "<strong>{categoryName}</strong>" ?</p>
+            <form className="annualReport__containerCategory-formCategoryRemove" onSubmit={handleRemoveCategory} >
+                <p>Are you sure you want to remove the category "<strong>{categoryName}</strong>"?</p>
                 <Button
                     type="submit"
                     label="Remove"
