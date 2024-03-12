@@ -1,6 +1,5 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-// Definition of the interface for the properties received by the component
 interface MovementsProps {
     dataGraph: {
         month: string;
@@ -13,8 +12,10 @@ interface MovementsProps {
 
 function MovementsChart(props: MovementsProps) {
 
-    // Destructuring of received properties
     const { isDataEmpty, dataGraph } = props;
+
+    const incomeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-400').trim();
+    const expensesColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-800').trim();
 
     return (
         <>
@@ -41,8 +42,8 @@ function MovementsChart(props: MovementsProps) {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="Income" fill="var(--color-orange-400)" />
-                            <Bar dataKey="Expenses" fill="var(--color-orange-800)" />
+                            <Bar dataKey="Income" fill={incomeColor} />
+                            <Bar dataKey="Expenses" fill={expensesColor} />
                         </BarChart>
                     </ResponsiveContainer>)}
             </div>

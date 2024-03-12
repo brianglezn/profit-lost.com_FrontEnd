@@ -1122,6 +1122,7 @@
 
     .p-dropdown-items-wrapper {
         overflow: auto;
+        max-height: none !important;
     }
 
     .p-dropdown-item {

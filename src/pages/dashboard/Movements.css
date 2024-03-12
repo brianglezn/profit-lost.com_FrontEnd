@@ -15,7 +15,7 @@
 
 .movements__containerMain-selector {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   flex-grow: 1;
   gap: 20px;
@@ -87,7 +87,7 @@
 }
 
 .expenses span {
-  color: var(--primary-color-900);
+  color: var(--primary-color-800);
 }
 
 .movements__balance p {
@@ -129,6 +129,10 @@
   padding: 0 2rem 1rem 2rem;
 }
 
+.movements__table-options  {
+  display: flex;
+  gap: 5px;
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
@@ -142,6 +146,7 @@
 
   .movements__containerMain-selector {
     flex-direction: column;
+    flex-wrap: wrap;
   }
 
   .movements__containerMain-chart {

@@ -1,5 +1,5 @@
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 interface Movement {
     date: string;
@@ -15,7 +15,6 @@ interface ChartDataItem {
 }
 
 const incomeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-400').trim();
-
 const expensesColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-800').trim();
 
 function AnnualChart({ year }: { year: string }) {

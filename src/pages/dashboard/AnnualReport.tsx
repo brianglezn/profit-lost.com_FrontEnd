@@ -102,7 +102,6 @@ function AnnualReport() {
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
-
   return (
     <>
       <section className="annualReport">
@@ -112,6 +111,7 @@ function AnnualReport() {
               value={year}
               options={yearsWithData.map(year => ({ label: year, value: year }))}
               onChange={(e) => setYear(e.value)}
+              placeholder={year}
               className="w-full"
             />
           </div>
@@ -146,7 +146,7 @@ function AnnualReport() {
               visible={open}
               onHide={handleCloseModal}
               style={{ width: '40vw' }}
-              header="Category"
+              header="New Category"
               modal
               draggable={false}>
               <FormCategoryAdd onCategoryAdded={reloadCategories} />

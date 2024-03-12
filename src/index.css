@@ -84,11 +84,12 @@ a:hover {
   display: none;
 }
 
+
+
 /* Rechart */
 .recharts-default-tooltip {
   border-radius: 15px;
 }
-
 
 /* Popup Styles */
 .popup {
