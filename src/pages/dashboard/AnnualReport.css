@@ -13,7 +13,7 @@
   width: 99%;
 }
 
-.annualReport__containerMain-year{
+.annualReport__containerMain-year {
   width: 100%;
 }
 
@@ -97,7 +97,9 @@
   font-weight: bold;
 }
 
-.annualReport__containerCategory-formCategoryAdd, .annualReport__containerCategory-formCategoryRemove{
+.annualReport__containerCategory-formCategoryAdd,
+.annualReport__containerCategory-formCategoryRemove,
+.annualReport__containerCategory-formCategoryEdit {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,6 +107,10 @@
 
 .annualReport__category-table {
   padding: 0 2rem 1rem 2rem;
+}
+
+.category__table-options {
+  display: flex;
 }
 
 /* ---------- RESPONSIVE ---------- */

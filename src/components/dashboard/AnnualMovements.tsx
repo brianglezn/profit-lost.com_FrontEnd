@@ -5,6 +5,7 @@ import { ProgressBar } from 'primereact/progressbar';
 import { Dialog } from 'primereact/dialog';
 
 import FormCategoryRemove from "./FormCategoryRemove";
+import FormCategoryEdit from "./FormCategoryEdit";
 
 type Transaction = {
     category: string;
@@ -41,6 +42,9 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
     const [isLoading, setIsLoading] = useState(true);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
     const [categoryToDelete, setCategoryToDelete] = useState<CategoryBalance | null>(null);
+    const [editDialogVisible, setEditDialogVisible] = useState(false);
+    const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
+
 
     const fetchDataAndCalculateBalances = async () => {
         setIsLoading(true);
@@ -103,7 +107,11 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
         setCategoryToDelete(category);
         setDeleteDialogVisible(true);
     };
-    
+    const editCategory = (category: CategoryBalance) => {
+        setCategoryToEdit(category);
+        setEditDialogVisible(true);
+    };
+
     return (
         <div className="annualReport__category-table">
             {isLoading ? (
@@ -114,9 +122,14 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         <Column field="Category" header="Category" sortable></Column>
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable></Column>
                         <Column body={(rowData: CategoryBalance) => (
-                            <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>
-                                delete
-                            </span>
+                            <div className="category__table-options">
+                                <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>
+                                    delete
+                                </span>
+                                <span className="material-symbols-rounded no-select button-action" onClick={() => editCategory(rowData)}>
+                                    edit
+                                </span>
+                            </div>
                         )} style={{ width: '5%', textAlign: 'center' }}></Column>
                     </DataTable>
                     <Dialog
@@ -135,6 +148,24 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                                     setCategories(updatedCategories);
                                 }}
                                 onClose={() => setDeleteDialogVisible(false)}
+                            />
+                        )}
+                    </Dialog>
+                    <Dialog
+                        visible={editDialogVisible}
+                        onHide={() => setEditDialogVisible(false)}
+                        style={{ width: '40vw' }}
+                        header="Edit Category"
+                        modal
+                        draggable={false}>
+                        {categoryToEdit && (
+                            <FormCategoryEdit
+                                categoryId={categoryToEdit.id.toString()}
+                                categoryName={categoryToEdit.Category}
+                                onUpdate={() => {
+                                    fetchDataAndCalculateBalances();
+                                }}
+                                onClose={() => setEditDialogVisible(false)}
                             />
                         )}
                     </Dialog>
