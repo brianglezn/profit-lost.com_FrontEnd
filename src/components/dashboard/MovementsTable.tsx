@@ -100,7 +100,7 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                     <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
                 </>
             ) : (
-                <DataTable value={tableRows} className="p-datatable-gridlines">
+                <DataTable value={tableRows} className="p-datatable-gridlines" paginator paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" rows={10} rowsPerPageOptions={[5, 10, 25, 50]}>
                     <Column field="category" header="Category" sortable></Column>
                     {showDescriptionColumn && <Column field="description" header="Description" sortable />}
                     <Column field="amount" header="Amount" body={amountBodyTemplate} sortable></Column>
@@ -115,7 +115,8 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                         </div>
                     )} style={{ width: '5%', textAlign: 'center' }}></Column>
                 </DataTable>
-            )}
+            )
+            }
             <Dialog
                 visible={editDialogVisible}
                 onHide={() => setEditDialogVisible(false)}
@@ -151,7 +152,7 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                     />
                 )}
             </Dialog>
-        </div>
+        </div >
     );
 }
 
