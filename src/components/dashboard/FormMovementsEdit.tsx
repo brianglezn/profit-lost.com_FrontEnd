@@ -21,9 +21,19 @@ const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSa
     const [amount, setAmount] = useState(transaction.amount);
     const [category, setCategory] = useState(transaction.category);
 
+    const isValidDate = (date: string) => {
+        const regex = /^(19|20)\d\d-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?$/;
+        return regex.test(date);
+    };
+
     const handleSave = async () => {
+        if (!isValidDate(date)) {
+            alert("Please enter a valid date in YYYY-MM or YYYY-MM-DD format.");
+        }
+
         const token = localStorage.getItem("token");
         const updatedTransaction = { date, description, amount, category };
+
         try {
             const response = await fetch(`https://profit-lost-backend.onrender.com/movements/edit/${transaction._id}`, {
                 method: "PUT",
@@ -45,7 +55,7 @@ const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSa
 
     return (
         <div className="formMovements">
-            <input type="text" value={date} onChange={(e) => setDate(e.target.value)} placeholder="YYYY-MM-DD" />
+            <input type="text" value={date} onChange={(e) => setDate(e.target.value)} placeholder="YYYY-MM or YYYY-MM-DD" />
             <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
             <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} placeholder="Amount" />
             <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category ID" />

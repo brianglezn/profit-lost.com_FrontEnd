@@ -49,15 +49,19 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const transactions: Transaction[] = await response.json();
-
+                let transactions: Transaction[] = await response.json();
+    
+                transactions = transactions.map(transaction => {
+                    const normalizedDate = transaction.date.length === 7 ? `${transaction.date}-01` : transaction.date;
+                    return { ...transaction, normalizedDate };
+                }).sort((a, b) => b.normalizedDate.localeCompare(a.normalizedDate));
+    
                 setTableRows(transactions);
-
             } catch (error) {
                 console.error('Error fetching transactions data:', error);
             }
         };
-
+    
         fetchData();
     }, [year, month]);
 

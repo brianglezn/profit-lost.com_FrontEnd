@@ -105,24 +105,21 @@ function MovementsPie({ year, month, isDataEmpty }: MovementsProps) {
     const [colors, setColors] = useState<string[]>([]);
 
     useEffect(() => {
-        // Función para obtener el color de las variables CSS
         const getColor = (colorVar: string) => getComputedStyle(document.documentElement).getPropertyValue(colorVar);
 
-        // Define tus variables de color aquí y asegúrate de que coincidan con las definidas en tu CSS
         const colorVars = [
-            '--primary-color-500',
-            '--primary-color-700',
             '--primary-color-300',
+            '--primary-color-500',
+            '--primary-color-200',
             '--primary-color-900',
             '--primary-color-100',
             '--primary-color-600',
-            '--primary-color-200',
+            '--primary-color-700',
             '--primary-color-800',
             '--primary-color-400',
             '--primary-color-950',
         ];
 
-        // Mapea las variables de color a sus valores reales
         const mappedColors = colorVars.map(colorVar => getColor(colorVar).trim());
 
         setColors(mappedColors);
