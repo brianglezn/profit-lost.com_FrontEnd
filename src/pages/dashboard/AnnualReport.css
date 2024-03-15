@@ -111,6 +111,7 @@
 
 .category__table-options {
   display: flex;
+  gap: 5px;
 }
 
 /* ---------- RESPONSIVE ---------- */

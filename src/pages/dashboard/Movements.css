@@ -129,9 +129,29 @@
   padding: 0 2rem 1rem 2rem;
 }
 
-.movements__table-options  {
+.movements__table-options {
   display: flex;
   gap: 5px;
+}
+
+.p-paginator {
+  flex-wrap: nowrap;
+}
+
+.p-paginator>.p-dropdown.p-component.p-inputwrapper {
+  width: auto;
+  min-width: 60px;
+  max-width: 100%;
+}
+
+.p-dropdown .p-dropdown-trigger-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.p-dropdown>.p-dropdown-label {
+  display: flex;
+  align-items: center
 }
 
 /* ---------- RESPONSIVE ---------- */

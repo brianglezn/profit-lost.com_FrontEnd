@@ -101,9 +101,9 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                 </>
             ) : (
                 <DataTable value={tableRows} className="p-datatable-gridlines" paginator paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" rows={10} rowsPerPageOptions={[5, 10, 25, 50]}>
-                    <Column field="category" header="Category" sortable></Column>
-                    {showDescriptionColumn && <Column field="description" header="Description" sortable />}
-                    <Column field="amount" header="Amount" body={amountBodyTemplate} sortable></Column>
+                    <Column field="category" header="Category" sortable style={{ width: '25%' }}></Column>
+                    {showDescriptionColumn && <Column field="description" header="Description" sortable style={{ width: '50%' }} />}
+                    <Column field="amount" header="Amount" body={amountBodyTemplate} sortable style={{ width: '20%' }}></Column>
                     <Column body={(rowData: Transaction) => (
                         <div className="movements__table-options">
                             <span className="material-symbols-rounded no-select button-action" onClick={() => deleteMovement(rowData)}>
@@ -130,7 +130,6 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                         onSave={() => {
                             setEditDialogVisible(false);
                         }}
-                        onClose={() => setEditDialogVisible(false)}
                     />
                 )}
             </Dialog>
@@ -148,7 +147,6 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                             setTableRows(tableRows.filter(t => t._id !== selectedTransaction._id));
                             setDeleteDialogVisible(false);
                         }}
-                        onClose={() => setDeleteDialogVisible(false)}
                     />
                 )}
             </Dialog>

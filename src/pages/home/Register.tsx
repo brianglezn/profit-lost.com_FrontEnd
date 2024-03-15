@@ -139,7 +139,7 @@ function Register() {
           <p>
             If you are having trouble registering in our application, please disable your ad blocker.
           </p>
-          <button onClick={closePopup}>Close</button>
+          <button className="popup-button" onClick={closePopup}>Close</button>
         </div>
       )}
 

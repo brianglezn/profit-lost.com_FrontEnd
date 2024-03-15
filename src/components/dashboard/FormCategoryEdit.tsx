@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 
@@ -92,14 +91,13 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         <>
             <Toast ref={toast} position="bottom-right" />
             <form className="annualReport__containerCategory-formCategoryEdit" onSubmit={handleEditCategory}>
-                <p>Edit the category name:</p>
                 <InputText value={name} onChange={(e) => setName(e.target.value)} autoFocus />
-                <Button
+                <button
                     type="submit"
-                    label="Save Changes"
-                    className="p-button-outlined p-button-success"
-                    style={{ margin: '1rem 0' }}
-                />
+                    className="form-button"
+                >
+                    Save
+                </button>
             </form>
         </>
     );

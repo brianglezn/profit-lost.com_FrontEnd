@@ -3,12 +3,11 @@ import React from "react";
 import "./FormMovements.css";
 
 interface FormMovementsRemoveProps {
-  transactionId: string;
-  onRemove: () => void;
-  onClose: () => void;
+    transactionId: string;
+    onRemove: () => void;
 }
 
-const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transactionId, onRemove, onClose }) => {
+const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transactionId, onRemove }) => {
     const handleRemove = async () => {
         const token = localStorage.getItem("token");
         try {
@@ -32,7 +31,6 @@ const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transactionId
         <div>
             <p>Are you sure you want to delete this transaction?</p>
             <button onClick={handleRemove}>Yes, delete it</button>
-            <button onClick={onClose}>Cancel</button>
         </div>
     );
 };

@@ -1300,6 +1300,11 @@
         background: rgba(255, 255, 255, 0.03);
     }
 
+    .p-dropdown-items .p-dropdown-item:hover {
+        background-color: var(--primary-color-light);
+        cursor: pointer;
+    }
+
     .p-dropdown-panel .p-dropdown-items .p-dropdown-item .p-dropdown-check-icon {
         position: relative;
         margin-left: -0.5rem;
@@ -4349,9 +4354,8 @@
     }
 
     .p-paginator {
-        background: var(--background-color);
+        background: var(--text-color);
         color: var(--text-color-secondary);
-        border: solid #304562;
         border-width: 1px;
         padding: 0.5rem 1rem;
         border-radius: 15px;
@@ -7836,7 +7840,6 @@
     .p-progressbar {
         border: 0 none;
         height: 1.5rem;
-        background: #304562;
         border-radius: 15px;
     }
 

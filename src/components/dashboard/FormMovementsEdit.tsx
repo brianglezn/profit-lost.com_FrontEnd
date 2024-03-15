@@ -3,20 +3,19 @@ import React, { useState } from "react";
 import "./FormMovements.css";
 
 interface Transaction {
-  _id: string;
-  date: string;
-  description: string;
-  amount: number;
-  category: string;
+    _id: string;
+    date: string;
+    description: string;
+    amount: number;
+    category: string;
 }
 
 interface FormMovementsEditProps {
-  transaction: Transaction;
-  onSave: () => void;
-  onClose: () => void;
+    transaction: Transaction;
+    onSave: () => void;
 }
 
-const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSave, onClose }) => {
+const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSave }) => {
     const [date, setDate] = useState(transaction.date);
     const [description, setDescription] = useState(transaction.description);
     const [amount, setAmount] = useState(transaction.amount);
@@ -51,7 +50,6 @@ const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSa
             <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} placeholder="Amount" />
             <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category ID" />
             <button onClick={handleSave}>Save</button>
-            <button onClick={onClose}>Cancel</button>
         </div>
     );
 };

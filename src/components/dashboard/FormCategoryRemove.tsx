@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 
 interface FormCategoryRemoveProps {
@@ -73,18 +72,12 @@ const FormCategoryRemove: React.FC<FormCategoryRemoveProps> = ({ categoryId, cat
             <Toast ref={toast} position="bottom-right" />
             <form className="annualReport__containerCategory-formCategoryRemove" onSubmit={handleRemoveCategory} >
                 <p>Are you sure you want to remove the category "<strong>{categoryName}</strong>"?</p>
-                <Button
+                <button
                     type="submit"
-                    label="Remove"
-                    className="p-button-outlined p-button-warning"
-                    style={{
-                        borderColor: 'var(--color-orange-400)',
-                        borderWidth: 1,
-                        borderStyle: 'solid',
-                        width: '6rem',
-                        margin: '1rem 0 0 0',
-                    }}
-                />
+                    className="form-button"
+                >
+                    Remove
+                </button>
             </form>
         </>
     );

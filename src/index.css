@@ -21,7 +21,7 @@
   background-color: var(--primary-color-light);
 }
 
-button {
+.form-button {
   background-color: var(--primary-color);
   padding: 8px 10px;
   border: none;
@@ -29,9 +29,10 @@ button {
   color: var(--text-color-white);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  margin-top: 1rem;
 }
 
-button:hover {
+.form-button:hover {
   background-color: var(--primary-color-600);
   color: var(--text-color);
   transform: scale(1.03);
@@ -84,7 +85,18 @@ a:hover {
   display: none;
 }
 
+.p-paginator .p-paginator-element:hover {
+  color: var(--primary-color);
+}
 
+.p-paginator .p-paginator-element.p-disabled {
+  color: #6c757d;
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
 
 /* Rechart */
 .recharts-default-tooltip {

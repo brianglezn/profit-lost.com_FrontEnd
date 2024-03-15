@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 
@@ -58,23 +57,17 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
             <Toast ref={toast} position="bottom-right" />
             <form className="annualReport__containerCategory-formCategoryAdd" onSubmit={handleSaveCategory}>
                 <InputText
-                    placeholder="New Category"
+                    placeholder="name"
                     value={newCategory}
                     onChange={handleNewCategoryChange}
                     className="w-full"
                 />
-                <Button
+                <button
                     type="submit"
-                    label="Save"
-                    className="p-button-outlined p-button-warning"
-                    style={{
-                        borderColor: 'var(--color-orange-400)',
-                        borderWidth: 1,
-                        borderStyle: 'solid',
-                        width: '6rem',
-                        margin: '1rem 0 0 0',
-                    }}
-                />
+                    className="form-button"
+                >
+                    Save
+                </button>
             </form>
         </>
     );

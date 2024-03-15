@@ -2,10 +2,10 @@
 import "./FormMovements.css";
 
 function FormMovementsAdd() {
-  
+
     return (
         <>
-           
+            nuevo
         </>
     );
 }
