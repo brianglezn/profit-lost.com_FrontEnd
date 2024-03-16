@@ -43,8 +43,6 @@ function Register() {
     setIsLoading(false);
   };
 
-
-  // Ad Popup function
   const closePopup = () => {
     setShowPopup(false);
   };

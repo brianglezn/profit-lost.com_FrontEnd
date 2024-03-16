@@ -31,7 +31,7 @@ function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true); // Inicia el spinner
+    setIsLoading(true);
 
     try {
       const response = await fetch('https://profit-lost-backend.onrender.com/login', {
@@ -55,11 +55,9 @@ function Login() {
       console.error('There was an error logging in', error);
     }
 
-    setIsLoading(false); // Finaliza el spinner
+    setIsLoading(false);
   };
 
-
-  // Ad Popup function
   const closePopup = () => {
     setShowPopup(false);
   };
