@@ -37,38 +37,31 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const token = localStorage.getItem('token');
-            try {
-                const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+    const fetchData = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
-                let transactions: Transaction[] = await response.json();
-    
-                transactions = transactions.map(transaction => {
-                    const normalizedDate = transaction.date.length === 7 ? `${transaction.date}-01` : transaction.date;
-                    return { ...transaction, normalizedDate };
-                }).sort((a, b) => b.normalizedDate.localeCompare(a.normalizedDate));
-    
-                setTableRows(transactions);
-            } catch (error) {
-                console.error('Error fetching transactions data:', error);
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        };
-    
+            const transactions: Transaction[] = await response.json();
+            setTableRows(transactions);
+        } catch (error) {
+            console.error('Error fetching transactions data:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchData();
-    }, [year, month]);
+    }, [year, month, editDialogVisible, deleteDialogVisible]);
 
     const amountBodyTemplate = (rowData: Transaction) => {
-        const className = rowData.amount >= 0 ? "positive" : "negative";
         return (
-            <span className={className}>
+            <span className={rowData.amount >= 0 ? "positive" : "negative"}>
                 {formatCurrency(rowData.amount)}
             </span>
         );
@@ -85,12 +78,8 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
     };
 
     useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
+        const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
-
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
