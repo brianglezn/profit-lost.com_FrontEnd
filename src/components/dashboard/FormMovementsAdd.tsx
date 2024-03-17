@@ -1,13 +1,6 @@
 import { useState, FormEvent, useEffect } from 'react';
 import './FormMovements.css';
 
-interface Movement {
-    date: string;
-    description: string;
-    amount: number;
-    category: string;
-}
-
 interface Category {
     _id: string;
     name: string;
