@@ -10,6 +10,7 @@ import MovementsTable from "../../components/dashboard/MovementsTable";
 import FormMovementsAdd from "../../components/dashboard/FormMovementsAdd";
 
 interface Movement {
+  _id: string;
   date: string;
   description: string;
   amount: number;
@@ -33,53 +34,69 @@ function Movements() {
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
 
-  useEffect(() => {
+  const fetchYearsWithData = async () => {
     const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) throw new Error('Failed to fetch');
+      const dataMovements: Movement[] = await response.json();
 
-    const fetchYearsWithData = async () => {
-      try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!response.ok) throw new Error('Failed to fetch');
-        const dataMovements: Movement[] = await response.json();
+      const years = new Set(dataMovements.map((item: Movement) => {
+        return new Date(item.date).getFullYear().toString();
+      }));
 
-        const years = new Set(dataMovements.map((item: Movement) => {
-          return new Date(item.date).getFullYear().toString();
-        }));
+      setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
+    } catch (error) {
+      console.error('Error fetching years data:', error);
+    }
+  };
 
-        setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
-      } catch (error) {
-        console.error('Error fetching years data:', error);
+  const fetchData = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
+      let transactions: Movement[] = await response.json();
 
+      let completos = transactions.filter(a => a.date.length > 7);
+      let parciales = transactions.filter(a => a.date.length === 7);
+
+      completos.sort((a, b) => b.date.localeCompare(a.date));
+
+      parciales.sort((a, b) => b.date.localeCompare(a.date));
+
+      const ordenados = completos.concat(parciales);
+
+      setDataGraph(ordenados);
+    } catch (error) {
+      console.error('Error fetching transactions data:', error);
+    }
+  };
+
+
+
+  useEffect(() => {
     fetchYearsWithData();
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const transactions: Movement[] = await response.json();
-        setDataGraph(transactions);
-      } catch (error) {
-        console.error('Error fetching transactions data:', error);
-      }
-    };
-
     fetchData();
   }, [year, month]);
+
+  const reloadData = async () => {
+    await fetchYearsWithData();
+    await fetchData();
+  };
 
   const isDataEmpty = dataGraph.length === 0;
 
@@ -173,11 +190,11 @@ function Movements() {
                 header="New movement"
                 modal
                 draggable={false}>
-                <FormMovementsAdd/>
+                <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} />
               </Dialog>
             </div>
 
-            <MovementsTable year={year} month={month} isDataEmpty={isDataEmpty} />
+            <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} />
 
           </div>
         </div>

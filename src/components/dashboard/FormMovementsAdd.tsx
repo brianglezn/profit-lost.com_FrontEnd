@@ -6,7 +6,12 @@ interface Category {
     name: string;
 }
 
-function FormMovementsAdd() {
+interface FormMovementsAddProps {
+    onMovementAdded: () => void;
+    onClose: () => void;
+}
+
+function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
     const [date, setDate] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
@@ -21,9 +26,11 @@ function FormMovementsAdd() {
             return;
         }
 
+        const finalDescription = description.trim() === '' ? '---' : description;
+
         const numericAmount = Number(amount);
-        if (!description || isNaN(numericAmount)) {
-            alert('Invalid data provided');
+        if (isNaN(numericAmount)) {
+            console.error('Invalid data provided');
             return;
         }
 
@@ -37,7 +44,7 @@ function FormMovementsAdd() {
                 },
                 body: JSON.stringify({
                     date,
-                    description,
+                    description: finalDescription,
                     amount: numericAmount,
                     category,
                 }),
@@ -47,6 +54,8 @@ function FormMovementsAdd() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
+            onMovementAdded();
+            onClose();
         } catch (error) {
             console.error('Error adding new movement:', error);
         }
@@ -89,7 +98,6 @@ function FormMovementsAdd() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
-                required
             />
             <input
                 type="number"
