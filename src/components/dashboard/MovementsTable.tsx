@@ -73,9 +73,9 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
             ) : (
                 <>
                     <DataTable value={data} className="p-datatable-gridlines" paginator paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" rows={10} rowsPerPageOptions={[5, 10, 25, 50]}>
-                        {showColumn && <Column field="date" header="Date" body={dateBodyTemplate} sortable style={{ width: '9%' }} />}
-                        <Column field="category" header="Category" sortable style={{ width: '25%' }} />
-                        {showColumn && <Column field="description" header="Description" sortable style={{ width: '41%' }} />}
+                        {showColumn && <Column field="date" header="Date" body={dateBodyTemplate} sortable style={{ width: '12%' }} />}
+                        <Column field="category" header="Category" sortable style={{ width: '23%' }} />
+                        {showColumn && <Column field="description" header="Description" sortable style={{ width: '40%' }} />}
                         <Column field="amount" header="Amount" body={amountBodyTemplate} sortable style={{ width: '20%' }} />
                         <Column
                             body={(rowData: Transaction) => (
