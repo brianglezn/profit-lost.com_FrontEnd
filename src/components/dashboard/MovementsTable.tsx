@@ -76,7 +76,6 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
                     dataKey="_id"
                     paginator
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                    pageLinkSize={3}
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     rows={10}
                     rowsPerPageOptions={[5, 10, 25, 50]}
