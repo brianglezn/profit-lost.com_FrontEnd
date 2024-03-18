@@ -48,7 +48,15 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const transactions: Transaction[] = await response.json();
+            let transactions: Transaction[] = await response.json();
+
+            transactions = transactions.map(transaction => ({
+                ...transaction,
+                date: transaction.date.length === 7 ? `${transaction.date}-00` : transaction.date
+            }));
+
+            transactions.sort((a, b) => b.date.localeCompare(a.date));
+
             setTableRows(transactions);
         } catch (error) {
             console.error('Error fetching transactions data:', error);
@@ -93,21 +101,23 @@ function MovementsTable({ year, month, isDataEmpty }: MovementsProps) {
                     <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
                 </>
             ) : (
-                <DataTable value={tableRows} className="p-datatable-gridlines" paginator paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" rows={10} rowsPerPageOptions={[5, 10, 25, 50]}>
-                    <Column field="category" header="Category" sortable style={{ width: '25%' }}></Column>
-                    {showDescriptionColumn && <Column field="description" header="Description" sortable style={{ width: '50%' }} />}
-                    <Column field="amount" header="Amount" body={amountBodyTemplate} sortable style={{ width: '20%' }}></Column>
-                    <Column body={(rowData: Transaction) => (
-                        <div className="movements__table-options">
-                            <span className="material-symbols-rounded no-select button-action" onClick={() => deleteMovement(rowData)}>
-                                delete
-                            </span>
-                            <span className="material-symbols-rounded no-select button-action" onClick={() => editMovement(rowData)}>
-                                edit
-                            </span>
-                        </div>
-                    )} style={{ width: '5%', textAlign: 'center' }}></Column>
-                </DataTable>
+                <>
+                    <DataTable value={tableRows} className="p-datatable-gridlines" paginator paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" rows={10} rowsPerPageOptions={[5, 10, 25, 50]}>
+                        <Column field="category" header="Category" sortable style={{ width: '25%' }}></Column>
+                        {showDescriptionColumn && <Column field="description" header="Description" sortable style={{ width: '50%' }} />}
+                        <Column field="amount" header="Amount" body={amountBodyTemplate} sortable style={{ width: '20%' }}></Column>
+                        <Column body={(rowData: Transaction) => (
+                            <div className="movements__table-options">
+                                <span className="material-symbols-rounded no-select button-action" onClick={() => deleteMovement(rowData)}>
+                                    delete
+                                </span>
+                                <span className="material-symbols-rounded no-select button-action" onClick={() => editMovement(rowData)}>
+                                    edit
+                                </span>
+                            </div>
+                        )} style={{ width: '5%', textAlign: 'center' }}></Column>
+                    </DataTable>
+                </>
             )
             }
             <Dialog
