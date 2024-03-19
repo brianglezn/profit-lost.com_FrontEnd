@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import { Toast } from "primereact/toast";
 
 import "./FormMovements.css";
 
@@ -8,6 +9,8 @@ interface FormMovementsRemoveProps {
 }
 
 const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transactionId, onRemove }) => {
+    const toast = useRef<Toast>(null);
+
     const handleRemove = async () => {
         const token = localStorage.getItem("token");
         try {
@@ -21,14 +24,18 @@ const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transactionId
             if (!response.ok) {
                 throw new Error("Network response was not ok.");
             }
+
+            toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Transaction removed successfully.', life: 3000 });
             onRemove();
         } catch (error) {
             console.error("Error removing the transaction:", error);
+            toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed to remove the transaction.', life: 3000 });
         }
     };
 
     return (
         <div>
+            <Toast ref={toast} position="bottom-right" />
             <p>Are you sure you want to delete this transaction?</p>
             <button onClick={handleRemove}>Yes, delete it</button>
         </div>
