@@ -29,6 +29,18 @@ function formatCurrency(value: number): string {
     });
 }
 
+function formatDateTime(value: string): string {
+    const date = new Date(value);
+    return date.toLocaleString('es-ES', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+    });
+}
+
 function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
     const [editDialogVisible, setEditDialogVisible] = useState(false);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
@@ -42,7 +54,7 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
     const rowExpansionTemplate = (rowData: Transaction) => {
         return (
             <div>
-                <p><strong>Date:</strong> {rowData.date}</p>
+                <p><strong>Date:</strong> {formatDateTime(rowData.date)}</p>
                 <p><strong>Description:</strong> {rowData.description}</p>
                 <p><strong>Category:</strong> {rowData.category}</p>
                 <p><strong>Amount:</strong> {formatCurrency(rowData.amount)}</p>

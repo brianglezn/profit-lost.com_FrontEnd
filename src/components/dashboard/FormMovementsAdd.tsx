@@ -1,4 +1,6 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent, useEffect, useRef } from 'react';
+import { Toast } from 'primereact/toast';
+
 import './FormMovements.css';
 
 interface Category {
@@ -17,12 +19,13 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
     const [amount, setAmount] = useState<string>('');
     const [category, setCategory] = useState<string>('');
     const [categories, setCategories] = useState<Category[]>([]);
+    const toast = useRef<Toast>(null);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!/^\-?\d+(\.\d{0,2})?$/.test(amount)) {
-            alert('Amount must be a positive or negative number with up to two decimals.');
+            toast.current?.show({ severity: 'warn', summary: 'Validation Error', detail: 'Amount must be a positive or negative number with up to two decimals.', life: 3000 });
             return;
         }
 
@@ -54,10 +57,12 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
+            toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Movement added successfully', life: 3000 });
             onMovementAdded();
             onClose();
         } catch (error) {
             console.error('Error adding new movement:', error);
+            toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Error adding new movement', life: 3000 });
         }
     };
 
@@ -86,41 +91,45 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
     }, []);
 
     return (
-        <form onSubmit={handleSubmit} className="formMovements">
-            <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
-            />
-            <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="Amount"
-                step="0.01"
-                required
-            />
-            <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-            >
-                <option value="">Select a category</option>
-                {categories.map((cat) => (
-                    <option key={cat._id} value={cat._id}>
-                        {cat.name}
-                    </option>
-                ))}
-            </select>
-            <button type="submit">Add Movement</button>
-        </form>
+        <>
+            <Toast ref={toast} position="bottom-right" />
+            <form onSubmit={handleSubmit} className="formMovements">
+                <input
+                    type="datetime-local"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                />
+                <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Amount"
+                    step="0.01"
+                    required
+                />
+                <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                >
+                    <option value="">Select a category</option>
+                    {categories.map((cat) => (
+                        <option key={cat._id} value={cat._id}>
+                            {cat.name}
+                        </option>
+                    ))}
+                </select>
+                <button type="submit">Add Movement</button>
+            </form>
+        </>
+
     );
 }
 

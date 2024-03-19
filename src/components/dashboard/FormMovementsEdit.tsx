@@ -89,16 +89,40 @@ const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSa
   return (
     <div className="formMovements">
       <Toast ref={toast} position="bottom-right" />
-      <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-      <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
-      <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
-      <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+      <input
+        type="datetime-local"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description" required
+      />
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        placeholder="Amount"
+        step="0.01"
+        required
+      />
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        required
+      >
         <option value="">Select a category</option>
         {categories.map((cat) => (
           <option key={cat._id} value={cat._id}>{cat.name}</option>
         ))}
       </select>
-      <button type="button" onClick={handleSave}>Save</button>
+      <button
+        type="button"
+        onClick={handleSave}>Save
+      </button>
     </div>
   );
 };
