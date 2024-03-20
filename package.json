@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && shx cp .htaccess dist/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -29,7 +29,8 @@
     "eslint": "8.45.0",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.3",
-    "sass": "^1.71.1",
+    "sass": "1.71.1",
+    "shx": "0.3.4",
     "typescript": "5.0.2",
     "vite": "4.5.2"
   }
