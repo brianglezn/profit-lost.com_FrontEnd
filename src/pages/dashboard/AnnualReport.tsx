@@ -29,6 +29,9 @@ function AnnualReport() {
   const [year, setYear] = useState(currentYear);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
   const [reloadFlag, setReloadFlag] = useState(false);
+  const [balanceIncome, setBalanceIncome] = useState(0);
+  const [balanceExpenses, setBalanceExpenses] = useState(0);
+  const [open, setOpen] = React.useState(false);
 
   const reloadCategories = async () => {
     const token = localStorage.getItem('token');
@@ -58,9 +61,6 @@ function AnnualReport() {
   useEffect(() => {
     reloadCategories();
   }, []);
-
-  const [balanceIncome, setBalanceIncome] = useState(0);
-  const [balanceExpenses, setBalanceExpenses] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -98,7 +98,6 @@ function AnnualReport() {
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
 
-  const [open, setOpen] = React.useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 

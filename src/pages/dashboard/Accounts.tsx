@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, Modal, Box, } from "@mui/material";
+import { Dropdown } from 'primereact/dropdown';
+import { Dialog } from 'primereact/dialog';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 
 import "./Accounts.css";
@@ -34,40 +35,36 @@ function Accounts() {
   const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [year, setYear] = React.useState(currentYear.toString());
   const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setYear(event.target.value as string);
-  };
-
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const fetchAllData = async () => {
-        try {
-            const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/all`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
+      try {
+        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/all`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const allAccountsData: DataAccount[] = await response.json();
-
-            setDataAccounts(allAccountsData);
-
-            const years = new Set<number>();
-            allAccountsData.forEach(account => account.records.forEach(record => years.add(record.year)));
-            setUniqueYears(Array.from(years).sort((a, b) => a - b));
-        } catch (error) {
-            console.error('Error fetching all accounts data:', error);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        const allAccountsData: DataAccount[] = await response.json();
+
+        setDataAccounts(allAccountsData);
+
+        const years = new Set<number>();
+        allAccountsData.forEach(account => account.records.forEach(record => years.add(record.year)));
+        setUniqueYears(Array.from(years).sort((a, b) => a - b));
+      } catch (error) {
+        console.error('Error fetching all accounts data:', error);
+      }
     };
 
     fetchAllData();
-}, [year]);
+  }, [year]);
 
   const chartData = useMemo(() => {
     return monthNames.map(month => {
@@ -122,52 +119,19 @@ function Accounts() {
     });
   }, [dataAccounts, year, currentMonthName]);
 
-  // Modal
-  const styleBox = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "var(--color-bg)",
-    boxShadow: 15,
-    p: 2,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "15px"
-  };
-
-  const [open, setOpen] = React.useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
-
-  const backdropStyle = {
-    backgroundColor: 'rgba(0, 0, 0, 0.15)',
-    backdropFilter: 'blur(4px)',
-  };
 
   return (
     <>
       <section className="accounts">
         <div className="movements__containerMain">
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Year</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={year}
-              label="Year"
-              onChange={handleChange}
-            >
-              {uniqueYears.map((year) => (
-                <MenuItem key={year} value={year}>
-                  {year}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Dropdown
+            value={year}
+            options={uniqueYears.map(year => ({ label: year, value: year }))}
+            onChange={(e) => setYear(e.value)}
+            placeholder={year}
+          />
           <div className="accounts__main">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
@@ -203,18 +167,15 @@ function Accounts() {
           <div className="accounts__accounts-text">
             <p>Accounts</p>
             <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
-            <Modal
-              open={open}
-              onClose={handleCloseModal}
-              componentsProps={{
-                backdrop: {
-                  style: backdropStyle,
-                },
-              }}>
-              <Box sx={styleBox}>
-                <FormAccounts onClose={handleCloseModal} />
-              </Box>
-            </Modal>
+            <Dialog
+              visible={open}
+              onHide={handleCloseModal}
+              header="Add Category"
+              modal
+              style={{ width: '50vw' }}
+            >
+              <FormAccounts />
+            </Dialog>
           </div>
           <div className="accounts__accounts-container">{accountItems}</div>
         </div>

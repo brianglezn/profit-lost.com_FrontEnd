@@ -33,6 +33,7 @@ function Movements() {
   const [month, setMonth] = useState(currentMonth);
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
+  const [open, setOpen] = React.useState(false);
 
   const fetchYearsWithData = async () => {
     const token = localStorage.getItem('token');
@@ -83,8 +84,6 @@ function Movements() {
     }
   };
 
-
-
   useEffect(() => {
     fetchYearsWithData();
   }, []);
@@ -130,7 +129,6 @@ function Movements() {
     { value: "12", label: "December" },
   ];
 
-  const [open, setOpen] = React.useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
