@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Link, useNavigate } from 'react-router-dom';
 
-import './Login-Register.css';
-
 import Footer from '../../components/landing/Footer';
+
+import './Login-Register.css';
 
 function Register() {
   const [username, setUsername] = useState('');

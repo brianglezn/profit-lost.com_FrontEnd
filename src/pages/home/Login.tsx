@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import { useAuth } from '../../context/AuthContext';
+
+import Footer from '../../components/landing/Footer';
 
 import './Login-Register.css';
-import { useAuth } from '../../context/AuthContext';
-import Footer from '../../components/landing/Footer';
 
 function Login() {
   const [email, setEmail] = useState('');

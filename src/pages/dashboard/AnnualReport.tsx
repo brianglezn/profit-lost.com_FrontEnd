@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Dialog } from 'primereact/dialog';
 
-import "./AnnualReport.css";
-
 import AnnualChart from "../../components/dashboard/AnnualChart";
 import AnnualMovements from "../../components/dashboard/AnnualMovements";
 import FormCategoryAdd from "../../components/dashboard/FormCategoryAdd";
+
+import "./AnnualReport.css";
 
 interface Movement {
   date: string;

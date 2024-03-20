@@ -1,6 +1,6 @@
-import "./ForgotPassword.css";
-
 import Footer from "../../components/landing/Footer";
+
+import "./ForgotPassword.css";
 
 function ForgotPassword() {
   return (

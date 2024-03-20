@@ -3,9 +3,10 @@ import { Dropdown } from 'primereact/dropdown';
 import { Dialog } from 'primereact/dialog';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 
-import "./Accounts.css";
 import AccountItem from "../../components/dashboard/AccountItem.tsx";
 import FormAccounts from "../../components/dashboard/FormAccounts.tsx";
+
+import "./Accounts.css";
 
 type AccountConfiguration = {
   backgroundColor: string;
