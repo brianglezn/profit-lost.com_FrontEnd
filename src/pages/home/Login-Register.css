@@ -28,7 +28,7 @@ header {
   padding: 6vh 3vh;
   width: 40%;
   border-radius: 4vh;
-  background: rgba(255, 255, 255, 1);
+  background: var(--text-color);
   box-shadow: 0px 8px 17px rgba(23, 26, 31, 0.15),
     0px 0px 2px rgba(23, 26, 31, 0.12);
 }
@@ -43,63 +43,79 @@ header {
 }
 .container__form h2 {
   text-transform: uppercase;
-  color: var(--color-orange);
+  color: var(--primary-color);
 }
 .container__form input {
   min-width: 70%;
-  background-color: var(--color-bg);
+  background-color: var(--background-color);
   margin-bottom: 6%;
   border: 0;
   border-radius: 1vh;
   padding: 3%;
-  box-shadow: 0 0.4rem #dfd9d9;
+  box-shadow: 0 0.4rem var(--surface-700);
 }
 .container__form input:focus {
   outline: none;
 }
 .container__form input::placeholder {
-  color: rgb(170, 170, 170);
+  color: var(--gray-400);
 }
 .container__form a {
   text-align: left;
   margin-bottom: 3%;
   text-decoration: none;
-  color: var(--color-grey);
+  color: var(--text-color-secondary);
 }
-.container__form input[type="submit"] {
-  background-color: var(--color-orange);
-  color: var(--color-white);
+.container__form button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--text-color);
   padding: 3%;
   border: 0;
   border-radius: 1vh;
   cursor: pointer;
   transition: 0.1s;
-  box-shadow: 0 0.4rem var(--color-orange-600);
+  box-shadow: 0 0.4rem var(--primary-color-600);
   opacity: 0.8;
 }
-.container__form input[type="submit"]:hover {
-  background-color: var(--color-orange);
+.container__form button[type="submit"]:hover {
+  background-color: var(--primary-color);
   font-weight: bold;
-  box-shadow: 0 0.4rem var(--color-orange-600);
+  box-shadow: 0 0.4rem var(--primary-color-600);
   opacity: 1;
 }
-.container__form input[type="submit"]:active {
+.container__form button[type="submit"]:active {
   transform: translatey(5px);
-  box-shadow: var(--color-orange-600) 0px 3px 2px,
-    var(--color-black) 0px 3px 5px;
+  box-shadow: var(--primary-color-600) 0px 3px 2px,
+    var(--text-color-secondary) 0px 3px 5px;
 }
 .form__link a {
   margin-left: 10px;
 }
 
 .form__box a {
-  color: var(--color-orange);
+  color: var(--primary-color);
   text-decoration: none;
 }
 .form__box a:hover {
-  color: var(--color-orange-600);
+  color: var(--primary-color-600);
 }
 /* ---------- END MAIN ---------- */
+
+.popup-button {
+  background-color: var(--primary-color);
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-color-white);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.popup-button:hover {
+  background-color: var(--primary-color-600);
+  color: var(--text-color);
+  transform: scale(1.03);
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {

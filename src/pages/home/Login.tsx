@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import { useAuth } from '../../context/AuthContext';
+
+import Footer from '../../components/landing/Footer';
 
 import './Login-Register.css';
-import { useAuth } from '../../context/AuthContext';
-import Footer from '../../components/landing/Footer';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
 
   const reiniciarTemporizadorExpiracionToken = () => {
@@ -29,6 +32,7 @@ function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await fetch('https://profit-lost-backend.onrender.com/login', {
@@ -51,9 +55,10 @@ function Login() {
     } catch (error) {
       console.error('There was an error logging in', error);
     }
+
+    setIsLoading(false);
   };
 
-  // Ad Popup function
   const closePopup = () => {
     setShowPopup(false);
   };
@@ -101,7 +106,14 @@ function Login() {
           <Link to="/forgot-password" className="form__forgot">
             Forgot password?
           </Link>
-          <input className="form__submit" type="submit" value="Let's go!" />
+          <button
+            className="form__submit"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary" /> : "Let's go!"}
+          </button>
+
           <p className="form__link">
             Don&apos;t have an account?
             <Link to="/register" className="form__link--color">
@@ -117,10 +129,9 @@ function Login() {
         <div className="popup">
           <h2>Disable your Ad Blocker!</h2>
           <p>
-            To login to our application you need to disable your ad blocker.
-            Please disable it to continue.
+            If you are having trouble accessing our application, please disable your ad blocker.
           </p>
-          <button onClick={closePopup}>Close</button>
+          <button className="popup-button" onClick={closePopup}>Close</button>
         </div>
       )}
     </>

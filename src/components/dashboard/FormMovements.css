@@ -20,7 +20,7 @@
 }
 
 .formMovements-closeButton:hover {
-  color: var(--color-orange);
+  color: var(--primary-color);
 }
 
 .formMovements-buttons {

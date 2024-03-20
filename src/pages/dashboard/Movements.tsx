@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
+import { Dropdown } from "primereact/dropdown";
+import { Dialog } from 'primereact/dialog';
 
 import "./Movements.css";
 
 import MovementsChart from "../../components/dashboard/MovementsChart";
 import MovementsPie from "../../components/dashboard/MovementsPie";
 import MovementsTable from "../../components/dashboard/MovementsTable";
-// import FormMovements from "../../components/dashboard/FormMovements";
+import FormMovementsAdd from "../../components/dashboard/FormMovementsAdd";
 
 interface Movement {
+  _id: string;
   date: string;
   description: string;
   amount: number;
@@ -36,59 +33,71 @@ function Movements() {
   const [month, setMonth] = useState(currentMonth);
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
+  const [open, setOpen] = React.useState(false);
+
+  const fetchYearsWithData = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) throw new Error('Failed to fetch');
+      const dataMovements: Movement[] = await response.json();
+
+      const years = new Set(dataMovements.map((item: Movement) => {
+        return new Date(item.date).getFullYear().toString();
+      }));
+
+      setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
+    } catch (error) {
+      console.error('Error fetching years data:', error);
+    }
+  };
+
+  const fetchData = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      let transactions: Movement[] = await response.json();
+
+      let completos = transactions.filter(a => a.date.length > 7);
+      let parciales = transactions.filter(a => a.date.length === 7);
+
+      completos.sort((a, b) => b.date.localeCompare(a.date));
+
+      parciales.sort((a, b) => b.date.localeCompare(a.date));
+
+      const ordenados = completos.concat(parciales);
+
+      setDataGraph(ordenados);
+    } catch (error) {
+      console.error('Error fetching transactions data:', error);
+    }
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    const fetchYearsWithData = async () => {
-      try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!response.ok) throw new Error('Failed to fetch');
-        const dataMovements: Movement[] = await response.json();
-
-        const years = new Set(dataMovements.map((item: Movement) => {
-          return new Date(item.date).getFullYear().toString();
-        }));
-
-        setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
-      } catch (error) {
-        console.error('Error fetching years data:', error);
-      }
-    };
-
     fetchYearsWithData();
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const transactions: Movement[] = await response.json();
-        setDataGraph(transactions);
-      } catch (error) {
-        console.error('Error fetching transactions data:', error);
-      }
-    };
-
     fetchData();
   }, [year, month]);
 
-  const isDataEmpty = dataGraph.length === 0;
+  const reloadData = async () => {
+    await fetchYearsWithData();
+    await fetchData();
+  };
 
-  const handleChangeYear = (event: SelectChangeEvent) => setYear(event.target.value);
-  const handleChangeMonth = (event: SelectChangeEvent) => setMonth(event.target.value);;
+  const isDataEmpty = dataGraph.length === 0;
 
   const chartData = [
     {
@@ -105,81 +114,42 @@ function Movements() {
   const formattedBalanceExpenses = formatCurrency(totalExpenses);
   const formattedBalanceFinal = formatCurrency(totalIncome - totalExpenses);
 
-  // Modal
-  const styleBox = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "var(--color-bg)",
-    boxShadow: 15,
-    p: 2,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "15px"
-  };
+  const monthOptions = [
+    { value: "01", label: "January" },
+    { value: "02", label: "February" },
+    { value: "03", label: "March" },
+    { value: "04", label: "April" },
+    { value: "05", label: "May" },
+    { value: "06", label: "June" },
+    { value: "07", label: "July" },
+    { value: "08", label: "August" },
+    { value: "09", label: "September" },
+    { value: "10", label: "October" },
+    { value: "11", label: "November" },
+    { value: "12", label: "December" },
+  ];
 
-  const [open, setOpen] = React.useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
-  const backdropStyle = {
-    backgroundColor: 'rgba(0, 0, 0, 0.15)',
-    backdropFilter: 'blur(4px)',
-  };
   return (
     <>
       <section className="movements">
         <div className="movements__containerMain">
           <div className="movements__containerMain-selector">
-            <FormControl fullWidth style={{ flex: 1 }}>
-              <InputLabel id="demo-simple-select-label">Year</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={year}
-                label="Year"
-                onChange={handleChangeYear}
-              >
-                {yearsWithData.map((year) => (
-                  <MenuItem key={year} value={year}>
-                    {year}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth style={{ flex: 1 }}>
-              <InputLabel id="demo-simple-select-label">Month</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select-month"
-                value={month}
-                label="Month"
-                onChange={handleChangeMonth}
-              >
-                {[
-                  { value: "01", label: "January" },
-                  { value: "02", label: "February" },
-                  { value: "03", label: "March" },
-                  { value: "04", label: "April" },
-                  { value: "05", label: "May" },
-                  { value: "06", label: "June" },
-                  { value: "07", label: "July" },
-                  { value: "08", label: "August" },
-                  { value: "09", label: "September" },
-                  { value: "10", label: "October" },
-                  { value: "11", label: "November" },
-                  { value: "12", label: "December" },
-                ].map((item) => (
-                  <MenuItem key={item.value} value={item.value}>
-                    {item.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <Dropdown
+              value={year}
+              options={yearsWithData.map(year => ({ label: year, value: year }))}
+              onChange={(e) => setYear(e.value)}
+              placeholder={year}
+            />
+            <Dropdown
+              value={month}
+              options={monthOptions}
+              onChange={(e) => setMonth(e.value)}
+              placeholder={month}
+              style={{ maxHeight: 'none' }}
+            />
           </div>
 
           <MovementsPie year={year} month={month} isDataEmpty={isDataEmpty} />
@@ -210,22 +180,19 @@ function Movements() {
           <div className="movements__containerMain-movements">
             <div className="movements__movements-text">
               <p>Movements</p>
-              <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
-              <Modal
-                open={open}
-                onClose={handleCloseModal}
-                componentsProps={{
-                  backdrop: {
-                    style: backdropStyle,
-                  },
-                }}>
-                <Box sx={styleBox}>
-                  {/* <FormMovements onClose={handleCloseModal} /> */}
-                </Box>
-              </Modal>
+              <span className="material-symbols-rounded no-select" onClick={handleOpenModal} >new_window</span>
+              <Dialog
+                visible={open}
+                onHide={handleCloseModal}
+                style={{ width: '40vw' }}
+                header="New movement"
+                modal
+                draggable={false}>
+                <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} />
+              </Dialog>
             </div>
 
-            <MovementsTable year={year} month={month} isDataEmpty={isDataEmpty} />
+            <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} />
 
           </div>
         </div>

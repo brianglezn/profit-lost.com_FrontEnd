@@ -1,6 +1,6 @@
 import React, { Suspense, SetStateAction, useState, useEffect } from "react";
-import Avatar from "@mui/material/Avatar";
-import CircularProgress from '@mui/material/CircularProgress';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import { Avatar } from 'primereact/avatar';
 
 import "./Dashboard.css";
 
@@ -64,6 +64,12 @@ function Dashboard() {
     fetchUser();
   }, []);
 
+  const avatarCommonStyle = {
+    color: 'var(--text-color-white)',
+    width: '40px',
+    height: '40px'
+  };
+
   return (
     <>
       <section className="dashboard">
@@ -72,11 +78,12 @@ function Dashboard() {
             <p className="dashboard__header-date">{currentDate}</p>
             <Avatar
               onClick={() => handleMenuItemClick("Profile")}
-              sx={{ bgcolor: "var(--color-orange)", width: 35, height: 35 }}
-              variant="rounded"
-            >
-              {user?.name?.[0] ?? ''}
-            </Avatar>
+              label={user?.name?.[0] ?? ''}
+              icon="pi pi-user"
+              size="xlarge"
+              style={{ ...avatarCommonStyle }}
+              className="dashboard__header-avatar"
+            />
           </header>
         </div>
 
@@ -132,6 +139,7 @@ function Dashboard() {
             </div>
           </nav>
         </div>
+
         {/* FIN NAV PC */}
 
         {/* NAV RESPONSIVE */}
@@ -178,7 +186,7 @@ function Dashboard() {
             alignItems: 'center',
             height: '100%'
           }}>
-            <CircularProgress />
+            <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />
           </div>}>
           <section className="dashboard__container">
             {activeSection === "Dashboard" && <DashHome />}

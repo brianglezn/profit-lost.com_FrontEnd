@@ -16,7 +16,7 @@
 .title {
   display: flex;
   justify-content: center;
-  color: var(--color-orange);
+  color: var(--primary-color);
 }
 
 .legal {

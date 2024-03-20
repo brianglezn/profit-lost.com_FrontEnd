@@ -1,8 +1,8 @@
-import "./Home.css";
-
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
 import Preview from "../../components/landing/Preview";
+
+import "./Home.css";
 
 function Home() {
   return (

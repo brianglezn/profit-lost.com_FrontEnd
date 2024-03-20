@@ -1,23 +1,31 @@
-import { useEffect, useMemo, useState } from "react";
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
-import LinearProgress from "@mui/material/LinearProgress";
+import { useEffect, useState } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { ProgressBar } from 'primereact/progressbar';
+import { Dialog } from 'primereact/dialog';
+
+import FormCategoryRemove from "./FormCategoryRemove";
+import FormCategoryEdit from "./FormCategoryEdit";
 
 type Transaction = {
-    date: string;
     category: string;
-    description: string;
     amount: number;
 };
 
+type Category = {
+    _id: string;
+    name: string;
+};
+
 type CategoryBalance = {
-    id: number;
+    id: string;
     Category: string;
     Balance: number;
-    InOut: string;
 };
 
 interface AnnualMovementsProps {
     year: string;
+    reloadFlag: boolean;
 }
 
 function formatCurrency(value: number) {
@@ -29,74 +37,142 @@ function formatCurrency(value: number) {
     });
 }
 
-function AnnualMovements({ year }: AnnualMovementsProps) {
-    const [tableRows, setTableRows] = useState<GridRowsProp>([]);
+const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {
+    const [categories, setCategories] = useState<CategoryBalance[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+    const [categoryToDelete, setCategoryToDelete] = useState<CategoryBalance | null>(null);
+    const [editDialogVisible, setEditDialogVisible] = useState(false);
+    const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
 
-    useEffect(() => {
+
+    const fetchDataAndCalculateBalances = async () => {
+        setIsLoading(true);
         const token = localStorage.getItem('token');
-        
-        const fetchData = async () => {
-            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+        if (!token) {
+            console.error('No authentication token found. Please log in.');
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const categoriesResponse = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!categoriesResponse.ok) throw new Error('Failed to fetch categories');
+            const categoriesData: Category[] = await categoriesResponse.json();
+
+            const movementsResponse = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!movementsResponse.ok) throw new Error('Failed to fetch movements');
+            const movementsData: Transaction[] = await movementsResponse.json();
+
+            const categoryBalances = categoriesData.map(category => {
+                const balance = movementsData.reduce((acc, movement) => {
+                    if (movement.category === category.name) {
+                        return acc + movement.amount;
+                    }
+                    return acc;
+                }, 0);
+
+                return {
+                    id: category._id,
+                    Category: category.name,
+                    Balance: balance,
+                };
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const dataMovements: Transaction[] = await response.json();
+            setCategories(categoryBalances);
+        } catch (error) {
+            console.error("Error loading data:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-            const categoryBalances = dataMovements.reduce((acc: { [category: string]: CategoryBalance }, transaction, index) => {
-                const { category, amount } = transaction;
-                if (!acc[category]) {
-                    acc[category] = { id: index, Category: category, Balance: 0, InOut: amount >= 0 ? "IN" : "OUT" };
-                }
-                acc[category].Balance += amount;
-                return acc;
-            }, {});
+    useEffect(() => {
+        fetchDataAndCalculateBalances();
+    }, [year, reloadFlag]);
 
-            setTableRows(Object.values(categoryBalances));
-        };
+    const balanceTemplate = (rowData: CategoryBalance) => {
+        return (
+            <span className={rowData.Balance >= 0 ? "positive" : "negative"}>
+                {formatCurrency(rowData.Balance)}
+            </span>
+        );
+    };
 
-        fetchData().catch(console.error);
-    }, [year]);
-
-    const columns: GridColDef[] = useMemo(() => [
-        { field: "Category", headerName: "Category", flex: 2 },
-        {
-            field: "Balance",
-            headerName: "Balance",
-            flex: 2,
-            renderCell: (params) => formatCurrency(params.row.Balance),
-        },
-        {
-            field: "InOut",
-            headerName: "InOut",
-            flex: 0.5,
-            renderCell: (params) => (
-                <div className={params.row.InOut === "IN" ? "positive" : "negative"}>
-                    {params.row.InOut}
-                </div>
-            ),
-        },
-    ], []);
+    const deleteCategory = (category: CategoryBalance) => {
+        setCategoryToDelete(category);
+        setDeleteDialogVisible(true);
+    };
+    const editCategory = (category: CategoryBalance) => {
+        setCategoryToEdit(category);
+        setEditDialogVisible(true);
+    };
 
     return (
         <div className="annualReport__category-table">
-            {tableRows.length > 0 ? (
-                <DataGrid
-                    rows={tableRows}
-                    columns={columns}
-                    getRowClassName={(params) =>
-                        params.indexRelativeToCurrentPage % 2 === 0 ? "row-even" : "row-odd"
-                    }
-                    autoHeight
-                />
+            {isLoading ? (
+                <ProgressBar mode="indeterminate" style={{ height: '6px' }}></ProgressBar>
             ) : (
-                <LinearProgress />
-            )}
-        </div>
+                <>
+                    <DataTable value={categories} className="p-datatable-gridlines">
+                        <Column field="Category" header="Category" sortable></Column>
+                        <Column field="Balance" header="Balance" body={balanceTemplate} sortable></Column>
+                        <Column body={(rowData: CategoryBalance) => (
+                            <div className="category__table-options">
+                                <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>
+                                    delete
+                                </span>
+                                <span className="material-symbols-rounded no-select button-action" onClick={() => editCategory(rowData)}>
+                                    edit
+                                </span>
+                            </div>
+                        )} style={{ width: '5%', textAlign: 'center' }}></Column>
+                    </DataTable>
+                    <Dialog
+                        visible={deleteDialogVisible}
+                        onHide={() => setDeleteDialogVisible(false)}
+                        style={{ width: '40vw' }}
+                        header="Remove Category"
+                        modal
+                        draggable={false}>
+                        {categoryToDelete && (
+                            <FormCategoryRemove
+                                categoryId={categoryToDelete.id.toString()}
+                                categoryName={categoryToDelete.Category}
+                                onRemove={() => {
+                                    const updatedCategories = categories.filter(cat => cat.id !== categoryToDelete.id);
+                                    setCategories(updatedCategories);
+                                }}
+                                onClose={() => setDeleteDialogVisible(false)}
+                            />
+                        )}
+                    </Dialog>
+                    <Dialog
+                        visible={editDialogVisible}
+                        onHide={() => setEditDialogVisible(false)}
+                        style={{ width: '40vw' }}
+                        header="Edit Category"
+                        modal
+                        draggable={false}>
+                        {categoryToEdit && (
+                            <FormCategoryEdit
+                                categoryId={categoryToEdit.id.toString()}
+                                categoryName={categoryToEdit.Category}
+                                onUpdate={() => {
+                                    fetchDataAndCalculateBalances();
+                                }}
+                                onClose={() => setEditDialogVisible(false)}
+                            />
+                        )}
+                    </Dialog>
+                </>
+            )
+            }
+        </div >
     );
 }
 

@@ -14,14 +14,14 @@
 }
 
 .accounts__main {
-  background-color: var(--color-white);
+  background-color: var(--text-color);
   width: 100%;
   border-radius: 20px;
   padding: 20px 0 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: var(--shadow-color-primary) 0px 1px 4px;
 }
 
 .accounts__main .material-symbols-rounded {
@@ -31,7 +31,7 @@
 }
 
 .accounts__containerAccounts {
-  background-color: var(--color-white);
+  background-color: var(--text-color);
   margin-top: 20px;
   width: 99%;
   padding: 20px 0 20px 0;
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: var(--shadow-color-primary) 0px 1px 4px;
 }
 
 .accounts__accounts-text {
@@ -59,7 +59,7 @@
 }
 
 .accounts__accounts-text span:hover {
-  color: var(--color-orange);
+  color: var(--primary-color);
 }
 
 .accounts__accounts-container {
@@ -79,7 +79,7 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: var(--shadow-color-primary) 0px 3px 6px, var(--shadow-color-primary) 0px 3px 6px;
   transition: transform 0.3s ease-in-out;
 }
 

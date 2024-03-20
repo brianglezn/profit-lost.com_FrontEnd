@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { ProgressSpinner } from 'primereact/progressspinner';
 import { Link, useNavigate } from 'react-router-dom';
 
-import './Login-Register.css';
-
 import Footer from '../../components/landing/Footer';
+
+import './Login-Register.css';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -13,33 +14,41 @@ function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
 
-    const response = await fetch('https://profit-lost-backend.onrender.com/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, email, password }),
-    });
+    try {
+      const response = await fetch('https://profit-lost-backend.onrender.com/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, name, surname, email, password }),
+      });
 
-    if (response.ok) {
-      console.log('User registered successfully');
-      navigate('/login');
-    } else {
-      console.error('Failed to register');
+      if (response.ok) {
+        console.log('User registered successfully');
+        navigate('/login');
+      } else {
+        console.error('Failed to register');
+      }
+    } catch (error) {
+      console.error('There was an error registering', error);
     }
+
+    setIsLoading(false);
   };
 
-  // Ad Popup function
   const closePopup = () => {
     setShowPopup(false);
   };
 
   useEffect(() => {
-    const adBlockEnabled = true; 
+    const adBlockEnabled = true;
 
     if (adBlockEnabled) {
       setShowPopup(true);
@@ -107,7 +116,10 @@ function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input className="form__submit" type="submit" value="Let's go!" />
+          <button className="form__submit" type="submit" disabled={isLoading}>
+            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary" /> : "Let's go!"}
+          </button>
+
           <p className="form__link">
             Already have an account?
             <Link to="/login" className="form__link--color">
@@ -123,10 +135,9 @@ function Register() {
         <div className="popup">
           <h2>Disable your Ad Blocker!</h2>
           <p>
-            To register in our application you need to disable your ad blocker.
-            Please disable it to continue.
+            If you are having trouble registering in our application, please disable your ad blocker.
           </p>
-          <button onClick={closePopup}>Close</button>
+          <button className="popup-button" onClick={closePopup}>Close</button>
         </div>
       )}
 

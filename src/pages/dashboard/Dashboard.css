@@ -20,29 +20,29 @@
   margin: 10px 30px;
   height: 100%;
   border-radius: 20px;
-  background-color: var(--color-white);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--text-color);
+  box-shadow: var(--shadow-color-primary) 0px 1px 4px;
 }
 
 .dashboard__header .active {
-  color: var(--color-orange);
+  color: var(--primary-color);
 }
 
 .dashboard__header-date {
   padding: 10px;
-  background-color: var(--color-light_orange);
-  color: var(--color-orange);
+  background-color: var(--primary-color-light);
+  color: var(--primary-color);
   border-radius: 8px;
 }
 
-.dashboard__header div {
+.dashboard__header-avatar {
   cursor: pointer;
   margin-right: 40px;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
 }
 
-.dashboard__header div:hover {
+.dashboard__header-avatar:hover {
   transform: scale(1.1);
 }
 
@@ -64,8 +64,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: var(--color-white);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--text-color);
+  box-shadow: var(--shadow-color-primary) 0px 1px 4px;
 }
 
 .dashboard__nav-img {
@@ -106,18 +106,18 @@
 }
 
 .dashboard__nav-nav li:hover {
-  color: var(--color-orange);
+  color: var(--primary-color);
 }
 
 .dashboard__nav-nav .active {
-  color: var(--color-white);
-  background-color: var(--color-orange);
+  color: var(--text-color);
+  background-color: var(--primary-color);
   border-radius: 10px;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .dashboard__nav-nav .active:hover {
-  color: var(--color-white);
+  color: var(--text-color);
 }
 
 .dashboard__container-nav2 {
@@ -184,8 +184,8 @@
     width: 100%;
     height: 4rem;
     border-radius: 20px;
-    background-color: var(--color-white);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: var(--text-color);
+    box-shadow: var(--shadow-color-primary) 0px 1px 4px;
   }
 
   .dashboard__nav2 span {
@@ -195,15 +195,15 @@
   }
 
   .dashboard__nav2 span:hover {
-    color: var(--color-orange);
+    color: var(--primary-color);
   }
 
   .dashboard__nav2 .active {
-    color: var(--color-orange);
+    color: var(--primary-color);
   }
 
   .dashboard__nav2 .active:hover {
-    color: var(--color-white);
+    color: var(--text-color);
   }
 
   .dashboard__container {
@@ -262,8 +262,8 @@
     width: 50%;
     height: 4rem;
     border-radius: 20px;
-    background-color: var(--color-white);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: var(--text-color);
+    box-shadow: var(--shadow-color-primary) 0px 1px 4px;
   }
 
   .dashboard__nav2 span {
@@ -273,15 +273,15 @@
   }
 
   .dashboard__nav2 span:hover {
-    color: var(--color-orange);
+    color: var(--primary-color);
   }
 
   .dashboard__nav2 .active {
-    color: var(--color-orange);
+    color: var(--primary-color);
   }
 
   .dashboard__nav2 .active:hover {
-    color: var(--color-white);
+    color: var(--text-color);
   }
 
   .dashboard__container {
