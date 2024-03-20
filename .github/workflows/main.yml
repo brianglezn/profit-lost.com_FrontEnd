@@ -1,0 +1,35 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '20.10.0'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy to Hostinger
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+        ARGS: "-avzr --delete"
+        SOURCE: "dist/"
+        REMOTE_HOST: ${{ secrets.HOSTINGER_HOST }}
+        REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
+        REMOTE_PORT: ${{ secrets.HOSTINGER_PORT }}
+        TARGET: ${{ secrets.HOSTINGER_TARGET_PATH }}

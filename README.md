@@ -14,7 +14,7 @@ Profit-Lost.com es una aplicación web avanzada desarrollada en React con Typesc
 <ul>
   <li>React</li>
   <li>TypeScript</li>
-  <li>Material-UI</li>
+  <li>Prime React</li>
   <li>Recharts</li>
   <li>Vite</li>
   <li>Node.js</li>
