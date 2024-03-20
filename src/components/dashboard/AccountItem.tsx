@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import "./AccountItem.css";
 
 interface AccountItemProps {
@@ -8,13 +6,6 @@ interface AccountItemProps {
   customBackgroundColor: string;
   customColor: string;
 }
-
-AccountItem.propTypes = {
-  accountName: PropTypes.string.isRequired,
-  balance: PropTypes.string.isRequired,
-  customBackgroundColor: PropTypes.string.isRequired,
-  customColor: PropTypes.string.isRequired,
-};
 
 function AccountItem(props: AccountItemProps) {
 
