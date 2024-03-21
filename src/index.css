@@ -21,23 +21,6 @@
   background-color: var(--primary-color-light);
 }
 
-input,
-select {
-  border: 1px solid var(--gray-100);
-  width: 70%;
-  border-radius: 7px;
-  padding: 8px 12px;
-  margin: 5px 0;
-  transition: border-color 0.3s ease-in-out;
-  outline: none;
-}
-
-input:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-}
-
 .form-button {
   background-color: var(--primary-color);
   padding: 8px 10px;

@@ -35,3 +35,20 @@
 .formMovements-balance {
   width: 80%;
 }
+
+.formMovements input,
+.formMovements select {
+  border: 1px solid var(--gray-100);
+  width: 70%;
+  border-radius: 7px;
+  padding: 8px 12px;
+  margin: 5px 0;
+  transition: border-color 0.3s ease-in-out;
+  outline: none;
+}
+
+.formMovements input:focus,
+.formMovements select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
