@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,6 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -42,14 +41,6 @@ function Register() {
 
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    const adBlockEnabled = true;
-
-    if (adBlockEnabled) {
-      setShowPopup(true);
-    }
-  }, []);
 
   return (
     <>

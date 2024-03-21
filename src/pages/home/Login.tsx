@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { useAuth } from '../../context/AuthContext';
@@ -11,7 +11,6 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
 
@@ -58,14 +57,6 @@ function Login() {
 
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    const adBlockEnabled = true;
-
-    if (adBlockEnabled) {
-      setShowPopup(true);
-    }
-  }, []);
 
   return (
     <>

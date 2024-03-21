@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 
 interface FormCategoryEditProps {
