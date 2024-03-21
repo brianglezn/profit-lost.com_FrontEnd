@@ -150,10 +150,6 @@
     margin-left: 2rem;
   }
 
-  .dashboard__header span {
-    display: none;
-  }
-
   .dashboard__header div {
     margin-right: 2rem;
   }
@@ -226,10 +222,6 @@
 
   .dashboard__header p {
     margin-left: 2rem;
-  }
-
-  .dashboard__header span {
-    display: none;
   }
 
   .dashboard__header div {

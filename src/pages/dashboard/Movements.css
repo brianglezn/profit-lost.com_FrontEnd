@@ -129,6 +129,16 @@
   padding: 0 2rem 1rem 2rem;
 }
 
+.movements__movements-table .p-datatable.p-component {
+  border: 0.5px solid #e8e9ea;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.movements__movements-table .p-datatable-tbody > tr > td[colspan="4"] {
+  padding-left: 1.5rem;
+}
+
 .movements__table-options {
   display: flex;
   gap: 5px;

@@ -109,6 +109,12 @@
   padding: 0 2rem 1rem 2rem;
 }
 
+.annualReport__category-table .p-datatable.p-component {
+  border: 0.5px solid #e8e9ea;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
 .category__table-options {
   display: flex;
   gap: 5px;

@@ -119,8 +119,8 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
             ) : (
                 <>
                     <DataTable value={categories} className="p-datatable-gridlines">
-                        <Column field="Category" header="Category" sortable></Column>
-                        <Column field="Balance" header="Balance" body={balanceTemplate} sortable></Column>
+                        <Column field="Category" header="Category" sortable style={{ width: '50%' }}></Column>
+                        <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
                             <div className="category__table-options">
                                 <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>

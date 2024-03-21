@@ -3651,18 +3651,18 @@
     }
 
     .p-datatable .p-datatable-header {
-        background: var(--primary-color-50);
+        background: var(--primary-color-100);
         color: var(--text-color-secondary);
-        border: 1px solid #d1d3d5;
+        border: 1px solid #e8e9ea;
         border-width: 0 0 1px 0;
         padding: 1rem 1rem;
         font-weight: 400;
     }
 
     .p-datatable .p-datatable-footer {
-        background: var(--primary-color-50);
+        background: var(--primary-color-100);
         color: var(--text-color-secondary);
-        border: 1px solid #d1d3d5;
+        border: 1px solid #e8e9ea;
         border-width: 0 0 1px 0;
         padding: 1rem 1rem;
         font-weight: 400;
@@ -3671,22 +3671,21 @@
     .p-datatable .p-datatable-thead>tr>th {
         text-align: left;
         padding: 1rem 1rem;
-        border: 1px solid #d1d3d5;
         border-width: 0 0 1px 0;
         font-weight: 500;
         color: var(--text-color-secondary);
-        background: var(--primary-color-50);
+        background: var(--primary-color-100);
         transition: box-shadow 0.2s;
     }
 
     .p-datatable .p-datatable-tfoot>tr>td {
         text-align: left;
         padding: 1rem 1rem;
-        border: 1px solid #d1d3d5;
+        border: 1px solid #e8e9ea;
         border-width: 0 0 1px 0;
         font-weight: 400;
         color: var(--text-color-secondary);
-        background: var(--primary-color-50);
+        background: var(--primary-color-100);
     }
 
     .p-datatable .p-sortable-column .p-sortable-column-icon {
@@ -3744,7 +3743,7 @@
 
     .p-datatable .p-datatable-tbody>tr>td {
         text-align: left;
-        border: 1px solid #d1d3d5;
+        border-bottom: 1px solid #e8e9ea;
         border-width: 0 0 1px 0;
         padding: 1rem 1rem;
     }

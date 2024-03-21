@@ -92,9 +92,9 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
                     rows={10}
                     rowsPerPageOptions={[5, 10, 25, 50]}
                 >
-                    <Column expander style={{ width: '3em' }} />
-                    <Column field="description" header="Description" sortable />
-                    <Column field="amount" header="Amount" body={amountBodyTemplate} sortable />
+                    <Column expander style={{ width: '5%' }} />
+                    <Column field="description" header="Description" sortable style={{ width: '50%' }} />
+                    <Column field="amount" header="Amount" body={amountBodyTemplate} style={{ width: '40%' }} sortable />
                     <Column
                         body={(rowData) => (
                             <div className="movements__table-options">
