@@ -106,10 +106,22 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
                     />
                 </DataTable>
             )}
-            <Dialog visible={editDialogVisible} onHide={() => setEditDialogVisible(false)} style={{ width: '50vw' }} header="Edit Transaction" modal draggable={false}>
+            <Dialog
+                visible={editDialogVisible}
+                onHide={() => setEditDialogVisible(false)}
+                style={{ width: '40vw' }}
+                header="Edit Transaction"
+                modal
+                draggable={false}>
                 {selectedTransaction && <FormMovementsEdit transaction={selectedTransaction} onSave={() => setEditDialogVisible(false)} />}
             </Dialog>
-            <Dialog visible={deleteDialogVisible} onHide={() => setDeleteDialogVisible(false)} style={{ width: '30vw' }} header="Delete Transaction" modal draggable={false}>
+            <Dialog
+                visible={deleteDialogVisible}
+                onHide={() => setDeleteDialogVisible(false)}
+                style={{ width: '40vw' }}
+                header="Delete Transaction"
+                modal
+                draggable={false}>
                 {selectedTransaction && (
                     <FormMovementsRemove
                         transactionId={selectedTransaction._id}

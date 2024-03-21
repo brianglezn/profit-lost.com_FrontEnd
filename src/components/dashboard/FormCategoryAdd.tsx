@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
-import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
+
+import './FormAccounts.css';
+
 
 function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     const [newCategory, setNewCategory] = useState('');
@@ -55,8 +57,8 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="annualReport__containerCategory-formCategoryAdd" onSubmit={handleSaveCategory}>
-                <InputText
+            <form className="formAccounts" onSubmit={handleSaveCategory}>
+                <input
                     placeholder="name"
                     value={newCategory}
                     onChange={handleNewCategoryChange}

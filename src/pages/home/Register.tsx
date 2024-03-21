@@ -43,10 +43,6 @@ function Register() {
     setIsLoading(false);
   };
 
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
   useEffect(() => {
     const adBlockEnabled = true;
 
@@ -130,17 +126,6 @@ function Register() {
       </div>
 
       <Footer />
-
-      {showPopup && (
-        <div className="popup">
-          <h2>Disable your Ad Blocker!</h2>
-          <p>
-            If you are having trouble registering in our application, please disable your ad blocker.
-          </p>
-          <button className="popup-button" onClick={closePopup}>Close</button>
-        </div>
-      )}
-
     </>
   );
 }

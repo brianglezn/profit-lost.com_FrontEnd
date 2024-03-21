@@ -126,7 +126,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                         </option>
                     ))}
                 </select>
-                <button type="submit">Add Movement</button>
+                <button type="submit" className="form-button">Add Movement</button>
             </form>
         </>
 

@@ -101,22 +101,6 @@ header {
 }
 /* ---------- END MAIN ---------- */
 
-.popup-button {
-  background-color: var(--primary-color);
-  padding: 8px 10px;
-  border: none;
-  border-radius: 8px;
-  color: var(--text-color-white);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.popup-button:hover {
-  background-color: var(--primary-color-600);
-  color: var(--text-color);
-  transform: scale(1.03);
-}
-
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 767px) {
   /* header */

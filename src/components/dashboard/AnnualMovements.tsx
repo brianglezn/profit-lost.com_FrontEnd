@@ -119,7 +119,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
             ) : (
                 <>
                     <DataTable value={categories} className="p-datatable-gridlines">
-                        <Column field="Category" header="Category" sortable style={{ width: '50%' }}></Column>
+                        <Column field="Category" header="Category" sortable style={{ width: '55%' }}></Column>
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
                             <div className="category__table-options">
@@ -155,7 +155,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         visible={editDialogVisible}
                         onHide={() => setEditDialogVisible(false)}
                         style={{ width: '40vw' }}
-                        header="Edit Category"
+                        header="Edit Category Name"
                         modal
                         draggable={false}>
                         {categoryToEdit && (

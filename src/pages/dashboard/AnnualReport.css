@@ -97,14 +97,6 @@
   font-weight: bold;
 }
 
-.annualReport__containerCategory-formCategoryAdd,
-.annualReport__containerCategory-formCategoryRemove,
-.annualReport__containerCategory-formCategoryEdit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .annualReport__category-table {
   padding: 0 2rem 1rem 2rem;
 }

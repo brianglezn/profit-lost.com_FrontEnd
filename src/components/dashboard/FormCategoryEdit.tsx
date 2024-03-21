@@ -55,7 +55,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                     toast.current?.show({
                         severity: 'success',
                         summary: 'Category Edited',
-                        detail: `The category has been successfully edited, but the server did not return a JSON response.`,
+                        detail: `The category has been successfully edited`,
                         life: 3000,
                     });
                 }
@@ -90,14 +90,9 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="annualReport__containerCategory-formCategoryEdit" onSubmit={handleEditCategory}>
-                <InputText value={name} onChange={(e) => setName(e.target.value)} autoFocus />
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Save
-                </button>
+            <form className="formAccounts" onSubmit={handleEditCategory}>
+                <input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
+                <button type="submit" className="form-button">Save</button>
             </form>
         </>
     );

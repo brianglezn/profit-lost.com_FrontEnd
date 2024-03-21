@@ -121,7 +121,9 @@ const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSa
       </select>
       <button
         type="button"
-        onClick={handleSave}>Save
+        className="form-button"
+        onClick={handleSave}>
+        Save
       </button>
     </div>
   );
