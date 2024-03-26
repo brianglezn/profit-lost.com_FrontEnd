@@ -18,6 +18,7 @@ type Transaction = {
 interface MovementsTableProps {
     data: Transaction[];
     isDataEmpty: boolean;
+    reloadData: () => void;
 }
 
 function formatCurrency(value: number): string {
@@ -41,7 +42,7 @@ function formatDateTime(value: string): string {
     });
 }
 
-function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
+function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) {
     const [editDialogVisible, setEditDialogVisible] = useState(false);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
@@ -116,6 +117,7 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
                 {selectedTransaction && <FormMovementsEdit
                     transaction={selectedTransaction}
                     onEdit={() => {
+                        reloadData();
                         setEditDialogVisible(false);
                     }}
                 />}
@@ -131,6 +133,7 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
                     <FormMovementsRemove
                         transactionId={selectedTransaction._id}
                         onRemove={() => {
+                            reloadData();
                             setDeleteDialogVisible(false);
                         }}
                     />

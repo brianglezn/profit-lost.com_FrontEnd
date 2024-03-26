@@ -17,7 +17,11 @@ const FormCategoryRemove: React.FC<FormCategoryRemoveProps> = ({ categoryId, cat
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('Authentication token not found');
-            toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Authentication token not found. Please log in.', life: 3000 });
+            toast.current?.show({ 
+                severity: 'error',
+                summary: 'Error', 
+                detail: 'Authentication token not found. Please log in.', 
+                life: 3000 });
             return;
         }
 

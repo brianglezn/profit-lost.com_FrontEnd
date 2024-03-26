@@ -192,7 +192,7 @@ function Movements() {
               </Dialog>
             </div>
 
-            <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} />
+            <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} reloadData={reloadData} />
 
           </div>
         </div>

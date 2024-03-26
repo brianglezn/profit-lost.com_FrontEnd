@@ -41,13 +41,19 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
 
         let data: Category[] = await response.json();
         setCategories(data.sort((a, b) => a.name.localeCompare(b.name)));
+
+        const defaultCategory = data.find(cat => cat.name === transaction.category);
+
+        if (defaultCategory) {
+          setCategory(defaultCategory._id);
+        }
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
 
     fetchCategories();
-  }, []);
+  }, [transaction.category]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -121,7 +127,6 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
         <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-          <option value="">Select a category</option>
           {categories.map((cat) => (
             <option key={cat._id} value={cat._id}>{cat.name}</option>
           ))}
