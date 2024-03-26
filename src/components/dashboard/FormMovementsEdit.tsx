@@ -1,15 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import { Toast } from 'primereact/toast';
-
-import "./FormMovements.css";
-
-interface Transaction {
-  _id: string;
-  date: string;
-  description: string;
-  amount: number;
-  category: string;
-}
 
 interface Category {
   _id: string;
@@ -17,115 +7,130 @@ interface Category {
 }
 
 interface FormMovementsEditProps {
-  transaction: Transaction;
-  onSave: () => void;
+  onEdit: () => void;
+  transaction: {
+    _id: string;
+    date: string;
+    description: string;
+    amount: number;
+    category: string;
+  };
 }
 
-const FormMovementsEdit: React.FC<FormMovementsEditProps> = ({ transaction, onSave }) => {
-  const toast = useRef<Toast>(null);
+function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
   const [date, setDate] = useState<string>(transaction.date);
   const [description, setDescription] = useState<string>(transaction.description);
   const [amount, setAmount] = useState<string>(transaction.amount.toString());
   const [category, setCategory] = useState<string>(transaction.category);
   const [categories, setCategories] = useState<Category[]>([]);
+  const toast = useRef<Toast>(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       try {
         const response = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
         });
+
         if (!response.ok) {
-          throw new Error('Failed to fetch categories');
+          throw new Error('Network response was not ok');
         }
-        const data: Category[] = await response.json();
-        setCategories(data);
+
+        let data: Category[] = await response.json();
+        setCategories(data.sort((a, b) => a.name.localeCompare(b.name)));
       } catch (error) {
         console.error('Error fetching categories:', error);
-        toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed to fetch categories', life: 3000 });
       }
     };
+
     fetchCategories();
   }, []);
 
-  const handleSave = async () => {
-    if (!date || !description || isNaN(Number(amount)) || !category) {
-      toast.current?.show({ severity: 'warn', summary: 'Validation Failed', detail: 'Please fill in all fields correctly.', life: 3000 });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No authentication token found. Please log in.');
+      toast.current?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'No authentication token found. Please log in.',
+        life: 3000
+      });
       return;
     }
 
-    const token = localStorage.getItem("token");
-    const updatedTransaction = { date, description, amount: Number(amount), category };
+    if (!/^\-?\d+(\.\d{0,2})?$/.test(amount)) {
+      toast.current?.show({
+        severity: 'warn',
+        summary: 'Validation Error',
+        detail: 'Amount must be a positive or negative number with up to two decimals.',
+        life: 3000
+      });
+      return;
+    }
 
     try {
       const response = await fetch(`https://profit-lost-backend.onrender.com/movements/edit/${transaction._id}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(updatedTransaction),
+        body: JSON.stringify({
+          date,
+          description: description.trim() === '' ? '---' : description,
+          amount: Number(amount),
+          category,
+        }),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        toast.current?.show({ severity: 'error', summary: 'Update Failed', detail: `Failed to update the transaction: ${errorData.message}`, life: 3000 });
-        console.error("Error updating the transaction:", errorData.message);
-        return;
+        const errorText = await response.text();
+        throw new Error(errorText || `HTTP error! status: ${response.status}`);
       }
 
-      toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Transaction updated successfully', life: 3000 });
-      console.log("Transaction updated successfully");
-      onSave();
+      toast.current?.show({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Movement updated successfully',
+        life: 3000
+      });
+      onEdit();
     } catch (error) {
-      console.error("Error updating the transaction:", error);
-      toast.current?.show({ severity: 'error', summary: 'Unexpected Error', detail: 'An error occurred while updating the transaction', life: 3000 });
+      console.error('Error updating movement:', error);
+      const message = error instanceof Error ? error.message : 'An error occurred';
+      toast.current?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: message,
+        life: 3000
+      });
     }
   };
 
   return (
-    <div className="formMovements">
+    <>
       <Toast ref={toast} position="bottom-right" />
-      <input
-        type="datetime-local"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description" required
-      />
-      <input
-        type="number"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        placeholder="Amount"
-        step="0.01"
-        required
-      />
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        required
-      >
-        <option value="">Select a category</option>
-        {categories.map((cat) => (
-          <option key={cat._id} value={cat._id}>{cat.name}</option>
-        ))}
-      </select>
-      <button
-        type="button"
-        className="form-button"
-        onClick={handleSave}>
-        Save
-      </button>
-    </div>
+      <form onSubmit={handleSubmit} className="formMovements">
+        <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} required />
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
+        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+          <option value="">Select a category</option>
+          {categories.map((cat) => (
+            <option key={cat._id} value={cat._id}>{cat.name}</option>
+          ))}
+        </select>
+        <div className="form-buttons">
+          <button type="submit" className="form-button submit">Update Movement</button>
+        </div>
+      </form>
+    </>
   );
 };
 

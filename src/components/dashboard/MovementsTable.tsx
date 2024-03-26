@@ -113,7 +113,12 @@ function MovementsTable({ data, isDataEmpty }: MovementsTableProps) {
                 header="Edit Transaction"
                 modal
                 draggable={false}>
-                {selectedTransaction && <FormMovementsEdit transaction={selectedTransaction} onSave={() => setEditDialogVisible(false)} />}
+                {selectedTransaction && <FormMovementsEdit
+                    transaction={selectedTransaction}
+                    onEdit={() => {
+                        setEditDialogVisible(false);
+                    }}
+                />}
             </Dialog>
             <Dialog
                 visible={deleteDialogVisible}
