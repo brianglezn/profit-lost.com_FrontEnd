@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Toast } from 'primereact/toast';
 
-import './FormAccounts.css';
-
+import './FormCategory.css';
 
 function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     const [newCategory, setNewCategory] = useState('');

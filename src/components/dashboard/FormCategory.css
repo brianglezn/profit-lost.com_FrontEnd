@@ -1,4 +1,4 @@
-.formMovements {
+.formAccounts {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
   border-radius: 15px;
 }
 
-.formMovements-closeButton {
+.formAccounts-closeButton {
   position: absolute;
   top: 0;
   right: 0;
@@ -19,25 +19,24 @@
   cursor: pointer;
 }
 
-.formMovements-closeButton:hover {
+.formAccounts-closeButton:hover {
   color: var(--primary-color);
 }
 
-.formMovements-buttons {
+.formAccounts-buttons {
   display: flex;
   gap: 1rem;
 }
 
-.formMovements-category {
+.formAccounts-category {
   width: 80%;
 }
 
-.formMovements-balance {
+.formAccounts-balance {
   width: 80%;
 }
 
-.formMovements input,
-.formMovements select {
+.formAccounts input {
   background-color: var(--text-color-white);
   border: 1px solid var(--gray-100);
   width: 70%;
@@ -49,8 +48,7 @@
   box-shadow: 0 0.4rem var(--surface-700);
 }
 
-.formMovements input:focus,
-.formMovements select:focus {
+.formAccounts input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0.4rem var(--primary-color);
@@ -58,8 +56,7 @@
 
 @media screen and (max-width: 960px) {
 
-  .formMovements input,
-  .formMovements select {
+  .formAccounts input {
     width: 98%;
   }
 }

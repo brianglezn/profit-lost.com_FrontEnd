@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { Toast } from 'primereact/toast';
 
+import './FormCategory.css';
+
 interface FormCategoryEditProps {
     categoryId: string;
     categoryName: string;

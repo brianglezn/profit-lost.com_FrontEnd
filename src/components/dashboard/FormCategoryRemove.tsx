@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { Toast } from 'primereact/toast';
 
+import './FormCategory.css';
+
 interface FormCategoryRemoveProps {
     categoryId: string;
     categoryName: string;
