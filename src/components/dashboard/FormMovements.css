@@ -42,7 +42,7 @@
   border: 1px solid var(--gray-100);
   width: 70%;
   border-radius: 7px;
-  padding: 1rem;
+  padding: 0.8rem;
   margin: 5px 0;
   transition: border-color, box-shadow 0.3s ease-in-out;
   outline: none;
@@ -54,6 +54,31 @@
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0.4rem var(--primary-color);
+}
+
+.formMovements button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.8rem 1.5rem;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.1s;
+  box-shadow: 0 0.4rem var(--primary-color-600);
+  opacity: 0.8;
+}
+
+.formMovements button[type="submit"]:hover {
+  background-color: var(--primary-color);
+  font-weight: bold;
+  box-shadow: 0 0.4rem var(--primary-color-600);
+  opacity: 1;
+}
+
+.formMovements button[type="submit"]:active {
+  transform: translatey(5px);
+  box-shadow: var(--primary-color-600) 0px 3px 2px,
+    var(--text-color-secondary) 0px 3px 5px;
 }
 
 @media screen and (max-width: 960px) {

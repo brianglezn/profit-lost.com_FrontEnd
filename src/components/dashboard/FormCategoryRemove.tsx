@@ -76,7 +76,7 @@ const FormCategoryRemove: React.FC<FormCategoryRemoveProps> = ({ categoryId, cat
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="formAccounts" onSubmit={handleRemoveCategory} >
+            <form className="formCategories" onSubmit={handleRemoveCategory} >
                 <p>Are you sure you want to remove the category "<strong>{categoryName}</strong>"?</p>
                 <button type="submit" className="form-button">Remove</button>
             </form>

@@ -56,7 +56,7 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="formAccounts" onSubmit={handleSaveCategory}>
+            <form className="formCategories" onSubmit={handleSaveCategory}>
                 <input
                     placeholder="name"
                     value={newCategory}

@@ -37,7 +37,7 @@ const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transactionId
         <div className="formMovements">
             <Toast ref={toast} position="bottom-right" />
             <p>Are you sure you want to delete this transaction?</p>
-            <button onClick={handleRemove} className="form-button">Yes, delete it</button>
+            <button type="submit" onClick={handleRemove} className="form-button">Yes, delete it</button>
         </div>
     );
 };

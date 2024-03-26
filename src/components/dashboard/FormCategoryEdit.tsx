@@ -91,7 +91,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
-            <form className="formAccounts" onSubmit={handleEditCategory}>
+            <form className="formCategories" onSubmit={handleEditCategory}>
                 <input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
                 <button type="submit" className="form-button">Save</button>
             </form>

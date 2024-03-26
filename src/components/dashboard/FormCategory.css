@@ -1,4 +1,4 @@
-.formAccounts {
+.formCategories {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
   border-radius: 15px;
 }
 
-.formAccounts-closeButton {
+.formCategories-closeButton {
   position: absolute;
   top: 0;
   right: 0;
@@ -19,44 +19,68 @@
   cursor: pointer;
 }
 
-.formAccounts-closeButton:hover {
+.formCategories-closeButton:hover {
   color: var(--primary-color);
 }
 
-.formAccounts-buttons {
+.formCategories-buttons {
   display: flex;
   gap: 1rem;
 }
 
-.formAccounts-category {
+.formCategories-category {
   width: 80%;
 }
 
-.formAccounts-balance {
+.formCategories-balance {
   width: 80%;
 }
 
-.formAccounts input {
+.formCategories input {
   background-color: var(--text-color-white);
   border: 1px solid var(--gray-100);
   width: 70%;
   border-radius: 7px;
-  padding: 1rem;
-  margin: 5px 0;
+  padding: 0.8rem;
   transition: border-color, box-shadow 0.3s ease-in-out;
   outline: none;
   box-shadow: 0 0.4rem var(--surface-700);
 }
 
-.formAccounts input:focus {
+.formCategories input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0.4rem var(--primary-color);
 }
 
+.formCategories button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.8rem 1.5rem;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.1s;
+  box-shadow: 0 0.4rem var(--primary-color-600);
+  opacity: 0.8;
+}
+
+.formCategories button[type="submit"]:hover {
+  background-color: var(--primary-color);
+  font-weight: bold;
+  box-shadow: 0 0.4rem var(--primary-color-600);
+  opacity: 1;
+}
+
+.formCategories button[type="submit"]:active {
+  transform: translatey(5px);
+  box-shadow: var(--primary-color-600) 0px 3px 2px,
+    var(--text-color-secondary) 0px 3px 5px;
+}
+
 @media screen and (max-width: 960px) {
 
-  .formAccounts input {
+  .formCategories input {
     width: 98%;
   }
 }
