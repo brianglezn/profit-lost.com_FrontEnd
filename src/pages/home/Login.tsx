@@ -79,7 +79,7 @@ function Login() {
 
   return (
     <>
-      <Toast ref={toast} position="bottom-right" />
+      <Toast ref={toast} position="top-center" />
       <header className="header">
         <div className="header__container_login">
           <Link to="/" className="header__logo no-select">
