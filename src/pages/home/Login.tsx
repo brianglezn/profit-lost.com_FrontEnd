@@ -15,6 +15,7 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const toast = useRef<Toast>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const reiniciarTemporizadorExpiracionToken = () => {
     const temporizadorExistente = localStorage.getItem('temporizadorToken');
@@ -72,6 +73,10 @@ function Login() {
     setIsLoading(false);
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <Toast ref={toast} position="bottom-right" />
@@ -97,14 +102,25 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            className="form__password"
-            type="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="form__password-container">
+            <input
+              className="form__password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
+              onClick={toggleShowPassword}
+            >
+              <span className="material-symbols-rounded">
+                {showPassword ? "visibility_off" : "visibility"}
+              </span>
+            </button>
+          </div>
           <Link to="/forgot-password" className="form__forgot">
             Forgot password?
           </Link>

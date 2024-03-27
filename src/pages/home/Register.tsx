@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,6 +41,16 @@ function Register() {
 
     setIsLoading(false);
   };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newPass = e.target.value;
+    setPassword(newPass);
+  };
+
 
   return (
     <>
@@ -94,15 +104,28 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            className="form__password"
-            type="password"
-            id="password-register"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="form__password-container">
+            <input
+              className="form__password"
+              type={showPassword ? "text" : "password"}
+              id="password-register"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <button
+              type="button"
+              className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
+              onClick={toggleShowPassword}
+            >
+              <span className="material-symbols-rounded">
+                {showPassword ? "visibility_off" : "visibility"}
+              </span>
+            </button>
+          </div>
+
+
           <button className="form__submit" type="submit" disabled={isLoading}>
             {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary" /> : "Let's go!"}
           </button>
