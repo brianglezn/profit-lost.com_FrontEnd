@@ -9,6 +9,10 @@
   border-radius: 15px;
 }
 
+.formCategories p {
+  text-align: center;
+}
+
 .formCategories-closeButton {
   position: absolute;
   top: 0;

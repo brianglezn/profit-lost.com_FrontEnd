@@ -131,7 +131,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                 draggable={false}>
                 {selectedTransaction && (
                     <FormMovementsRemove
-                        transactionId={selectedTransaction._id}
+                        transaction={selectedTransaction}
                         onRemove={() => {
                             reloadData();
                             setDeleteDialogVisible(false);

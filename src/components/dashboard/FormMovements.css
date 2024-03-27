@@ -75,6 +75,10 @@
   box-shadow: 0 0.4rem var(--surface-700);
 }
 
+.formMovements p {
+  text-align: center;
+}
+
 .formMovements input:focus {
   outline: none;
   border-color: var(--primary-color);
