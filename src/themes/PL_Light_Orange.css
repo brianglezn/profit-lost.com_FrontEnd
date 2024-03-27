@@ -513,13 +513,13 @@
         padding: 0.5rem;
         background: var(--background-color);
         color: var(--text-color-secondary);
-        border: 1px solid #304562;
+        border: 1px solid var(--primary-color);
         border-radius: 15px;
     }
 
     .p-datepicker:not(.p-datepicker-inline) {
         background: var(--background-color);
-        border: 1px solid #304562;
+        border: 1px solid var(--primary-color);
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     }
 
@@ -533,7 +533,7 @@
         background: var(--background-color);
         font-weight: 600;
         margin: 0;
-        border-bottom: 1px solid #304562;
+        border-bottom: 1px solid var(--primary-color);
         border-top-right-radius: 3px;
         border-top-left-radius: 3px;
     }
@@ -638,7 +638,7 @@
 
     .p-datepicker .p-datepicker-buttonbar {
         padding: 1rem 0;
-        border-top: 1px solid #304562;
+        border-top: 1px solid var(--primary-color);
     }
 
     .p-datepicker .p-datepicker-buttonbar .p-button {
@@ -646,7 +646,7 @@
     }
 
     .p-datepicker .p-timepicker {
-        border-top: 1px solid #304562;
+        border-top: 1px solid var(--primary-color);
         padding: 0.5rem;
     }
 
@@ -719,7 +719,7 @@
     }
 
     .p-datepicker.p-datepicker-multiple-month .p-datepicker-group {
-        border-left: 1px solid #304562;
+        border-left: 1px solid var(--primary-color);
         padding-right: 0.5rem;
         padding-left: 0.5rem;
         padding-top: 0;

@@ -106,10 +106,6 @@
   fill: var(--gray-500);
 }
 
-.p-dropdown-label {
-  color: var(--text-color-black);
-}
-
 .formMovements button[type="submit"] {
   background-color: var(--primary-color);
   color: var(--text-color);
