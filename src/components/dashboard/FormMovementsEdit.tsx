@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Toast } from 'primereact/toast';
+import { Dropdown } from 'primereact/dropdown';
+import { Calendar } from 'primereact/calendar';
 
 interface Category {
   _id: string;
@@ -18,10 +20,10 @@ interface FormMovementsEditProps {
 }
 
 function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
-  const [date, setDate] = useState<string>(transaction.date);
+  const [date, setDate] = useState<Date | null>(transaction.date ? new Date(transaction.date) : null);
   const [description, setDescription] = useState<string>(transaction.description);
   const [amount, setAmount] = useState<string>(transaction.amount.toString());
-  const [category, setCategory] = useState<string>(transaction.category);
+  const [category, setCategory] = useState<Category | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const toast = useRef<Toast>(null);
 
@@ -42,10 +44,10 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
         let data: Category[] = await response.json();
         setCategories(data.sort((a, b) => a.name.localeCompare(b.name)));
 
-        const defaultCategory = data.find(cat => cat.name === transaction.category);
+        const defaultCategory = data.find(cat => cat._id === transaction.category);
 
         if (defaultCategory) {
-          setCategory(defaultCategory._id);
+          setCategory(defaultCategory);
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -91,7 +93,7 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
           date,
           description: description.trim() === '' ? '---' : description,
           amount: Number(amount),
-          category,
+          category: category?._id,
         }),
       });
 
@@ -123,20 +125,14 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
     <>
       <Toast ref={toast} position="bottom-right" />
       <form onSubmit={handleSubmit} className="formMovements">
-        <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} required />
+        <Calendar value={date} className="form-calendar" onChange={(e) => setDate(e.value ? e.value : null)} placeholder="Date" showTime hourFormat="24" required />
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
-        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-          {categories.map((cat) => (
-            <option key={cat._id} value={cat._id}>{cat.name}</option>
-          ))}
-        </select>
-        <div className="form-buttons">
-          <button type="submit" className="form-button submit">Update Movement</button>
-        </div>
+        <Dropdown value={category} className="formMovements-category" options={categories} onChange={(e) => setCategory(e.value)} optionLabel="name" placeholder="Select a category" required />
+        <button type="submit" className="form-button">Update Movement</button>
       </form>
     </>
   );
-};
+}
 
 export default FormMovementsEdit;

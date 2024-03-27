@@ -36,24 +36,78 @@
   width: 80%;
 }
 
-.formMovements input,
-.formMovements select {
+.formMovements .form-calendar {
+  width: 70%;
   background-color: var(--text-color-white);
   border: 1px solid var(--gray-100);
-  width: 70%;
   border-radius: 7px;
-  padding: 0.8rem;
+  padding: 0.3rem 0 0.3rem 0.8rem;
   margin: 5px 0;
   transition: border-color, box-shadow 0.3s ease-in-out;
   outline: none;
   box-shadow: 0 0.4rem var(--surface-700);
 }
 
-.formMovements input:focus,
-.formMovements select:focus {
+.formMovements .form-calendar:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0.4rem var(--primary-color);
+}
+
+.formMovements .form-calendar .p-inputtext {
+  background-color: inherit;
+  border: 0;
+  padding: 0.55rem 0;
+  margin: 0;
+  transition: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.formMovements input {
+  background-color: var(--text-color-white);
+  border: 1px solid var(--gray-100);
+  width: 70%;
+  border-radius: 7px;
+  padding: 0.8rem 0 0.8rem 0.8rem;
+  transition: border-color, box-shadow 0.3s ease-in-out;
+  outline: none;
+  box-shadow: 0 0.4rem var(--surface-700);
+}
+
+.formMovements input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0.4rem var(--primary-color);
+}
+
+.formMovements-category {
+  width: 70%;
+  background-color: var(--text-color-white);
+  border: 1px solid var(--gray-100);
+  border-radius: 7px;
+  padding: 0.3rem 0 0.3rem 0.8rem;
+  transition: border-color, box-shadow 0.3s ease-in-out;
+  outline: none;
+  box-shadow: 0 0.4rem var(--surface-700);
+}
+
+.formMovements-category span {
+  padding: 0.55rem 0;
+}
+
+.formMovements-category:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0.4rem var(--primary-color);
+}
+
+.p-dropdown-trigger-icon {
+  fill: var(--gray-500);
+}
+
+.p-dropdown-label {
+  color: var(--text-color-black);
 }
 
 .formMovements button[type="submit"] {
@@ -84,7 +138,8 @@
 @media screen and (max-width: 960px) {
 
   .formMovements input,
-  .formMovements select {
+  .formMovements-category,
+  .formMovements .form-calendar {
     width: 98%;
   }
 }

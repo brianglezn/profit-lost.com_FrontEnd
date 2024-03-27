@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Toast } from 'primereact/toast';
+import { Calendar } from 'primereact/calendar';
+import { Dropdown } from 'primereact/dropdown';
 
 import './FormMovements.css';
 
@@ -14,10 +16,10 @@ interface FormMovementsAddProps {
 }
 
 function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
-    const [date, setDate] = useState<string>('');
+    const [date, setDate] = useState<Date | null>(null);
     const [description, setDescription] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
-    const [category, setCategory] = useState<string>('');
+    const [category, setCategory] = useState<Category | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
     const toast = useRef<Toast>(null);
 
@@ -82,7 +84,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                     date,
                     description: description.trim() === '' ? '---' : description,
                     amount: Number(amount),
-                    category,
+                    category: category?._id,
                 }),
             });
 
@@ -115,15 +117,10 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
         <>
             <Toast ref={toast} position="bottom-right" />
             <form onSubmit={handleSubmit} className="formMovements">
-                <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} required />
+                <Calendar value={date} className="form-calendar" onChange={(e) => setDate(e.value ? new Date(e.value) : null)} placeholder="Date" showTime required />
                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
                 <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
-                <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-                    <option value="">Select a category</option>
-                    {categories.map((cat) => (
-                        <option key={cat._id} value={cat._id}>{cat.name}</option>
-                    ))}
-                </select>
+                <Dropdown value={category} options={categories} onChange={(e) => setCategory(e.value)} optionLabel="name" placeholder="Select a category" className="formMovements-category" required />
                 <button type="submit" className="form-button">Add Movement</button>
             </form>
         </>

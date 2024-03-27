@@ -126,6 +126,7 @@ header {
 
 .password-toggle-btn {
   position: absolute;
+  color: var(--primary-color-800);
   top: 37%;
   right: 5px;
   transform: translateY(-50%);
