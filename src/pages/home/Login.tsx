@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { useAuth } from '../../context/AuthContext';
+import { Toast } from 'primereact/toast';
 
 import Footer from '../../components/landing/Footer';
 
@@ -13,6 +14,7 @@ function Login() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const toast = useRef<Toast>(null);
 
   const reiniciarTemporizadorExpiracionToken = () => {
     const temporizadorExistente = localStorage.getItem('temporizadorToken');
@@ -50,9 +52,21 @@ function Login() {
         navigate('/dashboard');
       } else {
         console.error('Failed to login');
+        toast.current?.show({
+          severity: 'error',
+          summary: 'Error de inicio de sesión',
+          detail: 'Correo o contraseña incorrectos',
+          life: 3000,
+        });
       }
     } catch (error) {
       console.error('There was an error logging in', error);
+      toast.current?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Hubo un problema al intentar iniciar sesión',
+        life: 3000
+      });
     }
 
     setIsLoading(false);
@@ -60,6 +74,7 @@ function Login() {
 
   return (
     <>
+      <Toast ref={toast} position="bottom-right" />
       <header className="header">
         <div className="header__container_login">
           <Link to="/" className="header__logo no-select">
