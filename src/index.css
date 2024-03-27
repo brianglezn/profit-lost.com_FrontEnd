@@ -43,6 +43,10 @@ a {
   text-decoration: none;
 }
 
+input {
+  color: var(--text-color-secondary);
+}
+
 a:hover {
   color: var(--primary-color-600);
   cursor: pointer;
