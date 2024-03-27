@@ -28,6 +28,12 @@
   color: var(--primary-color);
 }
 
+.dashboard__header .spiner {
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .dashboard__header-date {
   padding: 10px;
   background-color: var(--primary-color-light);
@@ -154,8 +160,12 @@
     margin-right: 2rem;
   }
 
+  .dashboard__header .spiner {
+    margin-left: 2rem;
+  }
+
   .dashboard__header-date {
-    padding: 7px;
+    display: none;
   }
 
   .dashboard__container-nav {
@@ -226,6 +236,10 @@
 
   .dashboard__header div {
     margin-right: 2rem;
+  }
+
+  .dashboard__header .spiner {
+    margin-left: 2rem;
   }
 
   .dashboard__header-date {

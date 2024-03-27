@@ -1,6 +1,7 @@
-import React, { Suspense, SetStateAction, useState, useEffect } from "react";
+import React, { Suspense, SetStateAction, useState, useEffect, useRef } from "react";
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
+import { Toast } from 'primereact/toast';
 
 import "./Dashboard.css";
 
@@ -33,6 +34,7 @@ function getCurrentDate() {
 function Dashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [user, setUser] = useState<User | null>(null);
+  const toast = useRef<Toast>(null);
 
   const handleMenuItemClick = (sectionName: SetStateAction<string>) => {
     setActiveSection(sectionName);
@@ -70,11 +72,37 @@ function Dashboard() {
     height: '40px'
   };
 
+  const wakeUpBackend = async () => {
+    toast.current?.show({
+      severity: 'info',
+      summary: 'Waiting for response from backend',
+      detail: 'Sending request to reconnect to backend'
+    });
+    try {
+      await fetch('https://profit-lost-backend.onrender.com/ping');
+      toast.current?.show({
+        severity: 'success',
+        summary: 'Backend response',
+        detail: 'OK response'
+      });
+    } catch (error) {
+      toast.current?.show({
+        severity: 'error',
+        summary: 'Connection error',
+        detail: 'Could not connect to backend'
+      });
+    }
+  };
+
   return (
     <>
+      <Toast ref={toast} position="bottom-right" />
       <section className="dashboard">
         <div className="dashboard__container-header">
           <header className="dashboard__header">
+            <span className="spiner material-symbols-rounded" onClick={wakeUpBackend}>
+              sync
+            </span>
             <p className="dashboard__header-date">{currentDate}</p>
             <Avatar
               onClick={() => handleMenuItemClick("Profile")}
