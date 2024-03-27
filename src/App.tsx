@@ -9,6 +9,7 @@ import Register from "./pages/home/Register";
 import DashBoard from "./pages/dashboard/DashBoard";
 import Cookies from "./pages/home/Cookies";
 import ForgotPassword from "./pages/home/ForgotPassword";
+import ForgotPasswordToken from "./pages/home/ForgotPasswordToken";
 
 import './themes/PL_Light_Orange.css';
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route path="/forgot-password-token" element={<ForgotPasswordToken />}></Route>
           <Route path="/dashboard" element={
             <PrivateRoute>
               <DashBoard />
