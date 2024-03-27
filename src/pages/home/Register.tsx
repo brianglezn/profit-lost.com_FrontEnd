@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Footer from '../../components/landing/Footer';
 
-import './Login-Register.css';
+import './authForms.css';
 
 function Register() {
   const [username, setUsername] = useState('');

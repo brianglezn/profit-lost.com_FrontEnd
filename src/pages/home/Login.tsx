@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 
 import Footer from '../../components/landing/Footer';
 
-import './Login-Register.css';
+import './authForms.css';
 
 function Login() {
   const [email, setEmail] = useState('');
