@@ -46,6 +46,7 @@ function Movements() {
       if (!response.ok) throw new Error('Failed to fetch');
       const dataMovements: Movement[] = await response.json();
 
+<<<<<<< HEAD
       const years = new Set(dataMovements.map((item: Movement) => {
         return new Date(item.date).getFullYear().toString();
       }));
@@ -53,6 +54,14 @@ function Movements() {
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
       console.error('Error fetching years data:', error);
+=======
+      let movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
+      movementsFiltered.sort((a: Movement, b: Movement) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+      setDataGraph(movementsFiltered);
+    } catch (error: any) {
+      console.error('Error fetching movements data:', error.message);
+>>>>>>> f2ed8e2 (29/03/24 *6)
     }
   };
 
