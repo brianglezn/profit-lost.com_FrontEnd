@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from 'primereact/dialog';
 
+import { getAllMovements } from '../../api/movements/getAllMovements';
+import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
+
 import "./Movements.css";
 
-import MovementsChart from "../../components/dashboard/MovementsChart";
-import MovementsPie from "../../components/dashboard/MovementsPie";
-import MovementsTable from "../../components/dashboard/MovementsTable";
-import FormMovementsAdd from "../../components/dashboard/FormMovementsAdd";
+import MovementsPie from "../../components/dashboard/movements/MovementsPie";
+import MovementsChart from "../../components/dashboard/movements/MovementsChart";
+import MovementsTable from "../../components/dashboard/movements/MovementsTable";
+import FormMovementsAdd from "../../components/dashboard/movements/FormMovementsAdd";
 
 interface Movement {
   _id: string;
@@ -26,87 +29,77 @@ function formatCurrency(value: number) {
   });
 }
 
+const monthOptions = [
+  { value: "01", label: "January" },
+  { value: "02", label: "February" },
+  { value: "03", label: "March" },
+  { value: "04", label: "April" },
+  { value: "05", label: "May" },
+  { value: "06", label: "June" },
+  { value: "07", label: "July" },
+  { value: "08", label: "August" },
+  { value: "09", label: "September" },
+  { value: "10", label: "October" },
+  { value: "11", label: "November" },
+  { value: "12", label: "December" },
+];
+
 function Movements() {
-  const currentYear = new Date().getFullYear().toString();
-  const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, '0');
-  const [year, setYear] = useState(currentYear);
-  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState<string>(new Date().getFullYear().toString());
+  const [month, setMonth] = useState<string>((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
-  const fetchYearsWithData = async () => {
+  useEffect(() => {
     const token = localStorage.getItem('token');
+    if (token) {
+      fetchMovementsData(token);
+    }
+  }, [year, month]);
+
+  const fetchMovementsData = async (token: string) => {
+    if (!token) return;
     try {
-      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      if (!response.ok) throw new Error('Failed to fetch');
-      const dataMovements: Movement[] = await response.json();
+      const movementsData = await getAllMovements(token);
+      const years = new Set<string>(movementsData.map((movement: Movement) => new Date(movement.date).getFullYear().toString()));
+      setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
 
-<<<<<<< HEAD
-      const years = new Set(dataMovements.map((item: Movement) => {
-        return new Date(item.date).getFullYear().toString();
-      }));
-
-      setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
-    } catch (error) {
-      console.error('Error fetching years data:', error);
-=======
       let movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
       movementsFiltered.sort((a: Movement, b: Movement) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
       setDataGraph(movementsFiltered);
     } catch (error: any) {
       console.error('Error fetching movements data:', error.message);
->>>>>>> f2ed8e2 (29/03/24 *6)
     }
   };
-
-  const fetchData = async () => {
-    const token = localStorage.getItem('token');
-    try {
-      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}/${month}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      let transactions: Movement[] = await response.json();
-
-      let completos = transactions.filter(a => a.date.length > 7);
-      let parciales = transactions.filter(a => a.date.length === 7);
-
-      completos.sort((a, b) => b.date.localeCompare(a.date));
-
-      parciales.sort((a, b) => b.date.localeCompare(a.date));
-
-      const ordenados = completos.concat(parciales);
-
-      setDataGraph(ordenados);
-    } catch (error) {
-      console.error('Error fetching transactions data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchYearsWithData();
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [year, month]);
 
   const reloadData = async () => {
-    await fetchYearsWithData();
-    await fetchData();
+    const token = localStorage.getItem('token');
+    if (token) await fetchMovementsData(token);
   };
 
   const isDataEmpty = dataGraph.length === 0;
+
+  const calculateCategoryTotals = (movements: Movement[]) => {
+    const income: { [key: string]: number } = {};
+    const expenses: { [key: string]: number } = {};
+
+    movements.forEach(({ category, amount }) => {
+      if (amount > 0) {
+        income[category] = (income[category] || 0) + amount;
+      } else {
+        expenses[category] = (expenses[category] || 0) + Math.abs(amount);
+      }
+    });
+
+    const incomeData = Object.entries(income).map(([name, value]) => ({ name, value }));
+    const expensesData = Object.entries(expenses).map(([name, value]) => ({ name, value }));
+
+    return { incomeData, expensesData };
+  };
+
+  const { incomeData, expensesData } = calculateCategoryTotals(dataGraph);
 
   const chartData = [
     {
@@ -122,21 +115,6 @@ function Movements() {
   const formattedBalanceIncome = formatCurrency(totalIncome);
   const formattedBalanceExpenses = formatCurrency(totalExpenses);
   const formattedBalanceFinal = formatCurrency(totalIncome - totalExpenses);
-
-  const monthOptions = [
-    { value: "01", label: "January" },
-    { value: "02", label: "February" },
-    { value: "03", label: "March" },
-    { value: "04", label: "April" },
-    { value: "05", label: "May" },
-    { value: "06", label: "June" },
-    { value: "07", label: "July" },
-    { value: "08", label: "August" },
-    { value: "09", label: "September" },
-    { value: "10", label: "October" },
-    { value: "11", label: "November" },
-    { value: "12", label: "December" },
-  ];
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
@@ -161,7 +139,11 @@ function Movements() {
             />
           </div>
 
-          <MovementsPie year={year} month={month} isDataEmpty={isDataEmpty} />
+          <MovementsPie
+            incomeData={incomeData}
+            expensesData={expensesData}
+            isDataEmpty={isDataEmpty}
+          />
 
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
 

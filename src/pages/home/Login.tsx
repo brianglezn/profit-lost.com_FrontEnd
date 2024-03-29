@@ -14,8 +14,8 @@ function Login() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
-  const toast = useRef<Toast>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const toast = useRef<Toast>(null);
 
   const reiniciarTemporizadorExpiracionToken = () => {
     const temporizadorExistente = localStorage.getItem('temporizadorToken');

@@ -29,6 +29,10 @@
   padding: 3rem;
 }
 
+.profile__header-avatar span {
+  color: var(--text-color);
+}
+
 .profile__header-name {
   grid-area: name;
 }

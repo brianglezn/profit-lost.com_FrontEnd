@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
 
+import { getUserByToken } from '../../api/users/getUserByToken';
+
 import "./Profile.css";
 
 interface User {
@@ -17,61 +19,48 @@ function Profile() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
 
     const fetchUser = async () => {
       try {
-        const response = await fetch('https://profit-lost-backend.onrender.com/user/me', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) throw new Error('Failed to fetch user data');
-
-        const userData = await response.json();
+        const userData = await getUserByToken(token);
         setUser(userData);
       } catch (error) {
         console.error('Error fetching user data:', error);
+        navigate('/login');
       }
     };
 
     fetchUser();
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
   };
 
-  const avatarCommonStyle = {
-    color: 'var(--text-color-white)',
-    width: '40px',
-    height: '40px'
-  };
-
   return (
-    <>
-      <section className="profile">
-        <div className="profile__header">
-            <Avatar
-              label={user?.name?.[0] ?? ''}
-              icon="pi pi-user"
-              size="xlarge"
-              style={{ ...avatarCommonStyle }}
-              className='profile__header-avatar'
-            />
-          <div className="profile__header-name">
-            <h2>{user?.name ?? ''} {user?.surname ?? ''}</h2>
-          </div>
+    <section className="profile">
+      <div className="profile__header">
+        <Avatar
+          label={user?.name?.[0] ?? ''}
+          icon="pi pi-user"
+          size="xlarge"
+          className="profile__header-avatar"
+        />
+        <div className="profile__header-name">
+          <h2>{user?.name ?? ''} {user?.surname ?? ''}</h2>
         </div>
-        <div className="profile__dashboard">
-          <button onClick={handleLogout} className="profile__dashboard-logout">
-            Logout
-          </button>
-        </div>
-      </section>
-    </>
+      </div>
+      <div className="profile__dashboard">
+        <button onClick={handleLogout} className="profile__dashboard-logout">
+          Logout
+        </button>
+      </div>
+    </section>
   );
 }
 
