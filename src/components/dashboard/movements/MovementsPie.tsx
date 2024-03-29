@@ -36,7 +36,6 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
             '--primary-color-700',
             '--primary-color-800',
             '--primary-color-400',
-            '--primary-color-950',
         ];
 
         const fetchColors = () => {
