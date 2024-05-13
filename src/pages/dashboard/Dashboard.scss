@@ -11,11 +11,16 @@
     "Nav Content";
 
   .dashboard__header {
-    grid-area: Header;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 280px;
+    z-index: 1000;
+    width: calc(100% - 280px);
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 0 20px 0 0;
+    padding: 10px 20px 0 0;
 
     .dashboard__header-container {
       display: flex;
@@ -151,6 +156,8 @@
     .dashboard__header {
       padding: 0 20px;
       margin-top: 10px;
+      left: 0;
+      width: 100%;
     }
 
     .dashboard__nav {
@@ -196,7 +203,7 @@
 
     .dashboard__content {
       padding: 0 20px;
-      margin-bottom: 6rem;
+      margin: 6.3rem 0;
     }
 
   }

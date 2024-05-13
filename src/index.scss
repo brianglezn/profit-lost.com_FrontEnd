@@ -16,7 +16,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: $primary_color-300 $bg-color;
+  scrollbar-color: $primary_color $bg-color;
 
   &::-webkit-scrollbar {
     width: 10px;
