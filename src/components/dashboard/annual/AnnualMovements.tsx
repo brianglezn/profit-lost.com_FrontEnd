@@ -7,6 +7,8 @@ import { Dialog } from 'primereact/dialog';
 import FormCategoryRemove from "./FormCategoryRemove";
 import FormCategoryEdit from "./FormCategoryEdit";
 
+import "./AnnualMovements.scss";
+
 type Transaction = {
     category: string;
     amount: number;
@@ -113,7 +115,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
     };
 
     return (
-        <div className="annualReport__category-table">
+        <div className="annual__categories-table">
             {isLoading ? (
                 <ProgressBar mode="indeterminate" style={{ height: '6px' }}></ProgressBar>
             ) : (
@@ -122,7 +124,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         <Column field="Category" header="Category" sortable style={{ width: '55%' }}></Column>
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
-                            <div className="category__table-options">
+                            <div className="annual__categories-options">
                                 <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>
                                     delete
                                 </span>
@@ -137,6 +139,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         onHide={() => setDeleteDialogVisible(false)}
                         style={{ width: '40vw' }}
                         header="Remove Category"
+                        className="custom_dialog"
                         modal
                         draggable={false}>
                         {categoryToDelete && (
@@ -156,6 +159,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         onHide={() => setEditDialogVisible(false)}
                         style={{ width: '40vw' }}
                         header="Edit Category Name"
+                        className="custom_dialog"
                         modal
                         draggable={false}>
                         {categoryToEdit && (

@@ -7,6 +7,8 @@ import { Dialog } from 'primereact/dialog';
 import FormMovementsEdit from './FormMovementsEdit';
 import FormMovementsRemove from './FormMovementsRemove';
 
+import "./MovementsTable.scss"
+
 type Transaction = {
     _id: string;
     date: string;
@@ -74,7 +76,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
     };
 
     return (
-        <div className="movements__movements-table">
+        <div className="movements__table">
             {isDataEmpty || data.length === 0 ? (
                 <>
                     <p>No data available for this month.</p>
@@ -90,8 +92,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                     paginator
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    rows={10}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
+                    rows={15}
                 >
                     <Column expander style={{ width: '5%' }} />
                     <Column field="description" header="Description" sortable style={{ width: '50%' }} />
@@ -112,6 +113,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                 onHide={() => setEditDialogVisible(false)}
                 style={{ width: '40vw' }}
                 header="Edit Transaction"
+                className="custom_dialog"
                 modal
                 draggable={false}>
                 {selectedTransaction && <FormMovementsEdit
@@ -127,6 +129,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                 onHide={() => setDeleteDialogVisible(false)}
                 style={{ width: '40vw' }}
                 header="Delete Transaction"
+                className="custom_dialog"
                 modal
                 draggable={false}>
                 {selectedTransaction && (

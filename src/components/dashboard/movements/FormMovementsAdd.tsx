@@ -3,7 +3,7 @@ import { Toast } from 'primereact/toast';
 import { Calendar } from 'primereact/calendar';
 import { Dropdown } from 'primereact/dropdown';
 
-import './FormMovements.css';
+import './FormMovements.scss';
 
 interface Category {
     _id: string;
@@ -62,7 +62,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
             return;
         }
 
-        if (!/^\-?\d+(\.\d{0,2})?$/.test(amount)) {
+        if (!/^-?\d+(\.\d{0,2})?$/.test(amount)) {
             toast.current?.show({
                 severity: 'warn',
                 summary: 'Validation Error',
@@ -122,14 +122,40 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
         <>
             <Toast ref={toast} position="bottom-right" />
             <form onSubmit={handleSubmit} className="formMovements">
-                <Calendar value={date} dateFormat="dd/mm/yy" className="form-calendar" onChange={(e) => setDate(e.value ? new Date(e.value) : null)} placeholder="Date" showTime required />
-                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
-                <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
-                <Dropdown value={category} options={categories} onChange={(e) => setCategory(e.value)} optionLabel="name" placeholder="Select a category" className="formMovements-category" required />
+                <Calendar
+                    value={date}
+                    dateFormat="dd/mm/yy"
+                    className="form-calendar"
+                    onChange={(e) => setDate(e.value ? new Date(e.value) : null)}
+                    placeholder="Date"
+                    showTime
+                    required
+                />
+                <input
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                />
+                <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Amount"
+                    step="0.01"
+                    required />
+                <Dropdown
+                    value={category}
+                    options={categories}
+                    onChange={(e) => setCategory(e.value)}
+                    optionLabel="name" placeholder="Select a category"
+                    className="formMovements-category"
+                    required
+                />
                 <button type="submit" className="form-button">Add Movement</button>
             </form>
         </>
     );
-};
+}
 
 export default FormMovementsAdd;

@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from 'primereact/dialog';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
 
-import "./Movements.css";
-
 import MovementsPie from "../../components/dashboard/movements/MovementsPie";
 import MovementsChart from "../../components/dashboard/movements/MovementsChart";
 import MovementsTable from "../../components/dashboard/movements/MovementsTable";
 import FormMovementsAdd from "../../components/dashboard/movements/FormMovementsAdd";
+
+import "./Movements.scss";
 
 interface Movement {
   _id: string;
@@ -51,28 +51,28 @@ function Movements() {
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
   const [open, setOpen] = useState<boolean>(false);
 
+  const fetchMovementsData = useCallback(async (token: string) => {
+    if (!token) return;
+    try {
+      const movementsData = await getAllMovements(token);
+      const years = new Set<string>(movementsData.map((m: Movement) => new Date(m.date).getFullYear().toString()));
+      setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
+
+      const movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
+      movementsFiltered.sort((a: Movement, b: Movement) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+      setDataGraph(movementsFiltered);
+    } catch (error) {
+      console.error('Error fetching movements data:', error);
+    }
+  }, [year, month]);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       fetchMovementsData(token);
     }
-  }, [year, month]);
-
-  const fetchMovementsData = async (token: string) => {
-    if (!token) return;
-    try {
-      const movementsData = await getAllMovements(token);
-      const years = new Set<string>(movementsData.map((movement: Movement) => new Date(movement.date).getFullYear().toString()));
-      setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
-
-      let movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
-      movementsFiltered.sort((a: Movement, b: Movement) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-      setDataGraph(movementsFiltered);
-    } catch (error: any) {
-      console.error('Error fetching movements data:', error.message);
-    }
-  };
+  }, [fetchMovementsData]);
 
   const reloadData = async () => {
     const token = localStorage.getItem('token');
@@ -120,25 +120,24 @@ function Movements() {
   const handleCloseModal = () => setOpen(false);
 
   return (
-    <>
-      <section className="movements">
-        <div className="movements__containerMain">
-          <div className="movements__containerMain-selector">
-            <Dropdown
-              value={year}
-              options={yearsWithData.map(year => ({ label: year, value: year }))}
-              onChange={(e) => setYear(e.value)}
-              placeholder={year}
-            />
-            <Dropdown
-              value={month}
-              options={monthOptions}
-              onChange={(e) => setMonth(e.value)}
-              placeholder={month}
-              style={{ maxHeight: 'none' }}
-            />
-          </div>
-
+    <section className="movements">
+      <div className="movements__main">
+        <div className="movements__main-selector">
+          <Dropdown
+            value={year}
+            options={yearsWithData.map(year => ({ label: year, value: year }))}
+            onChange={(e) => setYear(e.value)}
+            placeholder={year}
+          />
+          <Dropdown
+            value={month}
+            options={monthOptions}
+            onChange={(e) => setMonth(e.value)}
+            placeholder={month}
+            style={{ maxHeight: 'none' }}
+          />
+        </div>
+        <div className="movements__charts-container">
           <MovementsPie
             incomeData={incomeData}
             expensesData={expensesData}
@@ -146,49 +145,49 @@ function Movements() {
           />
 
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
-
-          <div className="movements__containerMain-balance">
-            <div className="movements__balance income">
-              <span className="material-symbols-rounded no-select">download</span>
-              <p>{formattedBalanceIncome}</p>
-            </div>
-            <div className="movements__balance expenses">
-              <span className="material-symbols-rounded no-select">upload</span>
-              <p>-{formattedBalanceExpenses}</p>
-            </div>
-            <div className="movements__balance edbita">
-              <span
-                className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
-                  ? "negative"
-                  : "positive"
-                  }`}
-              >
-                savings
-              </span>
-              <p>{formattedBalanceFinal}</p>
-            </div>
+        </div>
+        <div className="movements__main-balance">
+          <div className="movements__balance income">
+            <span className="material-symbols-rounded no-select">download</span>
+            <p>{formattedBalanceIncome}</p>
           </div>
-          <div className="movements__containerMain-movements">
-            <div className="movements__movements-text">
-              <p>Movements</p>
-              <span className="material-symbols-rounded no-select" onClick={handleOpenModal} >new_window</span>
-              <Dialog
-                visible={open}
-                onHide={handleCloseModal}
-                style={{ width: '40vw' }}
-                header="New movement"
-                modal
-                draggable={false}>
-                <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} />
-              </Dialog>
-            </div>
-
-            <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} reloadData={reloadData} />
-
+          <div className="movements__balance expenses">
+            <span className="material-symbols-rounded no-select">upload</span>
+            <p>-{formattedBalanceExpenses}</p>
+          </div>
+          <div className="movements__balance edbita">
+            <span
+              className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
+                ? "negative"
+                : "positive"
+                }`}
+            >
+              savings
+            </span>
+            <p>{formattedBalanceFinal}</p>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+
+      <div className="movements__data">
+        <div className="movements__data-text">
+          <p>Movements</p>
+          <span className="material-symbols-rounded no-select" onClick={handleOpenModal} >new_window</span>
+          <Dialog
+            visible={open}
+            onHide={handleCloseModal}
+            style={{ width: '40vw' }}
+            className="custom_dialog"
+            header="New movement"
+            modal
+            draggable={false}>
+            <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} />
+          </Dialog>
+        </div>
+        <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} reloadData={reloadData} />
+      </div>
+
+    </section>
   );
 }
 

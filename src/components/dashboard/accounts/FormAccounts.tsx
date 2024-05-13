@@ -1,4 +1,4 @@
-import "./FormAccounts.css";
+import "./FormAccounts.scss";
 
 function FormAccounts() {
 

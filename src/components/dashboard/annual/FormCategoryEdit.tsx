@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Toast } from 'primereact/toast';
 
-import './FormCategory.css';
+import './FormCategory.scss';
 
 interface FormCategoryEditProps {
     categoryId: string;
@@ -92,7 +92,11 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         <>
             <Toast ref={toast} position="bottom-right" />
             <form className="formCategories" onSubmit={handleEditCategory}>
-                <input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
+                <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    autoFocus
+                />
                 <button type="submit" className="form-button">Save</button>
             </form>
         </>

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Toast } from 'primereact/toast';
 import { Calendar } from 'primereact/calendar';
 import { Dropdown } from 'primereact/dropdown';
-import './FormMovements.css';
+
+import './FormMovements.scss';
 
 interface Category {
   _id: string;
@@ -70,7 +71,7 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
       return;
     }
 
-    if (!/^\-?\d+(\.\d{0,2})?$/.test(amount)) {
+    if (!/^-?\d+(\.\d{0,2})?$/.test(amount)) {
       toast.current?.show({
         severity: 'warn',
         summary: 'Validation Error',
@@ -136,8 +137,21 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
           placeholder="Date"
           required
         />
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
+          required
+        />
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Amount"
+          step="0.01"
+          required
+        />
         <Dropdown
           className="formMovements-category"
           value={category}

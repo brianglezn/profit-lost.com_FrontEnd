@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { useAuth } from '../../context/AuthContext';
 import { Toast } from 'primereact/toast';
 
 import Footer from '../../components/landing/Footer';
 
-import './authForms.css';
+import './authForms.scss';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -78,21 +78,19 @@ function Login() {
   };
 
   return (
-    <>
+    <div className='authForms'>
       <Toast ref={toast} position="top-center" />
-      <header className="header">
-        <div className="header__container_login">
-          <Link to="/" className="header__logo no-select">
-            <img
-              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
-              alt="logo"
-            />
-          </Link>
-        </div>
+      <header className="auth__header">
+        <a href="/" className="no-select">
+          <img
+            src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+            alt="logo"
+          />
+        </a>
       </header>
 
       <div className="container__form">
-        <form className="form__box" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <h2 className="form__title">Log in</h2>
           <input
             className="form__email"
@@ -121,9 +119,7 @@ function Login() {
               </span>
             </button>
           </div>
-          <Link to="/forgot-password" className="form__forgot">
-            Forgot password?
-          </Link>
+          <a href="/forgot-password" className="form__forgot">Forgot password?</a>
           <button
             className="form__submit"
             type="submit"
@@ -134,15 +130,15 @@ function Login() {
 
           <p className="form__link">
             Don&apos;t have an account?
-            <Link to="/register" className="form__link--color">
+            <a href="/register" className="form__link--color">
               Sign up
-            </Link>
+            </a>
           </p>
         </form>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

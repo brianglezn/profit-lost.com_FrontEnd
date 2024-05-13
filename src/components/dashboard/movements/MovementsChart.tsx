@@ -1,5 +1,7 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
+import "./MovementsChart.scss"
+
 interface MovementsProps {
     dataGraph: {
         month: string;
@@ -11,15 +13,11 @@ interface MovementsProps {
 }
 
 function MovementsChart(props: MovementsProps) {
-
     const { isDataEmpty, dataGraph } = props;
-
-    const incomeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-400').trim();
-    const expensesColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-800').trim();
 
     return (
         <>
-            <div className="movements__containerMain-chart">
+            <div className="movements__chart">
                 {isDataEmpty ? (
                     <span className="material-symbols-rounded no-select">
                         mobiledata_off
@@ -42,8 +40,8 @@ function MovementsChart(props: MovementsProps) {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="Income" fill={incomeColor} />
-                            <Bar dataKey="Expenses" fill={expensesColor} />
+                            <Bar dataKey="Income" fill={"#ff8e38"} />
+                            <Bar dataKey="Expenses" fill={"#9d300f"} />
                         </BarChart>
                     </ResponsiveContainer>)}
             </div>

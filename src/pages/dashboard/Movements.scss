@@ -1,0 +1,138 @@
+@import '../../../variables';
+
+.movements {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  .movements__main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+
+    .movements__main-selector {
+      display: flex;
+      justify-content: space-evenly;
+      flex-grow: 1;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .movements__main-balance {
+      flex-basis: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+
+      .income,
+      .expenses,
+      .edbita {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        gap: 20px;
+        width: 30%;
+        height: 4rem;
+        border-radius: 20px;
+        padding: 20px 0;
+        box-shadow: $shadow_color 0px 1px 4px;
+        background-color: $text_color-white;
+
+        span {
+          font-size: 3rem;
+        }
+
+        p {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .movements__charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .movements__data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 0;
+    border-radius: 20px;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background-color: $text_color-white;
+
+    .movements__data-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      margin-bottom: 20px;
+
+      p {
+        font-weight: bold;
+      }
+
+      span {
+        cursor: pointer;
+
+        &:hover {
+          color: $primary_color;
+        }
+      }
+    }
+
+
+  }
+
+  @media (max-width: 768px) {
+    .movements__main {
+      .movements__charts-container {
+        flex-direction: column;
+        align-content: center;
+      }
+
+      .movements__main-balance {
+        .movements__balance {
+          span {
+            font-size: 2.2rem;
+          }
+
+          p {
+            font-size: 1.1rem;
+
+          }
+        }
+
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .movements__main {
+      .movements__main-balance {
+        flex-direction: column;
+
+        .movements__balance {
+          width: 100%;
+
+          p {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+}

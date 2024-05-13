@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
+import "./AnnualChart.scss";
+
 interface Movement {
     date: string;
     description: string;
@@ -13,9 +15,6 @@ interface ChartDataItem {
     Income: number;
     Expenses: number;
 }
-
-const incomeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-400').trim();
-const expensesColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-800').trim();
 
 function AnnualChart({ year }: { year: string }) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
@@ -60,7 +59,7 @@ function AnnualChart({ year }: { year: string }) {
     }, [year]);
 
     return (
-        <div className="annualReport__containerMain-chart">
+        <div className="annual__chart">
             {chartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart
@@ -76,8 +75,8 @@ function AnnualChart({ year }: { year: string }) {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="Income" fill={incomeColor} />
-                        <Bar dataKey="Expenses" fill={expensesColor} />
+                        <Bar dataKey="Income" fill={"#ff8e38"} />
+                        <Bar dataKey="Expenses" fill={"#9d300f"} />
                     </BarChart>
                 </ResponsiveContainer>
             ) : (

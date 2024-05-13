@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Toast } from "primereact/toast";
 
-import "./FormMovements.css";
+import "./FormMovements.scss";
 
 type Transaction = {
     _id: string;
@@ -12,7 +12,7 @@ type Transaction = {
 };
 
 interface FormMovementsRemoveProps {
-    transaction: Transaction; // Ahora pasamos el objeto completo
+    transaction: Transaction;
     onRemove: () => void;
 }
 

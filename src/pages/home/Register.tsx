@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Footer from '../../components/landing/Footer';
 
-import './authForms.css';
+import './authForms.scss';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -53,16 +53,14 @@ function Register() {
 
 
   return (
-    <>
-      <header className="header">
-        <div className="header__container_register">
-          <Link to="/" className="header__logo no-select">
-            <img
-              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
-              alt="logo"
-            />
-          </Link>
-        </div>
+    <div className='authForms'>
+      <header className="auth__header">
+        <a href="/" className="header__logo no-select">
+          <img
+            src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+            alt="logo"
+          />
+        </a>
       </header>
 
       <div className="container__form">
@@ -132,15 +130,15 @@ function Register() {
 
           <p className="form__link">
             Already have an account?
-            <Link to="/login" className="form__link--color">
+            <a href="/login" className="form__link--color">
               Sign in
-            </Link>
+            </a>
           </p>
         </form>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

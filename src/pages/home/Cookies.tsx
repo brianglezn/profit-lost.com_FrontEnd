@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 import Footer from "../../components/landing/Footer";
 
-import "./Cookies.css";
+import "./Cookies.scss";
 
 function Cookies() {
   return (
-    <>
+    <div className="cookies">
       <Link to="/" className="backHome no-select">
         --HOME
       </Link>
@@ -70,7 +70,7 @@ function Cookies() {
         </p>
       </section>
       <Footer />
-    </>
+    </div>
   );
 }
 

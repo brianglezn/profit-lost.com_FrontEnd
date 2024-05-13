@@ -1,0 +1,105 @@
+@import 'variables';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: 4rem;
+
+  .footer__container-top {
+    display: flex;
+    min-width: 90%;
+
+    .footer__img {
+      flex: 1;
+
+      img {
+        object-fit: contain;
+        max-height: 12rem;
+      }
+    }
+
+    .footer__links {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+
+      .footer__links-left {
+        img {
+          object-fit: cover;
+          max-height: 10rem;
+          border-radius: 20px;
+          margin-right: 1rem;
+          box-shadow: $primary_color-600 0px 3px 2px, $text_color-grey 0px 1px 5px;
+        }
+      }
+
+      .footer__links-right {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+
+        b {
+          color: $primary_color;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+
+        .footer__links-right-rrss {
+          display: flex;
+          gap: 5px;
+
+          svg {
+            height: 2rem;
+            width: 2rem;
+            color: $bg-color;
+            background-color: $primary_color;
+            padding: 5px;
+            border-radius: 7px;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+
+            &:hover {
+              cursor: pointer;
+              background-color: $primary_color-600;
+              transition-timing-function: ease;
+              transition-duration: 0.5s;
+              transform: scale(0.9);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer__container-bottom {
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+
+    a {
+      padding-left: 0.2rem;
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .footer__container-top {
+      flex-direction: column;
+
+      .footer__img {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+}

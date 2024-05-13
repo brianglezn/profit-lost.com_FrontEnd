@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-import "./Footer.css";
+import "./Footer.scss";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,7 +6,7 @@ function Footer() {
   return (
     <>
       <footer className="footer">
-        <div className="footer__container1">
+        <div className="footer__container-top">
           <div className="footer__img no-select">
             <img
               src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost.svg"
@@ -16,16 +14,16 @@ function Footer() {
             />
           </div>
           <div className="footer__links">
-            <div className="footer__links__1 no-select">
+            <div className="footer__links-left no-select">
               <img
                 src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/img/brian.jpg"
                 alt="brian gonzalez novoa"
               />
             </div>
-            <div className="footer__links__2">
+            <div className="footer__links-right">
               <b>Brian González Novoa</b>
               <p>Web Developer</p>
-              <div className="footer__links__2-rrss no-select">
+              <div className="footer__links-right-rrss no-select">
                 <a
                   href="https://www.linkedin.com/in/brianglezn/"
                   target="_blank"
@@ -105,9 +103,9 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer__container2">
+        <div className="footer__container-bottom">
           <p>
-            ©{currentYear} Profit&Lost •<Link to="/cookies">Cookies</Link>
+            ©{currentYear} Profit&Lost •<a href="/cookies">Cookies</a>
           </p>
         </div>
       </footer>

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Toast } from 'primereact/toast';
 
-import './FormCategory.css';
+import './FormCategory.scss';
 
 function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
     const [newCategory, setNewCategory] = useState('');
@@ -63,12 +63,7 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
                     onChange={handleNewCategoryChange}
                     className="w-full"
                 />
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Save
-                </button>
+                <button type="submit" className="form-button">Save</button>
             </form>
         </>
     );

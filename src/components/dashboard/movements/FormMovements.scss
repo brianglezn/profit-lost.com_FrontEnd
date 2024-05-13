@@ -1,0 +1,81 @@
+@import '../../../../variables';
+
+.formMovements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 15px;
+
+  .formMovements-category,
+  .form-calendar {
+    border: 0;
+    width: 70%;
+    background-color: $text_color-white;
+    border-radius: 10px;
+    padding: 0.3rem 0 0.3rem 0.8rem;
+    margin: 5px 0;
+    transition: border-color, box-shadow 0.3s ease-in-out;
+    outline: none;
+    box-shadow: 0 0.4rem $surface-700;
+
+    :focus {
+      outline: none;
+      border-color: $primary_color;
+      box-shadow: 0 0.4rem $primary_color;
+    }
+
+    .p-inputtext {
+      background-color: inherit;
+      border: 0;
+      padding: 0.55rem 0;
+      margin: 0;
+      transition: none;
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  input {
+    background-color: $text_color-white;
+    border: 0;
+    width: 70%;
+    border-radius: 10px;
+    padding: 0.8rem;
+    transition: border-color, box-shadow 0.3s ease-in-out;
+    outline: none;
+    box-shadow: 0 0.4rem $surface-700;
+
+    :focus {
+      outline: none;
+      border-color: $primary_color;
+      box-shadow: 0 0.4rem $primary_color;
+    }
+  }
+
+  .p-dropdown-trigger-icon {
+    fill: $surface-300;
+  }
+
+  @media (max-width: 768px) {
+
+    input,
+    .formMovements-category,
+    .form-calendar {
+      width: 98%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 98%;
+
+    input,
+    .formMovements-category,
+    .form-calendar {
+      width: 100%;
+    }
+  }
+}

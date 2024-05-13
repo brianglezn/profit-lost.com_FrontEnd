@@ -1,0 +1,147 @@
+@import '../variables';
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  background-color: $bg-color;
+  color: $text_color-grey;
+  font-family: "Rubik", sans-serif;
+  scroll-behavior: smooth;
+  min-height: 100%;
+  overflow-y: scroll;
+
+  ::selection {
+    background-color: $primary_color-light;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $primary_color-300 $bg-color;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary_color;
+    border-radius: 15px;
+    border: 2px solid $bg-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary_color-600;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  .form-button {
+    background-color: $primary_color;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    color: $text_color-white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: $primary_color-600;
+      color: $text_color-white;
+      transform: scale(1.03);
+    }
+  }
+
+  button[type="submit"] {
+    background-color: $primary_color;
+    color: $text_color-white;
+    padding: 3%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s;
+    box-shadow: 0 0.4rem $primary_color-600;
+    opacity: 0.8;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: $primary_color;
+      font-weight: bold;
+      box-shadow: 0 0.4rem $primary_color-600;
+      opacity: 1;
+    }
+
+    &:active {
+      transform: translateY(5px);
+      box-shadow: $primary_color-600 0px 3px 2px,
+        $text_color-grey 0px 3px 5px;
+    }
+  }
+
+  a {
+    color: $primary_color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary_color-600;
+      cursor: pointer;
+    }
+  }
+
+  .negative {
+    color: $negative-color;
+  }
+
+  .positive {
+    color: $positive-color;
+  }
+
+  .no-select {
+    user-select: none;
+  }
+
+  .income span {
+    color: $primary-color-400;
+  }
+
+  .expenses span {
+    color: $primary-color-800;
+  }
+}
+
+/* Rechart */
+.recharts-default-tooltip {
+  border-radius: 15px;
+}
+
+@media (max-width: 960px) {
+  .p-dialog {
+    width: 70vw !important;
+  }
+
+  .p-toast-bottom-right {
+    top: 10px !important;
+    bottom: auto !important;
+    right: 0 !important;
+  }
+
+  .p-paginator .p-dropdown.p-component {
+    display: none;
+  }
+
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 480px) {
+  .custom_dialog {
+    width: 90% !important;
+  }
+}

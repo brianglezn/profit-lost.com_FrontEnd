@@ -1,0 +1,22 @@
+@import "../../../../variables";
+
+.movements__chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: 180px;
+    width: 40%;
+    height: 22rem;
+    padding: 1rem 0;
+    border-radius: 20px;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background-color: $text_color-white;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+
+    @media (max-width: 480px) {
+    }
+}

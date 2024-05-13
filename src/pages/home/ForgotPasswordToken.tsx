@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { Link } from 'react-router-dom';
 
 import Footer from '../../components/landing/Footer';
 
-import './authForms.css';
+import './authForms.scss';
 
 function ForgotPasswordToken() {
     const [token, setToken] = useState('');
@@ -47,17 +46,15 @@ function ForgotPasswordToken() {
     };
 
     return (
-        <>
-            <header className="header">
-                <div className="header__container_register">
-                    <Link to="/" className="header__logo no-select">
-                        <img
-                            src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
-                            alt="logo"
-                            style={{ maxWidth: '150px' }}
-                        />
-                    </Link>
-                </div>
+        <div className='authForms'>
+            <header className="auth__header">
+                <a href="/" className="header__logo no-select">
+                    <img
+                        src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+                        alt="logo"
+                        style={{ maxWidth: '150px' }}
+                    />
+                </a>
             </header>
 
             <div className="container__form">
@@ -93,7 +90,7 @@ function ForgotPasswordToken() {
 
                     <button className="form__submit" type="submit" disabled={isLoading}>
                         {isLoading ? (
-                            <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" />
+                            <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary"/>
                         ) : (
                             "Reset Password"
                         )}
@@ -102,7 +99,7 @@ function ForgotPasswordToken() {
             </div>
 
             <Footer />
-        </>
+        </div>
     );
 }
 

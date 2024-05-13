@@ -1,0 +1,19 @@
+@import '../../../../variables';
+
+.annual__chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 22rem;
+    padding-top: 1rem;
+    border-radius: 20px;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background-color: $text_color-white;
+
+    .material-symbols-rounded {
+        text-align: center;
+        font-size: 80px;
+        opacity: 0.3;
+    }
+}

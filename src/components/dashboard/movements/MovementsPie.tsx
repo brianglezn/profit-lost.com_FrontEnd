@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+
+import "./MovementsPie.scss"
 
 interface MovementData {
     name: string;
@@ -23,29 +24,19 @@ interface LabelProps {
 }
 
 const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPieProps) => {
-    const [colors, setColors] = useState<string[]>([]);
 
-    useEffect(() => {
-        const colorVars = [
-            '--primary-color-200',
-            '--primary-color-300',
-            '--primary-color-500',
-            '--primary-color-900',
-            '--primary-color-100',
-            '--primary-color-600',
-            '--primary-color-700',
-            '--primary-color-800',
-            '--primary-color-400',
-        ];
-
-        const fetchColors = () => {
-            const root = document.documentElement;
-            const newColors = colorVars.map(varName => getComputedStyle(root).getPropertyValue(varName).trim());
-            setColors(newColors);
-        };
-
-        fetchColors();
-    }, []);
+    const colorVars = [
+        '#ffd5a8',
+        '#ffb771',
+        '#ef5107',
+        '#7e2a10',
+        '#ffecd4',
+        '#c84f03',
+        '#c63b08',
+        '#fff7ed',
+        '#9d300f',
+        '#ff8e38',
+    ];
 
     const renderCustomizedLabel = ({
         cx,
@@ -75,8 +66,8 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
     };
 
     return (
-        <>
-            <div className="movements__containerMain-category">
+        <div className="movements__pie-container">
+            <div className="movements__pie-category">
                 {isDataEmpty ? (
                     <span className="material-symbols-rounded no-select">
                         mobiledata_off
@@ -94,7 +85,7 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
                                 dataKey="value"
                             >
                                 {incomeData.map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                                    <Cell key={`cell-${index}`} fill={colorVars[index % colorVars.length]} />
                                 ))}
                             </Pie>
                             <Tooltip />
@@ -102,7 +93,7 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
                     </ResponsiveContainer>
                 )}
             </div>
-            <div className="movements__containerMain-category">
+            <div className="movements__pie-category">
                 {isDataEmpty ? (
                     <span className="material-symbols-rounded no-select">
                         mobiledata_off
@@ -121,7 +112,7 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
                                 nameKey="name"
                             >
                                 {expensesData.map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                                    <Cell key={`cell-${index}`} fill={colorVars[index % colorVars.length]} />
                                 ))}
                             </Pie>
                             <Tooltip />
@@ -129,7 +120,7 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
                     </ResponsiveContainer>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 

@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
+
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
 
@@ -11,7 +12,7 @@ import Cookies from "./pages/home/Cookies";
 import ForgotPassword from "./pages/home/ForgotPassword";
 import ForgotPasswordToken from "./pages/home/ForgotPasswordToken";
 
-import './themes/PL_Light_Orange.css';
+import './App.scss';
 
 interface PrivateRouteProps {
   children: React.ReactNode;

@@ -4,7 +4,7 @@ import { Avatar } from 'primereact/avatar';
 
 import { getUserByToken } from '../../api/users/getUserByToken';
 
-import "./Profile.css";
+import "./Profile.scss";
 
 interface User {
   username: string;

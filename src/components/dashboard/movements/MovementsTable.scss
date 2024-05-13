@@ -1,0 +1,23 @@
+@import "../../../../variables";
+
+.movements__table {
+    padding: 0 2rem 1rem;
+
+    .p-datatable.p-component {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .movements__table-options {
+        display: flex;
+
+        :hover {
+            cursor: pointer;
+            color: $primary_color;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 .5rem 1rem;
+    }
+}

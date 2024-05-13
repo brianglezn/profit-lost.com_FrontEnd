@@ -3,10 +3,10 @@ import { Dropdown } from 'primereact/dropdown';
 import { Dialog } from 'primereact/dialog';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 
-import AccountItem from "../../components/dashboard/AccountItem.tsx";
-import FormAccounts from "../../components/dashboard/FormAccounts.tsx";
+import AccountItem from "../../components/dashboard/accounts/AccountItem.tsx";
+import FormAccounts from "../../components/dashboard/accounts/FormAccounts.tsx";
 
-import "./Accounts.css";
+import "./Accounts.scss";
 
 type AccountConfiguration = {
   backgroundColor: string;
@@ -26,8 +26,12 @@ type DataAccount = {
   AccountId: string;
 };
 
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+type MonthData = {
+  name: string;
+  [key: string]: number | string;
+};
 
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function Accounts() {
   const currentDate = new Date();
@@ -69,9 +73,7 @@ function Accounts() {
 
   const chartData = useMemo(() => {
     return monthNames.map(month => {
-      const monthData: { name: string;[key: string]: any } = {
-        name: month,
-      };
+      const monthData: MonthData = { name: month };
 
       dataAccounts.forEach(account => {
         const totalForMonthAndAccount = account.records
@@ -84,7 +86,9 @@ function Accounts() {
       });
 
       const totalForMonth = Object.keys(monthData).reduce((acc, key) => {
-        if (key !== 'name') acc += monthData[key];
+        if (key !== 'name' && typeof monthData[key] === 'number') {
+          acc += monthData[key] as number;
+        }
         return acc;
       }, 0);
 
@@ -126,14 +130,14 @@ function Accounts() {
   return (
     <>
       <section className="accounts">
-        <div className="movements__containerMain">
+        <div className="accounts__main">
           <Dropdown
             value={year}
             options={uniqueYears.map(year => ({ label: year, value: year }))}
             onChange={(e) => setYear(e.value)}
             placeholder={year}
           />
-          <div className="accounts__main">
+          <div className="accounts__main-chart">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 width={500}
@@ -164,8 +168,8 @@ function Accounts() {
           </div>
 
         </div>
-        <div className="accounts__containerAccounts">
-          <div className="accounts__accounts-text">
+        <div className="accounts__container">
+          <div className="accounts__container-text">
             <p>Accounts</p>
             <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
             <Dialog
@@ -178,7 +182,7 @@ function Accounts() {
               <FormAccounts />
             </Dialog>
           </div>
-          <div className="accounts__accounts-container">{accountItems}</div>
+          <div className="accounts__container-items">{accountItems}</div>
         </div>
       </section>
     </>

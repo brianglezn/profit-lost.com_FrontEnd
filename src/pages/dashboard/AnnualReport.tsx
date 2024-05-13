@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Dialog } from 'primereact/dialog';
 
-import AnnualChart from "../../components/dashboard/AnnualChart";
-import AnnualMovements from "../../components/dashboard/AnnualMovements";
-import FormCategoryAdd from "../../components/dashboard/FormCategoryAdd";
+import AnnualChart from "../../components/dashboard/annual/AnnualChart";
+import AnnualMovements from "../../components/dashboard/annual/AnnualMovements";
+import FormCategoryAdd from "../../components/dashboard/annual/FormCategoryAdd";
 
-import "./AnnualReport.css";
+import "./AnnualReport.scss";
 
 interface Movement {
   date: string;
@@ -93,7 +93,6 @@ function AnnualReport() {
     fetchData();
   }, [year]);
 
-
   const formattedBalanceIncome = formatCurrency(balanceIncome);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
@@ -102,59 +101,60 @@ function AnnualReport() {
   const handleCloseModal = () => setOpen(false);
 
   return (
-    <>
-      <section className="annualReport">
-        <div className="annualReport__containerMain">
-          <div className="annualReport__containerMain-year">
-            <Dropdown
-              value={year}
-              options={yearsWithData.map(year => ({ label: year, value: year }))}
-              onChange={(e) => setYear(e.value)}
-              placeholder={year}
-              className="w-full"
-            />
-          </div>
-          <AnnualChart year={year} />
-          <div className="annualReport__containerMain-balance">
-            <div className="annualReport__balance income">
-              <span className="material-symbols-rounded no-select">download</span>
-              <p>{formattedBalanceIncome}</p>
-            </div>
-            <div className="annualReport__balance expenses">
-              <span className="material-symbols-rounded no-select">upload</span>
-              <p>-{formattedBalanceExpenses}</p>
-            </div>
-            <div className="annualReport__balance edbita">
-              <span
-                className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
-                  ? "negative"
-                  : "positive"
-                  }`}
-              >
-                savings
-              </span>
-              <p>{formattedBalanceFinal}</p>
-            </div>
-          </div>
-        </div >
-        <div className="annualReport__containerCategory">
-          <div className="annualReport__category-text">
-            <p>Categories</p>
-            <span className="material-symbols-rounded button-action no-select" onClick={handleOpenModal}>new_window</span>
-            <Dialog
-              visible={open}
-              onHide={handleCloseModal}
-              style={{ width: '40vw' }}
-              header="New Category"
-              modal
-              draggable={false}>
-              <FormCategoryAdd onCategoryAdded={reloadCategories} />
-            </Dialog>
-          </div>
-          <AnnualMovements year={year} reloadFlag={reloadFlag}/>
+    <section className="annualReport">
+
+      <div className="annualReport__main">
+        <div className="annualReport__main-year">
+          <Dropdown
+            value={year}
+            options={yearsWithData.map(year => ({ label: year, value: year }))}
+            onChange={(e) => setYear(e.value)}
+            placeholder={year}
+            className="w-full"
+          />
         </div>
-      </section>
-    </>
+        <AnnualChart year={year} />
+        <div className="annualReport__main-balance">
+          <div className="annualReport__balance income">
+            <span className="material-symbols-rounded no-select">download</span>
+            <p>{formattedBalanceIncome}</p>
+          </div>
+          <div className="annualReport__balance expenses">
+            <span className="material-symbols-rounded no-select">upload</span>
+            <p>-{formattedBalanceExpenses}</p>
+          </div>
+          <div className="annualReport__balance edbita">
+            <span
+              className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
+                ? "negative"
+                : "positive"
+                }`}
+            >
+              savings
+            </span>
+            <p>{formattedBalanceFinal}</p>
+          </div>
+        </div>
+      </div >
+
+      <div className="annualReport__categories">
+        <div className="annualReport__categories-text">
+          <p>Categories</p>
+          <span className="material-symbols-rounded button-action no-select" onClick={handleOpenModal}>new_window</span>
+          <Dialog
+            visible={open}
+            onHide={handleCloseModal}
+            style={{ width: '40vw' }}
+            header="New Category"
+            className="custom_dialog"
+            modal
+            draggable={false}>
+            <FormCategoryAdd onCategoryAdded={reloadCategories} />
+          </Dialog>
+        </div>
+        <AnnualMovements year={year} reloadFlag={reloadFlag} />
+      </div>
+    </section>
   );
 }
 

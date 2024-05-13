@@ -3,7 +3,7 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
 import { Toast } from 'primereact/toast';
 
-import "./Dashboard.css";
+import "./Dashboard.scss";
 
 const DashHome = React.lazy(() => import('./DashHome'));
 const Accounts = React.lazy(() => import('./Accounts'));
@@ -27,7 +27,7 @@ function getCurrentDate() {
     day: "numeric",
   };
 
-  const today = new Date().toLocaleDateString("en-EN", options);
+  const today = new Date().toLocaleDateString("es-ES", options);
   return today;
 }
 
@@ -66,12 +66,6 @@ function Dashboard() {
     fetchUser();
   }, []);
 
-  const avatarCommonStyle = {
-    color: 'var(--text-color-white)',
-    width: '40px',
-    height: '40px'
-  };
-
   const wakeUpBackend = async () => {
     toast.current?.show({
       severity: 'info',
@@ -95,118 +89,111 @@ function Dashboard() {
   };
 
   return (
-    <>
+    <div className="dashboard">
       <Toast ref={toast} position="bottom-right" />
-      <section className="dashboard">
-        <div className="dashboard__container-header">
-          <header className="dashboard__header">
-            <span className="spiner material-symbols-rounded" onClick={wakeUpBackend}>
-              sync
-            </span>
-            <p className="dashboard__header-date">{currentDate}</p>
-            <Avatar
-              onClick={() => handleMenuItemClick("Profile")}
-              label={user?.name?.[0] ?? ''}
-              icon="pi pi-user"
-              size="xlarge"
-              style={{ ...avatarCommonStyle }}
-              className="dashboard__header-avatar"
+      <div className="dashboard__header">
+        <header className="dashboard__header-container">
+          <span className="spiner material-symbols-rounded" onClick={wakeUpBackend}>
+            sync
+          </span>
+          <p className="dashboard__header-date">{currentDate}</p>
+          <Avatar
+            onClick={() => handleMenuItemClick("Profile")}
+            label={user?.name?.[0] ?? ''}
+            size="xlarge"
+            className="dashboard__header-avatar"
+          />
+        </header>
+      </div>
+
+      <div className="dashboard__nav">
+        <nav className="dashboard__nav-container no-select">
+          <div className="dashboard__nav-img">
+            <img
+              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+              alt="logo"
             />
-          </header>
-        </div>
+          </div>
+          <div className="dashboard__nav-nav">
+            <ul>
+              <li
+                onClick={() => handleMenuItemClick("Dashboard")}
+                className={activeSection === "Dashboard" ? "active" : ""}
+              >
+                <span className="material-symbols-rounded">home</span>
+                DashBoard
+              </li>
+              <li
+                onClick={() => handleMenuItemClick("AnnualReport")}
+                className={activeSection === "AnnualReport" ? "active" : ""}
+              >
+                <span className="material-symbols-rounded">
+                  bar_chart_4_bars
+                </span>
+                Annual Report
+              </li>
+              <li
+                onClick={() => handleMenuItemClick("Movements")}
+                className={activeSection === "Movements" ? "active" : ""}
+              >
+                <span className="material-symbols-rounded">receipt_long</span>
+                Movements
+              </li>
+              <li
+                onClick={() => handleMenuItemClick("Accounts")}
+                className={activeSection === "Accounts" ? "active" : ""}
+              >
+                <span className="material-symbols-rounded">credit_card</span>
+                Accounts
+              </li>
+              <li
+                onClick={() => handleMenuItemClick("Goals")}
+                className={activeSection === "Goals" ? "active" : ""}
+              >
+                <span className="material-symbols-rounded">inventory</span>
+                Goals
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-        {/* NAV PC */}
-        <div className="dashboard__container-nav">
-          <nav className="dashboard__nav no-select">
-            <div className="dashboard__nav-img">
-              <img
-                src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
-                alt="logo"
-              />
-            </div>
-            <div className="dashboard__nav-nav">
-              <ul>
-                <li
-                  onClick={() => handleMenuItemClick("Dashboard")}
-                  className={activeSection === "Dashboard" ? "active" : ""}
-                >
-                  <span className="material-symbols-rounded">home</span>
-                  DashBoard
-                </li>
-                <li
-                  onClick={() => handleMenuItemClick("AnnualReport")}
-                  className={activeSection === "AnnualReport" ? "active" : ""}
-                >
-                  <span className="material-symbols-rounded">
-                    bar_chart_4_bars
-                  </span>
-                  Annual Report
-                </li>
-                <li
-                  onClick={() => handleMenuItemClick("Movements")}
-                  className={activeSection === "Movements" ? "active" : ""}
-                >
-                  <span className="material-symbols-rounded">receipt_long</span>
-                  Movements
-                </li>
-                <li
-                  onClick={() => handleMenuItemClick("Accounts")}
-                  className={activeSection === "Accounts" ? "active" : ""}
-                >
-                  <span className="material-symbols-rounded">credit_card</span>
-                  Accounts
-                </li>
-                <li
-                  onClick={() => handleMenuItemClick("Goals")}
-                  className={activeSection === "Goals" ? "active" : ""}
-                >
-                  <span className="material-symbols-rounded">inventory</span>
-                  Goals
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+      <div className="dashboard__container-nav2">
+        <nav className="dashboard__nav2">
+          <span
+            onClick={() => handleMenuItemClick("Dashboard")}
+            className={activeSection === "Dashboard" ? "active" : ""}
+          >
+            <span className="material-symbols-rounded">home</span>
+          </span>
+          <span
+            onClick={() => handleMenuItemClick("AnnualReport")}
+            className={activeSection === "AnnualReport" ? "active" : ""}
+          >
+            <span className="material-symbols-rounded">bar_chart_4_bars</span>
+          </span>
+          <span
+            onClick={() => handleMenuItemClick("Movements")}
+            className={activeSection === "Movements" ? "active" : ""}
+          >
+            <span className="material-symbols-rounded">receipt_long</span>
+          </span>
+          <span
+            onClick={() => handleMenuItemClick("Accounts")}
+            className={activeSection === "Accounts" ? "active" : ""}
+          >
+            <span className="material-symbols-rounded">credit_card</span>
+          </span>
+          <span
+            onClick={() => handleMenuItemClick("Goals")}
+            className={activeSection === "Goals" ? "active" : ""}
+          >
+            <span className="material-symbols-rounded">inventory</span>
+          </span>
+        </nav>
+      </div>
 
-        {/* FIN NAV PC */}
-
-        {/* NAV RESPONSIVE */}
-        <div className="dashboard__container-nav2">
-          <nav className="dashboard__nav2">
-            <span
-              onClick={() => handleMenuItemClick("Dashboard")}
-              className={activeSection === "Dashboard" ? "active" : ""}
-            >
-              <span className="material-symbols-rounded">home</span>
-            </span>
-            <span
-              onClick={() => handleMenuItemClick("AnnualReport")}
-              className={activeSection === "AnnualReport" ? "active" : ""}
-            >
-              <span className="material-symbols-rounded">bar_chart_4_bars</span>
-            </span>
-            <span
-              onClick={() => handleMenuItemClick("Movements")}
-              className={activeSection === "Movements" ? "active" : ""}
-            >
-              <span className="material-symbols-rounded">receipt_long</span>
-            </span>
-            <span
-              onClick={() => handleMenuItemClick("Accounts")}
-              className={activeSection === "Accounts" ? "active" : ""}
-            >
-              <span className="material-symbols-rounded">credit_card</span>
-            </span>
-            <span
-              onClick={() => handleMenuItemClick("Goals")}
-              className={activeSection === "Goals" ? "active" : ""}
-            >
-              <span className="material-symbols-rounded">inventory</span>
-            </span>
-          </nav>
-        </div>
-        {/* FIN NAV RESPONSIVE */}
-
+      <section className="dashboard__content">
         <Suspense fallback={
           <div style={{
             display: 'flex',
@@ -216,17 +203,15 @@ function Dashboard() {
           }}>
             <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />
           </div>}>
-          <section className="dashboard__container">
-            {activeSection === "Dashboard" && <DashHome />}
-            {activeSection === "AnnualReport" && <AnnualReport />}
-            {activeSection === "Movements" && <Movements />}
-            {activeSection === "Accounts" && <Accounts />}
-            {activeSection === "Profile" && <Profile />}
-            {activeSection === "Goals" && <Goals />}
-          </section>
+          {activeSection === "Dashboard" && <DashHome />}
+          {activeSection === "AnnualReport" && <AnnualReport />}
+          {activeSection === "Movements" && <Movements />}
+          {activeSection === "Accounts" && <Accounts />}
+          {activeSection === "Profile" && <Profile />}
+          {activeSection === "Goals" && <Goals />}
         </Suspense>
       </section>
-    </>
+    </div>
   );
 }
 
