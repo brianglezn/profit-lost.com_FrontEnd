@@ -13,6 +13,7 @@ export const getUserByToken = async (token: string) => {
 
         const user = await response.json();
         return user;
+        
     } catch (error) {
         console.error('Error fetching user information:', error);
         throw new Error('Failed to fetch user information');
