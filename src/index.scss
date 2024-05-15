@@ -77,7 +77,7 @@ body {
     }
   }
 
-  button[type="submit"] {
+  button.custom-btn {
     background-color: $primary_color;
     color: $text_color-white;
     padding: 15px;

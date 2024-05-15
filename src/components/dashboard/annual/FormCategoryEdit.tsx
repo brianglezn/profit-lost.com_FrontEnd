@@ -107,8 +107,8 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                     autoFocus
                 />
                 <div className="formCategories-buttons">
-                    <button type="submit">Save</button>
-                    <button type="submit" onClick={handleRemoveCategory}>Remove</button>
+                    <button type="submit" className="custom-btn">Save</button>
+                    <button type="submit" className="custom-btn" onClick={handleRemoveCategory}>Remove</button>
                 </div>
             </form>
         </>

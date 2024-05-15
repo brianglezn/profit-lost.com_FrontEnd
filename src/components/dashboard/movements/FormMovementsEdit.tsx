@@ -161,7 +161,7 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
           placeholder="Select a category"
           required
         />
-        <button type="submit" className="form-button">Update Movement</button>
+        <button type="submit" className="custom-btn">Update Movement</button>
       </form>
     </>
   );

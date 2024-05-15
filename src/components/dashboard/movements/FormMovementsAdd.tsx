@@ -152,7 +152,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                     className="formMovements-category"
                     required
                 />
-                <button type="submit" className="form-button">Add Movement</button>
+                <button type="submit" className="custom-btn">Add Movement</button>
             </form>
         </>
     );

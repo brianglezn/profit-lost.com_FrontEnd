@@ -87,7 +87,7 @@ function ForgotPasswordToken() {
                         onChange={(e) => setConfirmNewPassword(e.target.value)}
                     />
 
-                    <button className="form__submit" type="submit" disabled={isLoading}>
+                    <button className="custom-btn" type="submit" disabled={isLoading}>
                         {isLoading ? (
                             <span className="custom-loader"></span>
                         ) : (

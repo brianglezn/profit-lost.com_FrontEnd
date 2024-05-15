@@ -120,7 +120,7 @@ function Login() {
           </div>
           <a href="/forgot-password" className="form__forgot">Forgot password?</a>
           <button
-            className="form__submit"
+            className="custom-btn"
             type="submit"
             disabled={isLoading}
           >

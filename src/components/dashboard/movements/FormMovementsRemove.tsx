@@ -82,7 +82,7 @@ const FormMovementsRemove: React.FC<FormMovementsRemoveProps> = ({ transaction, 
                 <p><strong>Category:</strong> {transaction.category}</p>
                 <p><strong>Amount:</strong> {formatCurrency(transaction.amount)}</p>
             </div>
-            <button type="submit" onClick={handleRemove} className="form-button">Yes, delete it</button>
+            <button type="submit" onClick={handleRemove} className="custom-btn">Yes, delete it</button>
         </div>
     );
 };

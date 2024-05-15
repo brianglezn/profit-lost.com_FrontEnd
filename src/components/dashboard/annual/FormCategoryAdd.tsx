@@ -58,7 +58,7 @@ function FormCategoryAdd({ onCategoryAdded, onClose }: { onCategoryAdded: () => 
                     onChange={handleNewCategoryChange}
                     className="w-full"
                 />
-                <button type="submit">Save</button>
+                <button type="submit" className="custom-btn">Save</button>
             </form>
         </>
     );
