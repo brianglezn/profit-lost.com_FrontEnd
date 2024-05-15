@@ -16,18 +16,28 @@
 
   input {
     background-color: $text_color-white;
-    width: 70%;
-    border: 0;
-    border-radius: 7px;
-    padding: 0.8rem;
-    transition: border-color, box-shadow 0.3s ease-in-out;
-    outline: none;
-    box-shadow: 0 0.4rem $surface-700;
+    width: 85%;
+  }
 
-    :focus {
-      outline: none;
-      border-color: $primary_color;
-      box-shadow: 0 0.4rem $primary_color;
+  .formCategories-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  button {
+    width: 35%;
+  }
+
+  @media (max-width: 480px) {
+    input {
+      width: 85%;
+    }
+
+    button {
+      width: 40%;
     }
   }
+
 }

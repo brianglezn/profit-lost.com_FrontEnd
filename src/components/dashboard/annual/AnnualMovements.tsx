@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ProgressBar } from 'primereact/progressbar';
-import { Dialog } from 'primereact/dialog';
+import { Sidebar } from 'primereact/sidebar';
 
-import FormCategoryRemove from "./FormCategoryRemove";
 import FormCategoryEdit from "./FormCategoryEdit";
 
 import "./AnnualMovements.scss";
@@ -42,13 +41,10 @@ function formatCurrency(value: number) {
 const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
-    const [categoryToDelete, setCategoryToDelete] = useState<CategoryBalance | null>(null);
-    const [editDialogVisible, setEditDialogVisible] = useState(false);
+    const [sidebarVisible, setSidebarVisible] = useState(false);
     const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
 
-
-    const fetchDataAndCalculateBalances = async () => {
+    const fetchDataAndCalculateBalances = useCallback(async () => {
         setIsLoading(true);
         const token = localStorage.getItem('token');
         if (!token) {
@@ -91,11 +87,11 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [year]);
 
     useEffect(() => {
         fetchDataAndCalculateBalances();
-    }, [year, reloadFlag]);
+    }, [fetchDataAndCalculateBalances, reloadFlag]);
 
     const balanceTemplate = (rowData: CategoryBalance) => {
         return (
@@ -105,13 +101,9 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
         );
     };
 
-    const deleteCategory = (category: CategoryBalance) => {
-        setCategoryToDelete(category);
-        setDeleteDialogVisible(true);
-    };
     const editCategory = (category: CategoryBalance) => {
         setCategoryToEdit(category);
-        setEditDialogVisible(true);
+        setSidebarVisible(true);
     };
 
     return (
@@ -125,58 +117,39 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
                             <div className="annual__categories-options">
-                                <span className="material-symbols-rounded no-select button-action" onClick={() => deleteCategory(rowData)}>
-                                    delete
-                                </span>
                                 <span className="material-symbols-rounded no-select button-action" onClick={() => editCategory(rowData)}>
                                     edit
                                 </span>
                             </div>
                         )} style={{ width: '5%', textAlign: 'center' }}></Column>
                     </DataTable>
-                    <Dialog
-                        visible={deleteDialogVisible}
-                        onHide={() => setDeleteDialogVisible(false)}
-                        style={{ width: '40vw' }}
-                        header="Remove Category"
-                        className="custom_dialog"
-                        modal
-                        draggable={false}>
-                        {categoryToDelete && (
-                            <FormCategoryRemove
-                                categoryId={categoryToDelete.id.toString()}
-                                categoryName={categoryToDelete.Category}
-                                onRemove={() => {
-                                    const updatedCategories = categories.filter(cat => cat.id !== categoryToDelete.id);
-                                    setCategories(updatedCategories);
-                                }}
-                                onClose={() => setDeleteDialogVisible(false)}
-                            />
-                        )}
-                    </Dialog>
-                    <Dialog
-                        visible={editDialogVisible}
-                        onHide={() => setEditDialogVisible(false)}
-                        style={{ width: '40vw' }}
-                        header="Edit Category Name"
-                        className="custom_dialog"
-                        modal
-                        draggable={false}>
+                    <Sidebar
+                        visible={sidebarVisible}
+                        onHide={() => setSidebarVisible(false)}
+                        position="right"
+                        style={{ width: '500px' }}
+                        className="custom_sidebar"
+                    >
                         {categoryToEdit && (
                             <FormCategoryEdit
                                 categoryId={categoryToEdit.id.toString()}
                                 categoryName={categoryToEdit.Category}
                                 onUpdate={() => {
                                     fetchDataAndCalculateBalances();
+                                    setSidebarVisible(false);
                                 }}
-                                onClose={() => setEditDialogVisible(false)}
+                                onRemove={() => {
+                                    const updatedCategories = categories.filter(cat => cat.id !== categoryToEdit.id);
+                                    setCategories(updatedCategories);
+                                    setSidebarVisible(false);
+                                }}
+                                onClose={() => setSidebarVisible(false)}
                             />
                         )}
-                    </Dialog>
+                    </Sidebar>
                 </>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 }
 

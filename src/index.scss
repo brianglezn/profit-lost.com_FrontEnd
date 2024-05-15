@@ -59,10 +59,28 @@ body {
     }
   }
 
+  input {
+    min-width: 70%;
+    background-color: $bg-color;
+    margin-bottom: 6%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0.4rem $surface-700;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $surface-400;
+    }
+  }
+
   button[type="submit"] {
     background-color: $primary_color;
     color: $text_color-white;
-    padding: 3%;
+    padding: 15px;
     border: none;
     border-radius: 10px;
     cursor: pointer;

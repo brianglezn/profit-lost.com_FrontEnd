@@ -3,15 +3,15 @@ export const removeCategory = async (token: string, categoryId: string) => {
         const response = await fetch(`https://profit-lost-backend.onrender.com/categories/remove/${categoryId}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${token}`,
-            },
+                'Authorization': `Bearer ${token}`
+            }
         });
 
         if (!response.ok) {
             throw new Error('Failed to remove category');
         }
 
-        return 'Category removed successfully';
+        return true;
     } catch (error) {
         console.error('Error removing category:', error);
         throw new Error('Failed to remove category');

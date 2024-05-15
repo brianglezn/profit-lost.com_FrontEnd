@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
-import { Dialog } from 'primereact/dialog';
+import { Sidebar } from 'primereact/sidebar';
 
 import AnnualChart from "../../components/dashboard/annual/AnnualChart";
 import AnnualMovements from "../../components/dashboard/annual/AnnualMovements";
@@ -31,9 +31,9 @@ function AnnualReport() {
   const [reloadFlag, setReloadFlag] = useState(false);
   const [balanceIncome, setBalanceIncome] = useState(0);
   const [balanceExpenses, setBalanceExpenses] = useState(0);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const reloadCategories = async () => {
+  const reloadCategories = useCallback(async () => {
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('No authentication token found. Please log in.');
@@ -55,12 +55,12 @@ function AnnualReport() {
       console.error('Error fetching years data:', error);
     }
 
-    setReloadFlag(!reloadFlag);
-  };
+    setReloadFlag(prevFlag => !prevFlag);
+  }, []);
 
   useEffect(() => {
     reloadCategories();
-  }, []);
+  }, [reloadCategories]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -141,16 +141,15 @@ function AnnualReport() {
         <div className="annualReport__categories-text">
           <p>Categories</p>
           <span className="material-symbols-rounded button-action no-select" onClick={handleOpenModal}>new_window</span>
-          <Dialog
+          <Sidebar
             visible={open}
+            position="right"
             onHide={handleCloseModal}
-            style={{ width: '40vw' }}
-            header="New Category"
-            className="custom_dialog"
-            modal
-            draggable={false}>
-            <FormCategoryAdd onCategoryAdded={reloadCategories} />
-          </Dialog>
+            style={{ width: '450px' }}
+            className="custom_sidebar"
+          >
+            <FormCategoryAdd onCategoryAdded={reloadCategories} onClose={handleCloseModal} />
+          </Sidebar>
         </div>
         <AnnualMovements year={year} reloadFlag={reloadFlag} />
       </div>

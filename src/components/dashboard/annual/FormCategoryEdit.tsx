@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import { Toast } from 'primereact/toast';
 
+import { editCategory } from "../../../api/categories/editCategory";
+import { removeCategory } from "../../../api/categories/removeCategory";
+
 import './FormCategory.scss';
 
 interface FormCategoryEditProps {
@@ -8,18 +11,17 @@ interface FormCategoryEditProps {
     categoryName: string;
     onUpdate: () => void;
     onClose: () => void;
+    onRemove: () => void;
 }
 
-const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categoryName, onUpdate, onClose }) => {
+const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categoryName, onUpdate, onClose, onRemove }) => {
     const [name, setName] = useState(categoryName);
     const toast = useRef<Toast>(null);
 
     const handleEditCategory = async (e: React.FormEvent) => {
         e.preventDefault();
 
-
         const token = localStorage.getItem('token');
-
         if (!token) {
             console.error('Authentication token not found');
             toast.current?.show({
@@ -31,51 +33,18 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
             return;
         }
 
-        const editUrl = `https://profit-lost-backend.onrender.com/categories/edit/${categoryId}`;
-
         try {
-            const editResponse = await fetch(editUrl, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name }),
+            await editCategory(token, categoryId, name);
+            toast.current?.show({
+                severity: 'success',
+                summary: 'Category Edited',
+                detail: `The category has been successfully edited.`,
+                life: 3000,
             });
-
-            if (editResponse.ok) {
-                const contentType = editResponse.headers.get("Content-Type");
-                if (contentType && contentType.includes("application/json")) {
-                    toast.current?.show({
-                        severity: 'success',
-                        summary: 'Category Edited',
-                        detail: `The category has been successfully edited.`,
-                        life: 3000,
-                    });
-                } else {
-                    toast.current?.show({
-                        severity: 'success',
-                        summary: 'Category Edited',
-                        detail: `The category has been successfully edited`,
-                        life: 3000,
-                    });
-                }
-            } else {
-                const errorText = await editResponse.text();
-                console.error('Error during category edition:', errorText);
-                toast.current?.show({
-                    severity: 'error',
-                    summary: 'Error Editing Category',
-                    detail: errorText,
-                    life: 5000,
-                });
-            }
-
             setTimeout(() => {
                 onClose();
                 onUpdate();
-            }, 2000);
-
+            }, 500);
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
             console.error('Catch block error during category edition:', errorMessage);
@@ -88,20 +57,62 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         }
     };
 
+    const handleRemoveCategory = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('Authentication token not found');
+            toast.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Authentication token not found. Please log in.',
+                life: 3000
+            });
+            return;
+        }
+
+        try {
+            await removeCategory(token, categoryId);
+            toast.current?.show({
+                severity: 'success',
+                summary: 'Category Removed',
+                detail: `The category "${categoryName}" has been successfully removed.`,
+                life: 3000,
+            });
+            setTimeout(() => {
+                onClose();
+                onRemove();
+            }, 500);
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
+            console.error('Error during category deletion:', errorMessage);
+            toast.current?.show({
+                severity: 'error',
+                summary: 'Error Removing Category',
+                detail: errorMessage,
+                life: 5000,
+            });
+        }
+    };
+
     return (
         <>
             <Toast ref={toast} position="bottom-right" />
             <form className="formCategories" onSubmit={handleEditCategory}>
+                <h2>Edit Category</h2>
                 <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     autoFocus
                 />
-                <button type="submit" className="form-button">Save</button>
+                <div className="formCategories-buttons">
+                    <button type="submit">Save</button>
+                    <button type="submit" onClick={handleRemoveCategory}>Remove</button>
+                </div>
             </form>
         </>
     );
 };
 
 export default FormCategoryEdit;
-

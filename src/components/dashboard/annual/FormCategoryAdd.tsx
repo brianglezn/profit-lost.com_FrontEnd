@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Toast } from 'primereact/toast';
 
+import { addCategory } from "../../../api/categories/addCategory";
+
 import './FormCategory.scss';
 
-function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
+function FormCategoryAdd({ onCategoryAdded, onClose }: { onCategoryAdded: () => void, onClose: () => void }) {
     const [newCategory, setNewCategory] = useState('');
     const toast = useRef<Toast>(null);
 
@@ -22,19 +24,7 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
         }
 
         try {
-            const response = await fetch('https://profit-lost-backend.onrender.com/categories/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ name: newCategory })
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || `Error: ${response.status}`);
-            }
+            await addCategory(token, newCategory);
 
             setNewCategory('');
             toast.current?.show({
@@ -45,6 +35,10 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
             });
 
             onCategoryAdded();
+
+            setTimeout(() => {
+                onClose();
+            }, 500);
 
         } catch (error) {
             console.error('Failed to save the category:', error);
@@ -57,13 +51,14 @@ function FormCategoryAdd({ onCategoryAdded }: { onCategoryAdded: () => void }) {
         <>
             <Toast ref={toast} position="bottom-right" />
             <form className="formCategories" onSubmit={handleSaveCategory}>
+                <h2>New Category</h2>
                 <input
                     placeholder="name"
                     value={newCategory}
                     onChange={handleNewCategoryChange}
                     className="w-full"
                 />
-                <button type="submit" className="form-button">Save</button>
+                <button type="submit">Save</button>
             </form>
         </>
     );

@@ -34,24 +34,6 @@
         color: $primary_color;
       }
 
-      input {
-        min-width: 70%;
-        background-color: $bg-color;
-        margin-bottom: 6%;
-        border: none;
-        border-radius: 15px;
-        padding: 3%;
-        box-shadow: 0 0.4rem $surface-700;
-
-        &:focus {
-          outline: none;
-        }
-
-        &::placeholder {
-          color: $surface-400;
-        }
-      }
-
       .form__password-container {
         position: relative;
         display: flex;
@@ -71,32 +53,6 @@
           background: none;
           border: none;
           cursor: pointer;
-        }
-      }
-
-      button[type="submit"] {
-        background-color: $primary_color;
-        color: $text_color-white;
-        padding: 3%;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: 0.1s;
-        box-shadow: 0 0.4rem $primary_color-600;
-        opacity: 0.8;
-        margin-top: 1rem;
-
-        &:hover {
-          background-color: $primary_color;
-          font-weight: bold;
-          box-shadow: 0 0.4rem $primary_color-600;
-          opacity: 1;
-        }
-
-        &:active {
-          transform: translateY(5px);
-          box-shadow: $primary_color-600 0px 3px 2px,
-            $text_color-grey 0px 3px 5px;
         }
       }
 
