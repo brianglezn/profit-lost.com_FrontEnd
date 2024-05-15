@@ -1,5 +1,5 @@
-import React, { Suspense, SetStateAction, useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Suspense, useState, useEffect, useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
 import { Toast } from 'primereact/toast';
@@ -40,9 +40,13 @@ function Dashboard() {
   const toast = useRef<Toast>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleMenuItemClick = (sectionName: SetStateAction<string>) => {
+  const handleMenuItemClick = (sectionName: string) => {
     setActiveSection(sectionName);
+    const params = sectionName === "Dashboard" ? {} : { section: sectionName };
+    setSearchParams(params as Record<string, string>);
+    window.scrollTo(0, 0);
   };
 
   const currentDate = getCurrentDate();
@@ -66,6 +70,11 @@ function Dashboard() {
 
     fetchUser();
   }, [navigate]);
+
+  useEffect(() => {
+    const section = searchParams.get("section");
+    setActiveSection(section || "Dashboard");
+  }, [searchParams]);
 
   const wakeUpBackend = async () => {
     toast.current?.show({
