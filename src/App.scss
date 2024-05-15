@@ -916,7 +916,8 @@
 
     .p-dropdown-items-wrapper {
         overflow: auto;
-        max-height: none !important;
+        max-height: 200px;
+        overflow-y: auto;
     }
 
     .p-dropdown-item {

@@ -128,7 +128,7 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
       <Toast ref={toast} position="bottom-right" />
       <form onSubmit={handleSubmit} className="formMovements">
         <Calendar
-          className="form-calendar"
+          className="formMovements-calendar"
           value={date}
           dateFormat="yy-mm-dd"
           showTime

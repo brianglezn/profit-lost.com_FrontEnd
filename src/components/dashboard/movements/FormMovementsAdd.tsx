@@ -125,7 +125,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                 <Calendar
                     value={date}
                     dateFormat="dd/mm/yy"
-                    className="form-calendar"
+                    className="formMovements-calendar"
                     onChange={(e) => setDate(e.value ? new Date(e.value) : null)}
                     placeholder="Date"
                     showTime
@@ -148,7 +148,8 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                     value={category}
                     options={categories}
                     onChange={(e) => setCategory(e.value)}
-                    optionLabel="name" placeholder="Select a category"
+                    optionLabel="name"
+                    placeholder="Select a category"
                     className="formMovements-category"
                     required
                 />
