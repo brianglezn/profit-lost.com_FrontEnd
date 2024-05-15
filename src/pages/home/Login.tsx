@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProgressSpinner } from 'primereact/progressspinner';
 import { useAuth } from '../../context/AuthContext';
 import { Toast } from 'primereact/toast';
 
@@ -125,7 +124,7 @@ function Login() {
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary" /> : "Let's go!"}
+            {isLoading ? <span className="custom-loader"></span> : "Let's go!"}
           </button>
 
           <p className="form__link">

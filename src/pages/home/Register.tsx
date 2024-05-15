@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent } from 'react';
-import { ProgressSpinner } from 'primereact/progressspinner';
 import { useNavigate } from 'react-router-dom';
 
 import Footer from '../../components/landing/Footer';
@@ -125,7 +124,7 @@ function Register() {
 
 
           <button className="form__submit" type="submit" disabled={isLoading}>
-            {isLoading ? <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary" /> : "Let's go!"}
+            {isLoading ? <span className="custom-loader"></span> : "Let's go!"}
           </button>
 
           <p className="form__link">

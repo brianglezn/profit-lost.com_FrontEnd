@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProgressSpinner } from 'primereact/progressspinner';
 
 import Footer from '../../components/landing/Footer';
 
@@ -90,7 +89,7 @@ function ForgotPasswordToken() {
 
                     <button className="form__submit" type="submit" disabled={isLoading}>
                         {isLoading ? (
-                            <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="6" animationDuration=".5s" className="custom-spinner-secondary"/>
+                            <span className="custom-loader"></span>
                         ) : (
                             "Reset Password"
                         )}
