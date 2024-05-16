@@ -169,27 +169,16 @@ body {
   border-radius: 15px;
 }
 
-@media (max-width: 960px) {
-  .p-dialog {
-    width: 70vw !important;
-  }
 
+/* Responsive */
+@media (max-width: 960px) {
   .p-toast-bottom-right {
     top: 10px !important;
     bottom: auto !important;
     right: 0 !important;
   }
-
-  .p-paginator .p-dropdown.p-component {
-    display: none;
-  }
-
 }
 
 @media (max-width: 768px) {}
 
-@media (max-width: 480px) {
-  .custom_dialog {
-    width: 90% !important;
-  }
-}
+@media (max-width: 480px) {}

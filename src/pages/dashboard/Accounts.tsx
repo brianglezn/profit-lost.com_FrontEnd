@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 import AccountItem from "../../components/dashboard/accounts/AccountItem.tsx";
 import FormAccounts from "../../components/dashboard/accounts/FormAccounts.tsx";
+import CustomBarShape from "../../components/CustomBarShape .tsx";
 
 import "./Accounts.scss";
 
@@ -161,6 +162,7 @@ function Accounts() {
                     dataKey={account.accountName}
                     stackId="a"
                     fill={account.configuration.backgroundColor}
+                    shape={<CustomBarShape />}
                   />
                 ))}
               </BarChart>
