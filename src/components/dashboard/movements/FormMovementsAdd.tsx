@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Toast } from 'primereact/toast';
-import { Calendar } from 'primereact/calendar';
 import { Dropdown } from 'primereact/dropdown';
 
 import './FormMovements.scss';
@@ -16,7 +15,7 @@ interface FormMovementsAddProps {
 }
 
 function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
-    const [date, setDate] = useState<Date | null>(null);
+    const [date, setDate] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
     const [category, setCategory] = useState<Category | null>(null);
@@ -72,10 +71,8 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
             return;
         }
 
-        const formattedDate = date ? `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}` : null;
-
         const movementData = {
-            date: formattedDate,
+            date: date ? new Date(date).toISOString() : null,
             description: description.trim() === '' ? '---' : description,
             amount: parseFloat(amount.replace(',', '.')),
             category: category ? category._id : null,
@@ -122,13 +119,13 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
         <>
             <Toast ref={toast} position="bottom-right" />
             <form onSubmit={handleSubmit} className="formMovements">
-                <Calendar
+                <h2>New movement</h2>
+                <input
+                    type="datetime-local"
                     value={date}
-                    dateFormat="dd/mm/yy"
-                    className="formMovements-calendar"
-                    onChange={(e) => setDate(e.value ? new Date(e.value) : null)}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="formMovements-datetime"
                     placeholder="Date"
-                    showTime
                     required
                 />
                 <input
@@ -143,7 +140,8 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Amount"
                     step="0.01"
-                    required />
+                    required
+                />
                 <Dropdown
                     value={category}
                     options={categories}

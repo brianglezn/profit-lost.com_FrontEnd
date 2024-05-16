@@ -30,9 +30,19 @@
     width: 35%;
   }
 
+  @media (max-width: 768px) {
+    input {
+      width: 90%;
+    }
+
+    button {
+      width: 40%;
+    }
+  }
+
   @media (max-width: 480px) {
     input {
-      width: 85%;
+      width: 90%;
     }
 
     button {

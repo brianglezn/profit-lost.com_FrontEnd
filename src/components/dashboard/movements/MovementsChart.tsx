@@ -1,5 +1,7 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
+import CustomBarShape from "../../CustomBarShape ";
+
 import "./MovementsChart.scss"
 
 interface MovementsProps {
@@ -40,8 +42,8 @@ function MovementsChart(props: MovementsProps) {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="Income" fill={"#ff8e38"} />
-                            <Bar dataKey="Expenses" fill={"#9d300f"} />
+                            <Bar dataKey="Income" fill={"#ff8e38"} shape={<CustomBarShape />} />
+                            <Bar dataKey="Expenses" fill={"#9d300f"} shape={<CustomBarShape />} />
                         </BarChart>
                     </ResponsiveContainer>)}
             </div>

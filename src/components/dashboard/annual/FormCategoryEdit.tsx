@@ -100,7 +100,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         <>
             <Toast ref={toast} position="bottom-right" />
             <form className="formCategories" onSubmit={handleEditCategory}>
-                <h2>Edit Category</h2>
+                <h2>Edit category</h2>
                 <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}

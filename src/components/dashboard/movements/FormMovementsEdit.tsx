@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Toast } from 'primereact/toast';
-import { Calendar } from 'primereact/calendar';
 import { Dropdown } from 'primereact/dropdown';
 
 import './FormMovements.scss';
@@ -12,6 +11,7 @@ interface Category {
 
 interface FormMovementsEditProps {
   onEdit: () => void;
+  onRemove: () => void;
   transaction: {
     _id: string;
     date: string;
@@ -21,8 +21,8 @@ interface FormMovementsEditProps {
   };
 }
 
-function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
-  const [date, setDate] = useState<Date | null>(new Date(transaction.date));
+function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditProps) {
+  const [dateTime, setDateTime] = useState<string>(new Date(transaction.date).toISOString().slice(0, 16));
   const [description, setDescription] = useState<string>(transaction.description);
   const [amount, setAmount] = useState<string>(transaction.amount.toString());
   const [category, setCategory] = useState<Category | null>(null);
@@ -81,7 +81,7 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
       return;
     }
 
-    const formattedDate = date ? `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}` : '';
+    const formattedDate = dateTime.replace('T', ' ') + ":00";
 
     try {
       const response = await fetch(`https://profit-lost-backend.onrender.com/movements/edit/${transaction._id}`, {
@@ -123,18 +123,48 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
     }
   };
 
+  const handleRemove = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/remove/${transaction._id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      toast.current?.show({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Transaction removed successfully.',
+        life: 3000
+      });
+      onRemove();
+    } catch (error) {
+      console.error("Error removing the transaction:", error);
+      toast.current?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Failed to remove the transaction.',
+        life: 3000
+      });
+    }
+  };
+
   return (
     <>
       <Toast ref={toast} position="bottom-right" />
       <form onSubmit={handleSubmit} className="formMovements">
-        <Calendar
-          className="formMovements-calendar"
-          value={date}
-          dateFormat="yy-mm-dd"
-          showTime
-          hourFormat="24"
-          onChange={(e) => setDate(e.value ? new Date(e.value) : null)}
-          placeholder="Date"
+        <h2>Edit movement</h2>
+        <input
+          type="datetime-local"
+          className="formMovements-datetime"
+          value={dateTime}
+          onChange={(e) => setDateTime(e.target.value)}
           required
         />
         <input
@@ -161,7 +191,10 @@ function FormMovementsEdit({ onEdit, transaction }: FormMovementsEditProps) {
           placeholder="Select a category"
           required
         />
-        <button type="submit" className="custom-btn">Update Movement</button>
+        <div className="formMovements-buttons">
+          <button type="submit" className="custom-btn">Update Movement</button>
+          <button type="button" className="custom-btn" onClick={handleRemove}>Delete Movement</button>
+        </div>
       </form>
     </>
   );

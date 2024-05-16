@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { ProgressBar } from 'primereact/progressbar';
-import { Dialog } from 'primereact/dialog';
+import { Sidebar } from 'primereact/sidebar';
 
 import FormMovementsEdit from './FormMovementsEdit';
-import FormMovementsRemove from './FormMovementsRemove';
 
 import "./MovementsTable.scss"
 
@@ -45,8 +44,7 @@ function formatDateTime(value: string): string {
 }
 
 function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) {
-    const [editDialogVisible, setEditDialogVisible] = useState(false);
-    const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+    const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
     const [expandedRows, setExpandedRows] = useState({});
 
@@ -67,12 +65,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
 
     const editMovement = (rowData: Transaction) => {
         setSelectedTransaction(rowData);
-        setEditDialogVisible(true);
-    };
-
-    const deleteMovement = (rowData: Transaction) => {
-        setSelectedTransaction(rowData);
-        setDeleteDialogVisible(true);
+        setEditSidebarVisible(true);
     };
 
     return (
@@ -100,7 +93,6 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                     <Column
                         body={(rowData) => (
                             <div className="movements__table-options">
-                                <span className="material-symbols-rounded no-select button-action" onClick={() => deleteMovement(rowData)}>delete</span>
                                 <span className="material-symbols-rounded no-select button-action" onClick={() => editMovement(rowData)}>edit</span>
                             </div>
                         )}
@@ -108,40 +100,25 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                     />
                 </DataTable>
             )}
-            <Dialog
-                visible={editDialogVisible}
-                onHide={() => setEditDialogVisible(false)}
-                style={{ width: '40vw' }}
-                header="Edit Transaction"
-                className="custom_dialog"
-                modal
-                draggable={false}>
+            <Sidebar
+                visible={editSidebarVisible}
+                onHide={() => setEditSidebarVisible(false)}
+                style={{ width: '450px' }}
+                className="custom_sidebar"
+                position="right"
+                modal>
                 {selectedTransaction && <FormMovementsEdit
                     transaction={selectedTransaction}
                     onEdit={() => {
                         reloadData();
-                        setEditDialogVisible(false);
+                        setEditSidebarVisible(false);
+                    }}
+                    onRemove={() => {
+                        reloadData();
+                        setEditSidebarVisible(false);
                     }}
                 />}
-            </Dialog>
-            <Dialog
-                visible={deleteDialogVisible}
-                onHide={() => setDeleteDialogVisible(false)}
-                style={{ width: '40vw' }}
-                header="Delete Transaction"
-                className="custom_dialog"
-                modal
-                draggable={false}>
-                {selectedTransaction && (
-                    <FormMovementsRemove
-                        transaction={selectedTransaction}
-                        onRemove={() => {
-                            reloadData();
-                            setDeleteDialogVisible(false);
-                        }}
-                    />
-                )}
-            </Dialog>
+            </Sidebar>
         </div>
     );
 }

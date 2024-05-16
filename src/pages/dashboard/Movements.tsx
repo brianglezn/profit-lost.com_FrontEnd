@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from "primereact/dropdown";
-import { Dialog } from 'primereact/dialog';
+import { Sidebar } from 'primereact/sidebar';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
@@ -173,22 +173,21 @@ function Movements() {
         <div className="movements__data-text">
           <p>Movements</p>
           <span className="material-symbols-rounded no-select" onClick={handleOpenModal} >new_window</span>
-          <Dialog
+          <Sidebar
             visible={open}
             onHide={handleCloseModal}
-            style={{ width: '40vw' }}
-            className="custom_dialog"
-            header="New movement"
-            modal
-            draggable={false}>
+            position="right"
+            style={{ width: '450px' }}
+            className="custom_sidebar"
+            modal>
             <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} />
-          </Dialog>
+          </Sidebar>
         </div>
         <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} reloadData={reloadData} />
       </div>
-
     </section>
   );
 }
 
 export default Movements;
+
