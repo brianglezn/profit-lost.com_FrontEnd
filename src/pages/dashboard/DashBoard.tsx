@@ -1,8 +1,9 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
 import { Sidebar } from 'primereact/sidebar';
+import { Menu } from 'primereact/menu';
 import { toast } from 'react-hot-toast';
 
 import { getUserByToken } from "../../api/users/getUserByToken";
@@ -14,6 +15,8 @@ const Accounts = React.lazy(() => import('./Accounts'));
 const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
 const Goals = React.lazy(() => import('./Goals'));
+const SplitEasy = React.lazy(() => import('./SplitEasy'));
+const Notes = React.lazy(() => import('./Notes'));
 
 interface User {
   username: string;
@@ -40,6 +43,7 @@ function Dashboard() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const menu = useRef<Menu>(null);
 
   const handleMenuItemClick = (sectionName: string) => {
     setActiveSection(sectionName);
@@ -118,6 +122,24 @@ function Dashboard() {
     }, 1000);
   };
 
+  const menuItems = [
+    {
+      label: 'Goals',
+      icon: <span className="material-symbols-rounded">inventory</span>,
+      command: () => handleMenuItemClick('Goals')
+    },
+    {
+      label: 'SplitEasy',
+      icon: <span className="material-symbols-rounded">climate_mini_split</span>,
+      command: () => handleMenuItemClick('SplitEasy')
+    },
+    {
+      label: 'Notes',
+      icon: <span className="material-symbols-rounded">note_alt</span>,
+      command: () => handleMenuItemClick('Notes')
+    }
+  ];
+
   return (
     <>
       <div className="dashboard">
@@ -183,6 +205,20 @@ function Dashboard() {
                   <span className="material-symbols-rounded">inventory</span>
                   Goals
                 </li>
+                <li
+                  onClick={() => handleMenuItemClick("SplitEasy")}
+                  className={activeSection === "SplitEasy" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">climate_mini_split</span>
+                  SplitEasy
+                </li>
+                <li
+                  onClick={() => handleMenuItemClick("Notes")}
+                  className={activeSection === "Notes" ? "active" : ""}
+                >
+                  <span className="material-symbols-rounded">note_alt</span>
+                  Notes
+                </li>
               </ul>
             </div>
           </nav>
@@ -215,11 +251,12 @@ function Dashboard() {
               <span className="material-symbols-rounded">credit_card</span>
             </span>
             <span
-              onClick={() => handleMenuItemClick("Goals")}
-              className={activeSection === "Goals" ? "active" : ""}
+              onClick={(e) => menu.current?.toggle(e)}
+              className={activeSection === "Goals" || activeSection === "SplitEasy" || activeSection === "Notes" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">inventory</span>
+              <span className="material-symbols-rounded">menu</span>
             </span>
+            <Menu model={menuItems} popup ref={menu} id="popup_menu" />
           </nav>
         </div>
 
@@ -238,6 +275,8 @@ function Dashboard() {
             {activeSection === "Movements" && <Movements />}
             {activeSection === "Accounts" && <Accounts />}
             {activeSection === "Goals" && <Goals />}
+            {activeSection === "SplitEasy" && <SplitEasy />}
+            {activeSection === "Notes" && <Notes />}
           </Suspense>
         </section>
       </div>

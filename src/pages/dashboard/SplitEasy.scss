@@ -1,0 +1,13 @@
+@import '../../../variables';
+
+.splitEasy {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem 2rem;
+
+  @media (max-width: 768px) {}
+
+  @media (max-width: 480px) {}
+
+}

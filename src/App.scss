@@ -5253,8 +5253,8 @@
     .p-overlaypanel {
         background: $bg-color;
         color: $text_color-grey;
-        border: 1px solid #304562;
-        border-radius: 15px;
+        border: 0;
+        border-radius: 10px;
         box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
     }
 
@@ -5971,7 +5971,7 @@
         padding: 0.25rem 0;
         background: $bg-color;
         color: $text_color-grey;
-        border: 1px solid #304562;
+        border: 0;
         border-radius: 15px;
         width: 12.5rem;
     }
@@ -5986,6 +5986,15 @@
         color: $text_color-grey;
         padding: 0.75rem 1rem;
         user-select: none;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        :first-child {
+            margin-right: 15px;
+            color: $text_color-grey;
+        }
     }
 
     .p-menu .p-menuitem>.p-menuitem-content .p-menuitem-link .p-menuitem-text {
@@ -6048,8 +6057,8 @@
     }
 
     .p-menu.p-menu-overlay {
-        background: $bg-color;
-        border: 1px solid #304562;
+        background: $text_color-white;
+        border: 0;
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     }
 
