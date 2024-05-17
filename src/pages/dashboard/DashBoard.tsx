@@ -75,6 +75,22 @@ function Dashboard() {
     setActiveSection(section || "Dashboard");
   }, [searchParams]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const headerContainer = document.querySelector('.dashboard__header-container');
+      if (window.scrollY > 0) {
+        headerContainer?.classList.add('scrolled');
+      } else {
+        headerContainer?.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const wakeUpBackend = async () => {
     toast.promise(
       fetch('https://profit-lost-backend.onrender.com/ping'),

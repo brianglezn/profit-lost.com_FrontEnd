@@ -31,6 +31,7 @@
       border-radius: 20px;
       background-color: $text_color-white;
       box-shadow: $shadow_color 0px 1px 4px;
+      transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 
       span.spiner {
         color: $primary_color;
@@ -101,7 +102,6 @@
           padding: 0;
           margin: 40px 0 0 0;
 
-
           li {
             display: flex;
             align-items: center;
@@ -129,7 +129,6 @@
             &:hover {
               color: $text_color-white;
             }
-
           }
         }
       }
@@ -149,7 +148,6 @@
   }
 
   @media (max-width: 768px) {
-
     display: flex;
     flex-direction: column;
 
@@ -158,6 +156,13 @@
       margin-top: 10px;
       left: 0;
       width: 100%;
+
+      .dashboard__header-container {
+        &.scrolled {
+          background-color: rgba(255, 255, 255, 0.253);
+          backdrop-filter: blur(10px);
+        }
+      }
     }
 
     .dashboard__nav {
@@ -197,7 +202,6 @@
         .active {
           color: $primary_color;
         }
-
       }
     }
 
@@ -205,7 +209,6 @@
       padding: 0 20px;
       margin: 6.3rem 0;
     }
-
   }
 
   @media (max-width: 480px) {
