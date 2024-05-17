@@ -141,7 +141,6 @@ function Movements() {
           <MovementsPie
             incomeData={incomeData}
             expensesData={expensesData}
-            isDataEmpty={isDataEmpty}
           />
 
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
