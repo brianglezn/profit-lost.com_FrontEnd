@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Dropdown } from 'primereact/dropdown';
-import { Dialog } from 'primereact/dialog';
+import { Sidebar } from 'primereact/sidebar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 
 import AccountItem from "../../components/dashboard/accounts/AccountItem.tsx";
-import FormAccounts from "../../components/dashboard/accounts/FormAccounts.tsx";
+import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd.tsx";
+import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit.tsx";
 import CustomBarShape from "../../components/CustomBarShape .tsx";
 
 import "./Accounts.scss";
@@ -39,9 +40,11 @@ function Accounts() {
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
   const [uniqueYears, setUniqueYears] = useState<number[]>([]);
-  const [year, setYear] = React.useState(currentYear.toString());
+  const [year, setYear] = useState(currentYear.toString());
   const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
-  const [open, setOpen] = React.useState(false);
+  const [addSidebarOpen, setAddSidebarOpen] = useState(false);
+  const [editSidebarOpen, setEditSidebarOpen] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState<DataAccount | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -120,13 +123,20 @@ function Accounts() {
           })} €`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
+          onClick={() => handleOpenEditSidebar(account)}
         />
       );
     });
   }, [dataAccounts, year, currentMonthName]);
 
-  const handleOpenModal = () => setOpen(true);
-  const handleCloseModal = () => setOpen(false);
+  const handleOpenAddSidebar = () => setAddSidebarOpen(true);
+  const handleCloseAddSidebar = () => setAddSidebarOpen(false);
+
+  const handleOpenEditSidebar = (account: DataAccount) => {
+    setSelectedAccount(account);
+    setEditSidebarOpen(true);
+  };
+  const handleCloseEditSidebar = () => setEditSidebarOpen(false);
 
   return (
     <>
@@ -168,25 +178,33 @@ function Accounts() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-
         </div>
         <div className="accounts__container">
           <div className="accounts__container-text">
             <p>Accounts</p>
-            <span className="material-symbols-rounded no-select" onClick={handleOpenModal}>new_window</span>
-            <Dialog
-              visible={open}
-              onHide={handleCloseModal}
-              header="Add Category"
-              modal
-              style={{ width: '50vw' }}
+            <span className="material-symbols-rounded no-select" onClick={handleOpenAddSidebar}>new_window</span>
+            <Sidebar
+              visible={addSidebarOpen}
+              onHide={handleCloseAddSidebar}
+              position="right"
+              style={{ width: '500px' }}
+              className="custom-sidebar"
             >
-              <FormAccounts />
-            </Dialog>
+              <FormAccountsAdd />
+            </Sidebar>
           </div>
           <div className="accounts__container-items">{accountItems}</div>
         </div>
       </section>
+      <Sidebar
+        visible={editSidebarOpen}
+        onHide={handleCloseEditSidebar}
+        position="right"
+        style={{ width: '500px' }}
+        className="custom-sidebar"
+      >
+        {selectedAccount && <FormAccountsEdit account={selectedAccount} />}
+      </Sidebar>
     </>
   );
 }

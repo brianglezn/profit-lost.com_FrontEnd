@@ -141,17 +141,19 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                 type="datetime-local"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="formMovements-datetime"
+                className="formMovements-datetime custom-input"
                 placeholder=" "
                 required
             />
             <input
+                className="custom-input"
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
             />
             <input
+                className="custom-input"
                 type="number"
                 value={amount}
                 onChange={handleAmountChange}

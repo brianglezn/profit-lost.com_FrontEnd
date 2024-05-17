@@ -12,7 +12,7 @@ import Cookies from "./pages/home/Cookies";
 import ForgotPassword from "./pages/home/ForgotPassword";
 import ForgotPasswordToken from "./pages/home/ForgotPasswordToken";
 
-import './App.scss';
+import './themes/App_Light.scss';
 
 interface PrivateRouteProps {
   children: React.ReactNode;

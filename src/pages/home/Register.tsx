@@ -73,7 +73,7 @@ function Register() {
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Create an account</h2>
           <input
-            className="form__username"
+            className="form__username auth-input"
             type="text"
             id="username-register"
             placeholder="Username"
@@ -82,7 +82,7 @@ function Register() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
-            className="form__name"
+            className="form__name auth-input"
             type="text"
             id="name-register"
             placeholder="Name"
@@ -91,7 +91,7 @@ function Register() {
             onChange={(e) => setName(e.target.value)}
           />
           <input
-            className="form__surnaname"
+            className="form__surnaname auth-input"
             type="text"
             id="surname-register"
             placeholder="Surname"
@@ -100,7 +100,7 @@ function Register() {
             onChange={(e) => setSurname(e.target.value)}
           />
           <input
-            className="form__email"
+            className="form__email auth-input"
             type="email"
             id="email-register"
             placeholder="Email"
@@ -110,7 +110,7 @@ function Register() {
           />
           <div className="form__password-container">
             <input
-              className="form__password"
+              className="form__password auth-input"
               type={showPassword ? "text" : "password"}
               id="password-register"
               placeholder="Password"

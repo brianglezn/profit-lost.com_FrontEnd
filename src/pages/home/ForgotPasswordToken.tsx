@@ -64,7 +64,7 @@ function ForgotPasswordToken() {
                     <h2 className="form__title">Reset Password</h2>
 
                     <input
-                        className="form__input"
+                        className="form__input auth-input"
                         type="text"
                         placeholder="Verification Code"
                         required
@@ -73,7 +73,7 @@ function ForgotPasswordToken() {
                     />
 
                     <input
-                        className="form__input"
+                        className="form__input auth-input"
                         type="password"
                         placeholder="New Password"
                         required
@@ -82,7 +82,7 @@ function ForgotPasswordToken() {
                     />
 
                     <input
-                        className="form__input"
+                        className="form__input auth-input"
                         type="password"
                         placeholder="Confirm New Password"
                         required

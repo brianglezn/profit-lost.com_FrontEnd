@@ -1,1 +1,106 @@
 @import '../../../../_variables.scss';
+
+.formAccount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 15px;
+
+    p {
+        text-align: center;
+    }
+
+    .colorPiker {
+        width: 90%;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 10px;
+    }
+
+    .formAccount-category {
+        border: 0;
+        width: 90%;
+        background-color: $text_color-white;
+        border-radius: 10px;
+        padding: 0.3rem 0 0.3rem 0.8rem;
+        transition: border-color, box-shadow 0.3s ease-in-out;
+        outline: none;
+
+        :focus {
+            outline: none;
+            border-color: $primary_color;
+            box-shadow: 0 0.4rem $primary_color;
+        }
+
+        .p-inputtext {
+            background-color: inherit;
+            border: 0;
+            padding: 0.55rem 0;
+            margin: 0;
+            transition: none;
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    .dataYear {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 90%;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        background-color: $text_color-white;
+
+        .dataYear-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                flex: 1.5;
+            }
+
+            input {
+                flex: 2;
+                padding: 5px;
+                border-radius: 5px;
+                border: 0.5px solid $surface-800;
+            }
+        }
+    }
+
+    button {
+        width: 35%;
+    }
+
+    @media (max-width: 768px) {
+        button {
+            width: 40%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dataYear {
+            width: 95%;
+        }
+
+        input {
+            width: 95%;
+        }
+
+        .formAccount-category {
+            border: 0;
+            width: 95%;
+        }
+
+        button {
+            width: 40%;
+        }
+    }
+
+}

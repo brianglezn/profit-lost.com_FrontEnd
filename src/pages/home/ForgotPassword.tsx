@@ -53,7 +53,7 @@ function ForgotPassword() {
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Reset Password</h2>
           <input
-            className="form__email"
+            className="form__email auth-input"
             type="email"
             id="email-forgot-password"
             placeholder="Email"

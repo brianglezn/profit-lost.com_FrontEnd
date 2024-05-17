@@ -59,7 +59,7 @@ body {
     }
   }
 
-  input {
+  input.auth-input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -77,6 +77,28 @@ body {
 
     &::placeholder {
       color: $surface-400;
+    }
+  }
+
+  input.custom-input {
+    background-color: $text_color-white;
+    border: 0;
+    width: 90%;
+    border-radius: 10px;
+    padding: 0.8rem;
+    transition: border-color, box-shadow 0.3s ease-in-out;
+    outline: none;
+    box-shadow: 0 0.4rem $surface-700;
+    margin-bottom: 10px;
+
+    :focus {
+      outline: none;
+      border-color: $primary_color;
+      box-shadow: 0 0.4rem $primary_color;
+    }
+
+    @media (max-width: 480px) {
+      width: 95%;
     }
   }
 
@@ -209,6 +231,13 @@ body {
 /* Rechart */
 .recharts-default-tooltip {
   border-radius: 15px;
+}
+
+.recharts-cartesian-grid-horizontal,
+.recharts-cartesian-grid-vertical {
+  line {
+    stroke: #dadada;
+  }
 }
 
 

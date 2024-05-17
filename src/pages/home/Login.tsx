@@ -81,7 +81,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <h2 className="form__title">Log in</h2>
           <input
-            className="form__email"
+            className="form__email auth-input"
             type="email"
             placeholder="E-mail"
             required
@@ -90,7 +90,7 @@ function Login() {
           />
           <div className="form__password-container">
             <input
-              className="form__password"
+              className="form__password auth-input"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               required

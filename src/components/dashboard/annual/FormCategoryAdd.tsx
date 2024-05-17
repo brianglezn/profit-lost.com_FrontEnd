@@ -48,7 +48,7 @@ function FormCategoryAdd({ onCategoryAdded, onClose }: { onCategoryAdded: () => 
                 placeholder="name"
                 value={newCategory}
                 onChange={handleNewCategoryChange}
-                className="w-full"
+                className="custom-input"
             />
             <button type="submit" className="custom-btn">Save</button>
         </form>

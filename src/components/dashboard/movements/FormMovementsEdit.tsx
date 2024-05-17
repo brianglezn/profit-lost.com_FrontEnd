@@ -179,13 +179,14 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             </div>
             <input
                 type="datetime-local"
-                className="formMovements-datetime"
+                className="formMovements-datetime custom-input"
                 value={dateTime}
                 onChange={(e) => setDateTime(e.target.value)}
                 required
             />
             <input
                 type="text"
+                className='custom-input'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
@@ -193,6 +194,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             />
             <input
                 type="number"
+                className='custom-input'
                 value={amount}
                 onChange={handleAmountChange}
                 placeholder="Amount"

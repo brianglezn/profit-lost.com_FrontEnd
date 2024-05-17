@@ -75,6 +75,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         <form className="formCategories" onSubmit={handleEditCategory}>
             <h2>Edit category</h2>
             <input
+                className="custom-input"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 autoFocus
