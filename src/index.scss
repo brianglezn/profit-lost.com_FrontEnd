@@ -60,6 +60,9 @@ body {
   }
 
   input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     min-width: 70%;
     background-color: $bg-color;
     margin-bottom: 20px;
@@ -88,10 +91,10 @@ body {
     box-shadow: 0 0.4rem $primary_color-600;
     opacity: 0.8;
     margin-top: 1rem;
+    font-weight: bold;
 
     &:hover {
       background-color: $primary_color;
-      font-weight: bold;
       box-shadow: 0 0.4rem $primary_color-600;
       opacity: 1;
     }
@@ -113,7 +116,7 @@ body {
     padding-top: 2rem;
 
     p {
-      line-height: 5px;
+      text-align: center;
     }
 
     button.custom-btn {

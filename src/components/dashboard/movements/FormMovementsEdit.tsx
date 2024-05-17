@@ -24,10 +24,11 @@ interface FormMovementsEditProps {
 function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditProps) {
     const [dateTime, setDateTime] = useState<string>(new Date(transaction.date).toISOString().slice(0, 16));
     const [description, setDescription] = useState<string>(transaction.description);
-    const [amount, setAmount] = useState<string>(transaction.amount.toString());
+    const [amount, setAmount] = useState<string>(Math.abs(transaction.amount).toString());
     const [category, setCategory] = useState<Category | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [isIncome, setIsIncome] = useState<boolean>(transaction.amount >= 0);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -58,6 +59,24 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         fetchCategories();
     }, [transaction.category]);
 
+    const handleIncomeClick = () => {
+        setIsIncome(true);
+        setAmount(amount.replace('-', ''));
+    };
+
+    const handleExpenseClick = () => {
+        setIsIncome(false);
+    };
+
+    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isIncome) {
+            setAmount(value.replace('-', ''));
+        } else {
+            setAmount(value);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -84,7 +103,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 body: JSON.stringify({
                     date: formattedDate,
                     description: description.trim() === '' ? '---' : description,
-                    amount: Number(amount),
+                    amount: Number(amount) * (isIncome ? 1 : -1),
                     category: category?._id,
                 }),
             });
@@ -95,7 +114,6 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             }
 
             toast.success('Movement updated successfully');
-
             onEdit();
         } catch (error) {
             console.error('Error updating movement:', error);
@@ -143,6 +161,22 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
     return (
         <form onSubmit={handleSubmit} className="formMovements">
             <h2>Edit movement</h2>
+            <div className="formMovements-toggle">
+                <button
+                    type="button"
+                    className={`${isIncome ? 'active' : ''}`}
+                    onClick={handleIncomeClick}
+                >
+                    Income
+                </button>
+                <button
+                    type="button"
+                    className={`${!isIncome ? 'active' : ''}`}
+                    onClick={handleExpenseClick}
+                >
+                    Expense
+                </button>
+            </div>
             <input
                 type="datetime-local"
                 className="formMovements-datetime"
@@ -160,9 +194,10 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             <input
                 type="number"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={handleAmountChange}
                 placeholder="Amount"
                 step="0.01"
+                min={isIncome ? "0" : undefined}
                 required
             />
             <Dropdown

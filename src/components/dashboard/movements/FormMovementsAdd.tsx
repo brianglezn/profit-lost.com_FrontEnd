@@ -20,6 +20,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
     const [amount, setAmount] = useState<string>('');
     const [category, setCategory] = useState<Category | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [isIncome, setIsIncome] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -47,6 +48,24 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
         fetchCategories();
     }, []);
 
+    const handleIncomeClick = () => {
+        setIsIncome(true);
+        setAmount(amount.replace('-', ''));
+    };
+
+    const handleExpenseClick = () => {
+        setIsIncome(false);
+    };
+
+    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isIncome) {
+            setAmount(value.replace('-', ''));
+        } else {
+            setAmount(value);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -56,8 +75,8 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
             return;
         }
 
-        if (!/^-?\d+(\.\d{0,2})?$/.test(amount)) {
-            toast.error('Amount must be a positive or negative number with up to two decimals.');
+        if (!/^\d+(\.\d{0,2})?$/.test(amount)) {
+            toast.error('Amount must be a positive number with up to two decimals.');
             return;
         }
 
@@ -69,7 +88,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
         const movementData = {
             date: date ? new Date(date).toISOString() : null,
             description: description.trim() === '' ? '---' : description,
-            amount: parseFloat(amount.replace(',', '.')),
+            amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };
 
@@ -102,12 +121,28 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
     return (
         <form onSubmit={handleSubmit} className="formMovements">
             <h2>New movement</h2>
+            <div className="formMovements-toggle">
+                <button
+                    type="button"
+                    className={`${isIncome ? 'active' : ''}`}
+                    onClick={handleIncomeClick}
+                >
+                    Income
+                </button>
+                <button
+                    type="button"
+                    className={`${!isIncome ? 'active' : ''}`}
+                    onClick={handleExpenseClick}
+                >
+                    Expense
+                </button>
+            </div>
             <input
                 type="datetime-local"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="formMovements-datetime"
-                placeholder="Date"
+                placeholder=" "
                 required
             />
             <input
@@ -119,9 +154,10 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
             <input
                 type="number"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={handleAmountChange}
                 placeholder="Amount"
                 step="0.01"
+                min={isIncome ? "0" : undefined}
                 required
             />
             <Dropdown
