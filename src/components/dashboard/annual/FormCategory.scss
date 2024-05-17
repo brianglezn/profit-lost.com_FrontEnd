@@ -16,7 +16,20 @@
 
   input {
     background-color: $text_color-white;
+    border: 0;
     width: 85%;
+    border-radius: 10px;
+    padding: 0.8rem;
+    transition: border-color, box-shadow 0.3s ease-in-out;
+    outline: none;
+    box-shadow: 0 0.4rem $surface-700;
+    margin-bottom: 10px;
+
+    :focus {
+      outline: none;
+      border-color: $primary_color;
+      box-shadow: 0 0.4rem $primary_color;
+    }
   }
 
   .formCategories-buttons {

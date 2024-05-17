@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 import Footer from '../../components/landing/Footer';
 
@@ -9,12 +10,10 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    setMessage('');
 
     try {
       const response = await fetch('https://profit-lost-backend.onrender.com/requestPasswordReset', {
@@ -26,16 +25,14 @@ function ForgotPassword() {
       });
 
       if (response.ok) {
-        console.log('Reset password link sent successfully');
-        setMessage('A link to reset your password has been sent to your email.');
-        navigate('/forgot-password-token')
+        toast.success('A link to reset your password has been sent to your email.'), { duration: 5000 };
+        navigate('/forgot-password-token');
       } else {
-        console.error('Failed to send reset password link');
-        setMessage('Failed to send reset password link. Please try again.');
+        toast.error('Failed to send reset password link. Please try again.');
       }
     } catch (error) {
+      toast.error('There was an error sending the reset password link. Please try again.');
       console.error('There was an error sending the reset password link', error);
-      setMessage('There was an error sending the reset password link. Please try again.');
     }
 
     setIsLoading(false);
@@ -55,7 +52,6 @@ function ForgotPassword() {
       <div className="container__form">
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Reset Password</h2>
-          {message && <p className="form__message">{message}</p>}
           <input
             className="form__email"
             type="email"
@@ -75,9 +71,7 @@ function ForgotPassword() {
 
           <p className="form__link">
             Remembered your password?
-            <a href="/login" className="form__link--color">
-              Sign in
-            </a>
+            <a href="/login" className="form__link--color">Sign in</a>
           </p>
         </form>
       </div>

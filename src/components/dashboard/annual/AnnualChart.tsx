@@ -82,7 +82,7 @@ function AnnualChart({ year }: { year: string }) {
                     </BarChart>
                 </ResponsiveContainer>
             ) : (
-                <span>No data available for {year}</span>
+                <span className="material-symbols-rounded no-select">mobiledata_off</span>
             )}
         </div>
     );

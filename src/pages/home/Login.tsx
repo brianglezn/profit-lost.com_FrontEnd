@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Toast } from 'primereact/toast';
+import { toast } from 'react-hot-toast';
 
 import Footer from '../../components/landing/Footer';
 
@@ -14,7 +14,6 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const toast = useRef<Toast>(null);
 
   const reiniciarTemporizadorExpiracionToken = () => {
     const temporizadorExistente = localStorage.getItem('temporizadorToken');
@@ -49,24 +48,15 @@ function Login() {
         localStorage.setItem('token', data.token);
         login(data.token);
         reiniciarTemporizadorExpiracionToken();
+        toast.success('Login successful!');
         navigate('/dashboard');
       } else {
+        toast.error('Correo o contraseña incorrectos');
         console.error('Failed to login');
-        toast.current?.show({
-          severity: 'error',
-          summary: 'Error de inicio de sesión',
-          detail: 'Correo o contraseña incorrectos',
-          life: 3000,
-        });
       }
     } catch (error) {
+      toast.error('Hubo un problema al intentar iniciar sesión');
       console.error('There was an error logging in', error);
-      toast.current?.show({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Hubo un problema al intentar iniciar sesión',
-        life: 3000
-      });
     }
 
     setIsLoading(false);
@@ -78,7 +68,6 @@ function Login() {
 
   return (
     <div className='authForms'>
-      <Toast ref={toast} position="top-center" />
       <header className="auth__header">
         <a href="/" className="no-select">
           <img

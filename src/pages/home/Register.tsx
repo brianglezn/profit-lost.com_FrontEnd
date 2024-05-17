@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 import Footer from '../../components/landing/Footer';
 
@@ -29,16 +30,23 @@ function Register() {
       });
 
       if (response.ok) {
-        console.log('User registered successfully');
+        toast.success('User registered successfully');
         navigate('/login');
       } else {
-        console.error('Failed to register');
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.message || 'Failed to register');
       }
     } catch (error) {
-      console.error('There was an error registering', error);
+      if (error instanceof Error) {
+        toast.error(`Registration error: ${error.message}`);
+        console.error('Registration error:', error);
+      } else {
+        toast.error('An unexpected error occurred');
+        console.error('Registration error:', error);
+      }
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const toggleShowPassword = () => {
@@ -49,7 +57,6 @@ function Register() {
     const newPass = e.target.value;
     setPassword(newPass);
   };
-
 
   return (
     <div className='authForms'>
@@ -121,7 +128,6 @@ function Register() {
               </span>
             </button>
           </div>
-
 
           <button className="custom-btn" type="submit" disabled={isLoading}>
             {isLoading ? <span className="custom-loader"></span> : "Let's go!"}

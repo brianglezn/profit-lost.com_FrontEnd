@@ -1,9 +1,9 @@
-import React, { Suspense, useState, useEffect, useRef } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
-import { Toast } from 'primereact/toast';
 import { Sidebar } from 'primereact/sidebar';
+import { toast } from 'react-hot-toast';
 
 import { getUserByToken } from "../../api/users/getUserByToken";
 
@@ -37,7 +37,6 @@ function getCurrentDate() {
 function Dashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [user, setUser] = useState<User | null>(null);
-  const toast = useRef<Toast>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -77,36 +76,35 @@ function Dashboard() {
   }, [searchParams]);
 
   const wakeUpBackend = async () => {
-    toast.current?.show({
-      severity: 'info',
-      summary: 'Waiting for response from backend',
-      detail: 'Sending request to reconnect to backend'
-    });
-    try {
-      await fetch('https://profit-lost-backend.onrender.com/ping');
-      toast.current?.show({
-        severity: 'success',
-        summary: 'Backend response',
-        detail: 'OK response'
-      });
-    } catch (error) {
-      toast.current?.show({
-        severity: 'error',
-        summary: 'Connection error',
-        detail: 'Could not connect to backend'
-      });
-    }
+    toast.promise(
+      fetch('https://profit-lost-backend.onrender.com/ping'),
+      {
+        loading: 'Sending request to reconnect to backend...',
+        success: 'OK response from backend',
+        error: 'Could not connect to backend',
+      },
+      {
+        success: {
+          duration: 2000,
+        },
+        error: {
+          duration: 2000,
+        }
+      }
+    );
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+    toast.success("Session closed successfully", { duration: 3000 });
+    setTimeout(() => {
+      localStorage.removeItem('token');
+      navigate('/login');
+    }, 1000);
   };
 
   return (
     <>
       <div className="dashboard">
-        <Toast ref={toast} position="bottom-right" />
         <div className="dashboard__header">
           <header className="dashboard__header-container">
             <span className="spiner material-symbols-rounded" onClick={wakeUpBackend}>

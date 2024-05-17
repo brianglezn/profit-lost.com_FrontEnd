@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 import Footer from '../../components/landing/Footer';
 
@@ -17,7 +18,7 @@ function ForgotPasswordToken() {
         setIsLoading(true);
 
         if (newPassword !== confirmNewPassword) {
-            alert("Passwords don't match!");
+            toast.error("Passwords don't match!");
             setIsLoading(false);
             return;
         }
@@ -32,12 +33,14 @@ function ForgotPasswordToken() {
             });
 
             if (response.ok) {
-                console.log('Password has been reset successfully');
+                toast.success('Password has been reset successfully');
                 navigate('/login');
             } else {
+                toast.error('Failed to reset password. Please try again.');
                 console.error('Failed to reset password');
             }
         } catch (error) {
+            toast.error('There was an error resetting the password. Please try again.');
             console.error('There was an error resetting the password', error);
         }
 

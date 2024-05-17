@@ -10,7 +10,6 @@ interface MovementData {
 interface MovementsPieProps {
     incomeData: MovementData[];
     expensesData: MovementData[];
-    isDataEmpty: boolean;
 }
 
 interface LabelProps {
@@ -23,7 +22,7 @@ interface LabelProps {
     name: string;
 }
 
-const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPieProps) => {
+const MovementsPie = ({ incomeData, expensesData }: MovementsPieProps) => {
 
     const colorVars = [
         '#ffd5a8',
@@ -65,10 +64,13 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
         );
     };
 
+    const isIncomeDataEmpty = incomeData.length === 0;
+    const isExpensesDataEmpty = expensesData.length === 0;
+
     return (
         <div className="movements__pie-container">
             <div className="movements__pie-category">
-                {isDataEmpty ? (
+                {isIncomeDataEmpty ? (
                     <span className="material-symbols-rounded no-select">
                         mobiledata_off
                     </span>
@@ -94,7 +96,7 @@ const MovementsPie = ({ incomeData, expensesData, isDataEmpty }: MovementsPiePro
                 )}
             </div>
             <div className="movements__pie-category">
-                {isDataEmpty ? (
+                {isExpensesDataEmpty ? (
                     <span className="material-symbols-rounded no-select">
                         mobiledata_off
                     </span>

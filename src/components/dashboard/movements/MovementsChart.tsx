@@ -21,9 +21,7 @@ function MovementsChart(props: MovementsProps) {
         <>
             <div className="movements__chart">
                 {isDataEmpty ? (
-                    <span className="material-symbols-rounded no-select">
-                        mobiledata_off
-                    </span>
+                    <span className="material-symbols-rounded no-select">mobiledata_off</span>
                 ) : (
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart

@@ -103,6 +103,45 @@ body {
     }
   }
 
+  .form-confirmBtn {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 2rem;
+
+    p {
+      line-height: 5px;
+    }
+
+    button.custom-btn {
+      background-color: $primary_color;
+      color: $text_color-white;
+      padding: 8px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.1s;
+      box-shadow: 0 0.4rem $primary_color-600;
+      margin-top: .5rem;
+
+      &:hover {
+        background-color: $primary_color;
+        font-weight: bold;
+        box-shadow: 0 0.4rem $primary_color-600;
+        opacity: 1;
+      }
+
+      &:active {
+        transform: translateY(5px);
+        box-shadow: $primary_color-600 0px 3px 2px,
+          $text_color-grey 0px 3px 5px;
+      }
+    }
+  }
+
   a {
     color: $primary_color;
     text-decoration: none;

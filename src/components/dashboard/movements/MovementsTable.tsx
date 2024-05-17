@@ -72,7 +72,6 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
         <div className="movements__table">
             {isDataEmpty || data.length === 0 ? (
                 <>
-                    <p>No data available for this month.</p>
                     <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
                 </>
             ) : (
