@@ -1,16 +1,17 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
 
-import Home from "./pages/home/Home";
-import Login from "./pages/home/Login";
-import Register from "./pages/home/Register";
-import DashBoard from "./pages/dashboard/DashBoard";
-import Cookies from "./pages/home/Cookies";
-import ForgotPassword from "./pages/home/ForgotPassword";
-import ForgotPasswordToken from "./pages/home/ForgotPasswordToken";
+const Home = React.lazy(() => import('./pages/home/Home'));
+const Login = React.lazy(() => import('./pages/home/Login'));
+const Register = React.lazy(() => import('./pages/home/Register'));
+const DashBoard = React.lazy(() => import('./pages/dashboard/DashBoard'));
+const Cookies = React.lazy(() => import('./pages/home/Cookies'));
+const ForgotPassword = React.lazy(() => import('./pages/home/ForgotPassword'));
+const ForgotPasswordToken = React.lazy(() => import('./pages/home/ForgotPasswordToken'));
 
 import './themes/App_Light.scss';
 
