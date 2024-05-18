@@ -81,6 +81,9 @@ body {
   }
 
   input.custom-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-color: $text_color-white;
     border: 0;
     width: 90%;
