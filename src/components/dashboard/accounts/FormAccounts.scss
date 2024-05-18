@@ -17,33 +17,16 @@
     .colorPiker {
         width: 90%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         gap: 10px;
-    }
-
-    .formAccount-category {
-        border: 0;
-        width: 90%;
-        background-color: $text_color-white;
+        padding: 1rem 1.5rem;
         border-radius: 10px;
-        padding: 0.3rem 0 0.3rem 0.8rem;
-        transition: border-color, box-shadow 0.3s ease-in-out;
-        outline: none;
+        background-color: $text_color-white;
+        box-shadow: $shadow_color 0px 1px 4px;
 
-        :focus {
-            outline: none;
-            border-color: $primary_color;
-            box-shadow: 0 0.4rem $primary_color;
-        }
-
-        .p-inputtext {
-            background-color: inherit;
-            border: 0;
-            padding: 0.55rem 0;
-            margin: 0;
-            transition: none;
-            outline: none;
-            box-shadow: none;
+        .p-colorpicker {
+            display: flex;
+            align-items: center;
         }
     }
 
@@ -55,6 +38,7 @@
         padding: 1rem 1.5rem;
         border-radius: 10px;
         background-color: $text_color-white;
+        box-shadow: $shadow_color 0px 1px 4px;
 
         .dataYear-row {
             display: flex;

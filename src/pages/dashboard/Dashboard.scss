@@ -239,51 +239,90 @@
 .p-sidebar {
   z-index: 1000;
 
-  .profile__header {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    .profile__header-avatar {
-      color: $text_color-white;
-      font-size: 2rem;
-    }
-
-    .profile__header-name {
-      line-height: .1rem;
-    }
-  }
-
-  .profile__dashboard {
+  .p-sidebar-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
+    align-items: center;
+    gap: 2rem;
 
-    button {
-      background-color: $primary_color;
-      color: $text_color-white;
-      padding: 3%;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.1s;
-      box-shadow: 0 0.4rem $primary_color-600;
-      opacity: 0.8;
+    .profile__header {
+      width: 90%;
       margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.5rem;
 
-      &:hover {
-        background-color: $primary_color;
-        font-weight: bold;
-        box-shadow: 0 0.4rem $primary_color-600;
-        opacity: 1;
+      .profile__header-avatar {
+        color: $text_color-white;
+        font-size: 2rem;
+        border-radius: 12px;
       }
 
-      &:active {
-        transform: translateY(5px);
-        box-shadow: $primary_color-600 0px 3px 2px,
-          $text_color-grey 0px 3px 5px;
+      .profile__header-name {
+        line-height: .1rem;
+      }
+    }
+
+    .profile__header-account,
+    .profile__header-help {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5px 15px;
+      border-radius: 10px;
+      background-color: $text_color-white;
+      box-shadow: $shadow_color 0px 1px 4px;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: $text_color-grey;
+
+        &:hover {
+          color: $primary_color;
+          cursor: pointer;
+        }
+
+      }
+
+    }
+
+    .profile__dashboard {
+      width: 50%;
+      margin: auto 0 1rem;
+      display: flex;
+      flex-direction: column;
+
+      button {
+        background-color: $primary_color;
+        color: $text_color-white;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.1s;
+        box-shadow: 0 0.4rem $primary_color-600;
+        opacity: 0.8;
+        margin-top: 1rem;
+
+        &:hover {
+          background-color: $primary_color;
+          font-weight: bold;
+          box-shadow: 0 0.4rem $primary_color-600;
+          opacity: 1;
+        }
+
+        &:active {
+          transform: translateY(5px);
+          box-shadow: $primary_color-600 0px 3px 2px,
+            $text_color-grey 0px 3px 5px;
+        }
       }
     }
   }
+
 }

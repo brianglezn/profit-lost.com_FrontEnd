@@ -86,7 +86,7 @@ function FormAccountsEdit({ account }: FormAccountsEditProps) {
         <form className="formAccount" onSubmit={handleSubmit}>
             <h2>Edit account</h2>
             <Dropdown
-                className="formAccount-category"
+                className="formMovements-dropdown"
                 value={year}
                 options={uniqueYears.map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}

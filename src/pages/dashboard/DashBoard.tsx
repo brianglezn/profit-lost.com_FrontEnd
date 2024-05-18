@@ -280,7 +280,12 @@ function Dashboard() {
           </Suspense>
         </section>
       </div>
-      <Sidebar visible={sidebarVisible} position="right" onHide={() => setSidebarVisible(false)}>
+      <Sidebar
+        visible={sidebarVisible}
+        position="right"
+        onHide={() => setSidebarVisible(false)}
+        style={{ width: '450px' }}
+      >
         <div className="profile__header">
           <Avatar
             label={user?.name?.[0] ?? ''}
@@ -293,6 +298,29 @@ function Dashboard() {
             <p>{user?.email ?? ''}</p>
           </div>
         </div>
+
+        <div className="profile__header-account">
+          <a href="#">
+            <span className="material-symbols-rounded">person</span>
+            <p>Account</p>
+          </a>
+          <a href="#">
+            <span className="material-symbols-rounded">security</span>
+            <p>Security and Privacy</p>
+          </a>
+        </div>
+
+        <div className="profile__header-help">
+          <a href="#">
+            <span className="material-symbols-rounded">help</span>
+            <p>Help</p>
+          </a>
+          <a href="#">
+            <span className="material-symbols-rounded">info</span>
+            <p>About Us</p>
+          </a>
+        </div>
+
         <div className="profile__dashboard">
           <button onClick={handleLogout} className="profile__dashboard-logout">
             Logout

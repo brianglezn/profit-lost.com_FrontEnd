@@ -203,7 +203,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 required
             />
             <Dropdown
-                className="formMovements-category"
+                className="formMovements-dropdown"
                 value={category}
                 options={categories}
                 onChange={(e) => setCategory(e.value)}

@@ -168,7 +168,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
                 onChange={(e) => setCategory(e.value)}
                 optionLabel="name"
                 placeholder="Select a category"
-                className="formMovements-category"
+                className="formMovements-dropdown"
                 required
             />
             <button type="submit" className="custom-btn">Save</button>
