@@ -22,7 +22,6 @@
     }
 
     .movements__main-balance {
-      flex-basis: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,7 +36,7 @@
         align-items: center;
         flex-grow: 1;
         gap: 20px;
-        width: 30%;
+        width: 100%;
         height: 4rem;
         border-radius: 20px;
         padding: 20px 0;
@@ -105,17 +104,22 @@
       }
 
       .movements__main-balance {
-        .movements__balance {
+
+
+        .income,
+        .expenses,
+        .edbita {
+          height: 3.5rem;
+
           span {
-            font-size: 2.2rem;
+            font-size: 2rem;
           }
 
           p {
             font-size: 1.1rem;
-
           }
-        }
 
+        }
       }
     }
   }
@@ -125,8 +129,15 @@
       .movements__main-balance {
         flex-direction: column;
 
-        .movements__balance {
-          width: 100%;
+
+        .income,
+        .expenses,
+        .edbita {
+          height: 3.2rem;
+
+          span {
+            font-size: 2.5rem;
+          }
 
           p {
             font-size: 1.3rem;
