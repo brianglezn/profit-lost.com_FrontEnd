@@ -2,7 +2,8 @@
 
 .account__item {
   margin: 15px;
-  width: 300px;
+  flex: 1 1 350px;
+  max-width: 350px;
   height: 10rem;
   border-radius: 20px;
   cursor: pointer;

@@ -1,6 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-import { ColorPicker, ColorPickerChangeEvent } from 'primereact/colorpicker';
+import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primereact/colorpicker';
+import { toast } from 'react-hot-toast';
+
+import { editAccount } from '../../../api/accounts/editAccount';
+import { removeAccount } from '../../../api/accounts/removeAccount';
 
 import "./FormAccounts.scss";
 
@@ -24,6 +28,9 @@ interface DataAccount {
 
 interface FormAccountsEditProps {
     account: DataAccount;
+    onUpdate: () => void;
+    onClose: () => void;
+    onRemove: () => void;
 }
 
 const monthNames = [
@@ -41,12 +48,17 @@ const monthNames = [
     { name: "December", value: "Dec" }
 ];
 
-function FormAccountsEdit({ account }: FormAccountsEditProps) {
-    const [backgroundColor, setBackgroundColor] = useState<string | { r: number; g: number; b: number; a?: number }>("#ffffff");
-    const [fontColor, setFontColor] = useState<string | { r: number; g: number; b: number; a?: number }>("#000000");
+function rgbToHex({ r, g, b }: ColorPickerRGBType): string {
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {
+    const [backgroundColor, setBackgroundColor] = useState<string>(account.configuration.backgroundColor);
+    const [fontColor, setFontColor] = useState<string>(account.configuration.color);
     const [year, setYear] = useState<number>(new Date().getFullYear());
     const [uniqueYears, setUniqueYears] = useState<number[]>([]);
     const [records, setRecords] = useState<AccountRecord[]>(account.records);
+    const [showConfirm, setShowConfirm] = useState(false);
 
     useEffect(() => {
         const years = Array.from(new Set(records.map(record => record.year))).sort((a, b) => a - b);
@@ -54,12 +66,28 @@ function FormAccountsEdit({ account }: FormAccountsEditProps) {
         setYear(years.includes(new Date().getFullYear()) ? new Date().getFullYear() : years[0]);
     }, [records]);
 
+    const ensureHexColor = (color: string) => {
+        return color.startsWith('#') ? color : `#${color}`;
+    };
+
     const handleBackgroundColorChange = (e: ColorPickerChangeEvent) => {
-        setBackgroundColor(e.value as string | { r: number; g: number; b: number; a?: number });
+        let colorValue = "";
+        if (e.value !== undefined && typeof e.value === 'string') {
+            colorValue = ensureHexColor(e.value);
+        } else if (e.value !== undefined && e.value !== null && 'r' in e.value) {
+            colorValue = rgbToHex(e.value as ColorPickerRGBType);
+        }
+        setBackgroundColor(colorValue);
     };
 
     const handleFontColorChange = (e: ColorPickerChangeEvent) => {
-        setFontColor(e.value as string | { r: number; g: number; b: number; a?: number });
+        let colorValue = "";
+        if (e.value !== undefined && typeof e.value === 'string') {
+            colorValue = ensureHexColor(e.value);
+        } else if (e.value !== undefined && e.value !== null && 'r' in e.value) {
+            colorValue = rgbToHex(e.value as ColorPickerRGBType);
+        }
+        setFontColor(colorValue);
     };
 
     const handleYearChange = (e: DropdownChangeEvent) => {
@@ -77,16 +105,56 @@ function FormAccountsEdit({ account }: FormAccountsEditProps) {
         );
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleEditAccount = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Implement your update logic here
+        console.log('handleEditAccount called with accountId:', account.AccountId);
+
+        try {
+            await editAccount({
+                accountId: account.AccountId,
+                accountName: account.accountName,
+                records,
+                configuration: { backgroundColor, color: fontColor },
+            });
+            toast.success('Account updated successfully', { duration: 3000 });
+            console.log('Account updated successfully');
+            onClose();
+            onUpdate();
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
+            console.error('Error during account update:', errorMessage);
+            toast.error(errorMessage, { duration: 5000 });
+        }
+    };
+
+    const handleRemoveAccount = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log('handleRemoveAccount called with accountId:', account.AccountId);
+        setShowConfirm(true);
+    };
+
+    const handleConfirmRemove = async (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log('handleConfirmRemove called with accountId:', account.AccountId);
+
+        try {
+            await removeAccount(account.AccountId);
+            toast.success(`The account "${account.accountName}" has been successfully removed.`, { duration: 3000 });
+            console.log(`The account "${account.accountName}" has been successfully removed.`);
+            onClose();
+            onRemove();
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
+            console.error('Error during account deletion:', errorMessage);
+            toast.error(errorMessage, { duration: 5000 });
+        }
     };
 
     return (
-        <form className="formAccount" onSubmit={handleSubmit}>
+        <form className="formAccount" onSubmit={handleEditAccount}>
             <h2>Edit account</h2>
             <Dropdown
-                className="formMovements-dropdown"
+                className="formAccount-dropdown"
                 value={year}
                 options={uniqueYears.map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}
@@ -113,7 +181,16 @@ function FormAccountsEdit({ account }: FormAccountsEditProps) {
                 <p>Font</p>
                 <ColorPicker value={fontColor} onChange={handleFontColorChange} />
             </div>
-            <button type="submit" className="custom-btn">Update</button>
+            <div className="formAccount-buttons">
+                <button type="submit" className="custom-btn">Save</button>
+                <button type="button" className="custom-btn" onClick={handleRemoveAccount}>Remove</button>
+            </div>
+            {showConfirm && (
+                <div className="form-confirmBtn">
+                    <p>Are you sure you want to delete <b>"{account.accountName}"</b>?</p>
+                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>Confirm</button>
+                </div>
+            )}
         </form>
     );
 }

@@ -23,7 +23,7 @@ function Login() {
 
     const temporizadorId = setTimeout(() => {
       localStorage.removeItem('token');
-      alert('La sesión ha expirado. Por favor, inicie sesión de nuevo.');
+      alert('Your session has expired. Please log in again.');
       navigate('/login');
     }, 3600000);
 
@@ -51,11 +51,11 @@ function Login() {
         toast.success('Login successful!');
         navigate('/dashboard');
       } else {
-        toast.error('Correo o contraseña incorrectos');
+        toast.error('Incorrect email or password');
         console.error('Failed to login');
       }
     } catch (error) {
-      toast.error('Hubo un problema al intentar iniciar sesión');
+      toast.error('There was a problem trying to log in');
       console.error('There was an error logging in', error);
     }
 

@@ -14,20 +14,8 @@
         text-align: center;
     }
 
-    .colorPiker {
+    .formAccount-dropdown {
         width: 90%;
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        background-color: $text_color-white;
-        box-shadow: $shadow_color 0px 1px 4px;
-
-        .p-colorpicker {
-            display: flex;
-            align-items: center;
-        }
     }
 
     .dataYear {
@@ -56,6 +44,29 @@
                 border: 0.5px solid $surface-800;
             }
         }
+    }
+
+    .colorPiker {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        background-color: $text_color-white;
+        box-shadow: $shadow_color 0px 1px 4px;
+
+        .p-colorpicker {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .formAccount-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
     }
 
     button {

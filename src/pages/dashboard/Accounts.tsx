@@ -1,12 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-import AccountItem from "../../components/dashboard/accounts/AccountItem.tsx";
-import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd.tsx";
-import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit.tsx";
-import CustomBarShape from "../../components/CustomBarShape .tsx";
+import AccountItem from "../../components/dashboard/accounts/AccountItem";
+import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd";
+import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit";
+import CustomBarShape from "../../components/CustomBarShape";
+import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 
 import "./Accounts.scss";
 
@@ -46,32 +47,25 @@ function Accounts() {
   const [editSidebarOpen, setEditSidebarOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState<DataAccount | null>(null);
 
-  useEffect(() => {
+  const fetchAllData = async () => {
     const token = localStorage.getItem('token');
-    const fetchAllData = async () => {
-      try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/all`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
+    if (!token) {
+      console.error('No authentication token found. Please log in.');
+      return;
+    }
+    try {
+      const allAccountsData = await getAllAccounts(token);
+      setDataAccounts(allAccountsData);
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const allAccountsData: DataAccount[] = await response.json();
+      const years = new Set<number>();
+      allAccountsData.forEach((account: DataAccount) => account.records.forEach((record: AccountRecord) => years.add(record.year)));
+      setUniqueYears(Array.from(years).sort((a, b) => a - b));
+    } catch (error) {
+      console.error('Error fetching all accounts data:', error);
+    }
+  };
 
-        setDataAccounts(allAccountsData);
-
-        const years = new Set<number>();
-        allAccountsData.forEach(account => account.records.forEach(record => years.add(record.year)));
-        setUniqueYears(Array.from(years).sort((a, b) => a - b));
-      } catch (error) {
-        console.error('Error fetching all accounts data:', error);
-      }
-    };
-
+  useEffect(() => {
     fetchAllData();
   }, [year]);
 
@@ -79,9 +73,9 @@ function Accounts() {
     return monthNames.map(month => {
       const monthData: MonthData = { name: month };
 
-      dataAccounts.forEach(account => {
+      dataAccounts.forEach((account: DataAccount) => {
         const totalForMonthAndAccount = account.records
-          .filter(record => record.year === parseInt(year) && record.month === month)
+          .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === month)
           .reduce((sum, { value }) => sum + value, 0);
 
         if (totalForMonthAndAccount > 0) {
@@ -107,10 +101,16 @@ function Accounts() {
     });
   }, [dataAccounts, year]);
 
+  const handleOpenEditSidebar = useCallback((accountId: string) => {
+    const account = dataAccounts.find((acc) => acc.AccountId === accountId) || null;
+    setSelectedAccount(account);
+    setEditSidebarOpen(true);
+  }, [dataAccounts]);
+
   const accountItems = useMemo(() => {
-    return dataAccounts.map((account, index) => {
+    const items = dataAccounts.map((account: DataAccount, index: number) => {
       const balanceForMonth = account.records
-        .filter(record => record.year === parseInt(year) && record.month === currentMonthName)
+        .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === currentMonthName)
         .reduce((sum, record) => sum + record.value, 0);
 
       return (
@@ -123,20 +123,29 @@ function Accounts() {
           })} €`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
-          onClick={() => handleOpenEditSidebar(account)}
+          accountId={account.AccountId}
+          onClick={handleOpenEditSidebar}
         />
       );
     });
-  }, [dataAccounts, year, currentMonthName]);
+    console.log('accountItems:', items);
+    return items;
+  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar]);
 
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
 
-  const handleOpenEditSidebar = (account: DataAccount) => {
-    setSelectedAccount(account);
-    setEditSidebarOpen(true);
-  };
   const handleCloseEditSidebar = () => setEditSidebarOpen(false);
+
+  const handleAccountUpdated = () => {
+    fetchAllData();
+    handleCloseEditSidebar();
+  };
+
+  const handleAccountRemoved = () => {
+    fetchAllData();
+    handleCloseEditSidebar();
+  };
 
   return (
     <>
@@ -144,7 +153,7 @@ function Accounts() {
         <div className="accounts__main">
           <Dropdown
             value={year}
-            options={uniqueYears.map(year => ({ label: year, value: year }))}
+            options={uniqueYears.map(year => ({ label: year.toString(), value: year }))}
             onChange={(e) => setYear(e.value)}
             placeholder={year}
           />
@@ -166,7 +175,7 @@ function Accounts() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                {dataAccounts.map((account) => (
+                {dataAccounts.map((account: DataAccount) => (
                   <Bar
                     key={account.accountName}
                     dataKey={account.accountName}
@@ -190,7 +199,7 @@ function Accounts() {
               style={{ width: '500px' }}
               className="custom-sidebar"
             >
-              <FormAccountsAdd />
+              <FormAccountsAdd onAccountAdded={() => { fetchAllData(); handleCloseAddSidebar(); }} />
             </Sidebar>
           </div>
           <div className="accounts__container-items">{accountItems}</div>
@@ -203,7 +212,14 @@ function Accounts() {
         style={{ width: '500px' }}
         className="custom-sidebar"
       >
-        {selectedAccount && <FormAccountsEdit account={selectedAccount} />}
+        {selectedAccount && (
+          <FormAccountsEdit
+            account={selectedAccount}
+            onUpdate={handleAccountUpdated}
+            onClose={handleCloseEditSidebar}
+            onRemove={handleAccountRemoved}
+          />
+        )}
       </Sidebar>
     </>
   );

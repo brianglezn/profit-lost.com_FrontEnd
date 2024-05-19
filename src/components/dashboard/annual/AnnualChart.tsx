@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import CustomBarShape from "../../CustomBarShape ";
+import CustomBarShape from "../../CustomBarShape";
 
 import "./AnnualChart.scss";
 
