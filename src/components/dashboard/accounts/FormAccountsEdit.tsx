@@ -152,7 +152,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
     return (
         <form className="formAccount" onSubmit={handleEditAccount}>
-            <h2>Edit account</h2>
+            <h2>Edit account: {account.accountName}</h2>
             <Dropdown
                 className="formAccount-dropdown"
                 value={year}
