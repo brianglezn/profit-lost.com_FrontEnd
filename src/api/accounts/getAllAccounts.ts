@@ -34,13 +34,11 @@ export const getAllAccounts = async (token: string): Promise<MappedAccount[]> =>
         }
 
         const accounts: RawAccount[] = await response.json();
-        // Mapeamos el _id a AccountId aquí
         const mappedAccounts: MappedAccount[] = accounts.map((account) => ({
             ...account,
             AccountId: account._id
         }));
 
-        console.log('Mapped accounts:', mappedAccounts); // Verifica aquí
         return mappedAccounts;
     } catch (error) {
         console.error('Error fetching accounts:', error);

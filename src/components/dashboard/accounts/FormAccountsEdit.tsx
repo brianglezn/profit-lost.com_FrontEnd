@@ -63,8 +63,10 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     useEffect(() => {
         const years = Array.from(new Set(records.map(record => record.year))).sort((a, b) => a - b);
         setUniqueYears(years);
-        setYear(years.includes(new Date().getFullYear()) ? new Date().getFullYear() : years[0]);
-    }, [records]);
+        if (!years.includes(year)) {
+            setYear(years.includes(new Date().getFullYear()) ? new Date().getFullYear() : years[0]);
+        }
+    }, [records, year]);
 
     const ensureHexColor = (color: string) => {
         return color.startsWith('#') ? color : `#${color}`;
@@ -107,7 +109,6 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
     const handleEditAccount = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('handleEditAccount called with accountId:', account.AccountId);
 
         try {
             await editAccount({
@@ -117,7 +118,6 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                 configuration: { backgroundColor, color: fontColor },
             });
             toast.success('Account updated successfully', { duration: 3000 });
-            console.log('Account updated successfully');
             onClose();
             onUpdate();
         } catch (error) {
@@ -129,18 +129,15 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
     const handleRemoveAccount = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('handleRemoveAccount called with accountId:', account.AccountId);
         setShowConfirm(true);
     };
 
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('handleConfirmRemove called with accountId:', account.AccountId);
 
         try {
             await removeAccount(account.AccountId);
             toast.success(`The account "${account.accountName}" has been successfully removed.`, { duration: 3000 });
-            console.log(`The account "${account.accountName}" has been successfully removed.`);
             onClose();
             onRemove();
         } catch (error) {
@@ -162,7 +159,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
             />
             <div className="dataYear">
                 {monthNames.map(month => {
-                    const record = records.find(record => record.year === year && record.month === month.value) || { value: 0 } as AccountRecord;
+                    const record = records.find(record => record.year === year && record.month === month.value) || { year, month: month.value, value: 0 };
                     return (
                         <div className="dataYear-row" key={month.value}>
                             <span>{month.name}</span>

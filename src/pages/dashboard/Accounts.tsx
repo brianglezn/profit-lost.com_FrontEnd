@@ -128,7 +128,6 @@ function Accounts() {
         />
       );
     });
-    console.log('accountItems:', items);
     return items;
   }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar]);
 

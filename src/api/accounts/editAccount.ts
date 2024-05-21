@@ -28,8 +28,6 @@ export async function editAccount({ accountId, accountName, records, configurati
         ...(configuration && { configuration }),
     };
 
-    console.log('Updating account with data:', updateData, 'for accountId:', accountId);
-
     try {
         const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/edit/${accountId}`, {
             method: 'PUT',
@@ -44,8 +42,6 @@ export async function editAccount({ accountId, accountName, records, configurati
             const errorText = await response.text();
             throw new Error(errorText || `HTTP error! status: ${response.status}`);
         }
-
-        console.log('Account updated successfully');
     } catch (error) {
         console.error('Error editing account:', error);
         throw error;
