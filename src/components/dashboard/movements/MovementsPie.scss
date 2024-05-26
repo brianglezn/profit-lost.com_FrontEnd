@@ -1,46 +1,25 @@
 @import "../../../../variables";
 
-.movements__pie-container {
+.movements__pie-category {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
     flex-grow: 1;
-    min-width: 180px;
-    width: 50%;
+    min-width: 200px;
+    width: 30%;
+    height: 22rem;
+    padding: 1rem 0;
+    border-radius: 20px;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background-color: $text_color-white;
 
-    .movements__pie-category {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;
-        width: 30%;
-        height: 22rem;
-        padding: 1rem 0;
-        border-radius: 20px;
-        box-shadow: $shadow_color 0px 1px 4px;
-        background-color: $text_color-white;
-
-        span.material-symbols-rounded {
-            font-size: 4.5rem;
-            color: $surface-400;
-        }
-    }
-
-    @media (max-width: 768px) {
-
-        width: 100%;
-
-        .movements__pie-category {
-            gap: 20px;
-            width: 45%;
-        }
+    span.material-symbols-rounded {
+        font-size: 4.5rem;
+        color: $surface-400;
     }
 
     @media (max-width: 480px) {
-        .movements__pie-category {
-            height: 10rem;
-        }
+        min-width: 120px;
+        height: 15rem;
     }
-
 }

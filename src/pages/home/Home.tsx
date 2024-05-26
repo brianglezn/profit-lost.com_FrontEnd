@@ -64,17 +64,17 @@ function Home() {
           <TabView>
             <TabPanel header="ANNUAL REPORT">
               <div className="demo__img">
-                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1704652663/profit-lost.com/img/preview/annual_report.png" alt="annual_report-img" />
+                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1716719033/profit-lost.com/img/preview/Annual%20Report.png" alt="annual_report-img" />
               </div>
             </TabPanel>
             <TabPanel header="MOVEMENTS">
               <div className="demo__img">
-                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1704652663/profit-lost.com/img/preview/movements.png" alt="movements-img" />
+                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1716719033/profit-lost.com/img/preview/Movements.png" alt="movements-img" />
               </div>
             </TabPanel>
             <TabPanel header="ACCOUNTS">
               <div className="demo__img">
-                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1704652663/profit-lost.com/img/preview/accounts.png" alt="accounts-img" />
+                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1716719033/profit-lost.com/img/preview/Accounts.png" alt="accounts-img" />
               </div>
             </TabPanel>
           </TabView>

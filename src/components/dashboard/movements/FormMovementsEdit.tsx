@@ -208,6 +208,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 onChange={(e) => setCategory(e.value)}
                 optionLabel="name"
                 placeholder="Select a category"
+                className="formMovements-dropdown"
                 required
             />
             <div className="formMovements-buttons">

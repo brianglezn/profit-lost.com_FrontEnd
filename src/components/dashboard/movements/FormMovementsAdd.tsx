@@ -12,15 +12,17 @@ interface Category {
 interface FormMovementsAddProps {
     onMovementAdded: () => void;
     onClose: () => void;
+    selectedYear: string;
+    selectedMonth: string;
 }
 
-function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
+function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMonth }: FormMovementsAddProps) {
     const [date, setDate] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
     const [category, setCategory] = useState<Category | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [isIncome, setIsIncome] = useState<boolean>(true);
+    const [isIncome, setIsIncome] = useState<boolean>(false); // Changed to false
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -47,6 +49,15 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
 
         fetchCategories();
     }, []);
+
+    useEffect(() => {
+        const currentDate = new Date();
+        if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || selectedYear !== currentDate.getFullYear().toString()) {
+            setDate(`${selectedYear}-${selectedMonth}-01T00:00`);
+        } else {
+            setDate(currentDate.toISOString().slice(0, 16));
+        }
+    }, [selectedYear, selectedMonth]);
 
     const handleIncomeClick = () => {
         setIsIncome(true);
@@ -87,7 +98,7 @@ function FormMovementsAdd({ onMovementAdded, onClose }: FormMovementsAddProps) {
 
         const movementData = {
             date: date ? new Date(date).toISOString() : null,
-            description: description.trim() === '' ? '---' : description,
+            description: description.trim() === '' ? category.name : description,
             amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };

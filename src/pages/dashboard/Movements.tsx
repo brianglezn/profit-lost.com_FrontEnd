@@ -138,11 +138,8 @@ function Movements() {
           />
         </div>
         <div className="movements__charts-container">
-          <MovementsPie
-            incomeData={incomeData}
-            expensesData={expensesData}
-          />
-
+          <MovementsPie data={incomeData} />
+          <MovementsPie data={expensesData} />
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
         </div>
         <div className="movements__main-balance">
@@ -179,7 +176,7 @@ function Movements() {
             style={{ width: '450px' }}
             className="custom_sidebar"
             modal>
-            <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} />
+            <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} selectedYear={year} selectedMonth={month} />
           </Sidebar>
         </div>
         <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} reloadData={reloadData} />
@@ -189,4 +186,3 @@ function Movements() {
 }
 
 export default Movements;
-

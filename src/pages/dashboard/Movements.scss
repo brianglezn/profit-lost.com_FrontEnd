@@ -98,13 +98,7 @@
 
   @media (max-width: 768px) {
     .movements__main {
-      .movements__charts-container {
-        flex-direction: column;
-        align-content: center;
-      }
-
       .movements__main-balance {
-
 
         .income,
         .expenses,
@@ -128,7 +122,6 @@
     .movements__main {
       .movements__main-balance {
         flex-direction: column;
-
 
         .income,
         .expenses,

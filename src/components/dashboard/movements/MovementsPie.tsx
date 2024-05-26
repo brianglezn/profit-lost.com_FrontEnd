@@ -8,8 +8,7 @@ interface MovementData {
 }
 
 interface MovementsPieProps {
-    incomeData: MovementData[];
-    expensesData: MovementData[];
+    data: MovementData[];
 }
 
 interface LabelProps {
@@ -22,7 +21,7 @@ interface LabelProps {
     name: string;
 }
 
-const MovementsPie = ({ incomeData, expensesData }: MovementsPieProps) => {
+const MovementsPie = ({ data }: MovementsPieProps) => {
 
     const colorVars = [
         '#ffd5a8',
@@ -64,64 +63,34 @@ const MovementsPie = ({ incomeData, expensesData }: MovementsPieProps) => {
         );
     };
 
-    const isIncomeDataEmpty = incomeData.length === 0;
-    const isExpensesDataEmpty = expensesData.length === 0;
+    const isDataEmpty = data.length === 0;
 
     return (
-        <div className="movements__pie-container">
-            <div className="movements__pie-category">
-                {isIncomeDataEmpty ? (
-                    <span className="material-symbols-rounded no-select">
-                        mobiledata_off
-                    </span>
-                ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                            <Pie
-                                data={incomeData}
-                                cx="50%"
-                                cy="50%"
-                                labelLine={false}
-                                label={renderCustomizedLabel}
-                                outerRadius="80%"
-                                dataKey="value"
-                            >
-                                {incomeData.map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={colorVars[index % colorVars.length]} />
-                                ))}
-                            </Pie>
-                            <Tooltip />
-                        </PieChart>
-                    </ResponsiveContainer>
-                )}
-            </div>
-            <div className="movements__pie-category">
-                {isExpensesDataEmpty ? (
-                    <span className="material-symbols-rounded no-select">
-                        mobiledata_off
-                    </span>
-                ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                            <Pie
-                                data={expensesData}
-                                cx="50%"
-                                cy="50%"
-                                labelLine={false}
-                                label={renderCustomizedLabel}
-                                outerRadius="80%"
-                                dataKey="value"
-                                nameKey="name"
-                            >
-                                {expensesData.map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={colorVars[index % colorVars.length]} />
-                                ))}
-                            </Pie>
-                            <Tooltip />
-                        </PieChart>
-                    </ResponsiveContainer>
-                )}
-            </div>
+        <div className="movements__pie-category">
+            {isDataEmpty ? (
+                <span className="material-symbols-rounded no-select">
+                    mobiledata_off
+                </span>
+            ) : (
+                <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                        <Pie
+                            data={data}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={renderCustomizedLabel}
+                            outerRadius="80%"
+                            dataKey="value"
+                        >
+                            {data.map((_, index) => (
+                                <Cell key={`cell-${index}`} fill={colorVars[index % colorVars.length]} />
+                            ))}
+                        </Pie>
+                        <Tooltip />
+                    </PieChart>
+                </ResponsiveContainer>
+            )}
         </div>
     );
 }
