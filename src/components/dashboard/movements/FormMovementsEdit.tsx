@@ -91,7 +91,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             return;
         }
 
-        const formattedDate = dateTime.replace('T', ' ') + ":00";
+        const formattedDate = new Date(dateTime).toISOString();
 
         try {
             const response = await fetch(`https://profit-lost-backend.onrender.com/movements/edit/${transaction._id}`, {

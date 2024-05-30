@@ -152,7 +152,7 @@ function Accounts() {
         <div className="accounts__main">
           <Dropdown
             value={year}
-            options={uniqueYears.map(year => ({ label: year.toString(), value: year }))}
+            options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
             onChange={(e) => setYear(e.value)}
             placeholder={year}
           />

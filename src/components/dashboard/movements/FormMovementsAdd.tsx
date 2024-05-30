@@ -22,7 +22,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     const [amount, setAmount] = useState<string>('');
     const [category, setCategory] = useState<Category | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [isIncome, setIsIncome] = useState<boolean>(false); // Changed to false
+    const [isIncome, setIsIncome] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -53,7 +53,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     useEffect(() => {
         const currentDate = new Date();
         if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || selectedYear !== currentDate.getFullYear().toString()) {
-            setDate(`${selectedYear}-${selectedMonth}-01T00:00`);
+            setDate(`${selectedYear}-${selectedMonth}-01T05:00`);
         } else {
             setDate(currentDate.toISOString().slice(0, 16));
         }

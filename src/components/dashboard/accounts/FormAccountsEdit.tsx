@@ -53,6 +53,7 @@ function rgbToHex({ r, g, b }: ColorPickerRGBType): string {
 }
 
 function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {
+    const [accountName, setAccountName] = useState<string>(account.accountName);
     const [backgroundColor, setBackgroundColor] = useState<string>(account.configuration.backgroundColor);
     const [fontColor, setFontColor] = useState<string>(account.configuration.color);
     const [year, setYear] = useState<number>(new Date().getFullYear());
@@ -113,7 +114,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         try {
             await editAccount({
                 accountId: account.AccountId,
-                accountName: account.accountName,
+                accountName,
                 records,
                 configuration: { backgroundColor, color: fontColor },
             });
@@ -149,11 +150,19 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
     return (
         <form className="formAccount" onSubmit={handleEditAccount}>
-            <h2>Edit account: {account.accountName}</h2>
+            <h2>Edit account</h2>
+            <input
+                type="text"
+                value={accountName}
+                onChange={(e) => setAccountName(e.target.value)}
+                placeholder="Account Name"
+                className="custom-input"
+                required
+            />
             <Dropdown
                 className="formAccount-dropdown"
                 value={year}
-                options={uniqueYears.map(year => ({ label: year.toString(), value: year }))}
+                options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}
                 placeholder="Select Year"
             />
