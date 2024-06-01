@@ -8,7 +8,7 @@ import Footer from '../../components/landing/Footer';
 import './authForms.scss';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +40,7 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ identifier, password }),
       });
 
       const data = await response.json();
@@ -51,7 +51,7 @@ function Login() {
         toast.success('Login successful!');
         navigate('/dashboard');
       } else {
-        toast.error('Incorrect email or password');
+        toast.error('Incorrect username/email or password');
         console.error('Failed to login');
       }
     } catch (error) {
@@ -82,11 +82,11 @@ function Login() {
           <h2 className="form__title">Log in</h2>
           <input
             className="form__email auth-input"
-            type="email"
-            placeholder="E-mail"
+            type="text"
+            placeholder="Username or E-mail"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
           />
           <div className="form__password-container">
             <input
