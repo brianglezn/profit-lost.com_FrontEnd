@@ -266,7 +266,8 @@ function Dashboard() {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              height: '100%'
+              height: '100%',
+              color: '#fe6f14'
             }}>
               <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />
             </div>}>

@@ -239,6 +239,10 @@ body {
       box-shadow: -38px 0, -14px 0, 14px 0, 38px -12px;
     }
   }
+
+  .custom-spinner circle {
+    stroke: $primary_color !important;
+  }
 }
 
 /* Rechart */
