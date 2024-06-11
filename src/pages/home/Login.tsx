@@ -6,6 +6,8 @@ import { toast } from 'react-hot-toast';
 import Footer from '../../components/landing/Footer';
 
 import './authForms.scss';
+import EyeSlashIcon from '../../components/icons/EyeSlashIcon';
+import EyeIcon from '../../components/icons/EyeIcon';
 
 function Login() {
   const [identifier, setIdentifier] = useState('');
@@ -102,9 +104,7 @@ function Login() {
               className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
               onClick={toggleShowPassword}
             >
-              <span className="material-symbols-rounded">
-                {showPassword ? "visibility_off" : "visibility"}
-              </span>
+              {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
             </button>
           </div>
           <a href="/forgot-password" className="form__forgot">Forgot password?</a>

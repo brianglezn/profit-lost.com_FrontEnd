@@ -47,12 +47,18 @@
         .password-toggle-btn {
           position: absolute;
           color: $primary_color-800;
-          top: 37%;
+          top: 38%;
           right: 5px;
           transform: translateY(-50%);
           background: none;
           border: none;
           cursor: pointer;
+
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: $primary_color-800;
+          }
         }
       }
 

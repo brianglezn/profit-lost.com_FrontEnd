@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 import Footer from '../../components/landing/Footer';
-
+import EyeSlashIcon from '../../components/icons/EyeSlashIcon';
+import EyeIcon from '../../components/icons/EyeIcon';
 import './authForms.scss';
 
 function Register() {
@@ -123,9 +124,7 @@ function Register() {
               className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
               onClick={toggleShowPassword}
             >
-              <span className="material-symbols-rounded">
-                {showPassword ? "visibility_off" : "visibility"}
-              </span>
+             {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
             </button>
           </div>
 

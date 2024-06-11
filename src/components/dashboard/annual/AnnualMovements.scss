@@ -10,9 +10,14 @@
         .annual__categories-options {
             display: flex;
 
+            svg {
+                width: 1.1rem;
+                height: 1.1rem;
+            }
+
             :hover {
                 cursor: pointer;
-                color: $primary_color;
+                fill: $primary_color;
             }
         }
     }

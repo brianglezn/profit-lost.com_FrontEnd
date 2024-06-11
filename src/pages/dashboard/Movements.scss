@@ -43,8 +43,9 @@
         box-shadow: $shadow_color 0px 1px 4px;
         background-color: $text_color-white;
 
-        span {
-          font-size: 3rem;
+        svg {
+          width: 2rem;
+          height: 2rem;
         }
 
         p {
@@ -84,16 +85,16 @@
         font-weight: bold;
       }
 
-      span {
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
         cursor: pointer;
 
         &:hover {
-          color: $primary_color;
+          fill: $primary_color;
         }
       }
     }
-
-
   }
 
   @media (max-width: 768px) {
@@ -105,8 +106,9 @@
         .edbita {
           height: 3.5rem;
 
-          span {
-            font-size: 2rem;
+          svg {
+            width: 1.5rem;
+            height: 1.52rem;
           }
 
           p {
@@ -127,10 +129,6 @@
         .expenses,
         .edbita {
           height: 3.2rem;
-
-          span {
-            font-size: 2.5rem;
-          }
 
           p {
             font-size: 1.3rem;

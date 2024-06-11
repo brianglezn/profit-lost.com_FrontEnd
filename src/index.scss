@@ -191,23 +191,29 @@ body {
   }
 
   .negative {
-    color: $negative-color;
+    fill: $negative-color;
   }
 
   .positive {
-    color: $positive-color;
+    fill: $positive-color;
   }
 
   .no-select {
     user-select: none;
   }
 
-  .income span {
-    color: $primary-color-400;
+  .income svg {
+    fill: $primary-color-400;
   }
 
-  .expenses span {
-    color: $primary-color-800;
+  .expenses svg {
+    fill: $primary-color-800;
+  }
+
+  svg.custom-icon {
+    width: 3rem;
+    height: 3rem;
+    opacity: .3;
   }
 
   .custom-loader {

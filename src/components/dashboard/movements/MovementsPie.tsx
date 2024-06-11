@@ -1,6 +1,7 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import "./MovementsPie.scss"
+import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface MovementData {
     name: string;
@@ -68,9 +69,7 @@ const MovementsPie = ({ data }: MovementsPieProps) => {
     return (
         <div className="movements__pie-category">
             {isDataEmpty ? (
-                <span className="material-symbols-rounded no-select">
-                    mobiledata_off
-                </span>
+                <ChartLineIcon className="custom-icon" />
             ) : (
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>

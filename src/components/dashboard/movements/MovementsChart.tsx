@@ -3,6 +3,7 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import CustomBarShape from "../../CustomBarShape";
 
 import "./MovementsChart.scss"
+import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface MovementsProps {
     dataGraph: {
@@ -21,7 +22,7 @@ function MovementsChart(props: MovementsProps) {
         <>
             <div className="movements__chart">
                 {isDataEmpty ? (
-                    <span className="material-symbols-rounded no-select">mobiledata_off</span>
+                    <ChartLineIcon className="custom-icon" />
                 ) : (
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart

@@ -77,9 +77,10 @@
           align-items: center;
           justify-content: center;
 
-          .material-symbols-rounded {
-            font-size: 60px;
-            color: $text_color-white;
+          svg {
+            width: 3rem;
+            height: 3rem;
+            fill: $text_color-white;
           }
         }
 

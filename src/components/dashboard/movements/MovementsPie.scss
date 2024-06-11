@@ -13,11 +13,6 @@
     box-shadow: $shadow_color 0px 1px 4px;
     background-color: $text_color-white;
 
-    span.material-symbols-rounded {
-        font-size: 4.5rem;
-        color: $surface-400;
-    }
-
     @media (max-width: 480px) {
         min-width: 120px;
         height: 15rem;

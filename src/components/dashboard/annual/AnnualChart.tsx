@@ -4,6 +4,7 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import CustomBarShape from "../../CustomBarShape";
 
 import "./AnnualChart.scss";
+import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface Movement {
     date: string;
@@ -82,7 +83,7 @@ function AnnualChart({ year }: { year: string }) {
                     </BarChart>
                 </ResponsiveContainer>
             ) : (
-                <span className="material-symbols-rounded no-select">mobiledata_off</span>
+                <ChartLineIcon className="custom-icon"/>
             )}
         </div>
     );

@@ -7,6 +7,7 @@ import { Sidebar } from 'primereact/sidebar';
 import FormMovementsEdit from './FormMovementsEdit';
 
 import "./MovementsTable.scss"
+import PencilIcon from '../../icons/PencilIcon';
 
 type Transaction = {
     _id: string;
@@ -92,7 +93,7 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                     <Column
                         body={(rowData) => (
                             <div className="movements__table-options">
-                                <span className="material-symbols-rounded no-select button-action" onClick={() => editMovement(rowData)}>edit</span>
+                                <PencilIcon onClick={() => editMovement(rowData)} />
                             </div>
                         )}
                         style={{ width: '5%', textAlign: 'center' }}

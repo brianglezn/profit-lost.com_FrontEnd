@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 
 import "./Header.scss";
+import BarsIcon from '../icons/BarsIcon';
 
 function Header() {
   const [visible, setVisible] = useState(false);
@@ -28,7 +29,7 @@ function Header() {
         <div className="header__login no-select">
           <a href="/login" className="header__login-btn">Log in</a>
           <button onClick={() => setVisible(true)} className="header__login-sidebar">
-            ☰
+            <BarsIcon />
           </button>
         </div>
       </header>

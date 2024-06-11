@@ -10,6 +10,7 @@ import CustomBarShape from "../../components/CustomBarShape";
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 
 import "./Accounts.scss";
+import PlusIcon from "../../components/icons/PlusIcon";
 
 type AccountConfiguration = {
   backgroundColor: string;
@@ -190,7 +191,7 @@ function Accounts() {
         <div className="accounts__container">
           <div className="accounts__container-text">
             <p>Accounts</p>
-            <span className="material-symbols-rounded no-select" onClick={handleOpenAddSidebar}>new_window</span>
+            <PlusIcon onClick={handleOpenAddSidebar} />
             <Sidebar
               visible={addSidebarOpen}
               onHide={handleCloseAddSidebar}

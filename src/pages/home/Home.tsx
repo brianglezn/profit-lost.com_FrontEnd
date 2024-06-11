@@ -4,6 +4,9 @@ import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
 
 import "./Home.scss";
+import MobileScreenIcon from "../../components/icons/MobileScreenIcon";
+import NewspaperIcon from "../../components/icons/NewspaperIcon";
+import FaceGrinBeamIcon from "../../components/icons/FaceGrinBeamIcon";
 
 function Home() {
   return (
@@ -36,7 +39,7 @@ function Home() {
         <section className="section__features">
           <article>
             <figure>
-              <span className="material-symbols-rounded no-select">devices</span>
+              <MobileScreenIcon />
             </figure>
             <div>
               <h3>Multidevice</h3>
@@ -44,7 +47,7 @@ function Home() {
           </article>
           <article>
             <figure>
-              <span className="material-symbols-rounded no-select">dashboard</span>
+              <NewspaperIcon />
             </figure>
             <div>
               <h3>Friendly Dashboard</h3>
@@ -52,7 +55,7 @@ function Home() {
           </article>
           <article>
             <figure>
-              <span className="material-symbols-rounded no-select">sentiment_very_satisfied</span>
+              <FaceGrinBeamIcon />
             </figure>
             <div>
               <h3>Easy to Use</h3>

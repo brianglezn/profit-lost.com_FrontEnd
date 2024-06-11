@@ -7,6 +7,10 @@ import AnnualMovements from "../../components/dashboard/annual/AnnualMovements";
 import FormCategoryAdd from "../../components/dashboard/annual/FormCategoryAdd";
 
 import "./AnnualReport.scss";
+import DownloadIcon from "../../components/icons/DownloadIcon";
+import UploadIcon from "../../components/icons/UploadIcon";
+import PigCoinIcon from "../../components/icons/PigCoinIcon";
+import PlusIcon from "../../components/icons/PlusIcon";
 
 interface Movement {
   date: string;
@@ -116,22 +120,18 @@ function AnnualReport() {
         <AnnualChart year={year} />
         <div className="annualReport__main-balance">
           <div className="annualReport__balance income">
-            <span className="material-symbols-rounded no-select">download</span>
+            <DownloadIcon />
             <p>{formattedBalanceIncome}</p>
           </div>
           <div className="annualReport__balance expenses">
-            <span className="material-symbols-rounded no-select">upload</span>
+            <UploadIcon />
             <p>-{formattedBalanceExpenses}</p>
           </div>
           <div className="annualReport__balance edbita">
-            <span
-              className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
-                ? "negative"
-                : "positive"
-                }`}
-            >
-              savings
-            </span>
+            <PigCoinIcon className={`no-select ${parseFloat(formattedBalanceFinal) < 0
+              ? "negative"
+              : "positive"
+              }`} />
             <p>{formattedBalanceFinal}</p>
           </div>
         </div>
@@ -140,7 +140,7 @@ function AnnualReport() {
       <div className="annualReport__categories">
         <div className="annualReport__categories-text">
           <p>Categories</p>
-          <span className="material-symbols-rounded button-action no-select" onClick={handleOpenModal}>new_window</span>
+          <PlusIcon onClick={handleOpenModal} />
           <Sidebar
             visible={open}
             position="right"

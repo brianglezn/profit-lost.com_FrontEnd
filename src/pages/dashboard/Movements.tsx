@@ -11,6 +11,10 @@ import MovementsTable from "../../components/dashboard/movements/MovementsTable"
 import FormMovementsAdd from "../../components/dashboard/movements/FormMovementsAdd";
 
 import "./Movements.scss";
+import DownloadIcon from "../../components/icons/DownloadIcon";
+import UploadIcon from "../../components/icons/UploadIcon";
+import PigCoinIcon from "../../components/icons/PigCoinIcon";
+import PlusIcon from "../../components/icons/PlusIcon";
 
 interface Movement {
   _id: string;
@@ -144,22 +148,18 @@ function Movements() {
         </div>
         <div className="movements__main-balance">
           <div className="movements__balance income">
-            <span className="material-symbols-rounded no-select">download</span>
+            <DownloadIcon />
             <p>{formattedBalanceIncome}</p>
           </div>
           <div className="movements__balance expenses">
-            <span className="material-symbols-rounded no-select">upload</span>
+            <UploadIcon />
             <p>-{formattedBalanceExpenses}</p>
           </div>
           <div className="movements__balance edbita">
-            <span
-              className={`material-symbols-rounded no-select ${parseFloat(formattedBalanceFinal) < 0
-                ? "negative"
-                : "positive"
-                }`}
-            >
-              savings
-            </span>
+            <PigCoinIcon className={`no-select ${parseFloat(formattedBalanceFinal) < 0
+              ? "negative"
+              : "positive"
+              }`} />
             <p>{formattedBalanceFinal}</p>
           </div>
         </div>
@@ -168,7 +168,7 @@ function Movements() {
       <div className="movements__data">
         <div className="movements__data-text">
           <p>Movements</p>
-          <span className="material-symbols-rounded no-select" onClick={handleOpenModal} >new_window</span>
+          <PlusIcon onClick={handleOpenModal} />
           <Sidebar
             visible={open}
             onHide={handleCloseModal}

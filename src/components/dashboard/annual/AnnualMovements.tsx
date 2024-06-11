@@ -7,6 +7,7 @@ import { Sidebar } from 'primereact/sidebar';
 import FormCategoryEdit from "./FormCategoryEdit";
 
 import "./AnnualMovements.scss";
+import PencilIcon from "../../icons/PencilIcon";
 
 type Transaction = {
     category: string;
@@ -117,9 +118,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
                             <div className="annual__categories-options">
-                                <span className="material-symbols-rounded no-select button-action" onClick={() => editCategory(rowData)}>
-                                    edit
-                                </span>
+                                <PencilIcon onClick={() => editCategory(rowData)} />
                             </div>
                         )} style={{ width: '5%', textAlign: 'center' }}></Column>
                     </DataTable>

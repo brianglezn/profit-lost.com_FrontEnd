@@ -6,9 +6,21 @@ import { Sidebar } from 'primereact/sidebar';
 import { Menu } from 'primereact/menu';
 import { toast } from 'react-hot-toast';
 
-import { getUserByToken } from "../../api/users/getUserByToken";
-
 import "./Dashboard.scss";
+import { getUserByToken } from "../../api/users/getUserByToken";
+import RefreshIcon from "../../components/icons/RefreshIcon";
+import HomeIcon from "../../components/icons/HomeIcon";
+import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
+import ChartBarIcon from "../../components/icons/ChartBarIcon";
+import CreditCardIcon from "../../components/icons/CreditCardIcon";
+import NotesIcon from "../../components/icons/NotesIcon";
+import ListCheckIcon from "../../components/icons/ListCheckIcon";
+import BarsIcon from "../../components/icons/BarsIcon";
+import MoneyBillTransfer from "../../components/icons/MoneyBillTransfer";
+import UserIcon from "../../components/icons/UserIcon";
+import InfoIcon from "../../components/icons/InfoIcon";
+import HelpIcon from "../../components/icons/HelpIcon";
+import ShielIcon from "../../components/icons/ShielIcon";
 
 const DashHome = React.lazy(() => import('./DashHome'));
 const Accounts = React.lazy(() => import('./Accounts'));
@@ -125,17 +137,17 @@ function Dashboard() {
   const menuItems = [
     {
       label: 'Goals',
-      icon: <span className="material-symbols-rounded">inventory</span>,
+      icon: <ListCheckIcon />,
       command: () => handleMenuItemClick('Goals')
     },
     {
       label: 'SplitEasy',
-      icon: <span className="material-symbols-rounded">climate_mini_split</span>,
+      icon: <MoneyBillTransfer />,
       command: () => handleMenuItemClick('SplitEasy')
     },
     {
       label: 'Notes',
-      icon: <span className="material-symbols-rounded">note_alt</span>,
+      icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
     }
   ];
@@ -145,9 +157,7 @@ function Dashboard() {
       <div className="dashboard">
         <div className="dashboard__header">
           <header className="dashboard__header-container">
-            <span className="spiner material-symbols-rounded" onClick={wakeUpBackend}>
-              sync
-            </span>
+            <RefreshIcon onClick={wakeUpBackend} />
             <p className="dashboard__header-date">{currentDate}</p>
             <Avatar
               onClick={() => setSidebarVisible(true)}
@@ -172,52 +182,50 @@ function Dashboard() {
                   onClick={() => handleMenuItemClick("Dashboard")}
                   className={activeSection === "Dashboard" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">home</span>
-                  DashBoard
+                  <HomeIcon />
+                  <p>DashBoard</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("AnnualReport")}
                   className={activeSection === "AnnualReport" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">
-                    bar_chart_4_bars
-                  </span>
-                  Annual Report
+                  <ChartColumnIcon />
+                  <p>Annual Report</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Movements")}
                   className={activeSection === "Movements" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">receipt_long</span>
-                  Movements
+                  <ChartBarIcon />
+                  <p>Movements</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Accounts")}
                   className={activeSection === "Accounts" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">credit_card</span>
-                  Accounts
+                  <CreditCardIcon />
+                  <p>Accounts</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Goals")}
                   className={activeSection === "Goals" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">inventory</span>
-                  Goals
+                  <ListCheckIcon />
+                  <p>Goals</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("SplitEasy")}
                   className={activeSection === "SplitEasy" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">climate_mini_split</span>
-                  SplitEasy
+                  <MoneyBillTransfer />
+                  <p>SplitEasy</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Notes")}
                   className={activeSection === "Notes" ? "active" : ""}
                 >
-                  <span className="material-symbols-rounded">note_alt</span>
-                  Notes
+                  <NotesIcon />
+                  <p>Notes</p>
                 </li>
               </ul>
             </div>
@@ -230,31 +238,36 @@ function Dashboard() {
               onClick={() => handleMenuItemClick("Dashboard")}
               className={activeSection === "Dashboard" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">home</span>
+              <HomeIcon />
+              <span className="tooltip">Dashboard</span>
             </span>
             <span
               onClick={() => handleMenuItemClick("AnnualReport")}
               className={activeSection === "AnnualReport" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">bar_chart_4_bars</span>
+              <ChartColumnIcon />
+              <span className="tooltip">Annual Report</span>
             </span>
             <span
               onClick={() => handleMenuItemClick("Movements")}
               className={activeSection === "Movements" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">receipt_long</span>
+              <ChartBarIcon />
+              <span className="tooltip">Movements</span>
             </span>
             <span
               onClick={() => handleMenuItemClick("Accounts")}
               className={activeSection === "Accounts" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">credit_card</span>
+              <CreditCardIcon />
+              <span className="tooltip">Accounts</span>
             </span>
             <span
               onClick={(e) => menu.current?.toggle(e)}
               className={activeSection === "Goals" || activeSection === "SplitEasy" || activeSection === "Notes" ? "active" : ""}
             >
-              <span className="material-symbols-rounded">menu</span>
+              <BarsIcon />
+              <span className="tooltip">More</span>
             </span>
             <Menu model={menuItems} popup ref={menu} id="popup_menu" />
           </nav>
@@ -302,22 +315,22 @@ function Dashboard() {
 
         <div className="profile__header-account">
           <a href="#">
-            <span className="material-symbols-rounded">person</span>
+            <UserIcon />
             <p>Account</p>
           </a>
           <a href="#">
-            <span className="material-symbols-rounded">security</span>
+            <ShielIcon />
             <p>Security and Privacy</p>
           </a>
         </div>
 
         <div className="profile__header-help">
           <a href="#">
-            <span className="material-symbols-rounded">help</span>
+            <HelpIcon />
             <p>Help</p>
           </a>
           <a href="#">
-            <span className="material-symbols-rounded">info</span>
+            <InfoIcon />
             <p>About Us</p>
           </a>
         </div>

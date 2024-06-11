@@ -33,9 +33,10 @@
       box-shadow: $shadow_color 0px 1px 4px;
       transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 
-      span.spiner {
-        color: $primary_color;
-        font-weight: 600;
+      svg {
+        fill: $primary_color;
+        height: 1rem;
+        width: 1rem;
         cursor: pointer;
       }
 
@@ -105,29 +106,47 @@
           li {
             display: flex;
             align-items: center;
-            padding: 10px;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
             margin-bottom: 20px;
             text-decoration: none;
             cursor: pointer;
 
+            svg {
+              width: 1.5rem;
+              height: 1.5rem;
+              fill: $text_color-black;
+            }
+
+            p {
+              margin: 0;
+            }
+
             &:hover {
               color: $primary_color;
+
+              svg {
+                fill: $primary_color;
+              }
             }
           }
 
-          span {
-            font-size: 30px;
-            margin-right: 20px;
-          }
-
           .active {
-            color: $text_color-white;
             background-color: $primary_color;
             border-radius: 10px;
             transition: background-color 0.5s ease, color 0.2s ease;
+            color: $text_color-white;
+
+            svg {
+              fill: $text_color-white;
+            }
 
             &:hover {
               color: $text_color-white;
+
+              svg {
+                fill: $text_color-white;
+              }
             }
           }
         }
@@ -190,17 +209,69 @@
         box-shadow: $shadow_color 0px 1px 4px;
 
         span {
+          position: relative;
           cursor: pointer;
           font-size: 2rem;
           margin-top: 6px;
 
-          :hover {
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: $text_color-black;
+          }
+
+          p {
+            margin: 0;
+          }
+
+          &:hover {
             color: $primary_color;
+
+            svg {
+              fill: $primary_color;
+            }
+          }
+
+          .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            width: 120px;
+            background-color: $primary_color;
+            color: $bg-color;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            transition: opacity 0.3s;
+            font-size: 1.2rem;
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: $primary_color transparent transparent transparent;
+            }
+          }
+
+          &:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s;
           }
         }
 
         .active {
-          color: $primary_color;
+          svg {
+            fill: $primary_color;
+          }
         }
       }
     }
@@ -275,20 +346,27 @@
       border-radius: 10px;
       background-color: $text_color-white;
       box-shadow: $shadow_color 0px 1px 4px;
+    }
 
-      a {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        color: $text_color-grey;
+    a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: $text_color-grey;
 
-        &:hover {
-          color: $primary_color;
-          cursor: pointer;
-        }
-
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $text_color-black;
       }
 
+      &:hover {
+        color: $primary_color;
+
+        svg {
+          fill: $primary_color;
+        }
+      }
     }
 
     .profile__dashboard {
@@ -325,4 +403,30 @@
     }
   }
 
+}
+
+#popup_menu {
+  ul {
+    li {
+      div {
+        a {
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: $text_color-black;
+          }
+
+          &:hover {
+            span {
+              color: $primary_color;
+            }
+
+            svg {
+              fill: $primary_color;
+            }
+          }
+        }
+      }
+    }
+  }
 }
