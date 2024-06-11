@@ -267,7 +267,6 @@ function Dashboard() {
               className={activeSection === "Goals" || activeSection === "SplitEasy" || activeSection === "Notes" ? "active" : ""}
             >
               <BarsIcon />
-              <span className="tooltip">More</span>
             </span>
             <Menu model={menuItems} popup ref={menu} id="popup_menu" />
           </nav>
