@@ -16,7 +16,6 @@ import CreditCardIcon from "../../components/icons/CreditCardIcon";
 import NotesIcon from "../../components/icons/NotesIcon";
 import ListCheckIcon from "../../components/icons/ListCheckIcon";
 import BarsIcon from "../../components/icons/BarsIcon";
-import MoneyBillTransfer from "../../components/icons/MoneyBillTransfer";
 import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
@@ -27,7 +26,6 @@ const Accounts = React.lazy(() => import('./Accounts'));
 const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
 const Goals = React.lazy(() => import('./Goals'));
-const SplitEasy = React.lazy(() => import('./SplitEasy'));
 const Notes = React.lazy(() => import('./Notes'));
 
 interface User {
@@ -111,7 +109,7 @@ function Dashboard() {
     toast.promise(
       fetch('https://profit-lost-backend.onrender.com/ping'),
       {
-        loading: 'Sending request to reconnect to backend...',
+        loading: 'Sending request to reconnect...',
         success: 'OK response from backend',
         error: 'Could not connect to backend',
       },
@@ -139,11 +137,6 @@ function Dashboard() {
       label: 'Goals',
       icon: <ListCheckIcon />,
       command: () => handleMenuItemClick('Goals')
-    },
-    {
-      label: 'SplitEasy',
-      icon: <MoneyBillTransfer />,
-      command: () => handleMenuItemClick('SplitEasy')
     },
     {
       label: 'Notes',
@@ -214,13 +207,6 @@ function Dashboard() {
                   <p>Goals</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("SplitEasy")}
-                  className={activeSection === "SplitEasy" ? "active" : ""}
-                >
-                  <MoneyBillTransfer />
-                  <p>SplitEasy</p>
-                </li>
-                <li
                   onClick={() => handleMenuItemClick("Notes")}
                   className={activeSection === "Notes" ? "active" : ""}
                 >
@@ -264,7 +250,7 @@ function Dashboard() {
             </span>
             <span
               onClick={(e) => menu.current?.toggle(e)}
-              className={activeSection === "Goals" || activeSection === "SplitEasy" || activeSection === "Notes" ? "active" : ""}
+              className={activeSection === "Goals" || activeSection === "Notes" ? "active" : ""}
             >
               <BarsIcon />
             </span>
@@ -288,7 +274,6 @@ function Dashboard() {
             {activeSection === "Movements" && <Movements />}
             {activeSection === "Accounts" && <Accounts />}
             {activeSection === "Goals" && <Goals />}
-            {activeSection === "SplitEasy" && <SplitEasy />}
             {activeSection === "Notes" && <Notes />}
           </Suspense>
         </section>

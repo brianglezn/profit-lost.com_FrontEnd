@@ -45,7 +45,7 @@ function FormCategoryAdd({ onCategoryAdded, onClose }: { onCategoryAdded: () => 
         <form className="formCategories" onSubmit={handleSaveCategory}>
             <h2>New category</h2>
             <input
-                placeholder="name"
+                placeholder="Name"
                 value={newCategory}
                 onChange={handleNewCategoryChange}
                 className="custom-input"
