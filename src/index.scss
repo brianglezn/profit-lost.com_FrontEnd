@@ -203,10 +203,12 @@ body {
 
   .negative {
     fill: $negative-color;
+    color: $negative-color;
   }
 
   .positive {
     fill: $positive-color;
+    color: $positive-color;
   }
 
   .no-select {
