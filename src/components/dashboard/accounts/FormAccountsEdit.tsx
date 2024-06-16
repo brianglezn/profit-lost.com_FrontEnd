@@ -58,16 +58,22 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     const [fontColor, setFontColor] = useState<string>(account.configuration.color);
     const [year, setYear] = useState<number>(new Date().getFullYear());
     const [uniqueYears, setUniqueYears] = useState<number[]>([]);
-    const [records, setRecords] = useState<AccountRecord[]>(account.records);
+    const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
     const [showConfirm, setShowConfirm] = useState(false);
 
     useEffect(() => {
-        const years = Array.from(new Set(records.map(record => record.year))).sort((a, b) => a - b);
+        const years = Array.from(new Set(account.records.map(record => record.year))).sort((a, b) => a - b);
         setUniqueYears(years);
         if (!years.includes(year)) {
             setYear(years.includes(new Date().getFullYear()) ? new Date().getFullYear() : years[0]);
         }
-    }, [records, year]);
+
+        const initialTempValues: { [key: string]: string } = {};
+        account.records.forEach(record => {
+            initialTempValues[`${record.year}-${record.month}`] = record.value.toString();
+        });
+        setTempValues(initialTempValues);
+    }, [account.records, year]);
 
     const ensureHexColor = (color: string) => {
         return color.startsWith('#') ? color : `#${color}`;
@@ -97,25 +103,32 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         setYear(e.value);
     };
 
-    const handleValueChange = (month: string, value: number) => {
-        setRecords(prevRecords =>
-            prevRecords.map(record => {
-                if (record.year === year && record.month === month) {
-                    return { ...record, value };
-                }
-                return record;
-            })
-        );
+    const handleValueChange = (month: string, value: string) => {
+        const key = `${year}-${month}`;
+        setTempValues(prevTempValues => ({
+            ...prevTempValues,
+            [key]: value
+        }));
     };
 
     const handleEditAccount = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        const updatedRecords = account.records.map(record => {
+            const key = `${record.year}-${record.month}`;
+            const normalizedValue = tempValues[key]?.replace(',', '.') || '0';
+            const parsedValue = parseFloat(normalizedValue);
+            return {
+                ...record,
+                value: isNaN(parsedValue) ? 0 : parsedValue
+            };
+        });
+
         try {
             await editAccount({
                 accountId: account.AccountId,
                 accountName,
-                records,
+                records: updatedRecords,
                 configuration: { backgroundColor, color: fontColor },
             });
             toast.success('Account updated successfully', { duration: 3000 });
@@ -168,14 +181,14 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
             />
             <div className="dataYear">
                 {monthNames.map(month => {
-                    const record = records.find(record => record.year === year && record.month === month.value) || { year, month: month.value, value: 0 };
+                    const key = `${year}-${month.value}`;
                     return (
                         <div className="dataYear-row" key={month.value}>
                             <span>{month.name}</span>
                             <input
-                                type="number"
-                                value={record.value}
-                                onChange={(e) => handleValueChange(month.value, parseFloat(e.target.value))}
+                                type="text"
+                                value={tempValues[key] || ""}
+                                onChange={(e) => handleValueChange(month.value, e.target.value)}
                             />
                         </div>
                     );
