@@ -20,6 +20,8 @@ import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
 import ShielIcon from "../../components/icons/ShielIcon";
+import BackupManager from "../../components/BackupManager";
+import BackupIcon from "../../components/icons/BackupIcon";
 
 const DashHome = React.lazy(() => import('./DashHome'));
 const Accounts = React.lazy(() => import('./Accounts'));
@@ -28,7 +30,10 @@ const Movements = React.lazy(() => import('./Movements'));
 const Goals = React.lazy(() => import('./Goals'));
 const Notes = React.lazy(() => import('./Notes'));
 
+const authorizedUserId = "65df4dfae27f115e23b1a1c2";
+
 interface User {
+  _id: string;
   username: string;
   email: string;
   name: string;
@@ -74,7 +79,11 @@ function Dashboard() {
     const fetchUser = async () => {
       try {
         const userData = await getUserByToken(token);
-        setUser(userData);
+        if (userData && userData._id) {
+          setUser(userData);
+        } else {
+          console.error('User data does not include _id:', userData);
+        }
       } catch (error) {
         console.error('Error fetching user data:', error);
         navigate('/login');
@@ -275,6 +284,7 @@ function Dashboard() {
             {activeSection === "Accounts" && <Accounts />}
             {activeSection === "Goals" && <Goals />}
             {activeSection === "Notes" && <Notes />}
+            {activeSection === "Backups" && <BackupManager />}
           </Suspense>
         </section>
       </div>
@@ -306,6 +316,12 @@ function Dashboard() {
             <ShielIcon />
             <p>Security and Privacy</p>
           </a>
+          {user && user._id === authorizedUserId && (
+            <a onClick={() => handleMenuItemClick("Backups")}>
+              <BackupIcon />
+              <p>Backups MongoDB</p>
+            </a>
+          )}
         </div>
 
         <div className="profile__header-help">

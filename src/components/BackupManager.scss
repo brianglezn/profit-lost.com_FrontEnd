@@ -1,0 +1,53 @@
+@import '../../variables';
+
+.backupManager {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 50vh;
+    height: auto;
+    padding: 20px 0;
+    border-radius: 20px;
+    background-color: $text_color-white;
+    box-shadow: $shadow_color 0px 1px 4px;
+
+    .backupManager-container {
+        padding: 0 20px;
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+
+                div {
+                    display: flex;
+                    gap: 1rem;
+
+                    button {
+                        background-color: #fe6f14;
+                        color: white;
+                        border: none;
+                        padding: 10px;
+                        border-radius: 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #e65c00;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
