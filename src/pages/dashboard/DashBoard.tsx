@@ -336,8 +336,8 @@ function Dashboard() {
         </div>
 
         <div className="profile__dashboard">
-          <button onClick={handleLogout} className="profile__dashboard-logout">
-            Logout
+          <button onClick={handleLogout} className="custom-btn">
+            Log out
           </button>
         </div>
       </Sidebar>
