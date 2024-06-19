@@ -25,14 +25,13 @@
       flex: 1;
       justify-content: flex-end;
       align-items: center;
-      gap: 10px;
+      gap: 1rem;
 
       .footer__links-left {
         img {
           object-fit: cover;
           max-height: 10rem;
-          border-radius: 20px;
-          margin-right: 1rem;
+          border-radius: 1rem;
           box-shadow: $primary_color-600 0px 3px 2px, $text_color-grey 0px 1px 5px;
         }
       }
@@ -55,7 +54,7 @@
 
         .footer__links-right-rrss {
           display: flex;
-          gap: 5px;
+          gap: .5rem;
           position: relative;
 
           a {
@@ -66,8 +65,8 @@
               width: 2rem;
               fill: $bg-color;
               background-color: $primary_color;
-              padding: 5px;
-              border-radius: 7px;
+              padding: .3rem;
+              border-radius: .35rem;
               transition-duration: 0.3s;
               transition-timing-function: ease;
 
