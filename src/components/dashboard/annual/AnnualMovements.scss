@@ -4,7 +4,7 @@
     padding: 0 2rem 1rem;
 
     .p-datatable.p-component {
-        border-radius: 8px;
+        border-radius: .5rem;
         overflow: hidden;
 
         .annual__categories-options {
@@ -22,8 +22,12 @@
         }
     }
 
+    @media (max-width: 768px) {
+        padding: 0 1.5rem 1rem;
+    }
+
     @media (max-width: 480px) {
-        padding: 0 .5rem 1rem;
+        padding: 0 .7rem 1rem;
     }
 
 }

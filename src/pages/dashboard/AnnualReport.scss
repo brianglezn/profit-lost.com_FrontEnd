@@ -9,9 +9,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 20px;
+    gap: 1rem;
     width: 99.9%;
-    ;
 
     .annualReport__main-year {
       width: 100%;
@@ -21,7 +20,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 1rem;
       width: 100%;
 
       .income,
@@ -31,11 +30,10 @@
         justify-content: center;
         align-items: center;
         flex-grow: 1;
-        gap: 20px;
+        gap: 1rem;
         width: 100%;
         height: 4rem;
-        border-radius: 20px;
-        padding: 20px 0;
+        border-radius: .8rem;
         box-shadow: $shadow_color 0px 1px 4px;
         background-color: $text_color-white;
 
@@ -49,17 +47,16 @@
         }
       }
     }
-
   }
 
   .annualReport__categories {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 1rem;
     width: 100%;
-    padding: 20px 0;
-    border-radius: 20px;
+    padding: 1rem 0;
+    border-radius: .8rem;
     box-shadow: $shadow_color 0px 1px 4px;
     background-color: $text_color-white;
 
@@ -67,8 +64,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 40px;
-      margin-bottom: 20px;
+      padding: 0 2rem;
+      margin-bottom: 1rem;
 
       p {
         font-weight: bold;
@@ -106,6 +103,12 @@
         }
       }
     }
+
+    .annualReport__categories {
+      .annualReport__categories-text {
+        padding: 0 1.5rem;
+      }
+    }
   }
 
   @media (max-width: 480px) {
@@ -124,6 +127,13 @@
         }
       }
     }
+
+    .annualReport__categories {
+      .annualReport__categories-text {
+        padding: 0 1rem;
+      }
+    }
   }
+
 
 }
