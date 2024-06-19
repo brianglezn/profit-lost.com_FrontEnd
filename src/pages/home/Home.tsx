@@ -1,9 +1,6 @@
-import { TabPanel, TabView } from "primereact/tabview";
-
+import "./Home.scss";
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
-
-import "./Home.scss";
 import MobileScreenIcon from "../../components/icons/MobileScreenIcon";
 import NewspaperIcon from "../../components/icons/NewspaperIcon";
 import FaceGrinBeamIcon from "../../components/icons/FaceGrinBeamIcon";
@@ -61,26 +58,6 @@ function Home() {
               <h3>Easy to Use</h3>
             </div>
           </article>
-        </section>
-
-        <section className="section__preview no-select" id="demo">
-          <TabView>
-            <TabPanel header="ANNUAL REPORT">
-              <div className="demo__img">
-                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1716719033/profit-lost.com/img/preview/Annual%20Report.png" alt="annual_report-img" />
-              </div>
-            </TabPanel>
-            <TabPanel header="MOVEMENTS">
-              <div className="demo__img">
-                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1716719033/profit-lost.com/img/preview/Movements.png" alt="movements-img" />
-              </div>
-            </TabPanel>
-            <TabPanel header="ACCOUNTS">
-              <div className="demo__img">
-                <img src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1716719033/profit-lost.com/img/preview/Accounts.png" alt="accounts-img" />
-              </div>
-            </TabPanel>
-          </TabView>
         </section>
 
       </div>
