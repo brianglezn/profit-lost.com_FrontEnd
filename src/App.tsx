@@ -13,8 +13,6 @@ const Cookies = React.lazy(() => import('./pages/home/Cookies'));
 const ForgotPassword = React.lazy(() => import('./pages/home/ForgotPassword'));
 const ForgotPasswordToken = React.lazy(() => import('./pages/home/ForgotPasswordToken'));
 
-import './themes/App_Light.scss';
-
 interface PrivateRouteProps {
   children: React.ReactNode;
 }
