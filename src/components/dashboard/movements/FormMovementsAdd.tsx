@@ -179,7 +179,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 onChange={(e) => setCategory(e.value)}
                 optionLabel="name"
                 placeholder="Select a category"
-                className="formMovements-dropdown"
+                className="formDropdown"
                 required
             />
             <button type="submit" className="custom-btn">Save</button>

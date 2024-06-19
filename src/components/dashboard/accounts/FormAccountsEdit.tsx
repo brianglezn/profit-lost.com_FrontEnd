@@ -157,7 +157,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                 required
             />
             <Dropdown
-                className="formAccount-dropdown"
+                className="formDropdown"
                 value={year}
                 options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}

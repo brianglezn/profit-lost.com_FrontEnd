@@ -8,23 +8,18 @@
     gap: 1rem;
     padding: 1rem;
     width: 100%;
-    border-radius: 15px;
 
     p {
         text-align: center;
     }
 
-    .formAccount-dropdown {
-        width: 90%;
-    }
-
     .dataYear {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 1rem;
         width: 90%;
         padding: 1rem 1.5rem;
-        border-radius: 10px;
+        border-radius: .8rem;
         background-color: $text_color-white;
         box-shadow: $shadow_color 0px 1px 4px;
 
@@ -39,8 +34,8 @@
 
             input {
                 flex: 2;
-                padding: 5px;
-                border-radius: 5px;
+                padding: .3rem;
+                border-radius: .2rem;
                 border: 0.5px solid $surface-800;
             }
         }
@@ -50,9 +45,9 @@
         width: 90%;
         display: flex;
         justify-content: space-between;
-        gap: 10px;
+        gap: 1rem;
         padding: 1rem 1.5rem;
-        border-radius: 10px;
+        border-radius: .8rem;
         background-color: $text_color-white;
         box-shadow: $shadow_color 0px 1px 4px;
 
@@ -65,7 +60,7 @@
     .formAccount-buttons {
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: 1rem;
         width: 100%;
     }
 
