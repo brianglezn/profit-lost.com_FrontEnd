@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
-import Footer from "../../components/landing/Footer";
-
 import "./Cookies.scss";
+import Footer from "../../components/landing/Footer";
 
 function Cookies() {
   return (

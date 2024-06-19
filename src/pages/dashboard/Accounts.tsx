@@ -3,13 +3,13 @@ import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
+import { getAllAccounts } from '../../api/accounts/getAllAccounts';
+
+import "./Accounts.scss";
 import AccountItem from "../../components/dashboard/accounts/AccountItem";
 import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd";
 import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit";
 import CustomBarShape from "../../components/CustomBarShape";
-import { getAllAccounts } from '../../api/accounts/getAllAccounts';
-
-import "./Accounts.scss";
 import PlusIcon from "../../components/icons/PlusIcon";
 
 type AccountConfiguration = {

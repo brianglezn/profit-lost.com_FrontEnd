@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import CustomBarShape from "../../CustomBarShape";
-
 import "./AnnualChart.scss";
+import CustomBarShape from "../../CustomBarShape";
 import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface Movement {
@@ -83,7 +82,7 @@ function AnnualChart({ year }: { year: string }) {
                     </BarChart>
                 </ResponsiveContainer>
             ) : (
-                <ChartLineIcon className="custom-icon"/>
+                <ChartLineIcon className="custom-icon" />
             )}
         </div>
     );

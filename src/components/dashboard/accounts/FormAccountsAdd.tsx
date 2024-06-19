@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { addAccount } from '../../../api/accounts/addAccount';
+
 import './FormAccounts.scss';
 
 function FormAccountsAdd({ onAccountAdded }: { onAccountAdded: () => void }) {

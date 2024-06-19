@@ -6,8 +6,18 @@ import { Sidebar } from 'primereact/sidebar';
 import { Menu } from 'primereact/menu';
 import { toast } from 'react-hot-toast';
 
-import "./Dashboard.scss";
 import { getUserByToken } from "../../api/users/getUserByToken";
+
+import { getCurrentDate } from "../../helpers/functions";
+
+import "./Dashboard.scss";
+import BackupManager from "../../components/BackupManager";
+const DashHome = React.lazy(() => import('./DashHome'));
+const Accounts = React.lazy(() => import('./Accounts'));
+const AnnualReport = React.lazy(() => import('./AnnualReport'));
+const Movements = React.lazy(() => import('./Movements'));
+const Goals = React.lazy(() => import('./Goals'));
+const Notes = React.lazy(() => import('./Notes'));
 import RefreshIcon from "../../components/icons/RefreshIcon";
 import HomeIcon from "../../components/icons/HomeIcon";
 import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
@@ -20,15 +30,7 @@ import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
 import ShielIcon from "../../components/icons/ShielIcon";
-import BackupManager from "../../components/BackupManager";
 import BackupIcon from "../../components/icons/BackupIcon";
-
-const DashHome = React.lazy(() => import('./DashHome'));
-const Accounts = React.lazy(() => import('./Accounts'));
-const AnnualReport = React.lazy(() => import('./AnnualReport'));
-const Movements = React.lazy(() => import('./Movements'));
-const Goals = React.lazy(() => import('./Goals'));
-const Notes = React.lazy(() => import('./Notes'));
 
 const authorizedUserId = "65df4dfae27f115e23b1a1c2";
 
@@ -38,18 +40,6 @@ interface User {
   email: string;
   name: string;
   surname: string;
-}
-
-function getCurrentDate() {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
-
-  const today = new Date().toLocaleDateString("es-ES", options);
-  return today;
 }
 
 function Dashboard() {

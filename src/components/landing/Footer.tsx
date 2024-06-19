@@ -1,8 +1,8 @@
+import "./Footer.scss";
 import EnvelopIcon from "../icons/EnvelopIcon";
 import GitHubIcon from "../icons/GitHubIcon";
 import LinkedinIcon from "../icons/LinkedinIcon";
 import SolarPanelIcon from "../icons/SolarPanelIcon";
-import "./Footer.scss";
 
 function Footer() {
   const currentYear = new Date().getFullYear();

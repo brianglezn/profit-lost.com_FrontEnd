@@ -2,11 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
 
+import { formatCurrency } from "../../helpers/functions";
+
+import "./AnnualReport.scss";
 import AnnualChart from "../../components/dashboard/annual/AnnualChart";
 import AnnualMovements from "../../components/dashboard/annual/AnnualMovements";
 import FormCategoryAdd from "../../components/dashboard/annual/FormCategoryAdd";
-
-import "./AnnualReport.scss";
 import DownloadIcon from "../../components/icons/DownloadIcon";
 import UploadIcon from "../../components/icons/UploadIcon";
 import PigCoinIcon from "../../components/icons/PigCoinIcon";
@@ -17,15 +18,6 @@ interface Movement {
   description: string;
   amount: number;
   category: string;
-}
-
-function formatCurrency(value: number): string {
-  return value.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-    useGrouping: true,
-  });
 }
 
 function AnnualReport() {

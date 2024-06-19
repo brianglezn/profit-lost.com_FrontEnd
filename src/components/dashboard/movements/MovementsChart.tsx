@@ -1,8 +1,7 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import CustomBarShape from "../../CustomBarShape";
-
 import "./MovementsChart.scss"
+import CustomBarShape from "../../CustomBarShape";
 import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface MovementsProps {

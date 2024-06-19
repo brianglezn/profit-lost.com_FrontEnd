@@ -6,6 +6,9 @@ import { toast } from 'react-hot-toast';
 import { editAccount } from '../../../api/accounts/editAccount';
 import { removeAccount } from '../../../api/accounts/removeAccount';
 
+import { rgbToHex } from "../../../helpers/functions";
+import { monthNames } from "../../../helpers/constants";
+
 import "./FormAccounts.scss";
 
 interface AccountRecord {
@@ -31,25 +34,6 @@ interface FormAccountsEditProps {
     onUpdate: () => void;
     onClose: () => void;
     onRemove: () => void;
-}
-
-const monthNames = [
-    { name: "January", value: "Jan" },
-    { name: "February", value: "Feb" },
-    { name: "March", value: "Mar" },
-    { name: "April", value: "Apr" },
-    { name: "May", value: "May" },
-    { name: "June", value: "Jun" },
-    { name: "July", value: "Jul" },
-    { name: "August", value: "Aug" },
-    { name: "September", value: "Sep" },
-    { name: "October", value: "Oct" },
-    { name: "November", value: "Nov" },
-    { name: "December", value: "Dec" }
-];
-
-function rgbToHex({ r, g, b }: ColorPickerRGBType): string {
-    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
 }
 
 function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {

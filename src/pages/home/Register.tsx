@@ -2,10 +2,10 @@ import React, { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
+import './authForms.scss';
 import Footer from '../../components/landing/Footer';
 import EyeSlashIcon from '../../components/icons/EyeSlashIcon';
 import EyeIcon from '../../components/icons/EyeIcon';
-import './authForms.scss';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -124,7 +124,7 @@ function Register() {
               className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
               onClick={toggleShowPassword}
             >
-             {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
+              {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
             </button>
           </div>
 

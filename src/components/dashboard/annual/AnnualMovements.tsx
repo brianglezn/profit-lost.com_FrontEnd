@@ -4,9 +4,10 @@ import { Column } from "primereact/column";
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 
-import FormCategoryEdit from "./FormCategoryEdit";
+import { formatCurrency } from "../../../helpers/functions";
 
 import "./AnnualMovements.scss";
+import FormCategoryEdit from "./FormCategoryEdit";
 import PencilIcon from "../../icons/PencilIcon";
 
 type Transaction = {
@@ -28,15 +29,6 @@ type CategoryBalance = {
 interface AnnualMovementsProps {
     year: string;
     reloadFlag: boolean;
-}
-
-function formatCurrency(value: number) {
-    return value.toLocaleString("es-ES", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2,
-        useGrouping: true,
-    });
 }
 
 const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {

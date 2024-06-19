@@ -5,12 +5,14 @@ import { Sidebar } from 'primereact/sidebar';
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
 
+import { formatCurrency } from "../../helpers/functions";
+import { monthOptions } from "../../helpers/constants";
+
+import "./Movements.scss";
 import MovementsPie from "../../components/dashboard/movements/MovementsPie";
 import MovementsChart from "../../components/dashboard/movements/MovementsChart";
 import MovementsTable from "../../components/dashboard/movements/MovementsTable";
 import FormMovementsAdd from "../../components/dashboard/movements/FormMovementsAdd";
-
-import "./Movements.scss";
 import DownloadIcon from "../../components/icons/DownloadIcon";
 import UploadIcon from "../../components/icons/UploadIcon";
 import PigCoinIcon from "../../components/icons/PigCoinIcon";
@@ -23,30 +25,6 @@ interface Movement {
   amount: number;
   category: string;
 }
-
-function formatCurrency(value: number) {
-  return value.toLocaleString("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-    useGrouping: true,
-  });
-}
-
-const monthOptions = [
-  { value: "01", label: "January" },
-  { value: "02", label: "February" },
-  { value: "03", label: "March" },
-  { value: "04", label: "April" },
-  { value: "05", label: "May" },
-  { value: "06", label: "June" },
-  { value: "07", label: "July" },
-  { value: "08", label: "August" },
-  { value: "09", label: "September" },
-  { value: "10", label: "October" },
-  { value: "11", label: "November" },
-  { value: "12", label: "December" },
-];
 
 function Movements() {
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());

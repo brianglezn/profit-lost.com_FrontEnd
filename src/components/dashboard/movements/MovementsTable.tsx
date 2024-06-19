@@ -4,9 +4,10 @@ import { Column } from 'primereact/column';
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 
-import FormMovementsEdit from './FormMovementsEdit';
+import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
 import "./MovementsTable.scss"
+import FormMovementsEdit from './FormMovementsEdit';
 import PencilIcon from '../../icons/PencilIcon';
 
 type Transaction = {
@@ -21,27 +22,6 @@ interface MovementsTableProps {
     data: Transaction[];
     isDataEmpty: boolean;
     reloadData: () => void;
-}
-
-function formatCurrency(value: number): string {
-    return value.toLocaleString('es-ES', {
-        style: 'currency',
-        currency: 'EUR',
-        minimumFractionDigits: 2,
-        useGrouping: true,
-    });
-}
-
-function formatDateTime(value: string): string {
-    const date = new Date(value);
-    return date.toLocaleString('es-ES', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    });
 }
 
 function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) {
