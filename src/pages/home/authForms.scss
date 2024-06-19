@@ -1,4 +1,4 @@
-@import '../../../variables'; // Asegúrate de que la ruta al archivo de variables es correcta
+@import '../../../variables';
 
 .authForms {
   .auth__header {
@@ -16,8 +16,8 @@
     justify-content: center;
     margin: 5rem auto;
     padding: 2rem 2rem;
-    max-width: 700px;
-    border-radius: 25px;
+    max-width: 40rem;
+    border-radius: 1rem;
     background: $text-color-white;
     box-shadow: 0px 8px 17px #171a1f26,
       0px 0px 2px #171a1f1f;
@@ -41,14 +41,14 @@
 
         .form__password {
           width: 100%;
-          padding-right: 40px;
+          padding-right: 2rem;
         }
 
         .password-toggle-btn {
           position: absolute;
           color: $primary_color-800;
           top: 38%;
-          right: 5px;
+          right: .5rem;
           transform: translateY(-50%);
           background: none;
           border: none;
@@ -90,11 +90,20 @@
 
     .container__form {
       margin: 4rem auto;
-      width: 400px;
+      width: 30rem;
 
       form {
         input {
           height: 2.8rem;
+        }
+
+        .form__password-container {
+          .password-toggle-btn {
+            svg {
+              width: 1.2rem;
+              height: 1.2rem;
+            }
+          }
         }
       }
     }
@@ -102,7 +111,7 @@
 
   @media (max-width: 480px) {
     .container__form {
-      margin: 4rem auto 6rem auto;
+      margin: 4rem auto;
       width: 90%;
 
       form {
@@ -110,10 +119,6 @@
 
         .form__title {
           font-size: 1.7rem;
-        }
-
-        input {
-          border-radius: 10px;
         }
       }
     }
