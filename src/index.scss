@@ -194,30 +194,34 @@ body {
   .custom-loader {
     width: .6rem;
     height: .6rem;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     display: block;
     margin: 4px auto;
     position: relative;
     color: #FFF;
+    background: #FFF;
+    box-shadow: -24px 0 #FFF, 24px 0 #FFF;
     box-sizing: border-box;
     animation: animloader 1s linear infinite alternate;
+    animation: shadowPulse 2s linear infinite;
   }
 
-  @keyframes animloader {
-    0% {
-      box-shadow: -38px -12px, -14px 0, 14px 0, 38px 0;
-    }
-
+  @keyframes shadowPulse {
     33% {
-      box-shadow: -38px 0px, -14px -12px, 14px 0, 38px 0;
+      background: #FFF;
+      box-shadow: -24px 0 #FF3D00, 24px 0 #FFF;
     }
 
     66% {
-      box-shadow: -38px 0px, -14px 0, 14px -12px, 38px 0;
+      background: #FF3D00;
+      box-shadow: -24px 0 #FFF, 24px 0 #FFF;
     }
 
     100% {
-      box-shadow: -38px 0, -14px 0, 14px 0, 38px -12px;
+      background: #FFF;
+      box-shadow: -24px 0 #FFF, 24px 0 #FF3D00;
     }
   }
 

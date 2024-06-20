@@ -1,13 +1,17 @@
-<h1>FRONTEND Profit-Lost.com - TFG UNIVERSAE</h1>
+<h1>Profit & Lost Frontend</h1>
 
 <h2>Descripción</h2>
-Profit-Lost.com es una aplicación web avanzada desarrollada en React con Typescript, centrada en la gestión y visualización de datos financieros. Esta aplicación está diseñada para proporcionar a los usuarios una herramienta intuitiva y eficaz para el seguimiento de sus finanzas personales o empresariales, con énfasis en la claridad y la facilidad de uso.
+Profit-Lost.com es una aplicación web desarrollada en React con Typescript, centrada en la gestión y visualización de datos financieros. Esta aplicación está diseñada para proporcionar a los usuarios una herramienta intuitiva y eficaz para el seguimiento de sus finanzas personales o empresariales, con énfasis en la claridad y la facilidad de uso.
 
 <h2>Características Principales</h2>
 <ul>
-  <li>Visualización de Datos Financieros</li>
+  <li>Gráficos y tablas para visualizar los datos financieros.</li>
   <li>Interfaz de Usuario Personalizable y Responsiva</li>
   <li>Gráficos Dinámicos</li>
+  <li>Gestión de cuentas financieras.</li>
+  <li>Seguimiento de movimientos anuales y mensuales.</li>
+  <li>Gestión de categorías y movimientos.</li>
+  <li>Autenticación de usuarios.</li>
 </ul>
 
 <h2>Tecnologías Utilizadas</h2>
@@ -19,7 +23,6 @@ Profit-Lost.com es una aplicación web avanzada desarrollada en React con Typesc
   <li>Vite</li>
   <li>Node.js</li>
   <li>Sass</li>
-  <li>Posteriormente agregaremos MongoDB y Express</li>
 </ul>
 
 <h2>Prerrequisitos</h2>
