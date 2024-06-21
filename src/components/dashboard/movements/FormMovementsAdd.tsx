@@ -9,6 +9,7 @@ interface Category {
     name: string;
 }
 
+
 interface FormMovementsAddProps {
     onMovementAdded: () => void;
     onClose: () => void;
@@ -24,6 +25,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     const [categories, setCategories] = useState<Category[]>([]);
     const [isIncome, setIsIncome] = useState<boolean>(false);
 
+    // useEffect to load categories from backend
     useEffect(() => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('token');
@@ -50,6 +52,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         fetchCategories();
     }, []);
 
+    // useEffect to set the initial date when loading the form
     useEffect(() => {
         const currentDate = new Date();
         console.log('Current Date:', currentDate);
@@ -65,17 +68,18 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         }
     }, [selectedYear, selectedMonth]);
 
+    // Manages the click on the enter button
     const handleIncomeClick = () => {
         setIsIncome(true);
         setAmount(amount.replace('-', ''));
-        console.log('Income Clicked:', isIncome);
     };
 
+    // Manages the click on the spend button
     const handleExpenseClick = () => {
         setIsIncome(false);
-        console.log('Expense Clicked:', isIncome);
     };
 
+    // Handles change in the quantity field
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (isIncome) {
@@ -83,9 +87,9 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         } else {
             setAmount(value);
         }
-        console.log('Amount Changed:', value);
     };
 
+    // Manages form submission addMovement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 

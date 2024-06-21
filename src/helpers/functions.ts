@@ -20,9 +20,11 @@ export function getCurrentDate() {
     const today = new Date().toLocaleDateString("es-ES", options);
     return today;
 }
+
 export function formatDateTime(value: string): string {
     const date = new Date(value);
     return date.toLocaleString('es-ES', {
+        timeZone: 'UTC',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
