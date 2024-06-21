@@ -53,9 +53,9 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     useEffect(() => {
         const currentDate = new Date();
         if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || selectedYear !== currentDate.getFullYear().toString()) {
-            setDate(`${selectedYear}-${selectedMonth}-01T05:00`);
+            setDate(`${selectedYear}-${selectedMonth}-01T00:00:00.000Z`);
         } else {
-            setDate(currentDate.toISOString().slice(0, 16));
+            setDate(new Date().toISOString().slice(0, 16));
         }
     }, [selectedYear, selectedMonth]);
 
@@ -102,6 +102,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
             amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };
+
 
         try {
             const response = await fetch('https://profit-lost-backend.onrender.com/movements/add', {
