@@ -55,16 +55,13 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     // useEffect to set the initial date when loading the form
     useEffect(() => {
         const currentDate = new Date();
-        console.log('Current Date:', currentDate);
 
         if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || selectedYear !== currentDate.getFullYear().toString()) {
             const initialDate = `${selectedYear}-${selectedMonth}-01T00:00`;
             setDate(initialDate);
-            console.log('Initial Date Set:', initialDate);
         } else {
             const localDateTime = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
             setDate(localDateTime);
-            console.log('Local DateTime Set:', localDateTime);
         }
     }, [selectedYear, selectedMonth]);
 
@@ -115,8 +112,6 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
             amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };
-
-        console.log('Movement Data:', movementData);
 
         try {
             const response = await fetch('https://profit-lost-backend.onrender.com/movements/add', {

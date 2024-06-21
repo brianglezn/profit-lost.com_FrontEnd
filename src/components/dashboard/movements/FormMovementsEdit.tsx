@@ -30,6 +30,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
     const [showConfirm, setShowConfirm] = useState(false);
     const [isIncome, setIsIncome] = useState<boolean>(transaction.amount >= 0);
 
+    // useEffect to load categories from backend
     useEffect(() => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('token');
@@ -56,18 +57,21 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             }
         };
 
-        fetchCategories();
+        fetchCategories(); // Llama a la función para obtener las categorías
     }, [transaction.category]);
 
+    // Manages the click on the enter button
     const handleIncomeClick = () => {
         setIsIncome(true);
         setAmount(amount.replace('-', ''));
     };
 
+    // Manages the click on the spend button
     const handleExpenseClick = () => {
         setIsIncome(false);
     };
 
+    // Handles change in the quantity field
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (isIncome) {
@@ -77,6 +81,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         }
     };
 
+    // Manages form submission editMovemet
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -91,7 +96,9 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             return;
         }
 
-        const formattedDate = new Date(dateTime).toISOString();
+        const localDate = new Date(dateTime);
+        const offsetDate = new Date(localDate.getTime() - (localDate.getTimezoneOffset() * 60000));
+        const formattedDate = offsetDate.toISOString().slice(0, 19);
 
         try {
             const response = await fetch(`https://profit-lost-backend.onrender.com/movements/edit/${transaction._id}`, {
@@ -122,11 +129,13 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         }
     };
 
+    // Manages the click on the delete button
     const handleRemove = (e: React.FormEvent) => {
         e.preventDefault();
         setShowConfirm(true);
     };
 
+    // Handles confirmation of deletion
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
 
