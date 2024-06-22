@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
 
+import { getAllCategories } from '../../../api/categories/getAllCategories';
+
 import './FormMovements.scss';
 
 interface Category {
@@ -34,22 +36,16 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
     useEffect(() => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('token');
+            if (!token) {
+                toast.error('No authentication token found. Please log in.');
+                return;
+            }
             try {
-                const response = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
+                const fetchedCategories = await getAllCategories(token);
+                const sortedCategories = fetchedCategories.sort((a: Category, b: Category) => a.name.localeCompare(b.name));
+                setCategories(sortedCategories);
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                let fetchedCategories: Category[] = await response.json();
-                fetchedCategories = fetchedCategories.sort((a, b) => a.name.localeCompare(b.name));
-                setCategories(fetchedCategories);
-
-                const currentCategory = fetchedCategories.find(cat => cat.name === transaction.category);
+                const currentCategory = sortedCategories.find((cat: Category) => cat.name === transaction.category);
                 setCategory(currentCategory || null);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -57,7 +53,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             }
         };
 
-        fetchCategories(); // Llama a la función para obtener las categorías
+        fetchCategories();
     }, [transaction.category]);
 
     // Manages the click on the enter button
