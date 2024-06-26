@@ -105,7 +105,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                 <ProgressBar mode="indeterminate" style={{ height: '6px' }}></ProgressBar>
             ) : (
                 <>
-                    <DataTable value={categories} className="p-datatable-gridlines">
+                    <DataTable value={categories} className="p-datatable-gridlines" sortField="Category" sortOrder={1}>
                         <Column field="Category" header="Category" sortable style={{ width: '55%' }}></Column>
                         <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
