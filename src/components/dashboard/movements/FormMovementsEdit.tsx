@@ -214,6 +214,9 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 optionLabel="name"
                 placeholder="Select a category"
                 className="formDropdown"
+                filter
+                showClear
+                filterBy="name"
                 required
             />
             <div className="formMovements-buttons">

@@ -11,7 +11,6 @@ interface Category {
     name: string;
 }
 
-
 interface FormMovementsAddProps {
     onMovementAdded: () => void;
     onClose: () => void;
@@ -186,6 +185,9 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 optionLabel="name"
                 placeholder="Select a category"
                 className="formDropdown"
+                filter
+                showClear
+                filterBy="name"
                 required
             />
             <button type="submit" className="custom-btn">Save</button>
