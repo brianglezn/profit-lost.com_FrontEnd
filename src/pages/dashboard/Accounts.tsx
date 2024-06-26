@@ -4,6 +4,7 @@ import { Sidebar } from 'primereact/sidebar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
+import { formatCurrency } from '../../helpers/functions';
 
 import "./Accounts.scss";
 import AccountItem from "../../components/dashboard/accounts/AccountItem";
@@ -91,12 +92,7 @@ function Accounts() {
         return acc;
       }, 0);
 
-      monthData.name += `: ${totalForMonth.toLocaleString("es-ES", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2,
-        useGrouping: true,
-      })}`;
+      monthData.name += `: ${formatCurrency(totalForMonth)}`;
 
       return monthData;
     });
@@ -118,10 +114,7 @@ function Accounts() {
         <AccountItem
           key={index}
           accountName={account.accountName}
-          balance={`${balanceForMonth.toLocaleString("es-ES", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })} €`}
+          balance={`${formatCurrency(balanceForMonth)}`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
           accountId={account.AccountId}
@@ -131,6 +124,7 @@ function Accounts() {
     });
     return items;
   }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar]);
+
 
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
