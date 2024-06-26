@@ -65,6 +65,10 @@ const MovementsPie = ({ data }: MovementsPieProps) => {
     };
 
     const isDataEmpty = data.length === 0;
+    const roundedData = data.map(item => ({
+        ...item,
+        value: parseFloat(item.value.toFixed(2))
+    }));
 
     return (
         <div className="movements__pie-category">
@@ -74,7 +78,7 @@ const MovementsPie = ({ data }: MovementsPieProps) => {
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie
-                            data={data}
+                            data={roundedData}
                             cx="50%"
                             cy="50%"
                             labelLine={false}
