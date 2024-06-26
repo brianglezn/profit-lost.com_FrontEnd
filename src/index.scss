@@ -68,7 +68,7 @@ body {
     min-width: 70%;
     background-color: $bg-color;
     margin-bottom: 1rem;
-    border: 1px solid  $bg-color;
+    border: 1px solid $bg-color;
     border-radius: .6rem;
     padding: .8rem;
     box-shadow: 0 .4rem $surface-700;
@@ -102,7 +102,6 @@ body {
     appearance: none;
     background-color: $text_color-white;
     border: 1px solid $text_color-white;
-    ;
     width: 90%;
     border-radius: .5rem;
     padding: 0.8rem;

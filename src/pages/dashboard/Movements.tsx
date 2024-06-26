@@ -116,7 +116,7 @@ function Movements() {
             options={monthOptions}
             onChange={(e) => setMonth(e.value)}
             placeholder={month}
-            style={{ maxHeight: 'none' }}
+            // style={{ maxHeight: 'none' }}
           />
         </div>
         <div className="movements__charts-container">
