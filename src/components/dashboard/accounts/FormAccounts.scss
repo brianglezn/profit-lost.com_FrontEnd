@@ -37,6 +37,11 @@
                 padding: .3rem;
                 border-radius: .2rem;
                 border: 0.5px solid $surface-800;
+
+                &:focus {
+                    outline: none;
+                    border: 0.5px solid $primary_color;
+                }
             }
         }
     }
@@ -79,7 +84,7 @@
             width: 95%;
         }
 
-        input {
+        .dataYear-input {
             width: 95%;
         }
 
