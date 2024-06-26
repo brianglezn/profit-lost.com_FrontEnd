@@ -46,7 +46,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     const [showConfirm, setShowConfirm] = useState(false);
 
     useEffect(() => {
-        const years = Array.from(new Set(account.records.map(record => record.year))).sort((a, b) => a - b);
+        const years = Array.from(new Set(account.records.map(record => record.year).filter(year => year !== null && year !== undefined))).sort((a, b) => a - b);
         setUniqueYears(years);
         if (!years.includes(year)) {
             setYear(years.includes(new Date().getFullYear()) ? new Date().getFullYear() : years[0]);
@@ -54,7 +54,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
         const initialTempValues: { [key: string]: string } = {};
         account.records.forEach(record => {
-            initialTempValues[`${record.year}-${record.month}`] = record.value.toString();
+            initialTempValues[`${record.year}-${record.month}`] = record.value?.toString() || '0';
         });
         setTempValues(initialTempValues);
     }, [account.records, year]);
