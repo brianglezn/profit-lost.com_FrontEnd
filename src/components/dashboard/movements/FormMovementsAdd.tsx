@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
 
 import { getAllCategories } from '../../../api/categories/getAllCategories';
+import { addMovement } from '../../../api/movements/addMovement';
 
 import './FormMovements.scss';
 
@@ -109,20 +110,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         };
 
         try {
-            const response = await fetch('https://profit-lost-backend.onrender.com/movements/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify(movementData),
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || `HTTP error! status: ${response.status}`);
-            }
-
+            await addMovement(token, movementData);
             toast.success('Movement added successfully');
 
             onMovementAdded();
