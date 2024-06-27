@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
+import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
+import { monthNames } from "../../../helpers/constants";
+
 import "./AnnualChart.scss";
 import CustomBarShape from "../../CustomBarShape";
 import ChartLineIcon from "../../icons/CharLineIcon";
@@ -22,25 +25,20 @@ function AnnualChart({ year }: { year: string }) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
 
     useEffect(() => {
-        const apiUrl = `https://profit-lost-backend.onrender.com/movements/${year}`;
-        const token = localStorage.getItem('token');
-
-        fetch(apiUrl, {
-            headers: {
-                'Authorization': `Bearer ${token}`
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No authentication token found. Please log in.');
+                return;
             }
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data: Movement[]) => {
+
+            try {
+                const data: Movement[] = await getMovementsByYear(token, year);
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
-                const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
                 data.forEach(movement => {
-                    const month = monthNames[parseInt(movement.date.split("-")[1], 10) - 1];
+                    const monthIndex = parseInt(movement.date.split("-")[1], 10) - 1;
+                    const month = monthNames[monthIndex].value;
                     if (!monthlyData[month]) {
                         monthlyData[month] = { Income: 0, Expenses: 0 };
                     }
@@ -50,14 +48,19 @@ function AnnualChart({ year }: { year: string }) {
                         monthlyData[month].Expenses += Math.abs(movement.amount);
                     }
                 });
+
                 const formattedData: ChartDataItem[] = monthNames.map(month => ({
-                    month,
-                    Income: monthlyData[month] ? parseFloat(monthlyData[month].Income.toFixed(2)) : 0,
-                    Expenses: monthlyData[month] ? parseFloat(monthlyData[month].Expenses.toFixed(2)) : 0
+                    month: month.value,
+                    Income: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Income.toFixed(2)) : 0,
+                    Expenses: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Expenses.toFixed(2)) : 0
                 }));
                 setChartData(formattedData);
-            })
-            .catch(error => console.error("Error fetching data:", error));
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
     }, [year]);
 
     return (
