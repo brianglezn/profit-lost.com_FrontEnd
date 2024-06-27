@@ -5,6 +5,8 @@ import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 
 import { formatCurrency } from "../../../helpers/functions";
+import { getAllCategories } from "../../../api/categories/getAllCategories";
+import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
 
 import "./AnnualMovements.scss";
 import FormCategoryEdit from "./FormCategoryEdit";
@@ -47,17 +49,8 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
         }
 
         try {
-            const categoriesResponse = await fetch('https://profit-lost-backend.onrender.com/categories/all', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!categoriesResponse.ok) throw new Error('Failed to fetch categories');
-            const categoriesData: Category[] = await categoriesResponse.json();
-
-            const movementsResponse = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!movementsResponse.ok) throw new Error('Failed to fetch movements');
-            const movementsData: Transaction[] = await movementsResponse.json();
+            const categoriesData: Category[] = await getAllCategories(token);
+            const movementsData: Transaction[] = await getMovementsByYear(token, year);
 
             const categoryBalances = categoriesData.map(category => {
                 const balance = movementsData.reduce((acc, movement) => {
