@@ -15,11 +15,19 @@ export const editMovement = async (token: string, movementId: string, movementDa
         });
 
         if (!response.ok) {
-            throw new Error('Failed to edit movement');
+            const errorText = await response.text();
+            console.error('Error text:', errorText);
+            throw new Error(errorText || 'Failed to edit movement');
         }
 
-        const updatedMovement = await response.json();
-        return updatedMovement;
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const updatedMovement = await response.json();
+            return updatedMovement;
+        } else {
+            const textResponse = await response.text();
+            return textResponse;
+        }
     } catch (error) {
         console.error('Error editing movement:', error);
         throw new Error('Failed to edit movement');

@@ -3,6 +3,8 @@ import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
 
 import { getAllCategories } from '../../../api/categories/getAllCategories';
+import { editMovement } from '../../../api/movements/editMovement';
+import { removeMovement } from '../../../api/movements/removeMovement';
 
 import './FormMovements.scss';
 
@@ -96,26 +98,15 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         const offsetDate = new Date(localDate.getTime() - (localDate.getTimezoneOffset() * 60000));
         const formattedDate = offsetDate.toISOString().slice(0, 19);
 
+        const movementData = {
+            date: formattedDate,
+            description: description.trim() === '' ? '---' : description,
+            amount: Number(amount) * (isIncome ? 1 : -1),
+            category: category?._id || '',
+        };
+
         try {
-            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/edit/${transaction._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    date: formattedDate,
-                    description: description.trim() === '' ? '---' : description,
-                    amount: Number(amount) * (isIncome ? 1 : -1),
-                    category: category?._id,
-                }),
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || `HTTP error! status: ${response.status}`);
-            }
-
+            await editMovement(token, transaction._id, movementData);
             toast.success('Movement updated successfully');
             onEdit();
         } catch (error) {
@@ -142,17 +133,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         }
 
         try {
-            const response = await fetch(`https://profit-lost-backend.onrender.com/movements/remove/${transaction._id}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error("Network response was not ok.");
-            }
-
+            await removeMovement(token, transaction._id);
             toast.success('Transaction removed successfully.');
             setTimeout(() => {
                 onRemove();
