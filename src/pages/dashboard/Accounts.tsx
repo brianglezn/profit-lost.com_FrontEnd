@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
+import { monthNames as monthNamesWithNames } from '../../helpers/constants';
 
 import "./Accounts.scss";
 import AccountItem from "../../components/dashboard/accounts/AccountItem";
@@ -36,7 +37,7 @@ type MonthData = {
   [key: string]: number | string;
 };
 
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const monthNames = monthNamesWithNames.map(month => month.value);
 
 function Accounts() {
   const currentDate = new Date();
