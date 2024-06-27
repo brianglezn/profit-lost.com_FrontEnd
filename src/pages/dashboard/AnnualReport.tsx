@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
 
+import { getAllMovements } from '../../api/movements/getAllMovements';
+import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
 import { formatCurrency } from "../../helpers/functions";
 
 import "./AnnualReport.scss";
@@ -37,14 +39,7 @@ function AnnualReport() {
     }
 
     try {
-      const response = await fetch(`https://profit-lost-backend.onrender.com/movements/all`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      if (!response.ok) throw new Error('Failed to fetch');
-
-      const dataMovements: Movement[] = await response.json() as Movement[];
+      const dataMovements: Movement[] = await getAllMovements(token);
       const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
@@ -62,16 +57,13 @@ function AnnualReport() {
     const token = localStorage.getItem('token');
 
     const fetchData = async () => {
+      if (!token) {
+        console.error('No authentication token found. Please log in.');
+        return;
+      }
+
       try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/movements/${year}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const dataMovements: Movement[] = await response.json();
+        const dataMovements: Movement[] = await getMovementsByYear(token, year);
 
         const { income, expenses } = dataMovements.reduce((acc, transaction) => {
           if (transaction.amount > 0) acc.income += transaction.amount;
