@@ -189,6 +189,18 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 onChange={(e) => setDateTime(e.target.value)}
                 required
             />
+            <Dropdown
+                value={category}
+                options={categories}
+                onChange={(e) => setCategory(e.value)}
+                optionLabel="name"
+                placeholder="Select a category"
+                className="formDropdown"
+                filter
+                showClear
+                filterBy="name"
+                required
+            />
             <input
                 type="text"
                 className='custom-input'
@@ -205,18 +217,6 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 placeholder="Amount"
                 step="0.01"
                 min={isIncome ? "0" : undefined}
-                required
-            />
-            <Dropdown
-                value={category}
-                options={categories}
-                onChange={(e) => setCategory(e.value)}
-                optionLabel="name"
-                placeholder="Select a category"
-                className="formDropdown"
-                filter
-                showClear
-                filterBy="name"
                 required
             />
             <div className="formMovements-buttons">

@@ -161,6 +161,18 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 placeholder=" "
                 required
             />
+            <Dropdown
+                value={category}
+                options={categories}
+                onChange={(e) => setCategory(e.value)}
+                optionLabel="name"
+                placeholder="Select a category"
+                className="formDropdown"
+                filter
+                showClear
+                filterBy="name"
+                required
+            />
             <input
                 className="custom-input"
                 type="text"
@@ -176,18 +188,6 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 placeholder="Amount"
                 step="0.01"
                 min={isIncome ? "0" : undefined}
-                required
-            />
-            <Dropdown
-                value={category}
-                options={categories}
-                onChange={(e) => setCategory(e.value)}
-                optionLabel="name"
-                placeholder="Select a category"
-                className="formDropdown"
-                filter
-                showClear
-                filterBy="name"
                 required
             />
             <button type="submit" className="custom-btn">Save</button>
