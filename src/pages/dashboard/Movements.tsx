@@ -4,6 +4,7 @@ import { Sidebar } from 'primereact/sidebar';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
+import { getAllCategories } from '../../api/categories/getAllCategories';
 
 import { formatCurrency } from "../../helpers/functions";
 import { monthOptions } from "../../helpers/constants";
@@ -26,17 +27,30 @@ interface Movement {
   category: string;
 }
 
+interface Category {
+  _id: string;
+  name: string;
+  color: string;
+}
+
 function Movements() {
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());
   const [month, setMonth] = useState<string>((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [open, setOpen] = useState<boolean>(false);
 
   const fetchMovementsData = useCallback(async (token: string) => {
     if (!token) return;
     try {
-      const movementsData = await getAllMovements(token);
+      const [movementsData, categoriesData] = await Promise.all([
+        getAllMovements(token),
+        getAllCategories(token),
+      ]);
+
+      setCategories(categoriesData);
+
       const years = new Set<string>(movementsData.map((m: Movement) => new Date(m.date).getFullYear().toString()));
       setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
 
@@ -119,8 +133,8 @@ function Movements() {
           />
         </div>
         <div className="movements__charts-container">
-          <MovementsPie data={incomeData} />
-          <MovementsPie data={expensesData} />
+          <MovementsPie data={incomeData} categories={categories} />
+          <MovementsPie data={expensesData} categories={categories} />
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
         </div>
         <div className="movements__main-balance">

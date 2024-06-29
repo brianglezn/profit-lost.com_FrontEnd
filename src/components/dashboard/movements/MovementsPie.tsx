@@ -8,8 +8,15 @@ interface MovementData {
     value: number;
 }
 
+interface Category {
+    _id: string;
+    name: string;
+    color: string;
+}
+
 interface MovementsPieProps {
     data: MovementData[];
+    categories: Category[];
 }
 
 interface LabelProps {
@@ -22,20 +29,12 @@ interface LabelProps {
     name: string;
 }
 
-const MovementsPie = ({ data }: MovementsPieProps) => {
+const MovementsPie = ({ data, categories }: MovementsPieProps) => {
 
-    const colorVars = [
-        '#ffd5a8',
-        '#ffb771',
-        '#ef5107',
-        '#7e2a10',
-        '#ffecd4',
-        '#c84f03',
-        '#c63b08',
-        '#fff7ed',
-        '#9d300f',
-        '#ff8e38',
-    ];
+    const categoryColorMap = categories.reduce((acc, category) => {
+        acc[category.name] = category.color;
+        return acc;
+    }, {} as { [key: string]: string });
 
     const renderCustomizedLabel = ({
         cx,
@@ -86,8 +85,11 @@ const MovementsPie = ({ data }: MovementsPieProps) => {
                             outerRadius="80%"
                             dataKey="value"
                         >
-                            {data.map((_, index) => (
-                                <Cell key={`cell-${index}`} fill={colorVars[index % colorVars.length]} />
+                            {roundedData.map((entry, index) => (
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={categoryColorMap[entry.name] || '#c84f03'}
+                                />
                             ))}
                         </Pie>
                         <Tooltip />
@@ -99,3 +101,4 @@ const MovementsPie = ({ data }: MovementsPieProps) => {
 }
 
 export default MovementsPie;
+
