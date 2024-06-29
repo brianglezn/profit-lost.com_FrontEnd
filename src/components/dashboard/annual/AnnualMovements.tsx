@@ -20,11 +20,13 @@ type Transaction = {
 type Category = {
     _id: string;
     name: string;
+    color: string;
 };
 
 type CategoryBalance = {
     id: string;
     Category: string;
+    color: string;
     Balance: number;
 };
 
@@ -64,6 +66,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                     id: category._id,
                     Category: category.name,
                     Balance: balance,
+                    color: category.color
                 };
             });
 
@@ -78,6 +81,20 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
     useEffect(() => {
         fetchDataAndCalculateBalances();
     }, [fetchDataAndCalculateBalances, reloadFlag]);
+
+    const colorTemplate = (rowData: CategoryBalance) => {
+        return (
+            <div
+                style={{
+                    backgroundColor: rowData.color,
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    margin: 'auto'
+                }}
+            ></div>
+        );
+    };
 
     const balanceTemplate = (rowData: CategoryBalance) => {
         return (
@@ -99,8 +116,9 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
             ) : (
                 <>
                     <DataTable value={categories} className="p-datatable-gridlines" sortField="Category" sortOrder={1}>
-                        <Column field="Category" header="Category" sortable style={{ width: '55%' }}></Column>
-                        <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '40%' }}></Column>
+                        <Column field="color" body={colorTemplate} style={{ width: '2%' }} />
+                        <Column field="Category" header="Category" sortable style={{ width: '45%' }}></Column>
+                        <Column field="Balance" header="Balance" body={balanceTemplate} sortable style={{ width: '38%' }}></Column>
                         <Column body={(rowData: CategoryBalance) => (
                             <div className="annual__categories-options">
                                 <PencilIcon onClick={() => editCategory(rowData)} />
@@ -118,6 +136,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                             <FormCategoryEdit
                                 categoryId={categoryToEdit.id.toString()}
                                 categoryName={categoryToEdit.Category}
+                                categoryColor={categoryToEdit.color}
                                 onUpdate={() => {
                                     fetchDataAndCalculateBalances();
                                     setSidebarVisible(false);
@@ -131,6 +150,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                             />
                         )}
                     </Sidebar>
+
                 </>
             )}
         </div>

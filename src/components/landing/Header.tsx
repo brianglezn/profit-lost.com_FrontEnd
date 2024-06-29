@@ -47,7 +47,6 @@ function Header() {
           </div>
           <button onClick={() => handleNavigation('/login')} className='sidebar__login-btn custom-btn'>Log in</button>
           <button onClick={() => handleNavigation('/register')} className='sidebar__login-btn custom-btn'>Register</button>
-
         </nav>
       </Sidebar>
     </>

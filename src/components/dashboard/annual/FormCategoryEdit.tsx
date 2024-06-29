@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { toast } from 'react-hot-toast';
+import { ColorPicker } from "primereact/colorpicker";
 
 import { editCategory } from "../../../api/categories/editCategory";
 import { removeCategory } from "../../../api/categories/removeCategory";
@@ -9,13 +10,15 @@ import './FormCategory.scss';
 interface FormCategoryEditProps {
     categoryId: string;
     categoryName: string;
+    categoryColor: string;
     onUpdate: () => void;
     onClose: () => void;
     onRemove: () => void;
 }
 
-const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categoryName, onUpdate, onClose, onRemove }) => {
+const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categoryName, categoryColor, onUpdate, onClose, onRemove }) => {
     const [name, setName] = useState(categoryName);
+    const [color, setColor] = useState(categoryColor);
     const [showConfirm, setShowConfirm] = useState(false);
 
     const handleEditCategory = async (e: React.FormEvent) => {
@@ -29,7 +32,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         }
 
         try {
-            await editCategory(token, categoryId, name);
+            await editCategory(token, categoryId, name, color);
             toast.success('Category edited successfully', { duration: 3000 });
             setTimeout(() => {
                 onClose();
@@ -74,16 +77,22 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
     return (
         <form className="formCategories" onSubmit={handleEditCategory}>
             <h2>Edit category</h2>
-            <input
-                className="custom-input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoFocus
-            />
+            <div className="formCategoriesContainer">
+                <div className="formCategoriesContainer-colorPicker">
+                    <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
+                </div>
+                <input
+                    className="custom-input"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    autoFocus
+                />
+            </div>
             <div className="formCategories-buttons">
                 <button type="submit" className="custom-btn">Save</button>
                 <button type="button" className="custom-btn" onClick={handleRemoveCategory}>Remove</button>
             </div>
+
             {showConfirm && (
                 <div className="form-confirmBtn">
                     <p>Are you sure you want to delete <b>"{name}"</b>?</p>

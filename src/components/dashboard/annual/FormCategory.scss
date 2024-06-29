@@ -13,6 +13,31 @@
     text-align: center;
   }
 
+  .formCategoriesContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+
+    .formCategoriesContainer-colorPicker {
+      display: flex;
+      justify-content: center;
+      padding: .5rem;
+      border-radius: .5rem;
+      background-color: $text_color-white;
+      box-shadow: $shadow_color 0px 1px 4px;
+
+      .p-colorpicker {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .custom-input {
+      margin: 0;
+    }
+  }
+
   .formCategories-buttons {
     display: flex;
     justify-content: center;
@@ -25,8 +50,10 @@
   }
 
   @media (max-width: 768px) {
-    input {
-      width: 90%;
+
+
+    .formCategoriesContainer {
+      width: 95%;
     }
 
     button {
@@ -35,10 +62,6 @@
   }
 
   @media (max-width: 480px) {
-    input {
-      width: 95%;
-    }
-
     button {
       width: 40%;
     }

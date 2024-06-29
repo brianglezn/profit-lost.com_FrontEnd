@@ -1,4 +1,4 @@
-export const addCategory = async (token: string, name: string) => {
+export const addCategory = async (token: string, name: string, color: string) => {
     try {
         const response = await fetch('https://profit-lost-backend.onrender.com/categories/add', {
             method: 'POST',
@@ -6,7 +6,7 @@ export const addCategory = async (token: string, name: string) => {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name }),
+            body: JSON.stringify({ name, color }),
         });
 
         if (!response.ok) {
