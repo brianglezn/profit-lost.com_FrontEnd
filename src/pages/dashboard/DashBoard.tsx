@@ -11,7 +11,6 @@ import { getUserByToken } from "../../api/users/getUserByToken";
 import { getCurrentDate } from "../../helpers/functions";
 
 import "./Dashboard.scss";
-import BackupManager from "../../components/BackupManager";
 const DashHome = React.lazy(() => import('./DashHome'));
 const Accounts = React.lazy(() => import('./Accounts'));
 const AnnualReport = React.lazy(() => import('./AnnualReport'));
@@ -30,9 +29,6 @@ import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
 import ShielIcon from "../../components/icons/ShielIcon";
-import BackupIcon from "../../components/icons/BackupIcon";
-
-const authorizedUserId = "65df4dfae27f115e23b1a1c2";
 
 interface User {
   _id: string;
@@ -274,7 +270,6 @@ function Dashboard() {
             {activeSection === "Accounts" && <Accounts />}
             {activeSection === "Goals" && <Goals />}
             {activeSection === "Notes" && <Notes />}
-            {activeSection === "Backups" && <BackupManager />}
           </Suspense>
         </section>
       </div>
@@ -306,12 +301,6 @@ function Dashboard() {
             <ShielIcon />
             <p>Security and Privacy</p>
           </a>
-          {user && user._id === authorizedUserId && (
-            <a onClick={() => handleMenuItemClick("Backups")}>
-              <BackupIcon />
-              <p>Backups MongoDB</p>
-            </a>
-          )}
         </div>
 
         <div className="profile__header-help">
