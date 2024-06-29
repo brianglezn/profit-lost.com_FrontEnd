@@ -101,7 +101,7 @@
       .header__login-sidebar {
         display: flex;
         font-size: 1.3rem;
-        padding: 0.7rem 1rem;
+        padding: 0.7rem 2rem;
       }
     }
   }
@@ -114,21 +114,11 @@
 .sidebar__nav {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin: 2rem 0 0 1rem;
+  gap: .5rem;
+  padding: 1rem;
 
-  a {
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: color 0.2s;
-
-    &:hover {
-      color: $primary_color-600;
-    }
-
-    &:last-child {
-      margin-top: 2rem;
-    }
+  .sidebar-img {
+    width: 70%;
+    margin: 0 auto;
   }
 }

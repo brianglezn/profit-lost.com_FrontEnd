@@ -7,6 +7,10 @@ import BarsIcon from '../icons/BarsIcon';
 function Header() {
   const [visible, setVisible] = useState(false);
 
+  const handleNavigation = (url: string) => {
+    window.location.href = url;
+  };
+
   return (
     <>
       <header className="header">
@@ -35,9 +39,15 @@ function Header() {
       </header>
       <Sidebar visible={visible} position="right" onHide={() => setVisible(false)}>
         <nav className="sidebar__nav">
-          <a href="#features">FEATURES</a>
-          <a href="#demo">DEMO</a>
-          <a href="/login" className='sidebar__login-btn'>Log in</a>
+          <div className="sidebar-img">
+            <img
+              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+              alt="logo"
+            />
+          </div>
+          <button onClick={() => handleNavigation('/login')} className='sidebar__login-btn custom-btn'>Log in</button>
+          <button onClick={() => handleNavigation('/register')} className='sidebar__login-btn custom-btn'>Register</button>
+
         </nav>
       </Sidebar>
     </>
