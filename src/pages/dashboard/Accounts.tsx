@@ -106,6 +106,10 @@ function Accounts() {
     });
   }, [dataAccounts, year]);
 
+  const isChartDataEmpty = useMemo(() => {
+    return chartData.every(data => Object.keys(data).length === 1); // Only 'name' key is present
+  }, [chartData]);
+
   const handleOpenEditSidebar = useCallback((accountId: string) => {
     const account = dataAccounts.find((acc) => acc.AccountId === accountId) || null;
     setSelectedAccount(account);
@@ -160,7 +164,7 @@ function Accounts() {
             placeholder={year}
           />
           <div className="accounts__main-chart">
-            {chartData.length > 0 ? (
+            {!isChartDataEmpty ? (
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart
                   width={500}
@@ -215,7 +219,6 @@ function Accounts() {
           ) : (
             <div className="accounts__container-items">{accountItems}</div>
           )}
-
         </div>
       </section>
       <Sidebar
