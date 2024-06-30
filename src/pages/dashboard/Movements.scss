@@ -41,7 +41,7 @@
         border-radius: .8rem;
         padding: 1rem 0;
         box-shadow: $shadow_color 0px 1px 4px;
-        background-color: $text_color-white;
+        background-color: $bg-color-sec;
 
         svg {
           width: 2rem;
@@ -72,7 +72,7 @@
     padding: 1rem 0;
     border-radius: .8rem;
     box-shadow: $shadow_color 0px 1px 4px;
-    background-color: $text_color-white;
+    background-color: $bg-color-sec;
 
     .movements__data-text {
       display: flex;

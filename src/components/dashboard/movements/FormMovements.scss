@@ -24,12 +24,12 @@
 
       &.active {
         background-color: $primary_color;
-        color: white;
+        color: $text_color-white;
       }
 
       &:not(.active) {
         background-color: $primary_color-300;
-        color: white;
+        color:  $text_color-white;
         opacity: 0.6;
       }
 

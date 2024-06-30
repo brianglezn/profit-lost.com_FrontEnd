@@ -20,7 +20,7 @@
         width: 90%;
         padding: 1rem 1.5rem;
         border-radius: .8rem;
-        background-color: $text_color-white;
+        background-color: $bg-color-sec;
         box-shadow: $shadow_color 0px 1px 4px;
 
         .dataYear-row {
@@ -36,7 +36,7 @@
                 flex: 2;
                 padding: .3rem;
                 border-radius: .2rem;
-                border: 0.5px solid $surface-800;
+                border: 0.5px solid #e8e9ea;
 
                 &:focus {
                     outline: none;
@@ -53,7 +53,7 @@
         gap: 1rem;
         padding: 1rem 1.5rem;
         border-radius: .8rem;
-        background-color: $text_color-white;
+        background-color: $bg-color-sec;
         box-shadow: $shadow_color 0px 1px 4px;
 
         .p-colorpicker {

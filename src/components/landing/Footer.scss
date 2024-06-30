@@ -63,7 +63,7 @@
             svg {
               height: 2rem;
               width: 2rem;
-              fill: $bg-color;
+              fill: $text_color-white;
               background-color: $primary_color;
               padding: .3rem;
               border-radius: .35rem;
@@ -90,7 +90,7 @@
               opacity: 0;
               width: 120px;
               background-color: $primary_color;
-              color: $bg-color;
+              color: $text_color-white;
               text-align: center;
               border-radius: 5px;
               padding: 5px 0;

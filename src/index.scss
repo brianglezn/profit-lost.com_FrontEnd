@@ -72,8 +72,8 @@ body {
     border: 1px solid $bg-color;
     border-radius: .6rem;
     padding: .8rem;
-    box-shadow: 0 .4rem $surface-700;
-    color: #383d46;
+    box-shadow: 0 .4rem #d1d3d5;
+    color: $text_color-grey;
     font-size: 1rem;
     font-family: "Rubik", sans-serif;
 
@@ -82,7 +82,7 @@ body {
     }
 
     &::placeholder {
-      color: $surface-400;
+      color: #8b9097;
     }
 
     @media (max-width: 768px) {
@@ -101,8 +101,8 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: $text_color-white;
-    border: 1px solid $text_color-white;
+    background-color: $bg-color-sec;
+    border: 1px solid $bg-color-sec;
     width: 90%;
     border-radius: .5rem;
     padding: 0.8rem;
@@ -110,7 +110,7 @@ body {
     transition: border-color, box-shadow 0.3s ease-in-out;
     outline: none;
     margin-bottom: .3rem;
-    color: #383d46;
+    color: $text_color-grey;
     font-size: 1rem;
     font-family: "Rubik", sans-serif;
 
@@ -210,9 +210,9 @@ body {
     display: block;
     margin: 4px auto;
     position: relative;
-    color: #FFF;
-    background: #FFF;
-    box-shadow: -24px 0 #FFF, 24px 0 #FFF;
+    color: $text_color-white;
+    background: $text_color-white;
+    box-shadow: -24px 0 $text_color-white, 24px 0 $text_color-white;
     box-sizing: border-box;
     animation: animloader 1s linear infinite alternate;
     animation: shadowPulse 2s linear infinite;
@@ -220,18 +220,18 @@ body {
 
   @keyframes shadowPulse {
     33% {
-      background: #FFF;
-      box-shadow: -24px 0 #FF3D00, 24px 0 #FFF;
+      background: $text_color-white;
+      box-shadow: -24px 0 #ffc9b9, 24px 0 $text_color-white;
     }
 
     66% {
-      background: #FF3D00;
-      box-shadow: -24px 0 #FFF, 24px 0 #FFF;
+      background: #ffc9b9;
+      box-shadow: -24px 0 $text_color-white, 24px 0 $text_color-white;
     }
 
     100% {
-      background: #FFF;
-      box-shadow: -24px 0 #FFF, 24px 0 #FF3D00;
+      background: $text_color-white;
+      box-shadow: -24px 0 $text_color-white, 24px 0 #ffc9b9;
     }
   }
 
@@ -270,7 +270,7 @@ body {
 }
 
 .p-editor-container .p-editor-toolbar.ql-snow {
-  border: 1px solid #304562;
+  border: 1px solid $primary_color-400;
 }
 
 .p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {
@@ -312,8 +312,8 @@ body {
 
 .p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
   background: $bg-color;
-  border: 1px solid #304562;
-  box-shadow: 0 2px 4px -1px #00000033, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
+  border: 1px solid $primary_color-400;
+  box-shadow: 0 2px 4px -1px $shadow_color, 0 4px 5px 0 $shadow_color, 0 1px 10px 0 $shadow_color;
   border-radius: 15px;
   padding: 0.5rem 0;
 }
@@ -337,7 +337,7 @@ body {
 }
 
 .p-editor-container .p-editor-content.ql-snow {
-  border: 1px solid #304562;
+  border: 1px solid $primary_color-400;
 }
 
 .p-editor-container .p-editor-content .ql-editor {
@@ -519,9 +519,9 @@ body {
   .p-autocomplete-panel {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 4px -1px #00000033, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
   }
 
   .p-autocomplete-panel .p-autocomplete-items {
@@ -540,12 +540,12 @@ body {
 
   .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item:hover {
     color: $text_color-grey;
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
     color: $text_color-grey;
-    background: rgba(255, 213, 79, 0.16);
+    background: #ffd54f29;
   }
 
   .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item-group {
@@ -578,7 +578,7 @@ body {
   .p-datepicker:not(.p-datepicker-inline) {
     background: $bg-color;
     border: 1px solid $primary_color;
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 4px -1px #00000033, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
   }
 
   .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header {
@@ -611,7 +611,7 @@ body {
   .p-datepicker .p-datepicker-header .p-datepicker-next:enabled:hover {
     color: $text_color-grey;
     border-color: transparent;
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-datepicker .p-datepicker-header .p-datepicker-prev:focus-visible,
@@ -674,7 +674,7 @@ body {
 
   .p-datepicker table td>span.p-highlight {
     color: $text_color-grey;
-    background: rgba(255, 213, 79, 0.16);
+    background: #ffd54f29;
   }
 
   .p-datepicker table td>span:focus {
@@ -691,7 +691,7 @@ body {
 
   .p-datepicker table td.p-datepicker-today>span.p-highlight {
     color: $text_color-grey;
-    background: rgba(255, 213, 79, 0.16);
+    background: #ffd54f29;
   }
 
   .p-datepicker .p-datepicker-buttonbar {
@@ -721,7 +721,7 @@ body {
   .p-datepicker .p-timepicker button:enabled:hover {
     color: $text_color-grey;
     border-color: transparent;
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-datepicker .p-timepicker button:focus-visible {
@@ -758,7 +758,7 @@ body {
 
   .p-datepicker .p-monthpicker .p-monthpicker-month.p-highlight {
     color: $text_color-grey;
-    background: rgba(255, 213, 79, 0.16);
+    background: #ffd54f29;
   }
 
   .p-datepicker .p-yearpicker {
@@ -773,7 +773,7 @@ body {
 
   .p-datepicker .p-yearpicker .p-yearpicker-year.p-highlight {
     color: $text_color-grey;
-    background: rgba(255, 213, 79, 0.16);
+    background: #ffd54f29;
   }
 
   .p-datepicker.p-datepicker-multiple-month .p-datepicker-group {
@@ -794,7 +794,7 @@ body {
   }
 
   .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):focus {
@@ -804,7 +804,7 @@ body {
   }
 
   .p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):not(.p-highlight):hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):focus {
@@ -814,7 +814,7 @@ body {
   }
 
   .p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):not(.p-highlight):hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):focus {
@@ -833,7 +833,7 @@ body {
 
   .p-cascadeselect {
     background: #17212f;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 15px;
   }
@@ -879,9 +879,9 @@ body {
   .p-cascadeselect-panel {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 4px -1px #00000033, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
   }
 
   .p-cascadeselect-panel .p-cascadeselect-items {
@@ -909,12 +909,12 @@ body {
 
   .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item.p-highlight {
     color: $text_color-grey;
-    background: rgba(255, 213, 79, 0.16);
+    background: #ffd54f29;
   }
 
   .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item:not(.p-highlight):not(.p-disabled):hover {
     color: $text_color-grey;
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff08;
   }
 
   .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item .p-cascadeselect-group-icon {
@@ -927,15 +927,15 @@ body {
   }
 
   .p-input-filled .p-cascadeselect {
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-input-filled .p-cascadeselect:not(.p-disabled):hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-cascadeselect:not(.p-disabled).p-focus {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-checkbox {
@@ -944,7 +944,7 @@ body {
   }
 
   .p-checkbox .p-checkbox-box {
-    border: 2px solid #304562;
+    border: 2px solid $primary_color-400;
     background: #17212f;
     width: 20px;
     height: 20px;
@@ -997,7 +997,7 @@ body {
   }
 
   .p-input-filled .p-checkbox .p-checkbox-box {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-checkbox .p-checkbox-box.p-highlight {
@@ -1005,7 +1005,7 @@ body {
   }
 
   .p-input-filled .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
@@ -1077,7 +1077,7 @@ body {
   .p-chips .p-chips-multiple-container .p-chips-token {
     padding: 0.25rem 0.5rem;
     margin-right: 0.5rem;
-    background: #304562;
+    background: $primary_color-400;
     color: $text_color-grey;
     border-radius: 16px;
   }
@@ -1226,7 +1226,7 @@ body {
   }
 
   .p-dropdown {
-    background: $text_color-white;
+    background: $bg-color-sec;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: .8rem;
     outline-color: transparent;
@@ -1244,15 +1244,15 @@ body {
   }
 
   .p-dropdown.p-variant-filled {
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-dropdown.p-variant-filled:not(.p-disabled):hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-dropdown.p-variant-filled:not(.p-disabled).p-focus {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-dropdown.p-variant-filled:not(.p-disabled).p-focus .p-inputtext {
@@ -1296,7 +1296,7 @@ body {
   }
 
   .p-dropdown-panel {
-    background: $text_color-white;
+    background: $bg-color-sec;
     color: $text_color-grey;
     border-radius: .5rem;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -1385,15 +1385,15 @@ body {
   .p-inputgroup-addon {
     background: $bg-color;
     color: $text_color-grey;
-    border-top: 1px solid #304562;
-    border-left: 1px solid #304562;
-    border-bottom: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
+    border-left: 1px solid $primary_color-400;
+    border-bottom: 1px solid $primary_color-400;
     padding: 0.5rem 0.5rem;
     min-width: 2.357rem;
   }
 
   .p-inputgroup-addon:last-child {
-    border-right: 1px solid #304562;
+    border-right: 1px solid $primary_color-400;
   }
 
   .p-inputgroup>.p-component,
@@ -1467,7 +1467,7 @@ body {
   }
 
   .p-inputswitch .p-inputswitch-slider {
-    background: #304562;
+    background: $primary_color-400;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 30px;
   }
@@ -1601,15 +1601,15 @@ body {
   }
 
   .p-input-filled .p-inputtext {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-inputtext:enabled:hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-inputtext:enabled:focus {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-inputtext-sm .p-inputtext {
@@ -1659,7 +1659,7 @@ body {
   .p-listbox {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     outline-color: transparent;
@@ -1758,7 +1758,7 @@ body {
   .p-mention-panel {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -1895,7 +1895,7 @@ body {
 
   .p-multiselect {
     background: #17212f;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 15px;
     outline-color: transparent;
@@ -1913,15 +1913,15 @@ body {
   }
 
   .p-multiselect.p-variant-filled {
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-multiselect.p-variant-filled:not(.p-disabled):hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-multiselect.p-variant-filled:not(.p-disabled).p-focus {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-multiselect .p-multiselect-label {
@@ -1936,7 +1936,7 @@ body {
   .p-multiselect.p-multiselect-chip .p-multiselect-token {
     padding: 0.25rem 0.5rem;
     margin-right: 0.5rem;
-    background: #304562;
+    background: $primary_color-400;
     color: $text_color-grey;
     border-radius: 16px;
   }
@@ -1964,7 +1964,7 @@ body {
   .p-multiselect-panel {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -2077,14 +2077,14 @@ body {
     padding: 1rem;
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     border-radius: 15px;
   }
 
   .p-password-panel .p-password-meter {
     margin-bottom: 0.5rem;
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-password-panel .p-password-meter .p-password-strength.weak {
@@ -2105,7 +2105,7 @@ body {
   }
 
   .p-radiobutton .p-radiobutton-box {
-    border: 2px solid #304562;
+    border: 2px solid $primary_color-400;
     background: #17212f;
     width: 20px;
     height: 20px;
@@ -2152,11 +2152,11 @@ body {
   }
 
   .p-input-filled .p-radiobutton .p-radiobutton-box {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-radiobutton .p-radiobutton-box:not(.p-disabled):hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-radiobutton .p-radiobutton-box.p-highlight {
@@ -2206,7 +2206,7 @@ body {
 
   .p-selectbutton .p-button {
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
@@ -2218,7 +2218,7 @@ body {
 
   .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover {
     background: rgba(255, 255, 255, 0.03);
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
   }
 
@@ -2254,7 +2254,7 @@ body {
   }
 
   .p-slider {
-    background: #304562;
+    background: $primary_color-400;
     border: 0 none;
     border-radius: 15px;
   }
@@ -2280,7 +2280,7 @@ body {
   .p-slider .p-slider-handle {
     height: 1.143rem;
     width: 1.143rem;
-    background: #304562;
+    background: $primary_color-400;
     border: 2px solid $primary_color;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -2303,7 +2303,7 @@ body {
 
   .p-treeselect {
     background: #17212f;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 15px;
   }
@@ -2335,7 +2335,7 @@ body {
   .p-treeselect.p-treeselect-chip .p-treeselect-token {
     padding: 0.25rem 0.5rem;
     margin-right: 0.5rem;
-    background: #304562;
+    background: $primary_color-400;
     color: $text_color-grey;
     border-radius: 16px;
   }
@@ -2364,7 +2364,7 @@ body {
   .p-treeselect-panel {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -2433,20 +2433,20 @@ body {
   }
 
   .p-input-filled .p-treeselect {
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-input-filled .p-treeselect:not(.p-disabled):hover {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-input-filled .p-treeselect:not(.p-disabled).p-focus {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-togglebutton.p-button {
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
@@ -2458,7 +2458,7 @@ body {
 
   .p-togglebutton.p-button:not(.p-disabled):not(.p-highlight):hover {
     background: rgba(255, 255, 255, 0.03);
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
   }
 
@@ -3678,7 +3678,7 @@ body {
   }
 
   .p-carousel .p-carousel-indicators .p-carousel-indicator button {
-    background-color: #304562;
+    background-color: $primary_color-400;
     width: 2rem;
     height: 0.5rem;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -3790,7 +3790,7 @@ body {
   }
 
   .p-datatable .p-datatable-tbody>tr {
-    background: $text_color-white;
+    background: $bg-color-sec;
     color: $text_color-grey;
     transition: box-shadow 0.2s;
   }
@@ -4064,7 +4064,7 @@ body {
   .p-dataview .p-dataview-header {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4080,7 +4080,7 @@ body {
   .p-dataview .p-dataview-footer {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4110,7 +4110,7 @@ body {
   .p-datascroller .p-datascroller-header {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4124,14 +4124,14 @@ body {
   }
 
   .p-datascroller.p-datascroller-inline .p-datascroller-list>li {
-    border: solid #304562;
+    border: solid $primary_color-400;
     border-width: 0 0 1px 0;
   }
 
   .p-datascroller .p-datascroller-footer {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4203,7 +4203,7 @@ body {
   .p-column-filter-overlay {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     min-width: 12.5rem;
@@ -4240,7 +4240,7 @@ body {
   }
 
   .p-column-filter-overlay .p-column-filter-row-items .p-column-filter-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -4256,7 +4256,7 @@ body {
 
   .p-column-filter-overlay-menu .p-column-filter-constraint {
     padding: 1rem;
-    border-bottom: 1px solid #304562;
+    border-bottom: 1px solid $primary_color-400;
   }
 
   .p-column-filter-overlay-menu .p-column-filter-constraint .p-column-filter-matchmode-dropdown {
@@ -4290,7 +4290,7 @@ body {
   .p-orderlist .p-orderlist-header {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     padding: 1rem;
     font-weight: 600;
     border-bottom: 0 none;
@@ -4301,7 +4301,7 @@ body {
   .p-orderlist .p-orderlist-filter-container {
     padding: 1rem;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-bottom: 0 none;
   }
 
@@ -4315,7 +4315,7 @@ body {
   }
 
   .p-orderlist .p-orderlist-list {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     padding: 0.5rem 0;
@@ -4379,17 +4379,17 @@ body {
   }
 
   .p-organizationchart .p-organizationchart-line-left {
-    border-right: 1px solid #304562;
+    border-right: 1px solid $primary_color-400;
     border-color: $text_color-grey;
   }
 
   .p-organizationchart .p-organizationchart-line-top {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     border-color: $text_color-grey;
   }
 
   .p-organizationchart .p-organizationchart-node-content {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     padding: 1rem;
@@ -4408,7 +4408,7 @@ body {
   }
 
   .p-paginator {
-    background: $text_color-white;
+    background: $bg-color-sec;
     color: $text_color-grey;
     border-width: 1px;
     padding: 0.5rem 1rem;
@@ -4510,7 +4510,7 @@ body {
   .p-picklist .p-picklist-header {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     padding: 1rem;
     font-weight: 600;
     border-bottom: 0 none;
@@ -4521,7 +4521,7 @@ body {
   .p-picklist .p-picklist-filter-container {
     padding: 1rem;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-bottom: 0 none;
   }
 
@@ -4535,7 +4535,7 @@ body {
   }
 
   .p-picklist .p-picklist-list {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     padding: 0.5rem 0;
@@ -4573,7 +4573,7 @@ body {
   }
 
   .p-tree {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     padding: 1rem;
@@ -4706,7 +4706,7 @@ body {
   .p-treetable .p-treetable-header {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4715,7 +4715,7 @@ body {
   .p-treetable .p-treetable-footer {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
     font-weight: 600;
@@ -4724,7 +4724,7 @@ body {
   .p-treetable .p-treetable-thead>tr>th {
     text-align: left;
     padding: 1rem 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     font-weight: 600;
     color: $text_color-grey;
@@ -4735,7 +4735,7 @@ body {
   .p-treetable .p-treetable-tfoot>tr>td {
     text-align: left;
     padding: 1rem 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     font-weight: 600;
     color: $text_color-grey;
@@ -4787,7 +4787,7 @@ body {
 
   .p-treetable .p-treetable-tbody>tr>td {
     text-align: left;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
   }
@@ -4968,7 +4968,7 @@ body {
   }
 
   .p-timeline .p-timeline-event-connector {
-    background-color: #304562;
+    background-color: $primary_color-400;
   }
 
   .p-timeline.p-timeline-vertical .p-timeline-event-opposite,
@@ -4991,7 +4991,7 @@ body {
 
   .p-accordion .p-accordion-header .p-accordion-header-link {
     padding: 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     background: $bg-color;
     font-weight: 600;
@@ -5011,27 +5011,27 @@ body {
 
   .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
     background: rgba(255, 255, 255, 0.03);
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
   }
 
   .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
     background: $bg-color;
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
 
   .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
-    border-color: #304562;
+    border-color: $primary_color-400;
     background: rgba(255, 255, 255, 0.03);
     color: $text_color-grey;
   }
 
   .p-accordion .p-accordion-content {
     padding: 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     border-top: 0;
@@ -5110,7 +5110,7 @@ body {
   }
 
   .p-fieldset {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     border-radius: 15px;
@@ -5118,7 +5118,7 @@ body {
 
   .p-fieldset .p-fieldset-legend {
     padding: 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     background: $bg-color;
     font-weight: 600;
@@ -5149,7 +5149,7 @@ body {
 
   .p-fieldset.p-fieldset-toggleable .p-fieldset-legend:hover {
     background: rgba(255, 255, 255, 0.03);
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
   }
 
@@ -5167,7 +5167,7 @@ body {
   }
 
   .p-divider.p-divider-horizontal:before {
-    border-top: 1px #304562;
+    border-top: 1px $primary_color-400;
   }
 
   .p-divider.p-divider-horizontal .p-divider-content {
@@ -5180,7 +5180,7 @@ body {
   }
 
   .p-divider.p-divider-vertical:before {
-    border-left: 1px #304562;
+    border-left: 1px $primary_color-400;
   }
 
   .p-divider.p-divider-vertical .p-divider-content {
@@ -5188,7 +5188,7 @@ body {
   }
 
   .p-panel .p-panel-header {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     padding: 1rem;
     background: $bg-color;
     color: $text_color-grey;
@@ -5228,7 +5228,7 @@ body {
 
   .p-panel .p-panel-content {
     padding: 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     border-bottom-right-radius: 3px;
@@ -5238,14 +5238,14 @@ body {
 
   .p-panel .p-panel-footer {
     padding: 0.5rem 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     border-top: 0 none;
   }
 
   .p-splitter {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     border-radius: 15px;
     color: $text_color-grey;
@@ -5257,7 +5257,7 @@ body {
   }
 
   .p-splitter .p-splitter-gutter .p-splitter-gutter-handle {
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-splitter .p-splitter-gutter .p-splitter-gutter-handle:focus-visible {
@@ -5267,11 +5267,11 @@ body {
   }
 
   .p-splitter .p-splitter-gutter-resizing {
-    background: #304562;
+    background: $primary_color-400;
   }
 
   .p-scrollpanel .p-scrollpanel-bar {
-    background: #304562;
+    background: $primary_color-400;
     border: 0 none;
   }
 
@@ -5292,7 +5292,7 @@ body {
   }
 
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-    border: solid #304562;
+    border: solid $primary_color-400;
     border-width: 0 0 2px 0;
     border-color: transparent transparent $primary_color-300 transparent;
     color: $text_color-grey;
@@ -5347,7 +5347,7 @@ body {
 
   .p-toolbar {
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     padding: 1rem;
     border-radius: 15px;
     gap: 0.5rem;
@@ -5360,7 +5360,7 @@ body {
   .p-confirm-popup {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
   }
@@ -5400,7 +5400,7 @@ body {
   }
 
   .p-confirm-popup.p-confirm-popup-flipped:before {
-    border-top-color: #304562;
+    border-top-color: $primary_color-400;
   }
 
   .p-confirm-popup .p-confirm-popup-icon {
@@ -5554,7 +5554,7 @@ body {
   }
 
   .p-overlaypanel.p-overlaypanel-flipped:before {
-    border-top-color: #304562;
+    border-top-color: $primary_color-400;
   }
 
   .p-sidebar {
@@ -5605,7 +5605,7 @@ body {
   }
 
   .p-tooltip .p-tooltip-text {
-    background: #304562;
+    background: $primary_color-400;
     color: $text_color-grey;
     padding: 0.5rem 0.5rem;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -5613,25 +5613,25 @@ body {
   }
 
   .p-tooltip.p-tooltip-right .p-tooltip-arrow {
-    border-right-color: #304562;
+    border-right-color: $primary_color-400;
   }
 
   .p-tooltip.p-tooltip-left .p-tooltip-arrow {
-    border-left-color: #304562;
+    border-left-color: $primary_color-400;
   }
 
   .p-tooltip.p-tooltip-top .p-tooltip-arrow {
-    border-top-color: #304562;
+    border-top-color: $primary_color-400;
   }
 
   .p-tooltip.p-tooltip-bottom .p-tooltip-arrow {
-    border-bottom-color: #304562;
+    border-bottom-color: $primary_color-400;
   }
 
   .p-fileupload .p-fileupload-buttonbar {
     background: $bg-color;
     padding: 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     border-bottom: 0 none;
     border-top-right-radius: 3px;
@@ -5646,7 +5646,7 @@ body {
   .p-fileupload .p-fileupload-content {
     background: $bg-color;
     padding: 2rem 1rem;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -5666,7 +5666,7 @@ body {
 
   .p-breadcrumb {
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     padding: 1rem;
   }
@@ -5707,7 +5707,7 @@ body {
     padding: 0.25rem 0;
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     border-radius: 15px;
     width: 12.5rem;
@@ -5720,7 +5720,7 @@ body {
   .p-contextmenu .p-submenu-list {
     padding: 0.25rem 0;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     border-radius: 15px;
   }
@@ -5797,7 +5797,7 @@ body {
   }
 
   .p-contextmenu .p-menuitem-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -5930,7 +5930,7 @@ body {
     padding: 0.5rem;
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
   }
 
@@ -6012,7 +6012,7 @@ body {
   .p-megamenu .p-megamenu-panel {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
@@ -6032,7 +6032,7 @@ body {
   }
 
   .p-megamenu .p-submenu-list .p-menuitem-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -6102,12 +6102,12 @@ body {
   .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list {
     padding: 0.25rem 0;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
   .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-menu-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -6315,7 +6315,7 @@ body {
   }
 
   .p-menu.p-menu-overlay {
-    background: $text_color-white;
+    background: $bg-color-sec;
     border: 0;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -6331,7 +6331,7 @@ body {
   }
 
   .p-menu .p-menu-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -6339,7 +6339,7 @@ body {
     padding: 0.5rem;
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
   }
 
@@ -6460,13 +6460,13 @@ body {
   .p-menubar .p-submenu-list {
     padding: 0.25rem 0;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     width: 12.5rem;
   }
 
   .p-menubar .p-submenu-list .p-menuitem-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -6496,12 +6496,12 @@ body {
   .p-menubar.p-menubar-mobile .p-menubar-root-list {
     padding: 0.25rem 0;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
   .p-menubar.p-menubar-mobile .p-menubar-root-list .p-menuitem-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -6577,13 +6577,13 @@ body {
       display: none;
       padding: 0.25rem 0;
       background: $bg-color;
-      border: 1px solid #304562;
+      border: 1px solid $primary_color-400;
       box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
       width: 100%;
     }
 
     .p-menubar .p-menubar-root-list .p-menu-separator {
-      border-top: 1px solid #304562;
+      border-top: 1px solid $primary_color-400;
       margin: 0.25rem 0;
     }
 
@@ -6745,7 +6745,7 @@ body {
   }
 
   .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     color: $text_color-grey;
     background: $bg-color;
     border-radius: 15px;
@@ -6774,13 +6774,13 @@ body {
 
   .p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled):hover .p-panelmenu-header-content {
     background: rgba(255, 255, 255, 0.03);
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
   }
 
   .p-panelmenu .p-panelmenu-header:not(.p-disabled).p-highlight .p-panelmenu-header-content {
     background: $bg-color;
-    border-color: #304562;
+    border-color: $primary_color-400;
     color: $text_color-grey;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
@@ -6788,14 +6788,14 @@ body {
   }
 
   .p-panelmenu .p-panelmenu-header:not(.p-disabled).p-highlight:hover .p-panelmenu-header-content {
-    border-color: #304562;
+    border-color: $primary_color-400;
     background: rgba(255, 255, 255, 0.03);
     color: $text_color-grey;
   }
 
   .p-panelmenu .p-panelmenu-content {
     padding: 0.25rem 0;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     background: $bg-color;
     color: $text_color-grey;
     border-top: 0;
@@ -6885,7 +6885,7 @@ body {
   }
 
   .p-panelmenu .p-panelmenu-content .p-menuitem-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -6933,7 +6933,7 @@ body {
     padding: 0.25rem 0;
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     width: 12.5rem;
   }
@@ -7011,14 +7011,14 @@ body {
 
   .p-slidemenu.p-slidemenu-overlay {
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
   .p-slidemenu .p-slidemenu-list {
     padding: 0.25rem 0;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
@@ -7036,7 +7036,7 @@ body {
   }
 
   .p-slidemenu .p-slidemenu-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -7096,7 +7096,7 @@ body {
 
   .p-steps .p-steps-item:before {
     content: " ";
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     width: 100%;
     top: 50%;
     left: 0;
@@ -7107,7 +7107,7 @@ body {
 
   .p-tabmenu .p-tabmenu-nav {
     background: transparent;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-width: 0 0 2px 0;
   }
 
@@ -7116,9 +7116,9 @@ body {
   }
 
   .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
-    border: solid #304562;
+    border: solid $primary_color-400;
     border-width: 0 0 2px 0;
-    border-color: transparent transparent #304562 transparent;
+    border-color: transparent transparent $primary_color-400 transparent;
     background: $bg-color;
     color: $text_color-grey;
     padding: 1rem;
@@ -7156,14 +7156,14 @@ body {
     padding: 0.25rem 0;
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     border-radius: 15px;
     width: 12.5rem;
   }
 
   .p-tieredmenu.p-tieredmenu-overlay {
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
@@ -7174,7 +7174,7 @@ body {
   .p-tieredmenu .p-submenu-list {
     padding: 0.25rem 0;
     background: $bg-color;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
@@ -7250,7 +7250,7 @@ body {
   }
 
   .p-tieredmenu .p-menuitem-separator {
-    border-top: 1px solid #304562;
+    border-top: 1px solid $primary_color-400;
     margin: 0.25rem 0;
   }
 
@@ -7604,7 +7604,7 @@ body {
   }
 
   .p-galleria .p-galleria-indicators .p-galleria-indicator button {
-    background-color: #304562;
+    background-color: $primary_color-400;
     width: 1rem;
     height: 1rem;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -7768,7 +7768,7 @@ body {
   }
 
   .p-chip {
-    background-color: #304562;
+    background-color: $primary_color-400;
     color: $text_color-grey;
     border-radius: 16px;
     padding: 0 0.5rem;
@@ -7918,7 +7918,7 @@ body {
   .p-terminal {
     background: $bg-color;
     color: $text_color-grey;
-    border: 1px solid #304562;
+    border: 1px solid $primary_color-400;
     padding: 1rem;
   }
 
