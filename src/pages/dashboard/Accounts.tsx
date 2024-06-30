@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
+import { ProgressBar } from "primereact/progressbar";
 import { Sidebar } from 'primereact/sidebar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
@@ -13,6 +14,7 @@ import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd
 import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit";
 import CustomBarShape from "../../components/CustomBarShape";
 import PlusIcon from "../../components/icons/PlusIcon";
+import ChartLineIcon from "../../components/icons/CharLineIcon";
 
 type AccountConfiguration = {
   backgroundColor: string;
@@ -49,11 +51,14 @@ function Accounts() {
   const [addSidebarOpen, setAddSidebarOpen] = useState(false);
   const [editSidebarOpen, setEditSidebarOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState<DataAccount | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchAllData = async () => {
+    setIsLoading(true);
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('No authentication token found. Please log in.');
+      setIsLoading(false);
       return;
     }
     try {
@@ -65,6 +70,8 @@ function Accounts() {
       setUniqueYears(Array.from(years).sort((a, b) => a - b));
     } catch (error) {
       console.error('Error fetching all accounts data:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -153,34 +160,38 @@ function Accounts() {
             placeholder={year}
           />
           <div className="accounts__main-chart">
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart
-                width={500}
-                height={300}
-                data={chartData}
-                margin={{
-                  top: 20,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                {dataAccounts.map((account: DataAccount) => (
-                  <Bar
-                    key={account.accountName}
-                    dataKey={account.accountName}
-                    stackId="a"
-                    fill={account.configuration.backgroundColor}
-                    shape={<CustomBarShape />}
-                  />
-                ))}
-              </BarChart>
-            </ResponsiveContainer>
+            {chartData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={chartData}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  {dataAccounts.map((account: DataAccount) => (
+                    <Bar
+                      key={account.accountName}
+                      dataKey={account.accountName}
+                      stackId="a"
+                      fill={account.configuration.backgroundColor}
+                      shape={<CustomBarShape />}
+                    />
+                  ))}
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <ChartLineIcon className="custom-icon" />
+            )}
           </div>
         </div>
         <div className="accounts__container">
@@ -197,7 +208,14 @@ function Accounts() {
               <FormAccountsAdd onAccountAdded={() => { fetchAllData(); handleCloseAddSidebar(); }} />
             </Sidebar>
           </div>
-          <div className="accounts__container-items">{accountItems}</div>
+          {isLoading ? (
+            <div className="accounts__container-progress">
+              <ProgressBar mode="indeterminate" style={{ height: '6px' }} />
+            </div>
+          ) : (
+            <div className="accounts__container-items">{accountItems}</div>
+          )}
+
         </div>
       </section>
       <Sidebar
