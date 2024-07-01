@@ -214,7 +214,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                         checked={isRecurring}
                         onChange={(e) => setIsRecurring(e.target.checked)}
                     />
-                    Recurring expense
+                    Recurring
                 </label>
                 {isRecurring && (
                     <div className="formMovements-recurring-options">
