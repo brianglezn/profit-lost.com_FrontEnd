@@ -26,6 +26,9 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     const [category, setCategory] = useState<Category | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
     const [isIncome, setIsIncome] = useState<boolean>(false);
+    const [isRecurring, setIsRecurring] = useState<boolean>(false);
+    const [recurrenceFrequency, setRecurrenceFrequency] = useState<string>('monthly');
+    const [recurrenceEnd, setRecurrenceEnd] = useState<string>('');
 
     // useEffect to load categories from backend
     useEffect(() => {
@@ -82,6 +85,28 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         }
     };
 
+    // Manages the recurrent movement
+    const createRecurringMovements = (movementData: { date: string; description: string; amount: number; category: string }) => {
+        const movements = [];
+        const currentDate = new Date(movementData.date);
+        const endDate = new Date(recurrenceEnd);
+
+        while (currentDate <= endDate) {
+            movements.push({
+                ...movementData,
+                date: currentDate.toISOString(),
+            });
+
+            if (recurrenceFrequency === 'monthly') {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+            } else if (recurrenceFrequency === 'yearly') {
+                currentDate.setFullYear(currentDate.getFullYear() + 1);
+            }
+        }
+
+        return movements;
+    };
+
     // Manages form submission addMovement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -110,7 +135,11 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         };
 
         try {
-            await addMovement(token, movementData);
+            const movements = isRecurring ? createRecurringMovements(movementData) : [movementData];
+            for (const movement of movements) {
+                await addMovement(token, movement);
+            }
+
             toast.success('Movement added successfully');
 
             onMovementAdded();
@@ -178,6 +207,50 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 min={isIncome ? "0" : undefined}
                 required
             />
+            <div className="formMovements-recurring">
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={isRecurring}
+                        onChange={(e) => setIsRecurring(e.target.checked)}
+                    />
+                    Recurring expense
+                </label>
+                {isRecurring && (
+                    <div className="formMovements-recurring-options">
+                        <Dropdown
+                            value={recurrenceFrequency}
+                            options={[
+                                { label: 'Every month', value: 'monthly' },
+                                { label: 'Every year', value: 'yearly' },
+                            ]}
+                            onChange={(e) => setRecurrenceFrequency(e.value)}
+                            placeholder="Select frequency"
+                            className="formDropdown"
+                        />
+                        {recurrenceFrequency === 'monthly' ? (
+                            <input
+                                type="month"
+                                value={recurrenceEnd}
+                                onChange={(e) => setRecurrenceEnd(e.target.value)}
+                                className="custom-input"
+                                placeholder="End month"
+                                required
+                            />
+                        ) : (
+                            <input
+                                type="number"
+                                value={recurrenceEnd}
+                                onChange={(e) => setRecurrenceEnd(e.target.value)}
+                                className="custom-input"
+                                placeholder="End year"
+                                min={new Date().getFullYear()}
+                                required
+                            />
+                        )}
+                    </div>
+                )}
+            </div>
             <button type="submit" className="custom-btn">Save</button>
         </form>
     );

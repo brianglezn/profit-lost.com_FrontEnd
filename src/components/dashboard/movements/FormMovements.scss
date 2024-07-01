@@ -29,7 +29,7 @@
 
       &:not(.active) {
         background-color: $primary_color-300;
-        color:  $text_color-white;
+        color: $text_color-white;
         opacity: 0.6;
       }
 
@@ -39,8 +39,32 @@
     }
   }
 
-  button {
-    width: 35%;
+  .formMovements-recurring {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    label {
+      display: block;
+      text-align: left;
+      width: 90%;
+      margin-bottom: 0.5rem;
+
+      input {
+        width: auto;
+      }
+    }
+
+    .formMovements-recurring-options {
+      width: 90%;
+
+      .formDropdown,
+      input {
+        width: 100%;
+      }
+    }
   }
 
   .formMovements-buttons {
@@ -48,6 +72,10 @@
     justify-content: center;
     gap: 1rem;
     width: 100%;
+  }
+
+  button {
+    width: 35%;
   }
 
   @media (max-width: 768px) {
