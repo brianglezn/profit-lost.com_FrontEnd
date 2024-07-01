@@ -28,15 +28,16 @@
             justify-content: space-between;
             align-items: center;
 
-            span {
-                flex: 1.5;
+            span,
+            input {
+                font-size: 1rem;
             }
 
             input {
-                flex: 2;
                 padding: .3rem;
                 border-radius: .2rem;
                 border: 0.5px solid #e8e9ea;
+                width: 60%;
 
                 &:focus {
                     outline: none;
@@ -84,6 +85,14 @@
         .dataYear,
         .colorPiker {
             width: 95%;
+
+            .dataYear-row {
+
+                span,
+                input {
+                    font-size: .9rem;
+                }
+            }
         }
 
         .dataYear-input {
