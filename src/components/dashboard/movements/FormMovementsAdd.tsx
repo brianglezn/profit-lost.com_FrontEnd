@@ -89,15 +89,27 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     const createRecurringMovements = (movementData: { date: string; description: string; amount: number; category: string }) => {
         const movements = [];
         const currentDate = new Date(movementData.date);
-        const endDate = new Date(new Date(recurrenceEnd).setDate(new Date(recurrenceEnd).getDate() + 2));
+        const endDate = new Date(new Date(recurrenceEnd).setDate(new Date(recurrenceEnd).getDate() + 1));
 
         if (recurrenceFrequency === 'monthly') {
+            let isFirstMovement = true;
             while (currentDate <= endDate) {
-                movements.push({
-                    ...movementData,
-                    date: currentDate.toISOString(),
-                });
-                currentDate.setMonth(currentDate.getMonth() + 1);
+                if (isFirstMovement) {
+                    movements.push({
+                        ...movementData,
+                        date: currentDate.toISOString(),
+                    });
+                    isFirstMovement = false;
+                } else {
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    currentDate.setDate(1);
+                    currentDate.setHours(10, 0, 0, 0);
+                    if (currentDate > endDate) break;
+                    movements.push({
+                        ...movementData,
+                        date: currentDate.toISOString(),
+                    });
+                }
             }
         } else if (recurrenceFrequency === 'yearly') {
             while (currentDate.getFullYear() <= endDate.getFullYear()) {
@@ -107,7 +119,6 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 });
                 currentDate.setFullYear(currentDate.getFullYear() + 1);
             }
-            // Adjust to include the end year correctly
             if (currentDate.getFullYear() === endDate.getFullYear()) {
                 movements.push({
                     ...movementData,
@@ -118,7 +129,6 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
 
         return movements;
     };
-
 
     // Manages form submission addMovement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -149,7 +159,6 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
 
         try {
             const movements = isRecurring ? createRecurringMovements(movementData) : [movementData];
-
             for (const movement of movements) {
                 await addMovement(token, movement);
             }
