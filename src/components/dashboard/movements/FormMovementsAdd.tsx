@@ -89,7 +89,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     const createRecurringMovements = (movementData: { date: string; description: string; amount: number; category: string }) => {
         const movements = [];
         const currentDate = new Date(movementData.date);
-        const endDate = new Date(new Date(recurrenceEnd).setDate(new Date(recurrenceEnd).getDate() + 1));
+        const endDate = new Date(new Date(recurrenceEnd).setDate(new Date(recurrenceEnd).getDate() + 2));
 
         if (recurrenceFrequency === 'monthly') {
             while (currentDate <= endDate) {
@@ -98,15 +98,6 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                     date: currentDate.toISOString(),
                 });
                 currentDate.setMonth(currentDate.getMonth() + 1);
-            }
-            // Adjust to include the end month correctly
-            if (currentDate.getMonth() === endDate.getMonth() + 1 && currentDate.getFullYear() === endDate.getFullYear()) {
-                const lastMonthDate = new Date(currentDate);
-                lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
-                movements.push({
-                    ...movementData,
-                    date: lastMonthDate.toISOString(),
-                });
             }
         } else if (recurrenceFrequency === 'yearly') {
             while (currentDate.getFullYear() <= endDate.getFullYear()) {
@@ -127,6 +118,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
 
         return movements;
     };
+
 
     // Manages form submission addMovement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -157,6 +149,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
 
         try {
             const movements = isRecurring ? createRecurringMovements(movementData) : [movementData];
+
             for (const movement of movements) {
                 await addMovement(token, movement);
             }
