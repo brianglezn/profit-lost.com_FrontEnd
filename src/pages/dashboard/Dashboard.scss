@@ -211,12 +211,24 @@
           position: relative;
           cursor: pointer;
           font-size: 2rem;
-          margin-top: .8rem;
 
-          svg {
-            width: 1.7rem;
-            height: 1.7rem;
-            fill: $text_color-black;
+          div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+
+            svg {
+              width: 1.5rem;
+              height: 1.5rem;
+              fill: $text_color-black;
+            }
+
+            span {
+              margin: 0;
+              font-size: 0.8rem;
+              color: $text_color-black;
+            }
           }
 
           p {
@@ -229,47 +241,20 @@
             svg {
               fill: $primary_color;
             }
-          }
 
-          .tooltip {
-            visibility: hidden;
-            opacity: 0;
-            width: 120px;
-            background-color: $primary_color;
-            color: $bg-color;
-            text-align: center;
-            border-radius: .3rem;
-            padding: .4rem 0;
-            position: absolute;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            transition: opacity 0.3s;
-            font-size: .8rem;
-            z-index: 1;
-
-            &::after {
-              content: '';
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              margin-left: -5px;
-              border-width: 5px;
-              border-style: solid;
-              border-color: $primary_color transparent transparent transparent;
+            span {
+              color: $primary_color;
             }
-          }
-
-          &:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.3s;
           }
         }
 
         .active {
           svg {
             fill: $primary_color;
+          }
+
+          span {
+            color: $primary_color;
           }
         }
       }

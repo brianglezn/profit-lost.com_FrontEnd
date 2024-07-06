@@ -7,7 +7,6 @@ import { Menu } from 'primereact/menu';
 import { toast } from 'react-hot-toast';
 
 import { getUserByToken } from "../../api/users/getUserByToken";
-
 import { getCurrentDate } from "../../helpers/functions";
 
 import "./Dashboard.scss";
@@ -129,6 +128,11 @@ function Dashboard() {
 
   const menuItems = [
     {
+      label: 'Accounts',
+      icon: <CreditCardIcon />,
+      command: () => handleMenuItemClick('Accounts')
+    },
+    {
       label: 'Goals',
       icon: <ListCheckIcon />,
       command: () => handleMenuItemClick('Goals')
@@ -219,39 +223,42 @@ function Dashboard() {
               onClick={() => handleMenuItemClick("Dashboard")}
               className={activeSection === "Dashboard" ? "active" : ""}
             >
-              <HomeIcon />
-              <span className="tooltip">Dashboard</span>
+              <div>
+                <HomeIcon />
+                <span>Dashboard</span>
+              </div>
             </span>
             <span
               onClick={() => handleMenuItemClick("AnnualReport")}
               className={activeSection === "AnnualReport" ? "active" : ""}
             >
-              <ChartColumnIcon />
-              <span className="tooltip">Annual Report</span>
+              <div>
+                <ChartColumnIcon />
+                <span>Annual</span>
+              </div>
             </span>
             <span
               onClick={() => handleMenuItemClick("Movements")}
               className={activeSection === "Movements" ? "active" : ""}
             >
-              <ChartBarIcon />
-              <span className="tooltip">Movements</span>
-            </span>
-            <span
-              onClick={() => handleMenuItemClick("Accounts")}
-              className={activeSection === "Accounts" ? "active" : ""}
-            >
-              <CreditCardIcon />
-              <span className="tooltip">Accounts</span>
+              <div>
+                <ChartBarIcon />
+                <span>Movements</span>
+              </div>
             </span>
             <span
               onClick={(e) => menu.current?.toggle(e)}
               className={activeSection === "Goals" || activeSection === "Notes" ? "active" : ""}
             >
-              <BarsIcon />
+              <div>
+                <BarsIcon />
+                <span>More</span>
+              </div>
             </span>
             <Menu model={menuItems} popup ref={menu} id="popup_menu" />
           </nav>
         </div>
+
 
         <section className="dashboard__content">
           <Suspense fallback={
