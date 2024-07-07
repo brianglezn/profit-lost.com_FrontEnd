@@ -58,9 +58,17 @@
         align-items: center;
         gap: 1rem;
         margin-bottom: 1rem;
+        padding: 1rem;
+        background-color: #fff4e5;
+        border-radius: .5rem;
 
         h4 {
           margin: 0;
+          flex-grow: 1;
+        }
+
+        svg {
+          cursor: pointer;
         }
       }
 
@@ -68,6 +76,10 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        padding: 1rem;
+        background-color: #ffffff;
+        border-radius: .5rem;
+        box-shadow: $shadow_color 0px 1px 4px;
 
         input[type="text"],
         input[type="number"] {
@@ -82,10 +94,15 @@
           flex: 1;
           display: flex;
           align-items: center;
+          justify-content: space-between;
 
           span {
-            padding-right: 1rem;
             font-size: 1rem;
+            color: #4caf50; /* Green color for positive balance */
+          }
+
+          svg {
+            cursor: pointer;
           }
         }
       }
