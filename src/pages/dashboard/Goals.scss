@@ -59,7 +59,7 @@
         gap: 1rem;
         margin-bottom: 1rem;
         padding: 1rem;
-        background-color: #fff4e5;
+        background-color: $primary_color-100;
         border-radius: .5rem;
 
         h4 {
@@ -77,7 +77,7 @@
         align-items: center;
         gap: 1rem;
         padding: 1rem;
-        background-color: #ffffff;
+        background-color: $bg-color-sec;
         border-radius: .5rem;
         box-shadow: $shadow_color 0px 1px 4px;
 
@@ -98,7 +98,7 @@
 
           span {
             font-size: 1rem;
-            color: #4caf50; /* Green color for positive balance */
+            color: $positive-color;
           }
 
           svg {
