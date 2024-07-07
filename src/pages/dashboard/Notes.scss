@@ -30,6 +30,9 @@
             h3 {
                 margin: 0 0 0.5rem 0;
                 color: $primary_color;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             p {
@@ -111,7 +114,6 @@
 }
 
 .sidebar__notes {
-
     .p-sidebar-content {
         padding: 1rem;
 
