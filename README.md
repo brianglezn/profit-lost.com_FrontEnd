@@ -2,6 +2,7 @@
 
 <h2>Descripción</h2>
 Profit-Lost.com es una aplicación web desarrollada en React con Typescript, centrada en la gestión y visualización de datos financieros. Esta aplicación está diseñada para proporcionar a los usuarios una herramienta intuitiva y eficaz para el seguimiento de sus finanzas personales o empresariales, con énfasis en la claridad y la facilidad de uso.
+Repositorio <a href="https://github.com/brianglezn/profit-lost.com_BackEnd">BACKEND</a>
 
 <h2>Características Principales</h2>
 <ul>
