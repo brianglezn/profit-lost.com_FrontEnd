@@ -41,6 +41,7 @@ const HomeBalanceChart: React.FC = () => {
 
                 const lastSixMonthsData = getLastSixMonthsData(movements);
                 setData(lastSixMonthsData);
+                console.log(lastSixMonthsData)
             } catch (error) {
                 console.error("Error fetching movements:", error);
             }
@@ -75,8 +76,8 @@ const HomeBalanceChart: React.FC = () => {
 
             months.push({
                 name: monthName,
-                income: monthlyData[monthName].income,
-                expenses: monthlyData[monthName].expenses,
+                income: parseFloat(monthlyData[monthName].income.toFixed(2)),
+                expenses: parseFloat(monthlyData[monthName].expenses.toFixed(2)),
             });
         }
 
