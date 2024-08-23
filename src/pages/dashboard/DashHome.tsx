@@ -76,7 +76,7 @@ function DashHome() {
       <div className="balances">
         <div>
           <div className="balances-container income">
-            <div className="header">
+            <div className="header-container">
               <span>Earnings</span>
             </div>
             <div className="amount">
@@ -92,7 +92,7 @@ function DashHome() {
         </div>
         <div>
           <div className="balances-container expenses">
-            <div className="header">
+            <div className="header-container">
               <span>Spendings</span>
             </div>
             <div className="amount">
@@ -108,7 +108,7 @@ function DashHome() {
         </div>
         <div>
           <div className="balances-container ebitda">
-            <div className="header">
+            <div className="header-container">
               <span>Savings</span>
             </div>
             <div className="amount">
@@ -125,25 +125,44 @@ function DashHome() {
       </div>
 
       <div className="history">
-        <div className="history-container"></div>
+        <div className="history-container">
+          <div className="header-container">
+            <span>History</span>
+          </div>
+        </div>
       </div>
 
       <div className="chart">
         <div className="chart-container">
+          <div className="header-container">
+            <span>Last 6 months balances</span>
+          </div>
           <HomeBalanceChart />
         </div>
       </div>
 
       <div className="first">
-        <div className="first-container"></div>
+        <div className="first-container">
+          <div className="header-container">
+            <span>First</span>
+          </div>
+        </div>
       </div>
 
       <div className="second">
-        <div className="second-container"></div>
+        <div className="second-container">
+          <div className="header-container">
+            <span>Second</span>
+          </div>
+        </div>
       </div>
 
       <div className="categories">
-        <div className="categories-container"></div>
+        <div className="categories-container">
+          <div className="header-container">
+            <span>Categories</span>
+          </div>
+        </div>
       </div>
     </section>
   );

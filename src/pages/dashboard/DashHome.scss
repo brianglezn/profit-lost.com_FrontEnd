@@ -3,7 +3,7 @@
 .dashHome {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: .8fr 1.6fr 1.6fr;
+  grid-template-rows: .6fr 1.6fr 1.6fr;
   gap: 1rem;
   grid-auto-flow: row;
   grid-template-areas:
@@ -11,13 +11,18 @@
     "chart chart chart chart history history"
     "first first second second categories categories";
 
+  .header-container {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $primary_color-400;
+  }
+
   .history {
     grid-area: history;
 
     .history-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
@@ -25,6 +30,7 @@
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+      padding: 1rem;
     }
   }
 
@@ -42,8 +48,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        gap: 1rem;
         width: 100%;
         height: 100%;
         border-radius: .8rem;
@@ -51,27 +55,23 @@
         background-color: $bg-color-sec;
         padding: 1rem;
 
-        .header {
-          font-size: 1.2rem;
-          font-weight: 600;
-          color: $primary_color-400;
-        }
-
         .amount {
-          font-size: 1.5rem;
+          font-size: 1.6rem;
           font-weight: 600;
           color: $primary_color-900;
         }
 
         .comparison {
+          display: flex;
+          align-items: center;
           font-size: .8rem;
 
           .percentage {
             display: inline-flex;
             align-items: center;
-            font-size: 14px;
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: .3rem .5rem;
+            border-radius: 1rem;
+            margin-right: .2rem;
 
             &.positive {
               color: #28a745;
@@ -93,8 +93,8 @@
 
     .chart-container {
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
@@ -102,6 +102,7 @@
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+      padding: 1rem;
     }
   }
 
@@ -111,7 +112,6 @@
     .categories-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
@@ -119,6 +119,7 @@
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+      padding: 1rem;
     }
   }
 
@@ -128,7 +129,6 @@
     .first-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
@@ -136,6 +136,7 @@
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+      padding: 1rem;
     }
   }
 
@@ -145,7 +146,6 @@
     .second-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
@@ -153,6 +153,7 @@
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+      padding: 1rem;
     }
   }
 
