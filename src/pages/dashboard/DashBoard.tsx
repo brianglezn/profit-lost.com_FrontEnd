@@ -16,6 +16,7 @@ const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
 const Goals = React.lazy(() => import('./Goals'));
 const Notes = React.lazy(() => import('./Notes'));
+const Reports = React.lazy(() => import('./Reports'));
 import RefreshIcon from "../../components/icons/RefreshIcon";
 import HomeIcon from "../../components/icons/HomeIcon";
 import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
@@ -28,6 +29,7 @@ import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
 import ShielIcon from "../../components/icons/ShielIcon";
+import ReportIcon from "../../components/icons/ReportIcon";
 
 interface User {
   _id: string;
@@ -141,6 +143,11 @@ function Dashboard() {
       label: 'Notes',
       icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
+    },
+    {
+      label: 'Reports',
+      icon: <ReportIcon />,
+      command: () => handleMenuItemClick('Reports')
     }
   ];
 
@@ -212,6 +219,13 @@ function Dashboard() {
                   <NotesIcon />
                   <p>Notes</p>
                 </li>
+                <li
+                  onClick={() => handleMenuItemClick("Reports")}
+                  className={activeSection === "Reports" ? "active" : ""}
+                >
+                  <ReportIcon />
+                  <p>Reports</p>
+                </li>
               </ul>
             </div>
           </nav>
@@ -277,6 +291,7 @@ function Dashboard() {
             {activeSection === "Accounts" && <Accounts />}
             {activeSection === "Goals" && <Goals />}
             {activeSection === "Notes" && <Notes />}
+            {activeSection === "Reports" && <Reports />}
           </Suspense>
         </section>
       </div>

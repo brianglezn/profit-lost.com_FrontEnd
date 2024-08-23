@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { ProgressBar } from "primereact/progressbar";
 import { Sidebar } from 'primereact/sidebar';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
@@ -106,7 +106,7 @@ function Accounts() {
   }, [dataAccounts, year]);
 
   const isChartDataEmpty = useMemo(() => {
-    return chartData.every(data => Object.keys(data).length === 1); // Only 'name' key is present
+    return chartData.every(data => Object.keys(data).length === 1);
   }, [chartData]);
 
   const handleOpenEditSidebar = useCallback((accountId: string) => {
@@ -168,8 +168,8 @@ function Accounts() {
                 <AreaChart
                   data={chartData}
                   margin={{
-                    top: 20,
-                    right: 30,
+                    top: 10,
+                    right: 50,
                     left: 20,
                     bottom: 5,
                   }}
@@ -178,7 +178,6 @@ function Accounts() {
                   <XAxis dataKey="name" />
                   <YAxis />
                   <Tooltip />
-                  <Legend />
                   {dataAccounts.map((account: DataAccount) => (
                     <Area
                       key={account.accountName}
