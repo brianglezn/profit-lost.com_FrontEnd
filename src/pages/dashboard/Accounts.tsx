@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { ProgressBar } from "primereact/progressbar";
 import { Sidebar } from 'primereact/sidebar';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
@@ -12,7 +12,6 @@ import "./Accounts.scss";
 import AccountItem from "../../components/dashboard/accounts/AccountItem";
 import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd";
 import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit";
-import CustomBarShape from "../../components/CustomBarShape";
 import PlusIcon from "../../components/icons/PlusIcon";
 import ChartLineIcon from "../../components/icons/CharLineIcon";
 
@@ -166,9 +165,7 @@ function Accounts() {
           <div className="accounts__main-chart">
             {!isChartDataEmpty ? (
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart
-                  width={500}
-                  height={300}
+                <AreaChart
                   data={chartData}
                   margin={{
                     top: 20,
@@ -183,15 +180,15 @@ function Accounts() {
                   <Tooltip />
                   <Legend />
                   {dataAccounts.map((account: DataAccount) => (
-                    <Bar
+                    <Area
                       key={account.accountName}
                       dataKey={account.accountName}
                       stackId="a"
+                      stroke={account.configuration.backgroundColor}
                       fill={account.configuration.backgroundColor}
-                      shape={<CustomBarShape />}
                     />
                   ))}
-                </BarChart>
+                </AreaChart>
               </ResponsiveContainer>
             ) : (
               <ChartLineIcon className="custom-icon" />
