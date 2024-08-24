@@ -1,22 +1,60 @@
 @import '../../../../variables';
 
 .annual__categories-table {
-    padding: 0 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
 
-    .p-datatable.p-component {
-        border-radius: .5rem;
-        overflow: hidden;
 
-        .annual__categories-options {
+    .categories-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .category-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 0.1rem solid #f0f0f0;
+
+        .category-color {
+            width: 5%;
             display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .category-color-circle {
+                width: 1.4rem;
+                height: 1.4rem;
+                border-radius: 50%;
+            }
+        }
+
+        .category-name {
+            width: 55%;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .category-balance {
+            width: 35%;
+            font-size: 1rem;
+        }
+
+        .edit-icon {
+            width: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
 
             svg {
-                width: 1.1rem;
-                height: 1.1rem;
+                width: 1.3rem;
+                height: 1.3rem;
             }
 
-            :hover {
-                cursor: pointer;
+            &:hover svg {
                 fill: $primary_color;
             }
         }
@@ -24,10 +62,44 @@
 
     @media (max-width: 768px) {
         padding: 0 1.5rem 1rem;
+
+        .category-item {
+            .category-color {
+                width: 7%;
+            }
+
+            .category-name {
+                width: 50%;
+            }
+
+        }
     }
 
     @media (max-width: 480px) {
-        padding: 0 .7rem 1rem;
-    }
+        padding: 0 0.7rem 1rem;
 
+        .category-item {
+            .category-color {
+                width: 10%;
+            }
+
+            .category-name {
+                width: 43%;
+                font-size: .9rem;
+            }
+
+            .category-balance {
+                font-size: .9rem;
+            }
+
+            .edit-icon {
+                width: 10%;
+
+                svg {
+                    width: 1.1rem;
+                    height: 1.1rem;
+                }
+            }
+        }
+    }
 }
