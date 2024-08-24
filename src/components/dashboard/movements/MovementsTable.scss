@@ -3,30 +3,101 @@
 .movements__table {
     padding: 0 2rem 1rem;
 
-    .p-datatable.p-component {
-        border-radius: .5rem;
-        overflow: hidden;
+    .movements-list {
+        display: flex;
+        flex-direction: column;
     }
 
-    .movements__table-options {
+    .movement-item {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 0.1rem solid #f0f0f0;
 
-        svg {
-            width: 1.1rem;
-            height: 1.1rem;
+        .description-section {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
         }
 
-        :hover {
+        .description {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: #888888;
+            margin-top: 0.2rem;
+        }
+
+        .category {
+            width: 20%;
+            font-size: 1rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .amount {
+            width: 20%;
+            font-weight: 400;
+            font-size: 1rem;
+            text-align: right;
+        }
+
+        .edit-icon {
+            width: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            fill: $primary_color;
+
+            svg {
+                width: 1.1rem;
+                height: 1.1rem;
+            }
+
+            &:hover svg {
+                fill: $primary_color;
+            }
         }
     }
 
     @media (max-width: 768px) {
         padding: 0 1.5rem 1rem;
+
+        .movement-item {
+            .description-section {
+                width: 40%;
+            }
+
+            .category {
+                width: 25%;
+            }
+        }
     }
 
     @media (max-width: 480px) {
         padding: 0 1rem 1rem;
+
+        .movement-item {
+            .description-section {
+                width: 50%;
+            }
+
+            .category {
+                display: none;
+            }
+
+            .amount {
+                width: 25%;
+            }
+
+            .edit-icon {
+                width: 5%;
+            }
+        }
     }
 }

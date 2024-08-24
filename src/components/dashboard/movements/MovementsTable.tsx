@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 
 import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
-import "./MovementsTable.scss"
+import "./MovementsTable.scss";
 import FormMovementsEdit from './FormMovementsEdit';
 import PencilIcon from '../../icons/PencilIcon';
 
@@ -16,6 +14,7 @@ type Transaction = {
     category: string;
     description: string;
     amount: number;
+    color: string;
 };
 
 interface MovementsTableProps {
@@ -27,58 +26,36 @@ interface MovementsTableProps {
 function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
-    const [expandedRows, setExpandedRows] = useState({});
 
-    const amountBodyTemplate = (rowData: Transaction) => {
-        return <span className={rowData.amount >= 0 ? 'positive' : 'negative'}>{formatCurrency(rowData.amount)}</span>;
-    };
-
-    const rowExpansionTemplate = (rowData: Transaction) => {
-        return (
-            <div>
-                <p><strong>Date:</strong> {formatDateTime(rowData.date)}</p>
-                <p><strong>Description:</strong> {rowData.description}</p>
-                <p><strong>Category:</strong> {rowData.category}</p>
-                <p><strong>Amount:</strong> {formatCurrency(rowData.amount)}</p>
-            </div>
-        );
-    };
-
-    const editMovement = (rowData: Transaction) => {
-        setSelectedTransaction(rowData);
+    const editMovement = (transaction: Transaction) => {
+        setSelectedTransaction(transaction);
         setEditSidebarVisible(true);
     };
 
     return (
         <div className="movements__table">
             {isDataEmpty || data.length === 0 ? (
-                <>
-                    <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
-                </>
+                <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
-                <DataTable
-                    value={data}
-                    expandedRows={expandedRows}
-                    onRowToggle={(e) => setExpandedRows(e.data)}
-                    rowExpansionTemplate={rowExpansionTemplate}
-                    dataKey="_id"
-                    paginator
-                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    rows={15}
-                >
-                    <Column expander style={{ width: '5%' }} />
-                    <Column field="description" header="Description" sortable style={{ width: '50%' }} />
-                    <Column field="amount" header="Amount" body={amountBodyTemplate} style={{ width: '40%' }} sortable />
-                    <Column
-                        body={(rowData) => (
-                            <div className="movements__table-options">
-                                <PencilIcon onClick={() => editMovement(rowData)} />
+                <div className="movements-list">
+                    {data.map((transaction) => (
+                        <div key={transaction._id} className="movement-item">
+                            <div className="description-section">
+                                <div className="description">{transaction.description}</div>
+                                <div className="date">{formatDateTime(transaction.date)}</div>
                             </div>
-                        )}
-                        style={{ width: '5%', textAlign: 'center' }}
-                    />
-                </DataTable>
+                            <div className="category">
+                                <span>{transaction.category}</span>
+                            </div>
+                            <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
+                                {formatCurrency(transaction.amount)}
+                            </div>
+                            <div className="edit-icon">
+                                <PencilIcon onClick={() => editMovement(transaction)} />
+                            </div>
+                        </div>
+                    ))}
+                </div>
             )}
             <Sidebar
                 visible={editSidebarVisible}
