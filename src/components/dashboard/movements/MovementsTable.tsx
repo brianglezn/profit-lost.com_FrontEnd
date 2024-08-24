@@ -14,7 +14,6 @@ type Transaction = {
     category: string;
     description: string;
     amount: number;
-    color: string;
 };
 
 interface MovementsTableProps {
