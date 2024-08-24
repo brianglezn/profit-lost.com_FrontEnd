@@ -9,6 +9,7 @@ import {
     Legend,
     ResponsiveContainer,
 } from "recharts";
+
 import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
 import { monthNames } from "../../../helpers/constants";
 

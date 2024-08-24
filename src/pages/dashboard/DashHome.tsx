@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import { getMovementsByYearAndMonth } from "../../api/movements/getMovementsByYearAndMonth";
+import { getMovementsByYear } from "../../api/movements/getMovementsByYear";
 import "./DashHome.scss";
 import HomeBalanceChart from "../../components/dashboard/dashhome/HomeBalanceChart";
+import MovementsHistoryHome from "../../components/dashboard/dashhome/MovementsHistoryHome";
 
-interface Movement {
+interface Transaction {
+  _id: string;
+  description: string;
+  date: string;
   category: string;
   amount: number;
 }
@@ -17,34 +21,62 @@ function DashHome() {
   const [expensesPercentage, setExpensesPercentage] = useState<number>(0);
   const [ebitdaPercentage, setEbitdaPercentage] = useState<number>(0);
 
+  const [movements, setMovements] = useState<Transaction[]>([]);
+  const [isDataEmpty, setIsDataEmpty] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token") || "";
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear().toString();
-        const currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-        const previousMonth = currentMonth === "01" ? "12" : (parseInt(currentMonth) - 1).toString().padStart(2, '0');
-        const previousYear = currentMonth === "01" ? (parseInt(currentYear) - 1).toString() : currentYear;
+        const currentMonth = currentDate.getMonth() + 1;
 
-        const movementsCurrentMonth: Movement[] = await getMovementsByYearAndMonth(token, currentYear, currentMonth);
-        const movementsPreviousMonth: Movement[] = await getMovementsByYearAndMonth(token, previousYear, previousMonth);
+        // Obtener movimientos del año actual
+        const movements: Transaction[] = await getMovementsByYear(token, currentYear);
+
+        if (movements.length === 0) {
+          setIsDataEmpty(true);
+          return;
+        }
+        setIsDataEmpty(false);
+
+        // Filtrar movimientos hasta la fecha actual
+        const filteredMovements = movements.filter((mov) => new Date(mov.date) <= currentDate);
+
+        // Ordenar movimientos por fecha descendente
+        const sortedMovements = filteredMovements.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+        setMovements(sortedMovements.slice(0, 10)); // Mostrar los últimos 10 movimientos
+
+        // Calcular balance actual
+        const movementsCurrentMonth = sortedMovements.filter((mov) => {
+          const movDate = new Date(mov.date);
+          return movDate.getFullYear() === currentDate.getFullYear() && movDate.getMonth() + 1 === currentMonth;
+        });
+
+        const movementsPreviousMonth = sortedMovements.filter((mov) => {
+          const movDate = new Date(mov.date);
+          return (
+            movDate.getFullYear() === currentDate.getFullYear() &&
+            movDate.getMonth() + 1 === (currentMonth === 1 ? 12 : currentMonth - 1)
+          );
+        });
 
         const totalIncomeCurrent = movementsCurrentMonth
-          .filter((mov) => mov.category && mov.amount > 0)
+          .filter((mov) => mov.amount > 0)
           .reduce((sum, mov) => sum + mov.amount, 0);
         const totalExpensesCurrent = movementsCurrentMonth
-          .filter((mov) => mov.category && mov.amount < 0)
+          .filter((mov) => mov.amount < 0)
           .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
+        const ebitdaCurrent = totalIncomeCurrent - totalExpensesCurrent;
 
         const totalIncomePrevious = movementsPreviousMonth
-          .filter((mov) => mov.category && mov.amount > 0)
+          .filter((mov) => mov.amount > 0)
           .reduce((sum, mov) => sum + mov.amount, 0);
         const totalExpensesPrevious = movementsPreviousMonth
-          .filter((mov) => mov.category && mov.amount < 0)
+          .filter((mov) => mov.amount < 0)
           .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
-
-        const ebitdaCurrent = totalIncomeCurrent - totalExpensesCurrent;
         const ebitdaPrevious = totalIncomePrevious - totalExpensesPrevious;
 
         const calculatePercentageChange = (current: number, previous: number): number => {
@@ -127,8 +159,9 @@ function DashHome() {
       <div className="history">
         <div className="history-container">
           <div className="header-container">
-            <span>History</span>
+            <span>Last movements</span>
           </div>
+          <MovementsHistoryHome data={movements} isDataEmpty={isDataEmpty} />
         </div>
       </div>
 
