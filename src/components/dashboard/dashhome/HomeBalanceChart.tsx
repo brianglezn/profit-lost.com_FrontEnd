@@ -11,7 +11,6 @@ import {
 } from "recharts";
 
 import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
-import { monthNames } from "../../../helpers/constants";
 
 interface DataPoint {
     name: string;
@@ -42,6 +41,7 @@ const HomeBalanceChart: React.FC = () => {
 
                 const lastSixMonthsData = getLastSixMonthsData(movements);
                 setData(lastSixMonthsData);
+
             } catch (error) {
                 console.error("Error fetching movements:", error);
             }
@@ -53,36 +53,41 @@ const HomeBalanceChart: React.FC = () => {
     const getLastSixMonthsData = (movements: Movement[]): DataPoint[] => {
         const today = new Date();
         const months = [];
-        const monthlyData: { [month: string]: { income: number; expenses: number } } = {};
+        const monthlyData: { [key: string]: { income: number; expenses: number } } = {};
 
+        // Inicializar los últimos 6 meses con ingresos y gastos en 0
         for (let i = 5; i >= 0; i--) {
             const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
             const monthName = date.toLocaleString('default', { month: 'short' });
-
             monthlyData[monthName] = { income: 0, expenses: 0 };
+        }
 
-            movements.forEach((movement) => {
-                const movementDate = new Date(movement.date);
-                const movementMonthName = monthNames[movementDate.getMonth()].value;
+        // Agrupar movimientos por mes
+        movements.forEach((movement) => {
+            const movementDate = new Date(movement.date);
+            const monthName = movementDate.toLocaleString('default', { month: 'short' });
 
-                if (movementMonthName === monthName && movementDate.getFullYear() === date.getFullYear()) {
-                    if (movement.amount > 0) {
-                        monthlyData[monthName].income += movement.amount;
-                    } else {
-                        monthlyData[monthName].expenses += Math.abs(movement.amount);
-                    }
+            if (monthlyData[monthName]) {  // Solo considerar los meses dentro de los últimos 6 meses
+                if (movement.amount > 0) {
+                    monthlyData[monthName].income += movement.amount;
+                } else {
+                    monthlyData[monthName].expenses += Math.abs(movement.amount);
                 }
-            });
+            }
+        });
 
+        // Convertir el objeto monthlyData en un array de objetos para el gráfico
+        for (const [key, value] of Object.entries(monthlyData)) {
             months.push({
-                name: monthName,
-                income: parseFloat(monthlyData[monthName].income.toFixed(2)),
-                expenses: parseFloat(monthlyData[monthName].expenses.toFixed(2)),
+                name: key,
+                income: parseFloat(value.income.toFixed(2)),
+                expenses: parseFloat(value.expenses.toFixed(2)),
             });
         }
 
         return months;
     };
+
 
     return (
         <ResponsiveContainer width="100%" height={300}>

@@ -29,10 +29,13 @@ function DashHome() {
       try {
         const token = localStorage.getItem("token") || "";
         const currentDate = new Date();
-        const currentYear = currentDate.getFullYear().toString();
-        const currentMonth = currentDate.getMonth() + 1;
 
-        // Obtener movimientos del año actual
+        // Configurar la fecha de corte al final del día actual
+        const endOfDay = new Date(currentDate);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const currentYear = currentDate.getFullYear().toString();
+
         const movements: Transaction[] = await getMovementsByYear(token, currentYear);
 
         if (movements.length === 0) {
@@ -41,60 +44,13 @@ function DashHome() {
         }
         setIsDataEmpty(false);
 
-        // Filtrar movimientos hasta la fecha actual
-        const filteredMovements = movements.filter((mov) => new Date(mov.date) <= currentDate);
+        // Filtrar movimientos hasta el final del día actual
+        const filteredMovements = movements.filter((mov) => new Date(mov.date) <= endOfDay);
 
         // Ordenar movimientos por fecha descendente
         const sortedMovements = filteredMovements.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-        setMovements(sortedMovements.slice(0, 10)); // Mostrar los últimos 10 movimientos
-
-        // Calcular balance actual
-        const movementsCurrentMonth = sortedMovements.filter((mov) => {
-          const movDate = new Date(mov.date);
-          return movDate.getFullYear() === currentDate.getFullYear() && movDate.getMonth() + 1 === currentMonth;
-        });
-
-        const movementsPreviousMonth = sortedMovements.filter((mov) => {
-          const movDate = new Date(mov.date);
-          return (
-            movDate.getFullYear() === currentDate.getFullYear() &&
-            movDate.getMonth() + 1 === (currentMonth === 1 ? 12 : currentMonth - 1)
-          );
-        });
-
-        const totalIncomeCurrent = movementsCurrentMonth
-          .filter((mov) => mov.amount > 0)
-          .reduce((sum, mov) => sum + mov.amount, 0);
-        const totalExpensesCurrent = movementsCurrentMonth
-          .filter((mov) => mov.amount < 0)
-          .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
-        const ebitdaCurrent = totalIncomeCurrent - totalExpensesCurrent;
-
-        const totalIncomePrevious = movementsPreviousMonth
-          .filter((mov) => mov.amount > 0)
-          .reduce((sum, mov) => sum + mov.amount, 0);
-        const totalExpensesPrevious = movementsPreviousMonth
-          .filter((mov) => mov.amount < 0)
-          .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
-        const ebitdaPrevious = totalIncomePrevious - totalExpensesPrevious;
-
-        const calculatePercentageChange = (current: number, previous: number): number => {
-          if (previous === 0) return current === 0 ? 0 : 100;
-          return ((current - previous) / previous) * 100;
-        };
-
-        const incomeChange = calculatePercentageChange(totalIncomeCurrent, totalIncomePrevious);
-        const expensesChange = calculatePercentageChange(totalExpensesCurrent, totalExpensesPrevious);
-        const ebitdaChange = calculatePercentageChange(ebitdaCurrent, ebitdaPrevious);
-
-        setIncome(totalIncomeCurrent);
-        setExpenses(totalExpensesCurrent);
-        setEbitda(ebitdaCurrent);
-
-        setIncomePercentage(incomeChange);
-        setExpensesPercentage(expensesChange);
-        setEbitdaPercentage(ebitdaChange);
+        setMovements(sortedMovements);  // Guardar todos los movimientos para cálculos posteriores
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -102,6 +58,65 @@ function DashHome() {
 
     fetchData();
   }, []);
+
+  // Segundo useEffect para recalcular balances cuando cambien los movimientos
+  useEffect(() => {
+    if (movements.length === 0) return;
+
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+
+    const movementsCurrentMonth = movements.filter((mov) => {
+      const movDate = new Date(mov.date);
+      return movDate.getFullYear() === currentDate.getFullYear() && movDate.getMonth() + 1 === currentMonth;
+    });
+
+    const totalIncomeCurrent = movementsCurrentMonth
+      .filter((mov) => mov.amount > 0)
+      .reduce((sum, mov) => sum + mov.amount, 0);
+
+    const totalExpensesCurrent = movementsCurrentMonth
+      .filter((mov) => mov.amount < 0)
+      .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
+
+    const ebitdaCurrent = totalIncomeCurrent - totalExpensesCurrent;
+
+    const movementsPreviousMonth = movements.filter((mov) => {
+      const movDate = new Date(mov.date);
+      return (
+        movDate.getFullYear() === currentDate.getFullYear() &&
+        movDate.getMonth() + 1 === (currentMonth === 1 ? 12 : currentMonth - 1)
+      );
+    });
+
+    const totalIncomePrevious = movementsPreviousMonth
+      .filter((mov) => mov.amount > 0)
+      .reduce((sum, mov) => sum + mov.amount, 0);
+
+    const totalExpensesPrevious = movementsPreviousMonth
+      .filter((mov) => mov.amount < 0)
+      .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
+
+    const ebitdaPrevious = totalIncomePrevious - totalExpensesPrevious;
+
+    const calculatePercentageChange = (current: number, previous: number): number => {
+      if (previous === 0) return current === 0 ? 0 : 100;
+      return ((current - previous) / previous) * 100;
+    };
+
+    const incomeChange = calculatePercentageChange(totalIncomeCurrent, totalIncomePrevious);
+    const expensesChange = calculatePercentageChange(totalExpensesCurrent, totalExpensesPrevious);
+    const ebitdaChange = calculatePercentageChange(ebitdaCurrent, ebitdaPrevious);
+
+    setIncome(Number(totalIncomeCurrent.toFixed(2)));
+    setExpenses(Number(totalExpensesCurrent.toFixed(2)));
+    setEbitda(Number(ebitdaCurrent.toFixed(2)));
+
+    setIncomePercentage(Number(incomeChange.toFixed(2)));
+    setExpensesPercentage(Number(expensesChange.toFixed(2)));
+    setEbitdaPercentage(Number(ebitdaChange.toFixed(2)));
+
+  }, [movements]);
 
   return (
     <section className="dashHome">
@@ -171,30 +186,6 @@ function DashHome() {
             <span>Last 6 months balances</span>
           </div>
           <HomeBalanceChart />
-        </div>
-      </div>
-
-      <div className="first">
-        <div className="first-container">
-          <div className="header-container">
-            <span>First</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="second">
-        <div className="second-container">
-          <div className="header-container">
-            <span>Second</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="categories">
-        <div className="categories-container">
-          <div className="header-container">
-            <span>Categories</span>
-          </div>
         </div>
       </div>
     </section>
