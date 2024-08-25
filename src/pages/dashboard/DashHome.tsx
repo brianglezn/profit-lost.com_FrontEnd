@@ -171,6 +171,15 @@ function DashHome() {
         </div>
       </div>
 
+      <div className="chart">
+        <div className="chart-container">
+          <div className="header-container">
+            <span>Last 6 months balances</span>
+          </div>
+          <HomeBalanceChart />
+        </div>
+      </div>
+
       <div className="history">
         <div className="history-container">
           <div className="header-container">
@@ -180,12 +189,27 @@ function DashHome() {
         </div>
       </div>
 
-      <div className="chart">
-        <div className="chart-container">
+      <div className="first">
+        <div className="first-container">
           <div className="header-container">
-            <span>Last 6 months balances</span>
+            <span>First</span>
           </div>
-          <HomeBalanceChart />
+        </div>
+      </div>
+
+      <div className="second">
+        <div className="second-container">
+          <div className="header-container">
+            <span>Second</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="categories">
+        <div className="categories-container">
+          <div className="header-container">
+            <span>Categories</span>
+          </div>
         </div>
       </div>
     </section>
