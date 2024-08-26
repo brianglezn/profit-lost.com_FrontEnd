@@ -8,7 +8,6 @@ import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
 
 import "./AnnualMovements.scss";
 import FormCategoryEdit from "./FormCategoryEdit";
-import PencilIcon from "../../icons/PencilIcon";
 
 type Transaction = {
     category: string;
@@ -68,6 +67,9 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                 };
             });
 
+            // Ordenar las categorías por nombre
+            categoryBalances.sort((a, b) => a.Category.localeCompare(b.Category));
+
             setCategories(categoryBalances);
         } catch (error) {
             console.error("Error loading data:", error);
@@ -92,7 +94,11 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
             ) : (
                 <div className="categories-list">
                     {categories.map((category) => (
-                        <div key={category.id} className="category-item">
+                        <div
+                            key={category.id}
+                            className="category-item"
+                            onClick={() => editCategory(category)}
+                        >
                             <div className="category-color">
                                 <div
                                     className="category-color-circle"
@@ -102,9 +108,6 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                             <div className="category-name">{category.Category}</div>
                             <div className={`category-balance ${category.Balance >= 0 ? "positive" : "negative"}`}>
                                 {formatCurrency(category.Balance)}
-                            </div>
-                            <div className="edit-icon">
-                                <PencilIcon onClick={() => editCategory(category)} />
                             </div>
                         </div>
                     ))}

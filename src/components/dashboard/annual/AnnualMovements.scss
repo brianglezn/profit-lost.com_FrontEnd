@@ -3,59 +3,52 @@
 .annual__categories-table {
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
+    padding: 0 2rem 1rem 2rem;
 
 
     .categories-list {
         display: flex;
         flex-direction: column;
-    }
+        gap: 0.5rem;
 
-    .category-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        border-bottom: 0.1rem solid #f0f0f0;
-
-        .category-color {
-            width: 5%;
+        .category-item {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-
-            .category-color-circle {
-                width: 1.4rem;
-                height: 1.4rem;
-                border-radius: 50%;
-            }
-        }
-
-        .category-name {
-            width: 55%;
-            font-weight: 400;
-            font-size: 1rem;
-        }
-
-        .category-balance {
-            width: 35%;
-            font-size: 1rem;
-        }
-
-        .edit-icon {
-            width: 5%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 0.1rem solid #f0f0f0;
+            border-radius: 1rem;
             cursor: pointer;
+            transition: background-color 0.3s ease;
 
-            svg {
-                width: 1.3rem;
-                height: 1.3rem;
+            &:hover {
+                background-color: #f0f0f0;
             }
 
-            &:hover svg {
-                fill: $primary_color;
+            .category-color {
+                width: 5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .category-color-circle {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    border-radius: 50%;
+                }
+            }
+
+            .category-name {
+                width: 55%;
+                font-weight: 400;
+                font-size: 1rem;
+            }
+
+            .category-balance {
+                width: 35%;
+                text-align: right;
+                padding-right: 1rem;
+                font-size: 1rem;
             }
         }
     }
@@ -63,41 +56,36 @@
     @media (max-width: 768px) {
         padding: 0 1.5rem 1rem;
 
-        .category-item {
-            .category-color {
-                width: 7%;
-            }
+        .categories-list {
+            .category-item {
+                .category-color {
+                    width: 7%;
+                }
 
-            .category-name {
-                width: 50%;
+                .category-name {
+                    width: 50%;
+                }
             }
-
         }
     }
 
     @media (max-width: 480px) {
         padding: 0 0.7rem 1rem;
 
-        .category-item {
-            .category-color {
-                width: 10%;
-            }
+        .categories-list {
+            .category-item {
+                .category-color {
+                    width: 15%;
+                }
 
-            .category-name {
-                width: 43%;
-                font-size: .9rem;
-            }
+                .category-name {
+                    width: 43%;
+                    font-size: .9rem;
+                }
 
-            .category-balance {
-                font-size: .9rem;
-            }
-
-            .edit-icon {
-                width: 10%;
-
-                svg {
-                    width: 1.1rem;
-                    height: 1.1rem;
+                .category-balance {
+                    width: 43%;
+                    font-size: .9rem;
                 }
             }
         }
