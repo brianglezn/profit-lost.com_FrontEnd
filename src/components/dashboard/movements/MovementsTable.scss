@@ -6,75 +6,70 @@
     .movements-list {
         display: flex;
         flex-direction: column;
-    }
+        gap: 0.5rem;
 
-    .movement-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        border-bottom: 0.1rem solid #f0f0f0;
-
-        .description-section {
+        .movement-item {
             display: flex;
-            flex-direction: column;
-            width: 30%;
-        }
-
-        .description {
-            font-weight: 500;
-            font-size: 1rem;
-        }
-
-        .date {
-            font-size: 0.8rem;
-            color: #888888;
-            margin-top: 0.2rem;
-        }
-
-        .category {
-            width: 20%;
-            font-size: 1rem;
-            text-align: left;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-        }
-
-        .amount {
-            width: 20%;
-            font-weight: 400;
-            font-size: 1rem;
-            text-align: right;
-        }
-
-        .edit-icon {
-            width: 5%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 1rem 0;
+            border-radius: 1rem;
             cursor: pointer;
+            transition: background-color 0.3s ease;
 
-            svg {
-                width: 1.1rem;
-                height: 1.1rem;
+            &:hover {
+                background-color: #f7f7f7;
             }
 
-            &:hover svg {
-                fill: $primary_color;
+            .description-section {
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+                padding-left: 1rem;
+
+                .description {
+                    font-weight: 500;
+                    font-size: 1rem;
+                }
+
+                .date {
+                    font-size: 0.8rem;
+                    color: #888888;
+                    margin-top: 0.2rem;
+                }
+            }
+
+
+            .category {
+                width: 20%;
+                font-size: 1rem;
+                text-align: left;
+                display: flex;
+                align-items: center;
+            }
+
+            .amount {
+                width: 20%;
+                font-size: 1rem;
+                text-align: right;
+                padding-right: 1rem;
             }
         }
     }
+
 
     @media (max-width: 768px) {
         padding: 0 1.5rem 1rem;
 
-        .movement-item {
-            .description-section {
-                width: 40%;
-            }
+        .movements-list {
+            .movement-item {
+                .description-section {
+                    width: 40%;
+                }
 
-            .category {
-                width: 25%;
+                .category {
+                    width: 25%;
+                }
             }
         }
     }
@@ -82,21 +77,19 @@
     @media (max-width: 480px) {
         padding: 0 1rem 1rem;
 
-        .movement-item {
-            .description-section {
-                width: 50%;
-            }
+        .movements-list {
+            .movement-item {
+                .description-section {
+                    width: 50%;
+                }
 
-            .category {
-                display: none;
-            }
+                .category {
+                    display: none;
+                }
 
-            .amount {
-                width: 25%;
-            }
-
-            .edit-icon {
-                width: 5%;
+                .amount {
+                    width: 25%;
+                }
             }
         }
     }

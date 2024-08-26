@@ -6,7 +6,6 @@ import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
 import "./MovementsTable.scss";
 import FormMovementsEdit from './FormMovementsEdit';
-import PencilIcon from '../../icons/PencilIcon';
 
 type Transaction = {
     _id: string;
@@ -38,7 +37,11 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
             ) : (
                 <div className="movements-list">
                     {data.map((transaction) => (
-                        <div key={transaction._id} className="movement-item">
+                        <div
+                            key={transaction._id}
+                            className="movement-item"
+                            onClick={() => editMovement(transaction)}
+                        >
                             <div className="description-section">
                                 <div className="description">{transaction.description}</div>
                                 <div className="date">{formatDateTime(transaction.date)}</div>
@@ -48,9 +51,6 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                             </div>
                             <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
                                 {formatCurrency(transaction.amount)}
-                            </div>
-                            <div className="edit-icon">
-                                <PencilIcon onClick={() => editMovement(transaction)} />
                             </div>
                         </div>
                     ))}
