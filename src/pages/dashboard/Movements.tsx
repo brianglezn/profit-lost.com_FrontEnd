@@ -170,7 +170,12 @@ function Movements() {
             <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} selectedYear={year} selectedMonth={month} />
           </Sidebar>
         </div>
-        <MovementsTable data={dataGraph} isDataEmpty={isDataEmpty} reloadData={reloadData} />
+        <MovementsTable
+          data={dataGraph}
+          isDataEmpty={isDataEmpty}
+          reloadData={reloadData}
+          categories={categories}
+        />
       </div>
     </section>
   );

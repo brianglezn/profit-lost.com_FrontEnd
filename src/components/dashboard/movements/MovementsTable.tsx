@@ -15,19 +15,31 @@ type Transaction = {
     amount: number;
 };
 
+interface Category {
+    _id: string;
+    name: string;
+    color: string;
+}
+
 interface MovementsTableProps {
     data: Transaction[];
     isDataEmpty: boolean;
     reloadData: () => void;
+    categories: Category[];
 }
 
-function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) {
+function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
 
     const editMovement = (transaction: Transaction) => {
         setSelectedTransaction(transaction);
         setEditSidebarVisible(true);
+    };
+
+    const getCategoryColor = (categoryName: string) => {
+        const category = categories.find(cat => cat.name === categoryName);
+        return category ? category.color : '#000';
     };
 
     return (
@@ -47,8 +59,13 @@ function MovementsTable({ data, isDataEmpty, reloadData }: MovementsTableProps) 
                                 <div className="date">{formatDateTime(transaction.date)}</div>
                             </div>
                             <div className="category">
+                                <div
+                                    className="category-color-circle"
+                                    style={{ backgroundColor: getCategoryColor(transaction.category) }}
+                                ></div>
                                 <span>{transaction.category}</span>
                             </div>
+
                             <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
                                 {formatCurrency(transaction.amount)}
                             </div>

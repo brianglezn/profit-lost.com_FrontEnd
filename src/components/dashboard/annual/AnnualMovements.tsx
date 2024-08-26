@@ -67,7 +67,6 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                 };
             });
 
-            // Ordenar las categorías por nombre
             categoryBalances.sort((a, b) => a.Category.localeCompare(b.Category));
 
             setCategories(categoryBalances);
