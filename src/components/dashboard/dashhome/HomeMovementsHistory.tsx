@@ -1,4 +1,4 @@
-import './MovementsHistoryHome.scss';
+import './HomeMovementsHistory.scss';
 
 type Transaction = {
     _id: string;
@@ -12,7 +12,7 @@ interface MovementsHistoryHomeProps {
     isDataEmpty: boolean;
 }
 
-function MovementsHistoryHome({ data, isDataEmpty }: MovementsHistoryHomeProps) {
+function HomeMovementsHistory({ data, isDataEmpty }: MovementsHistoryHomeProps) {
     const sortedData = data
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, 8);
@@ -34,7 +34,7 @@ function MovementsHistoryHome({ data, isDataEmpty }: MovementsHistoryHomeProps) 
                                 <div className="description">{transaction.description}</div>
                                 <div className="date">{formatDate(transaction.date)}</div>
                             </div>
-                            <div className={"amount"}>
+                            <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
                                 {transaction.amount.toFixed(2)} €
                             </div>
                         </li>
@@ -45,4 +45,4 @@ function MovementsHistoryHome({ data, isDataEmpty }: MovementsHistoryHomeProps) 
     );
 }
 
-export default MovementsHistoryHome;
+export default HomeMovementsHistory;
