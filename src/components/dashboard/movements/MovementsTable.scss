@@ -39,8 +39,8 @@
                 }
             }
 
-
-            .category {
+            .category,
+            .category-mobile {
                 flex: 1;
                 font-size: 1rem;
                 text-align: left;
@@ -60,6 +60,11 @@
                 font-size: 1rem;
                 text-align: right;
                 padding-right: 1rem;
+            }
+
+            .category-mobile {
+                flex: 0;
+                display: none;
             }
         }
     }
@@ -88,6 +93,7 @@
             .movement-item {
                 .description-section {
                     width: 50%;
+                    padding-left: 0;
                 }
 
                 .category {
@@ -96,6 +102,12 @@
 
                 .amount {
                     width: 25%;
+                }
+
+                .category-mobile {
+                    padding-left: 1rem;
+                    flex: 0;
+                    display: flex;
                 }
             }
         }

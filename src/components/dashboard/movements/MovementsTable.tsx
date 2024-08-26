@@ -54,6 +54,12 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                             className="movement-item"
                             onClick={() => editMovement(transaction)}
                         >
+                            <div className="category-mobile">
+                                <div
+                                    className="category-color-circle"
+                                    style={{ backgroundColor: getCategoryColor(transaction.category) }}
+                                ></div>
+                            </div>
                             <div className="description-section">
                                 <div className="description">{transaction.description}</div>
                                 <div className="date">{formatDateTime(transaction.date)}</div>
