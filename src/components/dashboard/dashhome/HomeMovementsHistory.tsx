@@ -1,3 +1,5 @@
+import { formatDateTime } from '../../../helpers/functions';
+
 import './HomeMovementsHistory.scss';
 
 type Transaction = {
@@ -17,11 +19,6 @@ function HomeMovementsHistory({ data, isDataEmpty }: MovementsHistoryHomeProps) 
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, 8);
 
-    const formatDate = (isoDate: string) => {
-        const date = new Date(isoDate);
-        return `${date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}, ${date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`;
-    };
-
     return (
         <div className="movements-history-home">
             {isDataEmpty || sortedData.length === 0 ? (
@@ -32,7 +29,7 @@ function HomeMovementsHistory({ data, isDataEmpty }: MovementsHistoryHomeProps) 
                         <li key={transaction._id} className="movement-item">
                             <div className="description-section">
                                 <div className="description">{transaction.description}</div>
-                                <div className="date">{formatDate(transaction.date)}</div>
+                                <div className="date">{formatDateTime(transaction.date)}</div>
                             </div>
                             <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
                                 {transaction.amount.toFixed(2)} €

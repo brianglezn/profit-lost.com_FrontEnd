@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import { getMovementsByYear } from "../../api/movements/getMovementsByYear";
+
 import "./DashHome.scss";
 import HomeBalanceChart from "../../components/dashboard/dashhome/HomeBalanceChart";
 import MovementsHistoryHome from "../../components/dashboard/dashhome/HomeMovementsHistory";
