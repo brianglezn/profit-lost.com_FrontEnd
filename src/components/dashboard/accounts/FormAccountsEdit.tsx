@@ -185,8 +185,8 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                 <ColorPicker value={fontColor} onChange={handleFontColorChange} />
             </div>
             <div className="formAccount-buttons">
-                <button type="submit" className="custom-btn">Save</button>
                 <button type="button" className="custom-btn" onClick={handleRemoveAccount}>Remove</button>
+                <button type="submit" className="custom-btn">Save</button>
             </div>
             {showConfirm && (
                 <div className="form-confirmBtn">

@@ -201,8 +201,8 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 required
             />
             <div className="formMovements-buttons">
-                <button type="submit" className="custom-btn">Update</button>
                 <button type="button" className="custom-btn" onClick={handleRemove}>Delete</button>
+                <button type="submit" className="custom-btn">Update</button>
             </div>
             {showConfirm && (
                 <div className="form-confirmBtn">
