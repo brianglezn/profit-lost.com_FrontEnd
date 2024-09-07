@@ -22,6 +22,7 @@ import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
 import ChartBarIcon from "../../components/icons/ChartBarIcon";
 import CreditCardIcon from "../../components/icons/CreditCardIcon";
 import NotesIcon from "../../components/icons/NotesIcon";
+import BarsIcon from "../../components/icons/BarsIcon";
 import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
@@ -245,7 +246,15 @@ function Dashboard() {
                 <span>Movements</span>
               </div>
             </span>
-
+            <span
+              onClick={(e) => menu.current?.toggle(e)}
+              className={activeSection === "Accounts" || activeSection === "Reports" || activeSection === "Notes" ? "active" : ""}
+            >
+              <div>
+                <BarsIcon />
+                <span>More</span>
+              </div>
+            </span>
             <Menu model={menuItems} popup ref={menu} id="popup_menu" />
           </nav>
         </div>
