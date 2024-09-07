@@ -1,150 +1,22 @@
 @import '../../../variables';
 
 .notes {
-    display: flex;
-    flex-direction: column;
+    text-align: center;
+    padding: 50px;
 
     h1 {
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
         color: $primary_color;
     }
 
-    .notes__list {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        width: 100%;
-        flex-wrap: wrap;
-
-        .note {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
-            border-radius: .8rem;
-            box-shadow: $shadow_color 0px 1px 4px;
-            background-color: $bg-color-sec;
-            width: 100%;
-            max-width: 250px;
-            cursor: pointer;
-
-            h3 {
-                margin: 0 0 0.5rem 0;
-                color: $primary_color;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            p {
-                flex-grow: 1;
-                margin-bottom: 0.5rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: normal;
-            }
-        }
-    }
-
-    .notes__add-button {
-        margin: 0 auto 1rem;
-        background-color: $primary_color;
-        border: none;
-        border-radius: .8rem;
-        width: 4rem;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: $text_color-white;
-        }
-
-        &:hover {
-            background-color: darken($primary_color, 10%);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .notes__form {
-
-            .p-inputtext,
-            .p-inputtextarea {
-                font-size: 0.9rem;
-            }
-
-            .notes__form-footer {
-                button {
-                    padding: 0.4rem 0.8rem;
-                }
-            }
-        }
-
-        .notes__list {
-            .note {
-                padding: 0.8rem;
-            }
-        }
-    }
-
-    @media (max-width: 480px) {
-        .notes__form {
-
-            .p-inputtext,
-            .p-inputtextarea {
-                font-size: 0.8rem;
-            }
-
-            .notes__form-footer {
-                button {
-                    padding: 0.3rem 0.6rem;
-                }
-            }
-        }
-
-        .notes__list {
-            .note {
-                padding: 0.6rem;
-            }
-        }
-    }
-}
-
-.sidebar__notes {
-    .p-sidebar-content {
-        padding: 1rem;
-
-        .notes__form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 90%;
-            padding: 1.5rem 1.5rem 2rem;
-            border-radius: .8rem;
-            background-color: $bg-color-sec;
-            box-shadow: $shadow_color 0px 1px 4px;
-
-            .p-inputtext,
-            .p-inputtextarea {
-                width: 100%;
-                padding: 0.5rem;
-                border-radius: 0.5rem;
-                border: 1px solid $maskbg;
-            }
-
-            .notes__form-footer {
-                display: flex;
-                justify-content: center;
-                gap: 1rem;
-                margin-top: 0.5rem;
-
-                button {
-                    width: 8rem;
-                }
-            }
-        }
+    .under-construction {
+        font-size: 1.5rem;
+        color: $primary_color-600;
+        background-color: $primary_color-100;
+        padding: 20px;
+        border: 2px dashed $primary_color-300;
+        display: inline-block;
+        border-radius: 10px;
     }
 }

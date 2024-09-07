@@ -14,7 +14,6 @@ const DashHome = React.lazy(() => import('./DashHome'));
 const Accounts = React.lazy(() => import('./Accounts'));
 const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
-const Goals = React.lazy(() => import('./Goals'));
 const Notes = React.lazy(() => import('./Notes'));
 const Reports = React.lazy(() => import('./Reports'));
 import RefreshIcon from "../../components/icons/RefreshIcon";
@@ -23,8 +22,6 @@ import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
 import ChartBarIcon from "../../components/icons/ChartBarIcon";
 import CreditCardIcon from "../../components/icons/CreditCardIcon";
 import NotesIcon from "../../components/icons/NotesIcon";
-import ListCheckIcon from "../../components/icons/ListCheckIcon";
-import BarsIcon from "../../components/icons/BarsIcon";
 import UserIcon from "../../components/icons/UserIcon";
 import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
@@ -135,11 +132,6 @@ function Dashboard() {
       command: () => handleMenuItemClick('Accounts')
     },
     {
-      label: 'Goals',
-      icon: <ListCheckIcon />,
-      command: () => handleMenuItemClick('Goals')
-    },
-    {
       label: 'Notes',
       icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
@@ -206,13 +198,6 @@ function Dashboard() {
                   <p>Accounts</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("Goals")}
-                  className={activeSection === "Goals" ? "active" : ""}
-                >
-                  <ListCheckIcon />
-                  <p>Goals</p>
-                </li>
-                <li
                   onClick={() => handleMenuItemClick("Notes")}
                   className={activeSection === "Notes" ? "active" : ""}
                 >
@@ -260,15 +245,7 @@ function Dashboard() {
                 <span>Movements</span>
               </div>
             </span>
-            <span
-              onClick={(e) => menu.current?.toggle(e)}
-              className={activeSection === "Goals" || activeSection === "Notes" ? "active" : ""}
-            >
-              <div>
-                <BarsIcon />
-                <span>More</span>
-              </div>
-            </span>
+
             <Menu model={menuItems} popup ref={menu} id="popup_menu" />
           </nav>
         </div>
@@ -289,7 +266,6 @@ function Dashboard() {
             {activeSection === "AnnualReport" && <AnnualReport />}
             {activeSection === "Movements" && <Movements />}
             {activeSection === "Accounts" && <Accounts />}
-            {activeSection === "Goals" && <Goals />}
             {activeSection === "Notes" && <Notes />}
             {activeSection === "Reports" && <Reports />}
           </Suspense>
