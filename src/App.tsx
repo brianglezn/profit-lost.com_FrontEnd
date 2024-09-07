@@ -5,13 +5,13 @@ import { Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
 
-const Home = React.lazy(() => import('./pages/home/Home'));
-const Login = React.lazy(() => import('./pages/home/Login'));
-const Register = React.lazy(() => import('./pages/home/Register'));
+const Home = React.lazy(() => import('./pages/landing/Home'));
+const Login = React.lazy(() => import('./pages/landing/Login'));
+const Register = React.lazy(() => import('./pages/landing/Register'));
 const DashBoard = React.lazy(() => import('./pages/dashboard/DashBoard'));
-const Cookies = React.lazy(() => import('./pages/home/Cookies'));
-const ForgotPassword = React.lazy(() => import('./pages/home/ForgotPassword'));
-const ForgotPasswordToken = React.lazy(() => import('./pages/home/ForgotPasswordToken'));
+const Cookies = React.lazy(() => import('./pages/landing/Cookies'));
+const ForgotPassword = React.lazy(() => import('./pages/landing/ForgotPassword'));
+const ForgotPasswordToken = React.lazy(() => import('./pages/landing/ForgotPasswordToken'));
 
 interface PrivateRouteProps {
   children: React.ReactNode;
