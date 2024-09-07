@@ -31,8 +31,6 @@ function DashHome() {
       try {
         const token = localStorage.getItem("token") || "";
         const currentDate = new Date();
-
-        // Configurar la fecha de corte al final del día actual
         const endOfDay = new Date(currentDate);
         endOfDay.setHours(23, 59, 59, 999);
 
@@ -46,13 +44,11 @@ function DashHome() {
         }
         setIsDataEmpty(false);
 
-        // Filtrar movimientos hasta el final del día actual
         const filteredMovements = movements.filter((mov) => new Date(mov.date) <= endOfDay);
 
-        // Ordenar movimientos por fecha descendente
         const sortedMovements = filteredMovements.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-        setMovements(sortedMovements);  // Guardar todos los movimientos para cálculos posteriores
+        setMovements(sortedMovements);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -61,7 +57,6 @@ function DashHome() {
     fetchData();
   }, []);
 
-  // Segundo useEffect para recalcular balances cuando cambien los movimientos
   useEffect(() => {
     if (movements.length === 0) return;
 
@@ -210,7 +205,7 @@ function DashHome() {
       <div className="categories">
         <div className="categories-container">
           <div className="header-container">
-            <span>Categories</span>
+            <span>Third</span>
           </div>
         </div>
       </div>
