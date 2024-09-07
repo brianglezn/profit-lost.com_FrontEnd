@@ -89,7 +89,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                 />
             </div>
             <div className="formCategories-buttons">
-                <button type="button" className="custom-btn" onClick={handleRemoveCategory}>Remove</button>
+                <button type="button" className="custom-btn-sec" onClick={handleRemoveCategory}>Remove</button>
                 <button type="submit" className="custom-btn">Save</button>
             </div>
 

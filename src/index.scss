@@ -159,6 +159,37 @@ body {
     }
   }
 
+  button.custom-btn-sec {
+    background-color: $primary_color-100;
+    color: $primary_color;
+    padding: .7rem;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: 0.1s;
+    box-shadow: 0 0.4rem $primary_color-300;
+    opacity: 0.9;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-family: "Rubik", sans-serif;
+
+    &:hover {
+      background-color: $primary_color-100;
+      box-shadow: 0 0.4rem $primary_color-400;
+      opacity: 1;
+    }
+
+    &:active {
+      transform: translateY(5px);
+      box-shadow: $primary_color-400 0px 3px 2px,
+        $text_color-grey 0px 3px 5px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
+
   .form-confirmBtn {
     display: flex;
     justify-content: center;
