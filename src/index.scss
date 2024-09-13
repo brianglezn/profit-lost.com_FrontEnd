@@ -5022,16 +5022,14 @@ body {
 
   .p-accordion .p-accordion-header .p-accordion-header-link {
     padding: 1rem;
-    border: 1px solid $primary_color-400;
-    color: $text_color-grey;
-    background: $bg-color;
-    font-weight: 600;
+    color: $text_color-black;
+    font-weight: 400;
     border-radius: 15px;
     transition: box-shadow 0.2s;
   }
 
   .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
-    margin-right: 0.5rem;
+    margin-right: 0.1rem;
   }
 
   .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus-visible {
@@ -5041,29 +5039,21 @@ body {
   }
 
   .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: $primary_color-400;
     color: $text_color-grey;
   }
 
   .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-    background: $bg-color;
-    border-color: $primary_color-400;
     color: $text_color-grey;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
 
   .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
-    border-color: $primary_color-400;
-    background: rgba(255, 255, 255, 0.03);
     color: $text_color-grey;
   }
 
   .p-accordion .p-accordion-content {
     padding: 1rem;
-    border: 1px solid $primary_color-400;
-    background: $bg-color;
     color: $text_color-grey;
     border-top: 0;
     border-top-right-radius: 0;
