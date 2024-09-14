@@ -143,15 +143,17 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                         .map((year) => (
                             <AccordionTab key={year} header={year}>
                                 <ul className="movementsByCategory-list">
-                                    {movementsByYear[year].map((movement) => (
-                                        <li key={movement.id} className="movementsByCategory-item">
-                                            <span className="movementsByCategory-description">{movement.description}</span>
-                                            <span className="movementsByCategory-date">{formatDateTime(movement.date)}</span>
-                                            <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                {formatCurrency(movement.amount)}
-                                            </span>
-                                        </li>
-                                    ))}
+                                    {movementsByYear[year]
+                                        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                                        .map((movement) => (
+                                            <li key={movement.id} className="movementsByCategory-item">
+                                                <span className="movementsByCategory-description">{movement.description}</span>
+                                                <span className="movementsByCategory-date">{formatDateTime(movement.date)}</span>
+                                                <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
+                                                    {formatCurrency(movement.amount)}
+                                                </span>
+                                            </li>
+                                        ))}
                                 </ul>
                             </AccordionTab>
                         ))}
