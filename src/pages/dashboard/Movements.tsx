@@ -18,7 +18,6 @@ import FormMovementsAdd from "../../components/dashboard/movements/FormMovements
 import DownloadIcon from "../../components/icons/DownloadIcon";
 import UploadIcon from "../../components/icons/UploadIcon";
 import PigCoinIcon from "../../components/icons/PigCoinIcon";
-import PlusIcon from "../../components/icons/PlusIcon";
 
 interface Movement {
   _id: string;

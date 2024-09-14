@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
+import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
-import { Button } from "primereact/button";
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
@@ -90,7 +90,6 @@ function AnnualReport() {
 
   return (
     <section className="annualReport">
-
       <div className="annualReport__main">
         <div className="annualReport__main-year">
           <Dropdown
@@ -119,12 +118,13 @@ function AnnualReport() {
             <p>{formattedBalanceFinal}</p>
           </div>
         </div>
-      </div >
+      </div>
 
       <div className="annualReport__categories">
         <div className="annualReport__categories-text">
           <p>Categories</p>
           <Button label="Add category" size="small" onClick={handleOpenModal} />
+
           <Sidebar
             visible={open}
             position="right"
@@ -135,6 +135,7 @@ function AnnualReport() {
             <FormCategoryAdd onCategoryAdded={reloadCategories} onClose={handleCloseModal} />
           </Sidebar>
         </div>
+
         <AnnualMovements year={year} reloadFlag={reloadFlag} />
       </div>
     </section>

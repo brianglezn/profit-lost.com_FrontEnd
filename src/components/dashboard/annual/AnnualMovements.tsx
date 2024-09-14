@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
+import { InputText } from 'primereact/inputtext';
+import { Dropdown } from 'primereact/dropdown';
 
 import { formatCurrency } from "../../../helpers/functions";
 import { getAllCategories } from "../../../api/categories/getAllCategories";
@@ -35,6 +37,8 @@ interface AnnualMovementsProps {
 const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [sortOption, setSortOption] = useState<string>('name_asc');
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
 
@@ -67,8 +71,6 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                 };
             });
 
-            categoryBalances.sort((a, b) => a.Category.localeCompare(b.Category));
-
             setCategories(categoryBalances);
         } catch (error) {
             console.error("Error loading data:", error);
@@ -86,13 +88,57 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
         setSidebarVisible(true);
     };
 
+    const sortCategories = (categories: CategoryBalance[]) => {
+        switch (sortOption) {
+            case 'name_asc':
+                return categories.sort((a, b) => a.Category.localeCompare(b.Category));
+            case 'name_desc':
+                return categories.sort((a, b) => b.Category.localeCompare(a.Category));
+            case 'balance_asc':
+                return categories.sort((a, b) => a.Balance - b.Balance);
+            case 'balance_desc':
+                return categories.sort((a, b) => b.Balance - a.Balance);
+            default:
+                return categories;
+        }
+    };
+
+    const filteredCategories = categories.filter(category =>
+        category.Category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const sortedCategories = sortCategories([...filteredCategories]);
+
     return (
-        <div className="annual__categories-table">
+        <div className="annual__categories">
+            <div className="filter-bar">
+                <div className="search-dropdown-container">
+                    <InputText
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search categories..."
+                        className="p-inputtext-custom"
+                    />
+                    <Dropdown
+                        value={sortOption}
+                        options={[
+                            { label: 'Name A-Z', value: 'name_asc' },
+                            { label: 'Name Z-A', value: 'name_desc' },
+                            { label: 'Balance descendent', value: 'balance_desc' },
+                            { label: 'Balance ascendent', value: 'balance_asc' }
+                        ]}
+                        onChange={(e) => setSortOption(e.value)}
+                        placeholder="Sort by..."
+                        className="p-dropdown-custom"
+                    />
+                </div>
+            </div>
+
             {isLoading ? (
                 <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
                 <div className="categories-list">
-                    {categories.map((category) => (
+                    {sortedCategories.map((category) => (
                         <div
                             key={category.id}
                             className="category-item"
@@ -112,6 +158,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                     ))}
                 </div>
             )}
+
             <Sidebar
                 visible={sidebarVisible}
                 onHide={() => setSidebarVisible(false)}
@@ -139,6 +186,6 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
             </Sidebar>
         </div>
     );
-}
+};
 
 export default AnnualMovements;

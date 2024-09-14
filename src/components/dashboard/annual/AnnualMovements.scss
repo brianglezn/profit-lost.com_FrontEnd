@@ -1,10 +1,33 @@
 @import '../../../../variables';
 
-.annual__categories-table {
-    display: flex;
-    flex-direction: column;
-    padding: 0 2rem 1rem 2rem;
+.annual__categories {
+    padding: 1rem;
 
+    .filter-bar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+
+        .search-dropdown-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .p-inputtext-custom {
+                width: 20rem;
+                height: 2rem;
+                border-radius: .5rem;
+                box-shadow: $shadow_color 0px 1px 4px;
+            }
+
+            .p-dropdown-custom {
+                width: 20rem;
+                height: 2rem;
+                border-radius: .5rem;
+                padding: 0;
+            }
+        }
+    }
 
     .categories-list {
         display: flex;
@@ -55,6 +78,11 @@
     @media (max-width: 768px) {
         padding: 0 1.5rem 1rem;
 
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+        }
+
         .categories-list {
             .category-item {
                 .category-color {
@@ -71,6 +99,14 @@
     @media (max-width: 480px) {
         padding: 0 0.7rem 1rem;
 
+        .filter-bar {
+            display: flex;
+
+            .p-inputtext-custom {
+                display: none;
+            }
+        }
+
         .categories-list {
             .category-item {
                 .category-color {
@@ -85,6 +121,7 @@
                 .category-balance {
                     width: 43%;
                     font-size: .9rem;
+                    text-align: right;
                 }
             }
         }
