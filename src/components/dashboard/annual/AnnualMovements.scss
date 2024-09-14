@@ -14,14 +14,14 @@
             gap: 1rem;
 
             .p-inputtext-custom {
-                width: 20rem;
+                width: 15rem;
                 height: 2rem;
                 border-radius: .5rem;
                 box-shadow: $shadow_color 0px 1px 4px;
             }
 
             .p-dropdown-custom {
-                width: 20rem;
+                width: 15rem;
                 height: 2rem;
                 border-radius: .5rem;
                 padding: 0;
@@ -44,7 +44,7 @@
             transition: background-color 0.3s ease;
 
             &:hover {
-                background-color: #f7f7f7;
+                background-color: $bg-color;
             }
 
             .category-color {
@@ -81,6 +81,16 @@
         .filter-bar {
             display: flex;
             justify-content: center;
+
+            .search-dropdown-container {
+                display: flex;
+                width: 100%;
+
+                .p-inputtext-custom,
+                .p-dropdown-custom {
+                    flex: 1;
+                }
+            }
         }
 
         .categories-list {

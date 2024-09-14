@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
+import { InputText } from 'primereact/inputtext';
+import { Dropdown } from 'primereact/dropdown';
 
 import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
@@ -31,6 +33,8 @@ interface MovementsTableProps {
 function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [sortOption, setSortOption] = useState<string>('date_desc');
 
     const editMovement = (transaction: Transaction) => {
         setSelectedTransaction(transaction);
@@ -42,13 +46,57 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
         return category ? category.color : '#000';
     };
 
+    const sortMovements = (movements: Transaction[]) => {
+        switch (sortOption) {
+            case 'date_asc':
+                return movements.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+            case 'date_desc':
+                return movements.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+            case 'amount_asc':
+                return movements.sort((a, b) => a.amount - b.amount);
+            case 'amount_desc':
+                return movements.sort((a, b) => b.amount - a.amount);
+            default:
+                return movements;
+        }
+    };
+
+    const filteredMovements = data.filter(movement =>
+        movement.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const sortedMovements = sortMovements([...filteredMovements]);
+
     return (
         <div className="movements__table">
-            {isDataEmpty || data.length === 0 ? (
+            <div className="filter-bar">
+                <div className="search-dropdown-container">
+                    <InputText
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search movements..."
+                        className="p-inputtext-custom"
+                    />
+                    <Dropdown
+                        value={sortOption}
+                        options={[
+                            { label: 'Date (Newest)', value: 'date_desc' },
+                            { label: 'Date (Oldest)', value: 'date_asc' },
+                            { label: 'Amount (High to Low)', value: 'amount_desc' },
+                            { label: 'Amount (Low to High)', value: 'amount_asc' }
+                        ]}
+                        onChange={(e) => setSortOption(e.value)}
+                        placeholder="Sort by..."
+                        className="p-dropdown-custom"
+                    />
+                </div>
+            </div>
+
+            {isDataEmpty || sortedMovements.length === 0 ? (
                 <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
                 <div className="movements-list">
-                    {data.map((transaction) => (
+                    {sortedMovements.map((transaction) => (
                         <div
                             key={transaction._id}
                             className="movement-item"

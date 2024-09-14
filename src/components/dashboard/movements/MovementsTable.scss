@@ -3,6 +3,32 @@
 .movements__table {
     padding: 0 2rem 1rem;
 
+    .filter-bar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+
+        .search-dropdown-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .p-inputtext-custom {
+                width: 15rem;
+                height: 2rem;
+                border-radius: .5rem;
+                box-shadow: $shadow_color 0px 1px 4px;
+            }
+
+            .p-dropdown-custom {
+                width: 15rem;
+                height: 2rem;
+                border-radius: .5rem;
+                padding: 0;
+            }
+        }
+    }
+
     .movements-list {
         display: flex;
         flex-direction: column;
@@ -69,9 +95,23 @@
         }
     }
 
-
     @media (max-width: 768px) {
         padding: 0 1.5rem 1rem;
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+
+            .search-dropdown-container {
+                display: flex;
+                width: 100%;
+
+                .p-inputtext-custom,
+                .p-dropdown-custom {
+                    flex: 1;
+                }
+            }
+        }
 
         .movements-list {
             .movement-item {
@@ -88,6 +128,12 @@
 
     @media (max-width: 480px) {
         padding: 0 1rem 1rem;
+
+        .filter-bar {
+            .p-inputtext-custom {
+                display: none;
+            }
+        }
 
         .movements-list {
             .movement-item {
