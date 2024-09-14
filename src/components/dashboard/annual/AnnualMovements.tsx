@@ -116,7 +116,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                 visible={sidebarVisible}
                 onHide={() => setSidebarVisible(false)}
                 position="right"
-                style={{ width: '450px' }}
+                style={{ width: '500px' }}
                 className="custom_sidebar"
             >
                 {categoryToEdit && (

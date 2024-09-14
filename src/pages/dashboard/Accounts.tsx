@@ -3,6 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { ProgressBar } from "primereact/progressbar";
 import { Sidebar } from 'primereact/sidebar';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Button } from "primereact/button";
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
@@ -13,7 +14,6 @@ import AccountItem from "../../components/dashboard/accounts/AccountItem";
 import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd";
 import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit";
 import CustomBarShape from "../../components/CustomBarShape";
-import PlusIcon from "../../components/icons/PlusIcon";
 import ChartLineIcon from "../../components/icons/CharLineIcon";
 
 type AccountConfiguration = {
@@ -200,7 +200,7 @@ function Accounts() {
         <div className="accounts__container">
           <div className="accounts__container-text">
             <p>Accounts</p>
-            <PlusIcon onClick={handleOpenAddSidebar} />
+            <Button label="Add account" size="small" onClick={handleOpenAddSidebar} />
             <Sidebar
               visible={addSidebarOpen}
               onHide={handleCloseAddSidebar}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
+import { Button } from "primereact/button";
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
@@ -13,7 +14,6 @@ import FormCategoryAdd from "../../components/dashboard/annual/FormCategoryAdd";
 import DownloadIcon from "../../components/icons/DownloadIcon";
 import UploadIcon from "../../components/icons/UploadIcon";
 import PigCoinIcon from "../../components/icons/PigCoinIcon";
-import PlusIcon from "../../components/icons/PlusIcon";
 
 interface Movement {
   date: string;
@@ -124,12 +124,12 @@ function AnnualReport() {
       <div className="annualReport__categories">
         <div className="annualReport__categories-text">
           <p>Categories</p>
-          <PlusIcon onClick={handleOpenModal} />
+          <Button label="Add category" size="small" onClick={handleOpenModal} />
           <Sidebar
             visible={open}
             position="right"
             onHide={handleCloseModal}
-            style={{ width: '450px' }}
+            style={{ width: '500px' }}
             className="custom_sidebar"
           >
             <FormCategoryAdd onCategoryAdded={reloadCategories} onClose={handleCloseModal} />

@@ -82,7 +82,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
             <Sidebar
                 visible={editSidebarVisible}
                 onHide={() => setEditSidebarVisible(false)}
-                style={{ width: '450px' }}
+                style={{ width: '500px' }}
                 className="custom_sidebar"
                 position="right"
                 modal>

@@ -2525,25 +2525,23 @@ body {
   }
 
   .p-button {
-    color: #212529;
+    color: $text_color-white;
     background: $primary_color;
     border: 1px solid $primary_color;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: 15px;
+    border-radius: .6rem;
   }
 
   .p-button:not(:disabled):hover {
-    background: #ffcd2e;
-    color: #212529;
-    border-color: #ffcd2e;
+    background: $primary_color-400;
+    border-color:  $primary_color-400;
   }
 
   .p-button:not(:disabled):active {
-    background: #ffc50c;
-    color: #212529;
-    border-color: #ffc50c;
+    background:  $primary_color-400;
+    border-color:  $primary_color-400;
   }
 
   .p-button.p-button-outlined {

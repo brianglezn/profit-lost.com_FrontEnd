@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Sidebar } from 'primereact/sidebar';
+import { Button } from 'primereact/button';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
@@ -159,12 +160,12 @@ function Movements() {
       <div className="movements__data">
         <div className="movements__data-text">
           <p>Movements</p>
-          <PlusIcon onClick={handleOpenModal} />
+          <Button label="Add movement" size="small" onClick={handleOpenModal} />
           <Sidebar
             visible={open}
             onHide={handleCloseModal}
             position="right"
-            style={{ width: '450px' }}
+            style={{ width: '500px' }}
             className="custom_sidebar"
             modal>
             <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} selectedYear={year} selectedMonth={month} />

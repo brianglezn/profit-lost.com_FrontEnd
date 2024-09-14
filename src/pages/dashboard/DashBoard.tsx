@@ -284,7 +284,7 @@ function Dashboard() {
         visible={sidebarVisible}
         position="right"
         onHide={() => setSidebarVisible(false)}
-        style={{ width: '450px' }}
+        style={{ width: '500px' }}
       >
         <div className="profile__header">
           <Avatar
