@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect, useRef } from "react";
+import React, { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
@@ -32,6 +32,7 @@ import InfoIcon from "../../components/icons/InfoIcon";
 import HelpIcon from "../../components/icons/HelpIcon";
 import ShielIcon from "../../components/icons/ShielIcon";
 import ReportIcon from "../../components/icons/ReportIcon";
+import ArrowBackIcon from "../../components/icons/ArrowBackIcon";
 
 interface User {
   _id: string;
@@ -39,6 +40,8 @@ interface User {
   email: string;
   name: string;
   surname: string;
+  profileImage?: string;
+  language?: string;
 }
 
 function Dashboard() {
@@ -59,29 +62,34 @@ function Dashboard() {
 
   const currentDate = getCurrentDate();
 
-  useEffect(() => {
+  const fetchUserData = useCallback(async () => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
       return;
     }
 
-    const fetchUser = async () => {
-      try {
-        const userData = await getUserByToken(token);
-        if (userData && userData._id) {
-          setUser(userData);
-        } else {
-          console.error('User data does not include _id:', userData);
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        navigate('/login');
+    try {
+      const userData = await getUserByToken(token);
+      if (userData && userData._id) {
+        setUser(userData);
+      } else {
+        console.error('User data does not include _id:', userData);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      navigate('/login');
+    }
 
-    fetchUser();
   }, [navigate]);
+
+  useEffect(() => {
+    fetchUserData();
+  }, [fetchUserData]);
+
+  const handleUserUpdated = () => {
+    fetchUserData();
+  };
 
   useEffect(() => {
     const section = searchParams.get("section");
@@ -162,7 +170,8 @@ function Dashboard() {
             <p className="dashboard__header-date">{currentDate}</p>
             <Avatar
               onClick={() => setSidebarVisible(true)}
-              label={user?.name?.[0] ?? ''}
+              image={user?.profileImage ?? ''}
+              label={!user?.profileImage ? (user?.name?.[0] ?? '') : undefined}
               size="xlarge"
               className="dashboard__header-avatar"
             />
@@ -292,15 +301,18 @@ function Dashboard() {
       <Sidebar
         visible={sidebarVisible}
         position="right"
-        onHide={() => setSidebarVisible(false)}
+        onHide={() => {
+          setSidebarVisible(false);
+          setActiveSidebarSection('profile');
+        }}
         style={{ width: '500px' }}
       >
         {activeSidebarSection === 'profile' && (
           <div className="profile__header-content">
             <div className="profile__header">
               <Avatar
-                label={user?.name?.[0] ?? ''}
-                icon="pi pi-user"
+                image={user?.profileImage ?? ''}
+                label={!user?.profileImage ? (user?.name?.[0] ?? '') : undefined}
                 size="xlarge"
                 className="profile__header-avatar"
               />
@@ -313,7 +325,7 @@ function Dashboard() {
             <div className="profile__header-account">
               <a onClick={() => handleSidebarSectionChange('settings')}>
                 <UserIcon />
-                <p>Profile</p>
+                <p>Profile Settings</p>
               </a>
               <a onClick={() => handleSidebarSectionChange('security')}>
                 <ShielIcon />
@@ -341,40 +353,39 @@ function Dashboard() {
         )}
 
         {activeSidebarSection === 'settings' && (
-          <div>
-            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
-              Back to Profile
-            </button>
+          <div className="profile__header-content2">
+            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
             <Suspense fallback={<ProgressSpinner />}>
-              <UserSettings />
+              <UserSettings
+                onUserUpdated={handleUserUpdated}
+                userName={user?.name ?? ''}
+                userSurname={user?.surname ?? ''}
+                userLanguage={user?.language ?? ''}
+                userProfileImage={user?.profileImage ?? ''}
+              />
             </Suspense>
+
           </div>
         )}
         {activeSidebarSection === 'security' && (
-          <div>
-            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
-              Back to Profile
-            </button>
+          <div className="profile__header-content2">
+            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
             <Suspense fallback={<ProgressSpinner />}>
               <SecurityAndPrivacy />
             </Suspense>
           </div>
         )}
         {activeSidebarSection === 'help' && (
-          <div>
-            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
-              Back to Profile
-            </button>
+          <div className="profile__header-content2">
+            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
             <Suspense fallback={<ProgressSpinner />}>
               <Help />
             </Suspense>
           </div>
         )}
         {activeSidebarSection === 'about' && (
-          <div>
-            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
-              Back to Profile
-            </button>
+          <div className="profile__header-content2">
+            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
             <Suspense fallback={<ProgressSpinner />}>
               <AboutUs />
             </Suspense>
