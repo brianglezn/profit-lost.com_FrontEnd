@@ -1,0 +1,38 @@
+// Estilos generales para el popup
+.popup__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.p-dialog-content {
+    text-align: center;
+    font-size: 1rem;
+    padding: 1.5rem;
+
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 0.8rem;
+        padding: 0.7rem;
+    }
+}
+
+.p-dialog {
+    border-radius: 1rem;
+
+    @media (max-width: 768px) {
+        width: 50vw !important;
+    }
+
+    @media (max-width: 480px) {
+        width: 70vw !important;
+    }
+
+    @media (max-width: 320px) {
+        width: 90vw !important;
+    }
+}

@@ -4,10 +4,12 @@ import Footer from "../../components/landing/Footer";
 import MobileScreenIcon from "../../components/icons/MobileScreenIcon";
 import NewspaperIcon from "../../components/icons/NewspaperIcon";
 import FaceGrinBeamIcon from "../../components/icons/FaceGrinBeamIcon";
+import UnderConstruction from "../../components/landing/UnderConstruction";
 
 function Home() {
   return (
     <div className="home">
+      <UnderConstruction />
       <Header />
 
       <section className="hero">
