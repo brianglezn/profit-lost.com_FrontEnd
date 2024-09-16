@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { FileUpload, FileUploadHandlerEvent } from 'primereact/fileupload';
 import { Button } from 'primereact/button';
@@ -20,6 +20,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
     const [surname, setSurname] = useState(userSurname);
     const [profileImage, setProfileImage] = useState<File | null>(null);
 
+    const fileUploadRef = useRef<FileUpload>(null);
+
     useEffect(() => {
         setName(userName);
         setSurname(userSurname);
@@ -37,6 +39,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         const file = e.files[0];
         if (file.size > 1000000) {
             toast.error('Image size exceeds the 1MB limit');
+            fileUploadRef.current?.clear();
             return;
         }
         setProfileImage(file);
@@ -125,10 +128,10 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                         )}
                     </div>
                     <FileUpload
+                        ref={fileUploadRef}
                         mode="basic"
                         name="profileImage"
                         accept="image/*"
-                        maxFileSize={1000000}
                         customUpload
                         uploadHandler={handleProfileImageUpload}
                         auto
