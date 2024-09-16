@@ -1,0 +1,31 @@
+.security-privacy {
+    padding: 2rem;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    .security-privacy__section {
+        margin: 1.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 0.3rem;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+}

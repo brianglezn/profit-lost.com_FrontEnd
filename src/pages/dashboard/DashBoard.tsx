@@ -16,6 +16,10 @@ const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
 const Notes = React.lazy(() => import('./Notes'));
 const Reports = React.lazy(() => import('./Reports'));
+const AboutUs = React.lazy(() => import('./user/AboutUs'));
+const Help = React.lazy(() => import('./user/Help'));
+const SecurityAndPrivacy = React.lazy(() => import('./user/SecurityAndPrivacy'));
+const UserSettings = React.lazy(() => import('./user/UserSettings'));
 import RefreshIcon from "../../components/icons/RefreshIcon";
 import HomeIcon from "../../components/icons/HomeIcon";
 import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
@@ -41,6 +45,7 @@ function Dashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [user, setUser] = useState<User | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [activeSidebarSection, setActiveSidebarSection] = useState<'profile' | 'settings' | 'security' | 'help' | 'about'>('profile');
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const menu = useRef<Menu>(null);
@@ -124,6 +129,10 @@ function Dashboard() {
       localStorage.removeItem('token');
       navigate('/login');
     }, 1000);
+  };
+
+  const handleSidebarSectionChange = (section: 'profile' | 'settings' | 'security' | 'help' | 'about') => {
+    setActiveSidebarSection(section);
   };
 
   const menuItems = [
@@ -259,7 +268,6 @@ function Dashboard() {
           </nav>
         </div>
 
-
         <section className="dashboard__content">
           <Suspense fallback={
             <div style={{
@@ -280,52 +288,98 @@ function Dashboard() {
           </Suspense>
         </section>
       </div>
+
       <Sidebar
         visible={sidebarVisible}
         position="right"
         onHide={() => setSidebarVisible(false)}
         style={{ width: '500px' }}
       >
-        <div className="profile__header">
-          <Avatar
-            label={user?.name?.[0] ?? ''}
-            icon="pi pi-user"
-            size="xlarge"
-            className="profile__header-avatar"
-          />
-          <div className="profile__header-name">
-            <h3>{user?.name ?? ''} {user?.surname ?? ''}</h3>
-            <p>{user?.email ?? ''}</p>
+        {activeSidebarSection === 'profile' && (
+          <div className="profile__header-content">
+            <div className="profile__header">
+              <Avatar
+                label={user?.name?.[0] ?? ''}
+                icon="pi pi-user"
+                size="xlarge"
+                className="profile__header-avatar"
+              />
+              <div className="profile__header-name">
+                <h3>{user?.name ?? ''} {user?.surname ?? ''}</h3>
+                <p>{user?.email ?? ''}</p>
+              </div>
+            </div>
+
+            <div className="profile__header-account">
+              <a onClick={() => handleSidebarSectionChange('settings')}>
+                <UserIcon />
+                <p>Profile</p>
+              </a>
+              <a onClick={() => handleSidebarSectionChange('security')}>
+                <ShielIcon />
+                <p>Security and Privacy</p>
+              </a>
+            </div>
+
+            <div className="profile__header-help">
+              <a onClick={() => handleSidebarSectionChange('help')}>
+                <HelpIcon />
+                <p>Help</p>
+              </a>
+              <a onClick={() => handleSidebarSectionChange('about')}>
+                <InfoIcon />
+                <p>About Us</p>
+              </a>
+            </div>
+
+            <div className="profile__header-logout">
+              <button onClick={handleLogout} className="custom-btn">
+                Log out
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="profile__header-account">
-          <a href="#">
-            <UserIcon />
-            <p>Account</p>
-          </a>
-          <a href="#">
-            <ShielIcon />
-            <p>Security and Privacy</p>
-          </a>
-        </div>
-
-        <div className="profile__header-help">
-          <a href="#">
-            <HelpIcon />
-            <p>Help</p>
-          </a>
-          <a href="#">
-            <InfoIcon />
-            <p>About Us</p>
-          </a>
-        </div>
-
-        <div className="profile__dashboard">
-          <button onClick={handleLogout} className="custom-btn">
-            Log out
-          </button>
-        </div>
+        {activeSidebarSection === 'settings' && (
+          <div>
+            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
+              Back to Profile
+            </button>
+            <Suspense fallback={<ProgressSpinner />}>
+              <UserSettings />
+            </Suspense>
+          </div>
+        )}
+        {activeSidebarSection === 'security' && (
+          <div>
+            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
+              Back to Profile
+            </button>
+            <Suspense fallback={<ProgressSpinner />}>
+              <SecurityAndPrivacy />
+            </Suspense>
+          </div>
+        )}
+        {activeSidebarSection === 'help' && (
+          <div>
+            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
+              Back to Profile
+            </button>
+            <Suspense fallback={<ProgressSpinner />}>
+              <Help />
+            </Suspense>
+          </div>
+        )}
+        {activeSidebarSection === 'about' && (
+          <div>
+            <button className="back-btn" onClick={() => handleSidebarSectionChange('profile')}>
+              Back to Profile
+            </button>
+            <Suspense fallback={<ProgressSpinner />}>
+              <AboutUs />
+            </Suspense>
+          </div>
+        )}
       </Sidebar>
     </>
   );

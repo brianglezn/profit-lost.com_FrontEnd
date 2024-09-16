@@ -1,0 +1,23 @@
+.help {
+    padding: 2rem;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    .help__section {
+        margin-top: 1.5rem;
+
+        p {
+            font-size: 1rem;
+
+            a {
+                color: #007bff;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
