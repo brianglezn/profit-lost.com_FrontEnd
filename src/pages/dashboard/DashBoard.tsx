@@ -355,7 +355,7 @@ function Dashboard() {
         {activeSidebarSection === 'settings' && (
           <div className="profile__header-content2">
             <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner />}>
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
               <UserSettings
                 onUserUpdated={handleUserUpdated}
                 userName={user?.name ?? ''}
@@ -370,7 +370,7 @@ function Dashboard() {
         {activeSidebarSection === 'security' && (
           <div className="profile__header-content2">
             <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner />}>
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
               <SecurityAndPrivacy />
             </Suspense>
           </div>
@@ -378,7 +378,7 @@ function Dashboard() {
         {activeSidebarSection === 'help' && (
           <div className="profile__header-content2">
             <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner />}>
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
               <Help />
             </Suspense>
           </div>
@@ -386,7 +386,7 @@ function Dashboard() {
         {activeSidebarSection === 'about' && (
           <div className="profile__header-content2">
             <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner />}>
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
               <AboutUs />
             </Suspense>
           </div>
