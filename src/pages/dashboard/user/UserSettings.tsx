@@ -115,6 +115,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
 
     return (
         <div className="settings">
+            <h2>User Settings</h2>
+            <p>Manage your account details and preferences here.</p>
             <div className="settings__details">
                 {/* Cambiar imagen de perfil */}
                 <div className="settings__section">
