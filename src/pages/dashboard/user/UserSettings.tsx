@@ -37,8 +37,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
 
     const handleProfileImageUpload = (e: FileUploadHandlerEvent) => {
         const file = e.files[0];
-        if (file.size > 1000000) {
-            toast.error('Image size exceeds the 1MB limit');
+        if (file.size > 8000000) {
+            toast.error('Image size exceeds the 8MB limit');
             fileUploadRef.current?.clear();
             return;
         }
