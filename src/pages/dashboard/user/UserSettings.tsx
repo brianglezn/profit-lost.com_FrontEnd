@@ -143,6 +143,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                         uploadHandler={handleProfileImageUpload}
                         auto
                         chooseLabel="Change Image"
+                        className='p-fileupload-custom'
                     />
                     {userProfileImage && (
                         <Button
