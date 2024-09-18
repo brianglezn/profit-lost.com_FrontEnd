@@ -4,6 +4,9 @@ import { FileUpload, FileUploadHandlerEvent } from 'primereact/fileupload';
 import { Button } from 'primereact/button';
 import { toast } from 'react-hot-toast';
 
+import { deleteProfileImage } from '../../../api/users/deleteProfileImage';
+import { updateProfile } from '../../../api/users/updateProfile';
+
 import './UserSettings.scss';
 
 interface UserSettingsProps {
@@ -45,6 +48,44 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         setProfileImage(file);
     };
 
+    const handleDeleteProfileImage = async () => {
+        toast.loading('Deleting profile image...');
+
+        try {
+            await deleteProfileImage();
+            toast.dismiss();
+            toast.success('Profile image deleted successfully');
+            onUserUpdated();
+        } catch (error) {
+            toast.dismiss();
+            toast.error('Error deleting profile image');
+        }
+    };
+
+    const handleConfirmChanges = async () => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('surname', surname);
+        formData.append('language', language);
+
+        if (profileImage) {
+            formData.append('profileImage', profileImage);
+        }
+
+        toast.loading('Updating settings...');
+
+        try {
+            await updateProfile(formData);
+            toast.dismiss();
+            toast.success('User settings updated successfully!');
+            onUserUpdated();
+        } catch (error) {
+            toast.dismiss();
+            toast.error('Error updating user settings.');
+            console.error('Error updating user settings:', error);
+        }
+    };
+
     const languages = [
         { name: 'English', code: 'en', flag: 'https://flagcdn.com/w20/us.png' },
         { name: 'Español', code: 'es', flag: 'https://flagcdn.com/w20/es.png' }
@@ -77,48 +118,12 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         );
     };
 
-    const handleConfirmChanges = async () => {
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('surname', surname);
-        formData.append('language', language);
-
-        if (profileImage) {
-            formData.append('profileImage', profileImage);
-        }
-
-        toast.loading('Updating settings...');
-
-        try {
-            const response = await fetch('https://profit-lost-backend.onrender.com/user/updateProfile', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to update user settings');
-            }
-
-            toast.dismiss();
-            toast.success('User settings updated successfully!');
-
-            onUserUpdated();
-        } catch (error) {
-            toast.dismiss();
-            toast.error('Error updating user settings.');
-            console.error('Error updating user settings:', error);
-        }
-    };
-
     return (
         <div className="settings">
             <h2>User Settings</h2>
             <p>Manage your account details and preferences here.</p>
             <div className="settings__details">
-                {/* Cambiar imagen de perfil */}
+                {/* Change Profile Image */}
                 <div className="settings__section">
                     <div className="profile-picture">
                         {profileImage ? (
@@ -138,11 +143,17 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                         uploadHandler={handleProfileImageUpload}
                         auto
                         chooseLabel="Change Image"
-                        className="p-button-outlined"
                     />
+                    {userProfileImage && (
+                        <Button
+                            label="Delete Image"
+                            onClick={handleDeleteProfileImage}
+                            link
+                        />
+                    )}
                 </div>
 
-                {/* Cambiar nombre */}
+                {/* Change First Name */}
                 <div className="settings__section">
                     <label htmlFor="name">First Name:</label>
                     <input
@@ -154,7 +165,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                     />
                 </div>
 
-                {/* Cambiar apellido */}
+                {/* Change Last Name */}
                 <div className="settings__section">
                     <label htmlFor="surname">Last Name:</label>
                     <input
@@ -166,7 +177,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                     />
                 </div>
 
-                {/* Cambiar idioma */}
+                {/* Change Language */}
                 <div className="settings__section">
                     <label htmlFor="language">Preferred Language:</label>
                     <Dropdown
@@ -180,7 +191,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                     />
                 </div>
 
-                {/* Botón para confirmar cambios */}
+                {/* Confirm Changes Button */}
                 <div className="settings__section">
                     <Button
                         label="Confirm Changes"

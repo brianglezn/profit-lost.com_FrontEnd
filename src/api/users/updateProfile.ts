@@ -1,6 +1,6 @@
-export const uploadUserProfile = async (userData: FormData) => {
+export const updateProfile = async (userData: FormData) => {
     try {
-        const response = await fetch('/api/user/updateProfile', {
+        const response = await fetch('https://profit-lost-backend.onrender.com/user/updateProfile', {
             method: 'POST',
             body: userData,
             headers: {
