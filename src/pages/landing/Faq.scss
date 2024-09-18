@@ -1,0 +1,61 @@
+@import '../../../variables';
+
+.faq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        color: $primary_color;
+        margin-top: 4rem;
+        font-size: 2rem;
+
+        @media (max-width: 480px) {
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+
+    .faq-search {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        padding: 0 1rem;
+
+        @media (max-width: 768px) {
+            width: 60%;
+            padding: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+    }
+
+    .p-accordion {
+        margin: 1rem 0;
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: $shadow_color 0px 1px 4px;
+        background-color: $bg-color-sec;
+        width: 70%;
+
+        @media (max-width: 768px) {
+            width: 90%;
+            padding: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+        }
+    }
+}

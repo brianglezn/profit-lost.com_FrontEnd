@@ -6,7 +6,7 @@ const Help = () => {
             <h2>Help</h2>
             <div className="help__section">
                 <p>How can we assist you today?</p>
-                <p>Visit our <a href="#">FAQ</a> section or contact support.</p>
+                <p>Visit our <a href="/faq" target="_blank" rel="noopener noreferrer">FAQ</a> section or contact support.</p>
             </div>
         </div>
     );
