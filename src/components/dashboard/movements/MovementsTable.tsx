@@ -80,10 +80,10 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                     <Dropdown
                         value={sortOption}
                         options={[
-                            { label: 'Date (Newest)', value: 'date_desc' },
-                            { label: 'Date (Oldest)', value: 'date_asc' },
-                            { label: 'Amount (High to Low)', value: 'amount_desc' },
-                            { label: 'Amount (Low to High)', value: 'amount_asc' }
+                            { label: 'Date New', value: 'date_desc' },
+                            { label: 'Date Old', value: 'date_asc' },
+                            { label: 'Amount Descendent', value: 'amount_desc' },
+                            { label: 'Amount Ascendent', value: 'amount_asc' }
                         ]}
                         onChange={(e) => setSortOption(e.value)}
                         placeholder="Sort by..."
