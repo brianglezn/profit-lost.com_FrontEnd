@@ -13,14 +13,14 @@ function Footer() {
         <div className="footer__container-top">
           <div className="footer__img no-select">
             <img
-              src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost.svg"
+              src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL2.svg"
               alt="logo"
             />
           </div>
           <div className="footer__links">
             <div className="footer__links-left no-select">
               <img
-                src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/img/brian.jpg"
+                src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670813/AppPhotos/Photos/photoBrian.jpg"
                 alt="brian gonzalez novoa"
               />
             </div>

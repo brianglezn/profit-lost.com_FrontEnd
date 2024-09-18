@@ -28,7 +28,7 @@ function Home() {
 
             <div className="no-select">
               <img
-                src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122158/profit-lost.com/illustrations/money-dash.svg"
+                src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670807/AppPhotos/illustrations/illustration1.svg"
                 alt="logo"
               />
             </div>

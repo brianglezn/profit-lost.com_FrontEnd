@@ -182,7 +182,7 @@ function Dashboard() {
           <nav className="dashboard__nav-container no-select">
             <div className="dashboard__nav-img">
               <img
-                src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+                src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL3.svg"
                 alt="logo"
               />
             </div>

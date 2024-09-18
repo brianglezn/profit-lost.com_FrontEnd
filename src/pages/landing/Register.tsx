@@ -64,7 +64,7 @@ function Register() {
       <header className="auth__header">
         <a href="/" className="header__logo no-select">
           <img
-            src="https://res.cloudinary.com/dz0mwxb0v/image/upload/v1697122157/profit-lost.com/logo/logo_profit-lost2.svg"
+            src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL3.svg"
             alt="logo"
           />
         </a>
