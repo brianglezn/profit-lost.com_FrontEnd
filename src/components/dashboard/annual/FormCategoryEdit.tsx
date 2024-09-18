@@ -110,6 +110,8 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         }
     };
 
+    const hasMovements = Object.keys(movementsByYear).length > 0;
+
     return (
         <form className="formCategories" onSubmit={handleEditCategory}>
             <h2>Edit category</h2>
@@ -136,30 +138,31 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                 </div>
             )}
 
-            <div className="movementsByCategory">
-                <Accordion multiple className="movementsByCategory-container">
-                    {Object.keys(movementsByYear)
-                        .sort((a, b) => Number(b) - Number(a))
-                        .map((year) => (
-                            <AccordionTab key={year} header={year}>
-                                <ul className="movementsByCategory-list">
-                                    {movementsByYear[year]
-                                        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-                                        .map((movement) => (
-                                            <li key={movement.id} className="movementsByCategory-item">
-                                                <span className="movementsByCategory-description">{movement.description}</span>
-                                                <span className="movementsByCategory-date">{formatDateTime(movement.date)}</span>
-                                                <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                    {formatCurrency(movement.amount)}
-                                                </span>
-                                            </li>
-                                        ))}
-                                </ul>
-                            </AccordionTab>
-                        ))}
-                </Accordion>
-            </div>
-
+            {hasMovements && (
+                <div className="movementsByCategory">
+                    <Accordion multiple className="movementsByCategory-container">
+                        {Object.keys(movementsByYear)
+                            .sort((a, b) => Number(b) - Number(a))
+                            .map((year) => (
+                                <AccordionTab key={year} header={year}>
+                                    <ul className="movementsByCategory-list">
+                                        {movementsByYear[year]
+                                            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                                            .map((movement) => (
+                                                <li key={movement.id} className="movementsByCategory-item">
+                                                    <span className="movementsByCategory-description">{movement.description}</span>
+                                                    <span className="movementsByCategory-date">{formatDateTime(movement.date)}</span>
+                                                    <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
+                                                        {formatCurrency(movement.amount)}
+                                                    </span>
+                                                </li>
+                                            ))}
+                                    </ul>
+                                </AccordionTab>
+                            ))}
+                    </Accordion>
+                </div>
+            )}
         </form>
     );
 };

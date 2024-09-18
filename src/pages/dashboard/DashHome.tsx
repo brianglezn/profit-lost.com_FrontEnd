@@ -189,7 +189,7 @@ function DashHome() {
       <div className="first">
         <div className="first-container">
           <div className="header-container">
-            <span>First</span>
+            <span>Category + gastos</span>
           </div>
         </div>
       </div>
@@ -197,7 +197,7 @@ function DashHome() {
       <div className="second">
         <div className="second-container">
           <div className="header-container">
-            <span>Second</span>
+            <span>Category + ingresos</span>
           </div>
         </div>
       </div>
@@ -205,7 +205,7 @@ function DashHome() {
       <div className="categories">
         <div className="categories-container">
           <div className="header-container">
-            <span>Third</span>
+            <span>Notes</span>
           </div>
         </div>
       </div>
