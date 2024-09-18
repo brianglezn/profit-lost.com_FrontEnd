@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { FileUpload, FileUploadHandlerEvent } from 'primereact/fileupload';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import { toast } from 'react-hot-toast';
 
 import { deleteProfileImage } from '../../../api/users/deleteProfileImage';
@@ -121,7 +122,6 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
     return (
         <div className="settings">
             <h2>User Settings</h2>
-            <p>Manage your account details and preferences here.</p>
             <div className="settings__details">
                 {/* Change Profile Image */}
                 <div className="settings__section">
@@ -157,10 +157,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                 {/* Change First Name */}
                 <div className="settings__section">
                     <label htmlFor="name">First Name:</label>
-                    <input
-                        type="text"
+                    <InputText
                         id="name"
-                        className='custom-input'
                         value={name}
                         onChange={handleNameChange}
                     />
@@ -169,10 +167,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                 {/* Change Last Name */}
                 <div className="settings__section">
                     <label htmlFor="surname">Last Name:</label>
-                    <input
-                        type="text"
+                    <InputText
                         id="surname"
-                        className='custom-input'
                         value={surname}
                         onChange={handleSurnameChange}
                     />

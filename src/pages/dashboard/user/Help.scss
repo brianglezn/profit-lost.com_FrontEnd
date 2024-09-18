@@ -4,22 +4,15 @@
     padding: 2rem;
 
     h2 {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     .help__section {
-        margin-top: 1.5rem;
-
-        p {
-            font-size: 1rem;
-
-            a {
-                color: $primary_color;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
+        padding: 1.5rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        border-radius: .8rem;
+        box-shadow: $shadow_color 0px 1px 4px;
+        background-color: $bg-color-sec;
     }
 }
