@@ -17,7 +17,7 @@ const SecurityAndPrivacy = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [usernameConfirmation, setUsernameConfirmation] = useState('');
     const [username, setUsername] = useState('');
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // Para mostrar el input de confirmación
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 

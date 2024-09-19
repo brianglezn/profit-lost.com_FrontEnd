@@ -34,34 +34,6 @@
         color: $primary_color;
       }
 
-      .form__password-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-
-        .form__password {
-          width: 100%;
-          padding-right: 2rem;
-        }
-
-        .password-toggle-btn {
-          position: absolute;
-          color: $primary_color-800;
-          top: 38%;
-          right: .5rem;
-          transform: translateY(-50%);
-          background: none;
-          border: none;
-          cursor: pointer;
-
-          svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: $primary_color-800;
-          }
-        }
-      }
-
       .form__forgot {
         text-align: left;
         margin-bottom: 1rem;
@@ -95,15 +67,6 @@
       form {
         input {
           height: 2.8rem;
-        }
-
-        .form__password-container {
-          .password-toggle-btn {
-            svg {
-              width: 1.2rem;
-              height: 1.2rem;
-            }
-          }
         }
       }
     }

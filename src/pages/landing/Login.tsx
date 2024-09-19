@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
-import EyeSlashIcon from '../../components/icons/EyeSlashIcon';
-import EyeIcon from '../../components/icons/EyeIcon';
 
 function Login() {
   const [identifier, setIdentifier] = useState('');
@@ -14,7 +14,6 @@ function Login() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
 
   const reiniciarTemporizadorExpiracionToken = () => {
     const temporizadorExistente = localStorage.getItem('temporizadorToken');
@@ -63,10 +62,6 @@ function Login() {
     setIsLoading(false);
   };
 
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
   return (
     <div className='authForms'>
       <header className="auth__header">
@@ -81,32 +76,27 @@ function Login() {
       <div className="container__form">
         <form onSubmit={handleSubmit}>
           <h2 className="form__title">Log in</h2>
-          <input
-            className="form__email auth-input"
-            type="text"
+
+          <InputText
             placeholder="Username or E-mail"
-            required
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
+            required
+            className='auth-input'
           />
-          <div className="form__password-container">
-            <input
-              className="form__password auth-input"
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              type="button"
-              className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
-              onClick={toggleShowPassword}
-            >
-              {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
-            </button>
-          </div>
+
+          <Password
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            toggleMask
+            placeholder="Password"
+            feedback={false}
+            required
+            className='auth-input'
+          />
+
           <a href="/forgot-password" className="form__forgot">Forgot password?</a>
+
           <button
             className="custom-btn"
             type="submit"

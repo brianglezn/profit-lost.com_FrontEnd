@@ -46,63 +46,18 @@
     display: flex;
     width: 20vh;
     justify-content: center;
-
-    .header__login-btn,
-    .header__login-sidebar {
-      background-color: $primary_color;
-      color: $text_color-white;
-      padding: 1.2vh 3.5vh;
-      border-radius: .4rem;
-      cursor: pointer;
-      text-decoration: none;
-      text-transform: uppercase;
-      border: none;
-      transition: 0.1s;
-      opacity: 0.8;
-      letter-spacing: 1px;
-      box-shadow: $primary_color-600 0px 7px 2px, $text_color-grey 0px 8px 5px;
-      margin-bottom: 8px;
-
-      &:hover {
-        opacity: 1;
-        font-weight: bold;
-        color: $text_color-white;
-      }
-
-      &:active {
-        transform: translateY(5px);
-        box-shadow: $primary_color-600 0px 3px 2px, $text_color-grey 0px 3px 5px;
-      }
-
-      svg {
-        width: 1rem;
-        height: 1rem;
-        fill: $text_color-white;
-      }
-    }
-
-    .header__login-sidebar {
-      display: none;
-    }
   }
 
   @media (max-width: 768px) {
 
     padding: 0 2.5rem 0 1.5rem;
 
-    .header__nav,
-    .header__login-btn {
+    .header__nav {
       display: none;
     }
 
     .header__login {
       justify-content: flex-end;
-
-      .header__login-sidebar {
-        display: flex;
-        font-size: 1.3rem;
-        padding: 0.7rem 2rem;
-      }
     }
   }
 

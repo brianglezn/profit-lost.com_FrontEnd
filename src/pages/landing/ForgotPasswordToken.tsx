@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
@@ -53,41 +55,48 @@ function ForgotPasswordToken() {
                     <img
                         src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL3.svg"
                         alt="logo"
-                        style={{ maxWidth: '150px' }}
                     />
                 </a>
             </header>
 
             <div className="container__form">
-                <form className="form__box" onSubmit={handleSubmit}>
+                <form className="form__box" onSubmit={handleSubmit} style={{ marginBottom: '1.5rem' }}>
                     <h2 className="form__title">Reset Password</h2>
 
-                    <input
-                        className="form__input auth-input"
-                        type="text"
-                        placeholder="Verification Code"
-                        required
-                        value={token}
-                        onChange={(e) => setToken(e.target.value)}
-                    />
+                    <div className="form__input-container">
+                        <InputText
+                            value={token}
+                            onChange={(e) => setToken(e.target.value)}
+                            placeholder="Verification Code"
+                            className="auth-input"
+                            required
+                        />
+                    </div>
 
-                    <input
-                        className="form__input auth-input"
-                        type="password"
-                        placeholder="New Password"
-                        required
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    />
+                    <div className="form__input-container">
+                        <Password
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            placeholder="New Password"
+                            toggleMask
+                            feedback={true}
+                            promptLabel="Enter a new password"
+                            className="auth-input"
+                            required
+                        />
+                    </div>
 
-                    <input
-                        className="form__input auth-input"
-                        type="password"
-                        placeholder="Confirm New Password"
-                        required
-                        value={confirmNewPassword}
-                        onChange={(e) => setConfirmNewPassword(e.target.value)}
-                    />
+                    <div className="form__input-container">
+                        <Password
+                            value={confirmNewPassword}
+                            onChange={(e) => setConfirmNewPassword(e.target.value)}
+                            placeholder="Confirm New Password"
+                            toggleMask
+                            feedback={false}
+                            className="auth-input"
+                            required
+                        />
+                    </div>
 
                     <button className="custom-btn" type="submit" disabled={isLoading}>
                         {isLoading ? (

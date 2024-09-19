@@ -62,10 +62,7 @@ body {
     }
   }
 
-  input.auth-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  .p-inputtext.auth-input {
     min-width: 70%;
     background-color: $bg-color;
     margin-bottom: 1rem;
@@ -75,7 +72,6 @@ body {
     box-shadow: 0 0.4rem #d1d3d5;
     color: $text_color-grey;
     font-size: 1rem;
-    font-family: "Rubik", sans-serif;
 
     &:focus {
       outline: none;
@@ -90,7 +86,46 @@ body {
     }
   }
 
-  .auth-input:focus {
+  .p-password.auth-input {
+    min-width: 70%;
+    background-color: $bg-color;
+    margin-bottom: 1rem;
+    border: 1px solid $bg-color;
+    border-radius: 0.6rem;
+    box-shadow: 0 0.4rem #d1d3d5;
+    color: $text_color-grey;
+    width: 100%;
+
+    input {
+      background-color: $bg-color;
+      padding: 0.8rem;
+      font-size: 1rem;
+
+      &::placeholder {
+        color: #8b9097;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 0.8rem;
+      }
+    }
+
+    svg {
+      margin-right: 0.8rem;
+
+      @media (max-width: 768px) {
+        margin-right: 0.58rem;
+      }
+    }
+
+  }
+
+  .auth-input:focus,
+  .auth-input input:focus {
     outline: none;
     border: 1px solid $primary_color;
     box-shadow: 0 0.4rem $primary_color;
@@ -140,7 +175,6 @@ body {
     opacity: 0.9;
     margin-top: 1rem;
     font-weight: bold;
-    font-family: "Rubik", sans-serif;
 
     &:hover {
       background-color: $primary_color;
@@ -154,7 +188,7 @@ body {
     }
 
     @media (max-width: 480px) {
-      font-size: 1rem;
+      font-size: .8rem;
     }
   }
 
@@ -3722,7 +3756,7 @@ body {
   }
 
   .p-carousel .p-carousel-indicators {
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .p-carousel .p-carousel-indicators .p-carousel-indicator {

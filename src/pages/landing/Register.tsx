@@ -1,11 +1,11 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { Password } from 'primereact/password';
+import { InputText } from 'primereact/inputtext';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
-import EyeSlashIcon from '../../components/icons/EyeSlashIcon';
-import EyeIcon from '../../components/icons/EyeIcon';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -15,7 +15,6 @@ function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -50,15 +49,6 @@ function Register() {
     }
   };
 
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newPass = e.target.value;
-    setPassword(newPass);
-  };
-
   return (
     <div className='authForms'>
       <header className="auth__header">
@@ -73,59 +63,61 @@ function Register() {
       <div className="container__form">
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Create an account</h2>
-          <input
-            className="form__username auth-input"
-            type="text"
-            id="username-register"
-            placeholder="Username"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            className="form__name auth-input"
-            type="text"
-            id="name-register"
-            placeholder="Name"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className="form__surnaname auth-input"
-            type="text"
-            id="surname-register"
-            placeholder="Surname"
-            required
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
-          />
-          <input
-            className="form__email auth-input"
-            type="email"
-            id="email-register"
-            placeholder="Email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className="form__password-container">
-            <input
-              className="form__password auth-input"
-              type={showPassword ? "text" : "password"}
-              id="password-register"
-              placeholder="Password"
+
+          <div className="form__input-container">
+            <InputText
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
               required
-              value={password}
-              onChange={handlePasswordChange}
+              className="auth-input"
             />
-            <button
-              type="button"
-              className={`password-toggle-btn ${showPassword ? 'active' : ''}`}
-              onClick={toggleShowPassword}
-            >
-              {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
-            </button>
+          </div>
+
+          <div className="form__input-container">
+            <InputText
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              required
+              className="auth-input"
+            />
+          </div>
+
+          <div className="form__input-container">
+            <InputText
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
+              placeholder="Surname"
+              required
+              className="auth-input"
+            />
+          </div>
+
+          <div className="form__input-container">
+            <InputText
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+              type="email"
+              className="auth-input"
+            />
+          </div>
+
+          <div className="form__password-container">
+            <Password
+              value={password}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+              toggleMask
+              feedback={true}
+              promptLabel="Enter your password"
+              weakLabel="Weak"
+              mediumLabel="Medium"
+              strongLabel="Strong"
+              className="auth-input"
+              placeholder="Password"
+            />
           </div>
 
           <button className="custom-btn" type="submit" disabled={isLoading}>

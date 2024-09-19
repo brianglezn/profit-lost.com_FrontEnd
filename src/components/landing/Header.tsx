@@ -1,15 +1,9 @@
-import { useState } from 'react';
-import { Sidebar } from 'primereact/sidebar';
+import { Button } from 'primereact/button';
 
 import "./Header.scss";
-import BarsIcon from '../icons/BarsIcon';
 
 function Header() {
-  const [visible, setVisible] = useState(false);
 
-  const handleNavigation = (url: string) => {
-    window.location.href = url;
-  };
 
   return (
     <>
@@ -26,29 +20,14 @@ function Header() {
               <a href="#features">FEATURES</a>
             </li>
             <li>
-              <a href="#demo">DEMO</a>
+              <a href="#preview">PREVIEW</a>
             </li>
           </ul>
         </nav>
         <div className="header__login no-select">
-          <a href="/login" className="header__login-btn">Log in</a>
-          <button onClick={() => setVisible(true)} className="header__login-sidebar">
-            <BarsIcon />
-          </button>
+          <Button label="Log in" raised onClick={() => window.location.href = '/login'} />
         </div>
       </header>
-      <Sidebar visible={visible} position="right" onHide={() => setVisible(false)}>
-        <nav className="sidebar__nav">
-          <div className="sidebar-img">
-            <img
-              src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL3.svg"
-              alt="logo"
-            />
-          </div>
-          <button onClick={() => handleNavigation('/login')} className='sidebar__login-btn custom-btn'>Log in</button>
-          <button onClick={() => handleNavigation('/register')} className='sidebar__login-btn custom-btn'>Register</button>
-        </nav>
-      </Sidebar>
     </>
   );
 }

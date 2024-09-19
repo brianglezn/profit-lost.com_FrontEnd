@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { InputText } from 'primereact/inputtext';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
@@ -24,7 +25,7 @@ function ForgotPassword() {
       });
 
       if (response.ok) {
-        toast.success('A link to reset your password has been sent to your email.'), { duration: 5000 };
+        toast.success('A link to reset your password has been sent to your email.', { duration: 5000 });
         navigate('/forgot-password-token');
       } else {
         toast.error('Failed to send reset password link. Please try again.');
@@ -51,15 +52,18 @@ function ForgotPassword() {
       <div className="container__form">
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">Reset Password</h2>
-          <input
-            className="form__email auth-input"
-            type="email"
-            id="email-forgot-password"
-            placeholder="Email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+
+          <div className="form__input-container">
+            <InputText
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+              type="email"
+              className="auth-input"
+            />
+          </div>
+
           <button className="custom-btn" type="submit" disabled={isLoading}>
             {isLoading ? (
               <span className="custom-loader"></span>
