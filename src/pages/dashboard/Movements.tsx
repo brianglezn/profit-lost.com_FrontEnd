@@ -2,13 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
+import { useTranslation } from 'react-i18next';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
 import { getAllCategories } from '../../api/categories/getAllCategories';
-
-import { formatCurrency } from "../../helpers/functions";
-import { monthOptions } from "../../helpers/constants";
+import { formatCurrency, useMonthOptions } from "../../helpers/functions";
 
 import "./Movements.scss";
 import MovementsPie from "../../components/dashboard/movements/MovementsPie";
@@ -34,6 +33,7 @@ interface Category {
 }
 
 function Movements() {
+  const { t, i18n } = useTranslation();
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());
   const [month, setMonth] = useState<string>((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
@@ -108,12 +108,14 @@ function Movements() {
 
   const totalIncome = chartData[0].Income;
   const totalExpenses = chartData[0].Expenses;
-  const formattedBalanceIncome = formatCurrency(totalIncome);
-  const formattedBalanceExpenses = formatCurrency(totalExpenses);
-  const formattedBalanceFinal = formatCurrency(totalIncome - totalExpenses);
+  const formattedBalanceIncome = formatCurrency(totalIncome, i18n.language);
+  const formattedBalanceExpenses = formatCurrency(totalExpenses, i18n.language);
+  const formattedBalanceFinal = formatCurrency(totalIncome - totalExpenses, i18n.language);
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
+
+  const monthOptions = useMonthOptions();
 
   return (
     <section className="movements">
@@ -158,8 +160,8 @@ function Movements() {
 
       <div className="movements__data">
         <div className="movements__data-text">
-          <p>Movements</p>
-          <Button label="Add movement" size="small" onClick={handleOpenModal} />
+          <p>{t('dashboard.movements.header')}</p>
+          <Button label={t('dashboard.movements.form_movements_add.header')} size="small" onClick={handleOpenModal} />
           <Sidebar
             visible={open}
             onHide={handleCloseModal}

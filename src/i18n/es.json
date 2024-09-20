@@ -322,7 +322,57 @@
                 "no_movements": "No se encontraron movimientos para esta categoría"
             }
         },
-        "movements": {},
-        "accounts": {}
+        "movements": {
+            "header": "Movimientos",
+            "movements_table": {
+                "search_placeholder": "Buscar movimientos...",
+                "sort_by": "Ordenar por",
+                "date_new": "Fecha reciente",
+                "date_old": "Fecha antigua",
+                "amount_desc": "Cantidad descendente",
+                "amount_asc": "Cantidad ascendente",
+                "no_movements": "No se encontraron movimientos"
+            },
+            "movements_chart": {
+                "header": "Informe de movimientos",
+                "income": "Ingresos",
+                "expenses": "Gastos"
+            },
+            "form_movements_add": {
+                "header": "Nuevo movimiento",
+                "income_button": "Ingresos",
+                "expense_button": "Gastos",
+                "date_placeholder": "Seleccionar fecha",
+                "category_placeholder": "Seleccionar una categoría",
+                "description_placeholder": "Descripción",
+                "amount_placeholder": "Cantidad",
+                "recurring_label": "Recurrente",
+                "recurring_frequency": "Frecuencia de recurrencia",
+                "monthly": "Cada mes",
+                "yearly": "Cada año",
+                "end_date": "Fecha de finalización",
+                "save_button": "Guardar",
+                "success_message": "Movimiento agregado con éxito",
+                "error_message": "Error al agregar el movimiento"
+            },
+            "form_movements_edit": {
+                "header": "Editar movimiento",
+                "income_button": "Ingresos",
+                "expense_button": "Gastos",
+                "date_placeholder": "Seleccionar fecha",
+                "category_placeholder": "Seleccionar una categoría",
+                "description_placeholder": "Descripción",
+                "amount_placeholder": "Cantidad",
+                "delete_button": "Eliminar",
+                "save_button": "Actualizar",
+                "confirm_delete": "¿Estás seguro de que quieres eliminar este movimiento?",
+                "success_message_edit": "Movimiento actualizado con éxito",
+                "success_message_delete": "Movimiento eliminado con éxito",
+                "error_message": "Error al actualizar el movimiento"
+            }
+        },
+        "accounts": {},
+        "notes": {},
+        "reports": {}
     }
 }

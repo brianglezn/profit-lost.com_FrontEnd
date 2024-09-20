@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
+import { useTranslation } from 'react-i18next';
 
 import { getAllCategories } from '../../../api/categories/getAllCategories';
 import { editMovement } from '../../../api/movements/editMovement';
@@ -26,6 +27,7 @@ interface FormMovementsEditProps {
 }
 
 function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditProps) {
+    const { t } = useTranslation();
     const [dateTime, setDateTime] = useState<string>(new Date(transaction.date).toISOString().slice(0, 16));
     const [description, setDescription] = useState<string>(transaction.description);
     const [amount, setAmount] = useState<string>(Math.abs(transaction.amount).toString());
@@ -34,12 +36,11 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
     const [showConfirm, setShowConfirm] = useState(false);
     const [isIncome, setIsIncome] = useState<boolean>(transaction.amount >= 0);
 
-    // useEffect to load categories from backend
     useEffect(() => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('token');
             if (!token) {
-                toast.error('No authentication token found. Please log in.');
+                toast.error(t('dashboard.common.error_token'));
                 return;
             }
             try {
@@ -51,25 +52,22 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 setCategory(currentCategory || null);
             } catch (error) {
                 console.error('Error fetching categories:', error);
-                toast.error('Error fetching categories');
+                toast.error(t('dashboard.common.error_movements_fetch'));
             }
         };
 
         fetchCategories();
-    }, [transaction.category]);
+    }, [transaction.category, t]);
 
-    // Manages the click on the enter button
     const handleIncomeClick = () => {
         setIsIncome(true);
         setAmount(amount.replace('-', ''));
     };
 
-    // Manages the click on the spend button
     const handleExpenseClick = () => {
         setIsIncome(false);
     };
 
-    // Handles change in the quantity field
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (isIncome) {
@@ -79,18 +77,17 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         }
     };
 
-    // Manages form submission editMovemet
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const token = localStorage.getItem('token');
         if (!token) {
-            toast.error('No authentication token found. Please log in.');
+            toast.error(t('dashboard.common.error_token'));
             return;
         }
 
         if (!/^-?\d+(\.\d{0,2})?$/.test(amount)) {
-            toast.error('Amount must be a positive or negative number with up to two decimals.');
+            toast.error(t('dashboard.movements.form_movements_add.error_message'));
             return;
         }
 
@@ -107,60 +104,58 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
 
         try {
             await editMovement(token, transaction._id, movementData);
-            toast.success('Movement updated successfully');
+            toast.success(t('dashboard.movements.form_movements_edit.success_message_edit'));
             onEdit();
         } catch (error) {
             console.error('Error updating movement:', error);
-            const errorMessage = error instanceof Error ? error.message : 'An error occurred';
+            const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
             toast.error(errorMessage);
         }
     };
 
-    // Manages the click on the delete button
     const handleRemove = (e: React.FormEvent) => {
         e.preventDefault();
         setShowConfirm(true);
     };
 
-    // Handles confirmation of deletion
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const token = localStorage.getItem("token");
         if (!token) {
-            toast.error('No authentication token found. Please log in.');
+            toast.error(t('dashboard.common.error_token'));
             return;
         }
 
         try {
             await removeMovement(token, transaction._id);
-            toast.success('Transaction removed successfully.');
+            toast.success(t('dashboard.movements.form_movements_edit.success_message_delete'));
             setTimeout(() => {
                 onRemove();
             }, 500);
         } catch (error) {
             console.error("Error removing the transaction:", error);
-            toast.error('Failed to remove the transaction.');
+            toast.error(t('dashboard.movements.form_movements_edit.error_message'));
         }
     };
 
     return (
         <form onSubmit={handleSubmit} className="formMovements">
-            <h2>Edit movement</h2>
+            <h2>{t('dashboard.movements.form_movements_edit.header')}</h2>
             <div className="formMovements-toggle">
                 <button
                     type="button"
                     className={`${isIncome ? 'active' : ''}`}
                     onClick={handleIncomeClick}
                 >
-                    Income
+                    {t('dashboard.movements.form_movements_edit.income_button')}
                 </button>
                 <button
                     type="button"
                     className={`${!isIncome ? 'active' : ''}`}
                     onClick={handleExpenseClick}
                 >
-                    Expense
+                    {t('dashboard.movements.form_movements_edit.expense_button')}
                 </button>
             </div>
             <input
@@ -175,7 +170,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 options={categories}
                 onChange={(e) => setCategory(e.value)}
                 optionLabel="name"
-                placeholder="Select a category"
+                placeholder={t('dashboard.movements.form_movements_add.category_placeholder')}
                 className="formDropdown"
                 filter
                 showClear
@@ -187,7 +182,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 className='custom-input'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
+                placeholder={t('dashboard.movements.form_movements_add.description_placeholder')}
                 required
             />
             <input
@@ -195,19 +190,19 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 className='custom-input'
                 value={amount}
                 onChange={handleAmountChange}
-                placeholder="Amount"
+                placeholder={t('dashboard.movements.form_movements_add.amount_placeholder')}
                 step="0.01"
                 min={isIncome ? "0" : undefined}
                 required
             />
             <div className="formMovements-buttons">
-                <button type="button" className="custom-btn-sec" onClick={handleRemove}>Delete</button>
-                <button type="submit" className="custom-btn">Update</button>
+                <button type="button" className="custom-btn-sec" onClick={handleRemove}>{t('dashboard.movements.form_movements_edit.delete_button')}</button>
+                <button type="submit" className="custom-btn">{t('dashboard.movements.form_movements_edit.save_button')}</button>
             </div>
             {showConfirm && (
                 <div className="form-confirmBtn">
-                    <p>Are you sure you want to delete this transaction?</p>
-                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>Confirm</button>
+                    <p>{t('dashboard.movements.form_movements_edit.confirm_delete')}</p>
+                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>{t('dashboard.movements.form_movements_edit.delete_button')}</button>
                 </div>
             )}
         </form>

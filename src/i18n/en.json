@@ -322,7 +322,58 @@
                 "no_movements": "No movements found for this category"
             }
         },
-        "movements": {},
-        "accounts": {}
+        "movements": {
+            "header": "Movements",
+            "movements_table": {
+                "search_placeholder": "Search movements...",
+                "sort_by": "Sort by",
+                "date_new": "Date New",
+                "date_old": "Date Old",
+                "amount_desc": "Amount Descendent",
+                "amount_asc": "Amount Ascendent",
+                "no_movements": "No movements found"
+            },
+            "movements_chart": {
+                "header": "Movements Report",
+                "income": "Income",
+                "expenses": "Expenses"
+            },
+            "form_movements_add": {
+                "header": "New movement",
+                "income_button": "Income",
+                "expense_button": "Expense",
+                "date_placeholder": "Select date",
+                "category_placeholder": "Select a category",
+                "description_placeholder": "Description",
+                "amount_placeholder": "Amount",
+                "recurring_label": "Recurring",
+                "recurring_frequency": "Recurrence frequency",
+                "monthly": "Every month",
+                "yearly": "Every year",
+                "end_date": "End date",
+                "save_button": "Save",
+                "success_message": "Movement added successfully",
+                "error_message": "Error adding movement"
+            },
+            "form_movements_edit": {
+                "header": "Edit movement",
+                "income_button": "Income",
+                "expense_button": "Expense",
+                "date_placeholder": "Select date",
+                "category_placeholder": "Select a category",
+                "description_placeholder": "Description",
+                "amount_placeholder": "Amount",
+                "delete_button": "Delete",
+                "save_button": "Update",
+                "confirm_delete": "Are you sure you want to delete this movement?",
+                "success_message_edit": "Movement updated successfully",
+                "success_message_delete": "Movement deleted successfully",
+                "error_message": "Error updating movement"
+            }
+        },
+        "accounts": {},
+        "notes": {},
+        "reports": {}
+
     }
 }

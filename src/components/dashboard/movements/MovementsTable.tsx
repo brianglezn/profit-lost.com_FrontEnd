@@ -3,6 +3,7 @@ import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
+import { useTranslation } from 'react-i18next';
 
 import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
@@ -31,6 +32,7 @@ interface MovementsTableProps {
 }
 
 function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
+    const { t, i18n } = useTranslation();
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -74,19 +76,19 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Search movements..."
+                        placeholder={t('dashboard.movements.movements_table.search_placeholder')}
                         className="p-inputtext-custom"
                     />
                     <Dropdown
                         value={sortOption}
                         options={[
-                            { label: 'Date New', value: 'date_desc' },
-                            { label: 'Date Old', value: 'date_asc' },
-                            { label: 'Amount Descendent', value: 'amount_desc' },
-                            { label: 'Amount Ascendent', value: 'amount_asc' }
+                            { label: t('dashboard.movements.movements_table.date_new'), value: 'date_desc' },
+                            { label: t('dashboard.movements.movements_table.date_old'), value: 'date_asc' },
+                            { label: t('dashboard.movements.movements_table.amount_desc'), value: 'amount_desc' },
+                            { label: t('dashboard.movements.movements_table.amount_asc'), value: 'amount_asc' }
                         ]}
                         onChange={(e) => setSortOption(e.value)}
-                        placeholder="Sort by..."
+                        placeholder={t('dashboard.movements.movements_table.sort_by')}
                         className="p-dropdown-custom"
                     />
                 </div>
@@ -110,7 +112,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                             </div>
                             <div className="description-section">
                                 <div className="description">{transaction.description}</div>
-                                <div className="date">{formatDateTime(transaction.date)}</div>
+                                <div className="date">{formatDateTime(transaction.date, i18n.language)}</div>
                             </div>
                             <div className="category">
                                 <div
@@ -121,7 +123,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                             </div>
 
                             <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
-                                {formatCurrency(transaction.amount)}
+                                {formatCurrency(transaction.amount, i18n.language)}
                             </div>
                         </div>
                     ))}
