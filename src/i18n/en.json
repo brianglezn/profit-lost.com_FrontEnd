@@ -145,5 +145,111 @@
             }
         }
     },
-    "dashboard": {}
+    "dashboard": {
+        "dashboard": {
+            "header": {
+                "refresh": "Refresh",
+                "logout": "Log out",
+                "date": "Current Date"
+            },
+            "nav": {
+                "dashboard": "Dashboard",
+                "annual_report": "Annual Report",
+                "movements": "Movements",
+                "accounts": "Accounts",
+                "notes": "Notes",
+                "reports": "Reports",
+                "more": "More"
+            },
+            "sidebar": {
+                "profile": {
+                    "title": "Profile",
+                    "settings": "Profile Settings",
+                    "security": "Security and Privacy",
+                    "help": "Help",
+                    "about": "About Us",
+                    "logout": "Log out"
+                },
+                "settings": "Settings",
+                "security": "Security",
+                "help": "Help",
+                "about": "About Us"
+            },
+            "sections": {
+                "accounts": "Accounts",
+                "notes": "Notes",
+                "reports": "Reports"
+            },
+            "messages": {
+                "session_closed": "Session closed successfully",
+                "reconnect_success": "OK response from backend",
+                "reconnect_error": "Could not connect to backend"
+            },
+            "user": {
+                "settings": {
+                    "title": "User Settings",
+                    "first_name": "First Name",
+                    "last_name": "Last Name",
+                    "preferred_language": "Preferred Language",
+                    "change_image": "Change Image",
+                    "delete_image": "Delete Image",
+                    "confirm_changes": "Confirm Changes",
+                    "image_size_error": "Image size exceeds the 8MB limit",
+                    "update_success": "User settings updated successfully!",
+                    "update_error": "Error updating user settings.",
+                    "deleting_image": "Deleting profile image...",
+                    "image_deleted_success": "Profile image deleted successfully",
+                    "image_deleted_error": "Error deleting profile image"
+                },
+                "security_privacy": {
+                    "title": "Security and Privacy Settings",
+                    "change_password": "Change Password",
+                    "current_password": "Current Password",
+                    "new_password": "New Password",
+                    "confirm_password": "Confirm New Password",
+                    "change_password_button": "Change Password",
+                    "delete_account": "Delete Account",
+                    "delete_account_warning": "Warning: This action is irreversible. Once deleted, your account cannot be recovered.",
+                    "confirm_delete": "Confirm Delete",
+                    "enter_username": "Please enter your username to confirm account deletion:",
+                    "username": "Username",
+                    "username_does_not_match": "Username does not match",
+                    "delete_account_success": "User account deleted successfully",
+                    "delete_account_error": "Error deleting account",
+                    "passwords_do_not_match": "Passwords do not match",
+                    "password_changed_success": "Password changed successfully",
+                    "password_changed_error": "Error changing password"
+                },
+                "help": {
+                    "title": "Help",
+                    "how_can_we_assist": "How can we assist you today?",
+                    "faq_section": "Visit our <1>FAQ</1> section or contact support."
+                },
+                "about_us": {
+                    "title": "About Us",
+                    "description": "We are committed to providing the best service for managing your finances.",
+                    "learn_more": "Learn more about our mission and team on our website."
+                }
+            }
+        },
+        "dashhome": {
+            "balances": {
+                "earnings": "Earnings",
+                "spendings": "Spendings",
+                "savings": "Savings",
+                "comparison": "than last month",
+                "currency": "€"
+              },
+              "home_balance_chart": {
+                "header": "Last 6 months balances"
+              },
+              "home_movements_history": {
+                "header": "Last movements",
+                "no_movements": "No movements found"
+              }
+        },
+        "annual_report": {},
+        "movements": {},
+        "accounts": {}
+    }
 }

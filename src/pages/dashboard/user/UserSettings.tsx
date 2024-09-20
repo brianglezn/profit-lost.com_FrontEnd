@@ -4,6 +4,7 @@ import { FileUpload, FileUploadHandlerEvent } from 'primereact/fileupload';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import { deleteProfileImage } from '../../../api/users/deleteProfileImage';
 import { updateProfile } from '../../../api/users/updateProfile';
@@ -23,6 +24,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
     const [name, setName] = useState(userName);
     const [surname, setSurname] = useState(userSurname);
     const [profileImage, setProfileImage] = useState<File | null>(null);
+    const { t } = useTranslation();
 
     const fileUploadRef = useRef<FileUpload>(null);
 
@@ -42,7 +44,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
     const handleProfileImageUpload = (e: FileUploadHandlerEvent) => {
         const file = e.files[0];
         if (file.size > 8000000) {
-            toast.error('Image size exceeds the 8MB limit');
+            toast.error(t('dashboard.dashboard.user.settings.image_size_error'));
             fileUploadRef.current?.clear();
             return;
         }
@@ -50,16 +52,16 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
     };
 
     const handleDeleteProfileImage = async () => {
-        toast.loading('Deleting profile image...');
+        toast.loading(t('dashboard.dashboard.user.settings.deleting_image'));
 
         try {
             await deleteProfileImage();
             toast.dismiss();
-            toast.success('Profile image deleted successfully');
+            toast.success(t('dashboard.dashboard.user.settings.image_deleted_success'));
             onUserUpdated();
         } catch (error) {
             toast.dismiss();
-            toast.error('Error deleting profile image');
+            toast.error(t('dashboard.dashboard.user.settings.image_deleted_error'));
         }
     };
 
@@ -73,17 +75,16 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
             formData.append('profileImage', profileImage);
         }
 
-        toast.loading('Updating settings...');
+        toast.loading(t('dashboard.dashboard.user.settings.updating_settings'));
 
         try {
             await updateProfile(formData);
             toast.dismiss();
-            toast.success('User settings updated successfully!');
+            toast.success(t('dashboard.dashboard.user.settings.update_success'));
             onUserUpdated();
         } catch (error) {
             toast.dismiss();
-            toast.error('Error updating user settings.');
-            console.error('Error updating user settings:', error);
+            toast.error(t('dashboard.dashboard.user.settings.update_error'));
         }
     };
 
@@ -121,9 +122,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
 
     return (
         <div className="settings">
-            <h2>User Settings</h2>
+            <h2>{t('dashboard.dashboard.user.settings.title')}</h2>
             <div className="settings__details">
-                {/* Change Profile Image */}
                 <div className="settings__section">
                     <div className="profile-picture">
                         {profileImage ? (
@@ -131,7 +131,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                         ) : userProfileImage ? (
                             <img src={userProfileImage} alt="Current Profile" className="profile-picture__img" />
                         ) : (
-                            <div className="profile-picture__placeholder">No Image</div>
+                            <div className="profile-picture__placeholder">{t('dashboard.dashboard.user.settings.no_image')}</div>
                         )}
                     </div>
                     <FileUpload
@@ -142,21 +142,20 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                         customUpload
                         uploadHandler={handleProfileImageUpload}
                         auto
-                        chooseLabel="Change Image"
+                        chooseLabel={t('dashboard.dashboard.user.settings.change_image')}
                         className='p-fileupload-custom'
                     />
                     {userProfileImage && (
                         <Button
-                            label="Delete Image"
+                            label={t('dashboard.dashboard.user.settings.delete_image')}
                             onClick={handleDeleteProfileImage}
                             link
                         />
                     )}
                 </div>
 
-                {/* Change First Name */}
                 <div className="settings__section">
-                    <label htmlFor="name">First Name:</label>
+                    <label htmlFor="name">{t('dashboard.dashboard.user.settings.first_name')}</label>
                     <InputText
                         id="name"
                         value={name}
@@ -164,9 +163,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                     />
                 </div>
 
-                {/* Change Last Name */}
                 <div className="settings__section">
-                    <label htmlFor="surname">Last Name:</label>
+                    <label htmlFor="surname">{t('dashboard.dashboard.user.settings.last_name')}</label>
                     <InputText
                         id="surname"
                         value={surname}
@@ -174,9 +172,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                     />
                 </div>
 
-                {/* Change Language */}
                 <div className="settings__section">
-                    <label htmlFor="language">Preferred Language:</label>
+                    <label htmlFor="language">{t('dashboard.dashboard.user.settings.preferred_language')}</label>
                     <Dropdown
                         id="language"
                         value={language}
@@ -188,10 +185,9 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                     />
                 </div>
 
-                {/* Confirm Changes Button */}
                 <div className="settings__section">
                     <Button
-                        label="Confirm Changes"
+                        label={t('dashboard.dashboard.user.settings.confirm_changes')}
                         onClick={handleConfirmChanges}
                     />
                 </div>

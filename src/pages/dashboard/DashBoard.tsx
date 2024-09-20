@@ -5,6 +5,8 @@ import { Avatar } from 'primereact/avatar';
 import { Sidebar } from 'primereact/sidebar';
 import { Menu } from 'primereact/menu';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 import { getUserByToken } from "../../api/users/getUserByToken";
 import { getCurrentDate } from "../../helpers/functions";
@@ -45,6 +47,7 @@ interface User {
 }
 
 function Dashboard() {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [user, setUser] = useState<User | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -60,7 +63,7 @@ function Dashboard() {
     window.scrollTo(0, 0);
   };
 
-  const currentDate = getCurrentDate();
+  const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
 
   const fetchUserData = useCallback(async () => {
     const token = localStorage.getItem('token');
@@ -73,6 +76,9 @@ function Dashboard() {
       const userData = await getUserByToken(token);
       if (userData && userData._id) {
         setUser(userData);
+        if (userData.language) {
+          i18n.changeLanguage(userData.language);
+        }
       } else {
         console.error('User data does not include _id:', userData);
       }
@@ -80,7 +86,6 @@ function Dashboard() {
       console.error('Error fetching user data:', error);
       navigate('/login');
     }
-
   }, [navigate]);
 
   useEffect(() => {
@@ -116,9 +121,9 @@ function Dashboard() {
     toast.promise(
       fetch('https://profit-lost-backend.onrender.com/ping'),
       {
-        loading: 'Sending request to reconnect...',
-        success: 'OK response from backend',
-        error: 'Could not connect to backend',
+        loading: t('dashboard.dashboard.messages.loading'),
+        success: t('dashboard.dashboard.messages.reconnect_success'),
+        error: t('dashboard.dashboard.messages.reconnect_error'),
       },
       {
         success: {
@@ -132,7 +137,7 @@ function Dashboard() {
   };
 
   const handleLogout = () => {
-    toast.success("Session closed successfully", { duration: 3000 });
+    toast.success(t('dashboard.dashboard.sidebar.profile.logout'), { duration: 3000 });
     setTimeout(() => {
       localStorage.removeItem('token');
       navigate('/login');
@@ -145,17 +150,17 @@ function Dashboard() {
 
   const menuItems = [
     {
-      label: 'Accounts',
+      label: t('dashboard.dashboard.sections.accounts'),
       icon: <CreditCardIcon />,
       command: () => handleMenuItemClick('Accounts')
     },
     {
-      label: 'Notes',
+      label: t('dashboard.dashboard.sections.notes'),
       icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
     },
     {
-      label: 'Reports',
+      label: t('dashboard.dashboard.sections.reports'),
       icon: <ReportIcon />,
       command: () => handleMenuItemClick('Reports')
     }
@@ -193,42 +198,42 @@ function Dashboard() {
                   className={activeSection === "Dashboard" ? "active" : ""}
                 >
                   <HomeIcon />
-                  <p>DashBoard</p>
+                  <p>{t('dashboard.dashboard.nav.dashboard')}</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("AnnualReport")}
                   className={activeSection === "AnnualReport" ? "active" : ""}
                 >
                   <ChartColumnIcon />
-                  <p>Annual Report</p>
+                  <p>{t('dashboard.dashboard.nav.annual_report')}</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Movements")}
                   className={activeSection === "Movements" ? "active" : ""}
                 >
                   <ChartBarIcon />
-                  <p>Movements</p>
+                  <p>{t('dashboard.dashboard.nav.movements')}</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Accounts")}
                   className={activeSection === "Accounts" ? "active" : ""}
                 >
                   <CreditCardIcon />
-                  <p>Accounts</p>
+                  <p>{t('dashboard.dashboard.nav.accounts')}</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Notes")}
                   className={activeSection === "Notes" ? "active" : ""}
                 >
                   <NotesIcon />
-                  <p>Notes</p>
+                  <p>{t('dashboard.dashboard.nav.notes')}</p>
                 </li>
                 <li
                   onClick={() => handleMenuItemClick("Reports")}
                   className={activeSection === "Reports" ? "active" : ""}
                 >
                   <ReportIcon />
-                  <p>Reports</p>
+                  <p>{t('dashboard.dashboard.nav.reports')}</p>
                 </li>
               </ul>
             </div>
@@ -243,7 +248,7 @@ function Dashboard() {
             >
               <div>
                 <HomeIcon />
-                <span>Dashboard</span>
+                <span>{t('dashboard.dashboard.nav.dashboard')}</span>
               </div>
             </span>
             <span
@@ -252,7 +257,7 @@ function Dashboard() {
             >
               <div>
                 <ChartColumnIcon />
-                <span>Annual</span>
+                <span>{t('dashboard.dashboard.nav.annual_report')}</span>
               </div>
             </span>
             <span
@@ -261,7 +266,7 @@ function Dashboard() {
             >
               <div>
                 <ChartBarIcon />
-                <span>Movements</span>
+                <span>{t('dashboard.dashboard.nav.movements')}</span>
               </div>
             </span>
             <span
@@ -270,7 +275,7 @@ function Dashboard() {
             >
               <div>
                 <BarsIcon />
-                <span>More</span>
+                <span>{t('dashboard.dashboard.nav.more')}</span>
               </div>
             </span>
             <Menu model={menuItems} popup ref={menu} id="popup_menu" />
@@ -325,28 +330,28 @@ function Dashboard() {
             <div className="profile__header-account">
               <a onClick={() => handleSidebarSectionChange('settings')}>
                 <UserIcon />
-                <p>Profile Settings</p>
+                <p>{t('dashboard.dashboard.sidebar.profile.settings')}</p>
               </a>
               <a onClick={() => handleSidebarSectionChange('security')}>
                 <ShielIcon />
-                <p>Security and Privacy</p>
+                <p>{t('dashboard.dashboard.sidebar.profile.security')}</p>
               </a>
             </div>
 
             <div className="profile__header-help">
               <a onClick={() => handleSidebarSectionChange('help')}>
                 <HelpIcon />
-                <p>Help</p>
+                <p>{t('dashboard.dashboard.sidebar.profile.help')}</p>
               </a>
               <a onClick={() => handleSidebarSectionChange('about')}>
                 <InfoIcon />
-                <p>About Us</p>
+                <p>{t('dashboard.dashboard.sidebar.profile.about')}</p>
               </a>
             </div>
 
             <div className="profile__header-logout">
               <button onClick={handleLogout} className="custom-btn">
-                Log out
+                {t('dashboard.dashboard.sidebar.profile.logout')}
               </button>
             </div>
           </div>

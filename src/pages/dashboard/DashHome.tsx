@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 
+import { formatCurrency } from '../../helpers/functions';
 import { getMovementsByYear } from "../../api/movements/getMovementsByYear";
 
 import "./DashHome.scss";
@@ -15,6 +17,7 @@ interface Transaction {
 }
 
 function DashHome() {
+  const { t, i18n } = useTranslation();
   const [income, setIncome] = useState<number>(0);
   const [expenses, setExpenses] = useState<number>(0);
   const [ebitda, setEbitda] = useState<number>(0);
@@ -121,48 +124,45 @@ function DashHome() {
         <div>
           <div className="balances-container income">
             <div className="header-container">
-              <span>Earnings</span>
+              <span>{t('dashboard.dashhome.balances.earnings')}</span>
             </div>
             <div className="amount">
-              <span className="value">{income.toFixed(2)}</span>
-              <span className="currency">€</span>
+              <span className="value">{formatCurrency(income, i18n.language)}</span>
             </div>
             <div className="comparison">
               <span className={`percentage ${incomePercentage >= 0 ? 'positive' : 'negative'}`}>
                 {incomePercentage.toFixed(1)}%
-              </span> than last month
+              </span> {t('dashboard.dashhome.balances.comparison')}
             </div>
           </div>
         </div>
         <div>
           <div className="balances-container expenses">
             <div className="header-container">
-              <span>Spendings</span>
+              <span>{t('dashboard.dashhome.balances.spendings')}</span>
             </div>
             <div className="amount">
-              <span className="value">{expenses.toFixed(2)}</span>
-              <span className="currency">€</span>
+              <span className="value">{formatCurrency(expenses, i18n.language)}</span>
             </div>
             <div className="comparison">
               <span className={`percentage ${expensesPercentage >= 0 ? 'negative' : 'positive'}`}>
                 {expensesPercentage.toFixed(1)}%
-              </span> than last month
+              </span> {t('dashboard.dashhome.balances.comparison')}
             </div>
           </div>
         </div>
         <div>
           <div className="balances-container ebitda">
             <div className="header-container">
-              <span>Savings</span>
+              <span>{t('dashboard.dashhome.balances.savings')}</span>
             </div>
             <div className="amount">
-              <span className="value">{ebitda.toFixed(2)}</span>
-              <span className="currency">€</span>
+              <span className="value">{formatCurrency(ebitda, i18n.language)}</span>
             </div>
             <div className="comparison">
               <span className={`percentage ${ebitdaPercentage >= 0 ? 'positive' : 'negative'}`}>
                 {ebitdaPercentage.toFixed(1)}%
-              </span> than last month
+              </span> {t('dashboard.dashhome.balances.comparison')}
             </div>
           </div>
         </div>
@@ -171,7 +171,7 @@ function DashHome() {
       <div className="chart">
         <div className="chart-container">
           <div className="header-container">
-            <span>Last 6 months balances</span>
+            <span>{t('dashboard.dashhome.home_balance_chart.header')}</span>
           </div>
           <HomeBalanceChart />
         </div>
@@ -180,35 +180,35 @@ function DashHome() {
       <div className="history">
         <div className="history-container">
           <div className="header-container">
-            <span>Last movements</span>
+            <span>{t('dashboard.dashhome.home_movements_history.header')}</span>
           </div>
           <MovementsHistoryHome data={movements} isDataEmpty={isDataEmpty} />
         </div>
       </div>
 
-      <div className="first">
-        <div className="first-container">
-          <div className="header-container">
-            <span>Category + gastos</span>
-          </div>
-        </div>
-      </div>
+      {/* <div className="first">
+  <div className="first-container">
+    <div className="header-container">
+      <span>Category + gastos</span>
+    </div>
+  </div>
+</div>
 
-      <div className="second">
-        <div className="second-container">
-          <div className="header-container">
-            <span>Category + ingresos</span>
-          </div>
-        </div>
-      </div>
+<div className="second">
+  <div className="second-container">
+    <div className="header-container">
+      <span>Category + ingresos</span>
+    </div>
+  </div>
+</div>
 
-      <div className="categories">
-        <div className="categories-container">
-          <div className="header-container">
-            <span>Notes</span>
-          </div>
-        </div>
-      </div>
+<div className="categories">
+  <div className="categories-container">
+    <div className="header-container">
+      <span>Notes</span>
+    </div>
+  </div>
+</div> */}
     </section>
   );
 }

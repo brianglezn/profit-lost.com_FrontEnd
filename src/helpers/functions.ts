@@ -1,36 +1,35 @@
 import { ColorPickerRGBType } from "primereact/colorpicker";
+import { format } from 'date-fns';
+import { enUS, es } from 'date-fns/locale';
 
-export function formatCurrency(value: number): string {
-    return value.toLocaleString('es-ES', {
+const localeMap = {
+    en: enUS,
+    es: es,
+};
+
+export function formatCurrency(value: number, locale: string = 'en-US'): string {
+    const currency = locale === 'es' ? 'EUR' : 'USD';
+    return value.toLocaleString(locale, {
         style: 'currency',
-        currency: 'EUR',
+        currency: currency,
         minimumFractionDigits: 2,
         useGrouping: true,
     });
 }
 
-export function getCurrentDate() {
-    const options: Intl.DateTimeFormatOptions = {
-        weekday: "short",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-    };
+export function getCurrentDate(locale: string = 'en'): string {
+    const today = new Date();
+    const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
 
-    const today = new Date().toLocaleDateString("es-ES", options);
-    return today;
+    const dateFormat = locale === 'en' ? 'EEE, MMM do, yyyy' : 'EEE, d MMM yyyy';
+
+    return format(today, dateFormat, { locale: currentLocale });
 }
 
-export function formatDateTime(value: string): string {
+export function formatDateTime(value: string, locale: string = 'en'): string {
     const date = new Date(value);
-    return date.toLocaleString('es-ES', {
-        timeZone: 'UTC',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+    const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
+    return format(date, 'Pp', { locale: currentLocale });
 }
 
 export function rgbToHex({ r, g, b }: ColorPickerRGBType): string {

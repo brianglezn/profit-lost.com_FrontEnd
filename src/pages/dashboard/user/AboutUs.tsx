@@ -1,12 +1,14 @@
 import './AboutUs.scss';
+import { useTranslation } from 'react-i18next';
 
 const AboutUs = () => {
+    const { t } = useTranslation();
     return (
         <div className="aboutUs">
-            <h2>About Us</h2>
+            <h2>{t('dashboard.dashboard.user.about_us.title')}</h2>
             <div className="aboutUs__section">
-                <p>We are committed to providing the best service for managing your finances.</p>
-                <p>Learn more about our mission and team on our website.</p>
+                <p>{t('dashboard.dashboard.user.about_us.description')}</p>
+                <p>{t('dashboard.dashboard.user.about_us.learn_more')}</p>
             </div>
         </div>
     );
