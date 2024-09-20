@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useTranslation } from 'react-i18next';
 
 import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
-import { monthNames } from "../../../helpers/constants";
+import { useMonthNames } from "../../../helpers/functions";
 
 import "./AnnualChart.scss";
 import CustomBarShape from "../../CustomBarShape";
@@ -22,13 +23,15 @@ interface ChartDataItem {
 }
 
 function AnnualChart({ year }: { year: string }) {
+    const { t } = useTranslation();
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+    const monthNames = useMonthNames();
 
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             if (!token) {
-                console.error('No authentication token found. Please log in.');
+                console.error(t('dashboard.common.error_token'));
                 return;
             }
 
@@ -56,12 +59,12 @@ function AnnualChart({ year }: { year: string }) {
                 }));
                 setChartData(formattedData);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error(t('dashboard.common.error_movements_fetch'));
             }
         };
 
         fetchData();
-    }, [year]);
+    }, [year, t, monthNames]);
 
     return (
         <div className="annual__chart">
@@ -78,7 +81,11 @@ function AnnualChart({ year }: { year: string }) {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month" />
                         <YAxis />
-                        <Tooltip />
+                        <Tooltip formatter={(value, name, props) => {
+                            const month = props.payload.month;
+                            const label = name === "Income" ? t('dashboard.annual_report.annual_chart.tooltip_income', { month }) : t('dashboard.annual_report.annual_chart.tooltip_expenses', { month });
+                            return [value, label];
+                        }} />
                         <Legend />
                         <Bar dataKey="Income" fill={"#ff8e38"} shape={<CustomBarShape />} />
                         <Bar dataKey="Expenses" fill={"#9d300f"} shape={<CustomBarShape />} />

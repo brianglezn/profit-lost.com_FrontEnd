@@ -103,7 +103,8 @@
                 "reset_password_link": "Enviar enlace de restablecimiento",
                 "new_password": "Nueva contraseña",
                 "confirm_new_password": "Confirmar nueva contraseña",
-                "verification_code": "Código de verificación"
+                "verification_code": "Código de verificación",
+                "error_token": "No se encontró el token de autenticación. Por favor, inicia sesión."
             },
             "login": {
                 "title": "Iniciar sesión",
@@ -146,6 +147,37 @@
         }
     },
     "dashboard": {
+        "common": {
+            "error": "Ocurrió un error",
+            "error_token": "Token de autenticación no encontrado.",
+            "error_movements_fetch": "Fallo al recuperar movimientos.",
+            "months": {
+                "january": "Enero",
+                "february": "Febrero",
+                "march": "Marzo",
+                "april": "Abril",
+                "may": "Mayo",
+                "june": "Junio",
+                "july": "Julio",
+                "august": "Agosto",
+                "september": "Septiembre",
+                "october": "Octubre",
+                "november": "Noviembre",
+                "december": "Diciembre",
+                "jan": "Ene",
+                "feb": "Feb",
+                "mar": "Mar",
+                "apr": "Abr",
+                "may_short": "May",
+                "jun": "Jun",
+                "jul": "Jul",
+                "aug": "Ago",
+                "sep": "Sep",
+                "oct": "Oct",
+                "nov": "Nov",
+                "dec": "Dic"
+            }
+        },
         "dashboard": {
             "header": {
                 "refresh": "Actualizar",
@@ -237,8 +269,7 @@
                 "earnings": "Ingresos",
                 "spendings": "Gastos",
                 "savings": "Ahorros",
-                "comparison": "que el mes pasado",
-                "currency": "€"
+                "comparison": "que el mes pasado"
             },
             "home_balance_chart": {
                 "header": "Balances de los últimos 6 meses"
@@ -248,7 +279,49 @@
                 "no_movements": "No se encontraron movimientos"
             }
         },
-        "annual_report": {},
+        "annual_report": {
+            "header": "Informe Anual",
+            "income": "Ingresos",
+            "expenses": "Gastos",
+            "balance": "Balance",
+            "add_category": "Agregar Categoría",
+            "categories": "Categorías",
+            "annual_chart": {
+                "header": "Informe Anual",
+                "income": "Ingresos",
+                "expenses": "Gastos",
+                "tooltip_income": "Ingresos totales para {month}",
+                "tooltip_expenses": "Gastos totales para {month}"
+            },
+            "annual_movements": {
+                "header": "Movimientos por Categoría",
+                "search_placeholder": "Buscar categorías...",
+                "sort_by": "Ordenar por",
+                "name_asc": "Nombre A-Z",
+                "name_desc": "Nombre Z-A",
+                "balance_asc": "Saldo ascendente",
+                "balance_desc": "Saldo descendente",
+                "no_movements": "No se encontraron movimientos para esta categoría"
+            },
+            "form_cat_add": {
+                "header": "Nueva Categoría",
+                "name_placeholder": "Nombre de la categoría",
+                "save_button": "Guardar",
+                "success_message": "Categoría añadida con éxito"
+            },
+            "form_cat_edit": {
+                "header": "Editar Categoría",
+                "name_placeholder": "Nombre de la categoría",
+                "save_button": "Guardar",
+                "remove_button": "Eliminar",
+                "confirm_delete": "¿Estás seguro de que deseas eliminar \"{category}\"?",
+                "delete_button": "Confirmar",
+                "success_message_edit": "Categoría editada con éxito",
+                "success_message_delete": "Categoría eliminada con éxito",
+                "movements_header": "Movimientos para {category}",
+                "no_movements": "No se encontraron movimientos para esta categoría"
+            }
+        },
         "movements": {},
         "accounts": {}
     }

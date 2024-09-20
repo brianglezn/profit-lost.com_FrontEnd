@@ -3,6 +3,8 @@ import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
+import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import { formatCurrency } from "../../../helpers/functions";
 import { getAllCategories } from "../../../api/categories/getAllCategories";
@@ -35,6 +37,7 @@ interface AnnualMovementsProps {
 }
 
 const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {
+    const { t, i18n } = useTranslation();
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -46,7 +49,7 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
         setIsLoading(true);
         const token = localStorage.getItem('token');
         if (!token) {
-            console.error('No authentication token found. Please log in.');
+            toast.error(t('landing.auth.common.error_token'));
             setIsLoading(false);
             return;
         }
@@ -73,11 +76,12 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
 
             setCategories(categoryBalances);
         } catch (error) {
+            toast.error(t('dashboard.annual_report.annual_movements.error_loading'));
             console.error("Error loading data:", error);
         } finally {
             setIsLoading(false);
         }
-    }, [year]);
+    }, [year, t]);
 
     useEffect(() => {
         fetchDataAndCalculateBalances();
@@ -116,19 +120,19 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Search categories..."
+                        placeholder={t('dashboard.annual_report.annual_movements.search_placeholder')}
                         className="p-inputtext-custom"
                     />
                     <Dropdown
                         value={sortOption}
                         options={[
-                            { label: 'Name A-Z', value: 'name_asc' },
-                            { label: 'Name Z-A', value: 'name_desc' },
-                            { label: 'Balance descendent', value: 'balance_desc' },
-                            { label: 'Balance ascendent', value: 'balance_asc' }
+                            { label: t('dashboard.annual_report.annual_movements.name_asc'), value: 'name_asc' },
+                            { label: t('dashboard.annual_report.annual_movements.name_desc'), value: 'name_desc' },
+                            { label: t('dashboard.annual_report.annual_movements.balance_desc'), value: 'balance_desc' },
+                            { label: t('dashboard.annual_report.annual_movements.balance_asc'), value: 'balance_asc' }
                         ]}
                         onChange={(e) => setSortOption(e.value)}
-                        placeholder="Sort by..."
+                        placeholder={t('dashboard.annual_report.annual_movements.sort_by')}
                         className="p-dropdown-custom"
                     />
                 </div>
@@ -138,24 +142,28 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                 <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
                 <div className="categories-list">
-                    {sortedCategories.map((category) => (
-                        <div
-                            key={category.id}
-                            className="category-item"
-                            onClick={() => editCategory(category)}
-                        >
-                            <div className="category-color">
-                                <div
-                                    className="category-color-circle"
-                                    style={{ backgroundColor: category.color }}
-                                ></div>
+                    {sortedCategories.length === 0 ? (
+                        <p>{t('dashboard.annual_report.annual_movements.no_movements')}</p>
+                    ) : (
+                        sortedCategories.map((category) => (
+                            <div
+                                key={category.id}
+                                className="category-item"
+                                onClick={() => editCategory(category)}
+                            >
+                                <div className="category-color">
+                                    <div
+                                        className="category-color-circle"
+                                        style={{ backgroundColor: category.color }}
+                                    ></div>
+                                </div>
+                                <div className="category-name">{category.Category}</div>
+                                <div className={`category-balance ${category.Balance >= 0 ? "positive" : "negative"}`}>
+                                    {formatCurrency(category.Balance, i18n.language)}
+                                </div>
                             </div>
-                            <div className="category-name">{category.Category}</div>
-                            <div className={`category-balance ${category.Balance >= 0 ? "positive" : "negative"}`}>
-                                {formatCurrency(category.Balance)}
-                            </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             )}
 
@@ -174,11 +182,13 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
                         onUpdate={() => {
                             fetchDataAndCalculateBalances();
                             setSidebarVisible(false);
+                            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_edit'));
                         }}
                         onRemove={() => {
                             const updatedCategories = categories.filter(cat => cat.id !== categoryToEdit.id);
                             setCategories(updatedCategories);
                             setSidebarVisible(false);
+                            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_delete'));
                         }}
                         onClose={() => setSidebarVisible(false)}
                     />

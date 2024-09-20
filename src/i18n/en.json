@@ -103,7 +103,8 @@
                 "reset_password_link": "Send Reset Link",
                 "new_password": "New Password",
                 "confirm_new_password": "Confirm New Password",
-                "verification_code": "Verification Code"
+                "verification_code": "Verification Code",
+                "error_token": "Authentication token not found. Please log in."
             },
             "login": {
                 "title": "Log in",
@@ -146,6 +147,37 @@
         }
     },
     "dashboard": {
+        "common": {
+            "error": "An error occurred",
+            "error_movements_fetch": "Failed to fetch movements.",
+            "error_token": "Authentication token not found.",
+            "months": {
+                "january": "January",
+                "february": "February",
+                "march": "March",
+                "april": "April",
+                "may": "May",
+                "june": "June",
+                "july": "July",
+                "august": "August",
+                "september": "September",
+                "october": "October",
+                "november": "November",
+                "december": "December",
+                "jan": "Jan",
+                "feb": "Feb",
+                "mar": "Mar",
+                "apr": "Abr",
+                "may_short": "May",
+                "jun": "Jun",
+                "jul": "Jul",
+                "aug": "Aug",
+                "sep": "Sep",
+                "oct": "Oct",
+                "nov": "Nov",
+                "dec": "Dec"
+            }
+        },
         "dashboard": {
             "header": {
                 "refresh": "Refresh",
@@ -237,18 +269,59 @@
                 "earnings": "Earnings",
                 "spendings": "Spendings",
                 "savings": "Savings",
-                "comparison": "than last month",
-                "currency": "€"
-              },
-              "home_balance_chart": {
+                "comparison": "than last month"
+            },
+            "home_balance_chart": {
                 "header": "Last 6 months balances"
-              },
-              "home_movements_history": {
+            },
+            "home_movements_history": {
                 "header": "Last movements",
                 "no_movements": "No movements found"
-              }
+            }
         },
-        "annual_report": {},
+        "annual_report": {
+            "header": "Annual Report",
+            "income": "Income",
+            "expenses": "Expenses",
+            "balance": "Balance",
+            "add_category": "Add Category",
+            "categories": "Categories",
+            "annual_chart": {
+                "header": "Annual Report",
+                "income": "Income",
+                "expenses": "Expenses",
+                "tooltip_income": "Total income for {month}",
+                "tooltip_expenses": "Total expenses for {month}"
+            },
+            "annual_movements": {
+                "header": "Movements by Category",
+                "search_placeholder": "Search categories...",
+                "sort_by": "Sort by",
+                "name_asc": "Name A-Z",
+                "name_desc": "Name Z-A",
+                "balance_asc": "Balance ascending",
+                "balance_desc": "Balance descending",
+                "no_movements": "No movements found for this category"
+            },
+            "form_cat_add": {
+                "header": "New Category",
+                "name_placeholder": "Category name",
+                "save_button": "Save",
+                "success_message": "Category added successfully"
+            },
+            "form_cat_edit": {
+                "header": "Edit Category",
+                "name_placeholder": "Category name",
+                "save_button": "Save",
+                "remove_button": "Remove",
+                "confirm_delete": "Are you sure you want to delete \"{category}\"?",
+                "delete_button": "Confirm",
+                "success_message_edit": "Category edited successfully",
+                "success_message_delete": "Category removed successfully",
+                "movements_header": "Movements for {category}",
+                "no_movements": "No movements found for this category"
+            }
+        },
         "movements": {},
         "accounts": {}
     }

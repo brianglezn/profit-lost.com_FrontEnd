@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import { ColorPicker } from "primereact/colorpicker";
 import { Accordion, AccordionTab } from "primereact/accordion";
+import { useTranslation } from 'react-i18next';
 
 import { editCategory } from "../../../api/categories/editCategory";
 import { removeCategory } from "../../../api/categories/removeCategory";
@@ -28,6 +29,7 @@ interface Movement {
 }
 
 const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categoryName, categoryColor, onUpdate, onClose, onRemove }) => {
+    const { t, i18n } = useTranslation();
     const [name, setName] = useState(categoryName);
     const [color, setColor] = useState(categoryColor);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -37,51 +39,47 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         const fetchMovements = async () => {
             const token = localStorage.getItem('token');
             if (!token) {
-                console.error('Authentication token not found');
+                toast.error(t('dashboard.common.error_token'));
                 return;
             }
 
             try {
                 const movements: Movement[] = await getAllMovements(token);
-
                 const filteredMovements = movements.filter((movement) => movement.category === categoryName);
 
                 const groupedMovements = filteredMovements.reduce<{ [key: string]: Movement[] }>((acc, movement) => {
                     const year = new Date(movement.date).getFullYear().toString();
-                    if (!acc[year]) {
-                        acc[year] = [];
-                    }
+                    if (!acc[year]) acc[year] = [];
                     acc[year].push(movement);
                     return acc;
                 }, {});
 
                 setMovementsByYear(groupedMovements);
             } catch (error) {
-                console.error('Error fetching movements:', error);
-                toast.error('Failed to fetch movements.');
+                toast.error(t('dashboard.common.error_movements_fetch'));
             }
         };
 
         fetchMovements();
-    }, [categoryId, categoryName]);
+    }, [categoryId, categoryName, t]);
 
     const handleEditCategory = async (e: React.FormEvent) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         if (!token) {
-            toast.error('Authentication token not found. Please log in.', { duration: 3000 });
+            toast.error(t('dashboard.common.error_token'), { duration: 3000 });
             return;
         }
 
         try {
             await editCategory(token, categoryId, name, color);
-            toast.success('Category edited successfully', { duration: 3000 });
+            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_edit'), { duration: 3000 });
             setTimeout(() => {
                 onClose();
                 onUpdate();
             }, 500);
         } catch (error) {
-            toast.error(error instanceof Error ? error.message : 'An unexpected error occurred.');
+            toast.error(error instanceof Error ? error.message : t('dashboard.common.error'));
         }
     };
 
@@ -94,19 +92,19 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
         e.preventDefault();
         const token = localStorage.getItem('token');
         if (!token) {
-            toast.error('Authentication token not found. Please log in.', { duration: 3000 });
+            toast.error(t('landing.auth.common.error_token'), { duration: 3000 });
             return;
         }
 
         try {
             await removeCategory(token, categoryId);
-            toast.success(`The category "${name}" has been successfully removed.`);
+            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_delete', { category: name }), { duration: 3000 });
             setTimeout(() => {
                 onClose();
                 onRemove();
             }, 500);
         } catch (error) {
-            toast.error(error instanceof Error ? error.message : 'An unexpected error occurred.');
+            toast.error(error instanceof Error ? error.message : t('common.error'));
         }
     };
 
@@ -114,7 +112,7 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
 
     return (
         <form className="formCategories" onSubmit={handleEditCategory}>
-            <h2>Edit category</h2>
+            <h2>{t('dashboard.annual_report.form_cat_edit.header')}</h2>
             <div className="formCategoriesContainer">
                 <div className="formCategoriesContainer-colorPicker">
                     <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
@@ -123,18 +121,25 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                     className="custom-input"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    placeholder={t('dashboard.annual_report.form_cat_edit.name_placeholder')}
                     autoFocus
                 />
             </div>
             <div className="formCategories-buttons">
-                <button type="button" className="custom-btn-sec" onClick={handleRemoveCategory}>Remove</button>
-                <button type="submit" className="custom-btn">Save</button>
+                <button type="button" className="custom-btn-sec" onClick={handleRemoveCategory}>
+                    {t('dashboard.annual_report.form_cat_edit.remove_button')}
+                </button>
+                <button type="submit" className="custom-btn">
+                    {t('dashboard.annual_report.form_cat_edit.save_button')}
+                </button>
             </div>
 
             {showConfirm && (
                 <div className="form-confirmBtn">
-                    <p>Are you sure you want to delete <b>"{name}"</b>?</p>
-                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>Confirm</button>
+                    <p>{t('dashboard.annual_report.form_cat_edit.confirm_delete', { category: name })}</p>
+                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>
+                        {t('dashboard.annual_report.form_cat_edit.delete_button')}
+                    </button>
                 </div>
             )}
 
@@ -151,9 +156,9 @@ const FormCategoryEdit: React.FC<FormCategoryEditProps> = ({ categoryId, categor
                                             .map((movement) => (
                                                 <li key={movement.id} className="movementsByCategory-item">
                                                     <span className="movementsByCategory-description">{movement.description}</span>
-                                                    <span className="movementsByCategory-date">{formatDateTime(movement.date)}</span>
+                                                    <span className="movementsByCategory-date">{formatDateTime(movement.date, i18n.language)}</span>
                                                     <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                        {formatCurrency(movement.amount)}
+                                                        {formatCurrency(movement.amount, i18n.language)}
                                                     </span>
                                                 </li>
                                             ))}

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
+import { useTranslation } from 'react-i18next';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
@@ -22,7 +23,14 @@ interface Movement {
   category: string;
 }
 
+interface BalanceDisplayProps {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  value: string;
+  className: string;
+}
+
 function AnnualReport() {
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear().toString();
   const [year, setYear] = useState(currentYear);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
@@ -81,12 +89,20 @@ function AnnualReport() {
     fetchData();
   }, [year]);
 
-  const formattedBalanceIncome = formatCurrency(balanceIncome);
-  const formattedBalanceExpenses = formatCurrency(balanceExpenses);
-  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses);
+  const formattedBalanceIncome = formatCurrency(balanceIncome, i18n.language);
+  const formattedBalanceExpenses = formatCurrency(balanceExpenses, i18n.language);
+  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses, i18n.language);
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
+
+  const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ icon: Icon, value, className }) => (
+    <div className={`annualReport__balance ${className}`}>
+      <Icon className={parseFloat(value.replace(/[^\d.-]/g, '')) < 0 ? 'negative' : 'positive'} />
+      <p>{value}</p>
+    </div>
+  );
+
 
   return (
     <section className="annualReport">
@@ -102,28 +118,16 @@ function AnnualReport() {
         </div>
         <AnnualChart year={year} />
         <div className="annualReport__main-balance">
-          <div className="annualReport__balance income">
-            <DownloadIcon />
-            <p>{formattedBalanceIncome}</p>
-          </div>
-          <div className="annualReport__balance expenses">
-            <UploadIcon />
-            <p>-{formattedBalanceExpenses}</p>
-          </div>
-          <div className="annualReport__balance edbita">
-            <PigCoinIcon className={`no-select ${parseFloat(formattedBalanceFinal) < 0
-              ? "negative"
-              : "positive"
-              }`} />
-            <p>{formattedBalanceFinal}</p>
-          </div>
+          <BalanceDisplay icon={DownloadIcon} value={formattedBalanceIncome} className="income" />
+          <BalanceDisplay icon={UploadIcon} value={formattedBalanceExpenses} className="expenses" />
+          <BalanceDisplay icon={PigCoinIcon} value={formattedBalanceFinal} className="edbita" />
         </div>
       </div>
 
       <div className="annualReport__categories">
         <div className="annualReport__categories-text">
-          <p>Categories</p>
-          <Button label="Add category" size="small" onClick={handleOpenModal} />
+          <p>{t('dashboard.annual_report.categories')}</p>
+          <Button label={t('dashboard.annual_report.add_category')} size="small" onClick={handleOpenModal} />
 
           <Sidebar
             visible={open}
