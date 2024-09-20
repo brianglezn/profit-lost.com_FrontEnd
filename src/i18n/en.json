@@ -1,24 +1,4 @@
 {
-    "common": {
-        "logout": "Log Out",
-        "login": "Log In",
-        "password": "Password",
-        "email": "Email",
-        "forgot_password": "Forgot password?",
-        "username_or_email": "Username or E-mail",
-        "submit": "Let's go!",
-        "sign_up": "Sign up",
-        "already_have_account": "Already have an account?",
-        "username": "Username",
-        "name": "Name",
-        "surname": "Surname",
-        "remember_password": "Remembered your password?",
-        "reset_password": "Reset Password",
-        "reset_password_link": "Send Reset Link",
-        "new_password": "New Password",
-        "confirm_new_password": "Confirm New Password",
-        "verification_code": "Verification Code"
-    },
     "landing": {
         "header": {
             "item1": "FEATURES",
@@ -35,6 +15,11 @@
                 "feature1": "Multidevice",
                 "feature2": "Friendly Dashboard",
                 "feature3": "Easy to Use"
+            },
+            "under_construction": {
+                "title": "Website Under Constructon",
+                "description": "This website is currently under construction!",
+                "btn": "Close"
             }
         },
         "cookies": {
@@ -100,6 +85,26 @@
             }
         },
         "auth": {
+            "common": {
+                "logout": "Log Out",
+                "login": "Log In",
+                "password": "Password",
+                "email": "Email",
+                "forgot_password": "Forgot password?",
+                "username_or_email": "Username or E-mail",
+                "submit": "Let's go!",
+                "sign_up": "Sign up",
+                "already_have_account": "Already have an account?",
+                "username": "Username",
+                "name": "Name",
+                "surname": "Surname",
+                "remember_password": "Remembered your password?",
+                "reset_password": "Reset Password",
+                "reset_password_link": "Send Reset Link",
+                "new_password": "New Password",
+                "confirm_new_password": "Confirm New Password",
+                "verification_code": "Verification Code"
+            },
             "login": {
                 "title": "Log in",
                 "forgot_password_link": "Forgot password?",

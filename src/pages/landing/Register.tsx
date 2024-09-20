@@ -73,7 +73,7 @@ function Register() {
             <InputText
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder={t('common.username')}
+              placeholder={t('landing.auth.common.username')}
               required
               className="auth-input"
             />
@@ -83,7 +83,7 @@ function Register() {
             <InputText
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder={t('common.name')}
+              placeholder={t('landing.auth.common.name')}
               required
               className="auth-input"
             />
@@ -93,7 +93,7 @@ function Register() {
             <InputText
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              placeholder={t('common.surname')}
+              placeholder={t('landing.auth.common.surname')}
               required
               className="auth-input"
             />
@@ -103,7 +103,7 @@ function Register() {
             <InputText
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={t('common.email')}
+              placeholder={t('landing.auth.common.email')}
               required
               type="email"
               className="auth-input"
@@ -116,12 +116,12 @@ function Register() {
               onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
               toggleMask
               feedback={true}
-              promptLabel={t('common.password_prompt')}
-              weakLabel={t('common.password_weak')}
-              mediumLabel={t('common.password_medium')}
-              strongLabel={t('common.password_strong')}
+              promptLabel={t('landing.auth.common.password_prompt')}
+              weakLabel={t('landing.auth.common.password_weak')}
+              mediumLabel={t('landing.auth.common.password_medium')}
+              strongLabel={t('landing.auth.common.password_strong')}
               className="auth-input"
-              placeholder={t('common.password')}
+              placeholder={t('landing.auth.common.password')}
             />
           </div>
 

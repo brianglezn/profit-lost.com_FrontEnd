@@ -80,7 +80,7 @@ function Login() {
           <h2 className="form__title">{t('landing.auth.login.title')}</h2>
 
           <InputText
-            placeholder={t('common.username_or_email')}
+            placeholder={t('landing.auth.common.username_or_email')}
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
             required
@@ -91,26 +91,26 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             toggleMask
-            placeholder={t('common.password')}
+            placeholder={t('landing.auth.common.password')}
             feedback={false}
             required
             className='auth-input'
           />
 
-          <a href="/forgot-password" className="form__forgot">{t('common.forgot_password')}</a>
+          <a href="/forgot-password" className="form__forgot">{t('landing.auth.common.forgot_password')}</a>
 
           <button
             className="custom-btn"
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? <span className="custom-loader"></span> : t('common.submit')}
+            {isLoading ? <span className="custom-loader"></span> : t('landing.auth.common.submit')}
           </button>
 
           <p className="form__link">
-            {t('common.dont_have_account')}
+            {t('landing.auth.login.dont_have_account')}
             <a href="/register" className="form__link--color">
-              {t('common.sign_up')}
+              {t('landing.auth.common.sign_up')}
             </a>
           </p>
         </form>

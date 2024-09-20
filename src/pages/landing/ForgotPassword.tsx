@@ -33,7 +33,7 @@ function ForgotPassword() {
         toast.error(t('landing.auth.resetPasw.error_message'));
       }
     } catch (error) {
-      toast.error(t('common.error'));
+      toast.error(t('landing.auth.common.error'));
       console.error('Error sending reset password link:', error);
     }
 
@@ -59,7 +59,7 @@ function ForgotPassword() {
             <InputText
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={t('common.email')}
+              placeholder={t('landing.auth.common.email')}
               required
               type="email"
               className="auth-input"
@@ -75,7 +75,7 @@ function ForgotPassword() {
           </button>
 
           <p className="form__link">
-            {t('common.remember_password')}
+            {t('landing.auth.common.remember_password')}
             <a href="/login" className="form__link--color">{t('landing.auth.login.title')}</a>
           </p>
         </form>

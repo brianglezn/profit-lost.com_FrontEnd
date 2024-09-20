@@ -42,7 +42,7 @@ function ForgotPasswordToken() {
                 toast.error(t('landing.auth.resetPasw.error_message'));
             }
         } catch (error) {
-            toast.error(t('common.error'));
+            toast.error(t('landing.auth.common.error'));
             console.error('Error resetting password:', error);
         }
 

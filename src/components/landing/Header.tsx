@@ -63,7 +63,7 @@ function Header() {
           </ul>
         </nav>
         <div className="header__login no-select">
-          <Button label={t('common.login')} raised onClick={() => window.location.href = '/login'} />
+          <Button label={t('landing.auth.common.login')} raised onClick={() => window.location.href = '/login'} />
         </div>
       </header>
     </>
