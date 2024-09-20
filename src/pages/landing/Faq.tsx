@@ -1,45 +1,47 @@
 import React, { useState } from 'react';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { InputText } from 'primereact/inputtext';
+import { useTranslation } from 'react-i18next';
 
 import './Faq.scss';
 import Footer from '../../components/landing/Footer';
 
 const Faq: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const { t } = useTranslation();
 
     const faqItems = [
         {
-            title: "How can I change my password?",
-            content: "To change your password, navigate to the 'Security and Privacy' section in your user settings. Enter your current password, followed by the new password and confirmation, and click 'Change Password'."
+            title: t('landing.faq.questions.q1.title'),
+            content: t('landing.faq.questions.q1.content')
         },
         {
-            title: "How do I delete my account?",
-            content: "You can delete your account by going to the 'Security and Privacy' section, clicking 'Delete Account', entering your username, and confirming the action."
+            title: t('landing.faq.questions.q2.title'),
+            content: t('landing.faq.questions.q2.content')
         },
         {
-            title: "How do I update my profile image?",
-            content: "Go to your user settings and click 'Change Image'. You can upload a new profile picture or delete your current one by clicking 'Delete Image'."
+            title: t('landing.faq.questions.q3.title'),
+            content: t('landing.faq.questions.q3.content')
         },
         {
-            title: "How do I manage my account categories?",
-            content: "To manage categories, go to the 'Categories' section in your account settings. Here you can add, edit, or delete categories associated with your movements."
+            title: t('landing.faq.questions.q4.title'),
+            content: t('landing.faq.questions.q4.content')
         },
         {
-            title: "What should I do if I forgot my password?",
-            content: "Click on 'Forgot Password' on the login screen. Enter your email, and a reset token will be sent to you. Use that token to reset your password."
+            title: t('landing.faq.questions.q5.title'),
+            content: t('landing.faq.questions.q5.content')
         },
         {
-            title: "How do I see my financial movements by year?",
-            content: "You can view your financial movements for a specific year by going to the 'Movements' section. Select the year you want to filter, and all movements for that year will be displayed."
+            title: t('landing.faq.questions.q6.title'),
+            content: t('landing.faq.questions.q6.content')
         },
         {
-            title: "How can I update my account language?",
-            content: "To update your preferred language, navigate to your profile settings, select your language from the dropdown menu, and click 'Confirm Changes'."
+            title: t('landing.faq.questions.q7.title'),
+            content: t('landing.faq.questions.q7.content')
         },
         {
-            title: "Can I recover my account after deletion?",
-            content: "No, once your account is deleted, it cannot be recovered. Make sure you have backed up any important information before proceeding."
+            title: t('landing.faq.questions.q8.title'),
+            content: t('landing.faq.questions.q8.content')
         }
     ];
 
@@ -50,12 +52,12 @@ const Faq: React.FC = () => {
     return (
         <>
             <div className="faq">
-                <h1 className='title'>Frequently Asked Questions</h1>
+                <h1 className="title">{t('landing.faq.title')}</h1>
                 <div className="faq-search">
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Search for a question..."
+                        placeholder={t('landing.faq.search_placeholder')}
                         className="p-inputtext-lg"
                     />
                 </div>

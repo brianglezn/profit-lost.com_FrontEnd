@@ -1,0 +1,144 @@
+{
+    "common": {
+        "logout": "Log Out",
+        "login": "Log In",
+        "password": "Password",
+        "email": "Email",
+        "forgot_password": "Forgot password?",
+        "username_or_email": "Username or E-mail",
+        "submit": "Let's go!",
+        "sign_up": "Sign up",
+        "already_have_account": "Already have an account?",
+        "username": "Username",
+        "name": "Name",
+        "surname": "Surname",
+        "remember_password": "Remembered your password?",
+        "reset_password": "Reset Password",
+        "reset_password_link": "Send Reset Link",
+        "new_password": "New Password",
+        "confirm_new_password": "Confirm New Password",
+        "verification_code": "Verification Code"
+    },
+    "landing": {
+        "header": {
+            "item1": "FEATURES",
+            "item2": "PREVIEW",
+            "item3": "LANGUAGE"
+        },
+        "home": {
+            "title": "Manage All Your Personal Finances in One Place",
+            "section_description": {
+                "title": "Transforming Personal Financial Management",
+                "description": "With Profit&Lost, you can manage your personal finances with ease and efficiency. Our intuitive platform helps you to control income, expenses, and savings, all in one place. Start making smarter financial decisions today!"
+            },
+            "section_features": {
+                "feature1": "Multidevice",
+                "feature2": "Friendly Dashboard",
+                "feature3": "Easy to Use"
+            }
+        },
+        "cookies": {
+            "title": "COOKIES",
+            "cookie_notice": "COOKIE NOTICE",
+            "notice": "In compliance with the provisions of Article 22.2 of Law 34/2002, of July 11, Services of the Information Society and Electronic Commerce, profit-lost.com informs you, in this section, about the policy of collection and treatment of cookies.",
+            "what_are_cookies": "WHAT ARE COOKIES?",
+            "what_are_cookies_text": "A cookie is a file that is downloaded to your computer when you access certain web pages. Cookies allow a website, among other things, to store and retrieve information about the browsing habits of a user or their computer and, depending on the information they contain and the way you use your computer, can be used to recognize the user.",
+            "types_of_cookies": "WHICH TYPES OF COOKIES DOES THIS WEBSITE USE?",
+            "analysis_cookies": "This website uses the following types of cookies: Cookies of analysis: These are those that are well treated by us or by third parties, allow us to quantify the number of users and thus carry out the statistical analysis of the use made by users of the service offered. To do this, we analyze your browsing on our website in order to improve the range of products or services we offer you.",
+            "technical_cookies": "Technical Cookies: These are those that allow the user to navigate through the restricted area and the use of its different functions, such as, for example, to carry out the purchase process of an article.",
+            "personalization_cookies": "Personalization Cookies: These are those that allow the user to access the service with some general characteristics predefined according to a series of criteria in the user's terminal such as the language or the type of browser through which the user connects to the service.",
+            "advertising_cookies": "Advertising Cookies: These are those that, either treated by this website or by third parties, allow us to manage in the most efficient way possible the offer of advertising spaces on the website, adapting the content of the advertisement to the content of the service requested or the use you make of our website. In order to do so, we may analyze your Internet browsing habits and show you advertising related to your browsing profile.",
+            "behavioral_advertising_cookies": "Behavioral advertising cookies: These are those that allow the management, in the most effective way possible, of the advertising spaces that, where appropriate, the editor has included in a web page, application or platform from which the requested service is provided. This type of cookies store information on the behavior of visitors obtained through the continuous observation of their browsing habits, which makes it possible to develop a specific profile in order to display ads based on the same.",
+            "disable_cookies": "DISABLE COOKIES",
+            "disable_cookies_text": "You can allow, block or delete cookies installed on your computer by configuring the options of the browser installed on your computer.",
+            "disable_cookies_more_text": "Most web browsers offer the possibility to allow, block or delete cookies installed on your computer.",
+            "browser_settings": "Below you can access the configuration of browsers to accept, install or disable cookies: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple).",
+            "third_party_cookies": "THIRD PARTY COOKIES",
+            "third_party_cookies_text": "This website uses third party services to collect information for statistical and web usage purposes. DoubleClick cookies are used to improve the advertising included on the website. They are used to target advertising according to the content that is relevant to a user, thus improving the quality of the user experience on the site.",
+            "services_used": "In particular, we use the services of Google Adsense and Google Analytics for our statistics and advertising. Some cookies are essential for the operation of the site, for example the built-in search engine.",
+            "social_network_integration": "Our site includes other functionality provided by third parties. You can easily share the content on social networks such as Facebook, Twitter or Google +, with the buttons we have included for this purpose.",
+            "warning_about_deleting": "WARNING ABOUT DELETING COOKIES",
+            "deleting_cookies_text": "You can delete and block all cookies from this site, but part of the site will not work or the quality of the web page may be affected.",
+            "contact_for_questions": "If you have any questions about our cookie policy, you can contact this website through our contact channels."
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "search_placeholder": "Search for a question...",
+            "questions": {
+                "q1": {
+                    "title": "How can I change my password?",
+                    "content": "To change your password, navigate to the 'Security and Privacy' section in your user settings. Enter your current password, followed by the new password and confirmation, and click 'Change Password'."
+                },
+                "q2": {
+                    "title": "How do I delete my account?",
+                    "content": "You can delete your account by going to the 'Security and Privacy' section, clicking 'Delete Account', entering your username, and confirming the action."
+                },
+                "q3": {
+                    "title": "How do I update my profile image?",
+                    "content": "Go to your user settings and click 'Change Image'. You can upload a new profile picture or delete your current one by clicking 'Delete Image'."
+                },
+                "q4": {
+                    "title": "How do I manage my account categories?",
+                    "content": "To manage categories, go to the 'Categories' section in your account settings. Here you can add, edit, or delete categories associated with your movements."
+                },
+                "q5": {
+                    "title": "What should I do if I forgot my password?",
+                    "content": "Click on 'Forgot Password' on the login screen. Enter your email, and a reset token will be sent to you. Use that token to reset your password."
+                },
+                "q6": {
+                    "title": "How do I see my financial movements by year?",
+                    "content": "You can view your financial movements for a specific year by going to the 'Movements' section. Select the year you want to filter, and all movements for that year will be displayed."
+                },
+                "q7": {
+                    "title": "How can I update my account language?",
+                    "content": "To update your preferred language, navigate to your profile settings, select your language from the dropdown menu, and click 'Confirm Changes'."
+                },
+                "q8": {
+                    "title": "Can I recover my account after deletion?",
+                    "content": "No, once your account is deleted, it cannot be recovered. Make sure you have backed up any important information before proceeding."
+                }
+            }
+        },
+        "auth": {
+            "login": {
+                "title": "Log in",
+                "forgot_password_link": "Forgot password?",
+                "submit_button": "Let's go!",
+                "sign_up_link": "Sign up",
+                "dont_have_account": "Don't have an account?",
+                "session_expired": "Your session has expired. Please log in again.",
+                "login_success": "Login successful!",
+                "login_error": "Incorrect username/email or password",
+                "login_failure": "There was a problem trying to log in"
+            },
+            "register": {
+                "title": "Create an account",
+                "submit_button": "Let's go!",
+                "already_have_account_link": "Already have an account?",
+                "sign_in_link": "Sign in",
+                "success": "Registration successful! Please log in.",
+                "error_existing_email": "This email is already registered. Please use another email or log in.",
+                "error_existing_username": "This username is already taken. Please choose a different username.",
+                "error_validation": "Please make sure all fields are correctly filled.",
+                "error_server": "There was a problem with the server. Please try again later.",
+                "error_generic": "An unexpected error occurred during registration. Please try again."
+            },
+            "resetPasw": {
+                "title": "Reset Password",
+                "submit_button": "Send Reset Link",
+                "success_message": "A link to reset your password has been sent to your email.",
+                "error_message": "Failed to send reset password link. Please try again.",
+                "token": {
+                    "title": "Reset Password",
+                    "verification_code_placeholder": "Verification Code",
+                    "new_password_placeholder": "New Password",
+                    "confirm_new_password_placeholder": "Confirm New Password",
+                    "submit_button": "Reset Password",
+                    "success_message": "Password has been reset successfully.",
+                    "password_mismatch": "Passwords don't match!"
+                }
+            }
+        }
+    },
+    "dashboard": {}
+}

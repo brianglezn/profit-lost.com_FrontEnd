@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { Password } from 'primereact/password';
 import { InputText } from 'primereact/inputtext';
+import { useTranslation } from 'react-i18next';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
@@ -15,6 +16,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,20 +31,23 @@ function Register() {
         body: JSON.stringify({ username, name, surname, email, password }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        toast.success('User registered successfully');
+        toast.success(t('landing.auth.register.success'));
         navigate('/login');
+      } else if (data.message.includes('email already exists')) {
+        toast.error(t('landing.auth.register.error_existing_email'));
+      } else if (data.message.includes('username already exists')) {
+        toast.error(t('landing.auth.register.error_existing_username'));
       } else {
-        const errorResponse = await response.json();
-        throw new Error(errorResponse.message || 'Failed to register');
+        toast.error(t('landing.auth.register.error_generic'));
       }
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(`Registration error: ${error.message}`);
-        console.error('Registration error:', error);
+        toast.error(t('landing.auth.register.error_server'));
       } else {
-        toast.error('An unexpected error occurred');
-        console.error('Registration error:', error);
+        toast.error(t('landing.auth.register.error_generic'));
       }
     } finally {
       setIsLoading(false);
@@ -62,13 +67,13 @@ function Register() {
 
       <div className="container__form">
         <form className="form__box" onSubmit={handleSubmit}>
-          <h2 className="form__title">Create an account</h2>
+          <h2 className="form__title">{t('landing.auth.register.title')}</h2>
 
           <div className="form__input-container">
             <InputText
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
+              placeholder={t('common.username')}
               required
               className="auth-input"
             />
@@ -78,7 +83,7 @@ function Register() {
             <InputText
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
+              placeholder={t('common.name')}
               required
               className="auth-input"
             />
@@ -88,7 +93,7 @@ function Register() {
             <InputText
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              placeholder="Surname"
+              placeholder={t('common.surname')}
               required
               className="auth-input"
             />
@@ -98,7 +103,7 @@ function Register() {
             <InputText
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder={t('common.email')}
               required
               type="email"
               className="auth-input"
@@ -111,23 +116,23 @@ function Register() {
               onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
               toggleMask
               feedback={true}
-              promptLabel="Enter your password"
-              weakLabel="Weak"
-              mediumLabel="Medium"
-              strongLabel="Strong"
+              promptLabel={t('common.password_prompt')}
+              weakLabel={t('common.password_weak')}
+              mediumLabel={t('common.password_medium')}
+              strongLabel={t('common.password_strong')}
               className="auth-input"
-              placeholder="Password"
+              placeholder={t('common.password')}
             />
           </div>
 
           <button className="custom-btn" type="submit" disabled={isLoading}>
-            {isLoading ? <span className="custom-loader"></span> : "Let's go!"}
+            {isLoading ? <span className="custom-loader"></span> : t('landing.auth.register.submit_button')}
           </button>
 
           <p className="form__link">
-            Already have an account?
+            {t('landing.auth.register.already_have_account_link')}
             <a href="/login" className="form__link--color">
-              Sign in
+              {t('landing.auth.register.sign_in_link')}
             </a>
           </p>
         </form>

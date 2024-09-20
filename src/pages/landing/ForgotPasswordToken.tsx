@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
+import { useTranslation } from 'react-i18next';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
@@ -13,13 +14,14 @@ function ForgotPasswordToken() {
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
 
         if (newPassword !== confirmNewPassword) {
-            toast.error("Passwords don't match!");
+            toast.error(t('landing.auth.resetPasw.token.password_mismatch'));
             setIsLoading(false);
             return;
         }
@@ -34,15 +36,14 @@ function ForgotPasswordToken() {
             });
 
             if (response.ok) {
-                toast.success('Password has been reset successfully');
+                toast.success(t('landing.auth.resetPasw.token.success_message'));
                 navigate('/login');
             } else {
-                toast.error('Failed to reset password. Please try again.');
-                console.error('Failed to reset password');
+                toast.error(t('landing.auth.resetPasw.error_message'));
             }
         } catch (error) {
-            toast.error('There was an error resetting the password. Please try again.');
-            console.error('There was an error resetting the password', error);
+            toast.error(t('common.error'));
+            console.error('Error resetting password:', error);
         }
 
         setIsLoading(false);
@@ -61,13 +62,13 @@ function ForgotPasswordToken() {
 
             <div className="container__form">
                 <form className="form__box" onSubmit={handleSubmit} style={{ marginBottom: '1.5rem' }}>
-                    <h2 className="form__title">Reset Password</h2>
+                    <h2 className="form__title">{t('landing.auth.resetPasw.token.title')}</h2>
 
                     <div className="form__input-container">
                         <InputText
                             value={token}
                             onChange={(e) => setToken(e.target.value)}
-                            placeholder="Verification Code"
+                            placeholder={t('landing.auth.resetPasw.token.verification_code_placeholder')}
                             className="auth-input"
                             required
                         />
@@ -77,10 +78,9 @@ function ForgotPasswordToken() {
                         <Password
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            placeholder="New Password"
+                            placeholder={t('landing.auth.resetPasw.token.new_password_placeholder')}
                             toggleMask
                             feedback={true}
-                            promptLabel="Enter a new password"
                             className="auth-input"
                             required
                         />
@@ -90,7 +90,7 @@ function ForgotPasswordToken() {
                         <Password
                             value={confirmNewPassword}
                             onChange={(e) => setConfirmNewPassword(e.target.value)}
-                            placeholder="Confirm New Password"
+                            placeholder={t('landing.auth.resetPasw.token.confirm_new_password_placeholder')}
                             toggleMask
                             feedback={false}
                             className="auth-input"
@@ -102,7 +102,7 @@ function ForgotPasswordToken() {
                         {isLoading ? (
                             <span className="custom-loader"></span>
                         ) : (
-                            "Reset Password"
+                            t('landing.auth.resetPasw.token.submit_button')
                         )}
                     </button>
                 </form>

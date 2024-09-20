@@ -1,0 +1,20 @@
+{
+    "common": {
+        "logout": "Cerrar Sesión",
+        "login": "Iniciar Sesión",
+        "password": "Contraseña",
+        "email": "Correo electrónico"
+    },
+    "landing": {
+        "header": {
+            "item1": "CARACTERÍSTICAS",
+            "item2": "PREVISUALIZACIÓN",
+            "item3": "IDIOMA"
+        },
+        "home": {
+            "title": "Gestione todas sus finanzas personales en un solo lugar",
+            "section_description": ""
+        }
+    },
+    "dashboard": {}
+}

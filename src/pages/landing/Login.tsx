@@ -4,6 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
@@ -14,6 +15,7 @@ function Login() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const { t } = useTranslation();
 
   const reiniciarTemporizadorExpiracionToken = () => {
     const temporizadorExistente = localStorage.getItem('temporizadorToken');
@@ -23,7 +25,7 @@ function Login() {
 
     const temporizadorId = setTimeout(() => {
       localStorage.removeItem('token');
-      alert('Your session has expired. Please log in again.');
+      alert(t('landing.auth.session_expired'));
       navigate('/login');
     }, 3600000);
 
@@ -48,15 +50,15 @@ function Login() {
         localStorage.setItem('token', data.token);
         login(data.token);
         reiniciarTemporizadorExpiracionToken();
-        toast.success('Login successful!');
+        toast.success(t('landing.auth.login_success'));
         navigate('/dashboard');
       } else {
-        toast.error('Incorrect username/email or password');
-        console.error('Failed to login');
+        toast.error(t('landing.auth.login_error'));
+        console.error(t('landing.auth.login_error'));
       }
     } catch (error) {
-      toast.error('There was a problem trying to log in');
-      console.error('There was an error logging in', error);
+      toast.error(t('landing.auth.login_failure'));
+      console.error(t('landing.auth.login_failure'), error);
     }
 
     setIsLoading(false);
@@ -75,10 +77,10 @@ function Login() {
 
       <div className="container__form">
         <form onSubmit={handleSubmit}>
-          <h2 className="form__title">Log in</h2>
+          <h2 className="form__title">{t('landing.auth.login.title')}</h2>
 
           <InputText
-            placeholder="Username or E-mail"
+            placeholder={t('common.username_or_email')}
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
             required
@@ -89,26 +91,26 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             toggleMask
-            placeholder="Password"
+            placeholder={t('common.password')}
             feedback={false}
             required
             className='auth-input'
           />
 
-          <a href="/forgot-password" className="form__forgot">Forgot password?</a>
+          <a href="/forgot-password" className="form__forgot">{t('common.forgot_password')}</a>
 
           <button
             className="custom-btn"
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? <span className="custom-loader"></span> : "Let's go!"}
+            {isLoading ? <span className="custom-loader"></span> : t('common.submit')}
           </button>
 
           <p className="form__link">
-            Don&apos;t have an account?
+            {t('common.dont_have_account')}
             <a href="/register" className="form__link--color">
-              Sign up
+              {t('common.sign_up')}
             </a>
           </p>
         </form>

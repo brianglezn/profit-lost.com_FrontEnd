@@ -6,37 +6,51 @@
   align-items: center;
   padding: 0.5rem 3rem 0 3rem;
 
-  .header__logo {
-    img {
-      object-fit: contain;
-      max-height: 9vh;
-      min-width: 20vh;
-    }
+  .header__logo img {
+    object-fit: contain;
+    max-height: 9vh;
+    min-width: 20vh;
   }
 
   .header__nav {
     ul {
-      padding: 0;
-      margin: 0;
-    }
+      list-style: none;
+      display: flex;
+      gap: 3rem;
 
-    li {
-      display: inline-flex;
-      padding-left: 4vh;
-      padding-right: 4vh;
+      li {
+        position: relative;
 
-      a {
-        text-decoration: none;
-        font-weight: bold;
-        text-transform: uppercase;
-        transition-duration: 0.5s;
-        transition-timing-function: ease;
+        a {
+          text-decoration: none;
+          font-weight: bold;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
 
-        &:hover {
-          transition-duration: 0.8s;
-          transition-timing-function: ease;
-          letter-spacing: 0.5vh;
-          color: $primary_color-600;
+        .language-options {
+          display: flex;
+          flex-direction: column;
+          margin-top: .5rem;
+          gap: 1rem;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: $bg-color-sec;
+          border-radius: .8rem;
+          padding: 0.5rem;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+          .language-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            .language-flag {
+              width: 20px;
+              height: 14px;
+            }
+          }
         }
       }
     }
@@ -44,12 +58,10 @@
 
   .header__login {
     display: flex;
-    width: 20vh;
     justify-content: center;
   }
 
   @media (max-width: 768px) {
-
     padding: 0 2.5rem 0 1.5rem;
 
     .header__nav {
@@ -61,19 +73,7 @@
     }
   }
 
-  @media (max-width:480px) {
+  @media (max-width: 480px) {
     padding: 0 2.5rem 0 2rem;
-  }
-}
-
-.sidebar__nav {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  padding: 1rem;
-
-  .sidebar-img {
-    width: 70%;
-    margin: 0 auto;
   }
 }

@@ -1,4 +1,5 @@
 import { Carousel } from "primereact/carousel";
+import { useTranslation } from 'react-i18next';
 
 import MobileScreenIcon from "../../components/icons/MobileScreenIcon";
 import EmptyDashBoardIcon from "../../components/icons/EmptyDashBoardIcon";
@@ -19,6 +20,7 @@ const images = [
 ];
 
 const Home = () => {
+  const { t } = useTranslation();
   const imageTemplate = (image: string) => {
     return (
       <div className="carousel-image-container">
@@ -34,7 +36,7 @@ const Home = () => {
 
       <section className="hero">
         <div className="hero__title">
-          <h1>Manage All Your Personal Finances in One Place</h1>
+          <h1>{t('landing.home.title')}</h1>
         </div>
       </section>
 
@@ -42,13 +44,8 @@ const Home = () => {
         <section className="section__description">
           <div className="section__description-container">
             <div>
-              <h2>Transforming Personal Financial Management</h2>
-              <p>
-                With Profit&Lost, you can manage your personal finances with ease
-                and efficiency. Our intuitive platform helps you to control
-                income, expenses, and savings, all in one place. Start making
-                smarter financial decisions today!
-              </p>
+              <h2>{t('landing.home.section_description.title')}</h2>
+              <p>{t('landing.home.section_description.description')}</p>
             </div>
 
             <div className="no-select">
@@ -66,7 +63,7 @@ const Home = () => {
               <MobileScreenIcon />
             </figure>
             <div>
-              <h3>Multidevice</h3>
+              <h3>{t('landing.home.section_features.feature1')}</h3>
             </div>
           </article>
           <article>
@@ -74,7 +71,7 @@ const Home = () => {
               <EmptyDashBoardIcon />
             </figure>
             <div>
-              <h3>Friendly Dashboard</h3>
+              <h3>{t('landing.home.section_features.feature2')}</h3>
             </div>
           </article>
           <article>
@@ -82,7 +79,7 @@ const Home = () => {
               <FaceGrinBeamIcon />
             </figure>
             <div>
-              <h3>Easy to Use</h3>
+              <h3>{t('landing.home.section_features.feature3')}</h3>
             </div>
           </article>
         </section>

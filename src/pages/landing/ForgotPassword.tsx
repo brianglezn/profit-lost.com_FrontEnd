@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { InputText } from 'primereact/inputtext';
+import { useTranslation } from 'react-i18next';
 
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
@@ -10,6 +11,7 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,14 +27,14 @@ function ForgotPassword() {
       });
 
       if (response.ok) {
-        toast.success('A link to reset your password has been sent to your email.', { duration: 5000 });
+        toast.success(t('landing.auth.resetPasw.success_message'), { duration: 5000 });
         navigate('/forgot-password-token');
       } else {
-        toast.error('Failed to send reset password link. Please try again.');
+        toast.error(t('landing.auth.resetPasw.error_message'));
       }
     } catch (error) {
-      toast.error('There was an error sending the reset password link. Please try again.');
-      console.error('There was an error sending the reset password link', error);
+      toast.error(t('common.error'));
+      console.error('Error sending reset password link:', error);
     }
 
     setIsLoading(false);
@@ -51,13 +53,13 @@ function ForgotPassword() {
 
       <div className="container__form">
         <form className="form__box" onSubmit={handleSubmit}>
-          <h2 className="form__title">Reset Password</h2>
+          <h2 className="form__title">{t('landing.auth.resetPasw.title')}</h2>
 
           <div className="form__input-container">
             <InputText
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder={t('common.email')}
               required
               type="email"
               className="auth-input"
@@ -68,13 +70,13 @@ function ForgotPassword() {
             {isLoading ? (
               <span className="custom-loader"></span>
             ) : (
-              "Send Reset Link"
+              t('landing.auth.resetPasw.submit_button')
             )}
           </button>
 
           <p className="form__link">
-            Remembered your password?
-            <a href="/login" className="form__link--color">Sign in</a>
+            {t('common.remember_password')}
+            <a href="/login" className="form__link--color">{t('landing.auth.login.title')}</a>
           </p>
         </form>
       </div>

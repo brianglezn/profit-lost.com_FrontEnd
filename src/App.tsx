@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
+import './i18n';
 
 const Home = React.lazy(() => import('./pages/landing/Home'));
 const Login = React.lazy(() => import('./pages/landing/Login'));
