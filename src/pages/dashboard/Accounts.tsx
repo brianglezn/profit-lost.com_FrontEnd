@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { ProgressBar } from "primereact/progressbar";
 import { Sidebar } from 'primereact/sidebar';
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Button } from "primereact/button";
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
@@ -137,7 +137,6 @@ function Accounts() {
     return items;
   }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar]);
 
-
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
 
@@ -166,7 +165,7 @@ function Accounts() {
           <div className="accounts__main-chart">
             {!isChartDataEmpty ? (
               <ResponsiveContainer width="100%" height={300}>
-                 <BarChart
+                <BarChart
                   width={500}
                   height={300}
                   data={chartData}
@@ -190,7 +189,7 @@ function Accounts() {
                       shape={<CustomBarShape />}
                     />
                   ))}
-                 </BarChart>
+                </BarChart>
               </ResponsiveContainer>
             ) : (
               <ChartLineIcon className="custom-icon" />

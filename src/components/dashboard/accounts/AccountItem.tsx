@@ -10,16 +10,20 @@ interface AccountItemProps {
 }
 
 function AccountItem(props: AccountItemProps) {
-  const { accountName, balance, customBackgroundColor, customColor, onClick, accountId } = props;
+  const { accountName, balance, customColor, customBackgroundColor, onClick, accountId } = props;
 
   return (
     <div
-      className="account__item"
+      className="account-item"
       style={{ backgroundColor: customBackgroundColor, color: customColor }}
       onClick={() => onClick(accountId)}
     >
-      <p>{accountName}</p>
-      <span>{balance}</span>
+      <div className="account-item__details">
+        <div className="account-item__name">{accountName}</div>
+        <div className="account-item__balance">
+          {balance}
+        </div>
+      </div>
     </div>
   );
 }

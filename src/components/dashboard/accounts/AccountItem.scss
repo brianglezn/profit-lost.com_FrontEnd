@@ -1,33 +1,36 @@
-@import '../../../../_variables.scss';
+@import '../../../../variables';
 
-.account__item {
-  margin: .4rem;
-  flex: 1 1 300px;
-  height: 10rem;
-  border-radius: .8rem;
-  cursor: pointer;
+.account-item {
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
   justify-content: space-between;
-  box-shadow: $shadow_color 0px 3px 6px;
-  transition: transform 0.3s ease-in-out;
+  align-items: center;
+  padding: 1rem 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  height: 4rem;
 
   &:hover {
-    transform: scale(1.02);
+    opacity: .8;
   }
 
-  p {
-    font-size: 1.5rem;
-    text-align: left;
-    font-weight: bold;
-    margin: 1.2rem 0 0 1.2rem;
-  }
+  .account-item__details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 1rem;
 
-  span {
-    font-size: 1.5rem;
-    text-align: right;
-    font-weight: bold;
-    margin: 0 1.2rem 1.2rem 0;
+    .account-item__name {
+      flex: 1;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+
+    .account-item__balance {
+      flex: 1;
+      font-size: 1rem;
+      text-align: right;
+      padding-right: 1rem;
+    }
   }
 }
