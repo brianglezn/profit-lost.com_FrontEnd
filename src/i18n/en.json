@@ -290,9 +290,7 @@
             "annual_chart": {
                 "header": "Annual Report",
                 "income": "Income",
-                "expenses": "Expenses",
-                "tooltip_income": "Total income for {month}",
-                "tooltip_expenses": "Total expenses for {month}"
+                "expenses": "Expenses"
             },
             "annual_movements": {
                 "header": "Movements by Category",

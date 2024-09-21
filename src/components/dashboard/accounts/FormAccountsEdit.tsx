@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primereact/colorpicker';
 import { toast } from 'react-hot-toast';
+import { InputText } from "primereact/inputtext";
 
 import { editAccount } from '../../../api/accounts/editAccount';
 import { removeAccount } from '../../../api/accounts/removeAccount';
@@ -148,8 +149,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     return (
         <form className="formAccount" onSubmit={handleEditAccount}>
             <h2>Edit account</h2>
-            <input
-                type="text"
+            <InputText
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
                 placeholder="Account Name"

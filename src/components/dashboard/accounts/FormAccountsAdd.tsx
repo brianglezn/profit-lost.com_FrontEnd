@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { InputText } from 'primereact/inputtext';
 
 import { addAccount } from '../../../api/accounts/addAccount';
 
@@ -29,8 +30,7 @@ function FormAccountsAdd({ onAccountAdded }: { onAccountAdded: () => void }) {
     return (
         <form className="formAccount" onSubmit={handleSubmit}>
             <h2>Add Account</h2>
-            <input
-                type="text"
+            <InputText
                 id="accountName"
                 className="custom-input"
                 placeholder='Name'

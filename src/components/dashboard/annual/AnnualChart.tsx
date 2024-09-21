@@ -66,6 +66,9 @@ function AnnualChart({ year }: { year: string }) {
         fetchData();
     }, [year, t, monthNames]);
 
+    const incomeKey = t('dashboard.annual_report.annual_chart.income');
+    const expensesKey = t('dashboard.annual_report.annual_chart.expenses');
+
     return (
         <div className="annual__chart">
             {chartData.length > 0 ? (
@@ -83,12 +86,12 @@ function AnnualChart({ year }: { year: string }) {
                         <YAxis />
                         <Tooltip formatter={(value, name, props) => {
                             const month = props.payload.month;
-                            const label = name === "Income" ? t('dashboard.annual_report.annual_chart.tooltip_income', { month }) : t('dashboard.annual_report.annual_chart.tooltip_expenses', { month });
+                            const label = name === incomeKey ? t('dashboard.annual_report.annual_chart.income', { month }) : t('dashboard.annual_report.annual_chart.expenses', { month });
                             return [value, label];
                         }} />
                         <Legend />
-                        <Bar dataKey="Income" fill={"#ff8e38"} shape={<CustomBarShape />} />
-                        <Bar dataKey="Expenses" fill={"#9d300f"} shape={<CustomBarShape />} />
+                        <Bar dataKey="Income" name={incomeKey} fill={"#ff8e38"} shape={<CustomBarShape />} />
+                        <Bar dataKey="Expenses" name={expensesKey} fill={"#9d300f"} shape={<CustomBarShape />} />
                     </BarChart>
                 </ResponsiveContainer>
             ) : (

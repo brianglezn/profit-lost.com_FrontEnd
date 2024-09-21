@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
 
 import { getAllCategories } from '../../../api/categories/getAllCategories';
@@ -207,21 +208,20 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 filterBy="name"
                 required
             />
-            <input
-                className="custom-input"
-                type="text"
+            <InputText
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t('dashboard.movements.form_movements_add.description_placeholder')}
-            />
-            <input
                 className="custom-input"
-                type="number"
+            />
+            <InputText
                 value={amount}
                 onChange={handleAmountChange}
                 placeholder={t('dashboard.movements.form_movements_add.amount_placeholder')}
-                step="0.01"
-                min={isIncome ? "0" : undefined}
+                step={0.01}
+                min={isIncome ? 0 : undefined}
+                type="number"
+                className="custom-input"
                 required
             />
             <div className="formMovements-recurring">

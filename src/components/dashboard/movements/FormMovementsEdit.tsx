@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
 
 import { getAllCategories } from '../../../api/categories/getAllCategories';
@@ -177,24 +178,24 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 filterBy="name"
                 required
             />
-            <input
-                type="text"
-                className='custom-input'
+            <InputText
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t('dashboard.movements.form_movements_add.description_placeholder')}
                 required
-            />
-            <input
-                type="number"
                 className='custom-input'
+            />
+            <InputText
                 value={amount}
                 onChange={handleAmountChange}
                 placeholder={t('dashboard.movements.form_movements_add.amount_placeholder')}
+                type="number"
                 step="0.01"
                 min={isIncome ? "0" : undefined}
                 required
+                className='custom-input'
             />
+
             <div className="formMovements-buttons">
                 <button type="button" className="custom-btn-sec" onClick={handleRemove}>{t('dashboard.movements.form_movements_edit.delete_button')}</button>
                 <button type="submit" className="custom-btn">{t('dashboard.movements.form_movements_edit.save_button')}</button>

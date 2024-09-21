@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from 'react-hot-toast';
 import { ColorPicker } from "primereact/colorpicker";
+import { InputText } from "primereact/inputtext";
 import { useTranslation } from 'react-i18next';
 
 import { addCategory } from "../../../api/categories/addCategory";
@@ -52,7 +53,7 @@ function FormCategoryAdd({ onCategoryAdded, onClose }: { onCategoryAdded: () => 
                 <div className="formCategoriesContainer-colorPicker">
                     <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
                 </div>
-                <input
+                <InputText
                     placeholder={t('dashboard.annual_report.form_cat_add.name_placeholder')}
                     value={newCategory}
                     onChange={handleNewCategoryChange}
