@@ -371,7 +371,31 @@
                 "error_message": "Error al actualizar el movimiento"
             }
         },
-        "accounts": {},
+        "accounts": {
+            "title": "Cuentas",
+            "account_item": {
+                "edit": "Editar cuenta",
+                "remove": "Eliminar cuenta",
+                "add": "Agregar cuenta",
+                "submit": "Guardar"
+            },
+            "form_accounts_add": {
+                "title": "Agregar nueva cuenta",
+                "placeholder": "Nombre de la cuenta",
+                "error_message": "El nombre de la cuenta es obligatorio",
+                "success_message": "Cuenta creada correctamente",
+                "error_adding": "Error al añadir una cuenta"
+            },
+            "form_accounts_edit": {
+                "title": "Editar cuenta",
+                "background": "Fondo",
+                "font": "Fuente",
+                "year": "Año",
+                "remove_confirm": "¿Está seguro de que desea eliminar esta cuenta?",
+                "success_message": "Cuenta actualizada correctamente",
+                "error_message": "Error al editar la cuenta"
+            }
+        },
         "notes": {},
         "reports": {}
     }

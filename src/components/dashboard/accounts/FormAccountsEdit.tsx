@@ -3,6 +3,7 @@ import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primereact/colorpicker';
 import { toast } from 'react-hot-toast';
 import { InputText } from "primereact/inputtext";
+import { useTranslation } from 'react-i18next';
 
 import { editAccount } from '../../../api/accounts/editAccount';
 import { removeAccount } from '../../../api/accounts/removeAccount';
@@ -38,6 +39,7 @@ interface FormAccountsEditProps {
 }
 
 function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {
+    const { t } = useTranslation();
     const [accountName, setAccountName] = useState<string>(account.accountName);
     const [backgroundColor, setBackgroundColor] = useState<string>(account.configuration.backgroundColor);
     const [fontColor, setFontColor] = useState<string>(account.configuration.color);
@@ -116,11 +118,11 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                 records: updatedRecords,
                 configuration: { backgroundColor, color: fontColor },
             });
-            toast.success('Account updated successfully', { duration: 3000 });
+            toast.success(t('dashboard.accounts.form_accounts_edit.success_message'), { duration: 3000 });
             onClose();
             onUpdate();
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
+            const errorMessage = error instanceof Error ? error.message : t('dashboard.accounts.form_accounts_edit.error_message');
             console.error('Error during account update:', errorMessage);
             toast.error(errorMessage, { duration: 5000 });
         }
@@ -136,7 +138,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
         try {
             await removeAccount(account.AccountId);
-            toast.success(`The account "${account.accountName}" has been successfully removed.`, { duration: 3000 });
+            toast.success(t('dashboard.accounts.form_accounts_edit.remove_success', { accountName: account.accountName }), { duration: 3000 });
             onClose();
             onRemove();
         } catch (error) {
@@ -148,11 +150,10 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
     return (
         <form className="formAccount" onSubmit={handleEditAccount}>
-            <h2>Edit account</h2>
+            <h2>{t('dashboard.accounts.form_accounts_edit.title')}</h2>
             <InputText
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                placeholder="Account Name"
                 className="custom-input"
                 required
             />
@@ -161,7 +162,6 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                 value={year}
                 options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}
-                placeholder="Select Year"
             />
             <div className="dataYear">
                 {monthNames.map(month => {
@@ -179,19 +179,19 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                 })}
             </div>
             <div className="colorPiker">
-                <p>Background</p>
+                <p>{t('dashboard.accounts.form_accounts_edit.background')}</p>
                 <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
-                <p>Font</p>
+                <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
                 <ColorPicker value={fontColor} onChange={handleFontColorChange} />
             </div>
             <div className="formAccount-buttons">
-                <button type="button" className="custom-btn-sec" onClick={handleRemoveAccount}>Remove</button>
-                <button type="submit" className="custom-btn">Save</button>
+                <button type="button" className="custom-btn-sec" onClick={handleRemoveAccount}>{t('dashboard.accounts.account_item.remove')}</button>
+                <button type="submit" className="custom-btn">{t('dashboard.accounts.account_item.submit')}</button>
             </div>
             {showConfirm && (
                 <div className="form-confirmBtn">
-                    <p>Are you sure you want to delete <b>"{account.accountName}"</b>?</p>
-                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>Confirm</button>
+                    <p>{t('dashboard.accounts.form_accounts_edit.remove_confirm')} <b>"{account.accountName}"</b>?</p>
+                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>Confirmar</button>
                 </div>
             )}
         </form>

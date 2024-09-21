@@ -1,44 +1,46 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { InputText } from 'primereact/inputtext';
+import { useTranslation } from 'react-i18next';
 
 import { addAccount } from '../../../api/accounts/addAccount';
 
 import './FormAccounts.scss';
 
 function FormAccountsAdd({ onAccountAdded }: { onAccountAdded: () => void }) {
+    const { t } = useTranslation();
     const [accountName, setAccountName] = useState<string>('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (accountName.trim() === '') {
-            toast.error('Account name is required');
+            toast.error(t('dashboard.accounts.form_accounts_add.error_message'));
             return;
         }
 
         try {
             console.log('Attempting to add account:', accountName.trim());
             await addAccount(accountName.trim());
-            toast.success('Account created successfully');
+            toast.success(t('dashboard.accounts.form_accounts_add.success_message'));
             onAccountAdded();
         } catch (error) {
-            toast.error('Error adding account');
+            toast.error(t('dashboard.accounts.form_accounts_add.error_adding'));
         }
     };
 
     return (
         <form className="formAccount" onSubmit={handleSubmit}>
-            <h2>Add Account</h2>
+            <h2>{t('dashboard.accounts.form_accounts_add.title')}</h2>
             <InputText
                 id="accountName"
                 className="custom-input"
-                placeholder='Name'
+                placeholder={t('dashboard.accounts.form_accounts_add.placeholder')}
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
                 required
             />
-            <button type="submit" className="custom-btn">Save</button>
+            <button type="submit" className="custom-btn">{t('dashboard.accounts.account_item.add')}</button>
         </form>
     );
 }

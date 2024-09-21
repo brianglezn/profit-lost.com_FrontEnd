@@ -371,7 +371,31 @@
                 "error_message": "Error updating movement"
             }
         },
-        "accounts": {},
+        "accounts": {
+            "title": "Accounts",
+            "account_item": {
+                "edit": "Edit account",
+                "remove": "Remove account",
+                "add": "Add account",
+                "submit": "Save"
+            },
+            "form_accounts_add": {
+                "title": "Add New Account",
+                "placeholder": "Account Name",
+                "error_message": "Account name is required",
+                "success_message": "Account created successfully",
+                "error_adding": "Error adding account"
+            },
+            "form_accounts_edit": {
+                "title": "Edit Account",
+                "background": "Background",
+                "font": "Font",
+                "year": "Year",
+                "remove_confirm": "Are you sure you want to delete this account?",
+                "success_message": "Account successfully updated",
+                "error_message": "Error editing account"
+            }
+        },
         "notes": {},
         "reports": {}
     }
