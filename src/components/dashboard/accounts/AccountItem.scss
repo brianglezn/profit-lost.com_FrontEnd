@@ -11,14 +11,24 @@
   height: 4rem;
 
   &:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
 
   .account-item__details {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding-left: 1rem;
+
+    .account-item__drag-icon {
+      cursor: grab;
+      margin-right: 0.5rem;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
 
     .account-item__name {
       flex: 1;

@@ -70,6 +70,14 @@
       justify-content: space-between;
       padding: 0 2rem 1rem;
       gap: .4rem;
+
+      @media (max-width: 768px) {
+        padding: 0 1.5rem 1rem;
+      }
+
+      @media (max-width: 480px) {
+        padding: 0 1rem 1rem;
+      }
     }
   }
 

@@ -1,4 +1,7 @@
+import React from "react";
+
 import "./AccountItem.scss";
+import DragIndicatorIcon from "../../icons/DragIndicatorIcon";
 
 interface AccountItemProps {
   accountName: string;
@@ -7,22 +10,38 @@ interface AccountItemProps {
   customColor: string;
   onClick: (accountId: string) => void;
   accountId: string;
+  onDragStart: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
+  draggable: boolean;
 }
 
-function AccountItem(props: AccountItemProps) {
-  const { accountName, balance, customColor, customBackgroundColor, onClick, accountId } = props;
-
+function AccountItem({
+  accountName,
+  balance,
+  customBackgroundColor,
+  customColor,
+  onClick,
+  accountId,
+  onDragStart,
+  onDragOver,
+  onDrop,
+  draggable,
+}: AccountItemProps) {
   return (
     <div
       className="account-item"
       style={{ backgroundColor: customBackgroundColor, color: customColor }}
       onClick={() => onClick(accountId)}
+      draggable={draggable}
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
     >
       <div className="account-item__details">
+        <DragIndicatorIcon className="account-item__drag-icon" />
         <div className="account-item__name">{accountName}</div>
-        <div className="account-item__balance">
-          {balance}
-        </div>
+        <div className="account-item__balance">{balance}</div>
       </div>
     </div>
   );

@@ -7,7 +7,9 @@ import { Button } from "primereact/button";
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
+import updateAccountsOrder from '../../api/accounts/updateAccountsOrder';
 import { monthNames as monthNamesWithNames } from '../../helpers/constants';
+import { getUserByToken } from "../../api/users/getUserByToken";
 
 import "./Accounts.scss";
 import AccountItem from "../../components/dashboard/accounts/AccountItem";
@@ -51,6 +53,7 @@ function Accounts() {
   const [addSidebarOpen, setAddSidebarOpen] = useState(false);
   const [editSidebarOpen, setEditSidebarOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState<DataAccount | null>(null);
+  const [draggedAccountId, setDraggedAccountId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchAllData = async () => {
@@ -63,10 +66,17 @@ function Accounts() {
     }
     try {
       const allAccountsData = await getAllAccounts(token);
-      setDataAccounts(allAccountsData);
+      const user = await getUserByToken(token);
+      const orderedAccounts = user.accountsOrder.map((accountId: string) =>
+        allAccountsData.find(account => account.AccountId === accountId)
+      ).filter(Boolean);
+
+      setDataAccounts(orderedAccounts);
 
       const years = new Set<number>();
-      allAccountsData.forEach((account: DataAccount) => account.records.forEach((record: AccountRecord) => years.add(record.year)));
+      allAccountsData.forEach((account: DataAccount) =>
+        account.records.forEach((record: AccountRecord) => years.add(record.year))
+      );
       setUniqueYears(Array.from(years).sort((a, b) => a - b));
     } catch (error) {
       console.error('Error fetching all accounts data:', error);
@@ -117,25 +127,51 @@ function Accounts() {
   }, [dataAccounts]);
 
   const accountItems = useMemo(() => {
-    const items = dataAccounts.map((account: DataAccount, index: number) => {
+    return dataAccounts.map((account: DataAccount) => {
       const balanceForMonth = account.records
         .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === currentMonthName)
         .reduce((sum, record) => sum + record.value, 0);
 
+      const handleDragStart = () => {
+        setDraggedAccountId(account.AccountId);
+      };
+
+      const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+      };
+
+      const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        if (draggedAccountId !== null && draggedAccountId !== account.AccountId) {
+          const draggedAccountIndex = dataAccounts.findIndex(acc => acc.AccountId === draggedAccountId);
+          const targetAccountIndex = dataAccounts.findIndex(acc => acc.AccountId === account.AccountId);
+          const updatedAccounts = [...dataAccounts];
+          const [draggedAccount] = updatedAccounts.splice(draggedAccountIndex, 1);
+          updatedAccounts.splice(targetAccountIndex, 0, draggedAccount);
+          setDataAccounts(updatedAccounts);
+
+          await updateAccountsOrder(updatedAccounts.map(acc => acc.AccountId));
+        }
+      };
+
+
       return (
         <AccountItem
-          key={index}
+          key={account.AccountId}
           accountName={account.accountName}
           balance={`${formatCurrency(balanceForMonth)}`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
           accountId={account.AccountId}
           onClick={handleOpenEditSidebar}
+          draggable
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
         />
       );
     });
-    return items;
-  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar]);
+  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId]);
 
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);

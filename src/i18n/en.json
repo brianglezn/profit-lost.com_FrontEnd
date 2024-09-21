@@ -215,7 +215,8 @@
             "messages": {
                 "session_closed": "Session closed successfully",
                 "reconnect_success": "OK response from backend",
-                "reconnect_error": "Could not connect to backend"
+                "reconnect_error": "Could not connect to backend",
+                "loading": "Waiting for backend response"
             },
             "user": {
                 "settings": {
