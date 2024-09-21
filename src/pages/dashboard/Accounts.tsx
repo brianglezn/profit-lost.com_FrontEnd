@@ -4,6 +4,7 @@ import { ProgressBar } from "primereact/progressbar";
 import { Sidebar } from 'primereact/sidebar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Button } from "primereact/button";
+import { useTranslation } from 'react-i18next';
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
@@ -44,6 +45,7 @@ type MonthData = {
 const monthNames = monthNamesWithNames.map(month => month.value);
 
 function Accounts() {
+  const { t, i18n } = useTranslation();
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNames[currentDate.getMonth()];
@@ -56,11 +58,11 @@ function Accounts() {
   const [draggedAccountId, setDraggedAccountId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     setIsLoading(true);
     const token = localStorage.getItem('token');
     if (!token) {
-      console.error('No authentication token found. Please log in.');
+      console.error(t('common.error_token'));
       setIsLoading(false);
       return;
     }
@@ -71,7 +73,11 @@ function Accounts() {
         allAccountsData.find(account => account.AccountId === accountId)
       ).filter(Boolean);
 
-      setDataAccounts(orderedAccounts);
+      const unOrderedAccounts = allAccountsData.filter(account =>
+        !user.accountsOrder.includes(account.AccountId)
+      );
+
+      setDataAccounts([...orderedAccounts, ...unOrderedAccounts]);
 
       const years = new Set<number>();
       allAccountsData.forEach((account: DataAccount) =>
@@ -83,11 +89,11 @@ function Accounts() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [t]);
 
   useEffect(() => {
     fetchAllData();
-  }, [year]);
+  }, [year, fetchAllData]);
 
   const chartData = useMemo(() => {
     return monthNames.map(month => {
@@ -110,11 +116,12 @@ function Accounts() {
         return acc;
       }, 0);
 
-      monthData.name += `: ${formatCurrency(totalForMonth)}`;
+      monthData.name += `: ${formatCurrency(totalForMonth, i18n.language)}`;
 
       return monthData;
     });
-  }, [dataAccounts, year]);
+  }, [dataAccounts, year, i18n.language]);
+
 
   const isChartDataEmpty = useMemo(() => {
     return chartData.every(data => Object.keys(data).length === 1);
@@ -159,7 +166,7 @@ function Accounts() {
         <AccountItem
           key={account.AccountId}
           accountName={account.accountName}
-          balance={`${formatCurrency(balanceForMonth)}`}
+          balance={`${formatCurrency(balanceForMonth, i18n.language)}`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
           accountId={account.AccountId}
@@ -171,7 +178,7 @@ function Accounts() {
         />
       );
     });
-  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId]);
+  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId, i18n.language]);
 
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
@@ -234,8 +241,8 @@ function Accounts() {
         </div>
         <div className="accounts__container">
           <div className="accounts__container-text">
-            <p>Accounts</p>
-            <Button label="Add account" size="small" onClick={handleOpenAddSidebar} />
+            <p>{t('dashboard.accounts.title')}</p>
+            <Button label={t('dashboard.accounts.account_item.add')} size="small" onClick={handleOpenAddSidebar} />
             <Sidebar
               visible={addSidebarOpen}
               onHide={handleCloseAddSidebar}

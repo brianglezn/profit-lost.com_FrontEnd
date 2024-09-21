@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 
 import { editAccount } from '../../../api/accounts/editAccount';
 import { removeAccount } from '../../../api/accounts/removeAccount';
-
 import { rgbToHex } from "../../../helpers/functions";
 import { monthNames } from "../../../helpers/constants";
 
