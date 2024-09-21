@@ -226,6 +226,7 @@
                     "change_image": "Cambiar imagen",
                     "delete_image": "Eliminar imagen",
                     "confirm_changes": "Confirmar cambios",
+                    "updating_settings": "Actualizando ajustes",
                     "image_size_error": "El tamaño de la imagen supera el límite de 8MB",
                     "update_success": "¡Configuración de usuario actualizada con éxito!",
                     "update_error": "Error al actualizar la configuración del usuario.",

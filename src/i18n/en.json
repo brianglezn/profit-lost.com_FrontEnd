@@ -226,6 +226,7 @@
                     "change_image": "Change Image",
                     "delete_image": "Delete Image",
                     "confirm_changes": "Confirm Changes",
+                    "updating_settings": "Updating Settings",
                     "image_size_error": "Image size exceeds the 8MB limit",
                     "update_success": "User settings updated successfully!",
                     "update_error": "Error updating user settings.",
@@ -374,6 +375,5 @@
         "accounts": {},
         "notes": {},
         "reports": {}
-
     }
 }
