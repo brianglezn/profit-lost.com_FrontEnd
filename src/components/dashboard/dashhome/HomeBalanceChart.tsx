@@ -11,6 +11,8 @@ import {
 } from "recharts";
 
 import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
+import { useTranslation } from "react-i18next";
+import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface DataPoint {
     name: string;
@@ -26,6 +28,7 @@ interface Movement {
 
 const HomeBalanceChart: React.FC = () => {
     const [data, setData] = useState<DataPoint[]>([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,19 +58,17 @@ const HomeBalanceChart: React.FC = () => {
         const months = [];
         const monthlyData: { [key: string]: { income: number; expenses: number } } = {};
 
-        // Inicializar los últimos 6 meses con ingresos y gastos en 0
         for (let i = 5; i >= 0; i--) {
             const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
             const monthName = date.toLocaleString('default', { month: 'short' });
             monthlyData[monthName] = { income: 0, expenses: 0 };
         }
 
-        // Agrupar movimientos por mes
         movements.forEach((movement) => {
             const movementDate = new Date(movement.date);
             const monthName = movementDate.toLocaleString('default', { month: 'short' });
 
-            if (monthlyData[monthName]) {  // Solo considerar los meses dentro de los últimos 6 meses
+            if (monthlyData[monthName]) {
                 if (movement.amount > 0) {
                     monthlyData[monthName].income += movement.amount;
                 } else {
@@ -76,7 +77,6 @@ const HomeBalanceChart: React.FC = () => {
             }
         });
 
-        // Convertir el objeto monthlyData en un array de objetos para el gráfico
         for (const [key, value] of Object.entries(monthlyData)) {
             months.push({
                 name: key,
@@ -88,36 +88,45 @@ const HomeBalanceChart: React.FC = () => {
         return months;
     };
 
+    const isDataEmpty = data.length === 0 || data.every(item => item.income === 0 && item.expenses === 0);
 
     return (
-        <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-                data={data}
-                margin={{
-                    top: 25,
-                    right: 30,
-                    left: 10,
-                    bottom: 15,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                    type="monotone"
-                    dataKey="income"
-                    stroke="#ff8e38"
-                    activeDot={{ r: 8 }}
-                />
-                <Line
-                    type="monotone"
-                    dataKey="expenses"
-                    stroke="#9d300f"
-                />
-            </LineChart>
-        </ResponsiveContainer>
+        <div className="home-balance-chart">
+            {isDataEmpty ? (
+                <ChartLineIcon className="custom-icon" />
+            ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                    <LineChart
+                        data={data}
+                        margin={{
+                            top: 25,
+                            right: 30,
+                            left: 10,
+                            bottom: 15,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                            type="monotone"
+                            dataKey="income"
+                            name={t('dashboard.dashhome.balances.earnings')}
+                            stroke="#ff8e38"
+                            activeDot={{ r: 8 }}
+                        />
+                        <Line
+                            type="monotone"
+                            dataKey="expenses"
+                            name={t('dashboard.dashhome.balances.spendings')}
+                            stroke="#9d300f"
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            )}
+        </div>
     );
 };
 

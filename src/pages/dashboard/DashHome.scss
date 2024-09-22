@@ -93,7 +93,7 @@
     .chart-container {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       flex-grow: 1;
       gap: 1rem;
       width: 100%;
@@ -102,6 +102,11 @@
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
       padding: 1rem;
+
+      .home-balance-chart {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 
@@ -185,6 +190,7 @@
     .balances {
       div {
         height: 9rem;
+
         &:nth-child(3) {
           display: none;
         }
