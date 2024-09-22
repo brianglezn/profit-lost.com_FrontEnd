@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primereact/colorpicker';
 import { toast } from 'react-hot-toast';
@@ -8,9 +8,38 @@ import { useTranslation } from 'react-i18next';
 import { editAccount } from '../../../api/accounts/editAccount';
 import { removeAccount } from '../../../api/accounts/removeAccount';
 import { rgbToHex } from "../../../helpers/functions";
-import { monthNames } from "../../../helpers/constants";
 
 import "./FormAccounts.scss";
+
+const monthNamesEN = [
+    { name: "January", value: "Jan" },
+    { name: "February", value: "Feb" },
+    { name: "March", value: "Mar" },
+    { name: "April", value: "Apr" },
+    { name: "May", value: "May" },
+    { name: "June", value: "Jun" },
+    { name: "July", value: "Jul" },
+    { name: "August", value: "Aug" },
+    { name: "September", value: "Sep" },
+    { name: "October", value: "Oct" },
+    { name: "November", value: "Nov" },
+    { name: "December", value: "Dec" }
+];
+
+const monthNamesES = [
+    { name: "Enero", value: "Jan" },
+    { name: "Febrero", value: "Feb" },
+    { name: "Marzo", value: "Mar" },
+    { name: "Abril", value: "Apr" },
+    { name: "Mayo", value: "May" },
+    { name: "Junio", value: "Jun" },
+    { name: "Julio", value: "Jul" },
+    { name: "Agosto", value: "Aug" },
+    { name: "Septiembre", value: "Sep" },
+    { name: "Octubre", value: "Oct" },
+    { name: "Noviembre", value: "Nov" },
+    { name: "Diciembre", value: "Dec" }
+];
 
 interface AccountRecord {
     year: number;
@@ -38,7 +67,7 @@ interface FormAccountsEditProps {
 }
 
 function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [accountName, setAccountName] = useState<string>(account.accountName);
     const [backgroundColor, setBackgroundColor] = useState<string>(account.configuration.backgroundColor);
     const [fontColor, setFontColor] = useState<string>(account.configuration.color);
@@ -46,6 +75,11 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     const [uniqueYears, setUniqueYears] = useState<number[]>([]);
     const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
     const [showConfirm, setShowConfirm] = useState(false);
+
+    // Determina el mapeo de los meses según el idioma preferido del usuario
+    const monthNames = useMemo(() => {
+        return i18n.language === 'es' ? monthNamesES : monthNamesEN;
+    }, [i18n.language]);
 
     useEffect(() => {
         const years = Array.from(new Set(account.records.map(record => record.year).filter(year => year !== null && year !== undefined))).sort((a, b) => a - b);
