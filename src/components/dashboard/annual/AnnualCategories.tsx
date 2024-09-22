@@ -10,7 +10,7 @@ import { formatCurrency } from "../../../helpers/functions";
 import { getAllCategories } from "../../../api/categories/getAllCategories";
 import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
 
-import "./AnnualMovements.scss";
+import "./AnnualCategories.scss";
 import FormCategoryEdit from "./FormCategoryEdit";
 
 type Transaction = {
@@ -31,12 +31,12 @@ type CategoryBalance = {
     Balance: number;
 };
 
-interface AnnualMovementsProps {
+interface AnnualCategoriesProps {
     year: string;
     reloadFlag: boolean;
 }
 
-const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) => {
+const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag }) => {
     const { t, i18n } = useTranslation();
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -194,4 +194,4 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
     );
 };
 
-export default AnnualMovements;
+export default AnnualCategories;

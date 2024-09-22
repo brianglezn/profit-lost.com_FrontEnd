@@ -10,7 +10,7 @@ import { formatCurrency } from "../../helpers/functions";
 
 import "./AnnualReport.scss";
 import AnnualChart from "../../components/dashboard/annual/AnnualChart";
-import AnnualMovements from "../../components/dashboard/annual/AnnualMovements";
+import AnnualCategories from "../../components/dashboard/annual/AnnualCategories";
 import FormCategoryAdd from "../../components/dashboard/annual/FormCategoryAdd";
 import DownloadIcon from "../../components/icons/DownloadIcon";
 import UploadIcon from "../../components/icons/UploadIcon";
@@ -140,7 +140,7 @@ function AnnualReport() {
           </Sidebar>
         </div>
 
-        <AnnualMovements year={year} reloadFlag={reloadFlag} />
+        <AnnualCategories year={year} reloadFlag={reloadFlag} />
       </div>
     </section>
   );
