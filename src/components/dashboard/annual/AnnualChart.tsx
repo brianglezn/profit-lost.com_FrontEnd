@@ -25,6 +25,7 @@ interface ChartDataItem {
 function AnnualChart({ year }: { year: string }) {
     const { t } = useTranslation();
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
     const monthNames = useMonthNames();
 
     useEffect(() => {
@@ -57,7 +58,9 @@ function AnnualChart({ year }: { year: string }) {
                     Income: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Income.toFixed(2)) : 0,
                     Expenses: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Expenses.toFixed(2)) : 0
                 }));
+
                 setChartData(formattedData);
+                setIsDataLoaded(true);
             } catch (error) {
                 console.error(t('dashboard.common.error_movements_fetch'));
             }
@@ -69,9 +72,13 @@ function AnnualChart({ year }: { year: string }) {
     const incomeKey = t('dashboard.annual_report.annual_chart.income');
     const expensesKey = t('dashboard.annual_report.annual_chart.expenses');
 
+    const isChartDataEmpty = chartData.every(item => item.Income === 0 && item.Expenses === 0);
+
     return (
         <div className="annual__chart">
-            {chartData.length > 0 ? (
+            {isDataLoaded && isChartDataEmpty ? (
+                <ChartLineIcon className="custom-icon" />
+            ) : (
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart
                         data={chartData}
@@ -94,8 +101,6 @@ function AnnualChart({ year }: { year: string }) {
                         <Bar dataKey="Expenses" name={expensesKey} fill={"#9d300f"} shape={<CustomBarShape />} />
                     </BarChart>
                 </ResponsiveContainer>
-            ) : (
-                <ChartLineIcon className="custom-icon" />
             )}
         </div>
     );

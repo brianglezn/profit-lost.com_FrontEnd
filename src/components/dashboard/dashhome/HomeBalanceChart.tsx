@@ -9,9 +9,9 @@ import {
     Legend,
     ResponsiveContainer,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 
 import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
-import { useTranslation } from "react-i18next";
 import ChartLineIcon from "../../icons/CharLineIcon";
 
 interface DataPoint {
