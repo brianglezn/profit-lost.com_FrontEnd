@@ -115,59 +115,52 @@ const AnnualMovements: React.FC<AnnualMovementsProps> = ({ year, reloadFlag }) =
 
     return (
         <div className="annual__categories">
+            <div className="filter-bar">
+                <div className="search-dropdown-container">
+                    <InputText
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder={t('dashboard.annual_report.annual_movements.search_placeholder')}
+                        className="p-inputtext-custom"
+                    />
+                    <Dropdown
+                        value={sortOption}
+                        options={[
+                            { label: t('dashboard.annual_report.annual_movements.name_asc'), value: 'name_asc' },
+                            { label: t('dashboard.annual_report.annual_movements.name_desc'), value: 'name_desc' },
+                            { label: t('dashboard.annual_report.annual_movements.balance_desc'), value: 'balance_desc' },
+                            { label: t('dashboard.annual_report.annual_movements.balance_asc'), value: 'balance_asc' }
+                        ]}
+                        onChange={(e) => setSortOption(e.value)}
+                        placeholder={t('dashboard.annual_report.annual_movements.sort_by')}
+                        className="p-dropdown-custom"
+                    />
+                </div>
+            </div>
 
-
-            {isLoading ? (
+            {isLoading || sortedCategories.length === 0 ? (
                 <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
-                <>
-                    <div className="filter-bar">
-                        <div className="search-dropdown-container">
-                            <InputText
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder={t('dashboard.annual_report.annual_movements.search_placeholder')}
-                                className="p-inputtext-custom"
-                            />
-                            <Dropdown
-                                value={sortOption}
-                                options={[
-                                    { label: t('dashboard.annual_report.annual_movements.name_asc'), value: 'name_asc' },
-                                    { label: t('dashboard.annual_report.annual_movements.name_desc'), value: 'name_desc' },
-                                    { label: t('dashboard.annual_report.annual_movements.balance_desc'), value: 'balance_desc' },
-                                    { label: t('dashboard.annual_report.annual_movements.balance_asc'), value: 'balance_asc' }
-                                ]}
-                                onChange={(e) => setSortOption(e.value)}
-                                placeholder={t('dashboard.annual_report.annual_movements.sort_by')}
-                                className="p-dropdown-custom"
-                            />
-                        </div>
-                    </div>
-                    <div className="categories-list">
-                        {sortedCategories.length === 0 ? (
-                            <p>{t('dashboard.annual_report.annual_movements.no_movements')}</p>
-                        ) : (
-                            sortedCategories.map((category) => (
+                <div className="categories-list">
+                    {sortedCategories.map((category) => (
+                        <div
+                            key={category.id}
+                            className="category-item"
+                            onClick={() => editCategory(category)}
+                        >
+                            <div className="category-color">
                                 <div
-                                    key={category.id}
-                                    className="category-item"
-                                    onClick={() => editCategory(category)}
-                                >
-                                    <div className="category-color">
-                                        <div
-                                            className="category-color-circle"
-                                            style={{ backgroundColor: category.color }}
-                                        ></div>
-                                    </div>
-                                    <div className="category-name">{category.Category}</div>
-                                    <div className={`category-balance ${category.Balance >= 0 ? "positive" : "negative"}`}>
-                                        {formatCurrency(category.Balance, i18n.language)}
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                </>
+                                    className="category-color-circle"
+                                    style={{ backgroundColor: category.color }}
+                                ></div>
+                            </div>
+                            <div className="category-name">{category.Category}</div>
+                            <div className={`category-balance ${category.Balance >= 0 ? "positive" : "negative"}`}>
+                                {formatCurrency(category.Balance, i18n.language)}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             )}
 
             <Sidebar

@@ -76,7 +76,6 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
     const [showConfirm, setShowConfirm] = useState(false);
 
-    // Determina el mapeo de los meses según el idioma preferido del usuario
     const monthNames = useMemo(() => {
         return i18n.language === 'es' ? monthNamesES : monthNamesEN;
     }, [i18n.language]);
