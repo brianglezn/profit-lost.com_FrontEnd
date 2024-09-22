@@ -170,7 +170,8 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
 
         try {
             await removeAccount(account.AccountId);
-            toast.success(t('dashboard.accounts.form_accounts_edit.remove_success', { accountName: account.accountName }), { duration: 3000 });
+            toast.success(t('dashboard.accounts.form_accounts_edit.remove_success'), { duration: 3000 });
+            
             onClose();
             onRemove();
         } catch (error) {
@@ -179,6 +180,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
             toast.error(errorMessage, { duration: 5000 });
         }
     };
+
 
     return (
         <form className="formAccount" onSubmit={handleEditAccount}>

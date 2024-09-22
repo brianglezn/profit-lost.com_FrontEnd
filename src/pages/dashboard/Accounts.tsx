@@ -272,13 +272,14 @@ function Accounts() {
               <FormAccountsAdd onAccountAdded={() => { fetchAllData(); handleCloseAddSidebar(); }} />
             </Sidebar>
           </div>
-          {isLoading ? (
+          {isLoading || dataAccounts.length === 0 ? (
             <div className="accounts__container-progress">
               <ProgressBar mode="indeterminate" style={{ height: '6px' }} />
             </div>
           ) : (
             <div className="accounts__container-items">{accountItems}</div>
           )}
+
         </div>
       </section>
       <Sidebar

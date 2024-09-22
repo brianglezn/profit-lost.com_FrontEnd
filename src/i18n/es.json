@@ -398,7 +398,8 @@
                 "year": "Año",
                 "remove_confirm": "¿Está seguro de que desea eliminar esta cuenta?",
                 "success_message": "Cuenta actualizada correctamente",
-                "error_message": "Error al editar la cuenta"
+                "error_message": "Error al editar la cuenta",
+                "remove_success": "La cuenta se ha eliminado correctamente"
             }
         },
         "notes": {},

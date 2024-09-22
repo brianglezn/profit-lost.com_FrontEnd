@@ -20,7 +20,6 @@ function FormAccountsAdd({ onAccountAdded }: { onAccountAdded: () => void }) {
         }
 
         try {
-            console.log('Attempting to add account:', accountName.trim());
             await addAccount(accountName.trim());
             toast.success(t('dashboard.accounts.form_accounts_add.success_message'));
             onAccountAdded();

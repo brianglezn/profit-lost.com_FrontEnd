@@ -398,7 +398,8 @@
                 "year": "Year",
                 "remove_confirm": "Are you sure you want to delete this account?",
                 "success_message": "Account successfully updated",
-                "error_message": "Error editing account"
+                "error_message": "Error editing account",
+                "remove_success": "The account was successfully removed"
             }
         },
         "notes": {},
