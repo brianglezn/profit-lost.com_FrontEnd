@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
 import updateAccountsOrder from '../../api/accounts/updateAccountsOrder';
-import { monthNames as monthNamesWithNames } from '../../helpers/constants';
 import { getUserByToken } from "../../api/users/getUserByToken";
 
 import "./Accounts.scss";
@@ -26,7 +25,7 @@ type AccountConfiguration = {
 
 type AccountRecord = {
   year: number;
-  month: string;
+  month: string; // "Jan", "Feb", etc.
   value: number;
 };
 
@@ -42,13 +41,27 @@ type MonthData = {
   [key: string]: number | string;
 };
 
-const monthNames = monthNamesWithNames.map(month => month.value);
+// Mapeo de meses cortos
+const monthNamesShort = [
+  { name: "Jan", value: "Jan" },
+  { name: "Feb", value: "Feb" },
+  { name: "Mar", value: "Mar" },
+  { name: "Apr", value: "Apr" },
+  { name: "May", value: "May" },
+  { name: "Jun", value: "Jun" },
+  { name: "Jul", value: "Jul" },
+  { name: "Aug", value: "Aug" },
+  { name: "Sep", value: "Sep" },
+  { name: "Oct", value: "Oct" },
+  { name: "Nov", value: "Nov" },
+  { name: "Dec", value: "Dec" }
+];
 
 function Accounts() {
   const { t, i18n } = useTranslation();
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
-  const currentMonthName: string = monthNames[currentDate.getMonth()];
+  const currentMonthName: string = monthNamesShort[currentDate.getMonth()].value;
   const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [year, setYear] = useState(currentYear.toString());
   const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
@@ -96,12 +109,12 @@ function Accounts() {
   }, [year, fetchAllData]);
 
   const chartData = useMemo(() => {
-    return monthNames.map(month => {
-      const monthData: MonthData = { name: month };
+    return monthNamesShort.map(month => {
+      const monthData: MonthData = { name: i18n.language === 'es' ? t(`dashboard.common.months.${month.value.toLowerCase()}`) : month.name };
 
       dataAccounts.forEach((account: DataAccount) => {
         const totalForMonthAndAccount = account.records
-          .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === month)
+          .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === month.value)
           .reduce((sum, { value }) => sum + value, 0);
 
         if (totalForMonthAndAccount > 0) {
@@ -120,8 +133,7 @@ function Accounts() {
 
       return monthData;
     });
-  }, [dataAccounts, year, i18n.language]);
-
+  }, [dataAccounts, year, i18n.language, t]);
 
   const isChartDataEmpty = useMemo(() => {
     return chartData.every(data => Object.keys(data).length === 1);
@@ -160,7 +172,6 @@ function Accounts() {
           await updateAccountsOrder(updatedAccounts.map(acc => acc.AccountId));
         }
       };
-
 
       return (
         <AccountItem
@@ -212,12 +223,7 @@ function Accounts() {
                   width={500}
                   height={300}
                   data={chartData}
-                  margin={{
-                    top: 10,
-                    right: 50,
-                    left: 20,
-                    bottom: 5,
-                  }}
+                  margin={{ top: 10, right: 50, left: 20, bottom: 5 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
