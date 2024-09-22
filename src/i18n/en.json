@@ -104,7 +104,11 @@
                 "new_password": "New Password",
                 "confirm_new_password": "Confirm New Password",
                 "verification_code": "Verification Code",
-                "error_token": "Authentication token not found. Please log in."
+                "error_token": "Authentication token not found. Please log in.",
+                "password_prompt": "Enter a password",
+                "password_weak": "Weak",
+                "password_medium": "Medium",
+                "password_strong": "Strong"
             },
             "login": {
                 "title": "Log in",
@@ -233,7 +237,8 @@
                     "update_error": "Error updating user settings.",
                     "deleting_image": "Deleting profile image...",
                     "image_deleted_success": "Profile image deleted successfully",
-                    "image_deleted_error": "Error deleting profile image"
+                    "image_deleted_error": "Error deleting profile image",
+                    "no_image": "No image"
                 },
                 "security_privacy": {
                     "title": "Security and Privacy Settings",

@@ -25,7 +25,7 @@ type AccountConfiguration = {
 
 type AccountRecord = {
   year: number;
-  month: string; // "Jan", "Feb", etc.
+  month: string;
   value: number;
 };
 
@@ -41,7 +41,6 @@ type MonthData = {
   [key: string]: number | string;
 };
 
-// Mapeo de meses cortos
 const monthNamesShort = [
   { name: "Jan", value: "Jan" },
   { name: "Feb", value: "Feb" },
@@ -82,16 +81,30 @@ function Accounts() {
     try {
       const allAccountsData = await getAllAccounts(token);
       const user = await getUserByToken(token);
-      const orderedAccounts = user.accountsOrder.map((accountId: string) =>
-        allAccountsData.find(account => account.AccountId === accountId)
-      ).filter(Boolean);
 
-      const unOrderedAccounts = allAccountsData.filter(account =>
-        !user.accountsOrder.includes(account.AccountId)
-      );
+      let orderedAccounts: DataAccount[] = [];
+      let unOrderedAccounts: DataAccount[] = [];
 
+      // Verificamos si el usuario tiene accountsOrder
+      if (user.accountsOrder && user.accountsOrder.length > 0) {
+        // Filtramos las cuentas que están en accountsOrder y las ordenamos
+        orderedAccounts = user.accountsOrder.map((accountId: string) =>
+          allAccountsData.find(account => account.AccountId === accountId)
+        ).filter(Boolean) as DataAccount[]; // Para asegurarnos que no haya valores null
+
+        // Filtramos las cuentas que no están en accountsOrder
+        unOrderedAccounts = allAccountsData.filter(account =>
+          !user.accountsOrder.includes(account.AccountId)
+        );
+      } else {
+        // Si no tiene accountsOrder, mostramos todas las cuentas sin orden
+        orderedAccounts = allAccountsData;
+      }
+
+      // Mostramos las cuentas ordenadas seguidas de las no ordenadas (si aplica)
       setDataAccounts([...orderedAccounts, ...unOrderedAccounts]);
 
+      // Extraemos los años únicos de las cuentas
       const years = new Set<number>();
       allAccountsData.forEach((account: DataAccount) =>
         account.records.forEach((record: AccountRecord) => years.add(record.year))

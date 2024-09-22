@@ -25,7 +25,7 @@ function Login() {
 
     const temporizadorId = setTimeout(() => {
       localStorage.removeItem('token');
-      alert(t('landing.auth.session_expired'));
+      alert(t('landing.auth.login.session_expired'));
       navigate('/login');
     }, 3600000);
 
@@ -50,15 +50,15 @@ function Login() {
         localStorage.setItem('token', data.token);
         login(data.token);
         reiniciarTemporizadorExpiracionToken();
-        toast.success(t('landing.auth.login_success'));
+        toast.success(t('landing.auth.login.login_success'));
         navigate('/dashboard');
       } else {
-        toast.error(t('landing.auth.login_error'));
-        console.error(t('landing.auth.login_error'));
+        toast.error(t('landing.auth.login.login_error'));
+        console.error(t('landing.auth.login.login_error'));
       }
     } catch (error) {
-      toast.error(t('landing.auth.login_failure'));
-      console.error(t('landing.auth.login_failure'), error);
+      toast.error(t('landing.auth.login.login_failure'));
+      console.error(t('landing.auth.login.login_failure'), error);
     }
 
     setIsLoading(false);

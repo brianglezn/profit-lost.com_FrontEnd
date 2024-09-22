@@ -104,7 +104,11 @@
                 "new_password": "Nueva contraseña",
                 "confirm_new_password": "Confirmar nueva contraseña",
                 "verification_code": "Código de verificación",
-                "error_token": "No se encontró el token de autenticación. Por favor, inicia sesión."
+                "error_token": "No se encontró el token de autenticación. Por favor, inicia sesión.",
+                "password_prompt": "Ingresa una contraseña",
+                "password_weak": "Débil",
+                "password_medium": "Media",
+                "password_strong": "Fuerte"
             },
             "login": {
                 "title": "Iniciar sesión",
@@ -233,7 +237,8 @@
                     "update_error": "Error al actualizar la configuración del usuario.",
                     "deleting_image": "Eliminando imagen de perfil...",
                     "image_deleted_success": "Imagen de perfil eliminada con éxito",
-                    "image_deleted_error": "Error al eliminar la imagen de perfil"
+                    "image_deleted_error": "Error al eliminar la imagen de perfil",
+                    "no_image":"Sin imagen"
                 },
                 "security_privacy": {
                     "title": "Configuración de seguridad y privacidad",
