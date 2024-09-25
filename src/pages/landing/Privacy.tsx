@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../../components/landing/Footer";
 import "./Policy.scss";
@@ -8,9 +7,9 @@ function Privacy() {
 
   return (
     <div className="privacy">
-      <Link to="/" className="backHome no-select">
+      <a href="/" className="backHome no-select">
         {t('landing.privacy_policy.back_home', '--HOME')}
-      </Link>
+      </a>
       <div>
         <h1>{t('landing.privacy_policy.title')}</h1>
         <p>{t('landing.privacy_policy.description')}</p>
