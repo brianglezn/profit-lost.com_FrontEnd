@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Footer from "../../components/landing/Footer";
-import "./Cookies.scss";
+import "./Policy.scss";
 
 function Cookies() {
   const { t } = useTranslation();
@@ -9,41 +9,30 @@ function Cookies() {
   return (
     <div className="cookies">
       <Link to="/" className="backHome no-select">
-        --HOME
+        {t('landing.cookies_policy.back_home', '--HOME')}
       </Link>
-      <h1 className="title">{t('landing.cookies.title')}</h1>
-      <section className="legal">
-        <h3>{t('landing.cookies.cookie_notice')}</h3>
-        <p>
-          {t('landing.cookies.notice')}
-        </p>
+      <div>
+        <h1>{t('landing.cookies_policy.title')}</h1>
+        <p>{t('landing.cookies_policy.description')}</p>
 
-        <h3>{t('landing.cookies.what_are_cookies')}</h3>
-        <p>
-          {t('landing.cookies.what_are_cookies_text')}
-        </p>
+        <h2>{t('landing.cookies_policy.what_are_cookies.title')}</h2>
+        <p>{t('landing.cookies_policy.what_are_cookies.description')}</p>
 
-        <h3>{t('landing.cookies.types_of_cookies')}</h3>
-        <p>{t('landing.cookies.analysis_cookies')}</p>
-        <p>{t('landing.cookies.technical_cookies')}</p>
-        <p>{t('landing.cookies.personalization_cookies')}</p>
-        <p>{t('landing.cookies.advertising_cookies')}</p>
-        <p>{t('landing.cookies.behavioral_advertising_cookies')}</p>
+        <h2>{t('landing.cookies_policy.use_of_cookies.title')}</h2>
+        <p>{t('landing.cookies_policy.use_of_cookies.description')}</p>
+        <ul>
+          <li>{t('landing.cookies_policy.use_of_cookies.items.jwt')}</li>
+        </ul>
 
-        <h3>{t('landing.cookies.disable_cookies')}</h3>
-        <p>{t('landing.cookies.disable_cookies_text')}</p>
-        <p>{t('landing.cookies.disable_cookies_more_text')}</p>
-        <p>{t('landing.cookies.browser_settings')}</p>
+        <h2>{t('landing.cookies_policy.consent.title')}</h2>
+        <p>{t('landing.cookies_policy.consent.description')}</p>
 
-        <h3>{t('landing.cookies.third_party_cookies')}</h3>
-        <p>{t('landing.cookies.third_party_cookies_text')}</p>
-        <p>{t('landing.cookies.services_used')}</p>
-        <p>{t('landing.cookies.social_network_integration')}</p>
+        <h2>{t('landing.cookies_policy.disable_cookies.title')}</h2>
+        <p>{t('landing.cookies_policy.disable_cookies.description')}</p>
 
-        <h3>{t('landing.cookies.warning_about_deleting')}</h3>
-        <p>{t('landing.cookies.deleting_cookies_text')}</p>
-        <p>{t('landing.cookies.contact_for_questions')}</p>
-      </section>
+        <h2>{t('landing.cookies_policy.policy_changes.title')}</h2>
+        <p>{t('landing.cookies_policy.policy_changes.description')}</p>
+      </div>
       <Footer />
     </div>
   );

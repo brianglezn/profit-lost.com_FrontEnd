@@ -22,29 +22,90 @@
                 "btn": "Close"
             }
         },
-        "cookies": {
-            "title": "COOKIES",
-            "cookie_notice": "COOKIE NOTICE",
-            "notice": "In compliance with the provisions of Article 22.2 of Law 34/2002, of July 11, Services of the Information Society and Electronic Commerce, profit-lost.com informs you, in this section, about the policy of collection and treatment of cookies.",
-            "what_are_cookies": "WHAT ARE COOKIES?",
-            "what_are_cookies_text": "A cookie is a file that is downloaded to your computer when you access certain web pages. Cookies allow a website, among other things, to store and retrieve information about the browsing habits of a user or their computer and, depending on the information they contain and the way you use your computer, can be used to recognize the user.",
-            "types_of_cookies": "WHICH TYPES OF COOKIES DOES THIS WEBSITE USE?",
-            "analysis_cookies": "This website uses the following types of cookies: Cookies of analysis: These are those that are well treated by us or by third parties, allow us to quantify the number of users and thus carry out the statistical analysis of the use made by users of the service offered. To do this, we analyze your browsing on our website in order to improve the range of products or services we offer you.",
-            "technical_cookies": "Technical Cookies: These are those that allow the user to navigate through the restricted area and the use of its different functions, such as, for example, to carry out the purchase process of an article.",
-            "personalization_cookies": "Personalization Cookies: These are those that allow the user to access the service with some general characteristics predefined according to a series of criteria in the user's terminal such as the language or the type of browser through which the user connects to the service.",
-            "advertising_cookies": "Advertising Cookies: These are those that, either treated by this website or by third parties, allow us to manage in the most efficient way possible the offer of advertising spaces on the website, adapting the content of the advertisement to the content of the service requested or the use you make of our website. In order to do so, we may analyze your Internet browsing habits and show you advertising related to your browsing profile.",
-            "behavioral_advertising_cookies": "Behavioral advertising cookies: These are those that allow the management, in the most effective way possible, of the advertising spaces that, where appropriate, the editor has included in a web page, application or platform from which the requested service is provided. This type of cookies store information on the behavior of visitors obtained through the continuous observation of their browsing habits, which makes it possible to develop a specific profile in order to display ads based on the same.",
-            "disable_cookies": "DISABLE COOKIES",
-            "disable_cookies_text": "You can allow, block or delete cookies installed on your computer by configuring the options of the browser installed on your computer.",
-            "disable_cookies_more_text": "Most web browsers offer the possibility to allow, block or delete cookies installed on your computer.",
-            "browser_settings": "Below you can access the configuration of browsers to accept, install or disable cookies: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple).",
-            "third_party_cookies": "THIRD PARTY COOKIES",
-            "third_party_cookies_text": "This website uses third party services to collect information for statistical and web usage purposes. DoubleClick cookies are used to improve the advertising included on the website. They are used to target advertising according to the content that is relevant to a user, thus improving the quality of the user experience on the site.",
-            "services_used": "In particular, we use the services of Google Adsense and Google Analytics for our statistics and advertising. Some cookies are essential for the operation of the site, for example the built-in search engine.",
-            "social_network_integration": "Our site includes other functionality provided by third parties. You can easily share the content on social networks such as Facebook, Twitter or Google +, with the buttons we have included for this purpose.",
-            "warning_about_deleting": "WARNING ABOUT DELETING COOKIES",
-            "deleting_cookies_text": "You can delete and block all cookies from this site, but part of the site will not work or the quality of the web page may be affected.",
-            "contact_for_questions": "If you have any questions about our cookie policy, you can contact this website through our contact channels."
+        "cookies_policy": {
+            "title": "Cookies Policy",
+            "description": "In our application, we use cookies to improve the user experience and provide essential functionalities for login.",
+            "back_home": "--HOME",
+            "what_are_cookies": {
+              "title": "What are Cookies?",
+              "description": "A cookie is a small text file stored in the user's browser when they access our application. These cookies allow our application to remember information about the user's session."
+            },
+            "use_of_cookies": {
+              "title": "Use of Cookies",
+              "description": "In our application, we use the following cookies:",
+              "items": {
+                "jwt": "JWT: This cookie stores the Authentication Token (JWT) required for login. It allows users to remain authenticated during their session."
+              }
+            },
+            "consent": {
+              "title": "Consent",
+              "description": "We do not require explicit consent for the use of this cookie, as it is necessary for the operation of the application and is not used for advertising or analytics purposes."
+            },
+            "disable_cookies": {
+              "title": "How to Disable Cookies",
+              "description": "Users can configure their browser to block or delete cookies. However, this may affect the functionality of the application, especially login and access to personalized features."
+            },
+            "policy_changes": {
+              "title": "Changes to this Cookies Policy",
+              "description": "We reserve the right to modify this Cookies Policy at any time. Changes will be notified to users through the application. It is recommended to review this policy periodically."
+            }
+          },
+        "privacy_policy": {
+            "title": "Privacy Policy",
+            "description": "This Privacy Policy describes how we collect, use, and protect the personal information of users of our personal finance management application.",
+            "back_home": "--HOME",
+            "info_we_collect": {
+                "title": "Information We Collect",
+                "description": "We collect the following personal information when users create an account in our application:",
+                "items": {
+                    "username": "Username: To identify users on our platform.",
+                    "first_name": "First Name: To personalize the user experience.",
+                    "last_name": "Last Name: To complete the user profile.",
+                    "email": "Email: For sending notifications and account recovery.",
+                    "password": "Password: To protect access to the user’s account."
+                }
+            },
+            "use_of_info": {
+                "title": "Use of Information",
+                "description": "We use this information solely to provide users with personal finance management on a visual level. This includes:",
+                "items": {
+                    "manage_account": "Creating and managing user accounts.",
+                    "access_features": "Providing access to application features.",
+                    "send_notifications": "Sending notifications related to the account and application updates."
+                },
+                "no_third_party": "We do not share this information with third parties."
+            },
+            "data_retention": {
+                "title": "Data Retention",
+                "description": "Personal data will be retained until the user decides to delete their account. Once the account is deleted, all data will be permanently removed from our systems."
+            },
+            "user_rights": {
+                "title": "User Rights",
+                "description": "Users have the right to:",
+                "items": {
+                    "access": "Access: Request access to their personal data.",
+                    "rectification": "Rectification: Request correction of inaccurate data.",
+                    "deletion": "Deletion: Request deletion of their account and personal data."
+                },
+                "exercise_rights": "They can exercise these rights through the options available in their user profile within the application."
+            },
+            "security": {
+                "title": "Security",
+                "description": "We implement appropriate security measures to protect users’ personal information, including:",
+                "items": {
+                    "encryption": "Using encryption for passwords.",
+                    "https": "HTTPS protocols for secure communication.",
+                    "access_control": "Access controls to limit who can access personal information."
+                }
+            },
+            "jurisdiction": {
+                "title": "Jurisdiction",
+                "description": "Our application operates globally. By using our application, users agree that their personal data may be processed and stored in any country where we operate. We are committed to complying with applicable data protection laws."
+            },
+            "policy_changes": {
+                "title": "Changes to this Policy",
+                "description": "We reserve the right to modify this Privacy Policy at any time. Changes will be notified to users through the application or by email. It is recommended to review this policy periodically."
+            }
         },
         "faq": {
             "title": "Frequently Asked Questions",

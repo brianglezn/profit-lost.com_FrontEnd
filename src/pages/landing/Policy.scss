@@ -1,5 +1,6 @@
 @import '../../../variables';
 
+.privacy,
 .cookies {
   .backHome {
     display: block;
@@ -15,17 +16,33 @@
     }
   }
 
-  .title {
+  h1 {
     display: flex;
     justify-content: center;
     color: $primary_color;
   }
 
-  .legal {
+  p,
+  h2,
+  ul {
     margin: 2vw 10vw;
+  }
 
-    h3 {
-      margin-top: 3rem;
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+
+    li {
+      margin-bottom: 1rem;
     }
+  }
+
+  h2 {
+    margin-top: 3rem;
+    color: $primary_color-800;
+  }
+
+  p {
+    line-height: 1.6;
   }
 }

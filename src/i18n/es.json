@@ -22,29 +22,90 @@
                 "btn": "Cerrar"
             }
         },
-        "cookies": {
-            "title": "COOKIES",
-            "cookie_notice": "AVISO DE COOKIES",
-            "notice": "En cumplimiento de lo dispuesto en el Artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y Comercio Electrónico, profit-lost.com te informa, en esta sección, sobre la política de recopilación y tratamiento de cookies.",
-            "what_are_cookies": "¿QUÉ SON LAS COOKIES?",
-            "what_are_cookies_text": "Una cookie es un archivo que se descarga en tu computadora al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o su equipo y, dependiendo de la información que contengan y la forma en que utilices tu equipo, pueden utilizarse para reconocer al usuario.",
-            "types_of_cookies": "¿QUÉ TIPOS DE COOKIES UTILIZA ESTE SITIO WEB?",
-            "analysis_cookies": "Este sitio web utiliza los siguientes tipos de cookies: Cookies de análisis: Son aquellas que, tratadas por nosotros o por terceros, nos permiten cuantificar el número de usuarios y realizar el análisis estadístico de la utilización que hacen los usuarios del servicio ofrecido. Para ello, analizamos tu navegación en nuestro sitio web con el fin de mejorar la oferta de productos o servicios que te ofrecemos.",
-            "technical_cookies": "Cookies técnicas: Son aquellas que permiten al usuario navegar por la zona restringida y utilizar sus diferentes funciones, como por ejemplo realizar el proceso de compra de un artículo.",
-            "personalization_cookies": "Cookies de personalización: Son aquellas que permiten al usuario acceder al servicio con algunas características generales predefinidas en función de una serie de criterios en el terminal del usuario, como el idioma o el tipo de navegador a través del cual se conecta al servicio.",
-            "advertising_cookies": "Cookies publicitarias: Son aquellas que, bien tratadas por este sitio web o por terceros, permiten gestionar de la manera más eficiente posible la oferta de los espacios publicitarios en el sitio web, adaptando el contenido del anuncio al contenido del servicio solicitado o al uso que haces de nuestro sitio web. Para ello podemos analizar tus hábitos de navegación en Internet y mostrarte publicidad relacionada con tu perfil de navegación.",
-            "behavioral_advertising_cookies": "Cookies de publicidad comportamental: Son aquellas que permiten la gestión, de la manera más eficaz posible, de los espacios publicitarios que, en su caso, el editor ha incluido en una página web, aplicación o plataforma desde la que se presta el servicio solicitado. Este tipo de cookies almacenan información sobre el comportamiento de los visitantes obtenida a través de la observación continua de sus hábitos de navegación, lo que permite desarrollar un perfil específico para mostrar anuncios basados en el mismo.",
-            "disable_cookies": "DESACTIVAR COOKIES",
-            "disable_cookies_text": "Puedes permitir, bloquear o eliminar las cookies instaladas en tu equipo configurando las opciones del navegador instalado en tu computadora.",
-            "disable_cookies_more_text": "La mayoría de los navegadores web ofrecen la posibilidad de permitir, bloquear o eliminar las cookies instaladas en tu equipo.",
-            "browser_settings": "A continuación puedes acceder a la configuración de los navegadores para aceptar, instalar o desactivar las cookies: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple).",
-            "third_party_cookies": "COOKIES DE TERCEROS",
-            "third_party_cookies_text": "Este sitio web utiliza servicios de terceros para recopilar información con fines estadísticos y de uso de la web. Las cookies de DoubleClick se utilizan para mejorar la publicidad incluida en el sitio web. Se utilizan para orientar la publicidad según el contenido que sea relevante para el usuario, mejorando así la calidad de la experiencia de usuario en el sitio.",
-            "services_used": "En particular, utilizamos los servicios de Google Adsense y Google Analytics para nuestras estadísticas y publicidad. Algunas cookies son esenciales para el funcionamiento del sitio, como el motor de búsqueda integrado.",
-            "social_network_integration": "Nuestro sitio incluye otras funcionalidades proporcionadas por terceros. Puedes compartir fácilmente el contenido en redes sociales como Facebook, Twitter o Google +, con los botones que hemos incluido para tal fin.",
-            "warning_about_deleting": "ADVERTENCIA SOBRE ELIMINACIÓN DE COOKIES",
-            "deleting_cookies_text": "Puedes eliminar y bloquear todas las cookies de este sitio, pero parte del sitio no funcionará o la calidad de la página web puede verse afectada.",
-            "contact_for_questions": "Si tienes alguna pregunta sobre nuestra política de cookies, puedes contactar con este sitio web a través de nuestros canales de contacto."
+        "cookies_policy": {
+            "title": "Política de Cookies",
+            "description": "En nuestra aplicación utilizamos cookies para mejorar la experiencia de los usuarios y proporcionar funcionalidades esenciales para el inicio de sesión.",
+            "back_home": "--INICIO",
+            "what_are_cookies": {
+                "title": "¿Qué son las Cookies?",
+                "description": "Una cookie es un pequeño archivo de texto que se almacena en el navegador del usuario cuando accede a nuestra aplicación. Estas cookies permiten que nuestra aplicación recuerde información sobre la sesión del usuario."
+            },
+            "use_of_cookies": {
+                "title": "Uso de Cookies",
+                "description": "En nuestra aplicación, utilizamos las siguientes cookies:",
+                "items": {
+                    "jwt": "JWT: Esta cookie almacena el Token de Autenticación (JWT) necesario para el inicio de sesión. Permite a los usuarios permanecer autenticados durante su sesión."
+                }
+            },
+            "consent": {
+                "title": "Consentimiento",
+                "description": "No requerimos el consentimiento explícito para el uso de esta cookie, ya que es necesaria para el funcionamiento de la aplicación y no se utilizan con fines publicitarios o de análisis."
+            },
+            "disable_cookies": {
+                "title": "Cómo Desactivar las Cookies",
+                "description": "Los usuarios pueden configurar su navegador para bloquear o eliminar cookies. Sin embargo, esto puede afectar la funcionalidad de la aplicación, especialmente el inicio de sesión y el acceso a las funciones personalizadas."
+            },
+            "policy_changes": {
+                "title": "Cambios en esta Política de Cookies",
+                "description": "Nos reservamos el derecho de modificar esta Política de Cookies en cualquier momento. Los cambios serán notificados a los usuarios a través de la aplicación. Se recomienda revisar esta política periódicamente."
+            }
+        },
+        "privacy_policy": {
+            "title": "Política de Privacidad",
+            "description": "Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos la información personal de los usuarios de nuestra aplicación de gestión de finanzas personales.",
+            "back_home": "--INICIO",
+            "info_we_collect": {
+                "title": "Información que Recopilamos",
+                "description": "Recopilamos la siguiente información personal cuando los usuarios crean una cuenta en nuestra aplicación:",
+                "items": {
+                    "username": "Nombre de usuario: Para identificar a los usuarios en nuestra plataforma.",
+                    "first_name": "Nombre: Para personalizar la experiencia del usuario.",
+                    "last_name": "Apellidos: Para completar el perfil del usuario.",
+                    "email": "Correo electrónico: Para el envío de notificaciones y recuperación de cuenta.",
+                    "password": "Contraseña: Para proteger el acceso a la cuenta del usuario."
+                }
+            },
+            "use_of_info": {
+                "title": "Uso de la Información",
+                "description": "Utilizamos esta información con el único propósito de proporcionar a los usuarios una gestión de finanzas personales a nivel visual. Esto incluye:",
+                "items": {
+                    "manage_account": "Crear y gestionar cuentas de usuario.",
+                    "access_features": "Proporcionar acceso a funciones de la aplicación.",
+                    "send_notifications": "Enviar notificaciones relacionadas con la cuenta y actualizaciones de la aplicación."
+                },
+                "no_third_party": "No compartimos esta información con terceros."
+            },
+            "data_retention": {
+                "title": "Retención de Datos",
+                "description": "Los datos personales se conservarán hasta que el usuario decida borrar su cuenta. Una vez eliminada la cuenta, todos los datos serán eliminados permanentemente de nuestros sistemas."
+            },
+            "user_rights": {
+                "title": "Derechos de los Usuarios",
+                "description": "Los usuarios tienen derecho a:",
+                "items": {
+                    "access": "Acceso: Solicitar acceso a sus datos personales.",
+                    "rectification": "Rectificación: Solicitar la corrección de datos inexactos.",
+                    "deletion": "Eliminación: Solicitar la eliminación de su cuenta y datos personales."
+                },
+                "exercise_rights": "Pueden ejercer estos derechos a través de las opciones disponibles en su perfil de usuario dentro de la aplicación."
+            },
+            "security": {
+                "title": "Seguridad",
+                "description": "Implementamos medidas de seguridad adecuadas para proteger la información personal de los usuarios, incluyendo:",
+                "items": {
+                    "encryption": "Uso de cifrado para las contraseñas.",
+                    "https": "Protocolos HTTPS para la comunicación segura.",
+                    "access_control": "Controles de acceso para limitar quién puede acceder a la información personal."
+                }
+            },
+            "jurisdiction": {
+                "title": "Jurisdicción",
+                "description": "Nuestra aplicación opera a nivel mundial. Al usar nuestra aplicación, los usuarios aceptan que sus datos personales pueden ser procesados y almacenados en cualquier país donde operemos. Nos comprometemos a cumplir con las leyes de protección de datos aplicables."
+            },
+            "policy_changes": {
+                "title": "Cambios en esta Política",
+                "description": "Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Los cambios serán notificados a los usuarios a través de la aplicación o por correo electrónico. Se recomienda revisar esta política periódicamente."
+            }
         },
         "faq": {
             "title": "Preguntas frecuentes",
@@ -238,7 +299,7 @@
                     "deleting_image": "Eliminando imagen de perfil...",
                     "image_deleted_success": "Imagen de perfil eliminada con éxito",
                     "image_deleted_error": "Error al eliminar la imagen de perfil",
-                    "no_image":"Sin imagen"
+                    "no_image": "Sin imagen"
                 },
                 "security_privacy": {
                     "title": "Configuración de seguridad y privacidad",

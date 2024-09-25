@@ -66,7 +66,7 @@ function Footer() {
         </div>
         <div className="footer__container-bottom">
           <p>
-            ©{currentYear} Profit&Lost •<a href="/cookies">Cookies</a>
+            ©{currentYear} Profit&Lost •<a href="/cookies">Cookies</a> • <a href="/privacy">Privacy</a>
           </p>
         </div>
       </footer>
