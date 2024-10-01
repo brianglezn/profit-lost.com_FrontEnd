@@ -119,7 +119,7 @@ function Dashboard() {
 
   const wakeUpBackend = async () => {
     toast.promise(
-      fetch('https://profit-lost-backend.onrender.com/ping'),
+      fetch('https://app-profit-lost-com.onrender.com/ping'),
       {
         loading: t('dashboard.dashboard.messages.loading'),
         success: t('dashboard.dashboard.messages.reconnect_success'),

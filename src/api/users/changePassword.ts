@@ -3,7 +3,7 @@ export const changePassword = async (
   newPassword: string
 ) => {
   try {
-    const response = await fetch("https://profit-lost-backend.onrender.com/user/changePassword", {
+    const response = await fetch("https://app-profit-lost-com.onrender.com/user/changePassword", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

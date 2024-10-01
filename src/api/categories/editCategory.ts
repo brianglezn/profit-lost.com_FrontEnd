@@ -1,6 +1,6 @@
 export const editCategory = async (token: string, categoryId: string, name: string, color: string) => {
     try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/categories/edit/${categoryId}`, {
+        const response = await fetch(`https://app-profit-lost-com.onrender.com/categories/edit/${categoryId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

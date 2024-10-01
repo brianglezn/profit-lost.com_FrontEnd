@@ -27,7 +27,7 @@ function ForgotPasswordToken() {
         }
 
         try {
-            const response = await fetch('https://profit-lost-backend.onrender.com/resetPassword', {
+            const response = await fetch('https://app-profit-lost-com.onrender.com/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

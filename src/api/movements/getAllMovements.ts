@@ -1,6 +1,6 @@
 export const getAllMovements = async (token: string) => {
     try {
-        const response = await fetch('https://profit-lost-backend.onrender.com/movements/all', {
+        const response = await fetch('https://app-profit-lost-com.onrender.com/movements/all', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

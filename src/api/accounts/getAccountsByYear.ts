@@ -1,6 +1,6 @@
 export const getAccountsByYear = async (token: string, year: string) => {
     try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/${year}`, {
+        const response = await fetch(`https://app-profit-lost-com.onrender.com/accounts/${year}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

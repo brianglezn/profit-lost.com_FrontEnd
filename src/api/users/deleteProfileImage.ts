@@ -1,6 +1,6 @@
 export const deleteProfileImage = async () => {
     try {
-        const response = await fetch('https://profit-lost-backend.onrender.com/user/deleteProfileImage', {
+        const response = await fetch('https://app-profit-lost-com.onrender.com/user/deleteProfileImage', {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,

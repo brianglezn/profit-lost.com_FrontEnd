@@ -29,7 +29,7 @@ export async function editAccount({ accountId, accountName, records, configurati
     };
 
     try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/edit/${accountId}`, {
+        const response = await fetch(`https://app-profit-lost-com.onrender.com/accounts/edit/${accountId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

@@ -18,7 +18,7 @@ function ForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://profit-lost-backend.onrender.com/requestPasswordReset', {
+      const response = await fetch('https://app-profit-lost-com.onrender.com/requestPasswordReset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

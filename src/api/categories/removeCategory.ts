@@ -1,6 +1,6 @@
 export const removeCategory = async (token: string, categoryId: string) => {
     try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/categories/remove/${categoryId}`, {
+        const response = await fetch(`https://app-profit-lost-com.onrender.com/categories/remove/${categoryId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

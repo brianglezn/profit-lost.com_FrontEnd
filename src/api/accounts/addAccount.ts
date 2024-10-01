@@ -21,7 +21,7 @@ export async function addAccount(accountName: string): Promise<void> {
     };
 
     try {
-        const response = await fetch('https://profit-lost-backend.onrender.com/accounts/add', {
+        const response = await fetch('https://app-profit-lost-com.onrender.com/accounts/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

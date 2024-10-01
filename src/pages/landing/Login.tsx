@@ -37,7 +37,7 @@ function Login() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://profit-lost-backend.onrender.com/login', {
+      const response = await fetch('https://app-profit-lost-com.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

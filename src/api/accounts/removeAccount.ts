@@ -5,7 +5,7 @@ export async function removeAccount(accountId: string): Promise<void> {
     }
 
     try {
-        const response = await fetch(`https://profit-lost-backend.onrender.com/accounts/remove/${accountId}`, {
+        const response = await fetch(`https://app-profit-lost-com.onrender.com/accounts/remove/${accountId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,

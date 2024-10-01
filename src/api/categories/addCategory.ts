@@ -1,6 +1,6 @@
 export const addCategory = async (token: string, name: string, color: string) => {
     try {
-        const response = await fetch('https://profit-lost-backend.onrender.com/categories/add', {
+        const response = await fetch('https://app-profit-lost-com.onrender.com/categories/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
