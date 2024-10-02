@@ -29,8 +29,19 @@ export function getCurrentDate(locale: string = 'en'): string {
 
 export function formatDateTime(value: string, locale: string = 'en'): string {
     const date = new Date(value);
+
+    const utcDate = new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes()
+    );
+
     const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
-    return format(date, 'Pp', { locale: currentLocale });
+    const dateFormat = locale === 'en' ? 'MM/dd/yyyy, HH:mm' : 'dd/MM/yyyy, HH:mm';
+
+    return format(utcDate, dateFormat, { locale: currentLocale });
 }
 
 export function rgbToHex({ r, g, b }: ColorPickerRGBType): string {
