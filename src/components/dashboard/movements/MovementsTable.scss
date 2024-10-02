@@ -43,9 +43,10 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
 
-            &:hover {
-                background-color: #f7f7f7;
-            }
+            // &:hover {
+            //     background-color: rgba(227, 123, 166, 0.2);
+
+            // }
 
             .description-section {
                 display: flex;

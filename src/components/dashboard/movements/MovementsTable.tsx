@@ -35,6 +35,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
     const { t, i18n } = useTranslation();
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+    const [hoveredTransactionId, setHoveredTransactionId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('date_desc');
 
@@ -46,6 +47,13 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
     const getCategoryColor = (categoryName: string) => {
         const category = categories.find(cat => cat.name === categoryName);
         return category ? category.color : '#000';
+    };
+
+    const colorWithOpacity = (hexColor: string, opacity: number) => {
+        const rgb = hexColor.replace('#', '').match(/.{1,2}/g)?.map(x => parseInt(x, 16));
+        if (!rgb) return `rgba(0, 0, 0, ${opacity})`;
+
+        return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
     };
 
     const sortMovements = (movements: Transaction[]) => {
@@ -103,6 +111,13 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                             key={transaction._id}
                             className="movement-item"
                             onClick={() => editMovement(transaction)}
+                            onMouseEnter={() => setHoveredTransactionId(transaction._id)}
+                            onMouseLeave={() => setHoveredTransactionId(null)}
+                            style={{
+                                backgroundColor: hoveredTransactionId === transaction._id
+                                    ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
+                                    : 'transparent'
+                            }}
                         >
                             <div className="category-mobile">
                                 <div
