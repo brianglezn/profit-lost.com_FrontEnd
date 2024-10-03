@@ -11,7 +11,7 @@
         justify-content: center;
         color: $primary_color;
         margin-top: 4rem;
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 4vw, 2rem);
 
         @media (max-width: 480px) {
             font-size: 2rem;
@@ -34,14 +34,14 @@
         @media (max-width: 480px) {
             width: 100%;
             padding: 0.8rem;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 1rem);
         }
 
     }
 
     .p-accordion {
         margin: 1rem 0;
-        padding: 1.5rem;
+        padding: clamp(1rem, 2vw, 1.5rem);
         border-radius: 0.8rem;
         box-shadow: $shadow_color 0px 1px 4px;
         background-color: $bg-color-sec;
@@ -54,8 +54,8 @@
 
         @media (max-width: 480px) {
             width: 100%;
-            padding: 0.8rem;
-            font-size: 0.9rem;
+            padding: clamp(0.5rem, 1vw, 0.8rem);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
     }
 }

@@ -12,7 +12,7 @@
 
       h1 {
         text-align: center;
-        font-size: 3rem;
+        font-size: clamp(2rem, 5vw, 3rem);
       }
     }
   }
@@ -44,6 +44,15 @@
 
         &:last-child img {
           width: 40rem;
+        }
+
+        h2 {
+          text-align: center;
+          font-size: clamp(1rem, 5vw, 1.5rem);
+        }
+
+        p {
+          font-size: clamp(1rem, 2.5vw, 1.2rem);
         }
       }
     }
@@ -88,7 +97,7 @@
           margin: 1rem;
 
           h3 {
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 1rem);
             text-transform: uppercase;
             letter-spacing: 0.05rem;
           }
@@ -117,10 +126,6 @@
 
       .hero__title {
         margin: 0 4rem;
-
-        h1 {
-          font-size: 2rem;
-        }
       }
     }
 
@@ -144,10 +149,6 @@
     .hero {
       .hero__title {
         margin: 0 1rem;
-
-        h1 {
-          font-size: 1.7rem;
-        }
       }
     }
 

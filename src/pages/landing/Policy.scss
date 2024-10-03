@@ -6,7 +6,7 @@
     display: block;
     margin: 2rem;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
     text-transform: uppercase;
     transition: color 0.3s, letter-spacing 0.3s ease;
     letter-spacing: normal;
@@ -20,6 +20,7 @@
     display: flex;
     justify-content: center;
     color: $primary_color;
+    font-size: clamp(2rem, 4vw, 3rem);
   }
 
   p,
@@ -40,9 +41,11 @@
   h2 {
     margin-top: 3rem;
     color: $primary_color-800;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
   }
 
   p {
     line-height: 1.6;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
   }
 }
