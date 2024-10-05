@@ -21,8 +21,7 @@ interface FormMovementsAddProps {
     selectedMonth: string;
 }
 
-function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMonth }: FormMovementsAddProps) {
-    const { t } = useTranslation();
+export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMonth }: FormMovementsAddProps) {
     const [date, setDate] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
@@ -33,6 +32,9 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
     const [recurrenceFrequency, setRecurrenceFrequency] = useState<string>('monthly');
     const [recurrenceEnd, setRecurrenceEnd] = useState<string>('');
 
+    const { t } = useTranslation();
+
+    // Fetch categories from the server on component mount
     useEffect(() => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('token');
@@ -42,6 +44,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
             }
             try {
                 const categories = await getAllCategories(token);
+                // Sort categories alphabetically by name
                 const sortedCategories = categories.sort((a: Category, b: Category) => a.name.localeCompare(b.name));
                 setCategories(sortedCategories);
             } catch (error) {
@@ -53,36 +56,43 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         fetchCategories();
     }, [t]);
 
+    // Set the initial date depending on the selected month and year
     useEffect(() => {
         const currentDate = new Date();
 
+        // If the selected year/month is different from the current date, set to the first day of that month
         if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || selectedYear !== currentDate.getFullYear().toString()) {
             const initialDate = `${selectedYear}-${selectedMonth}-01T00:00`;
             setDate(initialDate);
         } else {
+            // Otherwise, set to the current date
             const localDateTime = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
             setDate(localDateTime);
         }
     }, [selectedYear, selectedMonth]);
 
+    // Handle the click to mark the movement as income
     const handleIncomeClick = () => {
         setIsIncome(true);
-        setAmount(amount.replace('-', ''));
+        setAmount(amount.replace('-', '')); // Remove negative sign if present
     };
 
+    // Handle the click to mark the movement as expense
     const handleExpenseClick = () => {
         setIsIncome(false);
     };
 
+    // Handle amount change, ensuring that income is always positive
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (isIncome) {
-            setAmount(value.replace('-', ''));
+            setAmount(value.replace('-', '')); // Prevent negative value if it is income
         } else {
             setAmount(value);
         }
     };
 
+    // Create recurring movements if the user selects recurrence
     const createRecurringMovements = (movementData: { date: string; description: string; amount: number; category: string }) => {
         const movements = [];
         const currentDate = new Date(movementData.date);
@@ -90,6 +100,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
 
         if (recurrenceFrequency === 'monthly') {
             let isFirstMovement = true;
+            // Generate monthly movements until the end date
             while (currentDate <= endDate) {
                 if (isFirstMovement) {
                     movements.push({
@@ -109,6 +120,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
                 }
             }
         } else if (recurrenceFrequency === 'yearly') {
+            // Generate yearly movements until the end year
             while (currentDate.getFullYear() <= endDate.getFullYear()) {
                 movements.push({
                     ...movementData,
@@ -127,6 +139,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         return movements;
     };
 
+    // Handle form submission to add a new movement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -136,6 +149,7 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
             return;
         }
 
+        // Validate amount format
         if (!/^\d+(\.\d{0,2})?$/.test(amount)) {
             toast.error(t('dashboard.movements.form_movements_add.error_message'));
             return;
@@ -146,9 +160,10 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
             return;
         }
 
+        // Create the movement data object
         const movementData = {
             date: date,
-            description: description.trim() === '' ? category.name : description,
+            description: description.trim() === '' ? category.name : description, // Default description to category name if empty
             amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };
@@ -161,8 +176,8 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
 
             toast.success(t('dashboard.movements.form_movements_add.success_message'));
 
-            onMovementAdded();
-            onClose();
+            onMovementAdded(); // Notify parent component that a movement was added
+            onClose(); 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
             toast.error(errorMessage);
@@ -272,5 +287,3 @@ function FormMovementsAdd({ onMovementAdded, onClose, selectedYear, selectedMont
         </form>
     );
 }
-
-export default FormMovementsAdd;

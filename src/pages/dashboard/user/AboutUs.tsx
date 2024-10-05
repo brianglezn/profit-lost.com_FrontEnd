@@ -1,7 +1,7 @@
 import './AboutUs.scss';
 import { useTranslation } from 'react-i18next';
 
-const AboutUs = () => {
+export default function AboutUs() {
     const { t } = useTranslation();
     return (
         <div className="aboutUs">
@@ -12,6 +12,4 @@ const AboutUs = () => {
             </div>
         </div>
     );
-};
-
-export default AboutUs;
+}

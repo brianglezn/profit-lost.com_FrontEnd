@@ -22,12 +22,14 @@ interface ChartDataItem {
     Expenses: number;
 }
 
-function AnnualChart({ year }: { year: string }) {
-    const { t } = useTranslation();
+export default function AnnualChart({ year }: { year: string }) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     const monthNames = useMonthNames();
 
+    const { t } = useTranslation();
+
+    // Fetch data when the component mounts or when `year` changes
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
@@ -37,15 +39,18 @@ function AnnualChart({ year }: { year: string }) {
             }
 
             try {
+                // Fetch movement data for the given year
                 const data: Movement[] = await getMovementsByYear(token, year);
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
 
+                // Loop through each movement and aggregate data by month
                 data.forEach(movement => {
-                    const monthIndex = parseInt(movement.date.split("-")[1], 10) - 1;
-                    const month = monthNames[monthIndex].value;
+                    const monthIndex = parseInt(movement.date.split("-")[1], 10) - 1; // Get the month index from the date string
+                    const month = monthNames[monthIndex].value; // Get the month's short name
                     if (!monthlyData[month]) {
-                        monthlyData[month] = { Income: 0, Expenses: 0 };
+                        monthlyData[month] = { Income: 0, Expenses: 0 }; // Initialize if not already set
                     }
+                    // Add income or expense to the corresponding month
                     if (movement.amount > 0) {
                         monthlyData[month].Income += movement.amount;
                     } else {
@@ -53,14 +58,15 @@ function AnnualChart({ year }: { year: string }) {
                     }
                 });
 
+                // Format the data to be compatible with the chart
                 const formattedData: ChartDataItem[] = monthNames.map(month => ({
                     month: month.value,
                     Income: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Income.toFixed(2)) : 0,
                     Expenses: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Expenses.toFixed(2)) : 0
                 }));
 
-                setChartData(formattedData);
-                setIsDataLoaded(true);
+                setChartData(formattedData); // Set the chart data state
+                setIsDataLoaded(true); // Mark that data has been loaded
             } catch (error) {
                 console.error(t('dashboard.common.error_movements_fetch'));
             }
@@ -69,16 +75,19 @@ function AnnualChart({ year }: { year: string }) {
         fetchData();
     }, [year, t, monthNames]);
 
-    const incomeKey = t('dashboard.annual_report.annual_chart.income');
-    const expensesKey = t('dashboard.annual_report.annual_chart.expenses');
+    const incomeKey = t('dashboard.annual_report.annual_chart.income'); // Translation key for income
+    const expensesKey = t('dashboard.annual_report.annual_chart.expenses'); // Translation key for expenses
 
+    // Check if all chart data values are zero to determine if the chart is empty
     const isChartDataEmpty = chartData.every(item => item.Income === 0 && item.Expenses === 0);
 
     return (
         <div className="annual__chart">
             {isDataLoaded && isChartDataEmpty ? (
+                // Show an icon if data is loaded but there is no data to display
                 <ChartLineIcon className="custom-icon" />
             ) : (
+                // Display the bar chart
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart
                         data={chartData}
@@ -91,12 +100,14 @@ function AnnualChart({ year }: { year: string }) {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month" />
                         <YAxis />
+                        {/* Tooltip formatter to customize the tooltip text based on income/expense */}
                         <Tooltip formatter={(value, name, props) => {
                             const month = props.payload.month;
                             const label = name === incomeKey ? t('dashboard.annual_report.annual_chart.income', { month }) : t('dashboard.annual_report.annual_chart.expenses', { month });
                             return [value, label];
                         }} />
                         <Legend />
+                        {/* Bars for Income and Expenses with customized color and shape */}
                         <Bar dataKey="Income" name={incomeKey} fill={"#ff8e38"} shape={<CustomBarShape />} />
                         <Bar dataKey="Expenses" name={expensesKey} fill={"#9d300f"} shape={<CustomBarShape />} />
                     </BarChart>
@@ -105,5 +116,3 @@ function AnnualChart({ year }: { year: string }) {
         </div>
     );
 }
-
-export default AnnualChart;

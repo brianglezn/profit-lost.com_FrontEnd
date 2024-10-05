@@ -8,16 +8,18 @@ import { useTranslation } from 'react-i18next';
 import './authForms.scss';
 import Footer from '../../components/landing/Footer';
 
-function Register() {
+export default function Register() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // Handles form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
@@ -28,10 +30,10 @@ function Register() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, name, surname, email, password }),
+        body: JSON.stringify({ username, name, surname, email, password }), // Convert form data to JSON
       });
 
-      const data = await response.json();
+      const data = await response.json(); // Parse the response data
 
       if (response.ok) {
         toast.success(t('landing.auth.register.success'));
@@ -56,6 +58,7 @@ function Register() {
 
   return (
     <div className='authForms'>
+      {/* Header with logo and link to home */}
       <header className="auth__header">
         <a href="/" className="header__logo no-select">
           <img
@@ -65,10 +68,12 @@ function Register() {
         </a>
       </header>
 
+      {/* Registration form container */}
       <div className="container__form">
         <form className="form__box" onSubmit={handleSubmit}>
           <h2 className="form__title">{t('landing.auth.register.title')}</h2>
 
+          {/* Username input field */}
           <div className="form__input-container">
             <InputText
               value={username}
@@ -79,6 +84,7 @@ function Register() {
             />
           </div>
 
+          {/* Name input field */}
           <div className="form__input-container">
             <InputText
               value={name}
@@ -89,6 +95,7 @@ function Register() {
             />
           </div>
 
+          {/* Surname input field */}
           <div className="form__input-container">
             <InputText
               value={surname}
@@ -99,6 +106,7 @@ function Register() {
             />
           </div>
 
+          {/* Email input field */}
           <div className="form__input-container">
             <InputText
               value={email}
@@ -110,6 +118,7 @@ function Register() {
             />
           </div>
 
+          {/* Password input field with toggle mask and strength feedback */}
           <div className="form__password-container">
             <Password
               value={password}
@@ -125,10 +134,12 @@ function Register() {
             />
           </div>
 
+          {/* Submit button */}
           <button className="custom-btn" type="submit" disabled={isLoading}>
             {isLoading ? <span className="custom-loader"></span> : t('landing.auth.register.submit_button')}
           </button>
 
+          {/* Link to login page for users who already have an account */}
           <p className="form__link">
             {t('landing.auth.register.already_have_account_link')}
             <a href="/login" className="form__link--color">
@@ -142,5 +153,3 @@ function Register() {
     </div>
   );
 }
-
-export default Register;

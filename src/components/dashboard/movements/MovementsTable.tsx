@@ -31,31 +31,36 @@ interface MovementsTableProps {
     categories: Category[];
 }
 
-function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
-    const { t, i18n } = useTranslation();
+export default function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
     const [hoveredTransactionId, setHoveredTransactionId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('date_desc');
 
+    const { t, i18n } = useTranslation();
+
+    // Function to open the edit sidebar and select the transaction to edit
     const editMovement = (transaction: Transaction) => {
         setSelectedTransaction(transaction);
         setEditSidebarVisible(true);
     };
 
+    // Get the color for a category by matching its name
     const getCategoryColor = (categoryName: string) => {
         const category = categories.find(cat => cat.name === categoryName);
-        return category ? category.color : '#000';
+        return category ? category.color : '#000'; // Default to black if no match is found
     };
 
+    // Helper function to add opacity to a hex color
     const colorWithOpacity = (hexColor: string, opacity: number) => {
         const rgb = hexColor.replace('#', '').match(/.{1,2}/g)?.map(x => parseInt(x, 16));
-        if (!rgb) return `rgba(0, 0, 0, ${opacity})`;
+        if (!rgb) return `rgba(0, 0, 0, ${opacity})`; // Default to black with opacity if parsing fails
 
-        return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
+        return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`; // Convert to rgba format
     };
 
+    // Sort movements based on the selected sorting option
     const sortMovements = (movements: Transaction[]) => {
         switch (sortOption) {
             case 'date_asc':
@@ -71,14 +76,17 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
         }
     };
 
+    // Filter movements based on the search term
     const filteredMovements = data.filter(movement =>
         movement.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // Sort the filtered movements
     const sortedMovements = sortMovements([...filteredMovements]);
 
     return (
         <div className="movements__table">
+            {/* Search bar and sorting dropdown */}
             <div className="filter-bar">
                 <div className="search-dropdown-container">
                     <InputText
@@ -102,9 +110,11 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                 </div>
             </div>
 
+            {/* Show loading bar if data is empty or being loaded */}
             {isDataEmpty || sortedMovements.length === 0 ? (
                 <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
+                // List of transactions
                 <div className="movements-list">
                     {sortedMovements.map((transaction) => (
                         <div
@@ -114,6 +124,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                             onMouseEnter={() => setHoveredTransactionId(transaction._id)}
                             onMouseLeave={() => setHoveredTransactionId(null)}
                             style={{
+                                // Change background color if the item is hovered
                                 backgroundColor: hoveredTransactionId === transaction._id
                                     ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
                                     : 'transparent'
@@ -137,6 +148,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                                 <span>{transaction.category}</span>
                             </div>
 
+                            {/* Show amount with appropriate color for positive/negative values */}
                             <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
                                 {formatCurrency(transaction.amount, i18n.language)}
                             </div>
@@ -145,6 +157,7 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
                 </div>
             )}
 
+            {/* Sidebar for editing a transaction */}
             <Sidebar
                 visible={editSidebarVisible}
                 onHide={() => setEditSidebarVisible(false)}
@@ -167,5 +180,3 @@ function MovementsTable({ data, isDataEmpty, reloadData, categories }: Movements
         </div>
     );
 }
-
-export default MovementsTable;

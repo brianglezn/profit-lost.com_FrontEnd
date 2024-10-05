@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import Footer from "../../components/landing/Footer";
 import "./Policy.scss";
 
-function Privacy() {
+export default function Privacy() {
   const { t } = useTranslation();
 
   return (
@@ -63,5 +63,3 @@ function Privacy() {
     </div>
   );
 }
-
-export default Privacy;

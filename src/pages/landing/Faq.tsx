@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
@@ -6,10 +6,11 @@ import { useTranslation } from 'react-i18next';
 import './Faq.scss';
 import Footer from '../../components/landing/Footer';
 
-const Faq: React.FC = () => {
+export default function Faq() {
     const [searchTerm, setSearchTerm] = useState('');
     const { t } = useTranslation();
 
+    // List of FAQ items with translated titles and content
     const faqItems = [
         {
             title: t('landing.faq.questions.q1.title'),
@@ -45,6 +46,7 @@ const Faq: React.FC = () => {
         }
     ];
 
+    // Filter FAQ items based on the search term (case insensitive)
     const filteredFaqItems = faqItems.filter(faq =>
         faq.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -52,7 +54,10 @@ const Faq: React.FC = () => {
     return (
         <>
             <div className="faq">
+                {/* Page title */}
                 <h1 className="title">{t('landing.faq.title')}</h1>
+
+                {/* Search bar for filtering FAQs */}
                 <div className="faq-search">
                     <InputText
                         value={searchTerm}
@@ -62,6 +67,7 @@ const Faq: React.FC = () => {
                     />
                 </div>
 
+                {/* Accordion displaying filtered FAQ items */}
                 <Accordion multiple>
                     {filteredFaqItems.map((faq, index) => (
                         <AccordionTab key={index} header={faq.title}>
@@ -70,9 +76,8 @@ const Faq: React.FC = () => {
                     ))}
                 </Accordion>
             </div>
+            {/* Footer component */}
             <Footer />
         </>
     );
-};
-
-export default Faq;
+}

@@ -12,18 +12,20 @@ import { deleteAccount } from '../../../api/users/deleteAccount';
 
 import './SecurityAndPrivacy.scss';
 
-const SecurityAndPrivacy = () => {
+export default function SecurityAndPrivacy() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [usernameConfirmation, setUsernameConfirmation] = useState('');
     const [username, setUsername] = useState('');
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
     const { t } = useTranslation();
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
+        // Fetch user data to set username for confirmation purposes
         const fetchUser = async () => {
             if (token) {
                 try {
@@ -38,10 +40,12 @@ const SecurityAndPrivacy = () => {
         fetchUser();
     }, [token, t]);
 
+    // Show the delete account confirmation form
     const handleShowDeleteConfirmation = () => {
         setShowDeleteConfirmation(true);
     };
 
+    // Handle account deletion after confirming username
     const handleDeleteAccount = async () => {
         if (usernameConfirmation !== username) {
             toast.error(t('dashboard.dashboard.user.security_privacy.username_does_not_match'), { duration: 3000 });
@@ -61,6 +65,7 @@ const SecurityAndPrivacy = () => {
         }
     };
 
+    // Handle password change process
     const handlePasswordChange = async () => {
         if (newPassword !== confirmPassword) {
             toast.error(t('dashboard.dashboard.user.security_privacy.passwords_do_not_match'), { duration: 3000 });
@@ -70,6 +75,7 @@ const SecurityAndPrivacy = () => {
         try {
             const data = await changePassword(currentPassword, newPassword);
             toast.success(data.message || t('dashboard.dashboard.user.security_privacy.password_changed_success'), { duration: 3000 });
+            // Clear password fields after successful password change
             setCurrentPassword('');
             setNewPassword('');
             setConfirmPassword('');
@@ -83,6 +89,7 @@ const SecurityAndPrivacy = () => {
         <div className="security-privacy">
             <h2>{t('dashboard.dashboard.user.security_privacy.title')}</h2>
 
+            {/* Section for changing the password */}
             <div className="password-section">
                 <h2>{t('dashboard.dashboard.user.security_privacy.change_password')}</h2>
                 <div className="security-privacy__section">
@@ -123,10 +130,12 @@ const SecurityAndPrivacy = () => {
                 </div>
             </div>
 
+            {/* Section for deleting the account */}
             <div className="delete-account-section">
                 <h2>{t('dashboard.dashboard.user.security_privacy.delete_account')}</h2>
                 <p>{t('dashboard.dashboard.user.security_privacy.delete_account_warning')}</p>
 
+                {/* Show delete button or confirmation form based on user action */}
                 {!showDeleteConfirmation ? (
                     <Button
                         label={t('dashboard.dashboard.user.security_privacy.delete_account')}
@@ -156,6 +165,4 @@ const SecurityAndPrivacy = () => {
             </div>
         </div>
     );
-};
-
-export default SecurityAndPrivacy;
+}

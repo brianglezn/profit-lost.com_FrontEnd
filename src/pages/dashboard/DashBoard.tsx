@@ -46,7 +46,7 @@ interface User {
   language?: string;
 }
 
-function Dashboard() {
+export default function Dashboard() {
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [user, setUser] = useState<User | null>(null);
@@ -56,6 +56,7 @@ function Dashboard() {
   const [searchParams, setSearchParams] = useSearchParams();
   const menu = useRef<Menu>(null);
 
+  // Handles click on menu items to navigate to different sections
   const handleMenuItemClick = (sectionName: string) => {
     setActiveSection(sectionName);
     const params = sectionName === "Dashboard" ? {} : { section: sectionName };
@@ -63,8 +64,10 @@ function Dashboard() {
     window.scrollTo(0, 0);
   };
 
+  // Get the current date formatted based on the user's language
   const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
 
+  // Fetches user data using token stored in localStorage
   const fetchUserData = useCallback(async () => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -88,19 +91,23 @@ function Dashboard() {
     }
   }, [navigate]);
 
+  // Fetch user data when the component mounts
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
 
+  // Refetch user data when user profile is updated
   const handleUserUpdated = () => {
     fetchUserData();
   };
 
+  // Set the active section based on URL parameters
   useEffect(() => {
     const section = searchParams.get("section");
     setActiveSection(section || "Dashboard");
   }, [searchParams]);
 
+  // Adds a scroll event listener to add a class to the header when scrolling
   useEffect(() => {
     const handleScroll = () => {
       const headerContainer = document.querySelector('.dashboard__header-container');
@@ -117,6 +124,7 @@ function Dashboard() {
     };
   }, []);
 
+  // Function to wake up the backend server
   const wakeUpBackend = async () => {
     toast.promise(
       fetch('https://app-profit-lost-com.onrender.com/ping'),
@@ -136,6 +144,7 @@ function Dashboard() {
     );
   };
 
+  // Handles user logout
   const handleLogout = () => {
     toast.success(t('dashboard.dashboard.sidebar.profile.logout'), { duration: 3000 });
     setTimeout(() => {
@@ -144,10 +153,12 @@ function Dashboard() {
     }, 1000);
   };
 
+  // Changes the visible section of the sidebar
   const handleSidebarSectionChange = (section: 'profile' | 'settings' | 'security' | 'help' | 'about') => {
     setActiveSidebarSection(section);
   };
 
+  // Defines items for the additional menu
   const menuItems = [
     {
       label: t('dashboard.dashboard.sections.accounts'),
@@ -400,5 +411,3 @@ function Dashboard() {
     </>
   );
 }
-
-export default Dashboard;

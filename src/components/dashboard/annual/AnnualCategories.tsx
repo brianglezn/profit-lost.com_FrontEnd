@@ -36,8 +36,7 @@ interface AnnualCategoriesProps {
     reloadFlag: boolean;
 }
 
-const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag }) => {
-    const { t, i18n } = useTranslation();
+export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesProps) {
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -45,6 +44,9 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
 
+    const { t, i18n } = useTranslation();
+
+    // Function to fetch data and calculate the category balances
     const fetchDataAndCalculateBalances = useCallback(async () => {
         setIsLoading(true);
         const token = localStorage.getItem('token');
@@ -55,13 +57,14 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
         }
 
         try {
-            const categoriesData: Category[] = await getAllCategories(token);
-            const movementsData: Transaction[] = await getMovementsByYear(token, year);
+            const categoriesData: Category[] = await getAllCategories(token); // Fetch all categories
+            const movementsData: Transaction[] = await getMovementsByYear(token, year); // Fetch all movements for the year
 
+            // Calculate the balance for each category
             const categoryBalances = categoriesData.map(category => {
                 const balance = movementsData.reduce((acc, movement) => {
                     if (movement.category === category.name) {
-                        return acc + movement.amount;
+                        return acc + movement.amount; // Add the amount to the category balance
                     }
                     return acc;
                 }, 0);
@@ -74,7 +77,7 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
                 };
             });
 
-            setCategories(categoryBalances);
+            setCategories(categoryBalances); // Set the calculated category balances
         } catch (error) {
             toast.error(t('dashboard.annual_report.annual_movements.error_loading'));
             console.error("Error loading data:", error);
@@ -83,15 +86,18 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
         }
     }, [year, t]);
 
+    // useEffect hook to fetch data whenever the year or reloadFlag changes
     useEffect(() => {
         fetchDataAndCalculateBalances();
     }, [fetchDataAndCalculateBalances, reloadFlag]);
 
+    // Function to handle editing a category
     const editCategory = (category: CategoryBalance) => {
         setCategoryToEdit(category);
         setSidebarVisible(true);
     };
 
+    // Function to sort the categories based on the selected sort option
     const sortCategories = (categories: CategoryBalance[]) => {
         switch (sortOption) {
             case 'name_asc':
@@ -107,6 +113,7 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
         }
     };
 
+    // Filter and sort the categories based on search term and sort option
     const filteredCategories = categories.filter(category =>
         category.Category.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -117,12 +124,14 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
         <div className="annual__categories">
             <div className="filter-bar">
                 <div className="search-dropdown-container">
+                    {/* Input to search categories */}
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder={t('dashboard.annual_report.annual_movements.search_placeholder')}
                         className="p-inputtext-custom"
                     />
+                    {/* Dropdown to select sorting option */}
                     <Dropdown
                         value={sortOption}
                         options={[
@@ -138,6 +147,7 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
                 </div>
             </div>
 
+            {/* Display loading indicator or list of categories */}
             {isLoading || sortedCategories.length === 0 ? (
                 <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
             ) : (
@@ -163,6 +173,7 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
                 </div>
             )}
 
+            {/* Sidebar for editing category details */}
             <Sidebar
                 visible={sidebarVisible}
                 onHide={() => setSidebarVisible(false)}
@@ -192,6 +203,4 @@ const AnnualCategories: React.FC<AnnualCategoriesProps> = ({ year, reloadFlag })
             </Sidebar>
         </div>
     );
-};
-
-export default AnnualCategories;
+}

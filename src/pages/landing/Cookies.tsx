@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import Footer from "../../components/landing/Footer";
 import "./Policy.scss";
 
-function Cookies() {
+export default function Cookies() {
   const { t } = useTranslation();
 
   return (
@@ -36,5 +36,3 @@ function Cookies() {
     </div>
   );
 }
-
-export default Cookies;

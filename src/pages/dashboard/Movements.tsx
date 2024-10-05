@@ -32,8 +32,7 @@ interface Category {
   color: string;
 }
 
-function Movements() {
-  const { t, i18n } = useTranslation();
+export default function Movements() {
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());
   const [month, setMonth] = useState<string>((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [dataGraph, setDataGraph] = useState<Movement[]>([]);
@@ -41,9 +40,13 @@ function Movements() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [open, setOpen] = useState<boolean>(false);
 
+  const { t, i18n } = useTranslation();
+
+  // Function to fetch movements and category data
   const fetchMovementsData = useCallback(async (token: string) => {
     if (!token) return;
     try {
+      // Fetch movements and categories concurrently
       const [movementsData, categoriesData] = await Promise.all([
         getAllMovements(token),
         getAllCategories(token),
@@ -51,9 +54,11 @@ function Movements() {
 
       setCategories(categoriesData);
 
+      // Extract years from movements and sort them in descending order
       const years = new Set<string>(movementsData.map((m: Movement) => new Date(m.date).getFullYear().toString()));
       setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
 
+      // Fetch movements for the selected year and month, then sort by date in descending order
       const movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
       movementsFiltered.sort((a: Movement, b: Movement) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -63,6 +68,7 @@ function Movements() {
     }
   }, [year, month]);
 
+  // Effect to fetch data when the component amounts or year/month changes
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -70,17 +76,21 @@ function Movements() {
     }
   }, [fetchMovementsData]);
 
+  // Function to reload data manually
   const reloadData = async () => {
     const token = localStorage.getItem('token');
     if (token) await fetchMovementsData(token);
   };
 
+  // Check if there are no movements to display
   const isDataEmpty = dataGraph.length === 0;
 
+  // Function to calculate income and expenses totals per category
   const calculateCategoryTotals = (movements: Movement[]) => {
     const income: { [key: string]: number } = {};
     const expenses: { [key: string]: number } = {};
 
+    // Iterate over each movement to accumulate income and expenses
     movements.forEach(({ category, amount }) => {
       if (amount > 0) {
         income[category] = (income[category] || 0) + amount;
@@ -89,14 +99,17 @@ function Movements() {
       }
     });
 
+    // Convert income and expenses objects into arrays of data
     const incomeData = Object.entries(income).map(([name, value]) => ({ name, value }));
     const expensesData = Object.entries(expenses).map(([name, value]) => ({ name, value }));
 
     return { incomeData, expensesData };
   };
 
+  // Destructure calculated income and expenses data
   const { incomeData, expensesData } = calculateCategoryTotals(dataGraph);
 
+  // Create chart data for the movements chart
   const chartData = [
     {
       month,
@@ -106,12 +119,14 @@ function Movements() {
     },
   ];
 
+  // Calculate total income, expenses, and final balance formatted as currency
   const totalIncome = chartData[0].Income;
   const totalExpenses = chartData[0].Expenses;
   const formattedBalanceIncome = formatCurrency(totalIncome, i18n.language);
   const formattedBalanceExpenses = formatCurrency(totalExpenses, i18n.language);
   const formattedBalanceFinal = formatCurrency(totalIncome - totalExpenses, i18n.language);
 
+  // Handlers to open and close the add movement modal
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
@@ -120,6 +135,7 @@ function Movements() {
   return (
     <section className="movements">
       <div className="movements__main">
+        {/* Dropdown selectors for year and month */}
         <div className="movements__main-selector">
           <Dropdown
             value={year}
@@ -134,11 +150,13 @@ function Movements() {
             placeholder={month}
           />
         </div>
+        {/* Charts for income, expenses, and balance */}
         <div className="movements__charts-container">
           <MovementsPie data={incomeData} categories={categories} />
           <MovementsPie data={expensesData} categories={categories} />
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
         </div>
+        {/* Displaying total income, expenses, and balance */}
         <div className="movements__main-balance">
           <div className="movements__balance income">
             <DownloadIcon />
@@ -162,6 +180,7 @@ function Movements() {
         <div className="movements__data-text">
           <p>{t('dashboard.movements.header')}</p>
           <Button label={t('dashboard.movements.form_movements_add.header')} size="small" onClick={handleOpenModal} />
+          {/* Sidebar for adding new movement */}
           <Sidebar
             visible={open}
             onHide={handleCloseModal}
@@ -172,6 +191,7 @@ function Movements() {
             <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} selectedYear={year} selectedMonth={month} />
           </Sidebar>
         </div>
+        {/* Table displaying movements data */}
         <MovementsTable
           data={dataGraph}
           isDataEmpty={isDataEmpty}
@@ -182,5 +202,3 @@ function Movements() {
     </section>
   );
 }
-
-export default Movements;

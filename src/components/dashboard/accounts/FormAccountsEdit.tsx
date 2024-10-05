@@ -11,6 +11,7 @@ import { rgbToHex } from "../../../helpers/functions";
 
 import "./FormAccounts.scss";
 
+// Define month names in English and Spanish
 const monthNamesEN = [
     { name: "January", value: "Jan" },
     { name: "February", value: "Feb" },
@@ -66,8 +67,7 @@ interface FormAccountsEditProps {
     onRemove: () => void;
 }
 
-function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {
-    const { t, i18n } = useTranslation();
+export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccountsEditProps) {
     const [accountName, setAccountName] = useState<string>(account.accountName);
     const [backgroundColor, setBackgroundColor] = useState<string>(account.configuration.backgroundColor);
     const [fontColor, setFontColor] = useState<string>(account.configuration.color);
@@ -76,10 +76,14 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
     const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
     const [showConfirm, setShowConfirm] = useState(false);
 
+    const { t, i18n } = useTranslation();
+
+    // Use the appropriate month names based on the selected language
     const monthNames = useMemo(() => {
         return i18n.language === 'es' ? monthNamesES : monthNamesEN;
     }, [i18n.language]);
 
+    // Set initial values for the unique years and temporary values state when the component mounts or account changes
     useEffect(() => {
         const years = Array.from(new Set(account.records.map(record => record.year).filter(year => year !== null && year !== undefined))).sort((a, b) => a - b);
         setUniqueYears(years);
@@ -94,10 +98,12 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         setTempValues(initialTempValues);
     }, [account.records, year]);
 
+    // Ensure the color value is in hex format
     const ensureHexColor = (color: string) => {
         return color.startsWith('#') ? color : `#${color}`;
     };
 
+    // Handle changes to the background color
     const handleBackgroundColorChange = (e: ColorPickerChangeEvent) => {
         let colorValue = "";
         if (e.value !== undefined && typeof e.value === 'string') {
@@ -108,6 +114,7 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         setBackgroundColor(colorValue);
     };
 
+    // Handle changes to the font color
     const handleFontColorChange = (e: ColorPickerChangeEvent) => {
         let colorValue = "";
         if (e.value !== undefined && typeof e.value === 'string') {
@@ -118,10 +125,12 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         setFontColor(colorValue);
     };
 
+    // Handle changes to the selected year
     const handleYearChange = (e: DropdownChangeEvent) => {
         setYear(e.value);
     };
 
+    // Handle value changes for each month's record
     const handleValueChange = (month: string, value: string) => {
         const key = `${year}-${month}`;
         setTempValues(prevTempValues => ({
@@ -130,9 +139,11 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         }));
     };
 
+    // Handle submission of edited account details
     const handleEditAccount = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // Update account records with new values
         const updatedRecords = account.records.map(record => {
             const key = `${record.year}-${record.month}`;
             const normalizedValue = tempValues[key]?.replace(',', '.') || '0';
@@ -160,18 +171,20 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         }
     };
 
+    // Handle remove button click to show confirmation
     const handleRemoveAccount = (e: React.FormEvent) => {
         e.preventDefault();
         setShowConfirm(true);
     };
 
+    // Handle confirmed account removal
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
             await removeAccount(account.AccountId);
             toast.success(t('dashboard.accounts.form_accounts_edit.remove_success'), { duration: 3000 });
-            
+
             onClose();
             onRemove();
         } catch (error) {
@@ -181,22 +194,24 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         }
     };
 
-
     return (
         <form className="formAccount" onSubmit={handleEditAccount}>
             <h2>{t('dashboard.accounts.form_accounts_edit.title')}</h2>
+            {/* Input field for editing account name */}
             <InputText
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
                 className="custom-input"
                 required
             />
+            {/* Dropdown for selecting the year */}
             <Dropdown
                 className="formDropdown"
                 value={year}
                 options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}
             />
+            {/* Fields for editing the values for each month of the selected year */}
             <div className="dataYear">
                 {monthNames.map(month => {
                     const key = `${year}-${month.value}`;
@@ -212,16 +227,19 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
                     );
                 })}
             </div>
+            {/* Color pickers for setting background and font colors */}
             <div className="colorPiker">
                 <p>{t('dashboard.accounts.form_accounts_edit.background')}</p>
                 <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
                 <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
                 <ColorPicker value={fontColor} onChange={handleFontColorChange} />
             </div>
+            {/* Buttons for saving changes or removing the account */}
             <div className="formAccount-buttons">
                 <button type="button" className="custom-btn-sec" onClick={handleRemoveAccount}>{t('dashboard.accounts.account_item.remove')}</button>
                 <button type="submit" className="custom-btn">{t('dashboard.accounts.account_item.submit')}</button>
             </div>
+            {/* Confirmation section for account removal */}
             {showConfirm && (
                 <div className="form-confirmBtn">
                     <p>{t('dashboard.accounts.form_accounts_edit.remove_confirm')} <b>"{account.accountName}"</b>?</p>
@@ -231,5 +249,3 @@ function FormAccountsEdit({ account, onUpdate, onClose, onRemove }: FormAccounts
         </form>
     );
 }
-
-export default FormAccountsEdit;

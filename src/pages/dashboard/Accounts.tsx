@@ -56,11 +56,14 @@ const monthNamesShort = [
   { name: "Dec", value: "Dec" }
 ];
 
-function Accounts() {
-  const { t, i18n } = useTranslation();
+export default function Accounts() {
   const currentDate = new Date();
   const currentYear: number = currentDate.getFullYear();
   const currentMonthName: string = monthNamesShort[currentDate.getMonth()].value;
+
+  const { t, i18n } = useTranslation();
+
+  // State variables to store the relevant data and manage sidebars
   const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [year, setYear] = useState(currentYear.toString());
   const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
@@ -70,6 +73,7 @@ function Accounts() {
   const [draggedAccountId, setDraggedAccountId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Function to fetch all data (accounts and user details)
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);
     const token = localStorage.getItem('token');
@@ -85,26 +89,26 @@ function Accounts() {
       let orderedAccounts: DataAccount[] = [];
       let unOrderedAccounts: DataAccount[] = [];
 
-      // Verificamos si el usuario tiene accountsOrder
+      // Check if user has accountsOrder
       if (user.accountsOrder && user.accountsOrder.length > 0) {
-        // Filtramos las cuentas que están en accountsOrder y las ordenamos
+        // Map through accountsOrder to filter and sort accounts
         orderedAccounts = user.accountsOrder.map((accountId: string) =>
           allAccountsData.find(account => account.AccountId === accountId)
-        ).filter(Boolean) as DataAccount[]; // Para asegurarnos que no haya valores null
+        ).filter(Boolean) as DataAccount[];
 
-        // Filtramos las cuentas que no están en accountsOrder
+        // Get accounts that are not included in accountsOrder
         unOrderedAccounts = allAccountsData.filter(account =>
           !user.accountsOrder.includes(account.AccountId)
         );
       } else {
-        // Si no tiene accountsOrder, mostramos todas las cuentas sin orden
+        // If no accountsOrder, show all accounts without any order
         orderedAccounts = allAccountsData;
       }
 
-      // Mostramos las cuentas ordenadas seguidas de las no ordenadas (si aplica)
+      // Set state with the ordered accounts followed by unordered ones
       setDataAccounts([...orderedAccounts, ...unOrderedAccounts]);
 
-      // Extraemos los años únicos de las cuentas
+      // Extract unique years from the accounts data
       const years = new Set<number>();
       allAccountsData.forEach((account: DataAccount) =>
         account.records.forEach((record: AccountRecord) => years.add(record.year))
@@ -117,14 +121,19 @@ function Accounts() {
     }
   }, [t]);
 
+  // Fetch data when the component mounts or the year changes
   useEffect(() => {
     fetchAllData();
   }, [year, fetchAllData]);
 
+  // Prepare data for the chart using useMemo to optimize performance
   const chartData = useMemo(() => {
     return monthNamesShort.map(month => {
-      const monthData: MonthData = { name: i18n.language === 'es' ? t(`dashboard.common.months.${month.value.toLowerCase()}`) : month.name };
+      const monthData: MonthData = {
+        name: i18n.language === 'es' ? t(`dashboard.common.months.${month.value.toLowerCase()}`) : month.name
+      };
 
+      // Calculate the total value for each month for each account
       dataAccounts.forEach((account: DataAccount) => {
         const totalForMonthAndAccount = account.records
           .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === month.value)
@@ -135,6 +144,7 @@ function Accounts() {
         }
       });
 
+      // Append the total for the month to the name
       const totalForMonth = Object.keys(monthData).reduce((acc, key) => {
         if (key !== 'name' && typeof monthData[key] === 'number') {
           acc += monthData[key] as number;
@@ -148,22 +158,26 @@ function Accounts() {
     });
   }, [dataAccounts, year, i18n.language, t]);
 
+  // Determine if the chart data is empty
   const isChartDataEmpty = useMemo(() => {
     return chartData.every(data => Object.keys(data).length === 1);
   }, [chartData]);
 
+  // Function to handle opening the edit sidebar
   const handleOpenEditSidebar = useCallback((accountId: string) => {
     const account = dataAccounts.find((acc) => acc.AccountId === accountId) || null;
     setSelectedAccount(account);
     setEditSidebarOpen(true);
   }, [dataAccounts]);
 
+  // Prepare account items for display, using useMemo to optimize rendering
   const accountItems = useMemo(() => {
     return dataAccounts.map((account: DataAccount) => {
       const balanceForMonth = account.records
         .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === currentMonthName)
         .reduce((sum, record) => sum + record.value, 0);
 
+      // Handlers for drag-and-drop functionality
       const handleDragStart = () => {
         setDraggedAccountId(account.AccountId);
       };
@@ -204,16 +218,18 @@ function Accounts() {
     });
   }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId, i18n.language]);
 
+  // Handlers to open and close the add sidebar
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
 
+  // Handlers to close the edit sidebar
   const handleCloseEditSidebar = () => setEditSidebarOpen(false);
 
+  // Handlers for when an account is updated or removed
   const handleAccountUpdated = () => {
     fetchAllData();
     handleCloseEditSidebar();
   };
-
   const handleAccountRemoved = () => {
     fetchAllData();
     handleCloseEditSidebar();
@@ -301,5 +317,3 @@ function Accounts() {
     </>
   );
 }
-
-export default Accounts;

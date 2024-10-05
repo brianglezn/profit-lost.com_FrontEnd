@@ -1,6 +1,6 @@
 import "./reports.scss";
 
-function Reports() {
+export default function Reports() {
     return (
         <section className="reports">
             <h1>Reports</h1>
@@ -10,5 +10,3 @@ function Reports() {
         </section>
     );
 }
-
-export default Reports;

@@ -17,12 +17,15 @@ interface MovementsProps {
     isDataEmpty: boolean;
 }
 
-function MovementsChart(props: MovementsProps) {
-    const { t } = useTranslation();
+export default function MovementsChart(props: MovementsProps) {
     const { isDataEmpty, dataGraph } = props;
 
+    const { t } = useTranslation();
+
+    // Get translated month options (used for chart X-axis and tooltips)
     const monthOptions = useMonthOptions();
 
+    // Translate income and expense keys to the user's current language
     const translatedDataGraph = dataGraph.map(item => ({
         ...item,
         [t('dashboard.movements.movements_chart.income')]: item.Income,
@@ -33,8 +36,10 @@ function MovementsChart(props: MovementsProps) {
         <>
             <div className="movements__chart">
                 {isDataEmpty ? (
+                    // Display a placeholder icon if there's no data to show
                     <ChartLineIcon className="custom-icon" />
                 ) : (
+                    // Render the BarChart using Recharts
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                             width={500}
@@ -47,17 +52,26 @@ function MovementsChart(props: MovementsProps) {
                                 bottom: 5,
                             }}
                         >
+                            {/* Add grid lines to the chart */}
                             <CartesianGrid strokeDasharray="3 3" />
+
+                            {/* X-axis with month names */}
                             <XAxis
                                 dataKey="month"
                                 tickFormatter={(value) => {
+                                    // Find the month label based on the month value
                                     const monthOption = monthOptions.find(option => option.value === value);
                                     return monthOption?.label || value;
                                 }}
                             />
+
+                            {/* Y-axis to show values */}
                             <YAxis />
+
+                            {/* Tooltip to display data values when hovering over bars */}
                             <Tooltip
                                 formatter={(value: number | string, name: string, props) => {
+                                    // Custom tooltip formatting to include translated labels for income and expenses
                                     if (props.payload && props.payload.length > 0) {
                                         const firstPayload = props.payload[0];
                                         const monthOption = monthOptions.find(option => option.value === firstPayload.month);
@@ -72,12 +86,19 @@ function MovementsChart(props: MovementsProps) {
                                     return [value, name];
                                 }}
                                 labelFormatter={(value) => {
+                                    // Format the tooltip label for months
                                     const monthOption = monthOptions.find(option => option.value === value);
                                     return monthOption?.label || value;
                                 }}
                             />
+
+                            {/* Legend to distinguish between income and expenses bars */}
                             <Legend />
+
+                            {/* Bar for income with a custom shape */}
                             <Bar dataKey={t('dashboard.movements.movements_chart.income')} fill={"#ff8e38"} shape={<CustomBarShape />} />
+
+                            {/* Bar for expenses with a custom shape */}
                             <Bar dataKey={t('dashboard.movements.movements_chart.expenses')} fill={"#9d300f"} shape={<CustomBarShape />} />
                         </BarChart>
                     </ResponsiveContainer>
@@ -86,5 +107,3 @@ function MovementsChart(props: MovementsProps) {
         </>
     );
 }
-
-export default MovementsChart;

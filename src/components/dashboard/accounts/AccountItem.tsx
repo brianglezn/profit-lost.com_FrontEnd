@@ -16,7 +16,7 @@ interface AccountItemProps {
   draggable: boolean;
 }
 
-function AccountItem({
+export default function AccountItem({
   accountName,
   balance,
   customBackgroundColor,
@@ -39,12 +39,13 @@ function AccountItem({
       onDrop={onDrop}
     >
       <div className="account-item__details">
+        {/* Icon to indicate that the item can be dragged */}
         <DragIndicatorIcon className="account-item__drag-icon" />
+        {/* Display the account name */}
         <div className="account-item__name">{accountName}</div>
+        {/* Display the account balance */}
         <div className="account-item__balance">{balance}</div>
       </div>
     </div>
   );
 }
-
-export default AccountItem;

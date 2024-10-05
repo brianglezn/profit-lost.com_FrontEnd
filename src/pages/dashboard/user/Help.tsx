@@ -1,7 +1,7 @@
 import './Help.scss';
 import { Trans, useTranslation } from 'react-i18next';
 
-const Help = () => {
+export default function Help() {
     const { t } = useTranslation();
 
     return (
@@ -17,6 +17,4 @@ const Help = () => {
             </div>
         </div>
     );
-};
-
-export default Help;
+}

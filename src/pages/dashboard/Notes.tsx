@@ -1,6 +1,6 @@
 import "./Notes.scss";
 
-function Notes() {
+export default function Notes() {
 
     return (
         <section className="notes">
@@ -11,5 +11,3 @@ function Notes() {
         </section>
     );
 }
-
-export default Notes;

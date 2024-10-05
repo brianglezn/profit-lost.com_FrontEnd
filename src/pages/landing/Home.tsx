@@ -19,8 +19,10 @@ const images = [
   "https://res.cloudinary.com/dnhlagojg/image/upload/v1726770005/AppPhotos/Brand/Reports.png"
 ];
 
-const Home = () => {
+export default function Home() {
   const { t } = useTranslation();
+
+  // Template for rendering each image in the carousel
   const imageTemplate = (image: string) => {
     return (
       <div className="carousel-image-container">
@@ -31,9 +33,12 @@ const Home = () => {
 
   return (
     <div className="home">
+      {/* Display an under construction banner */}
       <UnderConstruction />
+
       <Header />
 
+      {/* Hero section with main title */}
       <section className="hero">
         <div className="hero__title">
           <h1>{t('landing.home.title')}</h1>
@@ -41,6 +46,7 @@ const Home = () => {
       </section>
 
       <div className="container__sections">
+        {/* Description section with image and text */}
         <section className="section__description">
           <div className="section__description-container">
             <div>
@@ -57,6 +63,7 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Features section displaying key features of the application */}
         <section className="section__features" id="features">
           <article>
             <figure>
@@ -84,6 +91,7 @@ const Home = () => {
           </article>
         </section>
 
+        {/* Carousel section showing images of different app features */}
         <section className="section__preview" id="preview">
           <Carousel
             value={images}
@@ -99,6 +107,4 @@ const Home = () => {
       <Footer />
     </div>
   );
-};
-
-export default Home;
+}

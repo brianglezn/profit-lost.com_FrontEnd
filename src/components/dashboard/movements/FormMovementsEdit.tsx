@@ -27,8 +27,7 @@ interface FormMovementsEditProps {
     };
 }
 
-function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditProps) {
-    const { t } = useTranslation();
+export default function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditProps) {
     const [dateTime, setDateTime] = useState<string>(new Date(transaction.date).toISOString().slice(0, 16));
     const [description, setDescription] = useState<string>(transaction.description);
     const [amount, setAmount] = useState<string>(Math.abs(transaction.amount).toString());
@@ -37,6 +36,9 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
     const [showConfirm, setShowConfirm] = useState(false);
     const [isIncome, setIsIncome] = useState<boolean>(transaction.amount >= 0);
 
+    const { t } = useTranslation();
+
+    // Fetch categories when the component is mounted
     useEffect(() => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('token');
@@ -49,6 +51,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 const sortedCategories = fetchedCategories.sort((a: Category, b: Category) => a.name.localeCompare(b.name));
                 setCategories(sortedCategories);
 
+                // Set the current category in the dropdown
                 const currentCategory = sortedCategories.find((cat: Category) => cat.name === transaction.category);
                 setCategory(currentCategory || null);
             } catch (error) {
@@ -60,24 +63,28 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         fetchCategories();
     }, [transaction.category, t]);
 
+    // Handle when user selects "Income"
     const handleIncomeClick = () => {
         setIsIncome(true);
-        setAmount(amount.replace('-', ''));
+        setAmount(amount.replace('-', '')); // Remove negative sign from the amount
     };
 
+    // Handle when user selects "Expense"
     const handleExpenseClick = () => {
         setIsIncome(false);
     };
 
+    // Update the amount input while ensuring the correct sign based on income/expense selection
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (isIncome) {
-            setAmount(value.replace('-', ''));
+            setAmount(value.replace('-', '')); // Ensure no negative sign for income
         } else {
             setAmount(value);
         }
     };
 
+    // Handle form submission to edit movement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -87,26 +94,29 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             return;
         }
 
+        // Validate the amount format
         if (!/^-?\d+(\.\d{0,2})?$/.test(amount)) {
             toast.error(t('dashboard.movements.form_movements_add.error_message'));
             return;
         }
 
+        // Format the date to ISO string format with local offset adjustment
         const localDate = new Date(dateTime);
         const offsetDate = new Date(localDate.getTime() - (localDate.getTimezoneOffset() * 60000));
         const formattedDate = offsetDate.toISOString().slice(0, 19);
 
+        // Create movement data to send for update
         const movementData = {
             date: formattedDate,
             description: description.trim() === '' ? '---' : description,
-            amount: Number(amount) * (isIncome ? 1 : -1),
+            amount: Number(amount) * (isIncome ? 1 : -1), // Set amount as negative for expenses
             category: category?._id || '',
         };
 
         try {
             await editMovement(token, transaction._id, movementData);
-            toast.success(t('dashboard.movements.form_movements_edit.success_message_edit'));
-            onEdit();
+            toast.success(t('dashboard.movements.form_movements_edit.success_message_edit')); // Show success toast message
+            onEdit(); // Call onEdit callback to refresh data
         } catch (error) {
             console.error('Error updating movement:', error);
             const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
@@ -114,11 +124,13 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         }
     };
 
+    // Handle remove button click to confirm deletion
     const handleRemove = (e: React.FormEvent) => {
         e.preventDefault();
         setShowConfirm(true);
     };
 
+    // Handle confirmed remove action
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -132,7 +144,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
             await removeMovement(token, transaction._id);
             toast.success(t('dashboard.movements.form_movements_edit.success_message_delete'));
             setTimeout(() => {
-                onRemove();
+                onRemove(); // Call onRemove callback to refresh data
             }, 500);
         } catch (error) {
             console.error("Error removing the transaction:", error);
@@ -143,6 +155,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
     return (
         <form onSubmit={handleSubmit} className="formMovements">
             <h2>{t('dashboard.movements.form_movements_edit.header')}</h2>
+            {/* Toggle buttons to select between Income and Expense */}
             <div className="formMovements-toggle">
                 <button
                     type="button"
@@ -159,6 +172,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                     {t('dashboard.movements.form_movements_edit.expense_button')}
                 </button>
             </div>
+            {/* Input field for selecting date and time */}
             <input
                 type="datetime-local"
                 className="formMovements-datetime custom-input"
@@ -166,6 +180,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 onChange={(e) => setDateTime(e.target.value)}
                 required
             />
+            {/* Dropdown for selecting category */}
             <Dropdown
                 value={category}
                 options={categories}
@@ -178,6 +193,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 filterBy="name"
                 required
             />
+            {/* Input field for description */}
             <InputText
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -185,6 +201,7 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 required
                 className='custom-input'
             />
+            {/* Input field for amount */}
             <InputText
                 value={amount}
                 onChange={handleAmountChange}
@@ -195,11 +212,12 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
                 required
                 className='custom-input'
             />
-
+            {/* Buttons to submit the form or delete the transaction */}
             <div className="formMovements-buttons">
                 <button type="button" className="custom-btn-sec" onClick={handleRemove}>{t('dashboard.movements.form_movements_edit.delete_button')}</button>
                 <button type="submit" className="custom-btn">{t('dashboard.movements.form_movements_edit.save_button')}</button>
             </div>
+            {/* Confirmation for deleting transaction */}
             {showConfirm && (
                 <div className="form-confirmBtn">
                     <p>{t('dashboard.movements.form_movements_edit.confirm_delete')}</p>
@@ -209,5 +227,3 @@ function FormMovementsEdit({ onEdit, onRemove, transaction }: FormMovementsEditP
         </form>
     );
 }
-
-export default FormMovementsEdit;

@@ -19,28 +19,33 @@ interface UserSettingsProps {
     userProfileImage: string | null;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, userSurname, userLanguage, userProfileImage }) => {
+export default function UserSettings({ onUserUpdated, userName, userSurname, userLanguage, userProfileImage }: UserSettingsProps) {
     const [language, setLanguage] = useState(userLanguage);
     const [name, setName] = useState(userName);
     const [surname, setSurname] = useState(userSurname);
     const [profileImage, setProfileImage] = useState<File | null>(null);
-    const { t } = useTranslation();
-
     const fileUploadRef = useRef<FileUpload>(null);
 
+    const { t } = useTranslation();
+
     useEffect(() => {
+        // Update local state whenever user props change
         setName(userName);
         setSurname(userSurname);
         setLanguage(userLanguage);
     }, [userName, userSurname, userLanguage]);
 
+    // Handler for updating the name state
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
+    // Handler for updating the surname state
     const handleSurnameChange = (e: React.ChangeEvent<HTMLInputElement>) => setSurname(e.target.value);
 
+    // Handler for changing the language
     const handleLanguageChange = (e: DropdownChangeEvent) => {
         setLanguage(e.value);
     };
 
+    // Handle profile image file selection and validate its size
     const handleProfileImageUpload = (e: FileUploadHandlerEvent) => {
         const file = e.files[0];
         if (file.size > 8000000) {
@@ -51,6 +56,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         setProfileImage(file);
     };
 
+    // Handler for deleting the profile image
     const handleDeleteProfileImage = async () => {
         toast.loading(t('dashboard.dashboard.user.settings.deleting_image'));
 
@@ -65,6 +71,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         }
     };
 
+    // Handler to confirm and save changes for user settings
     const handleConfirmChanges = async () => {
         const formData = new FormData();
         formData.append('name', name);
@@ -78,7 +85,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         toast.loading(t('dashboard.dashboard.user.settings.updating_settings'));
 
         try {
-            await updateProfile(formData);
+            await updateProfile(formData); // Make API call to update profile
             toast.dismiss();
             toast.success(t('dashboard.dashboard.user.settings.update_success'));
             onUserUpdated();
@@ -88,11 +95,13 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         }
     };
 
+    // Language options for dropdown
     const languages = [
         { name: 'English', code: 'en', flag: 'https://flagcdn.com/w20/us.png' },
         { name: 'Español', code: 'es', flag: 'https://flagcdn.com/w20/es.png' }
     ];
 
+    // Template for the selected value in the language dropdown
     const valueTemplate = (option: { name: string, code: string, flag: string } | undefined) => {
         if (option) {
             return (
@@ -111,6 +120,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
         ) : null;
     };
 
+    // Template for rendering each language item in the dropdown list
     const itemTemplate = (option: { name: string, flag: string }) => {
         return (
             <div className="language-item">
@@ -127,10 +137,13 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
                 <div className="settings__section">
                     <div className="profile-picture">
                         {profileImage ? (
+                            // Show uploaded profile image
                             <img src={URL.createObjectURL(profileImage)} alt="Profile" className="profile-picture__img" />
                         ) : userProfileImage ? (
+                            // Show user's existing profile image
                             <img src={userProfileImage} alt="Current Profile" className="profile-picture__img" />
                         ) : (
+                            // Show a placeholder if no image is available
                             <div className="profile-picture__placeholder">{t('dashboard.dashboard.user.settings.no_image')}</div>
                         )}
                     </div>
@@ -194,6 +207,4 @@ const UserSettings: React.FC<UserSettingsProps> = ({ onUserUpdated, userName, us
             </div>
         </div>
     );
-};
-
-export default UserSettings;
+}

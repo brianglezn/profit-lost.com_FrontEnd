@@ -3,11 +3,13 @@ import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { enUS, es } from 'date-fns/locale';
 
+// Mapping of locales to the corresponding date-fns locale object
 const localeMap = {
     en: enUS,
     es: es,
 };
 
+// Function to format a currency value based on locale
 export function formatCurrency(value: number, locale: string = 'en-US'): string {
     const currency = locale === 'es' ? 'EUR' : 'USD';
     return value.toLocaleString(locale, {
@@ -18,18 +20,22 @@ export function formatCurrency(value: number, locale: string = 'en-US'): string 
     });
 }
 
+// Function to get the current date formatted according to the locale
 export function getCurrentDate(locale: string = 'en'): string {
     const today = new Date();
     const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
 
+    // Set the date format based on the language: different formats for English and Spanish
     const dateFormat = locale === 'en' ? 'EEE, MMM do, yyyy' : 'EEE, d MMM yyyy';
 
-    return format(today, dateFormat, { locale: currentLocale });
+    return format(today, dateFormat, { locale: currentLocale }); // Return the formatted date
 }
 
+// Function to format a given date-time value in UTC to locale-specific format
 export function formatDateTime(value: string, locale: string = 'en'): string {
-    const date = new Date(value);
+    const date = new Date(value); // Parse the given date string into a Date object
 
+    // Create a new date object using UTC values to maintain consistency across time zones
     const utcDate = new Date(
         date.getUTCFullYear(),
         date.getUTCMonth(),
@@ -44,13 +50,17 @@ export function formatDateTime(value: string, locale: string = 'en'): string {
     return format(utcDate, dateFormat, { locale: currentLocale });
 }
 
+// Function to convert RGB values to hexadecimal format
 export function rgbToHex({ r, g, b }: ColorPickerRGBType): string {
+    // Convert RGB values to a single hex string
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
 }
 
+// Hook to get translated month names, useful for dropdowns or labels
 export const useMonthNames = () => {
     const { t } = useTranslation();
 
+    // Return an array of translated month names and their short values
     return [
         { name: t("dashboard.common.months.january"), value: t("dashboard.common.months.jan") },
         { name: t("dashboard.common.months.february"), value: t("dashboard.common.months.feb") },
@@ -67,9 +77,11 @@ export const useMonthNames = () => {
     ];
 };
 
+// Hook to get translated month options for dropdowns
 export const useMonthOptions = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(); // Translation function
 
+    // Return an array of translated month names with corresponding values for selection options
     return [
         { value: "01", label: t("dashboard.common.months.january") },
         { value: "02", label: t("dashboard.common.months.february") },
