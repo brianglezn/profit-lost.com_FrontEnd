@@ -24,7 +24,7 @@ export default function HomeMovementsHistory({ data, isDataEmpty }: MovementsHis
         .slice(0, 8);
 
     return (
-        <div className="movements-history-home">
+        <div className='movements-history-home'>
             {isDataEmpty || sortedData.length === 0 ? (
                 // If data is empty, display a message indicating no movements
                 <p>{t('dashboard.movements.movements_table.no_movements')}</p>
@@ -32,15 +32,15 @@ export default function HomeMovementsHistory({ data, isDataEmpty }: MovementsHis
                 // Display a list of sorted transactions
                 <ul>
                     {sortedData.map((transaction) => (
-                        <li key={transaction._id} className="movement-item">
-                            <div className="description-section">
+                        <li key={transaction._id} className='movement-item'>
+                            <div className='description-section'>
                                 {/* Display the description of the transaction */}
-                                <div className="description">{transaction.description}</div>
+                                <div className='description'>{transaction.description}</div>
                                 {/* Format and display the date of the transaction */}
-                                <div className="date">{formatDateTime(transaction.date, i18n.language)}</div>
+                                <div className='date'>{formatDateTime(transaction.date, i18n.language)}</div>
                             </div>
                             {/* Display the transaction amount, with different styles for positive and negative values */}
-                            <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
+                            <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
                                 {transaction.amount.toFixed(2)} €
                             </div>
                         </li>

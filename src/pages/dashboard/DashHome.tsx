@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { formatCurrency } from '../../helpers/functions';
-import { getMovementsByYear } from "../../api/movements/getMovementsByYear";
+import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
 
-import "./DashHome.scss";
-import HomeBalanceChart from "../../components/dashboard/dashhome/HomeBalanceChart";
-import MovementsHistoryHome from "../../components/dashboard/dashhome/HomeMovementsHistory";
+import './DashHome.scss';
+import HomeBalanceChart from '../../components/dashboard/dashhome/HomeBalanceChart';
+import MovementsHistoryHome from '../../components/dashboard/dashhome/HomeMovementsHistory';
 
 interface Transaction {
   _id: string;
@@ -32,7 +32,7 @@ export default function DashHome() {
     const fetchData = async () => {
       try {
         // Get the authentication token from local storage
-        const token = localStorage.getItem("token") || "";
+        const token = localStorage.getItem('token') || '';
         const currentDate = new Date();
         // Set the end of the current day (23:59:59)
         const endOfDay = new Date(currentDate);
@@ -59,7 +59,7 @@ export default function DashHome() {
 
         setMovements(sortedMovements);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
@@ -136,17 +136,17 @@ export default function DashHome() {
   }, [movements]);
 
   return (
-    <section className="dashHome">
-      <div className="balances">
+    <section className='dashHome'>
+      <div className='balances'>
         <div>
-          <div className="balances-container income">
-            <div className="header-container">
+          <div className='balances-container income'>
+            <div className='header-container'>
               <span>{t('dashboard.dashhome.balances.earnings')}</span>
             </div>
-            <div className="amount">
-              <span className="value">{formatCurrency(income, i18n.language)}</span>
+            <div className='amount'>
+              <span className='value'>{formatCurrency(income, i18n.language)}</span>
             </div>
-            <div className="comparison">
+            <div className='comparison'>
               <span className={`percentage ${incomePercentage >= 0 ? 'positive' : 'negative'}`}>
                 {incomePercentage.toFixed(1)}%
               </span> {t('dashboard.dashhome.balances.comparison')}
@@ -154,14 +154,14 @@ export default function DashHome() {
           </div>
         </div>
         <div>
-          <div className="balances-container expenses">
-            <div className="header-container">
+          <div className='balances-container expenses'>
+            <div className='header-container'>
               <span>{t('dashboard.dashhome.balances.spendings')}</span>
             </div>
-            <div className="amount">
-              <span className="value">{formatCurrency(expenses, i18n.language)}</span>
+            <div className='amount'>
+              <span className='value'>{formatCurrency(expenses, i18n.language)}</span>
             </div>
-            <div className="comparison">
+            <div className='comparison'>
               <span className={`percentage ${expensesPercentage >= 0 ? 'negative' : 'positive'}`}>
                 {expensesPercentage.toFixed(1)}%
               </span> {t('dashboard.dashhome.balances.comparison')}
@@ -169,14 +169,14 @@ export default function DashHome() {
           </div>
         </div>
         <div>
-          <div className="balances-container ebitda">
-            <div className="header-container">
+          <div className='balances-container ebitda'>
+            <div className='header-container'>
               <span>{t('dashboard.dashhome.balances.savings')}</span>
             </div>
-            <div className="amount">
-              <span className="value">{formatCurrency(ebitda, i18n.language)}</span>
+            <div className='amount'>
+              <span className='value'>{formatCurrency(ebitda, i18n.language)}</span>
             </div>
-            <div className="comparison">
+            <div className='comparison'>
               <span className={`percentage ${ebitdaPercentage >= 0 ? 'positive' : 'negative'}`}>
                 {ebitdaPercentage.toFixed(1)}%
               </span> {t('dashboard.dashhome.balances.comparison')}
@@ -185,43 +185,43 @@ export default function DashHome() {
         </div>
       </div>
 
-      <div className="chart">
-        <div className="chart-container">
-          <div className="header-container">
+      <div className='chart'>
+        <div className='chart-container'>
+          <div className='header-container'>
             <span>{t('dashboard.dashhome.home_balance_chart.header')}</span>
           </div>
           <HomeBalanceChart />
         </div>
       </div>
 
-      <div className="history">
-        <div className="history-container">
-          <div className="header-container">
+      <div className='history'>
+        <div className='history-container'>
+          <div className='header-container'>
             <span>{t('dashboard.dashhome.home_movements_history.header')}</span>
           </div>
           <MovementsHistoryHome data={movements} isDataEmpty={isDataEmpty} />
         </div>
       </div>
 
-      {/* <div className="first">
-  <div className="first-container">
-    <div className="header-container">
+      {/* <div className='first'>
+  <div className='first-container'>
+    <div className='header-container'>
       <span>Category + gastos</span>
     </div>
   </div>
 </div>
 
-<div className="second">
-  <div className="second-container">
-    <div className="header-container">
+<div className='second'>
+  <div className='second-container'>
+    <div className='header-container'>
       <span>Category + ingresos</span>
     </div>
   </div>
 </div>
 
-<div className="categories">
-  <div className="categories-container">
-    <div className="header-container">
+<div className='categories'>
+  <div className='categories-container'>
+    <div className='header-container'>
       <span>Notes</span>
     </div>
   </div>

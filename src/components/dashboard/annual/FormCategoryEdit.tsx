@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { ColorPicker } from "primereact/colorpicker";
-import { Accordion, AccordionTab } from "primereact/accordion";
+import { ColorPicker } from 'primereact/colorpicker';
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { useTranslation } from 'react-i18next';
 
-import { editCategory } from "../../../api/categories/editCategory";
-import { removeCategory } from "../../../api/categories/removeCategory";
-import { getAllMovements } from "../../../api/movements/getAllMovements";
-import { formatCurrency, formatDateTime } from "../../../helpers/functions";
+import { editCategory } from '../../../api/categories/editCategory';
+import { removeCategory } from '../../../api/categories/removeCategory';
+import { getAllMovements } from '../../../api/movements/getAllMovements';
+import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
 import './FormCategory.scss';
 
@@ -121,37 +121,37 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     const hasMovements = Object.keys(movementsByYear).length > 0;
 
     return (
-        <form className="formCategories" onSubmit={handleEditCategory}>
+        <form className='formCategories' onSubmit={handleEditCategory}>
             <h2>{t('dashboard.annual_report.form_cat_edit.header')}</h2>
-            <div className="formCategoriesContainer">
-                <div className="formCategoriesContainer-colorPicker">
+            <div className='formCategoriesContainer'>
+                <div className='formCategoriesContainer-colorPicker'>
                     {/* Color picker for the category */}
                     <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
                 </div>
                 <input
-                    className="custom-input"
+                    className='custom-input'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t('dashboard.annual_report.form_cat_edit.name_placeholder')}
                     autoFocus
                 />
             </div>
-            <div className="formCategories-buttons">
+            <div className='formCategories-buttons'>
                 {/* Button to initiate category removal */}
-                <button type="button" className="custom-btn-sec" onClick={handleRemoveCategory}>
+                <button type='button' className='custom-btn-sec' onClick={handleRemoveCategory}>
                     {t('dashboard.annual_report.form_cat_edit.remove_button')}
                 </button>
                 {/* Button to save category changes */}
-                <button type="submit" className="custom-btn">
+                <button type='submit' className='custom-btn'>
                     {t('dashboard.annual_report.form_cat_edit.save_button')}
                 </button>
             </div>
 
             {/* Confirmation dialog for deleting the category */}
             {showConfirm && (
-                <div className="form-confirmBtn">
+                <div className='form-confirmBtn'>
                     <p>{t('dashboard.annual_report.form_cat_edit.confirm_delete', { category: name })}</p>
-                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>
+                    <button type='button' className='custom-btn' onClick={handleConfirmRemove}>
                         {t('dashboard.annual_report.form_cat_edit.delete_button')}
                     </button>
                 </div>
@@ -159,20 +159,20 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
 
             {/* Display movements related to the category in an accordion view */}
             {hasMovements && (
-                <div className="movementsByCategory">
-                    <Accordion multiple className="movementsByCategory-container">
+                <div className='movementsByCategory'>
+                    <Accordion multiple className='movementsByCategory-container'>
                         {Object.keys(movementsByYear)
                             .sort((a, b) => Number(b) - Number(a))
                             .map((year) => (
                                 <AccordionTab key={year} header={year}>
-                                    <ul className="movementsByCategory-list">
+                                    <ul className='movementsByCategory-list'>
                                         {movementsByYear[year]
                                             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                                             .map((movement) => (
-                                                <li key={movement.id} className="movementsByCategory-item">
+                                                <li key={movement.id} className='movementsByCategory-item'>
                                                     {/* Display movement details */}
-                                                    <span className="movementsByCategory-description">{movement.description}</span>
-                                                    <span className="movementsByCategory-date">{formatDateTime(movement.date, i18n.language)}</span>
+                                                    <span className='movementsByCategory-description'>{movement.description}</span>
+                                                    <span className='movementsByCategory-date'>{formatDateTime(movement.date, i18n.language)}</span>
                                                     <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
                                                         {formatCurrency(movement.amount, i18n.language)}
                                                     </span>

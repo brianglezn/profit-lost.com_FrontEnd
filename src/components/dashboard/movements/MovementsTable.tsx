@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { formatCurrency, formatDateTime } from '../../../helpers/functions';
 
-import "./MovementsTable.scss";
+import './MovementsTable.scss';
 import FormMovementsEdit from './FormMovementsEdit';
 
 type Transaction = {
@@ -85,15 +85,15 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
     const sortedMovements = sortMovements([...filteredMovements]);
 
     return (
-        <div className="movements__table">
+        <div className='movements__table'>
             {/* Search bar and sorting dropdown */}
-            <div className="filter-bar">
-                <div className="search-dropdown-container">
+            <div className='filter-bar'>
+                <div className='search-dropdown-container'>
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder={t('dashboard.movements.movements_table.search_placeholder')}
-                        className="p-inputtext-custom"
+                        className='p-inputtext-custom'
                     />
                     <Dropdown
                         value={sortOption}
@@ -105,21 +105,21 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                         ]}
                         onChange={(e) => setSortOption(e.value)}
                         placeholder={t('dashboard.movements.movements_table.sort_by')}
-                        className="p-dropdown-custom"
+                        className='p-dropdown-custom'
                     />
                 </div>
             </div>
 
             {/* Show loading bar if data is empty or being loaded */}
             {isDataEmpty || sortedMovements.length === 0 ? (
-                <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
+                <ProgressBar mode='indeterminate' style={{ height: '6px', width: '100%' }} />
             ) : (
                 // List of transactions
-                <div className="movements-list">
+                <div className='movements-list'>
                     {sortedMovements.map((transaction) => (
                         <div
                             key={transaction._id}
-                            className="movement-item"
+                            className='movement-item'
                             onClick={() => editMovement(transaction)}
                             onMouseEnter={() => setHoveredTransactionId(transaction._id)}
                             onMouseLeave={() => setHoveredTransactionId(null)}
@@ -130,26 +130,26 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                                     : 'transparent'
                             }}
                         >
-                            <div className="category-mobile">
+                            <div className='category-mobile'>
                                 <div
-                                    className="category-color-circle"
+                                    className='category-color-circle'
                                     style={{ backgroundColor: getCategoryColor(transaction.category) }}
                                 ></div>
                             </div>
-                            <div className="description-section">
-                                <div className="description">{transaction.description}</div>
-                                <div className="date">{formatDateTime(transaction.date, i18n.language)}</div>
+                            <div className='description-section'>
+                                <div className='description'>{transaction.description}</div>
+                                <div className='date'>{formatDateTime(transaction.date, i18n.language)}</div>
                             </div>
-                            <div className="category">
+                            <div className='category'>
                                 <div
-                                    className="category-color-circle"
+                                    className='category-color-circle'
                                     style={{ backgroundColor: getCategoryColor(transaction.category) }}
                                 ></div>
                                 <span>{transaction.category}</span>
                             </div>
 
                             {/* Show amount with appropriate color for positive/negative values */}
-                            <div className={`amount ${transaction.amount >= 0 ? "positive" : "negative"}`}>
+                            <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
                                 {formatCurrency(transaction.amount, i18n.language)}
                             </div>
                         </div>
@@ -162,8 +162,8 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                 visible={editSidebarVisible}
                 onHide={() => setEditSidebarVisible(false)}
                 style={{ width: '500px' }}
-                className="custom_sidebar"
-                position="right"
+                className='custom_sidebar'
+                position='right'
                 modal>
                 {selectedTransaction && <FormMovementsEdit
                     transaction={selectedTransaction}

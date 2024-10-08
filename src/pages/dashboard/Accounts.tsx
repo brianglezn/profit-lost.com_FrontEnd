@@ -1,22 +1,22 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Dropdown } from 'primereact/dropdown';
-import { ProgressBar } from "primereact/progressbar";
+import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { Button } from "primereact/button";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Button } from 'primereact/button';
 import { useTranslation } from 'react-i18next';
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
 import updateAccountsOrder from '../../api/accounts/updateAccountsOrder';
-import { getUserByToken } from "../../api/users/getUserByToken";
+import { getUserByToken } from '../../api/users/getUserByToken';
 
-import "./Accounts.scss";
-import AccountItem from "../../components/dashboard/accounts/AccountItem";
-import FormAccountsAdd from "../../components/dashboard/accounts/FormAccountsAdd";
-import FormAccountsEdit from "../../components/dashboard/accounts/FormAccountsEdit";
-import CustomBarShape from "../../components/CustomBarShape";
-import ChartLineIcon from "../../components/icons/CharLineIcon";
+import './Accounts.scss';
+import AccountItem from '../../components/dashboard/accounts/AccountItem';
+import FormAccountsAdd from '../../components/dashboard/accounts/FormAccountsAdd';
+import FormAccountsEdit from '../../components/dashboard/accounts/FormAccountsEdit';
+import CustomBarShape from '../../components/CustomBarShape';
+import ChartLineIcon from '../../components/icons/CharLineIcon';
 
 type AccountConfiguration = {
   backgroundColor: string;
@@ -42,18 +42,18 @@ type MonthData = {
 };
 
 const monthNamesShort = [
-  { name: "Jan", value: "Jan" },
-  { name: "Feb", value: "Feb" },
-  { name: "Mar", value: "Mar" },
-  { name: "Apr", value: "Apr" },
-  { name: "May", value: "May" },
-  { name: "Jun", value: "Jun" },
-  { name: "Jul", value: "Jul" },
-  { name: "Aug", value: "Aug" },
-  { name: "Sep", value: "Sep" },
-  { name: "Oct", value: "Oct" },
-  { name: "Nov", value: "Nov" },
-  { name: "Dec", value: "Dec" }
+  { name: 'Jan', value: 'Jan' },
+  { name: 'Feb', value: 'Feb' },
+  { name: 'Mar', value: 'Mar' },
+  { name: 'Apr', value: 'Apr' },
+  { name: 'May', value: 'May' },
+  { name: 'Jun', value: 'Jun' },
+  { name: 'Jul', value: 'Jul' },
+  { name: 'Aug', value: 'Aug' },
+  { name: 'Sep', value: 'Sep' },
+  { name: 'Oct', value: 'Oct' },
+  { name: 'Nov', value: 'Nov' },
+  { name: 'Dec', value: 'Dec' }
 ];
 
 export default function Accounts() {
@@ -237,32 +237,32 @@ export default function Accounts() {
 
   return (
     <>
-      <section className="accounts">
-        <div className="accounts__main">
+      <section className='accounts'>
+        <div className='accounts__main'>
           <Dropdown
             value={year}
             options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
             onChange={(e) => setYear(e.value)}
             placeholder={year}
           />
-          <div className="accounts__main-chart">
+          <div className='accounts__main-chart'>
             {!isChartDataEmpty ? (
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width='100%' height={300}>
                 <BarChart
                   width={500}
                   height={300}
                   data={chartData}
                   margin={{ top: 10, right: 50, left: 20, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
+                  <CartesianGrid strokeDasharray='3 3' />
+                  <XAxis dataKey='name' />
                   <YAxis />
                   <Tooltip />
                   {dataAccounts.map((account: DataAccount) => (
                     <Bar
                       key={account.accountName}
                       dataKey={account.accountName}
-                      stackId="a"
+                      stackId='a'
                       fill={account.configuration.backgroundColor}
                       shape={<CustomBarShape />}
                     />
@@ -270,30 +270,30 @@ export default function Accounts() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <ChartLineIcon className="custom-icon" />
+              <ChartLineIcon className='custom-icon' />
             )}
           </div>
         </div>
-        <div className="accounts__container">
-          <div className="accounts__container-text">
+        <div className='accounts__container'>
+          <div className='accounts__container-text'>
             <p>{t('dashboard.accounts.title')}</p>
-            <Button label={t('dashboard.accounts.account_item.add')} size="small" onClick={handleOpenAddSidebar} />
+            <Button label={t('dashboard.accounts.account_item.add')} size='small' onClick={handleOpenAddSidebar} />
             <Sidebar
               visible={addSidebarOpen}
               onHide={handleCloseAddSidebar}
-              position="right"
+              position='right'
               style={{ width: '500px' }}
-              className="custom-sidebar"
+              className='custom-sidebar'
             >
               <FormAccountsAdd onAccountAdded={() => { fetchAllData(); handleCloseAddSidebar(); }} />
             </Sidebar>
           </div>
           {isLoading || dataAccounts.length === 0 ? (
-            <div className="accounts__container-progress">
-              <ProgressBar mode="indeterminate" style={{ height: '6px' }} />
+            <div className='accounts__container-progress'>
+              <ProgressBar mode='indeterminate' style={{ height: '6px' }} />
             </div>
           ) : (
-            <div className="accounts__container-items">{accountItems}</div>
+            <div className='accounts__container-items'>{accountItems}</div>
           )}
 
         </div>
@@ -301,9 +301,9 @@ export default function Accounts() {
       <Sidebar
         visible={editSidebarOpen}
         onHide={handleCloseEditSidebar}
-        position="right"
+        position='right'
         style={{ width: '500px' }}
-        className="custom-sidebar"
+        className='custom-sidebar'
       >
         {selectedAccount && (
           <FormAccountsEdit

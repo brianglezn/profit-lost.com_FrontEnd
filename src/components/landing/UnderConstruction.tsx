@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { Dialog } from 'primereact/dialog';
-import { Button } from "primereact/button";
+import { Button } from 'primereact/button';
 import { useTranslation } from 'react-i18next';
 
 import './UnderConstruction.scss';
@@ -21,7 +21,7 @@ export default function UnderConstruction() {
     };
 
     return (
-        // Dialog component to display the "Under Construction" popup
+        // Dialog component to display the 'Under Construction' popup
         <Dialog
             header={t('landing.home.under_construction.title')}
             visible={isPopupVisible}
@@ -33,10 +33,10 @@ export default function UnderConstruction() {
             <p>{t('landing.home.under_construction.description')}</p>
 
             {/* Actions container for the button to close the popup */}
-            <div className="popup__actions">
+            <div className='popup__actions'>
                 <Button
                     label={t('landing.home.under_construction.btn')}
-                    className="popup__close-btn"
+                    className='popup__close-btn'
                     onClick={handleClosePopup}
                 />
             </div>

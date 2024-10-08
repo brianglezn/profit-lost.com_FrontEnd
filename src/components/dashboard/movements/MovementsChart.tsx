@@ -1,11 +1,11 @@
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
 import { useMonthOptions } from '../../../helpers/functions';
 
-import "./MovementsChart.scss";
-import CustomBarShape from "../../CustomBarShape";
-import ChartLineIcon from "../../icons/CharLineIcon";
+import './MovementsChart.scss';
+import CustomBarShape from '../../CustomBarShape';
+import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface MovementsProps {
     dataGraph: {
@@ -34,13 +34,13 @@ export default function MovementsChart(props: MovementsProps) {
 
     return (
         <>
-            <div className="movements__chart">
+            <div className='movements__chart'>
                 {isDataEmpty ? (
                     // Display a placeholder icon if there's no data to show
-                    <ChartLineIcon className="custom-icon" />
+                    <ChartLineIcon className='custom-icon' />
                 ) : (
                     // Render the BarChart using Recharts
-                    <ResponsiveContainer width="100%" height={300}>
+                    <ResponsiveContainer width='100%' height={300}>
                         <BarChart
                             width={500}
                             height={300}
@@ -53,11 +53,11 @@ export default function MovementsChart(props: MovementsProps) {
                             }}
                         >
                             {/* Add grid lines to the chart */}
-                            <CartesianGrid strokeDasharray="3 3" />
+                            <CartesianGrid strokeDasharray='3 3' />
 
                             {/* X-axis with month names */}
                             <XAxis
-                                dataKey="month"
+                                dataKey='month'
                                 tickFormatter={(value) => {
                                     // Find the month label based on the month value
                                     const monthOption = monthOptions.find(option => option.value === value);
@@ -96,10 +96,10 @@ export default function MovementsChart(props: MovementsProps) {
                             <Legend />
 
                             {/* Bar for income with a custom shape */}
-                            <Bar dataKey={t('dashboard.movements.movements_chart.income')} fill={"#ff8e38"} shape={<CustomBarShape />} />
+                            <Bar dataKey={t('dashboard.movements.movements_chart.income')} fill={'#ff8e38'} shape={<CustomBarShape />} />
 
                             {/* Bar for expenses with a custom shape */}
-                            <Bar dataKey={t('dashboard.movements.movements_chart.expenses')} fill={"#9d300f"} shape={<CustomBarShape />} />
+                            <Bar dataKey={t('dashboard.movements.movements_chart.expenses')} fill={'#9d300f'} shape={<CustomBarShape />} />
                         </BarChart>
                     </ResponsiveContainer>
                 )}

@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
 export interface AuthContextType {
   authToken: string | null;
@@ -10,7 +10,7 @@ export interface AuthContextType {
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth debe ser usado dentro de un AuthProvider");
+    throw new Error('useAuth debe ser usado dentro de un AuthProvider');
   }
   return context;
 };

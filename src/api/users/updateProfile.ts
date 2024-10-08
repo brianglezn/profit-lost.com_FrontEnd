@@ -20,7 +20,7 @@ export const updateProfile = async (userData: FormData) => {
 
     } catch (error) {
         // Log the error to the console for debugging purposes
-        console.error("Error uploading user profile:", error);
+        console.error('Error uploading user profile:', error);
 
         // Throw the error again to allow calling functions to handle it
         throw error;

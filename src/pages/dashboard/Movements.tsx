@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { Dropdown } from "primereact/dropdown";
+import { useState, useEffect, useCallback } from 'react';
+import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import { useTranslation } from 'react-i18next';
@@ -7,16 +7,16 @@ import { useTranslation } from 'react-i18next';
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../api/movements/getMovementsByYearAndMonth';
 import { getAllCategories } from '../../api/categories/getAllCategories';
-import { formatCurrency, useMonthOptions } from "../../helpers/functions";
+import { formatCurrency, useMonthOptions } from '../../helpers/functions';
 
-import "./Movements.scss";
-import MovementsPie from "../../components/dashboard/movements/MovementsPie";
-import MovementsChart from "../../components/dashboard/movements/MovementsChart";
-import MovementsTable from "../../components/dashboard/movements/MovementsTable";
-import FormMovementsAdd from "../../components/dashboard/movements/FormMovementsAdd";
-import DownloadIcon from "../../components/icons/DownloadIcon";
-import UploadIcon from "../../components/icons/UploadIcon";
-import PigCoinIcon from "../../components/icons/PigCoinIcon";
+import './Movements.scss';
+import MovementsPie from '../../components/dashboard/movements/MovementsPie';
+import MovementsChart from '../../components/dashboard/movements/MovementsChart';
+import MovementsTable from '../../components/dashboard/movements/MovementsTable';
+import FormMovementsAdd from '../../components/dashboard/movements/FormMovementsAdd';
+import DownloadIcon from '../../components/icons/DownloadIcon';
+import UploadIcon from '../../components/icons/UploadIcon';
+import PigCoinIcon from '../../components/icons/PigCoinIcon';
 
 interface Movement {
   _id: string;
@@ -133,10 +133,10 @@ export default function Movements() {
   const monthOptions = useMonthOptions();
 
   return (
-    <section className="movements">
-      <div className="movements__main">
+    <section className='movements'>
+      <div className='movements__main'>
         {/* Dropdown selectors for year and month */}
-        <div className="movements__main-selector">
+        <div className='movements__main-selector'>
           <Dropdown
             value={year}
             options={yearsWithData.map(year => ({ label: year, value: year }))}
@@ -151,42 +151,42 @@ export default function Movements() {
           />
         </div>
         {/* Charts for income, expenses, and balance */}
-        <div className="movements__charts-container">
+        <div className='movements__charts-container'>
           <MovementsPie data={incomeData} categories={categories} />
           <MovementsPie data={expensesData} categories={categories} />
           <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
         </div>
         {/* Displaying total income, expenses, and balance */}
-        <div className="movements__main-balance">
-          <div className="movements__balance income">
+        <div className='movements__main-balance'>
+          <div className='movements__balance income'>
             <DownloadIcon />
             <p>{formattedBalanceIncome}</p>
           </div>
-          <div className="movements__balance expenses">
+          <div className='movements__balance expenses'>
             <UploadIcon />
             <p>-{formattedBalanceExpenses}</p>
           </div>
-          <div className="movements__balance edbita">
+          <div className='movements__balance edbita'>
             <PigCoinIcon className={`no-select ${parseFloat(formattedBalanceFinal) < 0
-              ? "negative"
-              : "positive"
+              ? 'negative'
+              : 'positive'
               }`} />
             <p>{formattedBalanceFinal}</p>
           </div>
         </div>
       </div>
 
-      <div className="movements__data">
-        <div className="movements__data-text">
+      <div className='movements__data'>
+        <div className='movements__data-text'>
           <p>{t('dashboard.movements.header')}</p>
-          <Button label={t('dashboard.movements.form_movements_add.header')} size="small" onClick={handleOpenModal} />
+          <Button label={t('dashboard.movements.form_movements_add.header')} size='small' onClick={handleOpenModal} />
           {/* Sidebar for adding new movement */}
           <Sidebar
             visible={open}
             onHide={handleCloseModal}
-            position="right"
+            position='right'
             style={{ width: '500px' }}
-            className="custom_sidebar"
+            className='custom_sidebar'
             modal>
             <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} selectedYear={year} selectedMonth={month} />
           </Sidebar>

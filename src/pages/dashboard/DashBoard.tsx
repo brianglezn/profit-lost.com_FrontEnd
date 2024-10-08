@@ -1,5 +1,5 @@
-import React, { Suspense, useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { Suspense, useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Avatar } from 'primereact/avatar';
 import { Sidebar } from 'primereact/sidebar';
@@ -8,10 +8,10 @@ import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 
-import { getUserByToken } from "../../api/users/getUserByToken";
-import { getCurrentDate } from "../../helpers/functions";
+import { getUserByToken } from '../../api/users/getUserByToken';
+import { getCurrentDate } from '../../helpers/functions';
 
-import "./Dashboard.scss";
+import './Dashboard.scss';
 const DashHome = React.lazy(() => import('./DashHome'));
 const Accounts = React.lazy(() => import('./Accounts'));
 const AnnualReport = React.lazy(() => import('./AnnualReport'));
@@ -22,19 +22,19 @@ const AboutUs = React.lazy(() => import('./user/AboutUs'));
 const Help = React.lazy(() => import('./user/Help'));
 const SecurityAndPrivacy = React.lazy(() => import('./user/SecurityAndPrivacy'));
 const UserSettings = React.lazy(() => import('./user/UserSettings'));
-import RefreshIcon from "../../components/icons/RefreshIcon";
-import HomeIcon from "../../components/icons/HomeIcon";
-import ChartColumnIcon from "../../components/icons/ChartColumnIcon";
-import ChartBarIcon from "../../components/icons/ChartBarIcon";
-import CreditCardIcon from "../../components/icons/CreditCardIcon";
-import NotesIcon from "../../components/icons/NotesIcon";
-import BarsIcon from "../../components/icons/BarsIcon";
-import UserIcon from "../../components/icons/UserIcon";
-import InfoIcon from "../../components/icons/InfoIcon";
-import HelpIcon from "../../components/icons/HelpIcon";
-import ShielIcon from "../../components/icons/ShielIcon";
-import ReportIcon from "../../components/icons/ReportIcon";
-import ArrowBackIcon from "../../components/icons/ArrowBackIcon";
+import RefreshIcon from '../../components/icons/RefreshIcon';
+import HomeIcon from '../../components/icons/HomeIcon';
+import ChartColumnIcon from '../../components/icons/ChartColumnIcon';
+import ChartBarIcon from '../../components/icons/ChartBarIcon';
+import CreditCardIcon from '../../components/icons/CreditCardIcon';
+import NotesIcon from '../../components/icons/NotesIcon';
+import BarsIcon from '../../components/icons/BarsIcon';
+import UserIcon from '../../components/icons/UserIcon';
+import InfoIcon from '../../components/icons/InfoIcon';
+import HelpIcon from '../../components/icons/HelpIcon';
+import ShielIcon from '../../components/icons/ShielIcon';
+import ReportIcon from '../../components/icons/ReportIcon';
+import ArrowBackIcon from '../../components/icons/ArrowBackIcon';
 
 interface User {
   _id: string;
@@ -48,7 +48,7 @@ interface User {
 
 export default function Dashboard() {
   const { t } = useTranslation();
-  const [activeSection, setActiveSection] = useState("Dashboard");
+  const [activeSection, setActiveSection] = useState('Dashboard');
   const [user, setUser] = useState<User | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [activeSidebarSection, setActiveSidebarSection] = useState<'profile' | 'settings' | 'security' | 'help' | 'about'>('profile');
@@ -59,7 +59,7 @@ export default function Dashboard() {
   // Handles click on menu items to navigate to different sections
   const handleMenuItemClick = (sectionName: string) => {
     setActiveSection(sectionName);
-    const params = sectionName === "Dashboard" ? {} : { section: sectionName };
+    const params = sectionName === 'Dashboard' ? {} : { section: sectionName };
     setSearchParams(params as Record<string, string>);
     window.scrollTo(0, 0);
   };
@@ -103,8 +103,8 @@ export default function Dashboard() {
 
   // Set the active section based on URL parameters
   useEffect(() => {
-    const section = searchParams.get("section");
-    setActiveSection(section || "Dashboard");
+    const section = searchParams.get('section');
+    setActiveSection(section || 'Dashboard');
   }, [searchParams]);
 
   // Adds a scroll event listener to add a class to the header when scrolling
@@ -179,69 +179,69 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="dashboard">
-        <div className="dashboard__header">
-          <header className="dashboard__header-container">
+      <div className='dashboard'>
+        <div className='dashboard__header'>
+          <header className='dashboard__header-container'>
             <RefreshIcon onClick={wakeUpBackend} />
-            <p className="dashboard__header-date">{currentDate}</p>
+            <p className='dashboard__header-date'>{currentDate}</p>
             <Avatar
               onClick={() => setSidebarVisible(true)}
               image={user?.profileImage ?? ''}
               label={!user?.profileImage ? (user?.name?.[0] ?? '') : undefined}
-              size="xlarge"
-              className="dashboard__header-avatar"
+              size='xlarge'
+              className='dashboard__header-avatar'
             />
           </header>
         </div>
 
-        <div className="dashboard__nav">
-          <nav className="dashboard__nav-container no-select">
-            <div className="dashboard__nav-img">
+        <div className='dashboard__nav'>
+          <nav className='dashboard__nav-container no-select'>
+            <div className='dashboard__nav-img'>
               <img
-                src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL3.svg"
-                alt="logo"
+                src='https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL3.svg'
+                alt='logo'
               />
             </div>
-            <div className="dashboard__nav-nav">
+            <div className='dashboard__nav-nav'>
               <ul>
                 <li
-                  onClick={() => handleMenuItemClick("Dashboard")}
-                  className={activeSection === "Dashboard" ? "active" : ""}
+                  onClick={() => handleMenuItemClick('Dashboard')}
+                  className={activeSection === 'Dashboard' ? 'active' : ''}
                 >
                   <HomeIcon />
                   <p>{t('dashboard.dashboard.nav.dashboard')}</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("AnnualReport")}
-                  className={activeSection === "AnnualReport" ? "active" : ""}
+                  onClick={() => handleMenuItemClick('AnnualReport')}
+                  className={activeSection === 'AnnualReport' ? 'active' : ''}
                 >
                   <ChartColumnIcon />
                   <p>{t('dashboard.dashboard.nav.annual_report')}</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("Movements")}
-                  className={activeSection === "Movements" ? "active" : ""}
+                  onClick={() => handleMenuItemClick('Movements')}
+                  className={activeSection === 'Movements' ? 'active' : ''}
                 >
                   <ChartBarIcon />
                   <p>{t('dashboard.dashboard.nav.movements')}</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("Accounts")}
-                  className={activeSection === "Accounts" ? "active" : ""}
+                  onClick={() => handleMenuItemClick('Accounts')}
+                  className={activeSection === 'Accounts' ? 'active' : ''}
                 >
                   <CreditCardIcon />
                   <p>{t('dashboard.dashboard.nav.accounts')}</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("Notes")}
-                  className={activeSection === "Notes" ? "active" : ""}
+                  onClick={() => handleMenuItemClick('Notes')}
+                  className={activeSection === 'Notes' ? 'active' : ''}
                 >
                   <NotesIcon />
                   <p>{t('dashboard.dashboard.nav.notes')}</p>
                 </li>
                 <li
-                  onClick={() => handleMenuItemClick("Reports")}
-                  className={activeSection === "Reports" ? "active" : ""}
+                  onClick={() => handleMenuItemClick('Reports')}
+                  className={activeSection === 'Reports' ? 'active' : ''}
                 >
                   <ReportIcon />
                   <p>{t('dashboard.dashboard.nav.reports')}</p>
@@ -251,11 +251,11 @@ export default function Dashboard() {
           </nav>
         </div>
 
-        <div className="dashboard__container-nav2">
-          <nav className="dashboard__nav2">
+        <div className='dashboard__container-nav2'>
+          <nav className='dashboard__nav2'>
             <span
-              onClick={() => handleMenuItemClick("Dashboard")}
-              className={activeSection === "Dashboard" ? "active" : ""}
+              onClick={() => handleMenuItemClick('Dashboard')}
+              className={activeSection === 'Dashboard' ? 'active' : ''}
             >
               <div>
                 <HomeIcon />
@@ -263,8 +263,8 @@ export default function Dashboard() {
               </div>
             </span>
             <span
-              onClick={() => handleMenuItemClick("AnnualReport")}
-              className={activeSection === "AnnualReport" ? "active" : ""}
+              onClick={() => handleMenuItemClick('AnnualReport')}
+              className={activeSection === 'AnnualReport' ? 'active' : ''}
             >
               <div>
                 <ChartColumnIcon />
@@ -272,8 +272,8 @@ export default function Dashboard() {
               </div>
             </span>
             <span
-              onClick={() => handleMenuItemClick("Movements")}
-              className={activeSection === "Movements" ? "active" : ""}
+              onClick={() => handleMenuItemClick('Movements')}
+              className={activeSection === 'Movements' ? 'active' : ''}
             >
               <div>
                 <ChartBarIcon />
@@ -282,18 +282,18 @@ export default function Dashboard() {
             </span>
             <span
               onClick={(e) => menu.current?.toggle(e)}
-              className={activeSection === "Accounts" || activeSection === "Reports" || activeSection === "Notes" ? "active" : ""}
+              className={activeSection === 'Accounts' || activeSection === 'Reports' || activeSection === 'Notes' ? 'active' : ''}
             >
               <div>
                 <BarsIcon />
                 <span>{t('dashboard.dashboard.nav.more')}</span>
               </div>
             </span>
-            <Menu model={menuItems} popup ref={menu} id="popup_menu" />
+            <Menu model={menuItems} popup ref={menu} id='popup_menu' />
           </nav>
         </div>
 
-        <section className="dashboard__content">
+        <section className='dashboard__content'>
           <Suspense fallback={
             <div style={{
               display: 'flex',
@@ -302,21 +302,21 @@ export default function Dashboard() {
               height: '100%',
               color: '#fe6f14'
             }}>
-              <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />
+              <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth='3' className='custom-spinner' />
             </div>}>
-            {activeSection === "Dashboard" && <DashHome />}
-            {activeSection === "AnnualReport" && <AnnualReport />}
-            {activeSection === "Movements" && <Movements />}
-            {activeSection === "Accounts" && <Accounts />}
-            {activeSection === "Notes" && <Notes />}
-            {activeSection === "Reports" && <Reports />}
+            {activeSection === 'Dashboard' && <DashHome />}
+            {activeSection === 'AnnualReport' && <AnnualReport />}
+            {activeSection === 'Movements' && <Movements />}
+            {activeSection === 'Accounts' && <Accounts />}
+            {activeSection === 'Notes' && <Notes />}
+            {activeSection === 'Reports' && <Reports />}
           </Suspense>
         </section>
       </div>
 
       <Sidebar
         visible={sidebarVisible}
-        position="right"
+        position='right'
         onHide={() => {
           setSidebarVisible(false);
           setActiveSidebarSection('profile');
@@ -324,21 +324,21 @@ export default function Dashboard() {
         style={{ width: '500px' }}
       >
         {activeSidebarSection === 'profile' && (
-          <div className="profile__header-content">
-            <div className="profile__header">
+          <div className='profile__header-content'>
+            <div className='profile__header'>
               <Avatar
                 image={user?.profileImage ?? ''}
                 label={!user?.profileImage ? (user?.name?.[0] ?? '') : undefined}
-                size="xlarge"
-                className="profile__header-avatar"
+                size='xlarge'
+                className='profile__header-avatar'
               />
-              <div className="profile__header-name">
+              <div className='profile__header-name'>
                 <h3>{user?.name ?? ''} {user?.surname ?? ''}</h3>
                 <p>{user?.email ?? ''}</p>
               </div>
             </div>
 
-            <div className="profile__header-account">
+            <div className='profile__header-account'>
               <a onClick={() => handleSidebarSectionChange('settings')}>
                 <UserIcon />
                 <p>{t('dashboard.dashboard.sidebar.profile.settings')}</p>
@@ -349,7 +349,7 @@ export default function Dashboard() {
               </a>
             </div>
 
-            <div className="profile__header-help">
+            <div className='profile__header-help'>
               <a onClick={() => handleSidebarSectionChange('help')}>
                 <HelpIcon />
                 <p>{t('dashboard.dashboard.sidebar.profile.help')}</p>
@@ -360,8 +360,8 @@ export default function Dashboard() {
               </a>
             </div>
 
-            <div className="profile__header-logout">
-              <button onClick={handleLogout} className="custom-btn">
+            <div className='profile__header-logout'>
+              <button onClick={handleLogout} className='custom-btn'>
                 {t('dashboard.dashboard.sidebar.profile.logout')}
               </button>
             </div>
@@ -369,9 +369,9 @@ export default function Dashboard() {
         )}
 
         {activeSidebarSection === 'settings' && (
-          <div className="profile__header-content2">
-            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
+          <div className='profile__header-content2'>
+            <ArrowBackIcon className='back-btn' onClick={() => handleSidebarSectionChange('profile')} />
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth='3' className='custom-spinner' />}>
               <UserSettings
                 onUserUpdated={handleUserUpdated}
                 userName={user?.name ?? ''}
@@ -384,25 +384,25 @@ export default function Dashboard() {
           </div>
         )}
         {activeSidebarSection === 'security' && (
-          <div className="profile__header-content2">
-            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
+          <div className='profile__header-content2'>
+            <ArrowBackIcon className='back-btn' onClick={() => handleSidebarSectionChange('profile')} />
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth='3' className='custom-spinner' />}>
               <SecurityAndPrivacy />
             </Suspense>
           </div>
         )}
         {activeSidebarSection === 'help' && (
-          <div className="profile__header-content2">
-            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
+          <div className='profile__header-content2'>
+            <ArrowBackIcon className='back-btn' onClick={() => handleSidebarSectionChange('profile')} />
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth='3' className='custom-spinner' />}>
               <Help />
             </Suspense>
           </div>
         )}
         {activeSidebarSection === 'about' && (
-          <div className="profile__header-content2">
-            <ArrowBackIcon className="back-btn" onClick={() => handleSidebarSectionChange('profile')} />
-            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="3" className="custom-spinner" />}>
+          <div className='profile__header-content2'>
+            <ArrowBackIcon className='back-btn' onClick={() => handleSidebarSectionChange('profile')} />
+            <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth='3' className='custom-spinner' />}>
               <AboutUs />
             </Suspense>
           </div>

@@ -185,18 +185,18 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     };
 
     return (
-        <form onSubmit={handleSubmit} className="formMovements">
+        <form onSubmit={handleSubmit} className='formMovements'>
             <h2>{t('dashboard.movements.form_movements_add.header')}</h2>
-            <div className="formMovements-toggle">
+            <div className='formMovements-toggle'>
                 <button
-                    type="button"
+                    type='button'
                     className={`${isIncome ? 'active' : ''}`}
                     onClick={handleIncomeClick}
                 >
                     {t('dashboard.movements.form_movements_add.income_button')}
                 </button>
                 <button
-                    type="button"
+                    type='button'
                     className={`${!isIncome ? 'active' : ''}`}
                     onClick={handleExpenseClick}
                 >
@@ -204,30 +204,30 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                 </button>
             </div>
             <input
-                type="datetime-local"
+                type='datetime-local'
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="formMovements-datetime custom-input"
-                placeholder=" "
+                className='formMovements-datetime custom-input'
+                placeholder=' '
                 required
             />
             <Dropdown
                 value={category}
                 options={categories}
                 onChange={(e) => setCategory(e.value)}
-                optionLabel="name"
+                optionLabel='name'
                 placeholder={t('dashboard.movements.form_movements_add.category_placeholder')}
-                className="formDropdown"
+                className='formDropdown'
                 filter
                 showClear
-                filterBy="name"
+                filterBy='name'
                 required
             />
             <InputText
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t('dashboard.movements.form_movements_add.description_placeholder')}
-                className="custom-input"
+                className='custom-input'
             />
             <InputText
                 value={amount}
@@ -235,21 +235,21 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                 placeholder={t('dashboard.movements.form_movements_add.amount_placeholder')}
                 step={0.01}
                 min={isIncome ? 0 : undefined}
-                type="number"
-                className="custom-input"
+                type='number'
+                className='custom-input'
                 required
             />
-            <div className="formMovements-recurring">
+            <div className='formMovements-recurring'>
                 <label>
                     <input
-                        type="checkbox"
+                        type='checkbox'
                         checked={isRecurring}
                         onChange={(e) => setIsRecurring(e.target.checked)}
                     />
                     {t('dashboard.movements.form_movements_add.recurring_label')}
                 </label>
                 {isRecurring && (
-                    <div className="formMovements-recurring-options">
+                    <div className='formMovements-recurring-options'>
                         <Dropdown
                             value={recurrenceFrequency}
                             options={[
@@ -258,23 +258,23 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                             ]}
                             onChange={(e) => setRecurrenceFrequency(e.value)}
                             placeholder={t('dashboard.movements.form_movements_add.recurring_frequency')}
-                            className="formDropdown"
+                            className='formDropdown'
                         />
                         {recurrenceFrequency === 'monthly' ? (
                             <input
-                                type="month"
+                                type='month'
                                 value={recurrenceEnd}
                                 onChange={(e) => setRecurrenceEnd(e.target.value)}
-                                className="custom-input"
+                                className='custom-input'
                                 placeholder={t('dashboard.movements.form_movements_add.end_date')}
                                 required
                             />
                         ) : (
                             <input
-                                type="number"
+                                type='number'
                                 value={recurrenceEnd}
                                 onChange={(e) => setRecurrenceEnd(e.target.value)}
-                                className="custom-input"
+                                className='custom-input'
                                 placeholder={t('dashboard.movements.form_movements_add.end_date')}
                                 min={new Date().getFullYear()}
                                 required
@@ -283,7 +283,7 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                     </div>
                 )}
             </div>
-            <button type="submit" className="custom-btn">{t('dashboard.movements.form_movements_add.save_button')}</button>
+            <button type='submit' className='custom-btn'>{t('dashboard.movements.form_movements_add.save_button')}</button>
         </form>
     );
 }

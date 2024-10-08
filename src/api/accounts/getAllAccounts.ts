@@ -38,7 +38,7 @@ export const getAllAccounts = async (token: string): Promise<MappedAccount[]> =>
         // Parse the response body into an array of RawAccount objects
         const accounts: RawAccount[] = await response.json();
 
-        // Map the accounts to include an "AccountId" field instead of "_id" for easier usage
+        // Map the accounts to include an 'AccountId' field instead of '_id' for easier usage
         const mappedAccounts: MappedAccount[] = accounts.map((account) => ({
             ...account, // Spread operator to keep all existing fields
             AccountId: account._id, // Map _id to AccountId for better readability

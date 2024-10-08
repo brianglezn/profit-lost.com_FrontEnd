@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useEffect, useState } from 'react';
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
-import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
-import { useMonthNames } from "../../../helpers/functions";
+import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
+import { useMonthNames } from '../../../helpers/functions';
 
-import "./AnnualChart.scss";
-import CustomBarShape from "../../CustomBarShape";
-import ChartLineIcon from "../../icons/CharLineIcon";
+import './AnnualChart.scss';
+import CustomBarShape from '../../CustomBarShape';
+import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface Movement {
     date: string;
@@ -45,7 +45,7 @@ export default function AnnualChart({ year }: { year: string }) {
 
                 // Loop through each movement and aggregate data by month
                 data.forEach(movement => {
-                    const monthIndex = parseInt(movement.date.split("-")[1], 10) - 1; // Get the month index from the date string
+                    const monthIndex = parseInt(movement.date.split('-')[1], 10) - 1; // Get the month index from the date string
                     const month = monthNames[monthIndex].value; // Get the month's short name
                     if (!monthlyData[month]) {
                         monthlyData[month] = { Income: 0, Expenses: 0 }; // Initialize if not already set
@@ -82,13 +82,13 @@ export default function AnnualChart({ year }: { year: string }) {
     const isChartDataEmpty = chartData.every(item => item.Income === 0 && item.Expenses === 0);
 
     return (
-        <div className="annual__chart">
+        <div className='annual__chart'>
             {isDataLoaded && isChartDataEmpty ? (
                 // Show an icon if data is loaded but there is no data to display
-                <ChartLineIcon className="custom-icon" />
+                <ChartLineIcon className='custom-icon' />
             ) : (
                 // Display the bar chart
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width='100%' height={300}>
                     <BarChart
                         data={chartData}
                         margin={{
@@ -97,8 +97,8 @@ export default function AnnualChart({ year }: { year: string }) {
                             left: 20,
                             bottom: 5,
                         }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="month" />
+                        <CartesianGrid strokeDasharray='3 3' />
+                        <XAxis dataKey='month' />
                         <YAxis />
                         {/* Tooltip formatter to customize the tooltip text based on income/expense */}
                         <Tooltip formatter={(value, name, props) => {
@@ -108,8 +108,8 @@ export default function AnnualChart({ year }: { year: string }) {
                         }} />
                         <Legend />
                         {/* Bars for Income and Expenses with customized color and shape */}
-                        <Bar dataKey="Income" name={incomeKey} fill={"#ff8e38"} shape={<CustomBarShape />} />
-                        <Bar dataKey="Expenses" name={expensesKey} fill={"#9d300f"} shape={<CustomBarShape />} />
+                        <Bar dataKey='Income' name={incomeKey} fill={'#ff8e38'} shape={<CustomBarShape />} />
+                        <Bar dataKey='Expenses' name={expensesKey} fill={'#9d300f'} shape={<CustomBarShape />} />
                     </BarChart>
                 </ResponsiveContainer>
             )}

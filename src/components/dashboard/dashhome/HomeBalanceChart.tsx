@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
     LineChart,
     Line,
@@ -8,11 +8,11 @@ import {
     Tooltip,
     Legend,
     ResponsiveContainer,
-} from "recharts";
-import { useTranslation } from "react-i18next";
+} from 'recharts';
+import { useTranslation } from 'react-i18next';
 
-import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
-import ChartLineIcon from "../../icons/CharLineIcon";
+import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
+import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface DataPoint {
     name: string;
@@ -49,7 +49,7 @@ export default function HomeBalanceChart() {
                 setData(lastSixMonthsData);
 
             } catch (error) {
-                console.error("Error fetching movements:", error);
+                console.error('Error fetching movements:', error);
             }
         };
 
@@ -101,13 +101,13 @@ export default function HomeBalanceChart() {
     const isDataEmpty = data.length === 0 || data.every(item => item.income === 0 && item.expenses === 0);
 
     return (
-        <div className="home-balance-chart">
+        <div className='home-balance-chart'>
             {isDataEmpty ? (
                 // If there is no data, display a placeholder icon
-                <ChartLineIcon className="custom-icon" />
+                <ChartLineIcon className='custom-icon' />
             ) : (
                 // Display the LineChart if there is data
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width='100%' height={300}>
                     <LineChart
                         data={data}
                         margin={{
@@ -117,25 +117,25 @@ export default function HomeBalanceChart() {
                             bottom: 15,
                         }}
                     >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
+                        <CartesianGrid strokeDasharray='3 3' />
+                        <XAxis dataKey='name' />
                         <YAxis />
                         <Tooltip />
                         <Legend />
                         {/* Line for income values */}
                         <Line
-                            type="monotone"
-                            dataKey="income"
+                            type='monotone'
+                            dataKey='income'
                             name={t('dashboard.dashhome.balances.earnings')}
-                            stroke="#ff8e38"
+                            stroke='#ff8e38'
                             activeDot={{ r: 8 }}
                         />
                         {/* Line for expenses values */}
                         <Line
-                            type="monotone"
-                            dataKey="expenses"
+                            type='monotone'
+                            dataKey='expenses'
                             name={t('dashboard.dashhome.balances.spendings')}
-                            stroke="#9d300f"
+                            stroke='#9d300f'
                         />
                     </LineChart>
                 </ResponsiveContainer>

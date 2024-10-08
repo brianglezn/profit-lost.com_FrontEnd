@@ -1,7 +1,7 @@
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
-import "./MovementsPie.scss"
-import ChartLineIcon from "../../icons/CharLineIcon";
+import './MovementsPie.scss'
+import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface MovementData {
     name: string;
@@ -55,9 +55,9 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
             <text
                 x={x}
                 y={y}
-                fill="none"
-                textAnchor={x > cx ? "start" : "end"} // Align label depending on position relative to center
-                dominantBaseline="central"
+                fill='none'
+                textAnchor={x > cx ? 'start' : 'end'} // Align label depending on position relative to center
+                dominantBaseline='central'
             >
                 {name} ({(percent * 100).toFixed(0)}%)
             </text>
@@ -74,23 +74,23 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
     }));
 
     return (
-        <div className="movements__pie-category">
+        <div className='movements__pie-category'>
             {isDataEmpty ? (
                 // Show an icon if there is no data
-                <ChartLineIcon className="custom-icon" />
+                <ChartLineIcon className='custom-icon' />
             ) : (
                 // Responsive container to handle resizing
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width='100%' height='100%'>
                     <PieChart>
                         {/* Define the pie chart with customized labels */}
                         <Pie
                             data={roundedData}
-                            cx="50%"
-                            cy="50%"
+                            cx='50%'
+                            cy='50%'
                             labelLine={false}
                             label={renderCustomizedLabel}
-                            outerRadius="80%"
-                            dataKey="value"
+                            outerRadius='80%'
+                            dataKey='value'
                         >
                             {roundedData.map((entry, index) => (
                                 // Render each cell with the respective color from categoryColorMap

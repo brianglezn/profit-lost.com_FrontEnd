@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { ColorPicker } from "primereact/colorpicker";
-import { InputText } from "primereact/inputtext";
+import { ColorPicker } from 'primereact/colorpicker';
+import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
 
-import { addCategory } from "../../../api/categories/addCategory";
+import { addCategory } from '../../../api/categories/addCategory';
 
 import './FormCategory.scss';
 
@@ -55,11 +55,11 @@ export default function FormCategoryAdd({ onCategoryAdded, onClose }: { onCatego
     };
 
     return (
-        <form className="formCategories" onSubmit={handleSaveCategory}>
+        <form className='formCategories' onSubmit={handleSaveCategory}>
             <h2>{t('dashboard.annual_report.form_cat_add.header')}</h2>
-            <div className="formCategoriesContainer">
+            <div className='formCategoriesContainer'>
                 {/* Color Picker for selecting category color */}
-                <div className="formCategoriesContainer-colorPicker">
+                <div className='formCategoriesContainer-colorPicker'>
                     <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
                 </div>
                 {/* Input field for entering the category name */}
@@ -67,11 +67,11 @@ export default function FormCategoryAdd({ onCategoryAdded, onClose }: { onCatego
                     placeholder={t('dashboard.annual_report.form_cat_add.name_placeholder')}
                     value={newCategory}
                     onChange={handleNewCategoryChange}
-                    className="custom-input"
+                    className='custom-input'
                 />
             </div>
             {/* Button to save the new category */}
-            <button type="submit" className="custom-btn">{t('dashboard.annual_report.form_cat_add.save_button')}</button>
+            <button type='submit' className='custom-btn'>{t('dashboard.annual_report.form_cat_add.save_button')}</button>
         </form>
     );
 }

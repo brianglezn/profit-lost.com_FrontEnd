@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext';
@@ -24,27 +24,27 @@ function App() {
 
   const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
     const { authToken } = useAuth();
-    return authToken ? <>{children}</> : <Navigate to="/login" />;
+    return authToken ? <>{children}</> : <Navigate to='/login' />;
   };
 
   return (
     <>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/forgot-password-token" element={<ForgotPasswordToken />}></Route>
-          <Route path="/dashboard" element={
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+          <Route path='/forgot-password-token' element={<ForgotPasswordToken />}></Route>
+          <Route path='/dashboard' element={
             <PrivateRoute>
               <DashBoard />
             </PrivateRoute>
           }>
           </Route>
-          <Route path="/cookies" element={<Cookies />}></Route>
-          <Route path="/privacy" element={<Privacy />}></Route>
-          <Route path="/faq" element={<Faq />}></Route>
+          <Route path='/cookies' element={<Cookies />}></Route>
+          <Route path='/privacy' element={<Privacy />}></Route>
+          <Route path='/faq' element={<Faq />}></Route>
         </Routes>
       </AuthProvider>
     </>

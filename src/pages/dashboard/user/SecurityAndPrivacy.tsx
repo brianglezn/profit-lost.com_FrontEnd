@@ -86,16 +86,16 @@ export default function SecurityAndPrivacy() {
     };
 
     return (
-        <div className="security-privacy">
+        <div className='security-privacy'>
             <h2>{t('dashboard.dashboard.user.security_privacy.title')}</h2>
 
             {/* Section for changing the password */}
-            <div className="password-section">
+            <div className='password-section'>
                 <h2>{t('dashboard.dashboard.user.security_privacy.change_password')}</h2>
-                <div className="security-privacy__section">
-                    <label htmlFor="current-password">{t('dashboard.dashboard.user.security_privacy.current_password')}</label>
+                <div className='security-privacy__section'>
+                    <label htmlFor='current-password'>{t('dashboard.dashboard.user.security_privacy.current_password')}</label>
                     <Password
-                        id="current-password"
+                        id='current-password'
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
                         toggleMask
@@ -103,10 +103,10 @@ export default function SecurityAndPrivacy() {
                     />
                 </div>
 
-                <div className="security-privacy__section">
-                    <label htmlFor="new-password">{t('dashboard.dashboard.user.security_privacy.new_password')}</label>
+                <div className='security-privacy__section'>
+                    <label htmlFor='new-password'>{t('dashboard.dashboard.user.security_privacy.new_password')}</label>
                     <Password
-                        id="new-password"
+                        id='new-password'
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                         toggleMask
@@ -114,10 +114,10 @@ export default function SecurityAndPrivacy() {
                     />
                 </div>
 
-                <div className="security-privacy__section">
-                    <label htmlFor="confirm-password">{t('dashboard.dashboard.user.security_privacy.confirm_password')}</label>
+                <div className='security-privacy__section'>
+                    <label htmlFor='confirm-password'>{t('dashboard.dashboard.user.security_privacy.confirm_password')}</label>
                     <Password
-                        id="confirm-password"
+                        id='confirm-password'
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         toggleMask
@@ -125,13 +125,13 @@ export default function SecurityAndPrivacy() {
                     />
                 </div>
 
-                <div className="security-privacy__section">
-                    <Button label={t('dashboard.dashboard.user.security_privacy.change_password_button')} icon="pi pi-check" onClick={handlePasswordChange} />
+                <div className='security-privacy__section'>
+                    <Button label={t('dashboard.dashboard.user.security_privacy.change_password_button')} icon='pi pi-check' onClick={handlePasswordChange} />
                 </div>
             </div>
 
             {/* Section for deleting the account */}
-            <div className="delete-account-section">
+            <div className='delete-account-section'>
                 <h2>{t('dashboard.dashboard.user.security_privacy.delete_account')}</h2>
                 <p>{t('dashboard.dashboard.user.security_privacy.delete_account_warning')}</p>
 
@@ -139,25 +139,25 @@ export default function SecurityAndPrivacy() {
                 {!showDeleteConfirmation ? (
                     <Button
                         label={t('dashboard.dashboard.user.security_privacy.delete_account')}
-                        icon="pi pi-trash"
-                        className="p-button-danger"
+                        icon='pi pi-trash'
+                        className='p-button-danger'
                         onClick={handleShowDeleteConfirmation}
                     />
                 ) : (
                     <>
                         <p>{t('dashboard.dashboard.user.security_privacy.enter_username')}</p>
-                        <div className="security-privacy__section">
+                        <div className='security-privacy__section'>
                             <InputText
                                 value={usernameConfirmation}
                                 onChange={(e) => setUsernameConfirmation(e.target.value)}
                                 placeholder={t('dashboard.dashboard.user.security_privacy.username')}
-                                className="p-inputtext p-component"
+                                className='p-inputtext p-component'
                             />
                         </div>
                         <Button
                             label={t('dashboard.dashboard.user.security_privacy.confirm_delete')}
-                            icon="pi pi-trash"
-                            className="p-button-danger"
+                            icon='pi pi-trash'
+                            className='p-button-danger'
                             onClick={handleDeleteAccount}
                         />
                     </>

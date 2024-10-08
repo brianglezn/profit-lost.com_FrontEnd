@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
@@ -6,15 +6,15 @@ import { useTranslation } from 'react-i18next';
 
 import { getAllMovements } from '../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
-import { formatCurrency } from "../../helpers/functions";
+import { formatCurrency } from '../../helpers/functions';
 
-import "./AnnualReport.scss";
-import AnnualChart from "../../components/dashboard/annual/AnnualChart";
-import AnnualCategories from "../../components/dashboard/annual/AnnualCategories";
-import FormCategoryAdd from "../../components/dashboard/annual/FormCategoryAdd";
-import DownloadIcon from "../../components/icons/DownloadIcon";
-import UploadIcon from "../../components/icons/UploadIcon";
-import PigCoinIcon from "../../components/icons/PigCoinIcon";
+import './AnnualReport.scss';
+import AnnualChart from '../../components/dashboard/annual/AnnualChart';
+import AnnualCategories from '../../components/dashboard/annual/AnnualCategories';
+import FormCategoryAdd from '../../components/dashboard/annual/FormCategoryAdd';
+import DownloadIcon from '../../components/icons/DownloadIcon';
+import UploadIcon from '../../components/icons/UploadIcon';
+import PigCoinIcon from '../../components/icons/PigCoinIcon';
 
 interface Movement {
   date: string;
@@ -118,36 +118,36 @@ export default function AnnualReport() {
   );
 
   return (
-    <section className="annualReport">
-      <div className="annualReport__main">
-        <div className="annualReport__main-year">
+    <section className='annualReport'>
+      <div className='annualReport__main'>
+        <div className='annualReport__main-year'>
           <Dropdown
             value={year}
             options={yearsWithData.map(year => ({ label: year, value: year }))}
             onChange={(e) => setYear(e.value)}
             placeholder={year}
-            className="w-full"
+            className='w-full'
           />
         </div>
         <AnnualChart year={year} />
-        <div className="annualReport__main-balance">
-          <BalanceDisplay icon={DownloadIcon} value={formattedBalanceIncome} className="income" />
-          <BalanceDisplay icon={UploadIcon} value={formattedBalanceExpenses} className="expenses" />
-          <BalanceDisplay icon={PigCoinIcon} value={formattedBalanceFinal} className="edbita" />
+        <div className='annualReport__main-balance'>
+          <BalanceDisplay icon={DownloadIcon} value={formattedBalanceIncome} className='income' />
+          <BalanceDisplay icon={UploadIcon} value={formattedBalanceExpenses} className='expenses' />
+          <BalanceDisplay icon={PigCoinIcon} value={formattedBalanceFinal} className='edbita' />
         </div>
       </div>
 
-      <div className="annualReport__categories">
-        <div className="annualReport__categories-text">
+      <div className='annualReport__categories'>
+        <div className='annualReport__categories-text'>
           <p>{t('dashboard.annual_report.categories')}</p>
-          <Button label={t('dashboard.annual_report.add_category')} size="small" onClick={handleOpenModal} />
+          <Button label={t('dashboard.annual_report.add_category')} size='small' onClick={handleOpenModal} />
 
           <Sidebar
             visible={open}
-            position="right"
+            position='right'
             onHide={handleCloseModal}
             style={{ width: '500px' }}
-            className="custom_sidebar"
+            className='custom_sidebar'
           >
             <FormCategoryAdd onCategoryAdded={reloadCategories} onClose={handleCloseModal} />
           </Sidebar>

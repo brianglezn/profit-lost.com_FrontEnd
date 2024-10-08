@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
+import React, { useState, useEffect, useMemo } from 'react';
+import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primereact/colorpicker';
 import { toast } from 'react-hot-toast';
-import { InputText } from "primereact/inputtext";
+import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
 
 import { editAccount } from '../../../api/accounts/editAccount';
 import { removeAccount } from '../../../api/accounts/removeAccount';
-import { rgbToHex } from "../../../helpers/functions";
+import { rgbToHex } from '../../../helpers/functions';
 
-import "./FormAccounts.scss";
+import './FormAccounts.scss';
 
 // Define month names in English and Spanish
 const monthNamesEN = [
-    { name: "January", value: "Jan" },
-    { name: "February", value: "Feb" },
-    { name: "March", value: "Mar" },
-    { name: "April", value: "Apr" },
-    { name: "May", value: "May" },
-    { name: "June", value: "Jun" },
-    { name: "July", value: "Jul" },
-    { name: "August", value: "Aug" },
-    { name: "September", value: "Sep" },
-    { name: "October", value: "Oct" },
-    { name: "November", value: "Nov" },
-    { name: "December", value: "Dec" }
+    { name: 'January', value: 'Jan' },
+    { name: 'February', value: 'Feb' },
+    { name: 'March', value: 'Mar' },
+    { name: 'April', value: 'Apr' },
+    { name: 'May', value: 'May' },
+    { name: 'June', value: 'Jun' },
+    { name: 'July', value: 'Jul' },
+    { name: 'August', value: 'Aug' },
+    { name: 'September', value: 'Sep' },
+    { name: 'October', value: 'Oct' },
+    { name: 'November', value: 'Nov' },
+    { name: 'December', value: 'Dec' }
 ];
 
 const monthNamesES = [
-    { name: "Enero", value: "Jan" },
-    { name: "Febrero", value: "Feb" },
-    { name: "Marzo", value: "Mar" },
-    { name: "Abril", value: "Apr" },
-    { name: "Mayo", value: "May" },
-    { name: "Junio", value: "Jun" },
-    { name: "Julio", value: "Jul" },
-    { name: "Agosto", value: "Aug" },
-    { name: "Septiembre", value: "Sep" },
-    { name: "Octubre", value: "Oct" },
-    { name: "Noviembre", value: "Nov" },
-    { name: "Diciembre", value: "Dec" }
+    { name: 'Enero', value: 'Jan' },
+    { name: 'Febrero', value: 'Feb' },
+    { name: 'Marzo', value: 'Mar' },
+    { name: 'Abril', value: 'Apr' },
+    { name: 'Mayo', value: 'May' },
+    { name: 'Junio', value: 'Jun' },
+    { name: 'Julio', value: 'Jul' },
+    { name: 'Agosto', value: 'Aug' },
+    { name: 'Septiembre', value: 'Sep' },
+    { name: 'Octubre', value: 'Oct' },
+    { name: 'Noviembre', value: 'Nov' },
+    { name: 'Diciembre', value: 'Dec' }
 ];
 
 interface AccountRecord {
@@ -105,7 +105,7 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
 
     // Handle changes to the background color
     const handleBackgroundColorChange = (e: ColorPickerChangeEvent) => {
-        let colorValue = "";
+        let colorValue = '';
         if (e.value !== undefined && typeof e.value === 'string') {
             colorValue = ensureHexColor(e.value);
         } else if (e.value !== undefined && e.value !== null && 'r' in e.value) {
@@ -116,7 +116,7 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
 
     // Handle changes to the font color
     const handleFontColorChange = (e: ColorPickerChangeEvent) => {
-        let colorValue = "";
+        let colorValue = '';
         if (e.value !== undefined && typeof e.value === 'string') {
             colorValue = ensureHexColor(e.value);
         } else if (e.value !== undefined && e.value !== null && 'r' in e.value) {
@@ -195,32 +195,32 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
     };
 
     return (
-        <form className="formAccount" onSubmit={handleEditAccount}>
+        <form className='formAccount' onSubmit={handleEditAccount}>
             <h2>{t('dashboard.accounts.form_accounts_edit.title')}</h2>
             {/* Input field for editing account name */}
             <InputText
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                className="custom-input"
+                className='custom-input'
                 required
             />
             {/* Dropdown for selecting the year */}
             <Dropdown
-                className="formDropdown"
+                className='formDropdown'
                 value={year}
                 options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}
             />
             {/* Fields for editing the values for each month of the selected year */}
-            <div className="dataYear">
+            <div className='dataYear'>
                 {monthNames.map(month => {
                     const key = `${year}-${month.value}`;
                     return (
-                        <div className="dataYear-row" key={month.value}>
+                        <div className='dataYear-row' key={month.value}>
                             <span>{month.name}</span>
                             <input
-                                type="text"
-                                value={tempValues[key] || ""}
+                                type='text'
+                                value={tempValues[key] || ''}
                                 onChange={(e) => handleValueChange(month.value, e.target.value)}
                             />
                         </div>
@@ -228,22 +228,22 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
                 })}
             </div>
             {/* Color pickers for setting background and font colors */}
-            <div className="colorPiker">
+            <div className='colorPiker'>
                 <p>{t('dashboard.accounts.form_accounts_edit.background')}</p>
                 <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
                 <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
                 <ColorPicker value={fontColor} onChange={handleFontColorChange} />
             </div>
             {/* Buttons for saving changes or removing the account */}
-            <div className="formAccount-buttons">
-                <button type="button" className="custom-btn-sec" onClick={handleRemoveAccount}>{t('dashboard.accounts.account_item.remove')}</button>
-                <button type="submit" className="custom-btn">{t('dashboard.accounts.account_item.submit')}</button>
+            <div className='formAccount-buttons'>
+                <button type='button' className='custom-btn-sec' onClick={handleRemoveAccount}>{t('dashboard.accounts.account_item.remove')}</button>
+                <button type='submit' className='custom-btn'>{t('dashboard.accounts.account_item.submit')}</button>
             </div>
             {/* Confirmation section for account removal */}
             {showConfirm && (
-                <div className="form-confirmBtn">
-                    <p>{t('dashboard.accounts.form_accounts_edit.remove_confirm')} <b>"{account.accountName}"</b>?</p>
-                    <button type="button" className="custom-btn" onClick={handleConfirmRemove}>Confirmar</button>
+                <div className='form-confirmBtn'>
+                    <p>{t('dashboard.accounts.form_accounts_edit.remove_confirm')} <b>'{account.accountName}'</b>?</p>
+                    <button type='button' className='custom-btn' onClick={handleConfirmRemove}>Confirmar</button>
                 </div>
             )}
         </form>

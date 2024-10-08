@@ -12,7 +12,7 @@ export async function addAccount(accountName: string): Promise<void> {
 
     // Loop through each year and month to create records with an initial value of 0
     for (let year = startYear; year <= endYear; year++) {
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         for (const month of months) {
             records.push({ year, month, value: 0 }); // Add record for each month
         }
@@ -20,8 +20,8 @@ export async function addAccount(accountName: string): Promise<void> {
 
     // Define the default configuration for the account's appearance
     const configuration = {
-        backgroundColor: "#7e2a10", // Default background color for the account
-        color: "#ffffff" // Default text color for the account
+        backgroundColor: '#7e2a10', // Default background color for the account
+        color: '#ffffff' // Default text color for the account
     };
 
     try {

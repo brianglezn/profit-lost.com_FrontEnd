@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from 'react';
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext';
@@ -6,12 +6,12 @@ import { Dropdown } from 'primereact/dropdown';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-import { formatCurrency } from "../../../helpers/functions";
-import { getAllCategories } from "../../../api/categories/getAllCategories";
-import { getMovementsByYear } from "../../../api/movements/getMovementsByYear";
+import { formatCurrency } from '../../../helpers/functions';
+import { getAllCategories } from '../../../api/categories/getAllCategories';
+import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
 
-import "./AnnualCategories.scss";
-import FormCategoryEdit from "./FormCategoryEdit";
+import './AnnualCategories.scss';
+import FormCategoryEdit from './FormCategoryEdit';
 
 type Transaction = {
     category: string;
@@ -80,7 +80,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
             setCategories(categoryBalances); // Set the calculated category balances
         } catch (error) {
             toast.error(t('dashboard.annual_report.annual_movements.error_loading'));
-            console.error("Error loading data:", error);
+            console.error('Error loading data:', error);
         } finally {
             setIsLoading(false);
         }
@@ -121,15 +121,15 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
     const sortedCategories = sortCategories([...filteredCategories]);
 
     return (
-        <div className="annual__categories">
-            <div className="filter-bar">
-                <div className="search-dropdown-container">
+        <div className='annual__categories'>
+            <div className='filter-bar'>
+                <div className='search-dropdown-container'>
                     {/* Input to search categories */}
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder={t('dashboard.annual_report.annual_movements.search_placeholder')}
-                        className="p-inputtext-custom"
+                        className='p-inputtext-custom'
                     />
                     {/* Dropdown to select sorting option */}
                     <Dropdown
@@ -142,30 +142,30 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                         ]}
                         onChange={(e) => setSortOption(e.value)}
                         placeholder={t('dashboard.annual_report.annual_movements.sort_by')}
-                        className="p-dropdown-custom"
+                        className='p-dropdown-custom'
                     />
                 </div>
             </div>
 
             {/* Display loading indicator or list of categories */}
             {isLoading || sortedCategories.length === 0 ? (
-                <ProgressBar mode="indeterminate" style={{ height: '6px', width: '100%' }} />
+                <ProgressBar mode='indeterminate' style={{ height: '6px', width: '100%' }} />
             ) : (
-                <div className="categories-list">
+                <div className='categories-list'>
                     {sortedCategories.map((category) => (
                         <div
                             key={category.id}
-                            className="category-item"
+                            className='category-item'
                             onClick={() => editCategory(category)}
                         >
-                            <div className="category-color">
+                            <div className='category-color'>
                                 <div
-                                    className="category-color-circle"
+                                    className='category-color-circle'
                                     style={{ backgroundColor: category.color }}
                                 ></div>
                             </div>
-                            <div className="category-name">{category.Category}</div>
-                            <div className={`category-balance ${category.Balance >= 0 ? "positive" : "negative"}`}>
+                            <div className='category-name'>{category.Category}</div>
+                            <div className={`category-balance ${category.Balance >= 0 ? 'positive' : 'negative'}`}>
                                 {formatCurrency(category.Balance, i18n.language)}
                             </div>
                         </div>
@@ -177,9 +177,9 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
             <Sidebar
                 visible={sidebarVisible}
                 onHide={() => setSidebarVisible(false)}
-                position="right"
+                position='right'
                 style={{ width: '500px' }}
-                className="custom_sidebar"
+                className='custom_sidebar'
             >
                 {categoryToEdit && (
                     <FormCategoryEdit

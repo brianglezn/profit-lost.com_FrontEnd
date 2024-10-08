@@ -105,16 +105,16 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
     const valueTemplate = (option: { name: string, code: string, flag: string } | undefined) => {
         if (option) {
             return (
-                <div className="language-item">
-                    <img alt={option.name} src={option.flag} className="language-flag" />
+                <div className='language-item'>
+                    <img alt={option.name} src={option.flag} className='language-flag' />
                     <span>{option.name}</span>
                 </div>
             );
         }
         const selectedLanguage = languages.find(l => l.code === language);
         return selectedLanguage ? (
-            <div className="language-item">
-                <img alt={selectedLanguage.name} src={selectedLanguage.flag} className="language-flag" />
+            <div className='language-item'>
+                <img alt={selectedLanguage.name} src={selectedLanguage.flag} className='language-flag' />
                 <span>{selectedLanguage.name}</span>
             </div>
         ) : null;
@@ -123,35 +123,35 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
     // Template for rendering each language item in the dropdown list
     const itemTemplate = (option: { name: string, flag: string }) => {
         return (
-            <div className="language-item">
-                <img alt={option.name} src={option.flag} className="language-flag" />
+            <div className='language-item'>
+                <img alt={option.name} src={option.flag} className='language-flag' />
                 <span>{option.name}</span>
             </div>
         );
     };
 
     return (
-        <div className="settings">
+        <div className='settings'>
             <h2>{t('dashboard.dashboard.user.settings.title')}</h2>
-            <div className="settings__details">
-                <div className="settings__section">
-                    <div className="profile-picture">
+            <div className='settings__details'>
+                <div className='settings__section'>
+                    <div className='profile-picture'>
                         {profileImage ? (
                             // Show uploaded profile image
-                            <img src={URL.createObjectURL(profileImage)} alt="Profile" className="profile-picture__img" />
+                            <img src={URL.createObjectURL(profileImage)} alt='Profile' className='profile-picture__img' />
                         ) : userProfileImage ? (
                             // Show user's existing profile image
-                            <img src={userProfileImage} alt="Current Profile" className="profile-picture__img" />
+                            <img src={userProfileImage} alt='Current Profile' className='profile-picture__img' />
                         ) : (
                             // Show a placeholder if no image is available
-                            <div className="profile-picture__placeholder">{t('dashboard.dashboard.user.settings.no_image')}</div>
+                            <div className='profile-picture__placeholder'>{t('dashboard.dashboard.user.settings.no_image')}</div>
                         )}
                     </div>
                     <FileUpload
                         ref={fileUploadRef}
-                        mode="basic"
-                        name="profileImage"
-                        accept="image/*"
+                        mode='basic'
+                        name='profileImage'
+                        accept='image/*'
                         customUpload
                         uploadHandler={handleProfileImageUpload}
                         auto
@@ -167,38 +167,38 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                     )}
                 </div>
 
-                <div className="settings__section">
-                    <label htmlFor="name">{t('dashboard.dashboard.user.settings.first_name')}</label>
+                <div className='settings__section'>
+                    <label htmlFor='name'>{t('dashboard.dashboard.user.settings.first_name')}</label>
                     <InputText
-                        id="name"
+                        id='name'
                         value={name}
                         onChange={handleNameChange}
                     />
                 </div>
 
-                <div className="settings__section">
-                    <label htmlFor="surname">{t('dashboard.dashboard.user.settings.last_name')}</label>
+                <div className='settings__section'>
+                    <label htmlFor='surname'>{t('dashboard.dashboard.user.settings.last_name')}</label>
                     <InputText
-                        id="surname"
+                        id='surname'
                         value={surname}
                         onChange={handleSurnameChange}
                     />
                 </div>
 
-                <div className="settings__section">
-                    <label htmlFor="language">{t('dashboard.dashboard.user.settings.preferred_language')}</label>
+                <div className='settings__section'>
+                    <label htmlFor='language'>{t('dashboard.dashboard.user.settings.preferred_language')}</label>
                     <Dropdown
-                        id="language"
+                        id='language'
                         value={language}
                         options={languages.map(lang => ({ label: lang.name, value: lang.code, ...lang }))}
                         onChange={handleLanguageChange}
                         valueTemplate={valueTemplate(languages.find(l => l.code === language))}
                         itemTemplate={itemTemplate}
-                        className="language-dropdown"
+                        className='language-dropdown'
                     />
                 </div>
 
-                <div className="settings__section">
+                <div className='settings__section'>
                     <Button
                         label={t('dashboard.dashboard.user.settings.confirm_changes')}
                         onClick={handleConfirmChanges}
