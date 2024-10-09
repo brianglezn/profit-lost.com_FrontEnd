@@ -1,22 +1,242 @@
 @import '../../../variables';
 
 .notes {
-    text-align: center;
-    padding: 50px;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    min-height: 100%;
 
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        color: $primary_color;
+    .notes-sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 30%;
+        padding: 1rem;
+        border-radius: 0.8rem;
+        box-shadow: $shadow_color 0px 1px 4px;
+        background-color: $bg-color-sec;
+        margin-bottom: 1rem;
+
+        .notes-list {
+            width: 100%;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+
+            .note-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: $primary_color-50;
+                height: 3rem;
+                padding: 0.8rem;
+                margin-bottom: 0.8rem;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                &:hover {
+                    background-color: $primary_color-100;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Añadir un efecto de sombra en lugar de usar scale
+
+                    .delete-icon {
+                        display: flex;
+                    }
+                }
+
+                .delete-icon {
+                    display: none;
+                    cursor: pointer;
+                    fill: $primary_color-300;
+
+                    &:hover {
+                        fill: $primary_color-800;
+                    }
+                }
+            }
+        }
     }
 
-    .under-construction {
-        font-size: 1.5rem;
-        color: $primary_color-600;
-        background-color: $primary_color-100;
-        padding: 20px;
-        border: 2px dashed $primary_color-300;
-        display: inline-block;
-        border-radius: 10px;
+    .notes-editor {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        .note-details {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            input[type='text'] {
+                font-size: 1.2rem;
+                padding: 0.8rem;
+                margin-bottom: 1rem;
+                border: 0;
+                border-radius: 1rem;
+                background-color: $bg-color-sec;
+                box-shadow: $shadow_color 0px 1px 4px;
+            }
+
+            .p-inputtextarea {
+                height: 300px;
+                font-size: 1rem;
+                padding: 1rem;
+                border: 0;
+                resize: vertical;
+                margin-bottom: 1rem;
+                border-radius: 1rem;
+                background-color: $bg-color-sec;
+                box-shadow: $shadow_color 0px 1px 4px;
+            }
+        }
+
+        .note-actions {
+            display: flex;
+            justify-content: end;
+            gap: 0.8rem;
+        }
+
+        .no-note-selected {
+            font-size: 1.2rem;
+            color: $primary_color-500;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    }
+
+    .undo-delete-toast {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        span {
+            font-size: 1rem;
+        }
+
+        .undo-button {
+            background: none;
+            border: none;
+            color: $primary_color-800;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0 1rem;
+            transition: color 0.3s;
+
+            &:hover {
+                color: $primary_color-500;
+            }
+        }
+    }
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+
+        .notes-sidebar {
+            width: 100%;
+            margin-bottom: 1rem;
+
+            .notes-list {
+                max-height: calc(100vh - 250px);
+
+                .note-item {
+                    &:hover {
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    }
+                }
+            }
+        }
+
+        .notes-editor {
+            width: 100%;
+
+            .note-details {
+                input[type='text'] {
+                    font-size: 1.1rem;
+                    padding: 0.6rem;
+                }
+
+                .p-inputtextarea {
+                    font-size: 1rem;
+                    padding: 0.8rem;
+                    height: 250px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 0.5rem;
+
+        .notes-sidebar {
+            padding: 0.5rem;
+            gap: 0.5rem;
+
+            .notes-list {
+                max-height: calc(100vh - 220px);
+
+                .note-item {
+                    padding: 0.6rem;
+                    height: 2.5rem;
+                }
+            }
+        }
+
+        .notes-editor {
+            padding: 0.5rem;
+
+            .note-details {
+                input[type='text'] {
+                    font-size: 1rem;
+                    padding: 0.5rem;
+                }
+
+                .p-inputtextarea {
+                    font-size: 0.9rem;
+                    padding: 0.6rem;
+                    height: 200px;
+                }
+
+                .note-actions {
+                    flex-direction: column;
+                    gap: 0.5rem;
+
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .no-note-selected {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.undo-delete-toast {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+        font-size: 1rem;
+    }
+
+    .undo-button {
+        background: none;
+        border: none;
+        color: $primary_color-800;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 0 1rem;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $primary_color-500;
+        }
     }
 }
