@@ -463,7 +463,19 @@
                 "remove_success": "La cuenta se ha eliminado correctamente"
             }
         },
-        "notes": {},
+        "notes": {
+            "create_note": "Crear Nota",
+            "note_title_placeholder": "Título de la Nota",
+            "note_content_placeholder": "Escribe tu nota aquí...",
+            "save_note": "Guardar Nota",
+            "delete_note": "Eliminar Nota",
+            "note_deleted": "Nota eliminada.",
+            "untitled_note":"Nota sin título",
+            "undo": "Deshacer",
+            "note_restored": "Nota restaurada al tablero.",
+            "note_saved": "Nota guardada con éxito.",
+            "no_note_selected": "No hay ninguna nota seleccionada"
+        },
         "reports": {}
     }
 }

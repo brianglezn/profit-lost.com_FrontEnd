@@ -27,29 +27,29 @@
             "description": "In our application, we use cookies to improve the user experience and provide essential functionalities for login.",
             "back_home": "--HOME",
             "what_are_cookies": {
-              "title": "What are Cookies?",
-              "description": "A cookie is a small text file stored in the user's browser when they access our application. These cookies allow our application to remember information about the user's session."
+                "title": "What are Cookies?",
+                "description": "A cookie is a small text file stored in the user's browser when they access our application. These cookies allow our application to remember information about the user's session."
             },
             "use_of_cookies": {
-              "title": "Use of Cookies",
-              "description": "In our application, we use the following cookies:",
-              "items": {
-                "jwt": "JWT: This cookie stores the Authentication Token (JWT) required for login. It allows users to remain authenticated during their session."
-              }
+                "title": "Use of Cookies",
+                "description": "In our application, we use the following cookies:",
+                "items": {
+                    "jwt": "JWT: This cookie stores the Authentication Token (JWT) required for login. It allows users to remain authenticated during their session."
+                }
             },
             "consent": {
-              "title": "Consent",
-              "description": "We do not require explicit consent for the use of this cookie, as it is necessary for the operation of the application and is not used for advertising or analytics purposes."
+                "title": "Consent",
+                "description": "We do not require explicit consent for the use of this cookie, as it is necessary for the operation of the application and is not used for advertising or analytics purposes."
             },
             "disable_cookies": {
-              "title": "How to Disable Cookies",
-              "description": "Users can configure their browser to block or delete cookies. However, this may affect the functionality of the application, especially login and access to personalized features."
+                "title": "How to Disable Cookies",
+                "description": "Users can configure their browser to block or delete cookies. However, this may affect the functionality of the application, especially login and access to personalized features."
             },
             "policy_changes": {
-              "title": "Changes to this Cookies Policy",
-              "description": "We reserve the right to modify this Cookies Policy at any time. Changes will be notified to users through the application. It is recommended to review this policy periodically."
+                "title": "Changes to this Cookies Policy",
+                "description": "We reserve the right to modify this Cookies Policy at any time. Changes will be notified to users through the application. It is recommended to review this policy periodically."
             }
-          },
+        },
         "privacy_policy": {
             "title": "Privacy Policy",
             "description": "This Privacy Policy describes how we collect, use, and protect the personal information of users of our personal finance management application.",
@@ -463,7 +463,19 @@
                 "remove_success": "The account was successfully removed"
             }
         },
-        "notes": {},
+        "notes": {
+            "create_note": "Create Note",
+            "note_title_placeholder": "Note Title",
+            "note_content_placeholder": "Write your note here...",
+            "save_note": "Save Note",
+            "delete_note": "Delete Note",
+            "note_deleted": "Note deleted.",
+            "untitled_note":"Untiled Note",
+            "undo": "Undo",
+            "note_restored": "Note restored to the board.",
+            "note_saved": "Note saved successfully.",
+            "no_note_selected": "No note selected"
+        },
         "reports": {}
     }
 }

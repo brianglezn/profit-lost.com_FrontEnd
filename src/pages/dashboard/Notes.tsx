@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import './Notes.scss';
 import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
-import DeleteBinIcon from '../../components/icons/DeleteBinIcon';
+import { InputText } from 'primereact/inputtext';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
+
+import './Notes.scss';
+import DeleteBinIcon from '../../components/icons/DeleteBinIcon';
 
 interface Note {
     id: string;
@@ -16,6 +19,8 @@ export default function Notes() {
     const [selectedNote, setSelectedNote] = useState<Note | null>(null);
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [draggedNoteId, setDraggedNoteId] = useState<string | null>(null);
+
+    const { t } = useTranslation();
 
     const handleCreateNote = () => {
         const newNote: Note = {
@@ -35,8 +40,8 @@ export default function Notes() {
                     note.id === selectedNote.id ? selectedNote : note
                 )
             );
-            // Mostrar toast de éxito al guardar la nota
-            toast.success('Note saved successfully', {
+            // Show success toast when the note is saved
+            toast.success(t('dashboard.notes.note_saved'), {
                 duration: 3000,
                 position: 'top-center',
             });
@@ -49,22 +54,22 @@ export default function Notes() {
         setSelectedNote(null);
         setIsCreating(false);
 
-        // Mostrar el toast de error al eliminar con opción de deshacer
-        toast.error((t) => (
+        // Show the error toast when deleting with undo option
+        toast.error((toastInstance) => (
             <div className="undo-delete-toast">
-                <span>Note deleted.</span>
+                <span>{t('dashboard.notes.note_deleted')}</span>
                 <button
                     className="undo-button"
                     onClick={() => {
                         setNotes((prevNotes) => [...prevNotes, noteToDelete]);
-                        toast.dismiss(t.id);
-                        toast.success('Note restored to the board', {
+                        toast.dismiss(toastInstance.id);
+                        toast.success(t('dashboard.notes.note_restored'), {
                             duration: 4000,
                             position: 'top-center',
                         });
                     }}
                 >
-                    Undo
+                    {t('dashboard.notes.undo')}
                 </button>
             </div>
         ), {
@@ -108,7 +113,7 @@ export default function Notes() {
     return (
         <section className='notes'>
             <div className='notes-sidebar'>
-                <Button label='Create Note' icon='pi pi-plus' onClick={handleCreateNote} />
+                <Button label={t('dashboard.notes.create_note')} icon='pi pi-plus' onClick={handleCreateNote} />
                 <div className='notes-list'>
                     {notes.map((note) => (
                         <div
@@ -120,7 +125,7 @@ export default function Notes() {
                             onDrop={() => handleDrop(note.id)}
                             onClick={() => handleSelectNote(note)}
                         >
-                            {note.title || 'Untitled Note'}
+                            {note.title || t('dashboard.notes.untitled_note')}
                             <DeleteBinIcon className='delete-icon' onClick={(e) => {
                                 e.stopPropagation();
                                 handleDeleteNote(note);
@@ -132,14 +137,14 @@ export default function Notes() {
             <div className='notes-editor'>
                 {isCreating || selectedNote ? (
                     <div className='note-details'>
-                        <input
+                        <InputText
                             type='text'
-                            placeholder='Note Title'
+                            placeholder={t('dashboard.notes.note_title_placeholder')}
                             value={selectedNote?.title || ''}
                             onChange={(e) => handleNoteChange('title', e.target.value)}
                         />
                         <InputTextarea
-                            placeholder='Write your note here...'
+                            placeholder={t('dashboard.notes.note_content_placeholder')}
                             value={selectedNote?.content || ''}
                             onChange={(e) => handleNoteChange('content', e.target.value)}
                             rows={5}
@@ -147,18 +152,18 @@ export default function Notes() {
                         />
                         <div className='note-actions'>
                             <Button
-                                label='Save Note'
+                                label={t('dashboard.notes.save_note')}
                                 onClick={handleSaveNote}
                             />
                             <Button
-                                label='Delete Note'
+                                label={t('dashboard.notes.delete_note')}
                                 severity="danger" outlined
                                 onClick={() => selectedNote && handleDeleteNote(selectedNote)}
                             />
                         </div>
                     </div>
                 ) : (
-                    <p className='no-note-selected'>No note selected</p>
+                    <p className='no-note-selected'>{t('dashboard.notes.no_note_selected')}</p>
                 )}
             </div>
         </section>
