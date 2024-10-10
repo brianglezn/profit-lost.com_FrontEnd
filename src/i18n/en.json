@@ -470,11 +470,15 @@
             "save_note": "Save Note",
             "delete_note": "Delete Note",
             "note_deleted": "Note deleted.",
-            "untitled_note":"Untiled Note",
+            "untitled_note": "Untitled Note",
             "undo": "Undo",
             "note_restored": "Note restored to the board.",
             "note_saved": "Note saved successfully.",
-            "no_note_selected": "No note selected"
+            "note_updated": "Note updated successfully.",
+            "no_note_selected": "No note selected.",
+            "fetch_error": "Error fetching notes.",
+            "save_error": "Error saving note.",
+            "delete_error": "Error deleting note."
         },
         "reports": {}
     }
