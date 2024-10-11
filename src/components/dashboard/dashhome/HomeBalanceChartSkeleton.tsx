@@ -1,4 +1,3 @@
-import React from 'react';
 import './HomeBalanceChartSkeleton.scss';
 
 export default function HomeBalanceChartSkeleton() {
