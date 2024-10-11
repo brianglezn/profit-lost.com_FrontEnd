@@ -12,6 +12,8 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
+
+import './HomeBalanceChart.scss'; // Importamos los estilos para el skeleton
 import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface DataPoint {
@@ -28,64 +30,61 @@ interface Movement {
 
 export default function HomeBalanceChart() {
     const [data, setData] = useState<DataPoint[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true); // Estado para controlar la carga
     const { t } = useTranslation();
 
-    // Fetch movements data on component mount
     useEffect(() => {
         const fetchData = async () => {
+            console.log('Iniciando la carga de datos'); // Log para verificar el inicio de carga
+            setIsLoading(true);  // Se inicia el estado de carga
             const token = localStorage.getItem('token');
             if (!token) {
                 console.error('No authentication token found. Please log in.');
+                setIsLoading(false);
                 return;
             }
 
             try {
                 const currentYear = new Date().getFullYear().toString();
-                // Fetch movements for the current year
                 const movements = await getMovementsByYear(token, currentYear);
-
-                // Get data for the last six months from the fetched movements
                 const lastSixMonthsData = getLastSixMonthsData(movements);
                 setData(lastSixMonthsData);
-
+                console.log('Datos cargados correctamente', lastSixMonthsData); // Log para verificar los datos
             } catch (error) {
                 console.error('Error fetching movements:', error);
+            } finally {
+                setIsLoading(false); // Finaliza el estado de carga
+                console.log('Carga finalizada'); // Log para verificar que la carga ha terminado
             }
         };
 
         fetchData();
     }, []);
 
-    // Function to get data for the last six months
     const getLastSixMonthsData = (movements: Movement[]): DataPoint[] => {
         const today = new Date();
         const months = [];
         const monthlyData: { [key: string]: { income: number; expenses: number } } = {};
 
-        // Create an object for the last six months with initial income and expenses set to 0
         for (let i = 5; i >= 0; i--) {
             const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
             const monthName = date.toLocaleString('default', { month: 'short' });
             monthlyData[monthName] = { income: 0, expenses: 0 };
         }
 
-        // Iterate over each movement and add the amount to the respective month
         movements.forEach((movement) => {
             const movementDate = new Date(movement.date);
             const monthName = movementDate.toLocaleString('default', { month: 'short' });
 
             if (monthlyData[monthName]) {
                 if (movement.amount > 0) {
-                    // Add to income if amount is positive
                     monthlyData[monthName].income += movement.amount;
                 } else {
-                    // Add to expenses if amount is negative
                     monthlyData[monthName].expenses += Math.abs(movement.amount);
                 }
             }
         });
 
-        // Convert the monthlyData object into an array of DataPoint objects for the chart
         for (const [key, value] of Object.entries(monthlyData)) {
             months.push({
                 name: key,
@@ -97,16 +96,20 @@ export default function HomeBalanceChart() {
         return months;
     };
 
-    // Check if the data is empty or all income and expenses are 0
     const isDataEmpty = data.length === 0 || data.every(item => item.income === 0 && item.expenses === 0);
 
     return (
         <div className='home-balance-chart'>
-            {isDataEmpty ? (
-                // If there is no data, display a placeholder icon
+            {isLoading ? (
+                // Mostrar Skeleton mientras está cargando
+                <div className="skeleton-chart-wrapper">
+                    <div className="skeleton-chart"></div>
+                </div>
+            ) : isDataEmpty ? (
+                // Si no hay datos, mostrar un ícono de marcador de posición
                 <ChartLineIcon className='custom-icon' />
             ) : (
-                // Display the LineChart if there is data
+                // Mostrar la gráfica cuando hay datos
                 <ResponsiveContainer width='100%' height={300}>
                     <LineChart
                         data={data}
@@ -122,7 +125,6 @@ export default function HomeBalanceChart() {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        {/* Line for income values */}
                         <Line
                             type='monotone'
                             dataKey='income'
@@ -130,7 +132,6 @@ export default function HomeBalanceChart() {
                             stroke='#ff8e38'
                             activeDot={{ r: 8 }}
                         />
-                        {/* Line for expenses values */}
                         <Line
                             type='monotone'
                             dataKey='expenses'

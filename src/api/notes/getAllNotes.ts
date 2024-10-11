@@ -1,43 +1,38 @@
 import Note from '../../helpers/types';
 
-interface EditNotePayload {
-    title: string;  // The title of the note to update
-    content: string;  // The content of the note to update
-}
-
-// Function to edit an existing note by sending a PUT request to the server
-export async function editNote(noteId: string, payload: EditNotePayload): Promise<Note> {
+// Function to fetch all notes from the API
+export async function getAllNotes(): Promise<Note[]> {
     // Retrieve the authentication token from localStorage
     const token = localStorage.getItem('token');
-    
-    // If there is no token, throw an error indicating the user is not logged in
+
+    // If no token is found, throw an authentication error
     if (!token) {
         throw new Error('No authentication token found. Please log in.');
     }
 
     try {
-        // Send a PUT request to the API endpoint for updating the note
-        const response = await fetch(`https://app-profit-lost-com.onrender.com/notes/${noteId}`, {
-            method: 'PUT',  // Specify the HTTP method as PUT for updating
+        // Make a GET request to the notes API with the Bearer token in the Authorization header
+        const response = await fetch('https://app-profit-lost-com.onrender.com/notes', {
+            method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,  // Include the token for authentication
-                'Content-Type': 'application/json',  // Set the content type to JSON
+                'Authorization': `Bearer ${token}`,
             },
-            // Convert the updated note data (payload) to a JSON string to be sent in the request body
-            body: JSON.stringify(payload),
         });
 
-        // If the response is not successful, throw an error with the response message or status
+        // Check if the response is not OK (status outside the range 200-299)
         if (!response.ok) {
+            // Try to read the error message from the response body
             const errorText = await response.text();
+            // Throw an error with the message or the status code if no message is available
             throw new Error(errorText || `HTTP error! status: ${response.status}`);
         }
 
-        // Parse and return the updated note from the API response
+        // Parse and return the JSON response containing the list of notes
         return await response.json();
     } catch (error) {
-        // Log any errors to the console for debugging and rethrow the error
-        console.error('Error editing note:', error);
+        // Log any errors to the console for debugging purposes
+        console.error('Error fetching notes:', error);
+        // Rethrow the error to propagate it to the calling function
         throw error;
     }
 }

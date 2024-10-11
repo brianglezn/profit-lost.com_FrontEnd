@@ -1,0 +1,47 @@
+.movements-history-skeleton {
+    animation: fadeInOpacity 0.6s ease-in-out;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .movement-item-skeleton {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.7rem 0;
+
+        .description-section {
+            display: flex;
+            flex-direction: column;
+
+            .skeleton-text {
+                background-color: #e0e0e0;
+                border-radius: 0.3rem;
+                animation: pulse 1.5s infinite ease-in-out;
+
+                &.skeleton-description {
+                    width: 10rem;
+                    height: 1rem;
+                    margin-bottom: 0.2rem;
+                }
+
+                &.skeleton-date {
+                    width: 6rem; 
+                    height: 0.8rem;
+                    margin-top: 0.2rem;
+                }
+            }
+        }
+
+        .skeleton-amount {
+            background-color: #e0e0e0;
+            border-radius: 0.3rem;
+            width: 60px;
+            height: 1rem;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+    }
+}

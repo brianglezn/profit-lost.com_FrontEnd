@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { formatCurrency } from '../../helpers/functions';
 import { getMovementsByYear } from '../../api/movements/getMovementsByYear';
 
 import './DashHome.scss';
 import HomeBalanceChart from '../../components/dashboard/dashhome/HomeBalanceChart';
-import MovementsHistoryHome from '../../components/dashboard/dashhome/HomeMovementsHistory';
+import HomeMovementsHistory from '../../components/dashboard/dashhome/HomeMovementsHistory';
+import HomeBalances from '../../components/dashboard/dashhome/HomeBalances';
 
 interface Transaction {
   _id: string;
@@ -25,11 +25,13 @@ export default function DashHome() {
   const [ebitdaPercentage, setEbitdaPercentage] = useState<number>(0);
   const [movements, setMovements] = useState<Transaction[]>([]);
   const [isDataEmpty, setIsDataEmpty] = useState<boolean>(true);
-  
-  const { t, i18n } = useTranslation();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { t, } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true); // Start loading
       try {
         // Get the authentication token from local storage
         const token = localStorage.getItem('token') || '';
@@ -47,6 +49,7 @@ export default function DashHome() {
         // If no movements are found, set the data as empty and return
         if (movements.length === 0) {
           setIsDataEmpty(true);
+          setIsLoading(false); // End loading
           return;
         }
         setIsDataEmpty(false);
@@ -60,6 +63,8 @@ export default function DashHome() {
         setMovements(sortedMovements);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false); // End loading when fetch is done
       }
     };
 
@@ -138,51 +143,9 @@ export default function DashHome() {
   return (
     <section className='dashHome'>
       <div className='balances'>
-        <div>
-          <div className='balances-container income'>
-            <div className='header-container'>
-              <span>{t('dashboard.dashhome.balances.earnings')}</span>
-            </div>
-            <div className='amount'>
-              <span className='value'>{formatCurrency(income, i18n.language)}</span>
-            </div>
-            <div className='comparison'>
-              <span className={`percentage ${incomePercentage >= 0 ? 'positive' : 'negative'}`}>
-                {incomePercentage.toFixed(1)}%
-              </span> {t('dashboard.dashhome.balances.comparison')}
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className='balances-container expenses'>
-            <div className='header-container'>
-              <span>{t('dashboard.dashhome.balances.spendings')}</span>
-            </div>
-            <div className='amount'>
-              <span className='value'>{formatCurrency(expenses, i18n.language)}</span>
-            </div>
-            <div className='comparison'>
-              <span className={`percentage ${expensesPercentage >= 0 ? 'negative' : 'positive'}`}>
-                {expensesPercentage.toFixed(1)}%
-              </span> {t('dashboard.dashhome.balances.comparison')}
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className='balances-container ebitda'>
-            <div className='header-container'>
-              <span>{t('dashboard.dashhome.balances.savings')}</span>
-            </div>
-            <div className='amount'>
-              <span className='value'>{formatCurrency(ebitda, i18n.language)}</span>
-            </div>
-            <div className='comparison'>
-              <span className={`percentage ${ebitdaPercentage >= 0 ? 'positive' : 'negative'}`}>
-                {ebitdaPercentage.toFixed(1)}%
-              </span> {t('dashboard.dashhome.balances.comparison')}
-            </div>
-          </div>
-        </div>
+        <HomeBalances type='income' amount={isLoading ? null : income} percentage={isLoading ? null : incomePercentage} />
+        <HomeBalances type='expenses' amount={isLoading ? null : expenses} percentage={isLoading ? null : expensesPercentage} />
+        <HomeBalances type='ebitda' amount={isLoading ? null : ebitda} percentage={isLoading ? null : ebitdaPercentage} />
       </div>
 
       <div className='chart'>
@@ -199,33 +162,9 @@ export default function DashHome() {
           <div className='header-container'>
             <span>{t('dashboard.dashhome.home_movements_history.header')}</span>
           </div>
-          <MovementsHistoryHome data={movements} isDataEmpty={isDataEmpty} />
+          <HomeMovementsHistory data={movements} isDataEmpty={isDataEmpty} isLoading={isLoading} />
         </div>
       </div>
-
-      {/* <div className='first'>
-  <div className='first-container'>
-    <div className='header-container'>
-      <span>Category + gastos</span>
-    </div>
-  </div>
-</div>
-
-<div className='second'>
-  <div className='second-container'>
-    <div className='header-container'>
-      <span>Category + ingresos</span>
-    </div>
-  </div>
-</div>
-
-<div className='categories'>
-  <div className='categories-container'>
-    <div className='header-container'>
-      <span>Notes</span>
-    </div>
-  </div>
-</div> */}
     </section>
   );
 }

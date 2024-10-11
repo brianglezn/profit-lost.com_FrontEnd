@@ -13,7 +13,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 0;
+        padding: 0.6rem 0;
 
         .description-section {
             display: flex;
@@ -25,9 +25,9 @@
             }
 
             .date {
-                font-size: .8rem;
+                font-size: 0.8rem;
                 color: #888888;
-                margin-top: .2rem;
+                margin-top: 0.2rem;
             }
         }
 
