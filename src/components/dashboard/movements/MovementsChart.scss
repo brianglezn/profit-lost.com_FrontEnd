@@ -13,6 +13,10 @@
     box-shadow: $shadow_color 0px 1px 4px;
     background-color: $bg-color-sec;
 
+    div {
+        animation: fadeInOpacity 0.6s ease-in-out;
+    }
+
     @media (max-width: 768px) {
         width: 100%;
     }

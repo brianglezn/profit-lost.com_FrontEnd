@@ -33,6 +33,7 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        animation: fadeInOpacity 0.6s ease-in-out;
 
         .movement-item {
             display: flex;
@@ -42,11 +43,6 @@
             border-radius: 1rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
-
-            // &:hover {
-            //     background-color: rgba(227, 123, 166, 0.2);
-
-            // }
 
             .description-section {
                 display: flex;

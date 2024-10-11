@@ -281,6 +281,10 @@ body {
     animation: shadowPulse 2s linear infinite;
   }
 
+  .custom-spinner circle {
+    stroke: $primary_color !important;
+  }
+
   @keyframes shadowPulse {
     33% {
       background: $text_color-white;
@@ -298,10 +302,36 @@ body {
     }
   }
 
-  .custom-spinner circle {
-    stroke: $primary_color !important;
+  @keyframes fadeInOpacityTranslate {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
+  @keyframes fadeInOpacity {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
 }
+
+
+
+
+
+
+
 
 /* Rechart */
 .recharts-default-tooltip {

@@ -19,7 +19,7 @@ export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [selectedNote, setSelectedNote] = useState<Note | null>(null);
     const [isCreating, setIsCreating] = useState<boolean>(false);
-    const [deletedNotes, setDeletedNotes] = useState<Note[]>([]); // Lista de notas eliminadas
+    const [deletedNotes, setDeletedNotes] = useState<Note[]>([]);
     const [draggedNoteId, setDraggedNoteId] = useState<string | null>(null);
 
     const { t } = useTranslation();
@@ -66,7 +66,7 @@ export default function Notes() {
                             note._id === updatedNote._id ? updatedNote : note
                         )
                     );
-                    setSelectedNote(updatedNote); // Actualizamos selectedNote también
+                    setSelectedNote(updatedNote);
                     toast.success(t('dashboard.notes.note_updated'), {
                         duration: 3000,
                         position: 'top-center',
@@ -84,15 +84,14 @@ export default function Notes() {
         try {
             console.log('Deleting note:', noteToDelete);
             if (noteToDelete._id) {
-                // Guardamos la versión más reciente de la nota antes de eliminarla
                 const updatedNote = notes.find(note => note._id === noteToDelete._id);
                 if (updatedNote) {
                     const latestVersion = { ...updatedNote };
                     setDeletedNotes((prevDeleted) => [
-                        ...prevDeleted, // No eliminamos ninguna nota, solo la añadimos a la lista
+                        ...prevDeleted,
                         latestVersion
-                    ]); 
-                    console.log('Deleted notes updated:', latestVersion); 
+                    ]);
+                    console.log('Deleted notes updated:', latestVersion);
                 }
 
                 await deleteNote(noteToDelete._id);
@@ -128,8 +127,8 @@ export default function Notes() {
 
     const handleRestoreNote = async (toastId: string) => {
         if (deletedNotes.length > 0) {
-            const noteToRestore = deletedNotes[deletedNotes.length - 1]; // Restauramos la última nota eliminada
-            console.log('Restoring note:', noteToRestore); 
+            const noteToRestore = deletedNotes[deletedNotes.length - 1];
+            console.log('Restoring note:', noteToRestore);
 
             try {
                 const restoredNote = await createNote({
@@ -138,7 +137,6 @@ export default function Notes() {
                 });
                 console.log('Note restored:', restoredNote);
                 setNotes((prevNotes) => [...prevNotes, restoredNote]);
-                // Limpiar correctamente el estado de deletedNotes
                 setDeletedNotes((prevDeleted) => prevDeleted.filter(note => note._id !== noteToRestore._id));
                 toast.dismiss(toastId);
                 toast.success(t('dashboard.notes.note_restored'), {
@@ -162,7 +160,7 @@ export default function Notes() {
     };
 
     const handleSelectNote = (note: Note) => {
-        console.log('Selected note:', note); 
+        console.log('Selected note:', note);
         setIsCreating(false);
         setSelectedNote(note);
     };
