@@ -200,30 +200,6 @@
     }
 }
 
-.undo-delete-toast {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    span {
-        font-size: 1rem;
-    }
-
-    .undo-button {
-        background: none;
-        border: none;
-        color: $primary_color-800;
-        cursor: pointer;
-        font-weight: bold;
-        padding: 0 1rem;
-        transition: color 0.3s;
-
-        &:hover {
-            color: $primary_color-500;
-        }
-    }
-}
-
 @keyframes fadeInNotes {
     to {
         opacity: 1;

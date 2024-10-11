@@ -19,16 +19,15 @@ export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [selectedNote, setSelectedNote] = useState<Note | null>(null);
     const [isCreating, setIsCreating] = useState<boolean>(false);
-    const [deletedNotes, setDeletedNotes] = useState<Note[]>([]);
     const [draggedNoteId, setDraggedNoteId] = useState<string | null>(null);
 
     const { t } = useTranslation();
 
+    // Fetch all notes when the component mounts
     useEffect(() => {
         async function fetchNotes() {
             try {
                 const fetchedNotes = await getAllNotes();
-                console.log('Fetched notes:', fetchedNotes);
                 setNotes(fetchedNotes);
             } catch (error) {
                 console.error('Error fetching notes:', error);
@@ -38,29 +37,29 @@ export default function Notes() {
         fetchNotes();
     }, [t]);
 
+    // Handle saving (create or update) a note
     const handleSaveNote = async () => {
         if (selectedNote) {
             try {
                 if (!selectedNote._id) {
-                    console.log('Creating new note:', selectedNote);
+                    // Create new note
                     const savedNote = await createNote({
                         title: selectedNote.title,
                         content: selectedNote.content,
                     });
-                    console.log('Note created:', savedNote);
-                    setNotes((prevNotes) => [...prevNotes, savedNote]);
+                    setNotes((prevNotes) => [...prevNotes, savedNote]); // Add new note to list
                     setSelectedNote(savedNote);
                     toast.success(t('dashboard.notes.note_saved'), {
                         duration: 3000,
                         position: 'top-center',
                     });
                 } else {
-                    console.log('Editing note:', selectedNote);
+                    // Edit existing note
                     const updatedNote = await editNote(selectedNote._id, {
                         title: selectedNote.title,
                         content: selectedNote.content,
                     });
-                    console.log('Note updated:', updatedNote);
+                    // Update note in the list
                     setNotes((prevNotes) =>
                         prevNotes.map((note) =>
                             note._id === updatedNote._id ? updatedNote : note
@@ -80,100 +79,47 @@ export default function Notes() {
         }
     };
 
+    // Handle deleting a note
     const handleDeleteNote = async (noteToDelete: Note) => {
+        // Optimistically remove the note from the list
+        setNotes((prevNotes) => prevNotes.filter((note) => note._id !== noteToDelete._id));
+
         try {
-            console.log('Deleting note:', noteToDelete);
-            if (noteToDelete._id) {
-                const updatedNote = notes.find(note => note._id === noteToDelete._id);
-                if (updatedNote) {
-                    const latestVersion = { ...updatedNote };
-                    setDeletedNotes((prevDeleted) => [
-                        ...prevDeleted,
-                        latestVersion
-                    ]);
-                    console.log('Deleted notes updated:', latestVersion);
-                }
-
-                await deleteNote(noteToDelete._id);
-                setNotes((prevNotes) =>
-                    prevNotes.filter((note) => note._id !== noteToDelete._id)
-                );
-                setSelectedNote(null);
-                setIsCreating(false);
-
-                toast.error(
-                    (toastInstance) => (
-                        <div className="undo-delete-toast">
-                            <span>{t('dashboard.notes.note_deleted')}</span>
-                            <button
-                                className="undo-button"
-                                onClick={() => handleRestoreNote(toastInstance.id)}
-                            >
-                                {t('dashboard.notes.undo')}
-                            </button>
-                        </div>
-                    ),
-                    {
-                        duration: 3000,
-                        position: 'top-center',
-                    }
-                );
-            }
+            await deleteNote(noteToDelete._id); // Delete the note from the backend
+            toast.success(t('dashboard.notes.note_deleted'), {
+                duration: 3000,
+                position: 'top-center',
+            });
         } catch (error) {
-            console.error('Error deleting note:', error);
+            console.error('Error deleting note from API:', error);
             toast.error(t('dashboard.notes.delete_error'));
         }
     };
 
-    const handleRestoreNote = async (toastId: string) => {
-        if (deletedNotes.length > 0) {
-            const noteToRestore = deletedNotes[deletedNotes.length - 1];
-            console.log('Restoring note:', noteToRestore);
-
-            try {
-                const restoredNote = await createNote({
-                    title: noteToRestore.title,
-                    content: noteToRestore.content,
-                });
-                console.log('Note restored:', restoredNote);
-                setNotes((prevNotes) => [...prevNotes, restoredNote]);
-                setDeletedNotes((prevDeleted) => prevDeleted.filter(note => note._id !== noteToRestore._id));
-                toast.dismiss(toastId);
-                toast.success(t('dashboard.notes.note_restored'), {
-                    duration: 4000,
-                    position: 'top-center',
-                });
-            } catch (error) {
-                console.error('Error restoring note:', error);
-                toast.error(t('dashboard.notes.save_error'));
-            }
-        } else {
-            console.log('No deleted note to restore');
-        }
-    };
-
+    // Handle changes to the selected note (title or content)
     const handleNoteChange = (key: keyof Note, value: string) => {
         if (selectedNote) {
-            console.log(`Changing note ${key}:`, value);
             setSelectedNote({ ...selectedNote, [key]: value });
         }
     };
 
+    // Handle selecting a note to view/edit
     const handleSelectNote = (note: Note) => {
-        console.log('Selected note:', note);
         setIsCreating(false);
         setSelectedNote(note);
     };
 
+    // Handle starting a drag action for reordering notes
     const handleDragStart = (noteId: string) => {
-        console.log('Dragging note:', noteId);
         setDraggedNoteId(noteId);
     };
 
+    // Handle dragging over another note (allows for reordering)
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
     };
 
+    // Handle dropping a dragged note into a new position
     const handleDrop = (noteId: string) => {
         if (draggedNoteId && draggedNoteId !== noteId) {
             const draggedNoteIndex = notes.findIndex(
@@ -181,10 +127,9 @@ export default function Notes() {
             );
             const targetNoteIndex = notes.findIndex((note) => note._id === noteId);
             const updatedNotes = [...notes];
-            const [draggedNote] = updatedNotes.splice(draggedNoteIndex, 1);
-            updatedNotes.splice(targetNoteIndex, 0, draggedNote);
-            console.log('Note dropped:', draggedNote);
-            setNotes(updatedNotes);
+            const [draggedNote] = updatedNotes.splice(draggedNoteIndex, 1); // Remove dragged note
+            updatedNotes.splice(targetNoteIndex, 0, draggedNote); // Insert it into the new position
+            setNotes(updatedNotes); // Update notes state with reordered notes
             setDraggedNoteId(null);
         }
     };
@@ -192,6 +137,7 @@ export default function Notes() {
     return (
         <section className='notes'>
             <div className='notes-sidebar'>
+                {/* Button to create a new note */}
                 <Button label={t('dashboard.notes.create_note')} icon='' onClick={() => {
                     setSelectedNote({
                         _id: '',
@@ -204,21 +150,23 @@ export default function Notes() {
                     setIsCreating(true);
                 }} />
                 <div className='notes-list'>
+                    {/* List all notes */}
                     {notes.map((note) => (
                         <div
                             key={note._id}
                             className='note-item'
                             draggable
-                            onDragStart={() => handleDragStart(note._id)}
-                            onDragOver={handleDragOver}
-                            onDrop={() => handleDrop(note._id)}
-                            onClick={() => handleSelectNote(note)}
+                            onDragStart={() => handleDragStart(note._id)} // Allow dragging
+                            onDragOver={handleDragOver} // Allow drag over
+                            onDrop={() => handleDrop(note._id)} // Handle dropping for reordering
+                            onClick={() => handleSelectNote(note)} // Select note on click
                         >
                             {note.title || t('dashboard.notes.untitled_note')}
+                            {/* Delete icon to remove the note */}
                             <DeleteBinIcon
                                 className='delete-icon'
                                 onClick={(e) => {
-                                    e.stopPropagation();
+                                    e.stopPropagation(); // Prevent triggering note selection on delete
                                     handleDeleteNote(note);
                                 }}
                             />
@@ -229,12 +177,14 @@ export default function Notes() {
             <div className='notes-editor'>
                 {isCreating || selectedNote ? (
                     <div className='note-details'>
+                        {/* Input for the note title */}
                         <InputText
                             type='text'
                             placeholder={t('dashboard.notes.note_title_placeholder')}
                             value={selectedNote?.title || ''}
                             onChange={(e) => handleNoteChange('title', e.target.value)}
                         />
+                        {/* Textarea for the note content */}
                         <InputTextarea
                             placeholder={t('dashboard.notes.note_content_placeholder')}
                             value={selectedNote?.content || ''}
@@ -242,6 +192,7 @@ export default function Notes() {
                             rows={5}
                             autoResize
                         />
+                        {/* Actions to save or delete the note */}
                         <div className='note-actions'>
                             <Button
                                 label={t('dashboard.notes.save_note')}
