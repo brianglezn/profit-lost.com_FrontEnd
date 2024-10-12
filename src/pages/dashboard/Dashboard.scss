@@ -167,7 +167,7 @@
   .dashboard__content {
     grid-area: Content;
     width: 100%;
-    height: calc(100vh - 122px);
+    min-height: calc(100vh - 122px);
     margin: 1rem 0;
     padding-right: 1rem;
   }
@@ -218,7 +218,7 @@
           position: relative;
           cursor: pointer;
           font-size: 2rem;
-          
+
           div {
             display: flex;
             flex-direction: column;
@@ -269,7 +269,8 @@
 
     .dashboard__content {
       padding: 0 1rem;
-      margin: 6.3rem 0;
+      margin: 6.3rem 0 6rem;
+      height: 100%;
     }
   }
 
