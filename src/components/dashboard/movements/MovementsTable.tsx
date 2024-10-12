@@ -34,7 +34,7 @@ interface MovementsTableProps {
 export default function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
-    const [hoveredTransactionId, setHoveredTransactionId] = useState<string | null>(null);
+    const [selectedTransactionId, setSelectedTransactionId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('date_desc');
 
@@ -112,7 +112,7 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
 
             {/* Show loading bar if data is empty or being loaded */}
             {isDataEmpty || sortedMovements.length === 0 ? (
-                <ProgressBar mode='indeterminate' style={{ height: '6px', width: '100%' }} />
+                <ProgressBar mode='indeterminate' style={{ height: '0.375rem', width: '100%' }} />
             ) : (
                 // List of transactions
                 <div className='movements-list'>
@@ -121,11 +121,10 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                             key={transaction._id}
                             className='movement-item'
                             onClick={() => editMovement(transaction)}
-                            onMouseEnter={() => setHoveredTransactionId(transaction._id)}
-                            onMouseLeave={() => setHoveredTransactionId(null)}
+                            onTouchStart={() => setSelectedTransactionId(transaction._id)}
                             style={{
-                                // Change background color if the item is hovered
-                                backgroundColor: hoveredTransactionId === transaction._id
+                                // Change background color if the item is selected
+                                backgroundColor: selectedTransactionId === transaction._id
                                     ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
                                     : 'transparent'
                             }}
