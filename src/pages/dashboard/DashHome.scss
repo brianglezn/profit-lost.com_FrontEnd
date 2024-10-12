@@ -151,6 +151,18 @@
       }
     }
 
+    .chart {
+      grid-area: chart;
+
+      .chart-container {
+        .recharts-responsive-container {
+          width: 100% !important;
+          margin-left: -1rem;
+        }
+      }
+
+    }
+
     .chart,
     .history,
     .first,
