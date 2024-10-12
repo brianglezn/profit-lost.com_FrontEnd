@@ -171,8 +171,8 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                                             .map((movement) => (
                                                 <li key={movement.id} className='movementsByCategory-item'>
                                                     {/* Display movement details */}
-                                                    <span className='movementsByCategory-description'>{movement.description}</span>
                                                     <span className='movementsByCategory-date'>{formatDateTime(movement.date, i18n.language)}</span>
+                                                    <span className='movementsByCategory-description'>{movement.description}</span>
                                                     <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
                                                         {formatCurrency(movement.amount, i18n.language)}
                                                     </span>
