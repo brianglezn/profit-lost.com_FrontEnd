@@ -14,4 +14,11 @@
     div {
         animation: fadeInOpacity 0.6s ease-in-out;
     }
+
+    @media (max-width: 480px) {
+        .recharts-responsive-container {
+            width: 100% !important;
+            margin-left: -1rem;
+        }
+    }
 }
