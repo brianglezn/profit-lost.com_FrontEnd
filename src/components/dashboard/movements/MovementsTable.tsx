@@ -34,7 +34,8 @@ interface MovementsTableProps {
 export default function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
-    const [selectedTransactionId, setSelectedTransactionId] = useState<string | null>(null);
+    const [hoveredTransactionId, setHoveredTransactionId] = useState<string | null>(null);
+    const [touchedTransactionId, setTouchedTransactionId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('date_desc');
 
@@ -121,12 +122,15 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                             key={transaction._id}
                             className='movement-item'
                             onClick={() => editMovement(transaction)}
-                            onTouchStart={() => setSelectedTransactionId(transaction._id)}
+                            onMouseEnter={() => setHoveredTransactionId(transaction._id)} // For hover on PC
+                            onMouseLeave={() => setHoveredTransactionId(null)} // Remove hover effect
+                            onTouchStart={() => setTouchedTransactionId(transaction._id)} // For touch on mobile
                             style={{
-                                // Change background color if the item is selected
-                                backgroundColor: selectedTransactionId === transaction._id
-                                    ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
-                                    : 'transparent'
+                                // Change background color if the item is hovered or touched
+                                backgroundColor:
+                                    hoveredTransactionId === transaction._id || touchedTransactionId === transaction._id
+                                        ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
+                                        : 'transparent'
                             }}
                         >
                             <div className='category-mobile'>
