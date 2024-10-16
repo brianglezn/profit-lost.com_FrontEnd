@@ -24,6 +24,7 @@ Repositorio <a href="https://github.com/brianglezn/profit-lost.com_BackEnd">BACK
   <li>Vite</li>
   <li>Node.js</li>
   <li>Sass</li>
+  <li>i18n</li>
 </ul>
 
 <h2>Prerrequisitos</h2>
