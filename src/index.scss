@@ -658,15 +658,17 @@ body {
     font-weight: 600;
   }
 
-  .p-calendar.p-invalid.p-component>.p-inputtext {
-    border-color: #ef9a9a;
-  }
+  .p-calendar {
+    width: 100%;
+    padding: 0.4rem;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background: $bg-color-sec;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 0.8rem;
 
-  .p-calendar:not(.p-calendar-disabled).p-focus>.p-inputtext {
-    outline: 0 none;
-    outline-offset: 0;
-    box-shadow: 0 0 0 1px $primary_color-300;
-    border-color: $primary_color;
+    .p-inputtext:enabled:focus {
+      box-shadow: none;
+    }
   }
 
   .p-datepicker {
@@ -1050,7 +1052,6 @@ body {
 
   .p-checkbox .p-checkbox-box {
     border: 2px solid $primary_color-400;
-    background: #17212f;
     width: 20px;
     height: 20px;
     color: $text_color-grey;
@@ -1905,6 +1906,15 @@ body {
     user-select: none;
   }
 
+  .p-multiselect {
+    width: 100%;
+    padding: 0.4rem;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background: $bg-color-sec;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 0.8rem;
+  }
+
   .p-multiselect-trigger {
     display: flex;
     align-items: center;
@@ -2006,8 +2016,6 @@ body {
   }
 
   .p-multiselect {
-    background: #17212f;
-    border: 1px solid $primary_color-400;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
       box-shadow 0.2s;
     border-radius: 15px;

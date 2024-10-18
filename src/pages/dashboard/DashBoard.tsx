@@ -17,7 +17,6 @@ const Accounts = React.lazy(() => import('./Accounts'));
 const AnnualReport = React.lazy(() => import('./AnnualReport'));
 const Movements = React.lazy(() => import('./Movements'));
 const Notes = React.lazy(() => import('./Notes'));
-const Reports = React.lazy(() => import('./Reports'));
 const AboutUs = React.lazy(() => import('./user/AboutUs'));
 const Help = React.lazy(() => import('./user/Help'));
 const SecurityAndPrivacy = React.lazy(() => import('./user/SecurityAndPrivacy'));
@@ -33,7 +32,6 @@ import UserIcon from '../../components/icons/UserIcon';
 import InfoIcon from '../../components/icons/InfoIcon';
 import HelpIcon from '../../components/icons/HelpIcon';
 import ShielIcon from '../../components/icons/ShielIcon';
-import ReportIcon from '../../components/icons/ReportIcon';
 import ArrowBackIcon from '../../components/icons/ArrowBackIcon';
 
 interface User {
@@ -169,11 +167,6 @@ export default function Dashboard() {
       label: t('dashboard.dashboard.sections.notes'),
       icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
-    },
-    {
-      label: t('dashboard.dashboard.sections.reports'),
-      icon: <ReportIcon />,
-      command: () => handleMenuItemClick('Reports')
     }
   ];
 
@@ -239,13 +232,7 @@ export default function Dashboard() {
                   <NotesIcon />
                   <p>{t('dashboard.dashboard.nav.notes')}</p>
                 </li>
-                <li
-                  onClick={() => handleMenuItemClick('Reports')}
-                  className={activeSection === 'Reports' ? 'active' : ''}
-                >
-                  <ReportIcon />
-                  <p>{t('dashboard.dashboard.nav.reports')}</p>
-                </li>
+
               </ul>
             </div>
           </nav>
@@ -309,7 +296,6 @@ export default function Dashboard() {
             {activeSection === 'Movements' && <Movements />}
             {activeSection === 'Accounts' && <Accounts />}
             {activeSection === 'Notes' && <Notes />}
-            {activeSection === 'Reports' && <Reports />}
           </Suspense>
         </section>
       </div>
