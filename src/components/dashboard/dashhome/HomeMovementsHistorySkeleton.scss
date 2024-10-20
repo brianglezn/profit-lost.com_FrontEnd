@@ -1,3 +1,5 @@
+@import "../../../../variables";
+
 .movements-history-skeleton {
     animation: fadeInOpacity 0.6s ease-in-out;
 
@@ -18,7 +20,7 @@
             flex-direction: column;
 
             .skeleton-text {
-                background-color: #e0e0e0;
+                background-color: $skeleton_color;
                 border-radius: 0.3rem;
                 animation: pulse 1.5s infinite ease-in-out;
 
@@ -29,7 +31,7 @@
                 }
 
                 &.skeleton-date {
-                    width: 6rem; 
+                    width: 6rem;
                     height: 0.8rem;
                     margin-top: 0.2rem;
                 }
@@ -37,7 +39,7 @@
         }
 
         .skeleton-amount {
-            background-color: #e0e0e0;
+            background-color: $skeleton_color;
             border-radius: 0.3rem;
             width: 60px;
             height: 1rem;

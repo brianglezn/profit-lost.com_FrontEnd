@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +8,7 @@ import { useMonthNames } from '../../../helpers/functions';
 import './AnnualChart.scss';
 import CustomBarShape from '../../CustomBarShape';
 import ChartLineIcon from '../../icons/CharLineIcon';
+import AnnualChartSkeleton from './AnnualChartSkeleton';
 
 interface Movement {
     date: string;
@@ -26,12 +27,14 @@ export default function AnnualChart({ year }: { year: string }) {
     const [chartData, setChartData] = useState<ChartDataItem[]>([]);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     const monthNames = useMonthNames();
-
     const { t } = useTranslation();
-
+    const hasFetched = useRef(false);
+    
     // Fetch data when the component mounts or when `year` changes
     useEffect(() => {
         const fetchData = async () => {
+            console.log("Iniciando fetchData para el año:", year);
+
             const token = localStorage.getItem('token');
             if (!token) {
                 console.error(t('dashboard.common.error_token'));
@@ -41,6 +44,8 @@ export default function AnnualChart({ year }: { year: string }) {
             try {
                 // Fetch movement data for the given year
                 const data: Movement[] = await getMovementsByYear(token, year);
+                console.log("Datos obtenidos del servidor:", data);
+
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
 
                 // Loop through each movement and aggregate data by month
@@ -65,6 +70,8 @@ export default function AnnualChart({ year }: { year: string }) {
                     Expenses: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Expenses.toFixed(2)) : 0
                 }));
 
+                console.log("Datos formateados para el gráfico:", formattedData);
+
                 setChartData(formattedData); // Set the chart data state
                 setIsDataLoaded(true); // Mark that data has been loaded
             } catch (error) {
@@ -72,7 +79,10 @@ export default function AnnualChart({ year }: { year: string }) {
             }
         };
 
-        fetchData();
+        if (!hasFetched.current) {
+            fetchData(); // Solo realiza el fetch si no se ha hecho antes
+            hasFetched.current = true; // Marca como que ya se ha hecho la petición
+        }
     }, [year, t, monthNames]);
 
     const incomeKey = t('dashboard.annual_report.annual_chart.income'); // Translation key for income
@@ -80,6 +90,11 @@ export default function AnnualChart({ year }: { year: string }) {
 
     // Check if all chart data values are zero to determine if the chart is empty
     const isChartDataEmpty = chartData.every(item => item.Income === 0 && item.Expenses === 0);
+
+    // Renderizamos el Skeleton si los datos no están cargados
+    if (!isDataLoaded) {
+        return <AnnualChartSkeleton />;
+    }
 
     return (
         <div className='annual__chart'>

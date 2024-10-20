@@ -14,7 +14,7 @@
     .amount-skeleton {
         width: 50% !important;
         height: 2rem;
-        background-color: #e0e0e0;
+        background-color: $skeleton_color;
         border-radius: 0.25rem;
         margin: 0.5rem 0;
         animation: pulse 1.5s infinite ease-in-out;
@@ -29,7 +29,7 @@
         .percentage-skeleton {
             width: 80%;
             height: 1rem;
-            background-color: #e0e0e0;
+            background-color: $skeleton_color;
             border-radius: 0.25rem;
         }
     }

@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
 
-import './HomeBalanceChart.scss'; // Importamos los estilos para el skeleton
+import './HomeBalanceChart.scss';
 import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface DataPoint {
@@ -30,13 +30,12 @@ interface Movement {
 
 export default function HomeBalanceChart() {
     const [data, setData] = useState<DataPoint[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true); // Estado para controlar la carga
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const { t } = useTranslation();
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log('Iniciando la carga de datos'); // Log para verificar el inicio de carga
-            setIsLoading(true);  // Se inicia el estado de carga
+            setIsLoading(true);
             const token = localStorage.getItem('token');
             if (!token) {
                 console.error('No authentication token found. Please log in.');
@@ -49,12 +48,10 @@ export default function HomeBalanceChart() {
                 const movements = await getMovementsByYear(token, currentYear);
                 const lastSixMonthsData = getLastSixMonthsData(movements);
                 setData(lastSixMonthsData);
-                console.log('Datos cargados correctamente', lastSixMonthsData); // Log para verificar los datos
             } catch (error) {
                 console.error('Error fetching movements:', error);
             } finally {
-                setIsLoading(false); // Finaliza el estado de carga
-                console.log('Carga finalizada'); // Log para verificar que la carga ha terminado
+                setIsLoading(false);
             }
         };
 
@@ -101,15 +98,12 @@ export default function HomeBalanceChart() {
     return (
         <div className='home-balance-chart'>
             {isLoading ? (
-                // Mostrar Skeleton mientras está cargando
                 <div className="skeleton-chart-wrapper">
                     <div className="skeleton-chart"></div>
                 </div>
             ) : isDataEmpty ? (
-                // Si no hay datos, mostrar un ícono de marcador de posición
                 <ChartLineIcon className='custom-icon' />
             ) : (
-                // Mostrar la gráfica cuando hay datos
                 <ResponsiveContainer width='100%' height={300}>
                     <LineChart
                         data={data}

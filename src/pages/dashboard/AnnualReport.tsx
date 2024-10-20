@@ -129,7 +129,9 @@ export default function AnnualReport() {
             className='w-full'
           />
         </div>
-        <AnnualChart year={year} />
+        <div className='annual__chart'>
+          <AnnualChart year={year} /> 
+          </div>
         <div className='annualReport__main-balance'>
           <BalanceDisplay icon={DownloadIcon} value={formattedBalanceIncome} className='income' />
           <BalanceDisplay icon={UploadIcon} value={formattedBalanceExpenses} className='expenses' />
