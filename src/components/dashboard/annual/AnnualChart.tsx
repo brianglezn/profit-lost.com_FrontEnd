@@ -33,7 +33,6 @@ export default function AnnualChart({ year }: { year: string }) {
     // Fetch data when the component mounts or when `year` changes
     useEffect(() => {
         const fetchData = async () => {
-            console.log("Iniciando fetchData para el año:", year);
 
             const token = localStorage.getItem('token');
             if (!token) {
@@ -44,7 +43,6 @@ export default function AnnualChart({ year }: { year: string }) {
             try {
                 // Fetch movement data for the given year
                 const data: Movement[] = await getMovementsByYear(token, year);
-                console.log("Datos obtenidos del servidor:", data);
 
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
 
@@ -69,8 +67,6 @@ export default function AnnualChart({ year }: { year: string }) {
                     Income: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Income.toFixed(2)) : 0,
                     Expenses: monthlyData[month.value] ? parseFloat(monthlyData[month.value].Expenses.toFixed(2)) : 0
                 }));
-
-                console.log("Datos formateados para el gráfico:", formattedData);
 
                 setChartData(formattedData); // Set the chart data state
                 setIsDataLoaded(true); // Mark that data has been loaded
