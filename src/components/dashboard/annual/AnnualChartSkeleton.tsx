@@ -19,14 +19,14 @@ export default function AnnualChartSkeleton() {
                                 className="skeleton-bar income-bar"
                                 x={barXPosition}
                                 y={100 - incomeHeight}
-                                width="3"
+                                width="3.5"
                                 height={incomeHeight}
                             />
                             <rect
                                 className="skeleton-bar expense-bar"
-                                x={barXPosition + 3.3}
+                                x={barXPosition + 3.7}
                                 y={100 - expenseHeight}
-                                width="3"
+                                width="3.5"
                                 height={expenseHeight}
                             />
                         </g>

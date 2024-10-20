@@ -27,7 +27,7 @@ export default function DashHome() {
   const [isDataEmpty, setIsDataEmpty] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { t, } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
