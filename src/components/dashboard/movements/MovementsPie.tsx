@@ -1,7 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
-import './MovementsPie.scss'
-import ChartLineIcon from '../../icons/CharLineIcon';
+import MovementsPieSkeleton from './MovementsPieSkeleton';
 
 interface MovementData {
     name: string;
@@ -74,10 +73,9 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
     }));
 
     return (
-        <div className='movements__pie-category'>
+        <>
             {isDataEmpty ? (
-                // Show an icon if there is no data
-                <ChartLineIcon className='custom-icon' />
+                <MovementsPieSkeleton />
             ) : (
                 // Responsive container to handle resizing
                 <ResponsiveContainer width='100%' height='100%'>
@@ -100,10 +98,10 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
                                 />
                             ))}
                         </Pie>
-                        <Tooltip /> {/* Add tooltip for displaying information on hover */}
+                        <Tooltip />
                     </PieChart>
                 </ResponsiveContainer>
             )}
-        </div>
+        </>
     );
 }

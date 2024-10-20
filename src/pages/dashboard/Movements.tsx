@@ -152,9 +152,15 @@ export default function Movements() {
         </div>
         {/* Charts for income, expenses, and balance */}
         <div className='movements__charts-container'>
-          <MovementsPie data={incomeData} categories={categories} />
-          <MovementsPie data={expensesData} categories={categories} />
-          <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
+          <div className='movements__pie-category'>
+            <MovementsPie data={incomeData} categories={categories} />
+          </div>
+          <div className='movements__pie-category'>
+            <MovementsPie data={expensesData} categories={categories} />
+          </div>
+          <div className='movements__chart'>
+            <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
+          </div>
         </div>
         {/* Displaying total income, expenses, and balance */}
         <div className='movements__main-balance'>
