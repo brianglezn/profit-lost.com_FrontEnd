@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useMonthOptions } from '../../../helpers/functions';
 
 import CustomBarShape from '../../CustomBarShape';
-import ChartLineIcon from '../../icons/CharLineIcon';
+import MovementsChartSkeleton from './MovementsChartSkeleton';
 
 interface MovementsProps {
     dataGraph: {
@@ -34,8 +34,7 @@ export default function MovementsChart(props: MovementsProps) {
     return (
         <>
             {isDataEmpty ? (
-                // Display a placeholder icon if there's no data to show
-                <ChartLineIcon className='custom-icon' />
+                <MovementsChartSkeleton />
             ) : (
                 // Render the BarChart using Recharts
                 <ResponsiveContainer width='100%' height={300}>
