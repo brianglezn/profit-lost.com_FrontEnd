@@ -125,7 +125,7 @@ export default function Dashboard() {
   // Function to wake up the backend server
   const wakeUpBackend = async () => {
     toast.promise(
-      fetch('https://app-profit-lost-com.onrender.com/ping'),
+      fetch('https://backend-profit-lost-com.onrender.com/ping'),
       {
         loading: t('dashboard.dashboard.messages.loading'),
         success: t('dashboard.dashboard.messages.reconnect_success'),

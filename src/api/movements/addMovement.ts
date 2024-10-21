@@ -6,7 +6,7 @@ export const addMovement = async (token: string, movementData: {
 }) => {
     try {
         // Send a POST request to add a new movement
-        const response = await fetch('https://app-profit-lost-com.onrender.com/movements/add', {
+        const response = await fetch('https://backend-profit-lost-com.onrender.com/movements/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

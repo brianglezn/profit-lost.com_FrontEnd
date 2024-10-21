@@ -21,7 +21,7 @@ export default function ForgotPassword() {
 
     try {
       // Send a POST request to request a password reset
-      const response = await fetch('https://app-profit-lost-com.onrender.com/requestPasswordReset', {
+      const response = await fetch('https://backend-profit-lost-com.onrender.com/requestPasswordReset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

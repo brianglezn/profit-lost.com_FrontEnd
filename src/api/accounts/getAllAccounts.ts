@@ -23,7 +23,7 @@ interface MappedAccount extends RawAccount {
 export const getAllAccounts = async (token: string): Promise<MappedAccount[]> => {
     try {
         // Send a GET request to fetch all accounts from the server
-        const response = await fetch('https://app-profit-lost-com.onrender.com/accounts/all', {
+        const response = await fetch('https://backend-profit-lost-com.onrender.com/accounts/all', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach the authorization token for authentication

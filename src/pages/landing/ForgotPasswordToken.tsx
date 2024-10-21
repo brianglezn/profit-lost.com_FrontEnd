@@ -31,7 +31,7 @@ export default function ForgotPasswordToken() {
 
         try {
             // Make API call to reset password
-            const response = await fetch('https://app-profit-lost-com.onrender.com/resetPassword', {
+            const response = await fetch('https://backend-profit-lost-com.onrender.com/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

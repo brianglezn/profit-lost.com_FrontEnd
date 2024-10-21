@@ -25,7 +25,7 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://profit-lost-backend.onrender.com/register', {
+      const response = await fetch('https://backend-profit-lost-com.onrender.com/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 export const editCategory = async (token: string, categoryId: string, name: string, color: string) => {
     try {
         // Send a PUT request to edit an existing category by its ID
-        const response = await fetch(`https://app-profit-lost-com.onrender.com/categories/edit/${categoryId}`, {
+        const response = await fetch(`https://backend-profit-lost-com.onrender.com/categories/edit/${categoryId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach authorization token for request authentication

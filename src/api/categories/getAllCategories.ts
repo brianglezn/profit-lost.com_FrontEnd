@@ -1,7 +1,7 @@
 export const getAllCategories = async (token: string) => {
     try {
         // Send a GET request to fetch all categories
-        const response = await fetch('https://app-profit-lost-com.onrender.com/categories/all', {
+        const response = await fetch('https://backend-profit-lost-com.onrender.com/categories/all', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach authorization token for authentication

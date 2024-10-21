@@ -1,7 +1,7 @@
 export const removeMovement = async (token: string, movementId: string) => {
     try {
         // Send a DELETE request to remove a specific movement by its ID
-        const response = await fetch(`https://app-profit-lost-com.onrender.com/movements/remove/${movementId}`, {
+        const response = await fetch(`https://backend-profit-lost-com.onrender.com/movements/remove/${movementId}`, {
             method: 'DELETE', // HTTP DELETE method to remove the movement
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication
