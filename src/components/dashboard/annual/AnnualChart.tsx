@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
 import { useMonthNames } from '../../../helpers/functions';
 
-import './AnnualChart.scss';
 import CustomBarShape from '../../CustomBarShape';
 import ChartLineIcon from '../../icons/CharLineIcon';
 import AnnualChartSkeleton from './AnnualChartSkeleton';
@@ -29,7 +28,7 @@ export default function AnnualChart({ year }: { year: string }) {
     const monthNames = useMonthNames();
     const { t } = useTranslation();
     const hasFetched = useRef(false);
-    
+
     // Fetch data when the component mounts or when `year` changes
     useEffect(() => {
         const fetchData = async () => {
@@ -93,7 +92,7 @@ export default function AnnualChart({ year }: { year: string }) {
     }
 
     return (
-        <div className='annual__chart'>
+        <>
             {isDataLoaded && isChartDataEmpty ? (
                 // Show an icon if data is loaded but there is no data to display
                 <ChartLineIcon className='custom-icon' />
@@ -124,6 +123,6 @@ export default function AnnualChart({ year }: { year: string }) {
                     </BarChart>
                 </ResponsiveContainer>
             )}
-        </div>
+        </>
     );
 }
