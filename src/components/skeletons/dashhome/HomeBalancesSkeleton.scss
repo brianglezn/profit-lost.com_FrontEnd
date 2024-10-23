@@ -11,26 +11,47 @@
     background-color: $bg-color-sec;
     padding: 1rem;
 
+    .amount-skeleton,
+    .comparison-skeleton .percentage-skeleton {
+        background-color: $skeleton_color;
+        border-radius: 0.25rem;
+        position: relative;
+        overflow: hidden;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(224, 224, 224, 0),
+                $skeleton_color-2,
+                rgba(224, 224, 224, 0)
+            );
+            background-size: 200% 100%;
+            animation: pulse-gradient 1.5s infinite ease-in-out;
+        }
+    }
+
     .amount-skeleton {
         width: 50% !important;
         height: 2rem;
-        background-color: $skeleton_color;
-        border-radius: 0.25rem;
         margin: 0.5rem 0;
-        animation: pulse 1.5s infinite ease-in-out;
     }
 
     .comparison-skeleton {
         display: flex;
         align-items: center;
         font-size: 0.8rem;
-        animation: pulse 1.5s infinite ease-in-out;
 
         .percentage-skeleton {
             width: 80%;
             height: 1rem;
-            background-color: $skeleton_color;
-            border-radius: 0.25rem;
         }
     }
 }
+
+
