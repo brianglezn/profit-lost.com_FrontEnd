@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { Skeleton } from 'primereact/skeleton';
 
@@ -28,6 +29,20 @@ interface LabelProps {
 }
 
 export default function MovementsPie({ data, categories }: MovementsPieProps) {
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Simulate data fetching (you can replace this with your real data fetching logic)
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            // Simulate data loading (replace with actual fetch logic)
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1000); // Simulate 1 second load time
+        };
+        fetchData();
+    }, []);
+
     // Create a mapping from category names to their respective colors
     const categoryColorMap = categories.reduce((acc, category) => {
         acc[category.name] = category.color;
@@ -62,9 +77,6 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
         );
     };
 
-    // Check if data is empty
-    const isDataEmpty = data.length === 0;
-
     // Round data values to 2 decimal places
     const roundedData = data.map(item => ({
         ...item,
@@ -73,24 +85,23 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
 
     return (
         <>
-            {isDataEmpty ? (
+            {isLoading ? (
+                // Show Skeleton while loading
                 <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
-                // Responsive container to handle resizing
+                // Render the PieChart even if data is empty
                 <ResponsiveContainer width='100%' height='100%'>
                     <PieChart>
-                        {/* Define the pie chart with customized labels */}
                         <Pie
-                            data={roundedData}
+                            data={roundedData.length ? roundedData : [{}]} // Fallback empty data
                             cx='50%'
                             cy='50%'
                             labelLine={false}
-                            label={renderCustomizedLabel}
+                            label={roundedData.length ? renderCustomizedLabel : undefined} // Only render labels if data is not empty
                             outerRadius='80%'
                             dataKey='value'
                         >
                             {roundedData.map((entry, index) => (
-                                // Render each cell with the respective color from categoryColorMap
                                 <Cell
                                     key={`cell-${index}`}
                                     fill={categoryColorMap[entry.name] || '#c84f03'}
