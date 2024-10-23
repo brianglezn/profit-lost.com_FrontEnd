@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { formatCurrency } from '../../../helpers/functions';
 
 import './HomeBalances.scss';
-import HomeBalancesSkeleton from './HomeBalancesSkeleton';
+import HomeBalancesSkeleton from '../../skeletons/dashhome/HomeBalancesSkeleton';
 
 interface HomeBalancesProps {
     type: 'income' | 'expenses' | 'ebitda';

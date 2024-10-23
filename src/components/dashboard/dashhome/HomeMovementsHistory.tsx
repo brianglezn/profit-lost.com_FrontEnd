@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { formatDateTime, formatCurrency } from '../../../helpers/functions';
 
 import './HomeMovementsHistory.scss';
-import HomeMovementsHistorySkeleton from './HomeMovementsHistorySkeleton';
+import HomeMovementsHistorySkeleton from '../../skeletons/dashhome/HomeMovementsHistorySkeleton';
 
 type Transaction = {
     _id: string;
