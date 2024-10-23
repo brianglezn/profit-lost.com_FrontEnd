@@ -25,6 +25,10 @@
       padding: 1rem 0;
       box-shadow: $shadow_color 0px 1px 4px;
 
+      .p-skeleton {
+        margin: 1rem;
+      }
+
       div {
         animation: fadeInOpacity 0.6s ease-in-out;
       }

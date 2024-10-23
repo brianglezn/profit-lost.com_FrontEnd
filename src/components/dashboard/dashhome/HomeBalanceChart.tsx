@@ -9,12 +9,12 @@ import {
     Legend,
     ResponsiveContainer,
 } from 'recharts';
+import { Skeleton } from 'primereact/skeleton';
 import { useTranslation } from 'react-i18next';
 
 import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
 
 import './HomeBalanceChart.scss';
-import ChartLineIcon from '../../icons/CharLineIcon';
 
 interface DataPoint {
     name: string;
@@ -97,12 +97,8 @@ export default function HomeBalanceChart() {
 
     return (
         <div className='home-balance-chart'>
-            {isLoading ? (
-                <div className="skeleton-chart-wrapper">
-                    <div className="skeleton-chart"></div>
-                </div>
-            ) : isDataEmpty ? (
-                <ChartLineIcon className='custom-icon' />
+            {isLoading || isDataEmpty ? (
+                <Skeleton width="100%" height="300px" borderRadius="8px" />
             ) : (
                 <ResponsiveContainer width='100%' height={300}>
                     <LineChart

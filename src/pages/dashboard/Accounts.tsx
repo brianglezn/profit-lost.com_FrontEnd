@@ -5,6 +5,7 @@ import { Sidebar } from 'primereact/sidebar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from 'primereact/button';
 import { useTranslation } from 'react-i18next';
+import { Skeleton } from 'primereact/skeleton';
 
 import { getAllAccounts } from '../../api/accounts/getAllAccounts';
 import { formatCurrency } from '../../helpers/functions';
@@ -16,7 +17,7 @@ import AccountItem from '../../components/dashboard/accounts/AccountItem';
 import FormAccountsAdd from '../../components/dashboard/accounts/FormAccountsAdd';
 import FormAccountsEdit from '../../components/dashboard/accounts/FormAccountsEdit';
 import CustomBarShape from '../../components/CustomBarShape';
-import ChartLineIcon from '../../components/icons/CharLineIcon';
+
 
 type AccountConfiguration = {
   backgroundColor: string;
@@ -270,7 +271,7 @@ export default function Accounts() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <ChartLineIcon className='custom-icon' />
+              <Skeleton width="100%" height="100%" borderRadius="8px" />
             )}
           </div>
         </div>

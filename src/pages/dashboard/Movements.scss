@@ -71,10 +71,14 @@
       min-width: 200px;
       width: 30%;
       height: 22rem;
-      padding: 1rem 0;
+      padding: 1rem;
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+
+      .recharts-responsive-container {
+        padding: 0;
+      }
 
       div {
         animation: fadeInOpacity 0.6s ease-in-out;
@@ -89,10 +93,15 @@
       min-width: 180px;
       width: 30%;
       height: 22rem;
-      padding: 1rem 0;
+      padding: 1rem;
       border-radius: .8rem;
       box-shadow: $shadow_color 0px 1px 4px;
       background-color: $bg-color-sec;
+
+      .recharts-responsive-container {
+        padding: 0;
+        padding-top: 1rem;
+      }
 
       div {
         animation: fadeInOpacity 0.6s ease-in-out;

@@ -1,6 +1,5 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
-
-import MovementsPieSkeleton from './MovementsPieSkeleton';
+import { Skeleton } from 'primereact/skeleton';
 
 interface MovementData {
     name: string;
@@ -75,7 +74,7 @@ export default function MovementsPie({ data, categories }: MovementsPieProps) {
     return (
         <>
             {isDataEmpty ? (
-                <MovementsPieSkeleton />
+                <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
                 // Responsive container to handle resizing
                 <ResponsiveContainer width='100%' height='100%'>

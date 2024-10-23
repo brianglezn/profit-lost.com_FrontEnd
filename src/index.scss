@@ -7990,15 +7990,15 @@ body {
   }
 
   .p-skeleton {
-    background-color: rgba(255, 255, 255, 0.06);
-    border-radius: 15px;
+    background-color: $skeleton_color;
+    border-radius: 0.8rem;
   }
 
   .p-skeleton:after {
     background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0.04),
-        rgba(255, 255, 255, 0));
+        rgba(224, 224, 224, 0),
+        $skeleton_color-2,
+        rgba(224, 224, 224, 0));
   }
 
   .p-tag {

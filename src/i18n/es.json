@@ -281,7 +281,7 @@
                 "session_closed": "Sesión cerrada con éxito",
                 "reconnect_success": "Respuesta OK del backend",
                 "reconnect_error": "No se pudo conectar con el backend",
-                "loading": "Esperando respues del backend"
+                "loading": "Esperando respuesta del backend"
             },
             "user": {
                 "settings": {

@@ -1,13 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useTranslation } from 'react-i18next';
+import { Skeleton } from 'primereact/skeleton';
 
 import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
 import { useMonthNames } from '../../../helpers/functions';
 
 import CustomBarShape from '../../CustomBarShape';
-import ChartLineIcon from '../../icons/CharLineIcon';
-import AnnualChartSkeleton from './AnnualChartSkeleton';
 
 interface Movement {
     date: string;
@@ -84,18 +83,10 @@ export default function AnnualChart({ year }: { year: string }) {
     const expensesKey = t('dashboard.annual_report.annual_chart.expenses'); // Translation key for expenses
 
     // Check if all chart data values are zero to determine if the chart is empty
-    const isChartDataEmpty = chartData.every(item => item.Income === 0 && item.Expenses === 0);
-
-    // Renderizamos el Skeleton si los datos no están cargados
-    if (!isDataLoaded) {
-        return <AnnualChartSkeleton />;
-    }
-
     return (
         <>
-            {isDataLoaded && isChartDataEmpty ? (
-                // Show an icon if data is loaded but there is no data to display
-                <ChartLineIcon className='custom-icon' />
+            {!isDataLoaded ? (
+                <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
                 // Display the bar chart
                 <ResponsiveContainer width='100%' height={300}>

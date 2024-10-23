@@ -1,10 +1,10 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useTranslation } from 'react-i18next';
+import { Skeleton } from 'primereact/skeleton';
 
 import { useMonthOptions } from '../../../helpers/functions';
 
 import CustomBarShape from '../../CustomBarShape';
-import MovementsChartSkeleton from './MovementsChartSkeleton';
 
 interface MovementsProps {
     dataGraph: {
@@ -34,7 +34,7 @@ export default function MovementsChart(props: MovementsProps) {
     return (
         <>
             {isDataEmpty ? (
-                <MovementsChartSkeleton />
+                <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
                 // Render the BarChart using Recharts
                 <ResponsiveContainer width='100%' height={300}>
