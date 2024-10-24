@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { Skeleton } from 'primereact/skeleton';
 
@@ -16,6 +15,7 @@ interface Category {
 interface MovementsPieProps {
     data: MovementData[];
     categories: Category[];
+    isLoading: boolean;
 }
 
 interface LabelProps {
@@ -28,20 +28,7 @@ interface LabelProps {
     name: string;
 }
 
-export default function MovementsPie({ data, categories }: MovementsPieProps) {
-    const [isLoading, setIsLoading] = useState(true);
-
-    // Simulate data fetching (you can replace this with your real data fetching logic)
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            // Simulate data loading (replace with actual fetch logic)
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 1000); // Simulate 1 second load time
-        };
-        fetchData();
-    }, []);
+export default function MovementsPie({ data, categories, isLoading }: MovementsPieProps) {
 
     // Create a mapping from category names to their respective colors
     const categoryColorMap = categories.reduce((acc, category) => {

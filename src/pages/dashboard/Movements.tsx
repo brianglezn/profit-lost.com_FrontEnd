@@ -39,6 +39,7 @@ export default function Movements() {
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const [isDataLoading, setIsDataLoading] = useState<boolean>(true);
 
   const { t, i18n } = useTranslation();
 
@@ -46,6 +47,7 @@ export default function Movements() {
   const fetchMovementsData = useCallback(async (token: string) => {
     if (!token) return;
     try {
+      setIsDataLoading(true); // Start loading
       // Fetch movements and categories concurrently
       const [movementsData, categoriesData] = await Promise.all([
         getAllMovements(token),
@@ -65,6 +67,8 @@ export default function Movements() {
       setDataGraph(movementsFiltered);
     } catch (error) {
       console.error('Error fetching movements data:', error);
+    } finally {
+      setIsDataLoading(false); // End loading
     }
   }, [year, month]);
 
@@ -153,10 +157,10 @@ export default function Movements() {
         {/* Charts for income, expenses, and balance */}
         <div className='movements__charts-container'>
           <div className='movements__pie-category'>
-            <MovementsPie data={incomeData} categories={categories} />
+            <MovementsPie data={incomeData} categories={categories} isLoading={isDataLoading} />
           </div>
           <div className='movements__pie-category'>
-            <MovementsPie data={expensesData} categories={categories} />
+            <MovementsPie data={expensesData} categories={categories} isLoading={isDataLoading} />
           </div>
           <div className='movements__chart'>
             <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
