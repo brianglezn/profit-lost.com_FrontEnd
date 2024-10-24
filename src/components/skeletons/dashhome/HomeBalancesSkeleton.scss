@@ -14,7 +14,7 @@
     .amount-skeleton,
     .comparison-skeleton .percentage-skeleton {
         background-color: $skeleton_color;
-        border-radius: 0.25rem;
+        border-radius: 0.8rem;
         position: relative;
         overflow: hidden;
 
@@ -37,7 +37,7 @@
     }
 
     .amount-skeleton {
-        width: 50% !important;
+        width: 60% !important;
         height: 2rem;
         margin: 0.5rem 0;
     }
