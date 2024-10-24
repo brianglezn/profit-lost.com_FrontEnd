@@ -1,5 +1,4 @@
 import { useEffect, useState, useCallback } from 'react';
-import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
@@ -12,6 +11,7 @@ import { getMovementsByYear } from '../../../api/movements/getMovementsByYear';
 
 import './AnnualCategories.scss';
 import FormCategoryEdit from './FormCategoryEdit';
+import AnnualCategoriesSkeleton from './../../skeletons/annual/AnnualCategoriesSkeleton';
 
 type Transaction = {
     category: string;
@@ -82,7 +82,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
             toast.error(t('dashboard.annual_report.annual_movements.error_loading'));
             console.error('Error loading data:', error);
         } finally {
-            setIsLoading(false);
+            setIsLoading(false); // Set loading to false after fetching data
         }
     }, [year, t]);
 
@@ -147,9 +147,8 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                 </div>
             </div>
 
-            {/* Display loading indicator or list of categories */}
-            {isLoading || sortedCategories.length === 0 ? (
-                <ProgressBar mode='indeterminate' style={{ height: '6px', width: '100%' }} />
+            {isLoading ? (
+                <AnnualCategoriesSkeleton /> 
             ) : (
                 <div className='categories-list'>
                     {sortedCategories.map((category) => (
