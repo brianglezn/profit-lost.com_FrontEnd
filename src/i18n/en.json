@@ -125,15 +125,15 @@
                 },
                 "q4": {
                     "title": "How do I manage my account categories?",
-                    "content": "To manage categories, go to the 'Categories' section in your account settings. Here you can add, edit, or delete categories associated with your movements."
+                    "content": "To manage categories, go to the 'Categories' section in your account settings. Here you can add, edit, or delete categories associated with your transactions."
                 },
                 "q5": {
                     "title": "What should I do if I forgot my password?",
                     "content": "Click on 'Forgot Password' on the login screen. Enter your email, and a reset token will be sent to you. Use that token to reset your password."
                 },
                 "q6": {
-                    "title": "How do I see my financial movements by year?",
-                    "content": "You can view your financial movements for a specific year by going to the 'Movements' section. Select the year you want to filter, and all movements for that year will be displayed."
+                    "title": "How do I see my financial transactions by year?",
+                    "content": "You can view your financial transactions for a specific year by going to the 'Transactions' section. Select the year you want to filter, and all transactions for that year will be displayed."
                 },
                 "q7": {
                     "title": "How can I update my account language?",
@@ -214,7 +214,7 @@
     "dashboard": {
         "common": {
             "error": "An error occurred",
-            "error_movements_fetch": "Failed to fetch movements.",
+            "error_movements_fetch": "Failed to fetch transactions.",
             "error_token": "Authentication token not found.",
             "months": {
                 "january": "January",
@@ -252,7 +252,7 @@
             "nav": {
                 "dashboard": "Dashboard",
                 "annual_report": "Annual Report",
-                "movements": "Movements",
+                "movements": "Transactions",
                 "accounts": "Accounts",
                 "notes": "Notes",
                 "reports": "Reports",
@@ -343,8 +343,8 @@
                 "header": "Last 6 months balances"
             },
             "home_movements_history": {
-                "header": "Last movements",
-                "no_movements": "No movements found"
+                "header": "Last transactions",
+                "no_movements": "No transactions found"
             }
         },
         "annual_report": {
@@ -360,14 +360,14 @@
                 "expenses": "Expenses"
             },
             "annual_movements": {
-                "header": "Movements by Category",
+                "header": "transactions by Category",
                 "search_placeholder": "Search categories...",
                 "sort_by": "Sort by",
                 "name_asc": "Name A-Z",
                 "name_desc": "Name Z-A",
                 "balance_asc": "Balance ascending",
                 "balance_desc": "Balance descending",
-                "no_movements": "No movements found for this category"
+                "no_movements": "No transactions found for this category"
             },
             "form_cat_add": {
                 "header": "New Category",
@@ -384,28 +384,28 @@
                 "delete_button": "Confirm",
                 "success_message_edit": "Category edited successfully",
                 "success_message_delete": "Category removed successfully",
-                "movements_header": "Movements for {category}",
-                "no_movements": "No movements found for this category"
+                "movements_header": "Transactions for {category}",
+                "no_movements": "No transactions found for this category"
             }
         },
         "movements": {
-            "header": "Movements",
+            "header": "Transactions",
             "movements_table": {
-                "search_placeholder": "Search movements...",
+                "search_placeholder": "Search transactions...",
                 "sort_by": "Sort by",
                 "date_new": "Date New",
                 "date_old": "Date Old",
                 "amount_desc": "Amount Descendent",
                 "amount_asc": "Amount Ascendent",
-                "no_movements": "No movements found"
+                "no_movements": "No transactions found"
             },
-            "movements_chart": {
-                "header": "Movements Report",
+            "s_chart": {
+                "header": "Transactions Report",
                 "income": "Income",
                 "expenses": "Expenses"
             },
             "form_movements_add": {
-                "header": "New movement",
+                "header": "New transaction",
                 "income_button": "Income",
                 "expense_button": "Expense",
                 "date_placeholder": "Select date",
@@ -418,11 +418,11 @@
                 "yearly": "Every year",
                 "end_date": "End date",
                 "save_button": "Save",
-                "success_message": "Movement added successfully",
-                "error_message": "Error adding movement"
+                "success_message": "Transaction added successfully",
+                "error_message": "Error adding transaction"
             },
             "form_movements_edit": {
-                "header": "Edit movement",
+                "header": "Edit transaction",
                 "income_button": "Income",
                 "expense_button": "Expense",
                 "date_placeholder": "Select date",
@@ -431,10 +431,10 @@
                 "amount_placeholder": "Amount",
                 "delete_button": "Delete",
                 "save_button": "Update",
-                "confirm_delete": "Are you sure you want to delete this movement?",
-                "success_message_edit": "Movement updated successfully",
-                "success_message_delete": "Movement deleted successfully",
-                "error_message": "Error updating movement"
+                "confirm_delete": "Are you sure you want to delete this transaction?",
+                "success_message_edit": "Transaction updated successfully",
+                "success_message_delete": "Transaction deleted successfully",
+                "error_message": "Error updating transaction"
             }
         },
         "accounts": {

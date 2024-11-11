@@ -125,15 +125,15 @@
                 },
                 "q4": {
                     "title": "¿Cómo gestiono las categorías de mi cuenta?",
-                    "content": "Para gestionar las categorías, ve a la sección 'Categorías' en la configuración de tu cuenta. Aquí puedes agregar, editar o eliminar categorías asociadas a tus movimientos."
+                    "content": "Para gestionar las categorías, ve a la sección 'Categorías' en la configuración de tu cuenta. Aquí puedes agregar, editar o eliminar categorías asociadas a tus transacciones."
                 },
                 "q5": {
                     "title": "¿Qué hago si olvidé mi contraseña?",
                     "content": "Haz clic en '¿Olvidaste tu contraseña?' en la pantalla de inicio de sesión. Ingresa tu correo electrónico y se te enviará un token de restablecimiento. Usa ese token para restablecer tu contraseña."
                 },
                 "q6": {
-                    "title": "¿Cómo puedo ver mis movimientos financieros por año?",
-                    "content": "Puedes ver tus movimientos financieros de un año específico yendo a la sección 'Movimientos'. Selecciona el año que deseas filtrar, y se mostrarán todos los movimientos de ese año."
+                    "title": "¿Cómo puedo ver mis transacciones financieras por año?",
+                    "content": "Puedes ver tus transacciones financieras de un año específico yendo a la sección 'Transacciones'. Selecciona el año que deseas filtrar, y se mostrarán todos los transacciones de ese año."
                 },
                 "q7": {
                     "title": "¿Cómo puedo actualizar el idioma de mi cuenta?",
@@ -215,7 +215,7 @@
         "common": {
             "error": "Ocurrió un error",
             "error_token": "Token de autenticación no encontrado.",
-            "error_movements_fetch": "Fallo al recuperar movimientos.",
+            "error_movements_fetch": "Fallo al recuperar transacciones.",
             "months": {
                 "january": "Enero",
                 "february": "Febrero",
@@ -252,7 +252,7 @@
             "nav": {
                 "dashboard": "Dashboard",
                 "annual_report": "Informe anual",
-                "movements": "Movimientos",
+                "movements": "Transacciones",
                 "accounts": "Cuentas",
                 "notes": "Notas",
                 "reports": "Informes",
@@ -343,8 +343,8 @@
                 "header": "Balances de los últimos 6 meses"
             },
             "home_movements_history": {
-                "header": "Últimos movimientos",
-                "no_movements": "No se encontraron movimientos"
+                "header": "Últimas transacciones",
+                "no_movements": "No se encontraron transacciones"
             }
         },
         "annual_report": {
@@ -360,14 +360,14 @@
                 "expenses": "Gastos"
             },
             "annual_movements": {
-                "header": "Movimientos por Categoría",
+                "header": "Transacciones por Categoría",
                 "search_placeholder": "Buscar categorías...",
                 "sort_by": "Ordenar por",
                 "name_asc": "Nombre A-Z",
                 "name_desc": "Nombre Z-A",
                 "balance_asc": "Saldo ascendente",
                 "balance_desc": "Saldo descendente",
-                "no_movements": "No se encontraron movimientos para esta categoría"
+                "no_movements": "No se encontraron transacciones para esta categoría"
             },
             "form_cat_add": {
                 "header": "Nueva Categoría",
@@ -384,28 +384,28 @@
                 "delete_button": "Confirmar",
                 "success_message_edit": "Categoría editada con éxito",
                 "success_message_delete": "Categoría eliminada con éxito",
-                "movements_header": "Movimientos para {category}",
-                "no_movements": "No se encontraron movimientos para esta categoría"
+                "movements_header": "Transacciones para {category}",
+                "no_movements": "No se encontraron transacciones para esta categoría"
             }
         },
         "movements": {
-            "header": "Movimientos",
+            "header": "Transacciones",
             "movements_table": {
-                "search_placeholder": "Buscar movimientos...",
+                "search_placeholder": "Buscar transacciones...",
                 "sort_by": "Ordenar por",
                 "date_new": "Fecha reciente",
                 "date_old": "Fecha antigua",
                 "amount_desc": "Cantidad descendente",
                 "amount_asc": "Cantidad ascendente",
-                "no_movements": "No se encontraron movimientos"
+                "no_movements": "No se encontraron transacciones"
             },
             "movements_chart": {
-                "header": "Informe de movimientos",
+                "header": "Informe de transacciones",
                 "income": "Ingresos",
                 "expenses": "Gastos"
             },
             "form_movements_add": {
-                "header": "Nuevo movimiento",
+                "header": "Nueva transacción",
                 "income_button": "Ingresos",
                 "expense_button": "Gastos",
                 "date_placeholder": "Seleccionar fecha",
@@ -418,11 +418,11 @@
                 "yearly": "Cada año",
                 "end_date": "Fecha de finalización",
                 "save_button": "Guardar",
-                "success_message": "Movimiento agregado con éxito",
-                "error_message": "Error al agregar el movimiento"
+                "success_message": "Transacción agregada con éxito",
+                "error_message": "Error al agregar el transacción"
             },
             "form_movements_edit": {
-                "header": "Editar movimiento",
+                "header": "Editar transacción",
                 "income_button": "Ingresos",
                 "expense_button": "Gastos",
                 "date_placeholder": "Seleccionar fecha",
@@ -431,10 +431,10 @@
                 "amount_placeholder": "Cantidad",
                 "delete_button": "Eliminar",
                 "save_button": "Actualizar",
-                "confirm_delete": "¿Estás seguro de que quieres eliminar este movimiento?",
-                "success_message_edit": "Movimiento actualizado con éxito",
-                "success_message_delete": "Movimiento eliminado con éxito",
-                "error_message": "Error al actualizar el movimiento"
+                "confirm_delete": "¿Estás seguro de que quieres eliminar esta transacción?",
+                "success_message_edit": "Transacción actualizada con éxito",
+                "success_message_delete": "Transacción eliminada con éxito",
+                "error_message": "Error al actualizar la transacción"
             }
         },
         "accounts": {
@@ -464,22 +464,21 @@
             }
         },
         "notes": {
-        "create_note": "Crear Nota",
-        "note_title_placeholder": "Título de la Nota",
-        "note_content_placeholder": "Escribe tu nota aquí...",
-        "save_note": "Guardar Nota",
-        "delete_note": "Eliminar Nota",
-        "note_deleted": "Nota eliminada.",
-        "untitled_note": "Nota sin título",
-        "undo": "Deshacer",
-        "note_restored": "Nota restaurada al tablero.",
-        "note_saved": "Nota guardada con éxito.",
-        "note_updated": "Nota actualizada con éxito.",
-        "no_note_selected": "No hay ninguna nota seleccionada.",
-        "fetch_error": "Error al recuperar las notas.",
-        "save_error": "Error al guardar la nota.",
-        "delete_error": "Error al eliminar la nota."
-    },
-        "reports": {}
+            "create_note": "Crear Nota",
+            "note_title_placeholder": "Título de la Nota",
+            "note_content_placeholder": "Escribe tu nota aquí...",
+            "save_note": "Guardar Nota",
+            "delete_note": "Eliminar Nota",
+            "note_deleted": "Nota eliminada.",
+            "untitled_note": "Nota sin título",
+            "undo": "Deshacer",
+            "note_restored": "Nota restaurada al tablero.",
+            "note_saved": "Nota guardada con éxito.",
+            "note_updated": "Nota actualizada con éxito.",
+            "no_note_selected": "No hay ninguna nota seleccionada.",
+            "fetch_error": "Error al recuperar las notas.",
+            "save_error": "Error al guardar la nota.",
+            "delete_error": "Error al eliminar la nota."
+        }
     }
 }
