@@ -1,4 +1,4 @@
-import { User } from '../../types';
+import { User } from '../../helpers/types';
 
 export async function register(userData: Pick<User, 'username' | 'name' | 'surname' | 'email' | 'password'>): Promise<{ success?: boolean; error?: string }> {
   try {
