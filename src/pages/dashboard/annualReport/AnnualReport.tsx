@@ -41,7 +41,6 @@ export default function AnnualReport() {
 
   const { t, i18n } = useTranslation();
 
-  // Function to reload categories, which includes fetching movement data and updating available years
   const reloadCategories = useCallback(async () => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -50,26 +49,20 @@ export default function AnnualReport() {
     }
 
     try {
-      // Fetch all movement data
       const dataMovements: Movement[] = await getAllMovements(token);
-      // Extract unique years from the movement data
       const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
-      // Update state with sorted years
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
       console.error('Error fetching years data:', error);
     }
 
-    // Toggle reloadFlag to trigger other effects
     setReloadFlag(prevFlag => !prevFlag);
   }, []);
 
-  // Initial effect to load categories when the component mounts
   useEffect(() => {
     reloadCategories();
   }, [reloadCategories]);
 
-  // Effect to fetch data for the selected year and update income and expenses
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -80,17 +73,13 @@ export default function AnnualReport() {
       }
 
       try {
-        // Fetch movements for the selected year
         const dataMovements: Movement[] = await getMovementsByYear(token, year);
-
-        // Calculate total income and expenses from the movement data
         const { income, expenses } = dataMovements.reduce((acc, transaction) => {
           if (transaction.amount > 0) acc.income += transaction.amount;
           else acc.expenses += transaction.amount;
           return acc;
         }, { income: 0, expenses: 0 });
 
-        // Update state with calculated values
         setBalanceIncome(income);
         setBalanceExpenses(Math.abs(expenses));
       } catch (error) {
@@ -101,16 +90,13 @@ export default function AnnualReport() {
     fetchData();
   }, [year]);
 
-  // Format balance values based on the selected language
   const formattedBalanceIncome = formatCurrency(balanceIncome, i18n.language);
   const formattedBalanceExpenses = formatCurrency(balanceExpenses, i18n.language);
   const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses, i18n.language);
 
-  // Handlers for opening and closing the sidebar
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
-  // Component to display balance with an icon, including conditional styling based on value
   const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ icon: Icon, value, className }) => (
     <div className={`annualReport__balance ${className}`}>
       <Icon className={parseFloat(value.replace(/[^\d.-]/g, '')) < 0 ? 'negative' : 'positive'} />
@@ -125,7 +111,9 @@ export default function AnnualReport() {
           <Dropdown
             value={year}
             options={yearsWithData.map(year => ({ label: year, value: year }))}
-            onChange={(e) => setYear(e.value)}
+            onChange={(e) => {
+              setYear(e.value);
+            }}
             placeholder={year}
             className='w-full'
           />
