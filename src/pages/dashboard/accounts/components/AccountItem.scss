@@ -1,0 +1,46 @@
+@import '../../../../../variables';
+
+.account-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  height: 4rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .account-item__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 1rem;
+
+    .account-item__drag-icon {
+      cursor: grab;
+      margin-right: 0.5rem;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .account-item__name {
+      flex: 1;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+
+    .account-item__balance {
+      flex: 1;
+      font-size: 1.3rem;
+      text-align: right;
+      padding-right: 1rem;
+    }
+  }
+}

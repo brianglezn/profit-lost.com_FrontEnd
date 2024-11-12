@@ -1,0 +1,112 @@
+@import '../../../../../variables';
+
+.formAccount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+
+    p {
+        text-align: center;
+    }
+
+    .dataYear {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+        padding: 1rem 1.5rem;
+        border-radius: .8rem;
+        background-color: $bg-color-sec;
+        box-shadow: $shadow_color 0px 1px 4px;
+
+        .dataYear-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span,
+            input {
+                font-size: 1rem;
+            }
+
+            input {
+                padding: .3rem;
+                border-radius: .2rem;
+                border: 0.5px solid #e8e9ea;
+                width: 60%;
+
+                &:focus {
+                    outline: none;
+                    border: 0.5px solid $primary_color;
+                }
+            }
+        }
+    }
+
+    .colorPiker {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-radius: .8rem;
+        background-color: $bg-color-sec;
+        box-shadow: $shadow_color 0px 1px 4px;
+
+        .p-colorpicker {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .formAccount-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    button {
+        width: 35%;
+    }
+
+    @media (max-width: 768px) {
+        button {
+            width: 40%;
+        }
+    }
+
+    @media (max-width: 480px) {
+
+        .dataYear,
+        .colorPiker {
+            width: 95%;
+
+            .dataYear-row {
+
+                span,
+                input {
+                    font-size: .9rem;
+                }
+            }
+        }
+
+        .dataYear-input {
+            width: 95%;
+        }
+
+        .formAccount-category {
+            border: 0;
+            width: 95%;
+        }
+
+        button {
+            width: 40%;
+        }
+    }
+
+}
