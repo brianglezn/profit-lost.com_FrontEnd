@@ -87,7 +87,7 @@ export default function AnnualChart({ year }: { year: string }) {
                 <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
                 <ResponsiveContainer width='100%' height={300}>
-                    <BarChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <BarChart data={chartData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray='3 3' />
                         <XAxis dataKey='month' />
                         <YAxis />

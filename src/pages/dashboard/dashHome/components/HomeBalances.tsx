@@ -20,9 +20,6 @@ export default function HomeBalances({ type, amount, percentage }: HomeBalancesP
         return <HomeBalancesSkeleton type={type} />;
     }
 
-    // Determine if the percentage should be styled as positive or negative
-    const isPositive = (type === 'income' && percentage >= 0) || (type !== 'income' && percentage < 0);
-
     // Translate balance type names based on the type of balance (income, expenses, or ebitda)
     const balanceName = {
         income: t('dashboard.dashhome.balances.earnings'),
@@ -30,8 +27,17 @@ export default function HomeBalances({ type, amount, percentage }: HomeBalancesP
         ebitda: t('dashboard.dashhome.balances.savings'),
     }[type];
 
-    // Set the CSS class for the percentage based on whether it's positive or negative
-    const percentageClass = isPositive ? 'positive' : 'negative';
+    // Set CSS class based on custom logic for positive/negative appearance:
+    const percentageClass = (() => {
+        if (type === 'income') {
+            return percentage >= 0 ? 'positive' : 'negative';
+        } else if (type === 'expenses') {
+            return percentage >= 0 ? 'negative' : 'positive';
+        } else if (type === 'ebitda') {
+            return percentage >= 0 ? 'positive' : 'negative';
+        }
+        return '';
+    })();
 
     return (
         <div className={`balances-container ${type}`}>
