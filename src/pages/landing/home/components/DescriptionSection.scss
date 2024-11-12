@@ -1,0 +1,45 @@
+@import "../../../../../variables";
+
+.section__description {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+
+    .section__description-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-width: 80%;
+
+        div:first-child {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                font-size: clamp(1rem, 5vw, 1.5rem);
+            }
+
+            p {
+                font-size: clamp(1rem, 2.5vw, 1.2rem);
+            }
+        }
+
+        .no-select img {
+            width: 40rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section__description-container .no-select img {
+            width: 30rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section__description-container .no-select img {
+            width: 20rem;
+        }
+    }
+}

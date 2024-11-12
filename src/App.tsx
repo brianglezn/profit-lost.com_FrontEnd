@@ -6,15 +6,15 @@ import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
 import './i18n';
 
-const Home = React.lazy(() => import('./pages/landing/Home'));
-const Login = React.lazy(() => import('./pages/landing/Login'));
-const Register = React.lazy(() => import('./pages/landing/Register'));
+const Home = React.lazy(() => import('./pages/landing/home/Home'));
+const Login = React.lazy(() => import('./pages/landing/auth/Login'));
+const Register = React.lazy(() => import('./pages/landing/auth/Register'));
 const DashBoard = React.lazy(() => import('./pages/dashboard/DashBoard'));
-const Cookies = React.lazy(() => import('./pages/landing/Cookies'));
-const Privacy = React.lazy(() => import('./pages/landing/Privacy'));
-const Faq = React.lazy(() => import('./pages/landing/Faq'));
-const ForgotPassword = React.lazy(() => import('./pages/landing/ForgotPassword'));
-const ForgotPasswordToken = React.lazy(() => import('./pages/landing/ForgotPasswordToken'));
+const Cookies = React.lazy(() => import('./pages/landing/policy/Cookies'));
+const Privacy = React.lazy(() => import('./pages/landing/policy/Privacy'));
+const Faq = React.lazy(() => import('./pages/landing/faq/Faq'));
+const ForgotPassword = React.lazy(() => import('./pages/landing/auth/ForgotPassword'));
+const ForgotPasswordToken = React.lazy(() => import('./pages/landing/auth/ForgotPasswordToken'));
 
 interface PrivateRouteProps {
   children: React.ReactNode;

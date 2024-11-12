@@ -1,0 +1,23 @@
+@import "../../../../variables";
+
+.home {
+    .container__sections {
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+        width: 90%;
+        margin: 0 auto;
+        background: $bg-color-sec;
+        border-radius: 7rem;
+        padding: 1rem;
+
+        @media (max-width: 768px) {
+            border-radius: 4rem;
+            gap: 3rem;
+        }
+
+        @media (max-width: 480px) {
+            border-radius: 3rem;
+        }
+    }
+}

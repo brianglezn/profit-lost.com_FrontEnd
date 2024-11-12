@@ -5735,8 +5735,8 @@ body {
   }
 
   .p-tooltip .p-tooltip-text {
-    background: $primary_color-400;
-    color: $text_color-grey;
+    background: $primary_color-200;
+    color: $text_color-black;
     padding: 0.5rem 0.5rem;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
       0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
@@ -5744,19 +5744,19 @@ body {
   }
 
   .p-tooltip.p-tooltip-right .p-tooltip-arrow {
-    border-right-color: $primary_color-400;
+    border-right-color: $primary_color-200;
   }
 
   .p-tooltip.p-tooltip-left .p-tooltip-arrow {
-    border-left-color: $primary_color-400;
+    border-left-color: $primary_color-200;
   }
 
   .p-tooltip.p-tooltip-top .p-tooltip-arrow {
-    border-top-color: $primary_color-400;
+    border-top-color: $primary_color-200;
   }
 
   .p-tooltip.p-tooltip-bottom .p-tooltip-arrow {
-    border-bottom-color: $primary_color-400;
+    border-bottom-color: $primary_color-200;
   }
 
   .p-fileupload .p-fileupload-buttonbar {

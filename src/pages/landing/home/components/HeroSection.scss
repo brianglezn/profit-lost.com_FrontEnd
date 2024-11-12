@@ -1,0 +1,29 @@
+.hero {
+    display: flex;
+    min-height: 60vh;
+    justify-content: center;
+    align-items: center;
+
+    .hero__title {
+        margin: 0 5rem;
+
+        h1 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+        min-height: 40vh;
+
+        .hero__title {
+            margin: 0 4rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero__title {
+            margin: 0 1rem;
+        }
+    }
+}

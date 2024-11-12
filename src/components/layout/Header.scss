@@ -1,0 +1,42 @@
+@import 'variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 3rem 0 3rem;
+
+  .header__logo img {
+    object-fit: contain;
+    height: 6rem;
+    width: 14rem;
+  }
+
+  .header__login {
+    display: flex;
+    justify-content: center;
+
+    button {
+      width: 7rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 2.5rem 0 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .header__logo img {
+      height: 8rem;
+      width: 8rem;
+    }
+
+    .header__login {
+      button {
+        width: 6rem;
+      }
+    }
+
+    padding: 0 2.5rem 0 2rem;
+  }
+}
