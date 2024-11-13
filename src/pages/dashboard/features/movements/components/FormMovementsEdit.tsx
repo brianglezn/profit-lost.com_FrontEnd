@@ -7,13 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { editMovement } from '../../../../../api/movements/editMovement';
 import { removeMovement } from '../../../../../api/movements/removeMovement';
+import type { Category } from '../../../../../helpers/types';
 
 import './FormMovements.scss';
-
-interface Category {
-    _id: string;
-    name: string;
-}
 
 interface FormMovementsEditProps {
     onEdit: () => void;
@@ -155,7 +151,6 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
     return (
         <form onSubmit={handleSubmit} className='formMovements'>
             <h2>{t('dashboard.movements.form_movements_edit.header')}</h2>
-            {/* Toggle buttons to select between Income and Expense */}
             <div className='formMovements-toggle'>
                 <button
                     type='button'
@@ -172,7 +167,6 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
                     {t('dashboard.movements.form_movements_edit.expense_button')}
                 </button>
             </div>
-            {/* Input field for selecting date and time */}
             <input
                 type='datetime-local'
                 className='formMovements-datetime custom-input'
@@ -180,7 +174,6 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
                 onChange={(e) => setDateTime(e.target.value)}
                 required
             />
-            {/* Dropdown for selecting category */}
             <Dropdown
                 value={category}
                 options={categories}
@@ -193,7 +186,6 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
                 filterBy='name'
                 required
             />
-            {/* Input field for description */}
             <InputText
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -201,7 +193,6 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
                 required
                 className='custom-input'
             />
-            {/* Input field for amount */}
             <InputText
                 value={amount}
                 onChange={handleAmountChange}
@@ -212,12 +203,10 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
                 required
                 className='custom-input'
             />
-            {/* Buttons to submit the form or delete the transaction */}
             <div className='formMovements-buttons'>
                 <button type='button' className='custom-btn-sec' onClick={handleRemove}>{t('dashboard.movements.form_movements_edit.delete_button')}</button>
                 <button type='submit' className='custom-btn'>{t('dashboard.movements.form_movements_edit.save_button')}</button>
             </div>
-            {/* Confirmation for deleting transaction */}
             {showConfirm && (
                 <div className='form-confirmBtn'>
                     <p>{t('dashboard.movements.form_movements_edit.confirm_delete')}</p>

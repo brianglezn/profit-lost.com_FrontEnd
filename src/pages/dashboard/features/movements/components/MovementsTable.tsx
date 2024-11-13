@@ -6,27 +6,15 @@ import { Dropdown } from 'primereact/dropdown';
 import { useTranslation } from 'react-i18next';
 
 import { formatCurrency, formatDateTime } from '../../../../../helpers/functions';
+import { Movements, Category } from '../../../../../helpers/types';
 
 import FormMovementsEdit from './FormMovementsEdit';
 
 import './MovementsTable.scss';
 
-type Transaction = {
-    _id: string;
-    date: string;
-    category: string;
-    description: string;
-    amount: number;
-};
-
-interface Category {
-    _id: string;
-    name: string;
-    color: string;
-}
 
 interface MovementsTableProps {
-    data: Transaction[];
+    data: Movements[];
     isDataEmpty: boolean;
     reloadData: () => void;
     categories: Category[];
@@ -34,7 +22,7 @@ interface MovementsTableProps {
 
 export default function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
-    const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+    const [selectedTransaction, setSelectedTransaction] = useState<Movements | null>(null);
     const [hoveredTransactionId, setHoveredTransactionId] = useState<string | null>(null);
     const [touchedTransactionId, setTouchedTransactionId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -43,7 +31,7 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
     const { t, i18n } = useTranslation();
 
     // Function to open the edit sidebar and select the transaction to edit
-    const editMovement = (transaction: Transaction) => {
+    const editMovement = (transaction: Movements) => {
         setSelectedTransaction(transaction);
         setEditSidebarVisible(true);
     };
@@ -63,7 +51,7 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
     };
 
     // Sort movements based on the selected sorting option
-    const sortMovements = (movements: Transaction[]) => {
+    const sortMovements = (movements: Movements[]) => {
         switch (sortOption) {
             case 'date_asc':
                 return movements.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -88,7 +76,6 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
 
     return (
         <div className='movements__table'>
-            {/* Search bar and sorting dropdown */}
             <div className='filter-bar'>
                 <div className='search-dropdown-container'>
                     <InputText
@@ -112,22 +99,19 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                 </div>
             </div>
 
-            {/* Show loading bar if data is empty or being loaded */}
             {isDataEmpty || sortedMovements.length === 0 ? (
                 <ProgressBar mode='indeterminate' style={{ height: '0.375rem', width: '100%' }} />
             ) : (
-                // List of transactions
                 <div className='movements-list'>
                     {sortedMovements.map((transaction) => (
                         <div
                             key={transaction._id}
                             className='movement-item'
                             onClick={() => editMovement(transaction)}
-                            onMouseEnter={() => setHoveredTransactionId(transaction._id)} // For hover on PC
-                            onMouseLeave={() => setHoveredTransactionId(null)} // Remove hover effect
-                            onTouchStart={() => setTouchedTransactionId(transaction._id)} // For touch on mobile
+                            onMouseEnter={() => setHoveredTransactionId(transaction._id)}
+                            onMouseLeave={() => setHoveredTransactionId(null)}
+                            onTouchStart={() => setTouchedTransactionId(transaction._id)}
                             style={{
-                                // Change background color if the item is hovered or touched
                                 backgroundColor:
                                     hoveredTransactionId === transaction._id || touchedTransactionId === transaction._id
                                         ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
@@ -151,8 +135,6 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                                 ></div>
                                 <span>{transaction.category}</span>
                             </div>
-
-                            {/* Show amount with appropriate color for positive/negative values */}
                             <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
                                 {formatCurrency(transaction.amount, i18n.language)}
                             </div>
@@ -161,7 +143,6 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                 </div>
             )}
 
-            {/* Sidebar for editing a transaction */}
             <Sidebar
                 visible={editSidebarVisible}
                 onHide={() => setEditSidebarVisible(false)}

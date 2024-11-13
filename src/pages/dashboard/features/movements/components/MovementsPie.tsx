@@ -1,15 +1,11 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { Skeleton } from 'primereact/skeleton';
 
+import type { Category } from '../../../../../helpers/types';
+
 interface MovementData {
     name: string;
     value: number;
-}
-
-interface Category {
-    _id: string;
-    name: string;
-    color: string;
 }
 
 interface MovementsPieProps {
@@ -73,18 +69,16 @@ export default function MovementsPie({ data, categories, isLoading }: MovementsP
     return (
         <>
             {isLoading ? (
-                // Show Skeleton while loading
                 <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
-                // Render the PieChart even if data is empty
                 <ResponsiveContainer width='100%' height='100%'>
                     <PieChart>
                         <Pie
-                            data={roundedData.length ? roundedData : [{}]} // Fallback empty data
+                            data={roundedData.length ? roundedData : [{}]}
                             cx='50%'
                             cy='50%'
                             labelLine={false}
-                            label={roundedData.length ? renderCustomizedLabel : undefined} // Only render labels if data is not empty
+                            label={roundedData.length ? renderCustomizedLabel : undefined}
                             outerRadius='80%'
                             dataKey='value'
                         >

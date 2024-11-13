@@ -6,13 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { addMovement } from '../../../../../api/movements/addMovement';
+import type { Category } from '../../../../../helpers/types';
 
 import './FormMovements.scss';
-
-interface Category {
-    _id: string;
-    name: string;
-}
 
 interface FormMovementsAddProps {
     onMovementAdded: () => void;
@@ -177,7 +173,7 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
             toast.success(t('dashboard.movements.form_movements_add.success_message'));
 
             onMovementAdded(); // Notify parent component that a movement was added
-            onClose(); 
+            onClose();
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
             toast.error(errorMessage);
