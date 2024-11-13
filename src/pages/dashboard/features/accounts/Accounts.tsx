@@ -11,6 +11,7 @@ import { getAllAccounts } from '../../../../api/accounts/getAllAccounts';
 import updateAccountsOrder from '../../../../api/accounts/updateAccountsOrder';
 import { getUserByToken } from '../../../../api/users/getUserByToken';
 import { formatCurrency } from '../../../../helpers/functions';
+import { Account, User } from '../../../../helpers/types';
 
 import AccountItem from './components/AccountItem';
 import FormAccountsAdd from './components/FormAccountsAdd';
@@ -18,24 +19,6 @@ import FormAccountsEdit from './components/FormAccountsEdit';
 import CustomBarShape from '../../../../components/CustomBarShape';
 
 import './Accounts.scss';
-
-type AccountConfiguration = {
-  backgroundColor: string;
-  color: string;
-};
-
-type AccountRecord = {
-  year: number;
-  month: string;
-  value: number;
-};
-
-type DataAccount = {
-  accountName: string;
-  records: AccountRecord[];
-  configuration: AccountConfiguration;
-  AccountId: string;
-};
 
 type MonthData = {
   name: string;
@@ -64,17 +47,15 @@ export default function Accounts() {
 
   const { t, i18n } = useTranslation();
 
-  // State variables to store the relevant data and manage sidebars
   const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [year, setYear] = useState(currentYear.toString());
-  const [dataAccounts, setDataAccounts] = useState<DataAccount[]>([]);
+  const [dataAccounts, setDataAccounts] = useState<Account[]>([]);
   const [addSidebarOpen, setAddSidebarOpen] = useState(false);
   const [editSidebarOpen, setEditSidebarOpen] = useState(false);
-  const [selectedAccount, setSelectedAccount] = useState<DataAccount | null>(null);
+  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
   const [draggedAccountId, setDraggedAccountId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Function to fetch all data (accounts and user details)
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);
     const token = localStorage.getItem('token');
@@ -85,34 +66,26 @@ export default function Accounts() {
     }
     try {
       const allAccountsData = await getAllAccounts(token);
-      const user = await getUserByToken(token);
+      const user: User = await getUserByToken(token);
 
-      let orderedAccounts: DataAccount[] = [];
-      let unOrderedAccounts: DataAccount[] = [];
+      let orderedAccounts: Account[] = [];
+      let unOrderedAccounts: Account[] = [];
 
-      // Check if user has accountsOrder
-      if (user.accountsOrder && user.accountsOrder.length > 0) {
-        // Map through accountsOrder to filter and sort accounts
-        orderedAccounts = user.accountsOrder.map((accountId: string) =>
-          allAccountsData.find(account => account.AccountId === accountId)
-        ).filter(Boolean) as DataAccount[];
+      if (user.accountsOrder?.length) {
+        orderedAccounts = user.accountsOrder
+          .map(accountId => allAccountsData.find(account => account._id === accountId))
+          .filter((account): account is Account => account !== undefined);
 
-        // Get accounts that are not included in accountsOrder
-        unOrderedAccounts = allAccountsData.filter(account =>
-          !user.accountsOrder.includes(account.AccountId)
-        );
+        unOrderedAccounts = allAccountsData.filter(account => !user.accountsOrder!.includes(account._id));
       } else {
-        // If no accountsOrder, show all accounts without any order
         orderedAccounts = allAccountsData;
       }
 
-      // Set state with the ordered accounts followed by unordered ones
       setDataAccounts([...orderedAccounts, ...unOrderedAccounts]);
 
-      // Extract unique years from the accounts data
       const years = new Set<number>();
-      allAccountsData.forEach((account: DataAccount) =>
-        account.records.forEach((record: AccountRecord) => years.add(record.year))
+      [...orderedAccounts, ...unOrderedAccounts].forEach(account =>
+        account.records.forEach(record => years.add(record.year))
       );
       setUniqueYears(Array.from(years).sort((a, b) => a - b));
     } catch (error) {
@@ -122,22 +95,19 @@ export default function Accounts() {
     }
   }, [t]);
 
-  // Fetch data when the component mounts or the year changes
   useEffect(() => {
     fetchAllData();
   }, [year, fetchAllData]);
 
-  // Prepare data for the chart using useMemo to optimize performance
   const chartData = useMemo(() => {
     return monthNamesShort.map(month => {
       const monthData: MonthData = {
         name: i18n.language === 'es' ? t(`dashboard.common.months.${month.value.toLowerCase()}`) : month.name
       };
 
-      // Calculate the total value for each month for each account
-      dataAccounts.forEach((account: DataAccount) => {
+      dataAccounts.forEach((account: Account) => {
         const totalForMonthAndAccount = account.records
-          .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === month.value)
+          .filter((record) => record.year === parseInt(year) && record.month === month.value)
           .reduce((sum, { value }) => sum + value, 0);
 
         if (totalForMonthAndAccount > 0) {
@@ -145,7 +115,6 @@ export default function Accounts() {
         }
       });
 
-      // Append the total for the month to the name
       const totalForMonth = Object.keys(monthData).reduce((acc, key) => {
         if (key !== 'name' && typeof monthData[key] === 'number') {
           acc += monthData[key] as number;
@@ -159,28 +128,24 @@ export default function Accounts() {
     });
   }, [dataAccounts, year, i18n.language, t]);
 
-  // Determine if the chart data is empty
   const isChartDataEmpty = useMemo(() => {
     return chartData.every(data => Object.keys(data).length === 1);
   }, [chartData]);
 
-  // Function to handle opening the edit sidebar
   const handleOpenEditSidebar = useCallback((accountId: string) => {
-    const account = dataAccounts.find((acc) => acc.AccountId === accountId) || null;
+    const account = dataAccounts.find((acc) => acc._id === accountId) || null;
     setSelectedAccount(account);
     setEditSidebarOpen(true);
   }, [dataAccounts]);
 
-  // Prepare account items for display, using useMemo to optimize rendering
   const accountItems = useMemo(() => {
-    return dataAccounts.map((account: DataAccount) => {
+    return dataAccounts.map((account: Account) => {
       const balanceForMonth = account.records
-        .filter((record: AccountRecord) => record.year === parseInt(year) && record.month === currentMonthName)
+        .filter((record) => record.year === parseInt(year) && record.month === currentMonthName)
         .reduce((sum, record) => sum + record.value, 0);
 
-      // Handlers for drag-and-drop functionality
       const handleDragStart = () => {
-        setDraggedAccountId(account.AccountId);
+        setDraggedAccountId(account._id);
       };
 
       const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -189,26 +154,26 @@ export default function Accounts() {
 
       const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
-        if (draggedAccountId !== null && draggedAccountId !== account.AccountId) {
-          const draggedAccountIndex = dataAccounts.findIndex(acc => acc.AccountId === draggedAccountId);
-          const targetAccountIndex = dataAccounts.findIndex(acc => acc.AccountId === account.AccountId);
+        if (draggedAccountId !== null && draggedAccountId !== account._id) {
+          const draggedAccountIndex = dataAccounts.findIndex(acc => acc._id === draggedAccountId);
+          const targetAccountIndex = dataAccounts.findIndex(acc => acc._id === account._id);
           const updatedAccounts = [...dataAccounts];
           const [draggedAccount] = updatedAccounts.splice(draggedAccountIndex, 1);
           updatedAccounts.splice(targetAccountIndex, 0, draggedAccount);
           setDataAccounts(updatedAccounts);
 
-          await updateAccountsOrder(updatedAccounts.map(acc => acc.AccountId));
+          await updateAccountsOrder(updatedAccounts.map(acc => acc._id));
         }
       };
 
       return (
         <AccountItem
-          key={account.AccountId}
+          key={account._id}
           accountName={account.accountName}
           balance={`${formatCurrency(balanceForMonth, i18n.language)}`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
-          accountId={account.AccountId}
+          accountId={account._id}
           onClick={handleOpenEditSidebar}
           draggable
           onDragStart={handleDragStart}
@@ -219,14 +184,10 @@ export default function Accounts() {
     });
   }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId, i18n.language]);
 
-  // Handlers to open and close the add sidebar
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
-
-  // Handlers to close the edit sidebar
   const handleCloseEditSidebar = () => setEditSidebarOpen(false);
 
-  // Handlers for when an account is updated or removed
   const handleAccountUpdated = () => {
     fetchAllData();
     handleCloseEditSidebar();
@@ -259,7 +220,7 @@ export default function Accounts() {
                   <XAxis dataKey='name' />
                   <YAxis />
                   <Tooltip />
-                  {dataAccounts.map((account: DataAccount) => (
+                  {dataAccounts.map((account: Account) => (
                     <Bar
                       key={account.accountName}
                       dataKey={account.accountName}
@@ -296,7 +257,6 @@ export default function Accounts() {
           ) : (
             <div className='accounts__container-items'>{accountItems}</div>
           )}
-
         </div>
       </section>
       <Sidebar

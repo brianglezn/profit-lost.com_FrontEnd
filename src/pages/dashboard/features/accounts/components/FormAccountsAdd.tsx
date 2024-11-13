@@ -34,7 +34,6 @@ export default function FormAccountsAdd({ onAccountAdded }: { onAccountAdded: ()
     return (
         <form className='formAccount' onSubmit={handleSubmit}>
             <h2>{t('dashboard.accounts.form_accounts_add.title')}</h2>
-            {/* Input field for entering the account name */}
             <InputText
                 id='accountName'
                 className='custom-input'
@@ -43,7 +42,6 @@ export default function FormAccountsAdd({ onAccountAdded }: { onAccountAdded: ()
                 onChange={(e) => setAccountName(e.target.value)}
                 required
             />
-            {/* Button to submit the form and add the account */}
             <button type='submit' className='custom-btn'>{t('dashboard.accounts.account_item.add')}</button>
         </form>
     );

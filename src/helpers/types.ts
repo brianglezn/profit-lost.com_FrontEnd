@@ -22,26 +22,13 @@ export interface Movements {
     description: string;
     amount: number;
     category: string;
-  }
+}
 
 // Category
 export interface Category {
     _id: string;
     user_id: string;
     name: string;
-    color: string;
-}
-
-// Account record
-export interface AccountRecord {
-    year: number;
-    month: string;
-    value: number;
-}
-
-// Account configuration
-export interface AccountConfiguration {
-    backgroundColor: string;
     color: string;
 }
 
@@ -52,6 +39,15 @@ export interface Account {
     accountName: string;
     records: AccountRecord[];
     configuration: AccountConfiguration;
+}
+export interface AccountRecord {
+    year: number;
+    month: string;
+    value: number;
+}
+export interface AccountConfiguration {
+    backgroundColor: string;
+    color: string;
 }
 
 // Notes
