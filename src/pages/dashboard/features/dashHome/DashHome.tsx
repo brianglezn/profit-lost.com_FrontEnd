@@ -2,20 +2,13 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { getMovementsByYear } from '../../../../api/movements/getMovementsByYear';
+import { Movements } from '../../../../helpers/types';
 
 import HomeBalanceChart from './components/HomeBalanceChart';
 import HomeMovementsHistory from './components/HomeMovementsHistory';
 import HomeBalances from './components/HomeBalances';
 
 import './DashHome.scss';
-
-interface Transaction {
-  _id: string;
-  description: string;
-  date: string;
-  category: string;
-  amount: number;
-}
 
 export default function DashHome() {
   const [income, setIncome] = useState<number>(0);
@@ -24,7 +17,7 @@ export default function DashHome() {
   const [incomePercentage, setIncomePercentage] = useState<number>(0);
   const [expensesPercentage, setExpensesPercentage] = useState<number>(0);
   const [ebitdaPercentage, setEbitdaPercentage] = useState<number>(0);
-  const [movements, setMovements] = useState<Transaction[]>([]);
+  const [movements, setMovements] = useState<Movements[]>([]);
   const [isDataEmpty, setIsDataEmpty] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -45,7 +38,7 @@ export default function DashHome() {
         const currentYear = currentDate.getFullYear().toString();
 
         // Fetch movements for the current year
-        const movements: Transaction[] = await getMovementsByYear(token, currentYear);
+        const movements: Movements[] = await getMovementsByYear(token, currentYear);
 
         // If no movements are found, set the data as empty and return
         if (movements.length === 0) {

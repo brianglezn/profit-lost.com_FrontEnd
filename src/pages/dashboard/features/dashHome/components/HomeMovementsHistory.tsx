@@ -1,20 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
 import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
+import { Movements } from '../../../../../helpers/types';
 
 import HomeMovementsHistorySkeleton from './HomeMovementsHistorySkeleton';
 
 import './HomeMovementsHistory.scss';
 
-type Transaction = {
-    _id: string;
-    description: string;
-    amount: number;
-    date: string;
-};
-
 interface MovementsHistoryHomeProps {
-    data: Transaction[];
+    data: Movements[];
     isDataEmpty: boolean;
     isLoading: boolean;
 }

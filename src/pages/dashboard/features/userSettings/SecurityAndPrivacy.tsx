@@ -89,7 +89,6 @@ export default function SecurityAndPrivacy() {
         <div className='security-privacy'>
             <h2>{t('dashboard.dashboard.user.security_privacy.title')}</h2>
 
-            {/* Section for changing the password */}
             <div className='password-section'>
                 <h2>{t('dashboard.dashboard.user.security_privacy.change_password')}</h2>
                 <div className='security-privacy__section'>
@@ -130,12 +129,10 @@ export default function SecurityAndPrivacy() {
                 </div>
             </div>
 
-            {/* Section for deleting the account */}
             <div className='delete-account-section'>
                 <h2>{t('dashboard.dashboard.user.security_privacy.delete_account')}</h2>
                 <p>{t('dashboard.dashboard.user.security_privacy.delete_account_warning')}</p>
 
-                {/* Show delete button or confirmation form based on user action */}
                 {!showDeleteConfirmation ? (
                     <Button
                         label={t('dashboard.dashboard.user.security_privacy.delete_account')}

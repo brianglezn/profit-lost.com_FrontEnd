@@ -85,7 +85,7 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
         toast.loading(t('dashboard.dashboard.user.settings.updating_settings'));
 
         try {
-            await updateProfile(formData); // Make API call to update profile
+            await updateProfile(formData);
             toast.dismiss();
             toast.success(t('dashboard.dashboard.user.settings.update_success'));
             onUserUpdated();
@@ -130,13 +130,10 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                 <div className='settings__section'>
                     <div className='profile-picture'>
                         {profileImage ? (
-                            // Show uploaded profile image
                             <img src={URL.createObjectURL(profileImage)} alt='Profile' className='profile-picture__img' />
                         ) : userProfileImage ? (
-                            // Show user's existing profile image
                             <img src={userProfileImage} alt='Current Profile' className='profile-picture__img' />
                         ) : (
-                            // Show a placeholder if no image is available
                             <div className='profile-picture__placeholder'>{t('dashboard.dashboard.user.settings.no_image')}</div>
                         )}
                     </div>

@@ -197,21 +197,18 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
     return (
         <form className='formAccount' onSubmit={handleEditAccount}>
             <h2>{t('dashboard.accounts.form_accounts_edit.title')}</h2>
-            {/* Input field for editing account name */}
             <InputText
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
                 className='custom-input'
                 required
             />
-            {/* Dropdown for selecting the year */}
             <Dropdown
                 className='formDropdown'
                 value={year}
                 options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
                 onChange={handleYearChange}
             />
-            {/* Fields for editing the values for each month of the selected year */}
             <div className='dataYear'>
                 {monthNames.map(month => {
                     const key = `${year}-${month.value}`;
@@ -227,19 +224,16 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
                     );
                 })}
             </div>
-            {/* Color pickers for setting background and font colors */}
             <div className='colorPiker'>
                 <p>{t('dashboard.accounts.form_accounts_edit.background')}</p>
                 <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
                 <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
                 <ColorPicker value={fontColor} onChange={handleFontColorChange} />
             </div>
-            {/* Buttons for saving changes or removing the account */}
             <div className='formAccount-buttons'>
                 <button type='button' className='custom-btn-sec' onClick={handleRemoveAccount}>{t('dashboard.accounts.account_item.remove')}</button>
                 <button type='submit' className='custom-btn'>{t('dashboard.accounts.account_item.submit')}</button>
             </div>
-            {/* Confirmation section for account removal */}
             {showConfirm && (
                 <div className='form-confirmBtn'>
                     <p>{t('dashboard.accounts.form_accounts_edit.remove_confirm')} <b>'{account.accountName}'</b>?</p>

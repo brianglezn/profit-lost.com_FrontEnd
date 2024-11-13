@@ -14,6 +14,16 @@ export interface User {
     accountsOrder?: string[];
 }
 
+// Movements
+export interface Movements {
+    _id: string;
+    user_id: string;
+    date: string;
+    description: string;
+    amount: number;
+    category: string;
+  }
+
 // Category
 export interface Category {
     _id: string;
