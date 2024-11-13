@@ -9,7 +9,7 @@ import { getAllNotes } from '../../../../api/notes/getAllNotes';
 import { createNote } from '../../../../api/notes/createNote';
 import { editNote } from '../../../../api/notes/editNote';
 import { deleteNote } from '../../../../api/notes/deleteNote';
-import Note from '../../../../helpers/types';
+import { Note } from '../../../../helpers/types';
 
 import DeleteBinIcon from '../../../../components/icons/DeleteBinIcon';
 
