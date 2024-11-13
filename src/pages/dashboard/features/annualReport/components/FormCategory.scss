@@ -1,0 +1,133 @@
+@import '../../../../../../variables';
+
+.formCategories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+
+  p {
+    text-align: center;
+  }
+
+  .formCategoriesContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+
+    .formCategoriesContainer-colorPicker {
+      display: flex;
+      justify-content: center;
+      padding: .5rem;
+      border-radius: .5rem;
+      background-color: $bg-color-sec;
+      box-shadow: $shadow_color 0px 1px 4px;
+      width: 3.7rem;
+
+      .p-colorpicker {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .custom-input {
+      margin: 0;
+    }
+  }
+
+  .formCategories-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  button {
+    width: 35%;
+  }
+
+  .movementsByCategory {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+
+    .movementsByCategory-container {
+      text-align: left;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      background-color: $bg-color-sec;
+      box-shadow: $shadow_color 0px 1px 4px;
+    }
+
+    .movementsByCategory-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .movementsByCategory-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .movementsByCategory-date {
+        font-weight: 500;
+        font-size: 1rem;
+        color: #333;
+        text-align: left;
+      }
+
+      .movementsByCategory-description {
+        font-size: .9rem;
+        color: #777;
+        text-align: left;
+        margin-top: 0.25rem;
+      }
+
+      .movementsByCategory-amount {
+        font-size: 1rem;
+        font-weight: 400;
+        text-align: right;
+        margin-top: -1.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .formCategoriesContainer {
+      width: 95%;
+    }
+
+    button {
+      width: 40%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .formCategoriesContainer {
+      .formCategoriesContainer-colorPicker {
+        width: 4.1rem;
+      }
+    }
+
+    button {
+      width: 40%;
+    }
+  }
+
+  .p-accordion-header a {
+    color: $text-color-black;
+  }
+
+}

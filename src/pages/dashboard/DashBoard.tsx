@@ -12,15 +12,15 @@ import { getUserByToken } from '../../api/users/getUserByToken';
 import { getCurrentDate } from '../../helpers/functions';
 
 import './Dashboard.scss';
-const DashHome = React.lazy(() => import('./dashHome/DashHome'));
-const Accounts = React.lazy(() => import('./accounts/Accounts'));
-const AnnualReport = React.lazy(() => import('./annualReport/AnnualReport'));
-const Movements = React.lazy(() => import('./movements/Movements'));
-const Notes = React.lazy(() => import('./notes/Notes'));
-const AboutUs = React.lazy(() => import('./userSettings/AboutUs'));
-const Help = React.lazy(() => import('./userSettings/Help'));
-const SecurityAndPrivacy = React.lazy(() => import('./userSettings/SecurityAndPrivacy'));
-const UserSettings = React.lazy(() => import('./userSettings/UserSettings'));
+const DashHome = React.lazy(() => import('./features/dashHome/DashHome'));
+const Accounts = React.lazy(() => import('./features/accounts/Accounts'));
+const AnnualReport = React.lazy(() => import('./features/annualReport/AnnualReport'));
+const Movements = React.lazy(() => import('./features/movements/Movements'));
+const Notes = React.lazy(() => import('./features/notes/Notes'));
+const AboutUs = React.lazy(() => import('./features/userSettings/AboutUs'));
+const Help = React.lazy(() => import('./features/userSettings/Help'));
+const SecurityAndPrivacy = React.lazy(() => import('./features/userSettings/SecurityAndPrivacy'));
+const UserSettings = React.lazy(() => import('./features/userSettings/UserSettings'));
 import RefreshIcon from '../../components/icons/RefreshIcon';
 import HomeIcon from '../../components/icons/HomeIcon';
 import ChartColumnIcon from '../../components/icons/ChartColumnIcon';
@@ -232,7 +232,6 @@ export default function Dashboard() {
                   <NotesIcon />
                   <p>{t('dashboard.dashboard.nav.notes')}</p>
                 </li>
-
               </ul>
             </div>
           </nav>

@@ -1,0 +1,108 @@
+@import '../../../../../../variables';
+
+.formMovements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+
+  .formMovements-toggle {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: .3rem;
+      cursor: pointer;
+      width: 50%;
+      transition: background-color 0.3s ease;
+
+      &.active {
+        background-color: $primary_color;
+        color: $text_color-white;
+      }
+
+      &:not(.active) {
+        background-color: $primary_color-300;
+        color: $text_color-white;
+        opacity: 0.6;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .formMovements-recurring {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    label {
+      display: block;
+      text-align: left;
+      width: 90%;
+      margin-bottom: 0.5rem;
+
+      input {
+        width: auto;
+      }
+    }
+
+    .formMovements-recurring-options {
+      width: 90%;
+
+      .formDropdown,
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .formMovements-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  button {
+    width: 35%;
+  }
+
+  @media (max-width: 768px) {
+
+    input,
+    .formMovements-category {
+      width: 90%;
+    }
+
+    button {
+      width: 40%;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .formMovements-toggle button {
+      font-size: .8rem;
+    }
+
+    input,
+    .formMovements-category {
+      width: 95%;
+    }
+
+    button {
+      width: 40%;
+    }
+  }
+}

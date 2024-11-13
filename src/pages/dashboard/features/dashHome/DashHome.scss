@@ -1,0 +1,183 @@
+@import "../../../../../variables";
+
+.dashHome {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 0.6fr 1.6fr 1.6fr;
+  gap: 1rem;
+  grid-template-areas:
+    "balances balances balances balances history history"
+    "chart chart chart chart history history"
+    "first first second second categories categories";
+  animation: fadeInOpacityTranslate 0.5s ease-in-out;
+
+  .header-container {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $primary_color-400;
+  }
+
+  .history {
+    grid-area: history;
+
+    .history-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.8rem;
+      box-shadow: $shadow_color 0px 1px 4px;
+      background-color: $bg-color-sec;
+      padding: 1rem;
+    }
+  }
+
+  .balances {
+    grid-area: balances;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    div {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .chart {
+    grid-area: chart;
+
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex-grow: 1;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.8rem;
+      box-shadow: $shadow_color 0px 1px 4px;
+      background-color: $bg-color-sec;
+      padding: 1rem;
+    }
+  }
+
+  .categories {
+    grid-area: categories;
+
+    .categories-container {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.8rem;
+      box-shadow: $shadow_color 0px 1px 4px;
+      background-color: $bg-color-sec;
+      padding: 1rem;
+    }
+  }
+
+  .first {
+    grid-area: first;
+
+    .first-container {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.8rem;
+      box-shadow: $shadow_color 0px 1px 4px;
+      background-color: $bg-color-sec;
+      padding: 1rem;
+    }
+  }
+
+  .second {
+    grid-area: second;
+
+    .second-container {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.8rem;
+      box-shadow: $shadow_color 0px 1px 4px;
+      background-color: $bg-color-sec;
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.25fr 0.5fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "balances balances balances balances"
+      "chart chart chart chart"
+      "history history history history"
+      "first first second second"
+      "categories categories categories categories";
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "balances balances"
+      "chart chart"
+      "history history"
+      "first second"
+      "categories categories";
+  }
+
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .balances {
+      div {
+        height: 6.5rem;
+
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+
+    .chart {
+      grid-area: chart;
+
+      .chart-container {
+        .recharts-responsive-container {
+          width: 100% !important;
+          margin-left: -1rem;
+        }
+      }
+
+    }
+
+    .chart,
+    .history,
+    .first,
+    .second,
+    .categories {
+      width: 100%;
+
+      .balances-container,
+      .chart-container,
+      .history-container,
+      .first-container,
+      .second-container,
+      .categories-container {
+        width: 100%;
+      }
+    }
+  }
+}
