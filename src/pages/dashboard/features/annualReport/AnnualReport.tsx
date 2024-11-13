@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { getAllMovements } from '../../../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../../../api/movements/getMovementsByYear';
 import { formatCurrency } from '../../../../helpers/functions';
+import { Movements } from '../../../../helpers/types';
 
 import AnnualChart from './components/AnnualChart';
 import AnnualCategories from './components/AnnualCategories';
@@ -16,13 +17,6 @@ import UploadIcon from '../../../../components/icons/UploadIcon';
 import PigCoinIcon from '../../../../components/icons/PigCoinIcon';
 
 import './AnnualReport.scss';
-
-interface Movement {
-  date: string;
-  description: string;
-  amount: number;
-  category: string;
-}
 
 interface BalanceDisplayProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -49,7 +43,7 @@ export default function AnnualReport() {
     }
 
     try {
-      const dataMovements: Movement[] = await getAllMovements(token);
+      const dataMovements: Movements[] = await getAllMovements(token);
       const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
@@ -73,7 +67,7 @@ export default function AnnualReport() {
       }
 
       try {
-        const dataMovements: Movement[] = await getMovementsByYear(token, year);
+        const dataMovements: Movements[] = await getMovementsByYear(token, year);
         const { income, expenses } = dataMovements.reduce((acc, transaction) => {
           if (transaction.amount > 0) acc.income += transaction.amount;
           else acc.expenses += transaction.amount;
@@ -119,8 +113,8 @@ export default function AnnualReport() {
           />
         </div>
         <div className='annual__chart'>
-          <AnnualChart year={year} /> 
-          </div>
+          <AnnualChart year={year} />
+        </div>
         <div className='annualReport__main-balance'>
           <BalanceDisplay icon={DownloadIcon} value={formattedBalanceIncome} className='income' />
           <BalanceDisplay icon={UploadIcon} value={formattedBalanceExpenses} className='expenses' />

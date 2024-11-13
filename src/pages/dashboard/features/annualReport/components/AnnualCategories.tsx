@@ -8,22 +8,12 @@ import { useTranslation } from 'react-i18next';
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
 import { formatCurrency } from '../../../../../helpers/functions';
+import { Category, Movements } from '../../../../../helpers/types';
 
 import FormCategoryEdit from './FormCategoryEdit';
 import AnnualCategoriesSkeleton from './AnnualCategoriesSkeleton';
 
 import './AnnualCategories.scss';
-
-type Transaction = {
-    category: string;
-    amount: number;
-};
-
-type Category = {
-    _id: string;
-    name: string;
-    color: string;
-};
 
 type CategoryBalance = {
     id: string;
@@ -59,7 +49,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
 
         try {
             const categoriesData: Category[] = await getAllCategories(token); // Fetch all categories
-            const movementsData: Transaction[] = await getMovementsByYear(token, year); // Fetch all movements for the year
+            const movementsData: Movements[] = await getMovementsByYear(token, year); // Fetch all movements for the year
 
             // Calculate the balance for each category
             const categoryBalances = categoriesData.map(category => {
@@ -125,14 +115,12 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
         <div className='annual__categories'>
             <div className='filter-bar'>
                 <div className='search-dropdown-container'>
-                    {/* Input to search categories */}
                     <InputText
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder={t('dashboard.annual_report.annual_movements.search_placeholder')}
                         className='p-inputtext-custom'
                     />
-                    {/* Dropdown to select sorting option */}
                     <Dropdown
                         value={sortOption}
                         options={[
@@ -173,7 +161,6 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                 </div>
             )}
 
-            {/* Sidebar for editing category details */}
             <Sidebar
                 visible={sidebarVisible}
                 onHide={() => setSidebarVisible(false)}
@@ -183,7 +170,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
             >
                 {categoryToEdit && (
                     <FormCategoryEdit
-                        categoryId={categoryToEdit.id.toString()}
+                        categoryId={categoryToEdit.id}
                         categoryName={categoryToEdit.Category}
                         categoryColor={categoryToEdit.color}
                         onUpdate={() => {

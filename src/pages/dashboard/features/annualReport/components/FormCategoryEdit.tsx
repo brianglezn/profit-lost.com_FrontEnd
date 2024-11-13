@@ -8,6 +8,7 @@ import { editCategory } from '../../../../../api/categories/editCategory';
 import { removeCategory } from '../../../../../api/categories/removeCategory';
 import { getAllMovements } from '../../../../../api/movements/getAllMovements';
 import { formatCurrency, formatDateTime } from '../../../../../helpers/functions';
+import { Movements } from '../../../../../helpers/types';
 
 import './FormCategory.scss';
 
@@ -20,19 +21,11 @@ interface FormCategoryEditProps {
     onRemove: () => void;
 }
 
-interface Movement {
-    id: string;
-    date: string;
-    description: string;
-    amount: number;
-    category: string;
-}
-
 export default function FormCategoryEdit({ categoryId, categoryName, categoryColor, onUpdate, onClose, onRemove }: FormCategoryEditProps) {
     const [name, setName] = useState(categoryName);
     const [color, setColor] = useState(categoryColor);
     const [showConfirm, setShowConfirm] = useState(false);
-    const [movementsByYear, setMovementsByYear] = useState<{ [key: string]: Movement[] }>({});
+    const [movementsByYear, setMovementsByYear] = useState<{ [key: string]: Movements[] }>({});
 
     const { t, i18n } = useTranslation();
 
@@ -46,12 +39,12 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
             }
 
             try {
-                const movements: Movement[] = await getAllMovements(token); // Fetch all movements
+                const movements: Movements[] = await getAllMovements(token); // Fetch all movements
                 // Filter movements to only include those for the given category
                 const filteredMovements = movements.filter((movement) => movement.category === categoryName);
 
                 // Group movements by year
-                const groupedMovements = filteredMovements.reduce<{ [key: string]: Movement[] }>((acc, movement) => {
+                const groupedMovements = filteredMovements.reduce<{ [key: string]: Movements[] }>((acc, movement) => {
                     const year = new Date(movement.date).getFullYear().toString();
                     if (!acc[year]) acc[year] = [];
                     acc[year].push(movement);
@@ -125,7 +118,6 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
             <h2>{t('dashboard.annual_report.form_cat_edit.header')}</h2>
             <div className='formCategoriesContainer'>
                 <div className='formCategoriesContainer-colorPicker'>
-                    {/* Color picker for the category */}
                     <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
                 </div>
                 <input
@@ -137,17 +129,14 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                 />
             </div>
             <div className='formCategories-buttons'>
-                {/* Button to initiate category removal */}
                 <button type='button' className='custom-btn-sec' onClick={handleRemoveCategory}>
                     {t('dashboard.annual_report.form_cat_edit.remove_button')}
                 </button>
-                {/* Button to save category changes */}
                 <button type='submit' className='custom-btn'>
                     {t('dashboard.annual_report.form_cat_edit.save_button')}
                 </button>
             </div>
 
-            {/* Confirmation dialog for deleting the category */}
             {showConfirm && (
                 <div className='form-confirmBtn'>
                     <p>{t('dashboard.annual_report.form_cat_edit.confirm_delete', { category: name })}</p>
@@ -157,7 +146,6 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                 </div>
             )}
 
-            {/* Display movements related to the category in an accordion view */}
             {hasMovements && (
                 <div className='movementsByCategory'>
                     <Accordion multiple className='movementsByCategory-container'>
@@ -169,8 +157,7 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                                         {movementsByYear[year]
                                             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                                             .map((movement) => (
-                                                <li key={movement.id} className='movementsByCategory-item'>
-                                                    {/* Display movement details */}
+                                                <li key={movement._id} className='movementsByCategory-item'>
                                                     <span className='movementsByCategory-date'>{formatDateTime(movement.date, i18n.language)}</span>
                                                     <span className='movementsByCategory-description'>{movement.description}</span>
                                                     <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>

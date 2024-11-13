@@ -58,11 +58,9 @@ export default function FormCategoryAdd({ onCategoryAdded, onClose }: { onCatego
         <form className='formCategories' onSubmit={handleSaveCategory}>
             <h2>{t('dashboard.annual_report.form_cat_add.header')}</h2>
             <div className='formCategoriesContainer'>
-                {/* Color Picker for selecting category color */}
                 <div className='formCategoriesContainer-colorPicker'>
                     <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
                 </div>
-                {/* Input field for entering the category name */}
                 <InputText
                     placeholder={t('dashboard.annual_report.form_cat_add.name_placeholder')}
                     value={newCategory}
@@ -70,7 +68,6 @@ export default function FormCategoryAdd({ onCategoryAdded, onClose }: { onCatego
                     className='custom-input'
                 />
             </div>
-            {/* Button to save the new category */}
             <button type='submit' className='custom-btn'>{t('dashboard.annual_report.form_cat_add.save_button')}</button>
         </form>
     );

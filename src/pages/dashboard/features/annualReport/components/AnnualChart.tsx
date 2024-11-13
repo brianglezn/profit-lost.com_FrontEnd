@@ -5,15 +5,9 @@ import { Skeleton } from 'primereact/skeleton';
 
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
 import { useMonthNames } from '../../../../../helpers/functions';
+import { Movements } from '../../../../../helpers/types';
 
 import CustomBarShape from '../../../../../components/CustomBarShape';
-
-interface Movement {
-    date: string;
-    description: string;
-    amount: number;
-    category: string;
-}
 
 interface ChartDataItem {
     month: string;
@@ -45,7 +39,7 @@ export default function AnnualChart({ year }: { year: string }) {
             }
 
             try {
-                const data: Movement[] = await getMovementsByYear(token, year);
+                const data: Movements[] = await getMovementsByYear(token, year);
 
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
 
