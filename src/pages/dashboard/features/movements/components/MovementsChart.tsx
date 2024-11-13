@@ -6,6 +6,8 @@ import { useMonthOptions } from '../../../../../helpers/functions';
 
 import CustomBarShape from '../../../../../components/CustomBarShape';
 
+import './MovementsChart.scss';
+
 interface MovementsProps {
     dataGraph: {
         month: string;

@@ -3,6 +3,8 @@ import { Skeleton } from 'primereact/skeleton';
 
 import type { Category } from '../../../../../helpers/types';
 
+import './MovementsPie.scss';
+
 interface MovementData {
     name: string;
     value: number;

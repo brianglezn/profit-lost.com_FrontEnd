@@ -1,0 +1,28 @@
+@import '../../../../../../variables';
+
+.movements__pie-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: 14rem;
+    width: 30%;
+    height: 22rem;
+    padding: 1rem;
+    border-radius: .8rem;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background-color: $bg-color-sec;
+
+    .recharts-responsive-container {
+        padding: 0;
+    }
+
+    div {
+        animation: fadeInOpacity 0.6s ease-in-out;
+    }
+
+    @media (max-width: 480px) {
+        min-width: 120px;
+        height: 15rem;
+    }
+}

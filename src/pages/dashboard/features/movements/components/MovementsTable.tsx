@@ -12,7 +12,6 @@ import FormMovementsEdit from './FormMovementsEdit';
 
 import './MovementsTable.scss';
 
-
 interface MovementsTableProps {
     data: Movements[];
     isDataEmpty: boolean;
