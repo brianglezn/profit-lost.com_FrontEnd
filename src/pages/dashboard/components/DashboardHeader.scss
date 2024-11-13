@@ -1,0 +1,96 @@
+@import '../../../../variables';
+
+.dashboard__header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 280px;
+    z-index: 999;
+    width: calc(100% - 280px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem 1rem 0 0;
+
+    .dashboard__header-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 2rem;
+        width: 100%;
+        border-radius: 1rem;
+        background-color: $bg-color-sec;
+        box-shadow: $shadow_color 0px 1px 4px;
+        transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+
+        svg {
+            fill: $primary_color;
+            height: 1.5rem;
+            width: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dashboard__header-date {
+            padding: .5rem;
+            background-color: $primary_color-light;
+            color: $primary_color;
+            border-radius: .5rem;
+        }
+
+        .dashboard__header-avatar {
+            cursor: pointer;
+            margin-right: 1rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: .5rem;
+            transition: background-color 0.2s ease-in-out;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: inherit;
+            }
+
+            span {
+                color: $text_color-white;
+            }
+
+            &:hover {
+                background-color: $primary_color-600;
+            }
+        }
+    }
+
+    @media (max-width: 868px) {
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+
+        .dashboard__header {
+            padding: 0 1rem;
+            margin-top: .8rem;
+            left: 0;
+            width: 100%;
+
+            .dashboard__header-container {
+                &.scrolled {
+                    background-color: rgba(255, 255, 255, 0.253);
+                    backdrop-filter: blur(.8rem);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem .5rem;
+
+        .dashboard__header-container {
+            justify-content: space-around;
+
+            .dashboard__header-avatar {
+                margin-right: 0;
+            }
+        }
+    }
+}

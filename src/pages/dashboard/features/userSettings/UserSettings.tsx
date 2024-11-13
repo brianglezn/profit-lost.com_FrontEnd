@@ -103,15 +103,8 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
 
     // Template for the selected value in the language dropdown
     const valueTemplate = (option: { name: string, code: string, flag: string } | undefined) => {
-        if (option) {
-            return (
-                <div className='language-item'>
-                    <img alt={option.name} src={option.flag} className='language-flag' />
-                    <span>{option.name}</span>
-                </div>
-            );
-        }
-        const selectedLanguage = languages.find(l => l.code === language);
+        const selectedLanguage = option || languages.find(lang => lang.code === language);
+
         return selectedLanguage ? (
             <div className='language-item'>
                 <img alt={selectedLanguage.name} src={selectedLanguage.flag} className='language-flag' />
@@ -192,7 +185,7 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                         value={language}
                         options={languages.map(lang => ({ label: lang.name, value: lang.code, ...lang }))}
                         onChange={handleLanguageChange}
-                        valueTemplate={valueTemplate(languages.find(l => l.code === language))}
+                        valueTemplate={valueTemplate}
                         itemTemplate={itemTemplate}
                         className='language-dropdown'
                     />
