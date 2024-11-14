@@ -187,7 +187,7 @@
                 "amount_asc": "Amount Ascendent",
                 "no_movements": "No transactions found"
             },
-            "s_chart": {
+            "movements_chart": {
                 "header": "Transactions Report",
                 "income": "Income",
                 "expenses": "Expenses"

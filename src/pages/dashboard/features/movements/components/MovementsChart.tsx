@@ -38,7 +38,6 @@ export default function MovementsChart(props: MovementsProps) {
             {isDataEmpty ? (
                 <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
-                // Render the BarChart using Recharts
                 <ResponsiveContainer width='100%' height={300}>
                     <BarChart
                         width={500}
@@ -51,10 +50,8 @@ export default function MovementsChart(props: MovementsProps) {
                             bottom: 5,
                         }}
                     >
-                        {/* Add grid lines to the chart */}
                         <CartesianGrid strokeDasharray='3 3' />
 
-                        {/* X-axis with month names */}
                         <XAxis
                             dataKey='month'
                             tickFormatter={(value) => {
@@ -64,10 +61,8 @@ export default function MovementsChart(props: MovementsProps) {
                             }}
                         />
 
-                        {/* Y-axis to show values */}
                         <YAxis />
 
-                        {/* Tooltip to display data values when hovering over bars */}
                         <Tooltip
                             formatter={(value: number | string, name: string, props) => {
                                 // Custom tooltip formatting to include translated labels for income and expenses
@@ -91,13 +86,10 @@ export default function MovementsChart(props: MovementsProps) {
                             }}
                         />
 
-                        {/* Legend to distinguish between income and expenses bars */}
                         <Legend />
 
-                        {/* Bar for income with a custom shape */}
                         <Bar dataKey={t('dashboard.movements.movements_chart.income')} fill={'#ff8e38'} shape={<CustomBarShape />} />
 
-                        {/* Bar for expenses with a custom shape */}
                         <Bar dataKey={t('dashboard.movements.movements_chart.expenses')} fill={'#9d300f'} shape={<CustomBarShape />} />
                     </BarChart>
                 </ResponsiveContainer>

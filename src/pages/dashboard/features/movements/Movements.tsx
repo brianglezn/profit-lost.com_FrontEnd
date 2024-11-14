@@ -7,16 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { getAllMovements } from '../../../../api/movements/getAllMovements';
 import { getMovementsByYearAndMonth } from '../../../../api/movements/getMovementsByYearAndMonth';
 import { getAllCategories } from '../../../../api/categories/getAllCategories';
-import { formatCurrency, useMonthOptions } from '../../../../helpers/functions';
+import { useMonthOptions } from '../../../../helpers/functions';
 import type { Movements, Category } from '../../../../helpers/types';
 
 import MovementsPie from './components/MovementsPie';
 import MovementsChart from './components/MovementsChart';
 import MovementsTable from './components/MovementsTable';
 import FormMovementsAdd from './components/FormMovementsAdd';
-import DownloadIcon from '../../../../components/icons/DownloadIcon';
-import UploadIcon from '../../../../components/icons/UploadIcon';
-import PigCoinIcon from '../../../../components/icons/PigCoinIcon';
+import MovementsBalance from './components/MovementsBalance';
 
 import './Movements.scss';
 
@@ -31,7 +29,7 @@ export default function Movements() {
 
   const { t, i18n } = useTranslation();
 
-  // Function to fetch movements and category data
+  // Fetch movements and category data
   const fetchMovementsData = useCallback(async (token: string) => {
     if (!token) return;
     try {
@@ -57,7 +55,6 @@ export default function Movements() {
     }
   }, [year, month]);
 
-  // Effect to fetch data when the component mounts or year/month changes
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -65,7 +62,6 @@ export default function Movements() {
     }
   }, [fetchMovementsData]);
 
-  // Function to reload data manually
   const reloadData = async () => {
     const token = localStorage.getItem('token');
     if (token) await fetchMovementsData(token);
@@ -73,7 +69,7 @@ export default function Movements() {
 
   const isDataEmpty = dataGraph.length === 0;
 
-  // Function to calculate income and expenses totals per category
+  // Calculate income and expenses totals per category
   const calculateCategoryTotals = (movements: Movements[]) => {
     const income: { [key: string]: number } = {};
     const expenses: { [key: string]: number } = {};
@@ -94,20 +90,8 @@ export default function Movements() {
 
   const { incomeData, expensesData } = calculateCategoryTotals(dataGraph);
 
-  const chartData = [
-    {
-      month,
-      year: parseInt(year),
-      Income: parseFloat(dataGraph.reduce((acc, { amount }) => (amount > 0 ? acc + amount : acc), 0).toFixed(2)),
-      Expenses: parseFloat(dataGraph.reduce((acc, { amount }) => (amount < 0 ? acc + Math.abs(amount) : acc), 0).toFixed(2)),
-    },
-  ];
-
-  const totalIncome = chartData[0].Income;
-  const totalExpenses = chartData[0].Expenses;
-  const formattedBalanceIncome = formatCurrency(totalIncome, i18n.language);
-  const formattedBalanceExpenses = formatCurrency(totalExpenses, i18n.language);
-  const formattedBalanceFinal = formatCurrency(totalIncome - totalExpenses, i18n.language);
+  const totalIncome = parseFloat(dataGraph.reduce((acc, { amount }) => (amount > 0 ? acc + amount : acc), 0).toFixed(2));
+  const totalExpenses = parseFloat(dataGraph.reduce((acc, { amount }) => (amount < 0 ? acc + Math.abs(amount) : acc), 0).toFixed(2));
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
@@ -139,23 +123,11 @@ export default function Movements() {
             <MovementsPie data={expensesData} categories={categories} isLoading={isDataLoading} />
           </div>
           <div className='movements__chart'>
-            <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
+            <MovementsChart dataGraph={[{ month, year: parseInt(year), Income: totalIncome, Expenses: totalExpenses }]} isDataEmpty={isDataEmpty} />
           </div>
         </div>
-        <div className='movements__main-balance'>
-          <div className='movements__balance income'>
-            <DownloadIcon />
-            <p>{formattedBalanceIncome}</p>
-          </div>
-          <div className='movements__balance expenses'>
-            <UploadIcon />
-            <p>-{formattedBalanceExpenses}</p>
-          </div>
-          <div className='movements__balance edbita'>
-            <PigCoinIcon className={`no-select ${parseFloat(formattedBalanceFinal) < 0 ? 'negative' : 'positive'}`} />
-            <p>{formattedBalanceFinal}</p>
-          </div>
-        </div>
+
+        <MovementsBalance income={totalIncome} expenses={totalExpenses} language={i18n.language} />
       </div>
 
       <div className='movements__data'>
