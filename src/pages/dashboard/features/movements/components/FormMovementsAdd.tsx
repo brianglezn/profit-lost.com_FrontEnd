@@ -33,13 +33,9 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     // Fetch categories from the server on component mount
     useEffect(() => {
         const fetchCategories = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                toast.error(t('dashboard.common.error_token'));
-                return;
-            }
+
             try {
-                const categories = await getAllCategories(token);
+                const categories = await getAllCategories();
                 // Sort categories alphabetically by name
                 const sortedCategories = categories.sort((a: Category, b: Category) => a.name.localeCompare(b.name));
                 setCategories(sortedCategories);
@@ -167,7 +163,7 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
         try {
             const movements = isRecurring ? createRecurringMovements(movementData) : [movementData];
             for (const movement of movements) {
-                await addMovement(token, movement);
+                await addMovement(movement);
             }
 
             toast.success(t('dashboard.movements.form_movements_add.success_message'));

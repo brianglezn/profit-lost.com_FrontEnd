@@ -1,12 +1,12 @@
-export const editCategory = async (token: string, categoryId: string, name: string, color: string) => {
+export const editCategory = async (categoryId: string, name: string, color: string) => {
     try {
-        // Send a PUT request to edit an existing category by its ID
+        // Send a PUT request to edit an existing category by its ID with credentials included
         const response = await fetch(`https://backend-profit-lost-com.onrender.com/categories/edit/${categoryId}`, {
             method: 'PUT',
             headers: {
-                'Authorization': `Bearer ${token}`, // Attach authorization token for request authentication
                 'Content-Type': 'application/json', // Set content type as JSON
             },
+            credentials: 'include', // Include cookies for authentication
             body: JSON.stringify({ name, color }), // Request body containing updated name and color of the category
         });
 

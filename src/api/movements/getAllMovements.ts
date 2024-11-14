@@ -1,10 +1,10 @@
-export const getAllMovements = async (token: string) => {
+export const getAllMovements = async () => {
     try {
-        // Send a GET request to fetch all movements
+        // Send a GET request to fetch all movements with credentials included
         const response = await fetch('https://backend-profit-lost-com.onrender.com/movements/all', {
             method: 'GET', // HTTP GET method to retrieve data
+            credentials: 'include', // Include cookies for authentication
             headers: {
-                'Authorization': `Bearer ${token}`, // Include the authorization token for authentication
                 'Content-Type': 'application/json', // Indicate that the response is in JSON format
             },
         });

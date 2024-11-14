@@ -1,12 +1,10 @@
 import { Account, AccountRecord, AccountConfiguration } from '../../helpers/types';
 
-export const getAllAccounts = async (token: string): Promise<Account[]> => {
+export const getAllAccounts = async (): Promise<Account[]> => {
     try {
         const response = await fetch('https://backend-profit-lost-com.onrender.com/accounts/all', {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
+            credentials: 'include', // Include cookies for authentication
         });
 
         if (!response.ok) {
@@ -16,7 +14,7 @@ export const getAllAccounts = async (token: string): Promise<Account[]> => {
         const accounts = await response.json();
 
         const mappedAccounts: Account[] = accounts.map((account: Account) => ({
-            _id: account._id, 
+            _id: account._id,
             user_id: account.user_id,
             accountName: account.accountName,
             records: account.records as AccountRecord[],

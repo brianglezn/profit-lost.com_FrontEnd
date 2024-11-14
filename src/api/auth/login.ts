@@ -1,4 +1,4 @@
-export async function login(identifier: string, password: string): Promise<{ token?: string; error?: string }> {
+export async function login(identifier: string, password: string): Promise<{ success?: boolean; error?: string }> {
     try {
         const response = await fetch('https://backend-profit-lost-com.onrender.com/login', {
             method: 'POST',
@@ -6,12 +6,13 @@ export async function login(identifier: string, password: string): Promise<{ tok
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ identifier, password }),
+            credentials: 'include',  // Permite el manejo de cookies en la solicitud
         });
 
-        const data = await response.json();
         if (response.ok) {
-            return { token: data.token };
+            return { success: true };
         } else {
+            const data = await response.json();
             return { error: data.message || 'Login failed' };
         }
     } catch (error) {

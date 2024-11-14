@@ -1,11 +1,9 @@
-export const removeCategory = async (token: string, categoryId: string) => {
+export const removeCategory = async (categoryId: string) => {
     try {
-        // Send a DELETE request to remove the specified category by its ID
+        // Send a DELETE request to remove the specified category by its ID with credentials included
         const response = await fetch(`https://backend-profit-lost-com.onrender.com/categories/remove/${categoryId}`, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}` // Attach authorization token for authentication
-            }
+            credentials: 'include', // Include cookies for authentication
         });
 
         // Check if the response status is not OK, and throw an error if it fails

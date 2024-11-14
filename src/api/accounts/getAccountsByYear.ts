@@ -1,11 +1,9 @@
-export const getAccountsByYear = async (token: string, year: string) => {
+export const getAccountsByYear = async (year: string) => {
     try {
-        // Send a GET request to fetch accounts data for the specified year
+        // Send a GET request to fetch accounts data for the specified year with cookies included
         const response = await fetch(`https://backend-profit-lost-com.onrender.com/accounts/${year}`, {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`, // Include the authorization token in the request header
-            },
+            credentials: 'include', // Include cookies for authentication
         });
 
         // Check if the response status is not OK (e.g., 200 OK). If it's not, throw an error
@@ -17,7 +15,6 @@ export const getAccountsByYear = async (token: string, year: string) => {
         const accounts = await response.json();
         return accounts;
     } catch (error) {
-        // Log the error to the console and throw a new error with a detailed message
         console.error('Error fetching accounts for year ' + year + ':', error);
         throw new Error('Failed to fetch accounts for year ' + year);
     }

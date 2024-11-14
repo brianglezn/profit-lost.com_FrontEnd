@@ -1,33 +1,24 @@
-export const updateAccountsOrder = async (accountsOrder: string[]): Promise<void> => {
-  // Retrieve the authentication token from local storage
-  const token = localStorage.getItem('token');
-  if (!token) {
-    // If no token is found, throw an error indicating the user needs to log in
-    throw new Error('No authentication token found. Please log in.');
-  }
-
+export async function updateAccountsOrder(accountsOrder: string[]): Promise<void> {
   try {
-    // Make a POST request to update the user's account order
+    // Enviar una solicitud POST para actualizar el orden de las cuentas del usuario con cookies incluidas
     const response = await fetch('https://backend-profit-lost-com.onrender.com/user/updateAccountsOrder', {
       method: 'POST',
+      credentials: 'include', // Incluye cookies para autenticación
       headers: {
-        'Content-Type': 'application/json', // Specify JSON format for request body
-        'Authorization': `Bearer ${token}`, // Include the authorization token
+        'Content-Type': 'application/json', // Especifica el formato JSON para el cuerpo de la solicitud
       },
-      body: JSON.stringify({ accountsOrder }), // Send the new accounts order as the request body
+      body: JSON.stringify({ accountsOrder }), // Envía el nuevo orden de cuentas en el cuerpo de la solicitud
     });
 
-    // Check if the response status is not OK and handle accordingly
+    // Verificar si la respuesta no es OK y manejar el error en caso de que falle
     if (!response.ok) {
-      const errorText = await response.text(); // Retrieve error text from the response
+      const errorText = await response.text(); // Obtiene el texto de error de la respuesta
       throw new Error(errorText || `HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    // Log the error for debugging purposes
-    console.error('Error updating accounts order:', error);
-    // Re-throw the error so it can be handled by the calling function
+    // Loguea el error para fines de depuración
+    console.error('Error al actualizar el orden de las cuentas:', error);
+    // Lanza el error para que pueda ser manejado por la función que lo llama
     throw error;
   }
-};
-
-export default updateAccountsOrder;
+}

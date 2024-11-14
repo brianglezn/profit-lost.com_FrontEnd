@@ -1,12 +1,12 @@
-export const addCategory = async (token: string, name: string, color: string) => {
+export const addCategory = async (name: string, color: string) => {
     try {
-        // Send a POST request to add a new category to the server
+        // Send a POST request to add a new category to the server with credentials included
         const response = await fetch('https://backend-profit-lost-com.onrender.com/categories/add', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`, // Attach authorization token to authenticate the request
                 'Content-Type': 'application/json', // Indicate that the request body is in JSON format
             },
+            credentials: 'include', // Include cookies for authentication
             body: JSON.stringify({ name, color }), // The request body containing the new category's name and color
         });
 

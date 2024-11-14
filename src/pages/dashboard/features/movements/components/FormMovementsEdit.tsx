@@ -37,13 +37,8 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
     // Fetch categories when the component is mounted
     useEffect(() => {
         const fetchCategories = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                toast.error(t('dashboard.common.error_token'));
-                return;
-            }
             try {
-                const fetchedCategories = await getAllCategories(token);
+                const fetchedCategories = await getAllCategories();
                 const sortedCategories = fetchedCategories.sort((a: Category, b: Category) => a.name.localeCompare(b.name));
                 setCategories(sortedCategories);
 
@@ -83,13 +78,6 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
     // Handle form submission to edit movement
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('dashboard.common.error_token'));
-            return;
-        }
-
         // Validate the amount format
         if (!/^-?\d+(\.\d{0,2})?$/.test(amount)) {
             toast.error(t('dashboard.movements.form_movements_add.error_message'));
@@ -110,7 +98,7 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
         };
 
         try {
-            await editMovement(token, transaction._id, movementData);
+            await editMovement(transaction._id, movementData);
             toast.success(t('dashboard.movements.form_movements_edit.success_message_edit')); // Show success toast message
             onEdit(); // Call onEdit callback to refresh data
         } catch (error) {
@@ -129,15 +117,8 @@ export default function FormMovementsEdit({ onEdit, onRemove, transaction }: For
     // Handle confirmed remove action
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('dashboard.common.error_token'));
-            return;
-        }
-
         try {
-            await removeMovement(token, transaction._id);
+            await removeMovement(transaction._id);
             toast.success(t('dashboard.movements.form_movements_edit.success_message_delete'));
             setTimeout(() => {
                 onRemove(); // Call onRemove callback to refresh data

@@ -29,14 +29,13 @@ export default function Movements() {
 
   const { t, i18n } = useTranslation();
 
-  // Fetch movements and category data
-  const fetchMovementsData = useCallback(async (token: string) => {
-    if (!token) return;
+  // Function to fetch movements and category data
+  const fetchMovementsData = useCallback(async () => {
     try {
       setIsDataLoading(true);
       const [movementsData, categoriesData] = await Promise.all([
-        getAllMovements(token),
-        getAllCategories(token),
+        getAllMovements(),
+        getAllCategories(),
       ]);
 
       setCategories(categoriesData);
@@ -44,7 +43,7 @@ export default function Movements() {
       const years = new Set<string>(movementsData.map((m: Movements) => new Date(m.date).getFullYear().toString()));
       setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
 
-      const movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
+      const movementsFiltered = await getMovementsByYearAndMonth(year, month);
       movementsFiltered.sort((a: Movements, b: Movements) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
       setDataGraph(movementsFiltered);
@@ -55,21 +54,19 @@ export default function Movements() {
     }
   }, [year, month]);
 
+  // Effect to fetch data when the component mounts or year/month changes
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      fetchMovementsData(token);
-    }
+    fetchMovementsData();
   }, [fetchMovementsData]);
 
+  // Function to reload data manually
   const reloadData = async () => {
-    const token = localStorage.getItem('token');
-    if (token) await fetchMovementsData(token);
+    await fetchMovementsData();
   };
 
   const isDataEmpty = dataGraph.length === 0;
 
-  // Calculate income and expenses totals per category
+  // Function to calculate income and expenses totals per category
   const calculateCategoryTotals = (movements: Movements[]) => {
     const income: { [key: string]: number } = {};
     const expenses: { [key: string]: number } = {};
@@ -90,8 +87,17 @@ export default function Movements() {
 
   const { incomeData, expensesData } = calculateCategoryTotals(dataGraph);
 
-  const totalIncome = parseFloat(dataGraph.reduce((acc, { amount }) => (amount > 0 ? acc + amount : acc), 0).toFixed(2));
-  const totalExpenses = parseFloat(dataGraph.reduce((acc, { amount }) => (amount < 0 ? acc + Math.abs(amount) : acc), 0).toFixed(2));
+  const chartData = [
+    {
+      month,
+      year: parseInt(year),
+      Income: parseFloat(dataGraph.reduce((acc, { amount }) => (amount > 0 ? acc + amount : acc), 0).toFixed(2)),
+      Expenses: parseFloat(dataGraph.reduce((acc, { amount }) => (amount < 0 ? acc + Math.abs(amount) : acc), 0).toFixed(2)),
+    },
+  ];
+
+  const totalIncome = chartData[0].Income;
+  const totalExpenses = chartData[0].Expenses;
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
@@ -123,11 +129,12 @@ export default function Movements() {
             <MovementsPie data={expensesData} categories={categories} isLoading={isDataLoading} />
           </div>
           <div className='movements__chart'>
-            <MovementsChart dataGraph={[{ month, year: parseInt(year), Income: totalIncome, Expenses: totalExpenses }]} isDataEmpty={isDataEmpty} />
+            <MovementsChart dataGraph={chartData} isDataEmpty={isDataEmpty} />
           </div>
         </div>
 
         <MovementsBalance income={totalIncome} expenses={totalExpenses} language={i18n.language} />
+
       </div>
 
       <div className='movements__data'>

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 
 import { getUserByToken } from '../../api/users/getUserByToken';
+import { logout as performLogout } from '../../api/auth/logout';
 import { getCurrentDate } from '../../helpers/functions';
 import { User } from '../../helpers/types';
 
@@ -37,16 +38,10 @@ export default function Dashboard() {
   // Get the current date formatted based on the user's language
   const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
 
-  // Fetches user data using token stored in localStorage
+  // Fetches user data using token stored in cookies
   const fetchUserData = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
-
     try {
-      const userData = await getUserByToken(token);
+      const userData = await getUserByToken();
       if (userData && userData._id) {
         setUser(userData);
         if (userData.language) {
@@ -54,6 +49,7 @@ export default function Dashboard() {
         }
       } else {
         console.error('User data does not include _id:', userData);
+        navigate('/login');
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -95,12 +91,19 @@ export default function Dashboard() {
   }, []);
 
   // Handles user logout
-  const handleLogout = () => {
-    toast.success(t('dashboard.dashboard.sidebar.profile.logout'), { duration: 3000 });
-    setTimeout(() => {
-      localStorage.removeItem('token');
-      navigate('/login');
-    }, 1000);
+  const handleLogout = async () => {
+    try {
+      const { success } = await performLogout();
+      if (success) {
+        toast.success(t('dashboard.dashboard.sidebar.profile.logout'), { duration: 3000 });
+        navigate('/login');
+      } else {
+        toast.error(t('dashboard.dashboard.sidebar.profile.logoutFailed'), { duration: 3000 });
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      toast.error(t('dashboard.dashboard.sidebar.profile.logoutFailed'), { duration: 3000 });
+    }
   };
 
   // Changes the visible section of the sidebar

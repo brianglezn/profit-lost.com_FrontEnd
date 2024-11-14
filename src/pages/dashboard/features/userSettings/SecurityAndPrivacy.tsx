@@ -22,23 +22,20 @@ export default function SecurityAndPrivacy() {
 
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const token = localStorage.getItem('token');
 
     useEffect(() => {
         // Fetch user data to set username for confirmation purposes
         const fetchUser = async () => {
-            if (token) {
-                try {
-                    const user = await getUserByToken(token);
-                    setUsername(user.username);
-                } catch (error) {
-                    console.error(t('dashboard.dashboard.user.security_privacy.error_fetch_user'));
-                }
+            try {
+                const user = await getUserByToken();
+                setUsername(user.username);
+            } catch (error) {
+                console.error(t('dashboard.dashboard.user.security_privacy.error_fetch_user'));
             }
         };
 
         fetchUser();
-    }, [token, t]);
+    }, [t]);
 
     // Show the delete account confirmation form
     const handleShowDeleteConfirmation = () => {
@@ -53,12 +50,9 @@ export default function SecurityAndPrivacy() {
         }
 
         try {
-            if (token) {
-                await deleteAccount(token);
-                toast.success(t('dashboard.dashboard.user.security_privacy.delete_account_success'), { duration: 3000 });
-                localStorage.removeItem('token');
-                navigate('/');
-            }
+            await deleteAccount();
+            toast.success(t('dashboard.dashboard.user.security_privacy.delete_account_success'), { duration: 3000 });
+            navigate('/');
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : t('dashboard.dashboard.user.security_privacy.delete_account_error');
             toast.error(errorMessage, { duration: 3000 });

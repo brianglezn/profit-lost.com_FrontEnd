@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'primereact/skeleton';
 
 import { getAllAccounts } from '../../../../api/accounts/getAllAccounts';
-import updateAccountsOrder from '../../../../api/accounts/updateAccountsOrder';
+import { updateAccountsOrder } from '../../../../api/accounts/updateAccountsOrder';
 import { getUserByToken } from '../../../../api/users/getUserByToken';
 import { formatCurrency } from '../../../../helpers/functions';
 import { Account, User } from '../../../../helpers/types';
@@ -58,15 +58,10 @@ export default function Accounts() {
 
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);
-    const token = localStorage.getItem('token');
-    if (!token) {
-      console.error(t('common.error_token'));
-      setIsLoading(false);
-      return;
-    }
+
     try {
-      const allAccountsData = await getAllAccounts(token);
-      const user: User = await getUserByToken(token);
+      const allAccountsData = await getAllAccounts();
+      const user: User = await getUserByToken();
 
       let orderedAccounts: Account[] = [];
       let unOrderedAccounts: Account[] = [];
@@ -93,7 +88,7 @@ export default function Accounts() {
     } finally {
       setIsLoading(false);
     }
-  }, [t]);
+  }, []);
 
   useEffect(() => {
     fetchAllData();

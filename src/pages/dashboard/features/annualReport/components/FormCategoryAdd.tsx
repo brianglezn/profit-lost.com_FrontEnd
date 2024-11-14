@@ -24,15 +24,9 @@ export default function FormCategoryAdd({ onCategoryAdded, onClose }: { onCatego
     const handleSaveCategory = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('landing.auth.common.error_token'), { duration: 3000 });
-            return;
-        }
-
         try {
             // Add new category using API function
-            await addCategory(token, newCategory, color);
+            await addCategory(newCategory, color);
 
             // Reset the form fields after saving the category
             setNewCategory('');

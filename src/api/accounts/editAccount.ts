@@ -8,11 +8,6 @@ interface EditAccountParams {
 }
 
 export async function editAccount({ _id, accountName, records, configuration }: EditAccountParams): Promise<void> {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        throw new Error('No authentication token found. Please log in.');
-    }
-
     const updateData = {
         ...(accountName && { accountName }),
         ...(records && { records }),
@@ -22,8 +17,8 @@ export async function editAccount({ _id, accountName, records, configuration }: 
     try {
         const response = await fetch(`https://backend-profit-lost-com.onrender.com/accounts/edit/${_id}`, {
             method: 'PUT',
+            credentials: 'include', // Include cookies for authentication
             headers: {
-                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(updateData),

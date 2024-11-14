@@ -2,8 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 
-import { AuthProvider } from './context/AuthContext';
-import { useAuth } from './context/useAuth';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import './i18n';
 
 const Home = React.lazy(() => import('./pages/landing/home/Home'));
@@ -20,35 +19,25 @@ interface PrivateRouteProps {
   children: React.ReactNode;
 }
 
-function App() {
-
+export default function App() {
   const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-    const { authToken } = useAuth();
-    return authToken ? <>{children}</> : <Navigate to='/login' />;
+    const { isAuthenticated } = useAuth();
+    return isAuthenticated ? <>{children}</> : <Navigate to='/login' />;
   };
 
   return (
-    <>
-      <AuthProvider>
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/register' element={<Register />}></Route>
-          <Route path='/forgot-password' element={<ForgotPassword />}></Route>
-          <Route path='/forgot-password-token' element={<ForgotPasswordToken />}></Route>
-          <Route path='/dashboard' element={
-            <PrivateRoute>
-              <DashBoard />
-            </PrivateRoute>
-          }>
-          </Route>
-          <Route path='/cookies' element={<Cookies />}></Route>
-          <Route path='/privacy' element={<Privacy />}></Route>
-          <Route path='/faq' element={<Faq />}></Route>
-        </Routes>
-      </AuthProvider>
-    </>
+    <AuthProvider>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/forgot-password-token' element={<ForgotPasswordToken />} />
+        <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
+        <Route path='/cookies' element={<Cookies />} />
+        <Route path='/privacy' element={<Privacy />} />
+        <Route path='/faq' element={<Faq />} />
+      </Routes>
+    </AuthProvider>
   );
 }
-
-export default App;

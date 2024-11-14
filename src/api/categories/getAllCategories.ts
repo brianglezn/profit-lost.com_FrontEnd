@@ -1,11 +1,9 @@
-export const getAllCategories = async (token: string) => {
+export const getAllCategories = async () => {
     try {
-        // Send a GET request to fetch all categories
+        // Send a GET request to fetch all categories with credentials included
         const response = await fetch('https://backend-profit-lost-com.onrender.com/categories/all', {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`, // Attach authorization token for authentication
-            },
+            credentials: 'include', // Include cookies for authentication
         });
 
         // Check if the response is successful (status code is OK)

@@ -40,16 +40,9 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
     // Function to fetch data and calculate the category balances
     const fetchDataAndCalculateBalances = useCallback(async () => {
         setIsLoading(true);
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('landing.auth.common.error_token'));
-            setIsLoading(false);
-            return;
-        }
-
         try {
-            const categoriesData: Category[] = await getAllCategories(token); // Fetch all categories
-            const movementsData: Movements[] = await getMovementsByYear(token, year); // Fetch all movements for the year
+            const categoriesData: Category[] = await getAllCategories(); // Fetch all categories
+            const movementsData: Movements[] = await getMovementsByYear(year); // Fetch all movements for the year
 
             // Calculate the balance for each category
             const categoryBalances = categoriesData.map(category => {

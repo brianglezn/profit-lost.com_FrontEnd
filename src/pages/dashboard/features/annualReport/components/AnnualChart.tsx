@@ -31,15 +31,8 @@ export default function AnnualChart({ year }: { year: string }) {
 
         const fetchData = async () => {
             setIsDataLoaded(false);
-            const token = localStorage.getItem('token');
-
-            if (!token) {
-                console.error(t('dashboard.common.error_token'));
-                return;
-            }
-
             try {
-                const data: Movements[] = await getMovementsByYear(token, year);
+                const data: Movements[] = await getMovementsByYear(year);
 
                 const monthlyData: { [month: string]: { Income: number; Expenses: number } } = {};
 

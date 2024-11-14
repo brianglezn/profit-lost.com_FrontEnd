@@ -21,10 +21,9 @@ export default function Login() {
     event.preventDefault();
     setIsLoading(true);
 
-    const { token, error } = await loginUser(identifier, password);
-    if (token) {
-      localStorage.setItem('token', token);
-      login(token);
+    const { success, error } = await loginUser(identifier, password);
+    if (success) {
+      login();
       toast.success("Login successful!");
       navigate('/dashboard');
     } else {

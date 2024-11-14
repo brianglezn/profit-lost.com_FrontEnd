@@ -32,14 +32,8 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     // Fetch all movements related to the category
     useEffect(() => {
         const fetchMovements = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                toast.error(t('dashboard.common.error_token'));
-                return;
-            }
-
             try {
-                const movements: Movements[] = await getAllMovements(token); // Fetch all movements
+                const movements: Movements[] = await getAllMovements(); // Fetch all movements
                 // Filter movements to only include those for the given category
                 const filteredMovements = movements.filter((movement) => movement.category === categoryName);
 
@@ -63,15 +57,10 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     // Handle category edit form submission
     const handleEditCategory = async (e: React.FormEvent) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('dashboard.common.error_token'), { duration: 3000 });
-            return;
-        }
 
         try {
             // Send request to edit the category
-            await editCategory(token, categoryId, name, color);
+            await editCategory(categoryId, name, color);
             toast.success(t('dashboard.annual_report.form_cat_edit.success_message_edit'), { duration: 3000 });
             setTimeout(() => {
                 onClose();
@@ -91,15 +80,9 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     // Confirm deletion of the category and remove it
     const handleConfirmRemove = async (e: React.FormEvent) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('landing.auth.common.error_token'), { duration: 3000 });
-            return;
-        }
-
         try {
             // Send request to remove the category
-            await removeCategory(token, categoryId);
+            await removeCategory(categoryId);
             toast.success(t('dashboard.annual_report.form_cat_edit.success_message_delete', { category: name }), { duration: 3000 });
             setTimeout(() => {
                 onClose();

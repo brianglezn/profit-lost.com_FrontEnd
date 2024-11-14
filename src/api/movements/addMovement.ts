@@ -1,15 +1,15 @@
-export const addMovement = async (token: string, movementData: {
+export const addMovement = async (movementData: {
     date: string,
     description: string,
     amount: number,
     category: string
 }) => {
     try {
-        // Send a POST request to add a new movement
+        // Send a POST request to add a new movement with credentials included
         const response = await fetch('https://backend-profit-lost-com.onrender.com/movements/add', {
             method: 'POST',
+            credentials: 'include', // Include cookies for authentication
             headers: {
-                'Authorization': `Bearer ${token}`, // Include the authorization token for authentication
                 'Content-Type': 'application/json', // Indicate that the body content is in JSON format
             },
             body: JSON.stringify(movementData), // Convert the movement data object to JSON for the request body

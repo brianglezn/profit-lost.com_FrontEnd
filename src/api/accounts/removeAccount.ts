@@ -1,18 +1,9 @@
 export async function removeAccount(accountId: string): Promise<void> {
-    // Retrieve the authentication token from local storage
-    const token = localStorage.getItem('token');
-    if (!token) {
-        // If the token is not found, throw an error
-        throw new Error('No authentication token found. Please log in.');
-    }
-
     try {
-        // Send a DELETE request to the API to remove the specified account
+        // Send a DELETE request to the API to remove the specified account with cookies included
         const response = await fetch(`https://backend-profit-lost-com.onrender.com/accounts/remove/${accountId}`, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`, // Authorization token is needed for authentication
-            },
+            credentials: 'include', // Include cookies for authentication
         });
 
         // If the response is not successful, throw an error with details from the response

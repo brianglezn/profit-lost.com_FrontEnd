@@ -36,14 +36,8 @@ export default function AnnualReport() {
   const { t, i18n } = useTranslation();
 
   const reloadCategories = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      console.error('No authentication token found. Please log in.');
-      return;
-    }
-
     try {
-      const dataMovements: Movements[] = await getAllMovements(token);
+      const dataMovements: Movements[] = await getAllMovements();
       const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
@@ -58,16 +52,9 @@ export default function AnnualReport() {
   }, [reloadCategories]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
     const fetchData = async () => {
-      if (!token) {
-        console.error('No authentication token found. Please log in.');
-        return;
-      }
-
       try {
-        const dataMovements: Movements[] = await getMovementsByYear(token, year);
+        const dataMovements: Movements[] = await getMovementsByYear(year);
         const { income, expenses } = dataMovements.reduce((acc, transaction) => {
           if (transaction.amount > 0) acc.income += transaction.amount;
           else acc.expenses += transaction.amount;

@@ -27,8 +27,6 @@ export default function DashHome() {
     const fetchData = async () => {
       setIsLoading(true); // Start loading
       try {
-        // Get the authentication token from local storage
-        const token = localStorage.getItem('token') || '';
         const currentDate = new Date();
         // Set the end of the current day (23:59:59)
         const endOfDay = new Date(currentDate);
@@ -38,7 +36,7 @@ export default function DashHome() {
         const currentYear = currentDate.getFullYear().toString();
 
         // Fetch movements for the current year
-        const movements: Movements[] = await getMovementsByYear(token, currentYear);
+        const movements: Movements[] = await getMovementsByYear(currentYear);
 
         // If no movements are found, set the data as empty and return
         if (movements.length === 0) {

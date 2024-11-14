@@ -1,10 +1,10 @@
-export const getMovementsByYear = async (token: string, year: string) => {
+export const getMovementsByYear = async (year: string) => {
     try {
-        // Send a GET request to fetch movements for a specific year
+        // Send a GET request to fetch movements for a specific year with credentials included
         const response = await fetch(`https://backend-profit-lost-com.onrender.com/movements/${year}`, {
             method: 'GET', // HTTP GET method to retrieve data
+            credentials: 'include', // Include cookies for authentication
             headers: {
-                'Authorization': `Bearer ${token}`, // Include the authorization token for authentication
                 'Content-Type': 'application/json', // Indicate that the response is in JSON format
             },
         });

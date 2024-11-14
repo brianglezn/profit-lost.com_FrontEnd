@@ -36,16 +36,9 @@ export default function HomeBalanceChart() {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('No authentication token found. Please log in.');
-                setIsLoading(false);
-                return;
-            }
-
             try {
                 const currentYear = new Date().getFullYear().toString();
-                const movements = await getMovementsByYear(token, currentYear);
+                const movements = await getMovementsByYear(currentYear);
                 const lastSixMonthsData = getLastSixMonthsData(movements);
                 setData(lastSixMonthsData);
             } catch (error) {
