@@ -11,17 +11,21 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
       const { isAuthenticated } = await checkAuthStatus();
       setIsAuthenticated(isAuthenticated);
+      setIsLoading(false);
     };
     fetchAuthStatus();
   }, []);
 
   const login = () => setIsAuthenticated(true);
   const logout = () => setIsAuthenticated(false);
+
+  if (isLoading) return '';
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

@@ -33,10 +33,8 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     // Fetch categories from the server on component mount
     useEffect(() => {
         const fetchCategories = async () => {
-
             try {
                 const categories = await getAllCategories();
-                // Sort categories alphabetically by name
                 const sortedCategories = categories.sort((a: Category, b: Category) => a.name.localeCompare(b.name));
                 setCategories(sortedCategories);
             } catch (error) {
@@ -51,13 +49,10 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     // Set the initial date depending on the selected month and year
     useEffect(() => {
         const currentDate = new Date();
-
-        // If the selected year/month is different from the current date, set to the first day of that month
         if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || selectedYear !== currentDate.getFullYear().toString()) {
             const initialDate = `${selectedYear}-${selectedMonth}-01T00:00`;
             setDate(initialDate);
         } else {
-            // Otherwise, set to the current date
             const localDateTime = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
             setDate(localDateTime);
         }
@@ -66,7 +61,7 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     // Handle the click to mark the movement as income
     const handleIncomeClick = () => {
         setIsIncome(true);
-        setAmount(amount.replace('-', '')); // Remove negative sign if present
+        setAmount(amount.replace('-', ''));
     };
 
     // Handle the click to mark the movement as expense
@@ -78,7 +73,7 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (isIncome) {
-            setAmount(value.replace('-', '')); // Prevent negative value if it is income
+            setAmount(value.replace('-', ''));
         } else {
             setAmount(value);
         }
@@ -92,39 +87,25 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
 
         if (recurrenceFrequency === 'monthly') {
             let isFirstMovement = true;
-            // Generate monthly movements until the end date
             while (currentDate <= endDate) {
                 if (isFirstMovement) {
-                    movements.push({
-                        ...movementData,
-                        date: currentDate.toISOString(),
-                    });
+                    movements.push({ ...movementData, date: currentDate.toISOString() });
                     isFirstMovement = false;
                 } else {
                     currentDate.setMonth(currentDate.getMonth() + 1);
                     currentDate.setDate(1);
                     currentDate.setHours(10, 0, 0, 0);
                     if (currentDate > endDate) break;
-                    movements.push({
-                        ...movementData,
-                        date: currentDate.toISOString(),
-                    });
+                    movements.push({ ...movementData, date: currentDate.toISOString() });
                 }
             }
         } else if (recurrenceFrequency === 'yearly') {
-            // Generate yearly movements until the end year
             while (currentDate.getFullYear() <= endDate.getFullYear()) {
-                movements.push({
-                    ...movementData,
-                    date: currentDate.toISOString(),
-                });
+                movements.push({ ...movementData, date: currentDate.toISOString() });
                 currentDate.setFullYear(currentDate.getFullYear() + 1);
             }
             if (currentDate.getFullYear() === endDate.getFullYear()) {
-                movements.push({
-                    ...movementData,
-                    date: currentDate.toISOString(),
-                });
+                movements.push({ ...movementData, date: currentDate.toISOString() });
             }
         }
 
@@ -135,13 +116,6 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const token = localStorage.getItem('token');
-        if (!token) {
-            toast.error(t('dashboard.common.error_token'));
-            return;
-        }
-
-        // Validate amount format
         if (!/^\d+(\.\d{0,2})?$/.test(amount)) {
             toast.error(t('dashboard.movements.form_movements_add.error_message'));
             return;
@@ -152,10 +126,9 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
             return;
         }
 
-        // Create the movement data object
         const movementData = {
             date: date,
-            description: description.trim() === '' ? category.name : description, // Default description to category name if empty
+            description: description.trim() === '' ? category.name : description,
             amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };
@@ -163,14 +136,14 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
         try {
             const movements = isRecurring ? createRecurringMovements(movementData) : [movementData];
             for (const movement of movements) {
-                await addMovement(movement);
+                await addMovement(movement); // `addMovement` will use cookies for authentication
             }
 
             toast.success(t('dashboard.movements.form_movements_add.success_message'));
-
-            onMovementAdded(); // Notify parent component that a movement was added
+            onMovementAdded();
             onClose();
         } catch (error) {
+            console.error('Error adding movement:', error);
             const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
             toast.error(errorMessage);
         }
@@ -180,18 +153,10 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
         <form onSubmit={handleSubmit} className='formMovements'>
             <h2>{t('dashboard.movements.form_movements_add.header')}</h2>
             <div className='formMovements-toggle'>
-                <button
-                    type='button'
-                    className={`${isIncome ? 'active' : ''}`}
-                    onClick={handleIncomeClick}
-                >
+                <button type='button' className={`${isIncome ? 'active' : ''}`} onClick={handleIncomeClick}>
                     {t('dashboard.movements.form_movements_add.income_button')}
                 </button>
-                <button
-                    type='button'
-                    className={`${!isIncome ? 'active' : ''}`}
-                    onClick={handleExpenseClick}
-                >
+                <button type='button' className={`${!isIncome ? 'active' : ''}`} onClick={handleExpenseClick}>
                     {t('dashboard.movements.form_movements_add.expense_button')}
                 </button>
             </div>
@@ -200,7 +165,6 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className='formMovements-datetime custom-input'
-                placeholder=' '
                 required
             />
             <Dropdown
@@ -258,7 +222,6 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                                 value={recurrenceEnd}
                                 onChange={(e) => setRecurrenceEnd(e.target.value)}
                                 className='custom-input'
-                                placeholder={t('dashboard.movements.form_movements_add.end_date')}
                                 required
                             />
                         ) : (
@@ -267,7 +230,6 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
                                 value={recurrenceEnd}
                                 onChange={(e) => setRecurrenceEnd(e.target.value)}
                                 className='custom-input'
-                                placeholder={t('dashboard.movements.form_movements_add.end_date')}
                                 min={new Date().getFullYear()}
                                 required
                             />

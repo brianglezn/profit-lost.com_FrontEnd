@@ -5,28 +5,27 @@ export const addMovement = async (movementData: {
     category: string
 }) => {
     try {
-        // Send a POST request to add a new movement with credentials included
+        // Enviar una solicitud POST para agregar un nuevo movimiento con credenciales incluidas
         const response = await fetch('https://backend-profit-lost-com.onrender.com/movements/add', {
             method: 'POST',
-            credentials: 'include', // Include cookies for authentication
+            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json', // Indicate that the body content is in JSON format
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(movementData), // Convert the movement data object to JSON for the request body
+            body: JSON.stringify(movementData),
         });
 
-        // Check if the response status is not OK, and throw an error if it fails
+        // Manejar respuesta incorrecta
         if (!response.ok) {
-            throw new Error('Failed to add movement'); // Throw an error if the addition fails
+            const errorText = await response.text();
+            console.error('Error en la respuesta:', errorText);
+            throw new Error(`No se pudo agregar el movimiento: ${errorText}`);
         }
 
-        // Parse the response as JSON to get the newly created movement
         const newMovement = await response.json();
-        return newMovement; // Return the new movement if the request is successful
+        return newMovement;
     } catch (error) {
-        // Log any error to the console for debugging purposes
-        console.error('Error adding new movement:', error);
-        // Throw a new error indicating failure to add the movement
-        throw new Error('Failed to add movement');
+        console.error('Error al agregar movimiento:', error);
+        throw error;
     }
 };

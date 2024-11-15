@@ -115,6 +115,11 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
 
     const handleEditAccount = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Asegura que los colores estén en formato hexadecimal con #
+        const formattedBackgroundColor = backgroundColor.startsWith('#') ? backgroundColor : `#${backgroundColor}`;
+        const formattedFontColor = fontColor.startsWith('#') ? fontColor : `#${fontColor}`;
+
         const updatedRecords: AccountRecord[] = account.records.map(record => {
             const key = `${record.year}-${record.month}`;
             const normalizedValue = parseFloat(tempValues[key]?.replace(',', '.') || '0');
@@ -126,7 +131,7 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
                 _id: account._id,
                 accountName,
                 records: updatedRecords,
-                configuration: { backgroundColor, color: fontColor },
+                configuration: { backgroundColor: formattedBackgroundColor, color: formattedFontColor },
             });
             toast.success(t('dashboard.accounts.form_accounts_edit.success_message'));
             onClose();
@@ -136,6 +141,8 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
             console.error('Error during account update:', error);
         }
     };
+
+
 
     const handleRemoveAccount = async (e: React.FormEvent) => {
         e.preventDefault();
