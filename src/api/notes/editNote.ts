@@ -1,4 +1,4 @@
-import Note from '../../helpers/types';
+import { Note } from '../../helpers/types';
 
 interface EditNotePayload {
     title: string;  // The title of the note to be edited

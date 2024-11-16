@@ -1,4 +1,4 @@
-import Note from '../../helpers/types';
+import { Note } from '../../helpers/types';
 
 // Define the structure for the payload needed to create a new note
 interface CreateNotePayload {

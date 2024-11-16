@@ -1,4 +1,4 @@
-import Note from '../../helpers/types';
+import { Note } from '../../helpers/types';
 
 // Function to fetch all notes from the API
 export async function getAllNotes(): Promise<Note[]> {
