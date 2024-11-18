@@ -82,7 +82,7 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
 
         let colorValue = '';
         if (typeof e.value === 'string') {
-            colorValue = e.value;
+            colorValue = e.value.startsWith('#') ? e.value : `#${e.value}`;
         } else if ('r' in e.value) {
             colorValue = rgbToHex(e.value as ColorPickerRGBType);
         }
@@ -94,12 +94,13 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
 
         let colorValue = '';
         if (typeof e.value === 'string') {
-            colorValue = e.value;
+            colorValue = e.value.startsWith('#') ? e.value : `#${e.value}`; 
         } else if ('r' in e.value) {
             colorValue = rgbToHex(e.value as ColorPickerRGBType);
         }
         setFontColor(colorValue);
     };
+
 
     const handleYearChange = (e: DropdownChangeEvent) => {
         setYear(e.value);
