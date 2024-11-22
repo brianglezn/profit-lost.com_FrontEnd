@@ -65,10 +65,20 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
         }
     };
 
-    // Filter movements based on the search term
-    const filteredMovements = data.filter(movement =>
-        movement.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // Filter transactions by description or quantity
+    const filteredMovements = data.filter((movement) => {
+        const searchTermLower = searchTerm.toLowerCase();
+
+        const searchAmount = parseFloat(searchTerm.replace(',', '.'));
+
+        return (
+            movement.description.toLowerCase().includes(searchTermLower) ||
+            (!isNaN(searchAmount) && (
+                movement.amount === searchAmount ||
+                movement.amount.toString().includes(searchTerm)
+            ))
+        );
+    });
 
     // Sort the filtered movements
     const sortedMovements = sortMovements([...filteredMovements]);
