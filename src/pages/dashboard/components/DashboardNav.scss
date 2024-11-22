@@ -180,3 +180,20 @@
         }
     }
 }
+
+.p-menuitem-link {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $text_color-black;
+    }
+
+    span {
+        margin: 0;
+        font-size: 1rem;
+        color: $text_color-black;
+    }
+}
