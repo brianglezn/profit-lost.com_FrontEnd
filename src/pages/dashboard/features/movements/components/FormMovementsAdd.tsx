@@ -151,15 +151,27 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
             return;
         }
 
+        // Validate category
         if (!category) {
             toast.error(t('dashboard.movements.form_movements_add.category_placeholder'));
             return;
         }
 
-        // Create the movement data object
+        // Recurrence date validation
+        if (isRecurring) {
+            const currentDate = new Date();
+            const recurrenceEndDate = new Date(recurrenceEnd);
+
+            if (recurrenceEndDate <= currentDate) {
+                toast.error(t('dashboard.movements.form_movements_add.recurrence_end_error'));
+                return;
+            }
+        }
+
+        // Create the object of the movement
         const movementData = {
             date: date,
-            description: description.trim() === '' ? category.name : description, // Default description to category name if empty
+            description: description.trim() === '' ? category.name : description,
             amount: parseFloat(amount.replace(',', '.')) * (isIncome ? 1 : -1),
             category: category._id,
         };
@@ -172,7 +184,7 @@ export default function FormMovementsAdd({ onMovementAdded, onClose, selectedYea
 
             toast.success(t('dashboard.movements.form_movements_add.success_message'));
 
-            onMovementAdded(); // Notify parent component that a movement was added
+            onMovementAdded();
             onClose();
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
