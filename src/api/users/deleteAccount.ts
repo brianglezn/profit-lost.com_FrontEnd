@@ -1,7 +1,7 @@
 export const deleteAccount = async (token: string) => {
     try {
         // Send a DELETE request to the server to delete the user's account
-        const response = await fetch('https://backend-profit-lost-com.onrender.com/user/deleteAccount', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/user/deleteAccount', {
             method: 'DELETE', // HTTP method DELETE is used for removing a resource
             headers: {
                 Authorization: `Bearer ${token}`, // Include the authorization token to authenticate the user

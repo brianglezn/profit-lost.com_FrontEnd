@@ -1,6 +1,6 @@
 export async function login(identifier: string, password: string): Promise<{ token?: string; error?: string }> {
     try {
-        const response = await fetch('https://backend-profit-lost-com.onrender.com/login', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

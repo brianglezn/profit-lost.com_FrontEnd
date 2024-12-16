@@ -2,7 +2,7 @@ import { User } from '../../helpers/types';
 
 export async function register(userData: Pick<User, 'username' | 'name' | 'surname' | 'email' | 'password'>): Promise<{ success?: boolean; error?: string }> {
   try {
-    const response = await fetch('https://backend-profit-lost-com.onrender.com/register', {
+    const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

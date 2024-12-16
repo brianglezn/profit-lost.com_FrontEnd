@@ -26,7 +26,7 @@ export async function addAccount(accountName: string): Promise<void> {
 
     try {
         // Send a POST request to the server to add the new account
-        const response = await fetch('https://backend-profit-lost-com.onrender.com/accounts/add', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/accounts/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token in the request header

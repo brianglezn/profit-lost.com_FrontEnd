@@ -6,7 +6,7 @@ export const editMovement = async (token: string, movementId: string, movementDa
 }) => {
     try {
         // Send a PUT request to edit an existing movement
-        const response = await fetch(`https://backend-profit-lost-com.onrender.com/movements/edit/${movementId}`, {
+        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/movements/edit/${movementId}`, {
             method: 'PUT', // HTTP method 'PUT' is used to update existing data
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

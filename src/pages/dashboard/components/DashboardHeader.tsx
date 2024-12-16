@@ -24,7 +24,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
     const wakeUpBackend = async () => {
         toast.promise(
-            fetch('https://backend-profit-lost-com.onrender.com/ping'),
+            fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/ping'),
             {
                 loading: t('dashboard.dashboard.messages.loading'),
                 success: t('dashboard.dashboard.messages.reconnect_success'),

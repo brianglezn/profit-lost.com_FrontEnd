@@ -8,7 +8,7 @@ export const updateAccountsOrder = async (accountsOrder: string[]): Promise<void
 
   try {
     // Make a POST request to update the user's account order
-    const response = await fetch('https://backend-profit-lost-com.onrender.com/user/updateAccountsOrder', {
+    const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/user/updateAccountsOrder', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Specify JSON format for request body

@@ -8,7 +8,7 @@ export async function deleteNote(noteId: string): Promise<void> {
 
     try {
         // Send a DELETE request to the backend to delete a note by its ID
-        const response = await fetch(`https://backend-profit-lost-com.onrender.com/notes/${noteId}`, {
+        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/notes/${noteId}`, {
             method: 'DELETE', // Specify the HTTP method as DELETE
             headers: {
                 'Authorization': `Bearer ${token}`, // Add the token to the Authorization header

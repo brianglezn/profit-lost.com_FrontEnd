@@ -1,7 +1,7 @@
 export const updateProfile = async (userData: FormData) => {
     try {
         // Send a POST request to update the user's profile
-        const response = await fetch('https://backend-profit-lost-com.onrender.com/user/updateProfile', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/user/updateProfile', {
             method: 'POST', // HTTP POST method to submit the updated profile data
             body: userData, // Attach the user profile data (includes form data such as files)
             headers: {

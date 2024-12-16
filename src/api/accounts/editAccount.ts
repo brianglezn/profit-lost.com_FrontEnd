@@ -20,7 +20,7 @@ export async function editAccount({ _id, accountName, records, configuration }: 
     };
 
     try {
-        const response = await fetch(`https://backend-profit-lost-com.onrender.com/accounts/edit/${_id}`, {
+        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/accounts/edit/${_id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

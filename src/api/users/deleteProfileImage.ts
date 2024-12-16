@@ -1,7 +1,7 @@
 export const deleteProfileImage = async () => {
     try {
         // Send a POST request to the server to delete the user's profile image
-        const response = await fetch('https://backend-profit-lost-com.onrender.com/user/deleteProfileImage', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/user/deleteProfileImage', {
             method: 'POST', // HTTP method POST is used for this specific action
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`, // Attach the authorization token from localStorage
