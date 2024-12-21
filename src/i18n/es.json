@@ -267,7 +267,8 @@
             "no_note_selected": "No hay ninguna nota seleccionada.",
             "fetch_error": "Error al recuperar las notas.",
             "save_error": "Error al guardar la nota.",
-            "delete_error": "Error al eliminar la nota."
+            "delete_error": "Error al eliminar la nota.",
+            "confirm_delete": "¿Estás seguro de que deseas eliminar \"{title}\"?"
         }
     }
 }

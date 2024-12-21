@@ -4,6 +4,7 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 import { getAllNotes } from '../../../../api/notes/getAllNotes';
 import { createNote } from '../../../../api/notes/createNote';
@@ -80,7 +81,18 @@ export default function Notes() {
     };
 
     // Handle deleting a note
-    const handleDeleteNote = async (noteToDelete: Note) => {
+    const handleDeleteNote = (noteToDelete: Note) => {
+        confirmDialog({
+            message: t('dashboard.notes.confirm_delete', { title: noteToDelete.title || t('dashboard.notes.untitled_note') }),
+            header: t('dashboard.notes.delete_note'),
+            accept: () => handleConfirmDelete(noteToDelete),
+            reject: () => {},
+            position: 'bottom'
+        });
+    };
+
+    // Handle confirming and deleting the note
+    const handleConfirmDelete = async (noteToDelete: Note) => {
         // Optimistically remove the note from the list
         setNotes((prevNotes) => prevNotes.filter((note) => note._id !== noteToDelete._id));
 
@@ -135,81 +147,84 @@ export default function Notes() {
     };
 
     return (
-        <section className='notes'>
-            <div className='notes-sidebar'>
-                {/* Button to create a new note */}
-                <Button label={t('dashboard.notes.create_note')} icon='' onClick={() => {
-                    setSelectedNote({
-                        _id: '',
-                        title: '',
-                        content: '',
-                        user_id: '',
-                        created_at: '',
-                        updated_at: ''
-                    });
-                    setIsCreating(true);
-                }} />
-                <div className='notes-list'>
-                    {/* List all notes */}
-                    {notes.map((note) => (
-                        <div
-                            key={note._id}
-                            className='note-item'
-                            draggable
-                            onDragStart={() => handleDragStart(note._id)} // Allow dragging
-                            onDragOver={handleDragOver} // Allow drag over
-                            onDrop={() => handleDrop(note._id)} // Handle dropping for reordering
-                            onClick={() => handleSelectNote(note)} // Select note on click
-                        >
-                            {note.title || t('dashboard.notes.untitled_note')}
-                            {/* Delete icon to remove the note */}
-                            <DeleteBinIcon
-                                className='delete-icon'
-                                onClick={(e) => {
-                                    e.stopPropagation(); // Prevent triggering note selection on delete
-                                    handleDeleteNote(note);
-                                }}
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className='notes-editor'>
-                {isCreating || selectedNote ? (
-                    <div className='note-details'>
-                        {/* Input for the note title */}
-                        <InputText
-                            type='text'
-                            placeholder={t('dashboard.notes.note_title_placeholder')}
-                            value={selectedNote?.title || ''}
-                            onChange={(e) => handleNoteChange('title', e.target.value)}
-                        />
-                        {/* Textarea for the note content */}
-                        <InputTextarea
-                            placeholder={t('dashboard.notes.note_content_placeholder')}
-                            value={selectedNote?.content || ''}
-                            onChange={(e) => handleNoteChange('content', e.target.value)}
-                            rows={5}
-                            autoResize
-                        />
-                        {/* Actions to save or delete the note */}
-                        <div className='note-actions'>
-                            <Button
-                                label={t('dashboard.notes.save_note')}
-                                onClick={handleSaveNote}
-                            />
-                            <Button
-                                label={t('dashboard.notes.delete_note')}
-                                severity="danger"
-                                outlined
-                                onClick={() => selectedNote && handleDeleteNote(selectedNote)}
-                            />
-                        </div>
+        <>
+            <ConfirmDialog />
+            <section className='notes'>
+                <div className='notes-sidebar'>
+                    {/* Button to create a new note */}
+                    <Button label={t('dashboard.notes.create_note')} icon='' onClick={() => {
+                        setSelectedNote({
+                            _id: '',
+                            title: '',
+                            content: '',
+                            user_id: '',
+                            created_at: '',
+                            updated_at: ''
+                        });
+                        setIsCreating(true);
+                    }} />
+                    <div className='notes-list'>
+                        {/* List all notes */}
+                        {notes.map((note) => (
+                            <div
+                                key={note._id}
+                                className='note-item'
+                                draggable
+                                onDragStart={() => handleDragStart(note._id)} // Allow dragging
+                                onDragOver={handleDragOver} // Allow drag over
+                                onDrop={() => handleDrop(note._id)} // Handle dropping for reordering
+                                onClick={() => handleSelectNote(note)} // Select note on click
+                            >
+                                {note.title || t('dashboard.notes.untitled_note')}
+                                {/* Delete icon to remove the note */}
+                                <DeleteBinIcon
+                                    className='delete-icon'
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent triggering note selection on delete
+                                        handleDeleteNote(note);
+                                    }}
+                                />
+                            </div>
+                        ))}
                     </div>
-                ) : (
-                    <p className='no-note-selected'>{t('dashboard.notes.no_note_selected')}</p>
-                )}
-            </div>
-        </section>
+                </div>
+                <div className='notes-editor'>
+                    {isCreating || selectedNote ? (
+                        <div className='note-details'>
+                            {/* Input for the note title */}
+                            <InputText
+                                type='text'
+                                placeholder={t('dashboard.notes.note_title_placeholder')}
+                                value={selectedNote?.title || ''}
+                                onChange={(e) => handleNoteChange('title', e.target.value)}
+                            />
+                            {/* Textarea for the note content */}
+                            <InputTextarea
+                                placeholder={t('dashboard.notes.note_content_placeholder')}
+                                value={selectedNote?.content || ''}
+                                onChange={(e) => handleNoteChange('content', e.target.value)}
+                                rows={5}
+                                autoResize
+                            />
+                            {/* Actions to save or delete the note */}
+                            <div className='note-actions'>
+                                <Button
+                                    label={t('dashboard.notes.save_note')}
+                                    onClick={handleSaveNote}
+                                />
+                                <Button
+                                    label={t('dashboard.notes.delete_note')}
+                                    severity="danger"
+                                    outlined
+                                    onClick={() => selectedNote && handleDeleteNote(selectedNote)}
+                                />
+                            </div>
+                        </div>
+                    ) : (
+                        <p className='no-note-selected'>{t('dashboard.notes.no_note_selected')}</p>
+                    )}
+                </div>
+            </section>
+        </>
     );
 }

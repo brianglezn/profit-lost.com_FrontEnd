@@ -267,7 +267,8 @@
             "no_note_selected": "No note selected.",
             "fetch_error": "Error fetching notes.",
             "save_error": "Error saving note.",
-            "delete_error": "Error deleting note."
+            "delete_error": "Error deleting note.",
+            "confirm_delete": "Are you sure you want to delete \"{title}\"?"
         },
         "reports": {}
     }
