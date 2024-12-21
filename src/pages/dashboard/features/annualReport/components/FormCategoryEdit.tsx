@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { ColorPicker } from 'primereact/colorpicker';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { useTranslation } from 'react-i18next';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 import { editCategory } from '../../../../../api/categories/editCategory';
 import { removeCategory } from '../../../../../api/categories/removeCategory';
@@ -24,7 +25,6 @@ interface FormCategoryEditProps {
 export default function FormCategoryEdit({ categoryId, categoryName, categoryColor, onUpdate, onClose, onRemove }: FormCategoryEditProps) {
     const [name, setName] = useState(categoryName);
     const [color, setColor] = useState(categoryColor);
-    const [showConfirm, setShowConfirm] = useState(false);
     const [movementsByYear, setMovementsByYear] = useState<{ [key: string]: Movements[] }>({});
 
     const { t, i18n } = useTranslation();
@@ -85,12 +85,17 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     // Show confirmation dialog before deleting the category
     const handleRemoveCategory = (e: React.FormEvent) => {
         e.preventDefault();
-        setShowConfirm(true);
+        confirmDialog({
+            message: t('dashboard.annual_report.form_cat_edit.confirm_delete', { category: name }),
+            header: t('dashboard.annual_report.form_cat_edit.remove_button'),
+            accept: handleConfirmRemove,
+            reject: () => { },
+            position: 'bottom'
+        });
     };
 
     // Confirm deletion of the category and remove it
-    const handleConfirmRemove = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleConfirmRemove = async () => {
         const token = localStorage.getItem('token');
         if (!token) {
             toast.error(t('landing.auth.common.error_token'), { duration: 3000 });
@@ -114,63 +119,57 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     const hasMovements = Object.keys(movementsByYear).length > 0;
 
     return (
-        <form className='formCategories' onSubmit={handleEditCategory}>
-            <h2>{t('dashboard.annual_report.form_cat_edit.header')}</h2>
-            <div className='formCategoriesContainer'>
-                <div className='formCategoriesContainer-colorPicker'>
-                    <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
+        <>
+            <ConfirmDialog />
+            <form className='formCategories' onSubmit={handleEditCategory}>
+                <h2>{t('dashboard.annual_report.form_cat_edit.header', { category: name })}</h2>
+                <div className='formCategoriesContainer'>
+                    <div className='formCategoriesContainer-colorPicker'>
+                        <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
+                    </div>
+                    <input
+                        className='custom-input'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder={t('dashboard.annual_report.form_cat_edit.name_placeholder')}
+                        autoFocus
+                    />
                 </div>
-                <input
-                    className='custom-input'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder={t('dashboard.annual_report.form_cat_edit.name_placeholder')}
-                    autoFocus
-                />
-            </div>
-            <div className='formCategories-buttons'>
-                <button type='button' className='custom-btn-sec' onClick={handleRemoveCategory}>
-                    {t('dashboard.annual_report.form_cat_edit.remove_button')}
-                </button>
-                <button type='submit' className='custom-btn'>
-                    {t('dashboard.annual_report.form_cat_edit.save_button')}
-                </button>
-            </div>
-
-            {showConfirm && (
-                <div className='form-confirmBtn'>
-                    <p>{t('dashboard.annual_report.form_cat_edit.confirm_delete', { category: name })}</p>
-                    <button type='button' className='custom-btn' onClick={handleConfirmRemove}>
-                        {t('dashboard.annual_report.form_cat_edit.delete_button')}
+                <div className='formCategories-buttons'>
+                    <button type='button' className='custom-btn-sec' onClick={handleRemoveCategory}>
+                        {t('dashboard.annual_report.form_cat_edit.remove_button')}
+                    </button>
+                    <button type='submit' className='custom-btn'>
+                        {t('dashboard.annual_report.form_cat_edit.save_button')}
                     </button>
                 </div>
-            )}
 
-            {hasMovements && (
-                <div className='movementsByCategory'>
-                    <Accordion multiple className='movementsByCategory-container'>
-                        {Object.keys(movementsByYear)
-                            .sort((a, b) => Number(b) - Number(a))
-                            .map((year) => (
-                                <AccordionTab key={year} header={year}>
-                                    <ul className='movementsByCategory-list'>
-                                        {movementsByYear[year]
-                                            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-                                            .map((movement) => (
-                                                <li key={movement._id} className='movementsByCategory-item'>
-                                                    <span className='movementsByCategory-date'>{formatDateTime(movement.date, i18n.language)}</span>
-                                                    <span className='movementsByCategory-description'>{movement.description}</span>
-                                                    <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                        {formatCurrency(movement.amount, i18n.language)}
-                                                    </span>
-                                                </li>
-                                            ))}
-                                    </ul>
-                                </AccordionTab>
-                            ))}
-                    </Accordion>
-                </div>
-            )}
-        </form>
+                {hasMovements && (
+                    <div className='movementsByCategory'>
+                        <Accordion multiple className='movementsByCategory-container'>
+                            {Object.keys(movementsByYear)
+                                .sort((a, b) => Number(b) - Number(a))
+                                .map((year) => (
+                                    <AccordionTab key={year} header={year}>
+                                        <ul className='movementsByCategory-list'>
+                                            {movementsByYear[year]
+                                                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                                                .map((movement) => (
+                                                    <li key={movement._id} className='movementsByCategory-item'>
+                                                        <span className='movementsByCategory-date'>{formatDateTime(movement.date, i18n.language)}</span>
+                                                        <span className='movementsByCategory-description'>{movement.description}</span>
+                                                        <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
+                                                            {formatCurrency(movement.amount, i18n.language)}
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                        </ul>
+                                    </AccordionTab>
+                                ))}
+                        </Accordion>
+                    </div>
+                )}
+            </form>
+        </>
     );
 }

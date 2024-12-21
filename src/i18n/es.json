@@ -164,7 +164,7 @@
                 "success_message": "Categoría añadida con éxito"
             },
             "form_cat_edit": {
-                "header": "Editar Categoría",
+                "header": "Editar {category}",
                 "name_placeholder": "Nombre de la categoría",
                 "save_button": "Guardar",
                 "remove_button": "Eliminar",

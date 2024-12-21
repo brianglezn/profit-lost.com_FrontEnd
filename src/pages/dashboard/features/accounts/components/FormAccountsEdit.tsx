@@ -4,6 +4,7 @@ import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primere
 import { toast } from 'react-hot-toast';
 import { InputText } from 'primereact/inputtext';
 import { useTranslation } from 'react-i18next';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 import { editAccount } from '../../../../../api/accounts/editAccount';
 import { removeAccount } from '../../../../../api/accounts/removeAccount';
@@ -26,7 +27,6 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
     const [year, setYear] = useState<number>(new Date().getFullYear());
     const [uniqueYears, setUniqueYears] = useState<number[]>([]);
     const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
-    const [showConfirm, setShowConfirm] = useState(false);
 
     const { t, i18n } = useTranslation();
 
@@ -138,13 +138,18 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
         }
     };
 
-    const handleRemoveAccount = async (e: React.FormEvent) => {
+    const handleRemoveAccount = (e: React.FormEvent) => {
         e.preventDefault();
-        setShowConfirm(true);
+        confirmDialog({
+            message: t('dashboard.accounts.form_accounts_edit.remove_confirm', { account: account.accountName }),
+            header: t('dashboard.accounts.account_item.remove'),
+            accept: handleConfirmRemove,
+            reject: () => {},
+            position: 'bottom'
+        });
     };
 
-    const handleConfirmRemove = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleConfirmRemove = async () => {
         try {
             await removeAccount(account._id);
             toast.success(t('dashboard.accounts.form_accounts_edit.remove_success'));
@@ -156,59 +161,52 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
     };
 
     return (
-        <form className='formAccount' onSubmit={handleEditAccount}>
-            <h2>{t('dashboard.accounts.form_accounts_edit.title')}</h2>
-            <InputText
-                value={accountName}
-                onChange={(e) => setAccountName(e.target.value)}
-                className='custom-input'
-                required
-            />
-            <Dropdown
-                className='formDropdown'
-                value={year}
-                options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
-                onChange={handleYearChange}
-            />
-            <div className='dataYear'>
-                {monthNames.map(month => {
-                    const key = `${year}-${month.value}`;
-                    return (
-                        <div className='dataYear-row' key={month.value}>
-                            <span>{month.name}</span>
-                            <input
-                                type='text'
-                                value={tempValues[key] || ''}
-                                onChange={(e) => handleValueChange(month.value, e.target.value)}
-                            />
-                        </div>
-                    );
-                })}
-            </div>
-            <div className='colorPiker'>
-                <p>{t('dashboard.accounts.form_accounts_edit.background')}</p>
-                <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
-                <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
-                <ColorPicker value={fontColor} onChange={handleFontColorChange} />
-            </div>
-            <div className='formAccount-buttons'>
-                <button type='button' className='custom-btn-sec' onClick={handleRemoveAccount}>
-                    {t('dashboard.accounts.account_item.remove')}
-                </button>
-                <button type='submit' className='custom-btn'>
-                    {t('dashboard.accounts.account_item.submit')}
-                </button>
-            </div>
-            {showConfirm && (
-                <div className='form-confirmBtn'>
-                    <p>
-                        {t('dashboard.accounts.form_accounts_edit.remove_confirm')} <b>'{account.accountName}'</b>?
-                    </p>
-                    <button type='button' className='custom-btn' onClick={handleConfirmRemove}>
-                        Confirmar
+        <>
+            <ConfirmDialog />
+            <form className='formAccount' onSubmit={handleEditAccount}>
+                <h2>{t('dashboard.accounts.form_accounts_edit.title')}</h2>
+                <InputText
+                    value={accountName}
+                    onChange={(e) => setAccountName(e.target.value)}
+                    className='custom-input'
+                    required
+                />
+                <Dropdown
+                    className='formDropdown'
+                    value={year}
+                    options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
+                    onChange={handleYearChange}
+                />
+                <div className='dataYear'>
+                    {monthNames.map(month => {
+                        const key = `${year}-${month.value}`;
+                        return (
+                            <div className='dataYear-row' key={month.value}>
+                                <span>{month.name}</span>
+                                <input
+                                    type='text'
+                                    value={tempValues[key] || ''}
+                                    onChange={(e) => handleValueChange(month.value, e.target.value)}
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className='colorPiker'>
+                    <p>{t('dashboard.accounts.form_accounts_edit.background')}</p>
+                    <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
+                    <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
+                    <ColorPicker value={fontColor} onChange={handleFontColorChange} />
+                </div>
+                <div className='formAccount-buttons'>
+                    <button type='button' className='custom-btn-sec' onClick={handleRemoveAccount}>
+                        {t('dashboard.accounts.account_item.remove')}
+                    </button>
+                    <button type='submit' className='custom-btn'>
+                        {t('dashboard.accounts.account_item.submit')}
                     </button>
                 </div>
-            )}
-        </form>
+            </form>
+        </>
     );
 }
