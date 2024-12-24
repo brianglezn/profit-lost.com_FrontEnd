@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { formatCurrency } from '../../../../../helpers/functions';
-
+import { formatCurrency2 } from '../../../../../helpers/functions';
+import { getUserByToken } from '../../../../../api/users/getUserByToken';
+import { User } from '../../../../../helpers/types';
 import HomeBalancesSkeleton from './HomeBalancesSkeleton';
 
 import './HomeBalances.scss';
@@ -13,7 +15,24 @@ interface HomeBalancesProps {
 }
 
 export default function HomeBalances({ type, amount, percentage }: HomeBalancesProps) {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
+    const [userCurrency, setUserCurrency] = useState<string>('USD');
+
+    useEffect(() => {
+        const fetchUserCurrency = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            try {
+                const user: User = await getUserByToken(token);
+                setUserCurrency(user.currency || 'USD');
+            } catch (error) {
+                console.error('Error fetching user currency:', error);
+            }
+        };
+
+        fetchUserCurrency();
+    }, []);
 
     // If no data (amount or percentage), show the skeleton loader
     if (amount === null || percentage === null) {
@@ -45,7 +64,7 @@ export default function HomeBalances({ type, amount, percentage }: HomeBalancesP
                 <span>{balanceName}</span>
             </div>
             <div className='amount'>
-                <span className='value'>{formatCurrency(amount, i18n.language)}</span>
+                <span className='value'>{formatCurrency2(amount, userCurrency)}</span>
             </div>
             <div className='comparison'>
                 <span className={`percentage ${percentageClass}`}>
