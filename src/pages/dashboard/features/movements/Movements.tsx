@@ -27,7 +27,7 @@ export default function Movements() {
   const [open, setOpen] = useState<boolean>(false);
   const [isDataLoading, setIsDataLoading] = useState<boolean>(true);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Fetch movements and category data
   const fetchMovementsData = useCallback(async (token: string) => {
@@ -127,7 +127,7 @@ export default function Movements() {
           </div>
         </div>
 
-        <MovementsBalance income={totalIncome} expenses={totalExpenses} language={i18n.language} />
+        <MovementsBalance income={totalIncome} expenses={totalExpenses} />
       </div>
 
       <div className='movements__data'>
