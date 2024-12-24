@@ -1,7 +1,7 @@
 export const getAllCategories = async (token: string) => {
     try {
         // Send a GET request to fetch all categories
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/categories/all', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/categories/all', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach authorization token for authentication

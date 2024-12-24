@@ -1,7 +1,7 @@
 export const editCategory = async (token: string, categoryId: string, name: string, color: string) => {
     try {
         // Send a PUT request to edit an existing category by its ID
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/categories/edit/${categoryId}`, {
+        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/categories/edit/${categoryId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach authorization token for request authentication

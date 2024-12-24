@@ -1,7 +1,7 @@
 export const removeCategory = async (token: string, categoryId: string) => {
     try {
         // Send a DELETE request to remove the specified category by its ID
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/categories/remove/${categoryId}`, {
+        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/categories/remove/${categoryId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}` // Attach authorization token for authentication

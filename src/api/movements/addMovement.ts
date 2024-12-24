@@ -6,7 +6,7 @@ export const addMovement = async (token: string, movementData: {
 }) => {
     try {
         // Send a POST request to add a new movement
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/movements/add', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

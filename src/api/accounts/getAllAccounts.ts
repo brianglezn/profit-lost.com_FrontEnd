@@ -2,7 +2,7 @@ import { Account, AccountRecord, AccountConfiguration } from '../../helpers/type
 
 export const getAllAccounts = async (token: string): Promise<Account[]> => {
     try {
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/accounts/all', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/accounts/all', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

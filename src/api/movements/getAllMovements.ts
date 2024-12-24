@@ -1,7 +1,7 @@
 export const getAllMovements = async (token: string) => {
     try {
         // Send a GET request to fetch all movements
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/movements/all', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/all', {
             method: 'GET', // HTTP GET method to retrieve data
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

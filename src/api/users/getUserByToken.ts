@@ -1,7 +1,7 @@
 export const getUserByToken = async (token: string) => {
     try {
         // Send a GET request to the server to fetch the user's information
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/user/me', {
+        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/user/me', {
             method: 'GET', // HTTP method GET is used to retrieve data
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach the authorization token for user identification

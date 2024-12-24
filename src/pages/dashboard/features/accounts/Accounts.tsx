@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'primereact/skeleton';
 
 import { getAllAccounts } from '../../../../api/accounts/getAllAccounts';
-import updateAccountsOrder from '../../../../api/accounts/updateAccountsOrder';
+import updateAccountsOrder from '../../../../api/users/updateAccountsOrder';
 import { getUserByToken } from '../../../../api/users/getUserByToken';
 import { formatCurrency } from '../../../../helpers/functions';
 import { Account, User } from '../../../../helpers/types';
