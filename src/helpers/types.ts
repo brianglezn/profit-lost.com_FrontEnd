@@ -9,6 +9,7 @@ export interface User {
     resetToken?: string;
     resetTokenExpiry?: string;
     language?: string;
+    currency?: string;
     profileImage?: string;
     profileImagePublicId?: string;
     accountsOrder?: string[];

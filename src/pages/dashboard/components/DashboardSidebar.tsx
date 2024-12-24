@@ -94,8 +94,9 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
               onUserUpdated={onUserUpdated}
               userName={user?.name ?? ''}
               userSurname={user?.surname ?? ''}
-              userProfileImage={user?.profileImage ?? ''}
-              userLanguage={user?.language ?? ''}
+              userProfileImage={user?.profileImage ?? null}
+              userLanguage={user?.language ?? 'en'}
+              userCurrency={user?.currency ?? 'USD'}
             />
           </Suspense>
         </div>

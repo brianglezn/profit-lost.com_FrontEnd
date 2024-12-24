@@ -87,7 +87,9 @@
                     "deleting_image": "Deleting profile image...",
                     "image_deleted_success": "Profile image deleted successfully",
                     "image_deleted_error": "Error deleting profile image",
-                    "no_image": "No image"
+                    "no_image": "No image",
+                    "preferred_currency": "Preferred Currency",
+                    "select_currency": "Select Currency"
                 },
                 "security_privacy": {
                     "title": "Security and Privacy Settings",

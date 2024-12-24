@@ -87,7 +87,9 @@
                     "deleting_image": "Eliminando imagen de perfil...",
                     "image_deleted_success": "Imagen de perfil eliminada con éxito",
                     "image_deleted_error": "Error al eliminar la imagen de perfil",
-                    "no_image": "Sin imagen"
+                    "no_image": "Sin imagen",
+                    "preferred_currency": "Moneda Preferida",
+                    "select_currency": "Selecciona una moneda"
                 },
                 "security_privacy": {
                     "title": "Configuración de seguridad y privacidad",

@@ -17,14 +17,16 @@ interface UserSettingsProps {
     userSurname: string;
     userLanguage: string;
     userProfileImage: string | null;
+    userCurrency?: string;
 }
 
-export default function UserSettings({ onUserUpdated, userName, userSurname, userLanguage, userProfileImage }: UserSettingsProps) {
-    const [language, setLanguage] = useState(userLanguage);
+export default function UserSettings({ onUserUpdated, userName, userSurname, userLanguage, userProfileImage, userCurrency }: UserSettingsProps) {
+    const [language, setLanguage] = useState(userLanguage || 'en');
     const [name, setName] = useState(userName);
     const [surname, setSurname] = useState(userSurname);
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const fileUploadRef = useRef<FileUpload>(null);
+    const [currency, setCurrency] = useState(userCurrency || 'USD');
 
     const { t } = useTranslation();
 
@@ -32,8 +34,9 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
         // Update local state whenever user props change
         setName(userName);
         setSurname(userSurname);
-        setLanguage(userLanguage);
-    }, [userName, userSurname, userLanguage]);
+        setLanguage(userLanguage || 'en');
+        setCurrency(userCurrency || 'USD');
+    }, [userName, userSurname, userLanguage, userCurrency]);
 
     // Handler for updating the name state
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
@@ -77,6 +80,7 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
         formData.append('name', name);
         formData.append('surname', surname);
         formData.append('language', language);
+        formData.append('currency', currency);
 
         if (profileImage) {
             formData.append('profileImage', profileImage);
@@ -121,6 +125,18 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                 <span>{option.name}</span>
             </div>
         );
+    };
+
+    // Currency options for dropdown con símbolos de moneda
+    const currencyOptions = [
+        { name: '$ USD', code: 'USD' },
+        { name: '€ EUR', code: 'EUR' },
+        { name: '£ GBP', code: 'GBP' }
+    ];
+
+    // Handler for changing the currency
+    const handleCurrencyChange = (e: DropdownChangeEvent) => {
+        setCurrency(e.value);
     };
 
     return (
@@ -185,6 +201,18 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                         valueTemplate={valueTemplate}
                         itemTemplate={itemTemplate}
                         className='language-dropdown'
+                    />
+                </div>
+
+                <div className='settings__section'>
+                    <label htmlFor='currency'>{t('dashboard.dashboard.user.settings.preferred_currency')}</label>
+                    <Dropdown
+                        id='currency'
+                        value={currency}
+                        options={currencyOptions.map(curr => ({ label: curr.name, value: curr.code }))}
+                        onChange={handleCurrencyChange}
+                        className='currency-dropdown'
+                        placeholder={t('dashboard.dashboard.user.settings.select_currency')}
                     />
                 </div>
 

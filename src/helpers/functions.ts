@@ -20,6 +20,16 @@ export function formatCurrency(value: number, locale: string = 'en-US'): string 
     });
 }
 
+// Function to format a currency value based on currency
+export function formatCurrency2(value: number, currency: string = 'USD'): string {
+    return value.toLocaleString(undefined, {
+        style: 'currency',
+        currency: currency,
+        minimumFractionDigits: 2,
+        useGrouping: true,
+    });
+}
+
 // Function to get the current date formatted according to the locale
 export function getCurrentDate(locale: string = 'en'): string {
     const today = new Date();
