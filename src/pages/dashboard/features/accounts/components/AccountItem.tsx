@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { formatCurrency } from '../../../../../helpers/functions';
+import { useUser } from '../../../../../context/useUser';
+
 import DragIndicatorIcon from '../../../../../components/icons/DragIndicatorIcon';
 
 import './AccountItem.scss';
@@ -29,6 +32,8 @@ export default function AccountItem({
   onDrop,
   draggable,
 }: AccountItemProps) {
+  const { user } = useUser();
+
   return (
     <div
       className='account-item'
@@ -42,7 +47,9 @@ export default function AccountItem({
       <div className='account-item__details'>
         <DragIndicatorIcon className='account-item__drag-icon' />
         <div className='account-item__name'>{accountName}</div>
-        <div className='account-item__balance'>{balance}</div>
+        <div className='account-item__balance'>
+          {formatCurrency(parseFloat(balance), user?.currency || 'USD')}
+        </div>
       </div>
     </div>
   );
