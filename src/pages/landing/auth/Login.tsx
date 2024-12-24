@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast';
 import { login as loginUser } from '../../../api/auth/login';
 import Footer from '../../../components/layout/Footer';
 import { useAuth } from '../../../context/AuthContext';
+import { useUser } from '../../../context/useUser';
 
 import './authForms.scss';
 
@@ -15,23 +16,29 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const { refreshUser } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
 
-    const { token, error } = await loginUser(identifier, password);
-    if (token) {
-      localStorage.setItem('token', token);
-      login(token);
-      toast.success("Login successful!");
-      navigate('/dashboard');
-    } else {
-      toast.error(error || "Incorrect username/email or password");
+    try {
+      const { token, error } = await loginUser(identifier, password);
+      if (token) {
+        localStorage.setItem('token', token);
+        await login(token);
+        await refreshUser();
+        toast.success("Login successful!");
+        navigate('/dashboard');
+      } else {
+        toast.error(error || "Incorrect username/email or password");
+      }
+    } catch (error) {
+      toast.error("An error occurred during login");
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (

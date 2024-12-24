@@ -26,13 +26,13 @@ export default function Dashboard() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { user, refreshUser, loading } = useUser();
-  const { logout: authLogout } = useAuth();
+  const { logout: authLogout, authToken } = useAuth();
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loading && (!user || !authToken)) {
       navigate('/login');
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, authToken, navigate]);
 
   useEffect(() => {
     if (!loading && user?.language) {
@@ -104,7 +104,7 @@ export default function Dashboard() {
     );
   }
 
-  if (!user) return null;
+  if (!user || !authToken) return null;
 
   const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
 

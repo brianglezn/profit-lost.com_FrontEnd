@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
 import { UserProvider } from './context/UserContext';
+import { useUser } from './context/useUser';
 import './i18n';
 
 const Home = React.lazy(() => import('./pages/landing/home/Home'));
@@ -25,7 +26,17 @@ function App() {
 
   const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
     const { authToken } = useAuth();
-    return authToken ? <>{children}</> : <Navigate to='/login' />;
+    const { user, loading } = useUser();
+
+    if (loading) {
+      return (
+        <div className='loading-container'>
+          <img src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL.svg" alt="logo" />
+        </div>
+      );
+    }
+
+    return (authToken && user) ? <>{children}</> : <Navigate to='/login' />;
   };
 
   return (
