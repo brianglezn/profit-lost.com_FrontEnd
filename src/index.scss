@@ -86,6 +86,30 @@ body {
     }
   }
 
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+    img {
+      width: 150px;
+      animation: scale 1s infinite;
+    }
+  
+    @keyframes scale {
+  
+      0%,
+      100% {
+        transform: scale(1);
+      }
+  
+      50% {
+        transform: scale(1.2);
+      }
+    }
+  }
+
   .p-password.auth-input {
     min-width: 70%;
     background-color: $bg-color;

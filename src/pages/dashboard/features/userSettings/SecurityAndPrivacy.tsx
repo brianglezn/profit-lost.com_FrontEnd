@@ -7,12 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { changePassword } from '../../../../api/users/changePassword';
-import { getUserByToken } from '../../../../api/users/getUserByToken';
 import { deleteAccount } from '../../../../api/users/deleteAccount';
+import { useUser } from '../../../../context/useUser';
 
 import './SecurityAndPrivacy.scss';
 
 export default function SecurityAndPrivacy() {
+    const { user, refreshUser } = useUser();
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,20 +26,10 @@ export default function SecurityAndPrivacy() {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        // Fetch user data to set username for confirmation purposes
-        const fetchUser = async () => {
-            if (token) {
-                try {
-                    const user = await getUserByToken(token);
-                    setUsername(user.username);
-                } catch (error) {
-                    console.error(t('dashboard.dashboard.user.security_privacy.error_fetch_user'));
-                }
-            }
-        };
-
-        fetchUser();
-    }, [token, t]);
+        if (user) {
+            setUsername(user.username);
+        }
+    }, [user]);
 
     // Show the delete account confirmation form
     const handleShowDeleteConfirmation = () => {
@@ -55,6 +46,7 @@ export default function SecurityAndPrivacy() {
         try {
             if (token) {
                 await deleteAccount(token);
+                await refreshUser();
                 toast.success(t('dashboard.dashboard.user.security_privacy.delete_account_success'), { duration: 3000 });
                 localStorage.removeItem('token');
                 navigate('/');
@@ -74,8 +66,8 @@ export default function SecurityAndPrivacy() {
 
         try {
             const data = await changePassword(currentPassword, newPassword);
+            await refreshUser();
             toast.success(data.message || t('dashboard.dashboard.user.security_privacy.password_changed_success'), { duration: 3000 });
-            // Clear password fields after successful password change
             setCurrentPassword('');
             setNewPassword('');
             setConfirmPassword('');
