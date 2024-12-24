@@ -6,37 +6,30 @@ import { InputText } from 'primereact/inputtext';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
+import { useUser } from '../../../../context/useUser';
 import { deleteProfileImage } from '../../../../api/users/deleteProfileImage';
 import { updateProfile } from '../../../../api/users/updateProfile';
 
 import './UserSettings.scss';
 
-interface UserSettingsProps {
-    onUserUpdated: () => void;
-    userName: string;
-    userSurname: string;
-    userLanguage: string;
-    userProfileImage: string | null;
-    userCurrency?: string;
-}
-
-export default function UserSettings({ onUserUpdated, userName, userSurname, userLanguage, userProfileImage, userCurrency }: UserSettingsProps) {
-    const [language, setLanguage] = useState(userLanguage || 'en');
-    const [name, setName] = useState(userName);
-    const [surname, setSurname] = useState(userSurname);
+export default function UserSettings() {
+    const { t } = useTranslation();
+    const { user, refreshUser } = useUser();
+    
+    const [language, setLanguage] = useState(user?.language || 'en');
+    const [name, setName] = useState(user?.name || '');
+    const [surname, setSurname] = useState(user?.surname || '');
+    const [currency, setCurrency] = useState(user?.currency || 'USD');
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const fileUploadRef = useRef<FileUpload>(null);
-    const [currency, setCurrency] = useState(userCurrency || 'USD');
-
-    const { t } = useTranslation();
 
     useEffect(() => {
         // Update local state whenever user props change
-        setName(userName);
-        setSurname(userSurname);
-        setLanguage(userLanguage || 'en');
-        setCurrency(userCurrency || 'USD');
-    }, [userName, userSurname, userLanguage, userCurrency]);
+        setName(user?.name || '');
+        setSurname(user?.surname || '');
+        setLanguage(user?.language || 'en');
+        setCurrency(user?.currency || 'USD');
+    }, [user]);
 
     // Handler for updating the name state
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
@@ -67,7 +60,7 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
             await deleteProfileImage();
             toast.dismiss();
             toast.success(t('dashboard.dashboard.user.settings.image_deleted_success'));
-            onUserUpdated();
+            await refreshUser();
         } catch (error) {
             toast.dismiss();
             toast.error(t('dashboard.dashboard.user.settings.image_deleted_error'));
@@ -92,7 +85,7 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
             await updateProfile(formData);
             toast.dismiss();
             toast.success(t('dashboard.dashboard.user.settings.update_success'));
-            onUserUpdated();
+            await refreshUser();
         } catch (error) {
             toast.dismiss();
             toast.error(t('dashboard.dashboard.user.settings.update_error'));
@@ -147,8 +140,8 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                     <div className='profile-picture'>
                         {profileImage ? (
                             <img src={URL.createObjectURL(profileImage)} alt='Profile' className='profile-picture__img' />
-                        ) : userProfileImage ? (
-                            <img src={userProfileImage} alt='Current Profile' className='profile-picture__img' />
+                        ) : user?.profileImage ? (
+                            <img src={user.profileImage} alt='Current Profile' className='profile-picture__img' />
                         ) : (
                             <div className='profile-picture__placeholder'>{t('dashboard.dashboard.user.settings.no_image')}</div>
                         )}
@@ -164,7 +157,7 @@ export default function UserSettings({ onUserUpdated, userName, userSurname, use
                         chooseLabel={t('dashboard.dashboard.user.settings.change_image')}
                         className='p-fileupload-custom'
                     />
-                    {userProfileImage && (
+                    {user?.profileImage && (
                         <Button
                             label={t('dashboard.dashboard.user.settings.delete_image')}
                             onClick={handleDeleteProfileImage}

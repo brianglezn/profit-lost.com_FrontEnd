@@ -35,7 +35,6 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
   user,
   handleSidebarSectionChange,
   handleLogout,
-  onUserUpdated,
 }) => {
   const { t } = useTranslation();
 
@@ -90,14 +89,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         <div className='profile__header-content2'>
           <ArrowBackIcon className='back-btn' onClick={() => handleSidebarSectionChange('profile')} />
           <Suspense fallback={<ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth='3' className='custom-spinner' />}>
-            <UserSettings
-              onUserUpdated={onUserUpdated}
-              userName={user?.name ?? ''}
-              userSurname={user?.surname ?? ''}
-              userProfileImage={user?.profileImage ?? null}
-              userLanguage={user?.language ?? 'en'}
-              userCurrency={user?.currency ?? 'USD'}
-            />
+            <UserSettings />
           </Suspense>
         </div>
       )}
