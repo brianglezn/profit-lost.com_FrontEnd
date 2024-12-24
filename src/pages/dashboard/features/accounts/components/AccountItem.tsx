@@ -9,7 +9,7 @@ import './AccountItem.scss';
 
 interface AccountItemProps {
   accountName: string;
-  balance: string;
+  balance: number;
   customBackgroundColor: string;
   customColor: string;
   onClick: (accountId: string) => void;
@@ -50,7 +50,7 @@ export default function AccountItem({
         <DragIndicatorIcon className='account-item__drag-icon' />
         <div className='account-item__name'>{accountName}</div>
         <div className='account-item__balance'>
-          {formatCurrency(parseFloat(balance), user?.currency || 'USD')}
+          {formatCurrency(balance, user?.currency || 'USD')}
         </div>
       </div>
     </div>

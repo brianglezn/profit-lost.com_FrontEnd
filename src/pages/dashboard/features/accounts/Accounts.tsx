@@ -239,9 +239,9 @@ export default function Accounts() {
                 <AccountItem
                   key={account._id}
                   accountName={account.accountName}
-                  balance={`${formatCurrency(account.records
+                  balance={account.records
                     .filter((record) => record.year === parseInt(year) && record.month === currentMonthName)
-                    .reduce((sum, record) => sum + record.value, 0), userCurrency)}`}
+                    .reduce((sum, record) => sum + record.value, 0)}
                   customBackgroundColor={account.configuration.backgroundColor}
                   customColor={account.configuration.color}
                   accountId={account._id}
@@ -271,9 +271,9 @@ export default function Accounts() {
                     <AccountItem
                       key={account._id}
                       accountName={account.accountName}
-                      balance={`${formatCurrency(account.records
+                      balance={account.records
                         .filter((record) => record.year === parseInt(year) && record.month === currentMonthName)
-                        .reduce((sum, record) => sum + record.value, 0), userCurrency)}`}
+                        .reduce((sum, record) => sum + record.value, 0)}
                       customBackgroundColor={account.configuration.backgroundColor}
                       customColor={account.configuration.color}
                       accountId={account._id}
