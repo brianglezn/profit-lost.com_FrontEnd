@@ -10,7 +10,7 @@ import { Skeleton } from 'primereact/skeleton';
 import { getAllAccounts } from '../../../../api/accounts/getAllAccounts';
 import updateAccountsOrder from '../../../../api/accounts/updateAccountsOrder';
 import { getUserByToken } from '../../../../api/users/getUserByToken';
-import { formatCurrency } from '../../../../helpers/functions';
+import { formatCurrency2 } from '../../../../helpers/functions';
 import { Account, User } from '../../../../helpers/types';
 
 import AccountItem from './components/AccountItem';
@@ -55,6 +55,7 @@ export default function Accounts() {
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
   const [draggedAccountId, setDraggedAccountId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [userCurrency, setUserCurrency] = useState<string>('USD');
 
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);
@@ -67,6 +68,8 @@ export default function Accounts() {
     try {
       const allAccountsData = await getAllAccounts(token);
       const user: User = await getUserByToken(token);
+      
+      setUserCurrency(user.currency || 'USD');
 
       let orderedAccounts: Account[] = [];
       let unOrderedAccounts: Account[] = [];
@@ -122,11 +125,11 @@ export default function Accounts() {
         return acc;
       }, 0);
 
-      monthData.name += `: ${formatCurrency(totalForMonth, i18n.language)}`;
+      monthData.name += `: ${formatCurrency2(totalForMonth, userCurrency)}`;
 
       return monthData;
     });
-  }, [dataAccounts, year, i18n.language, t]);
+  }, [dataAccounts, year, i18n.language, t, userCurrency]);
 
   const isChartDataEmpty = useMemo(() => {
     return chartData.every(data => Object.keys(data).length === 1);
@@ -170,7 +173,7 @@ export default function Accounts() {
         <AccountItem
           key={account._id}
           accountName={account.accountName}
-          balance={`${formatCurrency(balanceForMonth, i18n.language)}`}
+          balance={`${formatCurrency2(balanceForMonth, userCurrency)}`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
           accountId={account._id}
@@ -182,7 +185,7 @@ export default function Accounts() {
         />
       );
     });
-  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId, i18n.language]);
+  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId, userCurrency]);
 
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
