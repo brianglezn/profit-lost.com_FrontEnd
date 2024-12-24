@@ -56,6 +56,14 @@ export default function Accounts() {
   const [draggedAccountId, setDraggedAccountId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userCurrency, setUserCurrency] = useState<string>('USD');
+  const [showInactiveAccounts, setShowInactiveAccounts] = useState(false);
+
+  const { activeAccounts, inactiveAccounts } = useMemo(() => {
+    return {
+      activeAccounts: dataAccounts.filter(account => account.configuration.isActive !== false),
+      inactiveAccounts: dataAccounts.filter(account => account.configuration.isActive === false)
+    };
+  }, [dataAccounts]);
 
   const fetchAllData = useCallback(async () => {
     setIsLoading(true);
@@ -108,7 +116,7 @@ export default function Accounts() {
         name: i18n.language === 'es' ? t(`dashboard.common.months.${month.value.toLowerCase()}`) : month.name
       };
 
-      dataAccounts.forEach((account: Account) => {
+      activeAccounts.forEach((account: Account) => {
         const totalForMonthAndAccount = account.records
           .filter((record) => record.year === parseInt(year) && record.month === month.value)
           .reduce((sum, { value }) => sum + value, 0);
@@ -129,7 +137,7 @@ export default function Accounts() {
 
       return monthData;
     });
-  }, [dataAccounts, year, i18n.language, t, userCurrency]);
+  }, [activeAccounts, year, i18n.language, t, userCurrency]);
 
   const isChartDataEmpty = useMemo(() => {
     return chartData.every(data => Object.keys(data).length === 1);
@@ -141,51 +149,19 @@ export default function Accounts() {
     setEditSidebarOpen(true);
   }, [dataAccounts]);
 
-  const accountItems = useMemo(() => {
-    return dataAccounts.map((account: Account) => {
-      const balanceForMonth = account.records
-        .filter((record) => record.year === parseInt(year) && record.month === currentMonthName)
-        .reduce((sum, record) => sum + record.value, 0);
+  const handleDrop = async (event: React.DragEvent<HTMLDivElement>, accountId: string) => {
+    event.preventDefault();
+    if (draggedAccountId !== null && draggedAccountId !== accountId) {
+      const draggedAccountIndex = dataAccounts.findIndex(acc => acc._id === draggedAccountId);
+      const targetAccountIndex = dataAccounts.findIndex(acc => acc._id === accountId);
+      const updatedAccounts = [...dataAccounts];
+      const [draggedAccount] = updatedAccounts.splice(draggedAccountIndex, 1);
+      updatedAccounts.splice(targetAccountIndex, 0, draggedAccount);
+      setDataAccounts(updatedAccounts);
 
-      const handleDragStart = () => {
-        setDraggedAccountId(account._id);
-      };
-
-      const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-      };
-
-      const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        if (draggedAccountId !== null && draggedAccountId !== account._id) {
-          const draggedAccountIndex = dataAccounts.findIndex(acc => acc._id === draggedAccountId);
-          const targetAccountIndex = dataAccounts.findIndex(acc => acc._id === account._id);
-          const updatedAccounts = [...dataAccounts];
-          const [draggedAccount] = updatedAccounts.splice(draggedAccountIndex, 1);
-          updatedAccounts.splice(targetAccountIndex, 0, draggedAccount);
-          setDataAccounts(updatedAccounts);
-
-          await updateAccountsOrder(updatedAccounts.map(acc => acc._id));
-        }
-      };
-
-      return (
-        <AccountItem
-          key={account._id}
-          accountName={account.accountName}
-          balance={`${formatCurrency(balanceForMonth, userCurrency)}`}
-          customBackgroundColor={account.configuration.backgroundColor}
-          customColor={account.configuration.color}
-          accountId={account._id}
-          onClick={handleOpenEditSidebar}
-          draggable
-          onDragStart={handleDragStart}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-        />
-      );
-    });
-  }, [dataAccounts, year, currentMonthName, handleOpenEditSidebar, draggedAccountId, userCurrency]);
+      await updateAccountsOrder(updatedAccounts.map(acc => acc._id));
+    }
+  };
 
   const handleOpenAddSidebar = () => setAddSidebarOpen(true);
   const handleCloseAddSidebar = () => setAddSidebarOpen(false);
@@ -253,12 +229,61 @@ export default function Accounts() {
               <FormAccountsAdd onAccountAdded={() => { fetchAllData(); handleCloseAddSidebar(); }} />
             </Sidebar>
           </div>
-          {isLoading || dataAccounts.length === 0 ? (
+          {isLoading || activeAccounts.length === 0 ? (
             <div className='accounts__container-progress'>
               <ProgressBar mode='indeterminate' style={{ height: '6px' }} />
             </div>
           ) : (
-            <div className='accounts__container-items'>{accountItems}</div>
+            <div className='accounts__container-items'>
+              {activeAccounts.map((account) => (
+                <AccountItem
+                  key={account._id}
+                  accountName={account.accountName}
+                  balance={`${formatCurrency(account.records
+                    .filter((record) => record.year === parseInt(year) && record.month === currentMonthName)
+                    .reduce((sum, record) => sum + record.value, 0), userCurrency)}`}
+                  customBackgroundColor={account.configuration.backgroundColor}
+                  customColor={account.configuration.color}
+                  accountId={account._id}
+                  onClick={handleOpenEditSidebar}
+                  draggable
+                  onDragStart={() => setDraggedAccountId(account._id)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => handleDrop(e, account._id)}
+                  isInactive={false}
+                />
+              ))}
+            </div>
+          )}
+
+          {inactiveAccounts.length > 0 && (
+            <div className='accounts__inactive'>
+              <div 
+                className={`accounts__inactive-header ${showInactiveAccounts ? 'open' : ''}`}
+                onClick={() => setShowInactiveAccounts(!showInactiveAccounts)}
+              >
+                <span>{t('dashboard.accounts.inactive_accounts')} ({inactiveAccounts.length})</span>
+              </div>
+              
+              {showInactiveAccounts && (
+                <div className='accounts__inactive-items'>
+                  {inactiveAccounts.map((account) => (
+                    <AccountItem
+                      key={account._id}
+                      accountName={account.accountName}
+                      balance={`${formatCurrency(account.records
+                        .filter((record) => record.year === parseInt(year) && record.month === currentMonthName)
+                        .reduce((sum, record) => sum + record.value, 0), userCurrency)}`}
+                      customBackgroundColor={account.configuration.backgroundColor}
+                      customColor={account.configuration.color}
+                      accountId={account._id}
+                      onClick={handleOpenEditSidebar}
+                      isInactive={true}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
           )}
         </div>
       </section>

@@ -252,6 +252,10 @@
                 "success_message": "Account successfully updated",
                 "error_message": "Error editing account",
                 "remove_success": "The account was successfully removed"
+            },
+            "inactive_accounts": "Inactive accounts",
+            "form": {
+                "active_account": "Active account"
             }
         },
         "notes": {

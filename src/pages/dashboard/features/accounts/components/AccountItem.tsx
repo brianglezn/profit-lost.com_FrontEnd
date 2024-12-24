@@ -14,10 +14,11 @@ interface AccountItemProps {
   customColor: string;
   onClick: (accountId: string) => void;
   accountId: string;
-  onDragStart: (event: React.DragEvent<HTMLDivElement>) => void;
-  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
-  onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
-  draggable: boolean;
+  onDragStart?: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDragOver?: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDrop?: (event: React.DragEvent<HTMLDivElement>) => void;
+  draggable?: boolean;
+  isInactive: boolean;
 }
 
 export default function AccountItem({
@@ -31,12 +32,13 @@ export default function AccountItem({
   onDragOver,
   onDrop,
   draggable,
+  isInactive
 }: AccountItemProps) {
   const { user } = useUser();
 
   return (
     <div
-      className='account-item'
+      className={`account-item ${isInactive ? 'account-item--inactive' : ''}`}
       style={{ backgroundColor: customBackgroundColor, color: customColor }}
       onClick={() => onClick(accountId)}
       draggable={draggable}

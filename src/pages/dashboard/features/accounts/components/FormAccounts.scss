@@ -109,4 +109,58 @@
         }
     }
 
+    .form-field {
+        width: 90%;
+        padding: 1rem 1.5rem;
+        border-radius: .8rem;
+        background-color: $bg-color-sec;
+        box-shadow: $shadow_color 0px 1px 4px;
+
+        .switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+
+            input {
+                display: none;
+
+                &:checked + .slider {
+                    background-color: $primary_color;
+                    
+                    &:before {
+                        transform: translateX(20px);
+                    }
+                }
+            }
+
+            .slider {
+                position: relative;
+                display: inline-block;
+                width: 44px;
+                height: 24px;
+                background-color: #ccc;
+                border-radius: 12px;
+                transition: .2s;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    height: 20px;
+                    width: 20px;
+                    left: 2px;
+                    bottom: 2px;
+                    background-color: white;
+                    border-radius: 50%;
+                    transition: .2s;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .form-field {
+            width: 95%;
+        }
+    }
 }

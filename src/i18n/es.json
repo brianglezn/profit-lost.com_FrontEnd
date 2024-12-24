@@ -252,6 +252,10 @@
                 "success_message": "Cuenta actualizada correctamente",
                 "error_message": "Error al editar la cuenta",
                 "remove_success": "La cuenta se ha eliminado correctamente"
+            },
+            "inactive_accounts": "Cuentas inactivas",
+            "form": {
+                "active_account": "Cuenta activa"
             }
         },
         "notes": {

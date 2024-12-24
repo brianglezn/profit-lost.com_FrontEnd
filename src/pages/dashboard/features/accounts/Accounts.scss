@@ -112,4 +112,49 @@
       }
     }
   }
+
+  &__inactive {
+    margin-top: 1rem;
+    padding: 0 2rem;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      span {
+        font-size: 0.875rem;
+        font-weight: bold;
+      }
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      padding-bottom: 1rem;
+      animation: fadeInOpacity 0.6s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0 1rem;
+    }
+  }
+}
+
+.account-item {
+  &--inactive {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 }

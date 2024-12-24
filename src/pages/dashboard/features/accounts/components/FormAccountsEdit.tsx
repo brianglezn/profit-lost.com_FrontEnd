@@ -27,6 +27,7 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
     const [year, setYear] = useState<number>(new Date().getFullYear());
     const [uniqueYears, setUniqueYears] = useState<number[]>([]);
     const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
+    const [isActive, setIsActive] = useState<boolean>(account.configuration.isActive !== false);
 
     const { t, i18n } = useTranslation();
 
@@ -127,7 +128,11 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
                 _id: account._id,
                 accountName,
                 records: updatedRecords,
-                configuration: { backgroundColor, color: fontColor },
+                configuration: {
+                    backgroundColor,
+                    color: fontColor,
+                    isActive
+                },
             });
             toast.success(t('dashboard.accounts.form_accounts_edit.success_message'));
             onClose();
@@ -197,6 +202,17 @@ export default function FormAccountsEdit({ account, onUpdate, onClose, onRemove 
                     <ColorPicker value={backgroundColor} onChange={handleBackgroundColorChange} />
                     <p>{t('dashboard.accounts.form_accounts_edit.font')}</p>
                     <ColorPicker value={fontColor} onChange={handleFontColorChange} />
+                </div>
+                <div className='form-field'>
+                    <label className='switch'>
+                        <span>{t('dashboard.accounts.form.active_account')}</span>
+                        <input
+                            type='checkbox'
+                            checked={isActive}
+                            onChange={(e) => setIsActive(e.target.checked)}
+                        />
+                        <span className='slider'></span>
+                    </label>
                 </div>
                 <div className='formAccount-buttons'>
                     <button type='button' className='custom-btn-sec' onClick={handleRemoveAccount}>

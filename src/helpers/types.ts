@@ -49,6 +49,7 @@ export interface AccountRecord {
 export interface AccountConfiguration {
     backgroundColor: string;
     color: string;
+    isActive: boolean;
 }
 
 // Notes
