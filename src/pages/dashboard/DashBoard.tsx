@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,6 @@ import NotesIcon from '../../components/icons/NotesIcon';
 import './Dashboard.scss';
 
 export default function Dashboard() {
-  console.log('🏁 Dashboard Renderizado');
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState('Dashboard');
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -30,19 +29,17 @@ export default function Dashboard() {
   const { logout: authLogout } = useAuth();
 
   useEffect(() => {
-    console.log('👀 Dashboard useEffect - Auth Check:', { loading, hasUser: !!user });
-    if (!loading) {
-      if (!user) {
-        console.log('🚪 Redirigiendo a login');
-        navigate('/login');
-      } else if (user.language) {
-        console.log('🌍 Cambiando idioma a:', user.language);
-        i18n.changeLanguage(user.language);
-      }
+    if (!loading && !user) {
+      navigate('/login');
     }
   }, [user, loading, navigate]);
 
-  // Set the active section based on URL parameters
+  useEffect(() => {
+    if (!loading && user?.language) {
+      i18n.changeLanguage(user.language);
+    }
+  }, [user?.language, loading]);
+
   useEffect(() => {
     const section = searchParams.get('section');
     if (section) {
@@ -50,38 +47,37 @@ export default function Dashboard() {
     }
   }, [searchParams]);
 
-  // Scroll handler
-  useEffect(() => {
-    const handleScroll = () => {
-      const headerContainer = document.querySelector('.dashboard__header-container');
-      if (headerContainer) {
-        headerContainer.classList.toggle('scrolled', window.scrollY > 0);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  const handleScroll = useCallback(() => {
+    const headerContainer = document.querySelector('.dashboard__header-container');
+    if (headerContainer) {
+      headerContainer.classList.toggle('scrolled', window.scrollY > 0);
+    }
   }, []);
 
-  const handleMenuItemClick = (sectionName: string) => {
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  const handleMenuItemClick = useCallback((sectionName: string) => {
     setActiveSection(sectionName);
     setSearchParams(sectionName === 'Dashboard' ? {} : { section: sectionName });
     window.scrollTo(0, 0);
-  };
+  }, [setSearchParams]);
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     toast.success(t('dashboard.dashboard.sidebar.profile.logout'), { duration: 3000 });
     setTimeout(() => {
       authLogout();
       navigate('/login');
     }, 1000);
-  };
+  }, [t, authLogout, navigate]);
 
-  const handleSidebarSectionChange = (section: 'profile' | 'settings' | 'security' | 'help' | 'about') => {
+  const handleSidebarSectionChange = useCallback((section: 'profile' | 'settings' | 'security' | 'help' | 'about') => {
     setActiveSidebarSection(section);
-  };
+  }, []);
 
-  const menuItems = [
+  const menuItems = useMemo(() => [
     {
       label: t('dashboard.dashboard.sections.accounts'),
       icon: <CreditCardIcon />,
@@ -92,7 +88,13 @@ export default function Dashboard() {
       icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
     }
-  ];
+  ], [t, handleMenuItemClick]);
+
+  const handleAvatarClick = useCallback(() => setSidebarVisible(true), []);
+  const handleSidebarHide = useCallback(() => {
+    setSidebarVisible(false);
+    setActiveSidebarSection('profile');
+  }, []);
 
   if (loading) {
     return (
@@ -102,20 +104,15 @@ export default function Dashboard() {
     );
   }
 
-  if (!user) {
-    console.log('⚠️ No hay usuario, retornando null');
-    return null;
-  }
+  if (!user) return null;
 
-  // Get the current date formatted based on the user's language
   const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
 
-  console.log('✨ Renderizando Dashboard completo');
   return (
     <>
       <div className='dashboard'>
         <DashboardHeader
-          onAvatarClick={() => setSidebarVisible(true)}
+          onAvatarClick={handleAvatarClick}
           currentDate={currentDate}
           userImage={user.profileImage}
           userName={user.name}
@@ -132,10 +129,7 @@ export default function Dashboard() {
 
       <DashboardSidebar
         visible={sidebarVisible}
-        onHide={() => {
-          setSidebarVisible(false);
-          setActiveSidebarSection('profile');
-        }}
+        onHide={handleSidebarHide}
         activeSection={activeSidebarSection}
         user={user}
         handleSidebarSectionChange={handleSidebarSectionChange}
