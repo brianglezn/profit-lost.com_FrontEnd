@@ -21,7 +21,12 @@
         border-radius: 1rem;
         background-color: $bg-color-sec;
         box-shadow: $shadow_color 0px 1px 4px;
-        transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        transition: all 0.3s ease;
+
+        &.scrolled {
+            background-color: rgba(255, 255, 255, 0.11);
+            backdrop-filter: blur(10px);
+        }
 
         svg {
             fill: $primary_color;
@@ -67,17 +72,10 @@
         width: 100%;
         padding: 1rem;
 
-        .dashboard__header {
-            padding: 0 1rem;
-            margin-top: .8rem;
-            left: 0;
-            width: 100%;
-
-            .dashboard__header-container {
-                &.scrolled {
-                    background-color: rgba(255, 255, 255, 0.253);
-                    backdrop-filter: blur(.8rem);
-                }
+        .dashboard__header-container {
+            &.scrolled {
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(8px);
             }
         }
     }

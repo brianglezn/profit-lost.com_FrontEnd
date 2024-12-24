@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Avatar } from 'primereact/avatar';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,18 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 }) => {
     const { t } = useTranslation();
 
+    const handleScroll = useCallback(() => {
+        const headerContainer = document.querySelector('.dashboard__header-container');
+        if (headerContainer) {
+            headerContainer.classList.toggle('scrolled', window.scrollY > 0);
+        }
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [handleScroll]);
+
     const wakeUpBackend = async () => {
         toast.promise(
             fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/ping'),
@@ -31,16 +43,11 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                 error: t('dashboard.dashboard.messages.reconnect_error'),
             },
             {
-                success: {
-                    duration: 2000,
-                },
-                error: {
-                    duration: 2000,
-                }
+                success: { duration: 2000 },
+                error: { duration: 2000 }
             }
         );
     };
-
 
     return (
         <div className='dashboard__header'>
@@ -55,7 +62,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                     className='dashboard__header-avatar'
                 />
             </header>
-        </div >
+        </div>
     );
 };
 

@@ -47,18 +47,6 @@ export default function Dashboard() {
     }
   }, [searchParams]);
 
-  const handleScroll = useCallback(() => {
-    const headerContainer = document.querySelector('.dashboard__header-container');
-    if (headerContainer) {
-      headerContainer.classList.toggle('scrolled', window.scrollY > 0);
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
   const handleMenuItemClick = useCallback((sectionName: string) => {
     setActiveSection(sectionName);
     setSearchParams(sectionName === 'Dashboard' ? {} : { section: sectionName });
