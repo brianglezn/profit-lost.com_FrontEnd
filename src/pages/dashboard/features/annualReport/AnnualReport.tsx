@@ -6,9 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import { getAllMovements } from '../../../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../../../api/movements/getMovementsByYear';
-import { getUserByToken } from '../../../../api/users/getUserByToken';
 import { formatCurrency } from '../../../../helpers/functions';
-import { Movements, User } from '../../../../helpers/types';
+import { Movements } from '../../../../helpers/types';
 
 import AnnualChart from './components/AnnualChart';
 import AnnualCategories from './components/AnnualCategories';
@@ -18,6 +17,7 @@ import UploadIcon from '../../../../components/icons/UploadIcon';
 import PigCoinIcon from '../../../../components/icons/PigCoinIcon';
 
 import './AnnualReport.scss';
+import { useUser } from '../../../../context/useUser';
 
 interface BalanceDisplayProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -26,6 +26,7 @@ interface BalanceDisplayProps {
 }
 
 export default function AnnualReport() {
+  const { user } = useUser();
   const currentYear = new Date().getFullYear().toString();
   const [year, setYear] = useState(currentYear);
   const [yearsWithData, setYearsWithData] = useState<string[]>([]);
@@ -33,7 +34,6 @@ export default function AnnualReport() {
   const [balanceExpenses, setBalanceExpenses] = useState(0);
   const [open, setOpen] = useState(false);
   const [reloadFlag, setReloadFlag] = useState(false);
-  const [userCurrency, setUserCurrency] = useState<string>('USD');
 
   const { t } = useTranslation();
 
@@ -46,9 +46,6 @@ export default function AnnualReport() {
 
     try {
       const dataMovements: Movements[] = await getAllMovements(token);
-      const user: User = await getUserByToken(token);
-      setUserCurrency(user.currency || 'USD');
-      
       const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
@@ -89,9 +86,9 @@ export default function AnnualReport() {
     fetchData();
   }, [year]);
 
-  const formattedBalanceIncome = formatCurrency(balanceIncome, userCurrency);
-  const formattedBalanceExpenses = formatCurrency(balanceExpenses, userCurrency);
-  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses, userCurrency);
+  const formattedBalanceIncome = formatCurrency(balanceIncome, user?.currency || 'USD');
+  const formattedBalanceExpenses = formatCurrency(balanceExpenses, user?.currency || 'USD');
+  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses, user?.currency || 'USD');
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);

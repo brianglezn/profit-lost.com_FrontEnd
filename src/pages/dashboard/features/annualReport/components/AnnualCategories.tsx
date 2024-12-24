@@ -4,12 +4,12 @@ import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { useUser } from '../../../../../context/useUser';
 
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
-import { getUserByToken } from '../../../../../api/users/getUserByToken';
 import { formatCurrency } from '../../../../../helpers/functions';
-import { Category, Movements, User } from '../../../../../helpers/types';
+import { Category, Movements } from '../../../../../helpers/types';
 
 import FormCategoryEdit from './FormCategoryEdit';
 import AnnualCategoriesSkeleton from './AnnualCategoriesSkeleton';
@@ -29,13 +29,13 @@ interface AnnualCategoriesProps {
 }
 
 export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesProps) {
+    const { user } = useUser();
     const [categories, setCategories] = useState<CategoryBalance[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('name_asc');
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
-    const [userCurrency, setUserCurrency] = useState<string>('USD');
 
     const { t } = useTranslation();
 
@@ -52,10 +52,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
         try {
             const categoriesData: Category[] = await getAllCategories(token);
             const movementsData: Movements[] = await getMovementsByYear(token, year);
-            const user: User = await getUserByToken(token);
             
-            setUserCurrency(user.currency || 'USD');
-
             // Calculate the balance for each category
             const categoryBalances = categoriesData.map(category => {
                 const balance = movementsData.reduce((acc, movement) => {
@@ -159,7 +156,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                             </div>
                             <div className='category-name'>{category.Category}</div>
                             <div className={`category-balance ${category.Balance >= 0 ? 'positive' : 'negative'}`}>
-                                {formatCurrency(category.Balance, userCurrency)}
+                                {formatCurrency(category.Balance, user?.currency || 'USD')}
                             </div>
                         </div>
                     ))}
