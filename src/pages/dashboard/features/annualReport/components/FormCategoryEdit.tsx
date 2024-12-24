@@ -8,8 +8,9 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { editCategory } from '../../../../../api/categories/editCategory';
 import { removeCategory } from '../../../../../api/categories/removeCategory';
 import { getAllMovements } from '../../../../../api/movements/getAllMovements';
-import { formatCurrency, formatDateTime } from '../../../../../helpers/functions';
-import { Movements } from '../../../../../helpers/types';
+import { getUserByToken } from '../../../../../api/users/getUserByToken';
+import { formatCurrency2, formatDateTime } from '../../../../../helpers/functions';
+import { Movements, User } from '../../../../../helpers/types';
 
 import './FormCategory.scss';
 
@@ -26,6 +27,7 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     const [name, setName] = useState(categoryName);
     const [color, setColor] = useState(categoryColor);
     const [movementsByYear, setMovementsByYear] = useState<{ [key: string]: Movements[] }>({});
+    const [userCurrency, setUserCurrency] = useState<string>('USD');
 
     const { t, i18n } = useTranslation();
 
@@ -39,7 +41,10 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
             }
 
             try {
-                const movements: Movements[] = await getAllMovements(token); // Fetch all movements
+                const movements: Movements[] = await getAllMovements(token);
+                const user: User = await getUserByToken(token);
+                setUserCurrency(user.currency || 'USD');
+                
                 // Filter movements to only include those for the given category
                 const filteredMovements = movements.filter((movement) => movement.category === categoryName);
 
@@ -156,10 +161,14 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                                                 .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                                                 .map((movement) => (
                                                     <li key={movement._id} className='movementsByCategory-item'>
-                                                        <span className='movementsByCategory-date'>{formatDateTime(movement.date, i18n.language)}</span>
-                                                        <span className='movementsByCategory-description'>{movement.description}</span>
+                                                        <span className='movementsByCategory-date'>
+                                                            {formatDateTime(movement.date, i18n.language)}
+                                                        </span>
+                                                        <span className='movementsByCategory-description'>
+                                                            {movement.description}
+                                                        </span>
                                                         <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                            {formatCurrency(movement.amount, i18n.language)}
+                                                            {formatCurrency2(movement.amount, userCurrency)}
                                                         </span>
                                                     </li>
                                                 ))}

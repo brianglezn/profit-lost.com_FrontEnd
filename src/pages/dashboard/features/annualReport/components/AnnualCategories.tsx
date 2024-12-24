@@ -7,8 +7,9 @@ import { useTranslation } from 'react-i18next';
 
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
-import { formatCurrency } from '../../../../../helpers/functions';
-import { Category, Movements } from '../../../../../helpers/types';
+import { getUserByToken } from '../../../../../api/users/getUserByToken';
+import { formatCurrency2 } from '../../../../../helpers/functions';
+import { Category, Movements, User } from '../../../../../helpers/types';
 
 import FormCategoryEdit from './FormCategoryEdit';
 import AnnualCategoriesSkeleton from './AnnualCategoriesSkeleton';
@@ -34,8 +35,9 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
     const [sortOption, setSortOption] = useState<string>('name_asc');
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [categoryToEdit, setCategoryToEdit] = useState<CategoryBalance | null>(null);
+    const [userCurrency, setUserCurrency] = useState<string>('USD');
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     // Function to fetch data and calculate the category balances
     const fetchDataAndCalculateBalances = useCallback(async () => {
@@ -48,14 +50,17 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
         }
 
         try {
-            const categoriesData: Category[] = await getAllCategories(token); // Fetch all categories
-            const movementsData: Movements[] = await getMovementsByYear(token, year); // Fetch all movements for the year
+            const categoriesData: Category[] = await getAllCategories(token);
+            const movementsData: Movements[] = await getMovementsByYear(token, year);
+            const user: User = await getUserByToken(token);
+            
+            setUserCurrency(user.currency || 'USD');
 
             // Calculate the balance for each category
             const categoryBalances = categoriesData.map(category => {
                 const balance = movementsData.reduce((acc, movement) => {
                     if (movement.category === category.name) {
-                        return acc + movement.amount; // Add the amount to the category balance
+                        return acc + movement.amount;
                     }
                     return acc;
                 }, 0);
@@ -68,12 +73,12 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                 };
             });
 
-            setCategories(categoryBalances); // Set the calculated category balances
+            setCategories(categoryBalances);
         } catch (error) {
             toast.error(t('dashboard.annual_report.annual_movements.error_loading'));
             console.error('Error loading data:', error);
         } finally {
-            setIsLoading(false); // Set loading to false after fetching data
+            setIsLoading(false);
         }
     }, [year, t]);
 
@@ -154,7 +159,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                             </div>
                             <div className='category-name'>{category.Category}</div>
                             <div className={`category-balance ${category.Balance >= 0 ? 'positive' : 'negative'}`}>
-                                {formatCurrency(category.Balance, i18n.language)}
+                                {formatCurrency2(category.Balance, userCurrency)}
                             </div>
                         </div>
                     ))}

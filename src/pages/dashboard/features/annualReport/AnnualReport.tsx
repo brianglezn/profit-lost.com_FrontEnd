@@ -6,8 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 import { getAllMovements } from '../../../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../../../api/movements/getMovementsByYear';
-import { formatCurrency } from '../../../../helpers/functions';
-import { Movements } from '../../../../helpers/types';
+import { getUserByToken } from '../../../../api/users/getUserByToken';
+import { formatCurrency2 } from '../../../../helpers/functions';
+import { Movements, User } from '../../../../helpers/types';
 
 import AnnualChart from './components/AnnualChart';
 import AnnualCategories from './components/AnnualCategories';
@@ -32,8 +33,9 @@ export default function AnnualReport() {
   const [balanceExpenses, setBalanceExpenses] = useState(0);
   const [open, setOpen] = useState(false);
   const [reloadFlag, setReloadFlag] = useState(false);
+  const [userCurrency, setUserCurrency] = useState<string>('USD');
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const reloadCategories = useCallback(async () => {
     const token = localStorage.getItem('token');
@@ -44,6 +46,9 @@ export default function AnnualReport() {
 
     try {
       const dataMovements: Movements[] = await getAllMovements(token);
+      const user: User = await getUserByToken(token);
+      setUserCurrency(user.currency || 'USD');
+      
       const years = new Set(dataMovements.map(item => new Date(item.date).getFullYear().toString()));
       setYearsWithData([...years].sort((a, b) => Number(b) - Number(a)));
     } catch (error) {
@@ -84,9 +89,9 @@ export default function AnnualReport() {
     fetchData();
   }, [year]);
 
-  const formattedBalanceIncome = formatCurrency(balanceIncome, i18n.language);
-  const formattedBalanceExpenses = formatCurrency(balanceExpenses, i18n.language);
-  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses, i18n.language);
+  const formattedBalanceIncome = formatCurrency2(balanceIncome, userCurrency);
+  const formattedBalanceExpenses = formatCurrency2(balanceExpenses, userCurrency);
+  const formattedBalanceFinal = formatCurrency2(balanceIncome - balanceExpenses, userCurrency);
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
