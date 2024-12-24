@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/useAuth';
+import { UserProvider } from './context/UserContext';
 import './i18n';
 
 const Home = React.lazy(() => import('./pages/landing/home/Home'));
@@ -28,8 +29,8 @@ function App() {
   };
 
   return (
-    <>
-      <AuthProvider>
+    <AuthProvider>
+      <UserProvider>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/login' element={<Login />}></Route>
@@ -46,8 +47,8 @@ function App() {
           <Route path='/privacy' element={<Privacy />}></Route>
           <Route path='/faq' element={<Faq />}></Route>
         </Routes>
-      </AuthProvider>
-    </>
+      </UserProvider>
+    </AuthProvider>
   );
 }
 
