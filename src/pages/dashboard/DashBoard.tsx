@@ -1,12 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 
-import { getUserByToken } from '../../api/users/getUserByToken';
 import { getCurrentDate } from '../../helpers/functions';
-import { User } from '../../helpers/types';
+import { useUser } from '../../context/useUser';
+import { useAuth } from '../../context/useAuth';
 
 import DashboardHeader from './components/DashboardHeader';
 import DashboardNav from './components/DashboardNav';
@@ -18,97 +18,69 @@ import NotesIcon from '../../components/icons/NotesIcon';
 import './Dashboard.scss';
 
 export default function Dashboard() {
+  console.log('🏁 Dashboard Renderizado');
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState('Dashboard');
-  const [user, setUser] = useState<User | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [activeSidebarSection, setActiveSidebarSection] = useState<'profile' | 'settings' | 'security' | 'help' | 'about'>('profile');
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Handles click on menu items to navigate to different sections
-  const handleMenuItemClick = (sectionName: string) => {
-    setActiveSection(sectionName);
-    const params = sectionName === 'Dashboard' ? {} : { section: sectionName };
-    setSearchParams(params as Record<string, string>);
-    window.scrollTo(0, 0);
-  };
+  const { user, refreshUser, loading } = useUser();
+  const { logout: authLogout } = useAuth();
 
-  // Get the current date formatted based on the user's language
-  const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
-
-  // Fetches user data using token stored in localStorage
-  const fetchUserData = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
-
-    try {
-      const userData = await getUserByToken(token);
-      if (userData && userData._id) {
-        setUser(userData);
-        if (userData.language) {
-          i18n.changeLanguage(userData.language);
-        }
-      } else {
-        console.error('User data does not include _id:', userData);
-      }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      navigate('/login');
-    }
-  }, [navigate]);
-
-  // Fetch user data when the component mounts
   useEffect(() => {
-    fetchUserData();
-  }, [fetchUserData]);
-
-  // Refetch user data when user profile is updated
-  const handleUserUpdated = () => {
-    fetchUserData();
-  };
+    console.log('👀 Dashboard useEffect - Auth Check:', { loading, hasUser: !!user });
+    if (!loading) {
+      if (!user) {
+        console.log('🚪 Redirigiendo a login');
+        navigate('/login');
+      } else if (user.language) {
+        console.log('🌍 Cambiando idioma a:', user.language);
+        i18n.changeLanguage(user.language);
+      }
+    }
+  }, [user, loading, navigate]);
 
   // Set the active section based on URL parameters
   useEffect(() => {
     const section = searchParams.get('section');
-    setActiveSection(section || 'Dashboard');
+    if (section) {
+      setActiveSection(section);
+    }
   }, [searchParams]);
 
-  // Adds a scroll event listener to add a class to the header when scrolling
+  // Scroll handler
   useEffect(() => {
     const handleScroll = () => {
       const headerContainer = document.querySelector('.dashboard__header-container');
-      if (window.scrollY > 0) {
-        headerContainer?.classList.add('scrolled');
-      } else {
-        headerContainer?.classList.remove('scrolled');
+      if (headerContainer) {
+        headerContainer.classList.toggle('scrolled', window.scrollY > 0);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handles user logout
+  const handleMenuItemClick = (sectionName: string) => {
+    setActiveSection(sectionName);
+    setSearchParams(sectionName === 'Dashboard' ? {} : { section: sectionName });
+    window.scrollTo(0, 0);
+  };
+
   const handleLogout = () => {
     toast.success(t('dashboard.dashboard.sidebar.profile.logout'), { duration: 3000 });
     setTimeout(() => {
-      localStorage.removeItem('token');
+      authLogout();
       navigate('/login');
     }, 1000);
   };
 
-  // Changes the visible section of the sidebar
   const handleSidebarSectionChange = (section: 'profile' | 'settings' | 'security' | 'help' | 'about') => {
     setActiveSidebarSection(section);
   };
 
-  // Defines items for the additional menu
   const menuItems = [
     {
       label: t('dashboard.dashboard.sections.accounts'),
@@ -122,14 +94,31 @@ export default function Dashboard() {
     }
   ];
 
+  if (loading) {
+    return (
+      <div className='loading-container'>
+        <img src="https://res.cloudinary.com/dnhlagojg/image/upload/v1726670794/AppPhotos/Brand/logoPL.svg" alt="logo" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    console.log('⚠️ No hay usuario, retornando null');
+    return null;
+  }
+
+  // Get the current date formatted based on the user's language
+  const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
+
+  console.log('✨ Renderizando Dashboard completo');
   return (
     <>
       <div className='dashboard'>
         <DashboardHeader
           onAvatarClick={() => setSidebarVisible(true)}
           currentDate={currentDate}
-          userImage={user?.profileImage}
-          userName={user?.name}
+          userImage={user.profileImage}
+          userName={user.name}
         />
 
         <DashboardNav
@@ -151,7 +140,7 @@ export default function Dashboard() {
         user={user}
         handleSidebarSectionChange={handleSidebarSectionChange}
         handleLogout={handleLogout}
-        onUserUpdated={handleUserUpdated}
+        onUserUpdated={refreshUser}
       />
     </>
   );

@@ -19,6 +19,7 @@ interface UserProviderProps {
 }
 
 export function UserProvider({ children }: UserProviderProps) {
+  console.log('🔄 UserProvider Renderizado');
   const [user, setUser] = useState<User | null>(null);
   const [currency, setCurrency] = useState<string>('USD');
   const [loading, setLoading] = useState(true);
@@ -27,33 +28,47 @@ export function UserProvider({ children }: UserProviderProps) {
   const { t } = useTranslation();
 
   const fetchUserData = useCallback(async () => {
-    setLoading(true);
+    console.log('📡 Iniciando fetchUserData');
     try {
       const token = localStorage.getItem('token');
+      console.log('🔑 Token:', token ? 'Presente' : 'Ausente');
+      
       if (!token) {
+        setUser(null);
         setError('No token found');
-        toast.error(t('landing.auth.common.error_token'));
         setLoading(false);
         return;
       }
 
       const userData = await getUserByToken(token);
+      console.log('👤 Usuario obtenido:', userData.email);
+      
       setUser(userData);
       setCurrency(userData.currency || 'USD');
+      setError(null);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Error fetching user data';
-      setError(errorMessage);
-      toast.error(t('dashboard.common.error_user_fetch'));
+      console.error('❌ Error en fetchUserData:', err);
+      setError(err instanceof Error ? err.message : 'Error fetching user data');
+      setUser(null);
     } finally {
+      console.log('✅ fetchUserData completado');
       setLoading(false);
     }
-  }, [t]);
+  }, []);
 
   const refreshUser = async () => {
-    await fetchUserData();
+    console.log('🔄 Iniciando refreshUser');
+    setLoading(true);
+    try {
+      await fetchUserData();
+    } catch (err) {
+      console.error('❌ Error en refreshUser:', err);
+      toast.error(t('dashboard.common.error_user_fetch'));
+    }
   };
 
   useEffect(() => {
+    console.log('🎬 UserProvider useEffect inicial');
     fetchUserData();
   }, [fetchUserData]);
 
