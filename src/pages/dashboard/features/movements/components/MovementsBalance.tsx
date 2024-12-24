@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { formatCurrency } from '../../../../../helpers/functions';
-import { getUserByToken } from '../../../../../api/users/getUserByToken';
-import { User } from '../../../../../helpers/types';
+import { useUser } from '../../../../../context/useUser';
 
 import DownloadIcon from '../../../../../components/icons/DownloadIcon';
 import UploadIcon from '../../../../../components/icons/UploadIcon';
@@ -16,27 +15,11 @@ interface MovementsBalanceProps {
 }
 
 const MovementsBalance: React.FC<MovementsBalanceProps> = ({ income, expenses }) => {
-    const [userCurrency, setUserCurrency] = useState<string>('USD');
+    const { user } = useUser();
 
-    useEffect(() => {
-        const fetchUserCurrency = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) return;
-
-            try {
-                const user: User = await getUserByToken(token);
-                setUserCurrency(user.currency || 'USD');
-            } catch (error) {
-                console.error('Error fetching user currency:', error);
-            }
-        };
-
-        fetchUserCurrency();
-    }, []);
-
-    const formattedIncome = formatCurrency(income, userCurrency);
-    const formattedExpenses = formatCurrency(expenses, userCurrency);
-    const formattedBalance = formatCurrency(income - expenses, userCurrency);
+    const formattedIncome = formatCurrency(income, user?.currency || 'USD');
+    const formattedExpenses = formatCurrency(expenses, user?.currency || 'USD');
+    const formattedBalance = formatCurrency(income - expenses, user?.currency || 'USD');
 
     return (
         <div className='movements__main-balance'>

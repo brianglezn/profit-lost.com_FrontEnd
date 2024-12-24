@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { useTranslation } from 'react-i18next';
+import { useUser } from '../../../../../context/useUser';
 
 import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
-import { getUserByToken } from '../../../../../api/users/getUserByToken';
-import { Movements, Category, User } from '../../../../../helpers/types';
+import { Movements, Category } from '../../../../../helpers/types';
 
 import FormMovementsEdit from './FormMovementsEdit';
 
@@ -21,31 +21,15 @@ interface MovementsTableProps {
 }
 
 export default function MovementsTable({ data, isDataEmpty, reloadData, categories }: MovementsTableProps) {
+    const { user } = useUser();
     const [editSidebarVisible, setEditSidebarVisible] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState<Movements | null>(null);
     const [hoveredTransactionId, setHoveredTransactionId] = useState<string | null>(null);
     const [touchedTransactionId, setTouchedTransactionId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('date_desc');
-    const [userCurrency, setUserCurrency] = useState<string>('USD');
 
     const { t, i18n } = useTranslation();
-
-    useEffect(() => {
-        const fetchUserCurrency = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) return;
-
-            try {
-                const user: User = await getUserByToken(token);
-                setUserCurrency(user.currency || 'USD');
-            } catch (error) {
-                console.error('Error fetching user currency:', error);
-            }
-        };
-
-        fetchUserCurrency();
-    }, []);
 
     // Function to open the edit sidebar and select the transaction to edit
     const editMovement = (transaction: Movements) => {
@@ -163,7 +147,7 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                                 <span>{transaction.category}</span>
                             </div>
                             <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
-                                {formatCurrency(transaction.amount, userCurrency)}
+                                {formatCurrency(transaction.amount, user?.currency || 'USD')}
                             </div>
                         </div>
                     ))}
