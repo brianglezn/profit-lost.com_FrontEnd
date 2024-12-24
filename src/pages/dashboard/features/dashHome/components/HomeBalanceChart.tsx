@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import { Skeleton } from 'primereact/skeleton';
 import { useTranslation } from 'react-i18next';
+import { useUser } from '../../../../../context/useUser';
 
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
 
@@ -32,13 +33,14 @@ export default function HomeBalanceChart() {
     const [data, setData] = useState<DataPoint[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { t } = useTranslation();
+    const { user } = useUser();
 
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('No authentication token found. Please log in.');
+
+            if (!user || !token) {
                 setIsLoading(false);
                 return;
             }
@@ -56,7 +58,7 @@ export default function HomeBalanceChart() {
         };
 
         fetchData();
-    }, []);
+    }, [user]);
 
     const getLastSixMonthsData = (movements: Movement[]): DataPoint[] => {
         const today = new Date();

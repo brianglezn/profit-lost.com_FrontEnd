@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
-import { getUserByToken } from '../../../../../api/users/getUserByToken';
-import { Movements, User } from '../../../../../helpers/types';
+import { Movements } from '../../../../../helpers/types';
+import { useUser } from '../../../../../context/useUser';
 
 import HomeMovementsHistorySkeleton from './HomeMovementsHistorySkeleton';
 
@@ -17,23 +16,7 @@ interface MovementsHistoryHomeProps {
 
 export default function HomeMovementsHistory({ data, isDataEmpty, isLoading }: MovementsHistoryHomeProps) {
     const { i18n } = useTranslation();
-    const [userCurrency, setUserCurrency] = useState<string>('USD');
-
-    useEffect(() => {
-        const fetchUserCurrency = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) return;
-
-            try {
-                const user: User = await getUserByToken(token);
-                setUserCurrency(user.currency || 'USD');
-            } catch (error) {
-                console.error('Error fetching user currency:', error);
-            }
-        };
-
-        fetchUserCurrency();
-    }, []);
+    const { user } = useUser();
 
     // Sort the data by date in descending order and limit to the latest 8 transactions
     const sortedData = data
@@ -56,7 +39,7 @@ export default function HomeMovementsHistory({ data, isDataEmpty, isLoading }: M
                             <div className='date'>{formatDateTime(transaction.date, i18n.language)}</div>
                         </div>
                         <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
-                            {formatCurrency(transaction.amount, userCurrency)}
+                            {formatCurrency(transaction.amount, user?.currency || 'USD')}
                         </div>
                     </li>
                 ))}
