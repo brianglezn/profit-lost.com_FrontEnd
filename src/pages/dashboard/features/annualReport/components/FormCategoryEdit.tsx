@@ -9,7 +9,7 @@ import { editCategory } from '../../../../../api/categories/editCategory';
 import { removeCategory } from '../../../../../api/categories/removeCategory';
 import { getAllMovements } from '../../../../../api/movements/getAllMovements';
 import { getUserByToken } from '../../../../../api/users/getUserByToken';
-import { formatCurrency2, formatDateTime } from '../../../../../helpers/functions';
+import { formatCurrency, formatDateTime } from '../../../../../helpers/functions';
 import { Movements, User } from '../../../../../helpers/types';
 
 import './FormCategory.scss';
@@ -168,7 +168,7 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                                                             {movement.description}
                                                         </span>
                                                         <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                            {formatCurrency2(movement.amount, userCurrency)}
+                                                            {formatCurrency(movement.amount, userCurrency)}
                                                         </span>
                                                     </li>
                                                 ))}

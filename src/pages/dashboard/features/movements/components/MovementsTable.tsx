@@ -5,7 +5,7 @@ import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { useTranslation } from 'react-i18next';
 
-import { formatDateTime, formatCurrency2 } from '../../../../../helpers/functions';
+import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
 import { getUserByToken } from '../../../../../api/users/getUserByToken';
 import { Movements, Category, User } from '../../../../../helpers/types';
 
@@ -163,7 +163,7 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                                 <span>{transaction.category}</span>
                             </div>
                             <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
-                                {formatCurrency2(transaction.amount, userCurrency)}
+                                {formatCurrency(transaction.amount, userCurrency)}
                             </div>
                         </div>
                     ))}

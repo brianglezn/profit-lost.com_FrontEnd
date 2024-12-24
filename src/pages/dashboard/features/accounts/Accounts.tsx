@@ -10,7 +10,7 @@ import { Skeleton } from 'primereact/skeleton';
 import { getAllAccounts } from '../../../../api/accounts/getAllAccounts';
 import updateAccountsOrder from '../../../../api/accounts/updateAccountsOrder';
 import { getUserByToken } from '../../../../api/users/getUserByToken';
-import { formatCurrency2 } from '../../../../helpers/functions';
+import { formatCurrency } from '../../../../helpers/functions';
 import { Account, User } from '../../../../helpers/types';
 
 import AccountItem from './components/AccountItem';
@@ -125,7 +125,7 @@ export default function Accounts() {
         return acc;
       }, 0);
 
-      monthData.name += `: ${formatCurrency2(totalForMonth, userCurrency)}`;
+      monthData.name += `: ${formatCurrency(totalForMonth, userCurrency)}`;
 
       return monthData;
     });
@@ -173,7 +173,7 @@ export default function Accounts() {
         <AccountItem
           key={account._id}
           accountName={account.accountName}
-          balance={`${formatCurrency2(balanceForMonth, userCurrency)}`}
+          balance={`${formatCurrency(balanceForMonth, userCurrency)}`}
           customBackgroundColor={account.configuration.backgroundColor}
           customColor={account.configuration.color}
           accountId={account._id}

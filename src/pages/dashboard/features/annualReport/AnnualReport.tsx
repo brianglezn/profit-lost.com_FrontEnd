@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { getAllMovements } from '../../../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../../../api/movements/getMovementsByYear';
 import { getUserByToken } from '../../../../api/users/getUserByToken';
-import { formatCurrency2 } from '../../../../helpers/functions';
+import { formatCurrency } from '../../../../helpers/functions';
 import { Movements, User } from '../../../../helpers/types';
 
 import AnnualChart from './components/AnnualChart';
@@ -89,9 +89,9 @@ export default function AnnualReport() {
     fetchData();
   }, [year]);
 
-  const formattedBalanceIncome = formatCurrency2(balanceIncome, userCurrency);
-  const formattedBalanceExpenses = formatCurrency2(balanceExpenses, userCurrency);
-  const formattedBalanceFinal = formatCurrency2(balanceIncome - balanceExpenses, userCurrency);
+  const formattedBalanceIncome = formatCurrency(balanceIncome, userCurrency);
+  const formattedBalanceExpenses = formatCurrency(balanceExpenses, userCurrency);
+  const formattedBalanceFinal = formatCurrency(balanceIncome - balanceExpenses, userCurrency);
 
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);

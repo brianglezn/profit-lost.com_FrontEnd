@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { formatCurrency2 } from '../../../../../helpers/functions';
+import { formatCurrency } from '../../../../../helpers/functions';
 import { getUserByToken } from '../../../../../api/users/getUserByToken';
 import { User } from '../../../../../helpers/types';
 
@@ -34,9 +34,9 @@ const MovementsBalance: React.FC<MovementsBalanceProps> = ({ income, expenses })
         fetchUserCurrency();
     }, []);
 
-    const formattedIncome = formatCurrency2(income, userCurrency);
-    const formattedExpenses = formatCurrency2(expenses, userCurrency);
-    const formattedBalance = formatCurrency2(income - expenses, userCurrency);
+    const formattedIncome = formatCurrency(income, userCurrency);
+    const formattedExpenses = formatCurrency(expenses, userCurrency);
+    const formattedBalance = formatCurrency(income - expenses, userCurrency);
 
     return (
         <div className='movements__main-balance'>

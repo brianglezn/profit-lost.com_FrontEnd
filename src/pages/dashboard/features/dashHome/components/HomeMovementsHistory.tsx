@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { formatDateTime, formatCurrency2 } from '../../../../../helpers/functions';
+import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
 import { getUserByToken } from '../../../../../api/users/getUserByToken';
 import { Movements, User } from '../../../../../helpers/types';
 
@@ -56,7 +56,7 @@ export default function HomeMovementsHistory({ data, isDataEmpty, isLoading }: M
                             <div className='date'>{formatDateTime(transaction.date, i18n.language)}</div>
                         </div>
                         <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
-                            {formatCurrency2(transaction.amount, userCurrency)}
+                            {formatCurrency(transaction.amount, userCurrency)}
                         </div>
                     </li>
                 ))}

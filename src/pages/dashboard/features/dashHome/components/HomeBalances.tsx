@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { formatCurrency2 } from '../../../../../helpers/functions';
+import { formatCurrency } from '../../../../../helpers/functions';
 import { getUserByToken } from '../../../../../api/users/getUserByToken';
 import { User } from '../../../../../helpers/types';
 import HomeBalancesSkeleton from './HomeBalancesSkeleton';
@@ -64,7 +64,7 @@ export default function HomeBalances({ type, amount, percentage }: HomeBalancesP
                 <span>{balanceName}</span>
             </div>
             <div className='amount'>
-                <span className='value'>{formatCurrency2(amount, userCurrency)}</span>
+                <span className='value'>{formatCurrency(amount, userCurrency)}</span>
             </div>
             <div className='comparison'>
                 <span className={`percentage ${percentageClass}`}>

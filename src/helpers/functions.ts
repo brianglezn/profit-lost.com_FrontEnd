@@ -9,19 +9,8 @@ const localeMap = {
     es: es,
 };
 
-// Function to format a currency value based on locale
-export function formatCurrency(value: number, locale: string = 'en-US'): string {
-    const currency = locale === 'es' ? 'EUR' : 'USD';
-    return value.toLocaleString(locale, {
-        style: 'currency',
-        currency: currency,
-        minimumFractionDigits: 2,
-        useGrouping: true,
-    });
-}
-
 // Function to format a currency value based on currency
-export function formatCurrency2(value: number, currency: string = 'USD'): string {
+export function formatCurrency(value: number, currency: string = 'USD'): string {
     const locale = currency === 'EUR' ? 'es-ES' : 'en-US';
     return value.toLocaleString(locale, {
         style: 'currency', 

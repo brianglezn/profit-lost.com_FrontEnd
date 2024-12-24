@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
 import { getUserByToken } from '../../../../../api/users/getUserByToken';
-import { formatCurrency2 } from '../../../../../helpers/functions';
+import { formatCurrency } from '../../../../../helpers/functions';
 import { Category, Movements, User } from '../../../../../helpers/types';
 
 import FormCategoryEdit from './FormCategoryEdit';
@@ -159,7 +159,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                             </div>
                             <div className='category-name'>{category.Category}</div>
                             <div className={`category-balance ${category.Balance >= 0 ? 'positive' : 'negative'}`}>
-                                {formatCurrency2(category.Balance, userCurrency)}
+                                {formatCurrency(category.Balance, userCurrency)}
                             </div>
                         </div>
                     ))}
