@@ -100,11 +100,42 @@
                 background-color: $bg-color-sec;
                 box-shadow: $shadow_color 0px 1px 4px;
             }
+
+            // Editor de texto PrimeReact
+            // .p-editor-container {
+            //     margin-bottom: 1rem;
+            //     border-radius: 1rem;
+            //     overflow: hidden;
+            //     background-color: $bg-color-sec;
+            //     box-shadow: $shadow_color 0px 1px 4px;
+
+            //     .p-editor-toolbar {
+            //         border: none;
+            //         background-color: $bg-color-sec;
+            //         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            //         padding: 0.5rem;
+            //     }
+
+            //     .p-editor-content {
+            //         border: none;
+            //         min-height: 300px;
+            //         font-size: 1rem;
+            //         background-color: $bg-color-sec;
+
+            //         &.ql-blank::before {
+            //             color: rgba(0, 0, 0, 0.6);
+            //             font-style: italic;
+            //             left: 1rem;
+            //         }
+            //     }
+            // }
+
         }
 
         .note-actions {
             display: flex;
             justify-content: end;
+            margin-top: 1rem;
             gap: 0.8rem;
         }
 
@@ -170,17 +201,10 @@
         }
 
         .notes-editor {
-
             .note-details {
                 input[type='text'] {
                     font-size: 1rem;
                     padding: 0.5rem;
-                }
-
-                .p-inputtextarea {
-                    font-size: 0.9rem;
-                    padding: 0.6rem;
-                    height: 200px;
                 }
 
                 .note-actions {

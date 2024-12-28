@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { InputText } from 'primereact/inputtext';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
@@ -12,15 +10,17 @@ import { editNote } from '../../../../api/notes/editNote';
 import { deleteNote } from '../../../../api/notes/deleteNote';
 import { Note } from '../../../../helpers/types';
 
-import DeleteBinIcon from '../../../../components/icons/DeleteBinIcon';
-
 import './Notes.scss';
+import NoteList from './components/NoteList';
+import NoteEditor from './components/NoteEditor';
 
 export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [selectedNote, setSelectedNote] = useState<Note | null>(null);
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [draggedNoteId, setDraggedNoteId] = useState<string | null>(null);
+    const [autoSaveTimeout, setAutoSaveTimeout] = useState<NodeJS.Timeout | null>(null);
+    const [isAutosaving, setIsAutosaving] = useState<boolean>(false);
 
     const { t } = useTranslation();
 
@@ -38,39 +38,97 @@ export default function Notes() {
         fetchNotes();
     }, [t]);
 
-    // Handle saving (create or update) a note
+    // Función de autoguardado separada
+    const autoSaveNote = async (noteToSave: Note) => {
+        try {
+            setIsAutosaving(true);
+            if (!noteToSave._id) {
+                // Create new note
+                const savedNote = await createNote({
+                    title: noteToSave.title,
+                    content: noteToSave.content,
+                });
+                setNotes((prevNotes) => [...prevNotes, savedNote]);
+                setSelectedNote(savedNote);
+            } else {
+                // Edit existing note
+                const updatedNote = await editNote(noteToSave._id, {
+                    title: noteToSave.title,
+                    content: noteToSave.content,
+                });
+                setNotes((prevNotes) =>
+                    prevNotes.map((note) =>
+                        note._id === updatedNote._id ? updatedNote : note
+                    )
+                );
+                setSelectedNote(updatedNote);
+            }
+            setIsCreating(false);
+        } catch (error) {
+            console.error('Error autosaving note:', error);
+            // Mostrar un toast de error solo si el error es crítico
+            if (error instanceof Error && error.message !== 'AbortError') {
+                toast.error(t('dashboard.notes.autosave_error'));
+            }
+        } finally {
+            setIsAutosaving(false);
+        }
+    };
+
+    // Mejorar handleNoteChange con debounce más robusto
+    const handleNoteChange = (key: keyof Note, value: string) => {
+        if (selectedNote) {
+            const updatedNote = { ...selectedNote, [key]: value };
+            setSelectedNote(updatedNote);
+
+            // Cancelar el temporizador anterior
+            if (autoSaveTimeout) {
+                clearTimeout(autoSaveTimeout);
+            }
+
+            // Solo iniciar autoguardado si hay cambios significativos
+            if (value.trim() !== '') {
+                const timeout = setTimeout(() => {
+                    if (!isAutosaving) {
+                        autoSaveNote(updatedNote);
+                    }
+                }, 2000); // Aumentamos el tiempo a 2 segundos para mejor rendimiento
+
+                setAutoSaveTimeout(timeout);
+            }
+        }
+    };
+
+    // Modificar handleSaveNote para manejar guardado manual
     const handleSaveNote = async () => {
         if (selectedNote) {
             try {
+                // Cancelar cualquier autoguardado pendiente
+                if (autoSaveTimeout) {
+                    clearTimeout(autoSaveTimeout);
+                    setAutoSaveTimeout(null);
+                }
+
                 if (!selectedNote._id) {
-                    // Create new note
                     const savedNote = await createNote({
                         title: selectedNote.title,
                         content: selectedNote.content,
                     });
-                    setNotes((prevNotes) => [...prevNotes, savedNote]); // Add new note to list
+                    setNotes((prevNotes) => [...prevNotes, savedNote]);
                     setSelectedNote(savedNote);
-                    toast.success(t('dashboard.notes.note_saved'), {
-                        duration: 3000,
-                        position: 'top-center',
-                    });
+                    toast.success(t('dashboard.notes.note_saved'));
                 } else {
-                    // Edit existing note
                     const updatedNote = await editNote(selectedNote._id, {
                         title: selectedNote.title,
                         content: selectedNote.content,
                     });
-                    // Update note in the list
                     setNotes((prevNotes) =>
                         prevNotes.map((note) =>
                             note._id === updatedNote._id ? updatedNote : note
                         )
                     );
                     setSelectedNote(updatedNote);
-                    toast.success(t('dashboard.notes.note_updated'), {
-                        duration: 3000,
-                        position: 'top-center',
-                    });
+                    toast.success(t('dashboard.notes.note_updated'));
                 }
                 setIsCreating(false);
             } catch (error) {
@@ -93,11 +151,17 @@ export default function Notes() {
 
     // Handle confirming and deleting the note
     const handleConfirmDelete = async (noteToDelete: Note) => {
+        // Limpiar el editor si la nota borrada es la seleccionada
+        if (selectedNote?._id === noteToDelete._id) {
+            setSelectedNote(null);
+            setIsCreating(false);
+        }
+
         // Optimistically remove the note from the list
         setNotes((prevNotes) => prevNotes.filter((note) => note._id !== noteToDelete._id));
 
         try {
-            await deleteNote(noteToDelete._id); // Delete the note from the backend
+            await deleteNote(noteToDelete._id);
             toast.success(t('dashboard.notes.note_deleted'), {
                 duration: 3000,
                 position: 'top-center',
@@ -105,13 +169,6 @@ export default function Notes() {
         } catch (error) {
             console.error('Error deleting note from API:', error);
             toast.error(t('dashboard.notes.delete_error'));
-        }
-    };
-
-    // Handle changes to the selected note (title or content)
-    const handleNoteChange = (key: keyof Note, value: string) => {
-        if (selectedNote) {
-            setSelectedNote({ ...selectedNote, [key]: value });
         }
     };
 
@@ -146,80 +203,61 @@ export default function Notes() {
         }
     };
 
+    // Limpiar temporizadores y estados al desmontar
+    useEffect(() => {
+        return () => {
+            if (autoSaveTimeout) {
+                clearTimeout(autoSaveTimeout);
+            }
+            setIsAutosaving(false);
+        };
+    }, [autoSaveTimeout]);
+
     return (
         <>
             <ConfirmDialog />
             <section className='notes'>
                 <div className='notes-sidebar'>
-                    {/* Button to create a new note */}
-                    <Button label={t('dashboard.notes.create_note')} icon='' onClick={() => {
-                        setSelectedNote({
-                            _id: '',
-                            title: '',
-                            content: '',
-                            user_id: '',
-                            created_at: '',
-                            updated_at: ''
-                        });
-                        setIsCreating(true);
-                    }} />
-                    <div className='notes-list'>
-                        {/* List all notes */}
-                        {notes.map((note) => (
-                            <div
-                                key={note._id}
-                                className='note-item'
-                                draggable
-                                onDragStart={() => handleDragStart(note._id)} // Allow dragging
-                                onDragOver={handleDragOver} // Allow drag over
-                                onDrop={() => handleDrop(note._id)} // Handle dropping for reordering
-                                onClick={() => handleSelectNote(note)} // Select note on click
-                            >
-                                {note.title || t('dashboard.notes.untitled_note')}
-                                {/* Delete icon to remove the note */}
-                                <DeleteBinIcon
-                                    className='delete-icon'
-                                    onClick={(e) => {
-                                        e.stopPropagation(); // Prevent triggering note selection on delete
-                                        handleDeleteNote(note);
-                                    }}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                    <Button 
+                        label={t('dashboard.notes.create_note')} 
+                        icon='' 
+                        onClick={() => {
+                            setSelectedNote({
+                                _id: '',
+                                title: '',
+                                content: '',
+                                user_id: '',
+                                created_at: '',
+                                updated_at: ''
+                            });
+                            setIsCreating(true);
+                        }} 
+                    />
+                    
+                    <NoteList
+                        notes={notes}
+                        onSelect={handleSelectNote}
+                        onDelete={handleDeleteNote}
+                        onDragStart={handleDragStart}
+                        onDragOver={handleDragOver}
+                        onDrop={handleDrop}
+                        untitledLabel={t('dashboard.notes.untitled_note')}
+                    />
                 </div>
+                
                 <div className='notes-editor'>
                     {isCreating || selectedNote ? (
-                        <div className='note-details'>
-                            {/* Input for the note title */}
-                            <InputText
-                                type='text'
-                                placeholder={t('dashboard.notes.note_title_placeholder')}
-                                value={selectedNote?.title || ''}
-                                onChange={(e) => handleNoteChange('title', e.target.value)}
-                            />
-                            {/* Textarea for the note content */}
-                            <InputTextarea
-                                placeholder={t('dashboard.notes.note_content_placeholder')}
-                                value={selectedNote?.content || ''}
-                                onChange={(e) => handleNoteChange('content', e.target.value)}
-                                rows={5}
-                                autoResize
-                            />
-                            {/* Actions to save or delete the note */}
-                            <div className='note-actions'>
-                                <Button
-                                    label={t('dashboard.notes.save_note')}
-                                    onClick={handleSaveNote}
-                                />
-                                <Button
-                                    label={t('dashboard.notes.delete_note')}
-                                    severity="danger"
-                                    outlined
-                                    onClick={() => selectedNote && handleDeleteNote(selectedNote)}
-                                />
-                            </div>
-                        </div>
+                        <NoteEditor
+                            selectedNote={selectedNote}
+                            isCreating={isCreating}
+                            onChange={handleNoteChange}
+                            onSave={handleSaveNote}
+                            onDelete={() => selectedNote && handleDeleteNote(selectedNote)}
+                            titlePlaceholder={t('dashboard.notes.note_title_placeholder')}
+                            contentPlaceholder={t('dashboard.notes.note_content_placeholder')}
+                            saveLabel={t('dashboard.notes.save_note')}
+                            deleteLabel={t('dashboard.notes.delete_note')}
+                        />
                     ) : (
                         <p className='no-note-selected'>{t('dashboard.notes.no_note_selected')}</p>
                     )}
