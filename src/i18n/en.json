@@ -245,6 +245,7 @@
             },
             "form_accounts_edit": {
                 "title": "Edit Account",
+                "placeholder": "Account Name",
                 "background": "Background",
                 "font": "Font",
                 "year": "Year",

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { Dropdown } from 'primereact/dropdown';
 import { ProgressBar } from 'primereact/progressbar';
 import { Sidebar } from 'primereact/sidebar';
@@ -14,8 +14,7 @@ import { formatCurrency } from '../../../../helpers/functions';
 import { Account, User } from '../../../../helpers/types';
 
 import AccountItem from './components/AccountItem';
-import FormAccountsAdd from './components/FormAccountsAdd';
-import FormAccountsEdit from './components/FormAccountsEdit';
+import FormAccounts from './components/FormAccounts';
 import CustomBarShape from '../../../../components/CustomBarShape';
 
 import './Accounts.scss';
@@ -37,7 +36,7 @@ const monthNamesShort = [
   { name: 'Sep', value: 'Sep' },
   { name: 'Oct', value: 'Oct' },
   { name: 'Nov', value: 'Nov' },
-  { name: 'Dec', value: 'Dec' }
+  { name: 'Dec', value: 'Dec' },
 ];
 
 export default function Accounts() {
@@ -76,7 +75,7 @@ export default function Accounts() {
     try {
       const allAccountsData = await getAllAccounts(token);
       const user: User = await getUserByToken(token);
-      
+
       setUserCurrency(user.currency || 'USD');
 
       let orderedAccounts: Account[] = [];
@@ -226,10 +225,14 @@ export default function Accounts() {
               style={{ width: '500px' }}
               className='custom-sidebar'
             >
-              <FormAccountsAdd onAccountAdded={() => { fetchAllData(); handleCloseAddSidebar(); }} />
+              <FormAccounts
+                mode="add"
+                onSuccess={() => { fetchAllData(); handleCloseAddSidebar(); }}
+                onClose={handleCloseAddSidebar}
+              />
             </Sidebar>
           </div>
-          {isLoading || activeAccounts.length === 0 ? (
+          {isLoading ? (
             <div className='accounts__container-progress'>
               <ProgressBar mode='indeterminate' style={{ height: '6px' }} />
             </div>
@@ -255,16 +258,15 @@ export default function Accounts() {
               ))}
             </div>
           )}
-
           {inactiveAccounts.length > 0 && (
             <div className='accounts__inactive'>
-              <div 
+              <div
                 className={`accounts__inactive-header ${showInactiveAccounts ? 'open' : ''}`}
                 onClick={() => setShowInactiveAccounts(!showInactiveAccounts)}
               >
                 <span>{t('dashboard.accounts.inactive_accounts')} ({inactiveAccounts.length})</span>
               </div>
-              
+
               {showInactiveAccounts && (
                 <div className='accounts__inactive-items'>
                   {inactiveAccounts.map((account) => (
@@ -295,9 +297,10 @@ export default function Accounts() {
         className='custom-sidebar'
       >
         {selectedAccount && (
-          <FormAccountsEdit
+          <FormAccounts
+            mode="edit"
             account={selectedAccount}
-            onUpdate={handleAccountUpdated}
+            onSuccess={handleAccountUpdated}
             onClose={handleCloseEditSidebar}
             onRemove={handleAccountRemoved}
           />
