@@ -252,7 +252,13 @@
                 "remove_confirm": "¿Está seguro de que desea eliminar esta cuenta?",
                 "success_message": "Cuenta actualizada correctamente",
                 "error_message": "Error al editar la cuenta",
-                "remove_success": "La cuenta se ha eliminado correctamente"
+                "remove_success": "La cuenta se ha eliminado correctamente",
+                "add_year": "Añadir Año",
+                "custom_year": "Año Personalizado",
+                "year_placeholder": "Introduce el año",
+                "invalid_year": "Por favor, introduce un año válido entre 1900 y 2100",
+                "year_added_success": "Año añadido con éxito",
+                "year_already_exists": "Este año ya existe"
             },
             "inactive_accounts": "Cuentas inactivas",
             "form": {

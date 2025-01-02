@@ -252,7 +252,13 @@
                 "remove_confirm": "Are you sure you want to delete this account?",
                 "success_message": "Account successfully updated",
                 "error_message": "Error editing account",
-                "remove_success": "The account was successfully removed"
+                "remove_success": "The account was successfully removed",
+                "add_year": "Add Year",
+                "custom_year": "Custom Year",
+                "year_placeholder": "Enter year",
+                "invalid_year": "Please enter a valid year between 1900 and 2100",
+                "year_added_success": "Year added successfully",
+                "year_already_exists": "This year already exists"
             },
             "inactive_accounts": "Inactive accounts",
             "form": {

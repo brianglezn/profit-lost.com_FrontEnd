@@ -5,6 +5,7 @@ import { ColorPicker, ColorPickerChangeEvent, ColorPickerRGBType } from 'primere
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dropdown } from 'primereact/dropdown';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'primereact/button';
 
 import { addAccount } from '../../../../../api/accounts/addAccount';
 import { editAccount } from '../../../../../api/accounts/editAccount';
@@ -22,6 +23,11 @@ type FormAccountsProps = {
     onRemove?: () => void;
 };
 
+type DropdownOption = {
+    label: string;
+    value: number | 'add_year';
+};
+
 export default function FormAccounts({ mode, account, onSuccess, onClose, onRemove }: FormAccountsProps) {
     const { t, i18n } = useTranslation();
     const [accountName, setAccountName] = useState<string>(account?.accountName || '');
@@ -31,6 +37,10 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
     const [uniqueYears, setUniqueYears] = useState<number[]>([]);
     const [tempValues, setTempValues] = useState<{ [key: string]: string }>({});
     const [isActive, setIsActive] = useState<boolean>(account?.configuration.isActive !== false);
+    const [showCustomYearInput, setShowCustomYearInput] = useState(false);
+    const [customYear, setCustomYear] = useState('');
+
+    const currentYear = new Date().getFullYear();
 
     const monthNames = useMemo(() => {
         return i18n.language === 'es'
@@ -63,52 +73,34 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                 { name: 'December', value: 'Dec' },
             ];
     }, [i18n.language]);
-
+    
+    // Initial effect to load the years
     useEffect(() => {
         if (mode === 'edit' && account) {
-            // Obtener solo los años que tienen datos distintos de 0
-            const yearsWithData = account.records.reduce((years: number[], record) => {
-                if (record.value !== 0 && !years.includes(record.year)) {
-                    years.push(record.year);
-                }
-                return years;
-            }, []);
-
-            const currentYear = new Date().getFullYear();
+            const years = new Set(account.records.map(record => record.year));
+            // Make sure that the current year is included.
+            years.add(currentYear);
+            const sortedYears = Array.from(years).sort((a, b) => a - b);
+            setUniqueYears(sortedYears);
             
-            // Asegurarnos de incluir el año actual
-            if (!yearsWithData.includes(currentYear)) {
-                yearsWithData.push(currentYear);
-            }
-
-            setUniqueYears(yearsWithData.sort((a, b) => a - b));
-
-            // Si el año seleccionado no tiene datos, establecer el año actual
-            if (!yearsWithData.includes(year)) {
-                setYear(currentYear);
-            }
-
-            // Inicializar valores temporales solo para años con datos y el año actual
+            // Initialize tempValues with existing records
             const initialTempValues: { [key: string]: string } = {};
-            
-            account.records
-                .filter(record => yearsWithData.includes(record.year))
-                .forEach(record => {
-                    initialTempValues[`${record.year}-${record.month}`] = 
-                        record.value?.toString() || '0';
-                });
-
-            // Asegurar que el año actual tenga todos los meses inicializados
-            monthNames.forEach(month => {
-                const key = `${currentYear}-${month.value}`;
-                if (!initialTempValues[key]) {
-                    initialTempValues[key] = '0';
-                }
+            account.records.forEach(record => {
+                const key = `${record.year}-${record.month}`;
+                initialTempValues[key] = record.value?.toString() || '0';
             });
-
+            
+            // Add values for the current year if they do not exist
+            if (!account.records.some(record => record.year === currentYear)) {
+                monthNames.forEach(month => {
+                    const key = `${currentYear}-${month.value}`;
+                    initialTempValues[key] = '0';
+                });
+            }
+            
             setTempValues(initialTempValues);
         }
-    }, [mode, account, year, monthNames]);
+    }, [mode, account, currentYear, monthNames]);
 
     const handleBackgroundColorChange = (e: ColorPickerChangeEvent) => {
         if (!e.value) return;
@@ -200,6 +192,100 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
         }
     };
 
+    const dropdownOptions = useMemo(() => {
+        const options: DropdownOption[] = uniqueYears
+            .slice()
+            .sort((a, b) => b - a)
+            .map(year => ({
+                label: year.toString(),
+                value: year
+            }));
+
+        options.push({
+            label: t('dashboard.accounts.form_accounts_edit.add_year'),
+            value: 'add_year' as const
+        });
+
+        return options;
+    }, [uniqueYears, t]);
+
+    const handleYearChange = (e: { value: number | 'add_year' }) => {
+        if (e.value === 'add_year') {
+            setShowCustomYearInput(true);
+        } else {
+            setShowCustomYearInput(false);
+            setYear(e.value);
+        }
+    };
+
+    const handleAddCustomYear = () => {
+        const yearNumber = parseInt(customYear);
+
+        if (yearNumber >= 1900 && yearNumber <= 2100) {
+            if (!uniqueYears.includes(yearNumber)) {
+                const newRecords = monthNames.map(month => ({
+                    year: yearNumber,
+                    month: month.value,
+                    value: 0
+                }));
+
+                if (mode === 'edit' && account) {
+                    account.records = [...account.records, ...newRecords];
+
+                    const updatedYears = [...uniqueYears, yearNumber].sort((a, b) => a - b);
+                    setUniqueYears(updatedYears);
+
+                    const newTempValues = { ...tempValues };
+                    monthNames.forEach(month => {
+                        const key = `${yearNumber}-${month.value}`;
+                        newTempValues[key] = '0';
+                    });
+                    setTempValues(newTempValues);
+
+                    setYear(yearNumber);
+                    setShowCustomYearInput(false);
+                    setCustomYear('');
+
+                    toast.success(t('dashboard.accounts.form_accounts_edit.year_added_success'));
+                }
+            } else {
+                toast.error(t('dashboard.accounts.form_accounts_edit.year_already_exists'));
+            }
+        } else {
+            toast.error(t('dashboard.accounts.form_accounts_edit.invalid_year'));
+        }
+    };
+
+    const handleInputChange = (key: string, value: string) => {
+        setTempValues(prev => {
+            const newValues = {
+                ...prev,
+                [key]: value
+            };
+            return newValues;
+        });
+
+        if (mode === 'edit' && account) {
+            const [yearStr, month] = key.split('-');
+            const year = parseInt(yearStr);
+            const normalizedValue = parseFloat(value.replace(',', '.')) || 0;
+
+            const recordIndex = account.records.findIndex(
+                record => record.year === year && record.month === month
+            );
+
+            if (recordIndex >= 0) {
+                account.records[recordIndex].value = normalizedValue;
+            } else {
+                account.records.push({
+                    year,
+                    month,
+                    value: normalizedValue
+                });
+            }
+        }
+    };
+
     return (
         <>
             <ConfirmDialog />
@@ -217,30 +303,48 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                     <>
                         <Dropdown
                             className='formDropdown'
-                            value={year}
-                            options={uniqueYears.slice().reverse().map((year) => ({ label: year.toString(), value: year }))}
-                            onChange={(e) => setYear(e.value)}
+                            value={showCustomYearInput ? 'add_year' : year}
+                            options={dropdownOptions}
+                            onChange={handleYearChange}
                         />
-                        <div className='dataYear'>
-                            {monthNames.map((month) => {
-                                const key = `${year}-${month.value}`;
-                                return (
-                                    <div className='dataYear-row' key={month.value}>
-                                        <span>{month.name}</span>
-                                        <input
-                                            type='text'
-                                            value={tempValues[key] || ''}
-                                            onChange={(e) =>
-                                                setTempValues((prevTempValues) => ({
-                                                    ...prevTempValues,
-                                                    [key]: e.target.value,
-                                                }))
-                                            }
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </div>
+
+                        {showCustomYearInput && (
+                            <div className="custom-year-input">
+                                <InputText
+                                    value={customYear}
+                                    onChange={(e) => setCustomYear(e.target.value)}
+                                    placeholder={t('dashboard.accounts.form_accounts_edit.year_placeholder')}
+                                    type="number"
+                                    min="1900"
+                                    max="2100"
+                                />
+                                <Button
+                                    label={t('dashboard.accounts.form_accounts_edit.add_year')}
+                                    className="p-button-primary"
+                                    onClick={handleAddCustomYear}
+                                />
+                            </div>
+                        )}
+
+                        {!showCustomYearInput && (
+                            <div className='dataYear'>
+                                {monthNames.map((month) => {
+                                    const key = `${year}-${month.value}`;
+                                    const value = tempValues[key] || '0';
+                                    
+                                    return (
+                                        <div className='dataYear-row' key={month.value}>
+                                            <span>{month.name}</span>
+                                            <input
+                                                type='text'
+                                                value={value}
+                                                onChange={(e) => handleInputChange(key, e.target.value)}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </>
                 )}
                 <div className='colorPiker'>
