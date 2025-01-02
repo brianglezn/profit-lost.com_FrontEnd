@@ -66,19 +66,39 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
 
     useEffect(() => {
         if (mode === 'edit' && account) {
-            const years = Array.from(new Set(account.records.map((record) => record.year))).sort((a, b) => a - b);
-            setUniqueYears(years);
-            if (!years.includes(year)) {
-                setYear(years.includes(new Date().getFullYear()) ? new Date().getFullYear() : years[0]);
+            const existingYears = Array.from(
+                new Set(account.records.map((record) => record.year))
+            ).sort((a, b) => a - b);
+
+            const currentYear = new Date().getFullYear();
+
+            const allYears = new Set([...existingYears, currentYear]);
+            
+            setUniqueYears(Array.from(allYears).sort((a, b) => a - b));
+
+            if (!existingYears.includes(year)) {
+                setYear(currentYear);
             }
 
             const initialTempValues: { [key: string]: string } = {};
+            
             account.records.forEach((record) => {
-                initialTempValues[`${record.year}-${record.month}`] = record.value?.toString() || '0';
+                initialTempValues[`${record.year}-${record.month}`] = 
+                    record.value?.toString() || '0';
             });
+
+            if (!existingYears.includes(currentYear)) {
+                monthNames.forEach((month) => {
+                    const key = `${currentYear}-${month.value}`;
+                    if (!initialTempValues[key]) {
+                        initialTempValues[key] = '0';
+                    }
+                });
+            }
+
             setTempValues(initialTempValues);
         }
-    }, [mode, account, year]);
+    }, [mode, account, year, monthNames]);
 
     const handleBackgroundColorChange = (e: ColorPickerChangeEvent) => {
         if (!e.value) return;

@@ -120,9 +120,7 @@ export default function Accounts() {
           .filter((record) => record.year === parseInt(year) && record.month === month.value)
           .reduce((sum, { value }) => sum + value, 0);
 
-        if (totalForMonthAndAccount > 0) {
-          monthData[account.accountName] = totalForMonthAndAccount;
-        }
+        monthData[account.accountName] = totalForMonthAndAccount;
       });
 
       const totalForMonth = Object.keys(monthData).reduce((acc, key) => {
@@ -137,10 +135,6 @@ export default function Accounts() {
       return monthData;
     });
   }, [activeAccounts, year, i18n.language, t, userCurrency]);
-
-  const isChartDataEmpty = useMemo(() => {
-    return chartData.every(data => Object.keys(data).length === 1);
-  }, [chartData]);
 
   const handleOpenEditSidebar = useCallback((accountId: string) => {
     const account = dataAccounts.find((acc) => acc._id === accountId) || null;
@@ -186,7 +180,9 @@ export default function Accounts() {
             placeholder={year}
           />
           <div className='accounts__main-chart'>
-            {!isChartDataEmpty ? (
+            {isLoading ? (
+              <Skeleton width="100%" height="100%" borderRadius="8px" />
+            ) : (
               <ResponsiveContainer width='100%' height={300}>
                 <BarChart
                   width={500}
@@ -198,7 +194,7 @@ export default function Accounts() {
                   <XAxis dataKey='name' />
                   <YAxis />
                   <Tooltip />
-                  {dataAccounts.map((account: Account) => (
+                  {activeAccounts.map((account: Account) => (
                     <Bar
                       key={account.accountName}
                       dataKey={account.accountName}
@@ -209,8 +205,6 @@ export default function Accounts() {
                   ))}
                 </BarChart>
               </ResponsiveContainer>
-            ) : (
-              <Skeleton width="100%" height="100%" borderRadius="8px" />
             )}
           </div>
         </div>
