@@ -12,41 +12,48 @@ interface HomeBalancesProps {
     percentage: number | null;
 }
 
+interface BalanceConfig {
+    translationKey: string;
+    getPercentageClass: (value: number) => string;
+}
+
 export default function HomeBalances({ type, amount, percentage }: HomeBalancesProps) {
     const { t } = useTranslation();
     const { user } = useUser();
 
-    // If no data (amount or percentage), show the skeleton loader
+    // If there is no data, show skeleton loader
     if (amount === null || percentage === null) {
         return <HomeBalancesSkeleton type={type} />;
     }
 
-    // Translate balance type names based on the type of balance (income, expenses, or ebitda)
-    const balanceName = {
-        income: t('dashboard.dashhome.balances.earnings'),
-        expenses: t('dashboard.dashhome.balances.spendings'),
-        ebitda: t('dashboard.dashhome.balances.savings'),
-    }[type];
-
-    // Set CSS class based on custom logic for positive/negative appearance:
-    const percentageClass = (() => {
-        if (type === 'income') {
-            return percentage >= 0 ? 'positive' : 'negative';
-        } else if (type === 'expenses') {
-            return percentage >= 0 ? 'negative' : 'positive';
-        } else if (type === 'ebitda') {
-            return percentage >= 0 ? 'positive' : 'negative';
+    // Configuration for each type of balance
+    const balanceConfigs: Record<HomeBalancesProps['type'], BalanceConfig> = {
+        income: {
+            translationKey: 'dashboard.dashhome.balances.earnings',
+            getPercentageClass: (value) => value >= 0 ? 'positive' : 'negative'
+        },
+        expenses: {
+            translationKey: 'dashboard.dashhome.balances.spendings',
+            getPercentageClass: (value) => value >= 0 ? 'negative' : 'positive'
+        },
+        ebitda: {
+            translationKey: 'dashboard.dashhome.balances.savings',
+            getPercentageClass: (value) => value >= 0 ? 'positive' : 'negative'
         }
-        return '';
-    })();
+    };
+
+    const config = balanceConfigs[type];
+    const percentageClass = config.getPercentageClass(percentage);
 
     return (
         <div className={`balances-container ${type}`}>
             <div className='header-container'>
-                <span>{balanceName}</span>
+                <span>{t(config.translationKey)}</span>
             </div>
             <div className='amount'>
-                <span className='value'>{formatCurrency(amount, user?.currency || 'USD')}</span>
+                <span className='value'>
+                    {formatCurrency(amount, user?.currency || 'USD')}
+                </span>
             </div>
             <div className='comparison'>
                 <span className={`percentage ${percentageClass}`}>
