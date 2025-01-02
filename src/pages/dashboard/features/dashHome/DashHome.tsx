@@ -25,40 +25,54 @@ export default function DashHome() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // Start loading
+      setIsLoading(true);
       try {
-        // Get the authentication token from local storage
         const token = localStorage.getItem('token') || '';
         const currentDate = new Date();
-        // Set the end of the current day (23:59:59)
         const endOfDay = new Date(currentDate);
         endOfDay.setHours(23, 59, 59, 999);
 
-        // Get the current year as a string
         const currentYear = currentDate.getFullYear().toString();
+        const previousYear = (currentDate.getFullYear() - 1).toString();
 
-        // Fetch movements for the current year
-        const movements: Movements[] = await getMovementsByYear(token, currentYear);
+        // Obtener movimientos de ambos años
+        const [currentYearMovements, previousYearMovements] = await Promise.all([
+          getMovementsByYear(token, currentYear),
+          getMovementsByYear(token, previousYear)
+        ]);
 
-        // If no movements are found, set the data as empty and return
-        if (movements.length === 0) {
+        // Combinar los movimientos de ambos años
+        const allMovements = [...currentYearMovements, ...previousYearMovements];
+
+        if (allMovements.length === 0) {
           setIsDataEmpty(true);
-          setIsLoading(false); // End loading
+          setIsLoading(false);
           return;
         }
         setIsDataEmpty(false);
 
-        // Filter movements to include only those up to the end of the current day
-        const filteredMovements = movements.filter((mov) => new Date(mov.date) <= endOfDay);
+        // Calcular la fecha límite de 6 meses atrás
+        const sixMonthsAgo = new Date(currentDate);
+        sixMonthsAgo.setMonth(currentDate.getMonth() - 5);
+        sixMonthsAgo.setDate(1);
+        sixMonthsAgo.setHours(0, 0, 0, 0);
 
-        // Sort movements by date in descending order (most recent first)
-        const sortedMovements = filteredMovements.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        // Filtrar movimientos para incluir solo los últimos 6 meses
+        const filteredMovements = allMovements.filter(mov => {
+          const movDate = new Date(mov.date);
+          return movDate >= sixMonthsAgo && movDate <= endOfDay;
+        });
+
+        // Ordenar movimientos por fecha
+        const sortedMovements = filteredMovements.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
 
         setMovements(sortedMovements);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
-        setIsLoading(false); // End loading when fetch is done
+        setIsLoading(false);
       }
     };
 
@@ -69,56 +83,60 @@ export default function DashHome() {
     if (movements.length === 0) return;
 
     const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1;
+
+    // Determinar el año y mes anterior
+    const previousMonth = currentMonth === 1 ? 12 : currentMonth - 1;
+    const previousYear = currentMonth === 1 ? currentYear - 1 : currentYear;
 
     // Filter movements for the current month
     const movementsCurrentMonth = movements.filter((mov) => {
-      const movDate = new Date(mov.date);
-      return movDate.getFullYear() === currentDate.getFullYear() && movDate.getMonth() + 1 === currentMonth;
+        const movDate = new Date(mov.date);
+        return movDate.getFullYear() === currentYear && 
+               movDate.getMonth() + 1 === currentMonth;
     });
 
-    // Calculate total income for the current month
+    // Filter movements for the previous month, considering year change
+    const movementsPreviousMonth = movements.filter((mov) => {
+        const movDate = new Date(mov.date);
+        return movDate.getFullYear() === previousYear && 
+               movDate.getMonth() + 1 === previousMonth;
+    });
+
+    // Calculate totals for current month
     const totalIncomeCurrent = movementsCurrentMonth
-      .filter((mov) => mov.amount > 0)
-      .reduce((sum, mov) => sum + mov.amount, 0);
+        .filter((mov) => mov.amount > 0)
+        .reduce((sum, mov) => sum + mov.amount, 0);
 
     // Calculate total expenses for the current month
     const totalExpensesCurrent = movementsCurrentMonth
-      .filter((mov) => mov.amount < 0)
-      .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
+        .filter((mov) => mov.amount < 0)
+        .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
 
     // Calculate EBITDA for the current month
     const ebitdaCurrent = totalIncomeCurrent - totalExpensesCurrent;
 
-    // Filter movements for the previous month
-    const movementsPreviousMonth = movements.filter((mov) => {
-      const movDate = new Date(mov.date);
-      return (
-        movDate.getFullYear() === currentDate.getFullYear() &&
-        movDate.getMonth() + 1 === (currentMonth === 1 ? 12 : currentMonth - 1)
-      );
-    });
-
-    // Calculate total income for the previous month
+    // Calculate totals for previous month
     const totalIncomePrevious = movementsPreviousMonth
-      .filter((mov) => mov.amount > 0)
-      .reduce((sum, mov) => sum + mov.amount, 0);
+        .filter((mov) => mov.amount > 0)
+        .reduce((sum, mov) => sum + mov.amount, 0);
 
     // Calculate total expenses for the previous month
     const totalExpensesPrevious = movementsPreviousMonth
-      .filter((mov) => mov.amount < 0)
-      .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
+        .filter((mov) => mov.amount < 0)
+        .reduce((sum, mov) => sum + Math.abs(mov.amount), 0);
 
     // Calculate EBITDA for the previous month
     const ebitdaPrevious = totalIncomePrevious - totalExpensesPrevious;
 
     // Function to calculate percentage change between current and previous values
     const calculatePercentageChange = (current: number, previous: number): number => {
-      if (previous === 0) return current === 0 ? 0 : 100;
-      return ((current - previous) / previous) * 100;
+        if (previous === 0) return current === 0 ? 0 : 100;
+        return ((current - previous) / previous) * 100;
     };
 
-    // Calculate percentage changes for income, expenses, and EBITDA
+    // Calculate percentage changes
     const incomeChange = calculatePercentageChange(totalIncomeCurrent, totalIncomePrevious);
     const expensesChange = calculatePercentageChange(totalExpensesCurrent, totalExpensesPrevious);
     const ebitdaChange = calculatePercentageChange(ebitdaCurrent, ebitdaPrevious);
@@ -132,7 +150,7 @@ export default function DashHome() {
     setExpensesPercentage(Number(expensesChange.toFixed(2)));
     setEbitdaPercentage(Number(ebitdaChange.toFixed(2)));
 
-  }, [movements]);
+}, [movements]);
 
   return (
     <section className='dashHome'>
@@ -147,7 +165,10 @@ export default function DashHome() {
           <div className='header-container'>
             <span>{t('dashboard.dashhome.home_balance_chart.header')}</span>
           </div>
-          <HomeBalanceChart />
+          <HomeBalanceChart 
+            movements={movements} 
+            isLoading={isLoading} 
+          />
         </div>
       </div>
 

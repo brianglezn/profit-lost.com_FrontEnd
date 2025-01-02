@@ -11,9 +11,8 @@ import {
 } from 'recharts';
 import { Skeleton } from 'primereact/skeleton';
 import { useTranslation } from 'react-i18next';
-import { useUser } from '../../../../../context/useUser';
 
-import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
+import { Movements } from '../../../../../helpers/types';
 
 import './HomeBalanceChart.scss';
 
@@ -23,58 +22,39 @@ interface DataPoint {
     expenses: number;
 }
 
-interface Movement {
-    date: string;
-    amount: number;
-    type: string;
+interface HomeBalanceChartProps {
+    movements: Movements[];
+    isLoading: boolean;
 }
 
-export default function HomeBalanceChart() {
+export default function HomeBalanceChart({ movements, isLoading }: HomeBalanceChartProps) {
     const [data, setData] = useState<DataPoint[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
     const { t } = useTranslation();
-    const { user } = useUser();
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            const token = localStorage.getItem('token');
+        if (!movements.length) return;
+        
+        const lastSixMonthsData = getLastSixMonthsData(movements);
+        setData(lastSixMonthsData);
+    }, [movements]);
 
-            if (!user || !token) {
-                setIsLoading(false);
-                return;
-            }
-
-            try {
-                const currentYear = new Date().getFullYear().toString();
-                const movements = await getMovementsByYear(token, currentYear);
-                const lastSixMonthsData = getLastSixMonthsData(movements);
-                setData(lastSixMonthsData);
-            } catch (error) {
-                console.error('Error fetching movements:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [user]);
-
-    const getLastSixMonthsData = (movements: Movement[]): DataPoint[] => {
+    const getLastSixMonthsData = (movements: Movements[]): DataPoint[] => {
         const today = new Date();
-        const months = [];
+        const months: DataPoint[] = [];
         const monthlyData: { [key: string]: { income: number; expenses: number } } = {};
 
+        // Generar los últimos 6 meses
         for (let i = 5; i >= 0; i--) {
             const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
             const monthName = date.toLocaleString('default', { month: 'short' });
             monthlyData[monthName] = { income: 0, expenses: 0 };
         }
 
+        // Procesar movimientos
         movements.forEach((movement) => {
             const movementDate = new Date(movement.date);
             const monthName = movementDate.toLocaleString('default', { month: 'short' });
-
+            
             if (monthlyData[monthName]) {
                 if (movement.amount > 0) {
                     monthlyData[monthName].income += movement.amount;
@@ -84,11 +64,14 @@ export default function HomeBalanceChart() {
             }
         });
 
-        for (const [key, value] of Object.entries(monthlyData)) {
+        // Convertir a array manteniendo el orden correcto
+        for (let i = 5; i >= 0; i--) {
+            const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+            const monthName = date.toLocaleString('default', { month: 'short' });
             months.push({
-                name: key,
-                income: parseFloat(value.income.toFixed(2)),
-                expenses: parseFloat(value.expenses.toFixed(2)),
+                name: monthName,
+                income: parseFloat(monthlyData[monthName].income.toFixed(2)),
+                expenses: parseFloat(monthlyData[monthName].expenses.toFixed(2)),
             });
         }
 
