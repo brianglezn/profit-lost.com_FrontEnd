@@ -94,16 +94,30 @@ export default function Accounts() {
       setDataAccounts([...orderedAccounts, ...unOrderedAccounts]);
 
       const years = new Set<number>();
-      [...orderedAccounts, ...unOrderedAccounts].forEach(account =>
-        account.records.forEach(record => years.add(record.year))
-      );
-      setUniqueYears(Array.from(years).sort((a, b) => a - b));
+      const currentYear = new Date().getFullYear();
+      
+      [...orderedAccounts, ...unOrderedAccounts].forEach(account => {
+        account.records.forEach(record => {
+          if (record.value !== 0) {
+            years.add(record.year);
+          }
+        });
+      });
+
+      years.add(currentYear);
+
+      const sortedYears = Array.from(years).sort((a, b) => b - a);
+      setUniqueYears(sortedYears);
+
+      if (!sortedYears.includes(parseInt(year))) {
+        setYear(currentYear.toString());
+      }
     } catch (error) {
       console.error('Error fetching all accounts data:', error);
     } finally {
       setIsLoading(false);
     }
-  }, [t]);
+  }, [t, year]);
 
   useEffect(() => {
     fetchAllData();
@@ -175,7 +189,7 @@ export default function Accounts() {
         <div className='accounts__main'>
           <Dropdown
             value={year}
-            options={uniqueYears.slice().reverse().map(year => ({ label: year.toString(), value: year }))}
+            options={uniqueYears.map(year => ({ label: year.toString(), value: year.toString() }))}
             onChange={(e) => setYear(e.value)}
             placeholder={year}
           />

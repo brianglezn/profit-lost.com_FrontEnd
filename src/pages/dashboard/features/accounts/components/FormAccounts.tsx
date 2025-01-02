@@ -66,35 +66,45 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
 
     useEffect(() => {
         if (mode === 'edit' && account) {
-            const existingYears = Array.from(
-                new Set(account.records.map((record) => record.year))
-            ).sort((a, b) => a - b);
+            // Obtener solo los años que tienen datos distintos de 0
+            const yearsWithData = account.records.reduce((years: number[], record) => {
+                if (record.value !== 0 && !years.includes(record.year)) {
+                    years.push(record.year);
+                }
+                return years;
+            }, []);
 
             const currentYear = new Date().getFullYear();
-
-            const allYears = new Set([...existingYears, currentYear]);
             
-            setUniqueYears(Array.from(allYears).sort((a, b) => a - b));
+            // Asegurarnos de incluir el año actual
+            if (!yearsWithData.includes(currentYear)) {
+                yearsWithData.push(currentYear);
+            }
 
-            if (!existingYears.includes(year)) {
+            setUniqueYears(yearsWithData.sort((a, b) => a - b));
+
+            // Si el año seleccionado no tiene datos, establecer el año actual
+            if (!yearsWithData.includes(year)) {
                 setYear(currentYear);
             }
 
+            // Inicializar valores temporales solo para años con datos y el año actual
             const initialTempValues: { [key: string]: string } = {};
             
-            account.records.forEach((record) => {
-                initialTempValues[`${record.year}-${record.month}`] = 
-                    record.value?.toString() || '0';
-            });
-
-            if (!existingYears.includes(currentYear)) {
-                monthNames.forEach((month) => {
-                    const key = `${currentYear}-${month.value}`;
-                    if (!initialTempValues[key]) {
-                        initialTempValues[key] = '0';
-                    }
+            account.records
+                .filter(record => yearsWithData.includes(record.year))
+                .forEach(record => {
+                    initialTempValues[`${record.year}-${record.month}`] = 
+                        record.value?.toString() || '0';
                 });
-            }
+
+            // Asegurar que el año actual tenga todos los meses inicializados
+            monthNames.forEach(month => {
+                const key = `${currentYear}-${month.value}`;
+                if (!initialTempValues[key]) {
+                    initialTempValues[key] = '0';
+                }
+            });
 
             setTempValues(initialTempValues);
         }
