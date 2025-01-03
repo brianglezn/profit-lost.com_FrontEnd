@@ -4,15 +4,15 @@ import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { useUser } from '../../../../../context/useUser';
+import { ProgressBar } from 'primereact/progressbar';
 
+import { useUser } from '../../../../../context/useUser';
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
 import { formatCurrency } from '../../../../../helpers/functions';
 import { Category, Movements } from '../../../../../helpers/types';
 
 import FormCategoryEdit from './FormCategoryEdit';
-import AnnualCategoriesSkeleton from './AnnualCategoriesSkeleton';
 
 import './AnnualCategories.scss';
 
@@ -139,7 +139,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
             </div>
 
             {isLoading ? (
-                <AnnualCategoriesSkeleton />
+                <ProgressBar mode='indeterminate' style={{ height: '0.375rem', width: '100%' }} />
             ) : (
                 <div className='categories-list'>
                     {sortedCategories.map((category) => (
