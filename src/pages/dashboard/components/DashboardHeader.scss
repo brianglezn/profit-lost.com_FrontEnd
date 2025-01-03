@@ -16,26 +16,13 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        gap: 2rem;
+        gap: 1rem;
         width: 100%;
         border-radius: 1rem;
+        padding: 0.5rem 0rem;
         background-color: $bg-color-sec;
         box-shadow: $shadow_color 0px 1px 4px;
         transition: all 0.3s ease;
-
-        svg {
-            fill: $primary_color;
-            height: 1.5rem;
-            width: 1.5rem;
-            cursor: pointer;
-        }
-
-        .dashboard__header-date {
-            padding: .5rem;
-            background-color: $primary_color-light;
-            color: $primary_color;
-            border-radius: .5rem;
-        }
 
         .dashboard__header-avatar {
             cursor: pointer;
@@ -77,13 +64,5 @@
 
     @media (max-width: 480px) {
         padding: 1rem .5rem;
-
-        .dashboard__header-container {
-            justify-content: space-around;
-
-            .dashboard__header-avatar {
-                margin-right: 0;
-            }
-        }
     }
 }
