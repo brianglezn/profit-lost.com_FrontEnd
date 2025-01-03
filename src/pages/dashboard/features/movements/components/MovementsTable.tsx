@@ -9,7 +9,7 @@ import { useUser } from '../../../../../context/useUser';
 import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
 import { Movements, Category } from '../../../../../helpers/types';
 
-import FormMovementsEdit from './FormMovementsEdit';
+import FormMovements from './FormMovements';
 
 import './MovementsTable.scss';
 
@@ -164,21 +164,21 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
             <Sidebar
                 visible={editSidebarVisible}
                 onHide={() => setEditSidebarVisible(false)}
+                position='right'
                 style={{ width: '500px' }}
                 className='custom_sidebar'
-                position='right'
                 modal>
-                {selectedTransaction && <FormMovementsEdit
-                    transaction={selectedTransaction}
-                    onEdit={() => {
-                        reloadData();
-                        setEditSidebarVisible(false);
-                    }}
-                    onRemove={() => {
-                        reloadData();
-                        setEditSidebarVisible(false);
-                    }}
-                />}
+                {selectedTransaction && (
+                    <FormMovements
+                        transaction={selectedTransaction}
+                        onSubmit={reloadData}
+                        onClose={() => setEditSidebarVisible(false)}
+                        onRemove={() => {
+                            setEditSidebarVisible(false);
+                            reloadData();
+                        }}
+                    />
+                )}
             </Sidebar>
         </div>
     );

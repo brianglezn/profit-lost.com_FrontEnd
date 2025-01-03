@@ -13,7 +13,7 @@ import type { Movements, Category } from '../../../../helpers/types';
 import MovementsPie from './components/MovementsPie';
 import MovementsChart from './components/MovementsChart';
 import MovementsTable from './components/MovementsTable';
-import FormMovementsAdd from './components/FormMovementsAdd';
+import FormMovements from './components/FormMovements';
 import MovementsBalance from './components/MovementsBalance';
 
 import './Movements.scss';
@@ -141,7 +141,12 @@ export default function Movements() {
             style={{ width: '500px' }}
             className='custom_sidebar'
             modal>
-            <FormMovementsAdd onMovementAdded={reloadData} onClose={handleCloseModal} selectedYear={year} selectedMonth={month} />
+            <FormMovements 
+              onSubmit={reloadData}
+              onClose={handleCloseModal}
+              selectedYear={year}
+              selectedMonth={month}
+            />
           </Sidebar>
         </div>
         <MovementsTable
