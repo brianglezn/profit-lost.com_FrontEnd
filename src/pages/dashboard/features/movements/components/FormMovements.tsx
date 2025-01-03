@@ -196,7 +196,6 @@ export default function FormMovements({
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Convert input date to UTC while keeping local time
         const localDate = new Date(date);
         const utcDate = new Date(Date.UTC(
             localDate.getFullYear(),
@@ -219,6 +218,7 @@ export default function FormMovements({
             return;
         }
 
+        // Validaciones básicas
         if (!/^\d+(\.\d{0,2})?$/.test(amount)) {
             toast.error(t('dashboard.movements.form_movements_add.error_message'));
             return;
@@ -229,13 +229,32 @@ export default function FormMovements({
             return;
         }
 
+        // Validaciones para movimientos recurrentes
         if (!isEdit && isRecurring) {
             const currentDate = new Date();
             const recurrenceEndDate = new Date(recurrenceEnd);
 
-            if (recurrenceEndDate <= currentDate) {
-                toast.error(t('dashboard.movements.form_movements_add.recurrence_end_error'));
-                return;
+            // Validación para recurrencia mensual
+            if (recurrenceFrequency === 'monthly') {
+                const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+                
+                // Convertir la fecha de fin a inicio del mes para comparación
+                const endDateStartOfMonth = new Date(recurrenceEndDate.getFullYear(), recurrenceEndDate.getMonth(), 1);
+                
+                if (endDateStartOfMonth < nextMonth) {
+                    toast.error(t('dashboard.movements.form_movements_add.min_month_error'));
+                    return;
+                }
+            }
+
+            // Validación para recurrencia anual
+            if (recurrenceFrequency === 'yearly') {
+                const nextYear = currentDate.getFullYear() + 1;
+                
+                if (recurrenceEndDate.getFullYear() < nextYear) {
+                    toast.error(t('dashboard.movements.form_movements_add.min_year_error'));
+                    return;
+                }
             }
         }
 
@@ -257,6 +276,32 @@ export default function FormMovements({
             const errorMessage = error instanceof Error ? error.message : t('dashboard.common.error');
             toast.error(errorMessage);
         }
+    };
+
+    // Validación en tiempo real para la fecha de fin
+    const handleRecurrenceEndChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        const currentDate = new Date();
+
+        if (recurrenceFrequency === 'monthly') {
+            const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+            const endDate = new Date(value);
+            
+            if (endDate < nextMonth) {
+                toast.error(t('dashboard.movements.form_movements_add.min_month_error'));
+                return;
+            }
+        } else if (recurrenceFrequency === 'yearly') {
+            const nextYear = currentDate.getFullYear() + 1;
+            const endYear = parseInt(value);
+            
+            if (endYear < nextYear) {
+                toast.error(t('dashboard.movements.form_movements_add.min_year_error'));
+                return;
+            }
+        }
+
+        setRecurrenceEnd(value);
     };
 
     return (
@@ -322,14 +367,15 @@ export default function FormMovements({
                     className='custom-input'
                 />
                 {!isEdit && (
-                    <div className='formMovements-recurring'>
-                        <label>
+                    <div className='form-field'>
+                        <label className='switch'>
+                            <span>{t('dashboard.movements.form_movements_add.recurring_label')}</span>
                             <input
                                 type='checkbox'
                                 checked={isRecurring}
                                 onChange={(e) => setIsRecurring(e.target.checked)}
                             />
-                            {t('dashboard.movements.form_movements_add.recurring_label')}
+                            <span className='slider'></span>
                         </label>
                         {isRecurring && (
                             <div className='formMovements-recurring-options'>
@@ -347,8 +393,9 @@ export default function FormMovements({
                                     <input
                                         type='month'
                                         value={recurrenceEnd}
-                                        onChange={(e) => setRecurrenceEnd(e.target.value)}
+                                        onChange={handleRecurrenceEndChange}
                                         className='custom-input'
+                                        min={new Date(new Date().getFullYear(), new Date().getMonth() + 1).toISOString().slice(0, 7)}
                                         placeholder={t('dashboard.movements.form_movements_add.end_date')}
                                         required
                                     />
@@ -356,10 +403,10 @@ export default function FormMovements({
                                     <input
                                         type='number'
                                         value={recurrenceEnd}
-                                        onChange={(e) => setRecurrenceEnd(e.target.value)}
+                                        onChange={handleRecurrenceEndChange}
                                         className='custom-input'
+                                        min={new Date().getFullYear() + 1}
                                         placeholder={t('dashboard.movements.form_movements_add.end_date')}
-                                        min={new Date().getFullYear()}
                                         required
                                     />
                                 )}

@@ -212,7 +212,9 @@
                 "save_button": "Guardar",
                 "success_message": "Transacción agregada con éxito",
                 "error_message": "Error al agregar el transacción",
-                "recurrence_end_error": "La fecha de finalización debe ser posterior a la fecha actual."
+                "recurrence_end_error": "La fecha de finalización debe ser posterior a la fecha actual.",
+                "min_month_error": "La fecha de fin debe ser al menos el mes siguiente",
+                "min_year_error": "El año de fin debe ser al menos el próximo año"
             },
             "form_movements_edit": {
                 "header": "Editar transacción",

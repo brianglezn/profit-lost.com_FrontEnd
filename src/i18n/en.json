@@ -212,7 +212,9 @@
                 "save_button": "Save",
                 "success_message": "Transaction added successfully",
                 "error_message": "Error adding transaction",
-                "recurrence_end_error": "The completion date must be after the current date."
+                "recurrence_end_error": "The completion date must be after the current date.",
+                "min_month_error": "The end date must be at least the next month",
+                "min_year_error": "The end date must be at least the next year"
             },
             "form_movements_edit": {
                 "header": "Edit transaction",
