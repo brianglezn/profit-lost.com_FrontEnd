@@ -223,7 +223,7 @@
                 "description_placeholder": "Descripción",
                 "amount_placeholder": "Cantidad",
                 "delete_button": "Eliminar",
-                "save_button": "Actualizar",
+                "save_button": "Guardar",
                 "confirm_delete": "¿Estás seguro de que quieres eliminar esta transacción?",
                 "success_message_edit": "Transacción actualizada con éxito",
                 "success_message_delete": "Transacción eliminada con éxito",
@@ -234,8 +234,8 @@
             "title": "Cuentas",
             "account_item": {
                 "edit": "Editar cuenta",
-                "remove": "Eliminar cuenta",
-                "add": "Agregar cuenta",
+                "remove": "Eliminar",
+                "add": "Añadir",
                 "submit": "Guardar"
             },
             "form_accounts_add": {

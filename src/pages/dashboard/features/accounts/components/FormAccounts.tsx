@@ -73,7 +73,7 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                 { name: 'December', value: 'Dec' },
             ];
     }, [i18n.language]);
-    
+
     // Initial effect to load the years
     useEffect(() => {
         if (mode === 'edit' && account) {
@@ -82,14 +82,14 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
             years.add(currentYear);
             const sortedYears = Array.from(years).sort((a, b) => a - b);
             setUniqueYears(sortedYears);
-            
+
             // Initialize tempValues with existing records
             const initialTempValues: { [key: string]: string } = {};
             account.records.forEach(record => {
                 const key = `${record.year}-${record.month}`;
                 initialTempValues[key] = record.value?.toString() || '0';
             });
-            
+
             // Add values for the current year if they do not exist
             if (!account.records.some(record => record.year === currentYear)) {
                 monthNames.forEach(month => {
@@ -97,7 +97,7 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                     initialTempValues[key] = '0';
                 });
             }
-            
+
             setTempValues(initialTempValues);
         }
     }, [mode, account, currentYear, monthNames]);
@@ -331,7 +331,7 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                                 {monthNames.map((month) => {
                                     const key = `${year}-${month.value}`;
                                     const value = tempValues[key] || '0';
-                                    
+
                                     return (
                                         <div className='dataYear-row' key={month.value}>
                                             <span>{month.name}</span>
@@ -377,7 +377,7 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                         </button>
                     )}
                     <button type='submit' className='custom-btn'>
-                        {t(`dashboard.accounts.account_item.${mode}`)}
+                        {t('dashboard.accounts.account_item.submit')}
                     </button>
                 </div>
             </form>

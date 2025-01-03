@@ -223,7 +223,7 @@
                 "description_placeholder": "Description",
                 "amount_placeholder": "Amount",
                 "delete_button": "Delete",
-                "save_button": "Update",
+                "save_button": "Save",
                 "confirm_delete": "Are you sure you want to delete this transaction?",
                 "success_message_edit": "Transaction updated successfully",
                 "success_message_delete": "Transaction deleted successfully",
@@ -234,7 +234,7 @@
             "title": "Accounts",
             "account_item": {
                 "edit": "Edit account",
-                "remove": "Remove account",
+                "remove": "Delete",
                 "add": "Add account",
                 "submit": "Save"
             },
