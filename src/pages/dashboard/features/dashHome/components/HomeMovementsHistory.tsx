@@ -1,7 +1,5 @@
-import { useTranslation } from 'react-i18next';
-
-import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
 import { Movements } from '../../../../../helpers/types';
+import { formatDateTime, formatCurrency } from '../../../../../helpers/functions';
 import { useUser } from '../../../../../context/useUser';
 
 import HomeMovementsHistorySkeleton from './HomeMovementsHistorySkeleton';
@@ -15,7 +13,6 @@ interface MovementsHistoryHomeProps {
 }
 
 export default function HomeMovementsHistory({ data, isDataEmpty, isLoading }: MovementsHistoryHomeProps) {
-    const { i18n } = useTranslation();
     const { user } = useUser();
 
     // Sort the data by date in descending order and limit to the latest 8 transactions
@@ -36,7 +33,14 @@ export default function HomeMovementsHistory({ data, isDataEmpty, isLoading }: M
                     <li key={transaction._id} className='movement-item'>
                         <div className='description-section'>
                             <div className='description'>{transaction.description}</div>
-                            <div className='date'>{formatDateTime(transaction.date, i18n.language)}</div>
+                            <div className='date'>
+                                {formatDateTime(
+                                    transaction.date,
+                                    user?.language || 'en',
+                                    user?.dateFormat || 'MM/DD/YYYY',
+                                    user?.timeFormat || '12h'
+                                )}
+                            </div>
                         </div>
                         <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
                             {formatCurrency(transaction.amount, user?.currency || 'USD')}

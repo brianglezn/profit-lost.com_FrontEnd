@@ -3,24 +3,31 @@ import { Avatar } from 'primereact/avatar';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
+import { useUser } from '../../../context/useUser';
+import { getCurrentDate } from '../../../helpers/functions';
 import RefreshIcon from '../../../components/icons/RefreshIcon';
 
 import './DashboardHeader.scss';
 
 interface DashboardHeaderProps {
     onAvatarClick: () => void;
-    currentDate: string;
     userImage?: string;
     userName?: string;
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     onAvatarClick,
-    currentDate,
     userImage,
     userName,
 }) => {
     const { t } = useTranslation();
+    const { user } = useUser();
+
+    const currentDate = getCurrentDate(
+        user?.language || 'en',
+        user?.dateFormat || 'DD/MM/YYYY',
+        user?.timeFormat || '24h'
+    );
 
     const handleScroll = useCallback(() => {
         const headerContainer = document.querySelector('.dashboard__header-container');

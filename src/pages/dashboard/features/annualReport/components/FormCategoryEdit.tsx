@@ -8,9 +8,9 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { editCategory } from '../../../../../api/categories/editCategory';
 import { removeCategory } from '../../../../../api/categories/removeCategory';
 import { getAllMovements } from '../../../../../api/movements/getAllMovements';
-import { getUserByToken } from '../../../../../api/users/getUserByToken';
 import { formatCurrency, formatDateTime } from '../../../../../helpers/functions';
-import { Movements, User } from '../../../../../helpers/types';
+import { Movements } from '../../../../../helpers/types';
+import { useUser } from '../../../../../context/useUser';
 
 import './FormCategory.scss';
 
@@ -27,9 +27,8 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     const [name, setName] = useState(categoryName);
     const [color, setColor] = useState(categoryColor);
     const [movementsByYear, setMovementsByYear] = useState<{ [key: string]: Movements[] }>({});
-    const [userCurrency, setUserCurrency] = useState<string>('USD');
-
-    const { t, i18n } = useTranslation();
+    const { user } = useUser();
+    const { t } = useTranslation();
 
     // Fetch all movements related to the category
     useEffect(() => {
@@ -42,8 +41,6 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
 
             try {
                 const movements: Movements[] = await getAllMovements(token);
-                const user: User = await getUserByToken(token);
-                setUserCurrency(user.currency || 'USD');
                 
                 // Filter movements to only include those for the given category
                 const filteredMovements = movements.filter((movement) => movement.category === categoryName);
@@ -120,9 +117,6 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
         }
     };
 
-    // Check if there are any movements related to the category
-    const hasMovements = Object.keys(movementsByYear).length > 0;
-
     return (
         <>
             <ConfirmDialog />
@@ -149,30 +143,35 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                     </button>
                 </div>
 
-                {hasMovements && (
+                {Object.keys(movementsByYear).length > 0 && (
                     <div className='movementsByCategory'>
                         <Accordion multiple className='movementsByCategory-container'>
                             {Object.keys(movementsByYear)
                                 .sort((a, b) => Number(b) - Number(a))
                                 .map((year) => (
                                     <AccordionTab key={year} header={year}>
-                                        <ul className='movementsByCategory-list'>
+                                        <div className='movementsByCategory-list'>
                                             {movementsByYear[year]
                                                 .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                                                 .map((movement) => (
-                                                    <li key={movement._id} className='movementsByCategory-item'>
-                                                        <span className='movementsByCategory-date'>
-                                                            {formatDateTime(movement.date, i18n.language)}
-                                                        </span>
-                                                        <span className='movementsByCategory-description'>
+                                                    <div key={movement._id} className='movementsByCategory-item'>
+                                                        <div className='movementsByCategory-date'>
+                                                            {formatDateTime(
+                                                                movement.date,
+                                                                user?.language || 'en',
+                                                                user?.dateFormat || 'MM/DD/YYYY',
+                                                                user?.timeFormat || '12h'
+                                                            )}
+                                                        </div>
+                                                        <div className='movementsByCategory-description'>
                                                             {movement.description}
-                                                        </span>
-                                                        <span className={`movementsByCategory-amount ${movement.amount < 0 ? 'negative' : 'positive'}`}>
-                                                            {formatCurrency(movement.amount, userCurrency)}
-                                                        </span>
-                                                    </li>
+                                                        </div>
+                                                        <div className={`movementsByCategory-amount ${movement.amount >= 0 ? 'positive' : 'negative'}`}>
+                                                            {formatCurrency(movement.amount, user?.currency || 'USD')}
+                                                        </div>
+                                                    </div>
                                                 ))}
-                                        </ul>
+                                        </div>
                                     </AccordionTab>
                                 ))}
                         </Accordion>

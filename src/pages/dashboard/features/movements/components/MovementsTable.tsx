@@ -29,7 +29,7 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortOption, setSortOption] = useState<string>('date_desc');
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     // Function to open the edit sidebar and select the transaction to edit
     const editMovement = (transaction: Movements) => {
@@ -137,7 +137,14 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                             </div>
                             <div className='description-section'>
                                 <div className='description'>{transaction.description}</div>
-                                <div className='date'>{formatDateTime(transaction.date, i18n.language)}</div>
+                                <div className='date'>
+                                    {formatDateTime(
+                                        transaction.date,
+                                        user?.language || 'en',
+                                        user?.dateFormat || 'MM/DD/YYYY',
+                                        user?.timeFormat || '12h'
+                                    )}
+                                </div>
                             </div>
                             <div className='category'>
                                 <div

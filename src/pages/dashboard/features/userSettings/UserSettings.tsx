@@ -12,6 +12,9 @@ import { updateProfile } from '../../../../api/users/updateProfile';
 
 import './UserSettings.scss';
 
+type DateFormat = 'DD/MM/YYYY' | 'MM/DD/YYYY';
+type TimeFormat = '12h' | '24h';
+
 export default function UserSettings() {
     const { t } = useTranslation();
     const { user, refreshUser } = useUser();
@@ -22,6 +25,8 @@ export default function UserSettings() {
     const [currency, setCurrency] = useState(user?.currency || 'USD');
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const fileUploadRef = useRef<FileUpload>(null);
+    const [dateFormat, setDateFormat] = useState<DateFormat>(user?.dateFormat || 'MM/DD/YYYY');
+    const [timeFormat, setTimeFormat] = useState<TimeFormat>(user?.timeFormat || '12h');
 
     useEffect(() => {
         // Update local state whenever user props change
@@ -29,6 +34,8 @@ export default function UserSettings() {
         setSurname(user?.surname || '');
         setLanguage(user?.language || 'en');
         setCurrency(user?.currency || 'USD');
+        setDateFormat(user?.dateFormat || 'MM/DD/YYYY');
+        setTimeFormat(user?.timeFormat || '12h');
     }, [user]);
 
     // Handler for updating the name state
@@ -74,6 +81,8 @@ export default function UserSettings() {
         formData.append('surname', surname);
         formData.append('language', language);
         formData.append('currency', currency);
+        formData.append('dateFormat', dateFormat);
+        formData.append('timeFormat', timeFormat);
 
         if (profileImage) {
             formData.append('profileImage', profileImage);
@@ -130,6 +139,26 @@ export default function UserSettings() {
     // Handler for changing the currency
     const handleCurrencyChange = (e: DropdownChangeEvent) => {
         setCurrency(e.value);
+    };
+
+    // Opciones para los formatos
+    const dateFormatOptions = [
+        { label: 'DD/MM/YYYY', value: 'DD/MM/YYYY' },
+        { label: 'MM/DD/YYYY', value: 'MM/DD/YYYY' }
+    ];
+
+    const timeFormatOptions = [
+        { label: '12h (AM/PM)', value: '12h' },
+        { label: '24h', value: '24h' }
+    ];
+
+    // Handlers para los cambios de formato
+    const handleDateFormatChange = (e: DropdownChangeEvent) => {
+        setDateFormat(e.value as DateFormat);
+    };
+
+    const handleTimeFormatChange = (e: DropdownChangeEvent) => {
+        setTimeFormat(e.value as TimeFormat);
     };
 
     return (
@@ -206,6 +235,28 @@ export default function UserSettings() {
                         onChange={handleCurrencyChange}
                         className='currency-dropdown'
                         placeholder={t('dashboard.dashboard.user.settings.select_currency')}
+                    />
+                </div>
+
+                <div className='settings__section'>
+                    <label htmlFor='dateFormat'>{t('dashboard.dashboard.user.settings.date_format')}</label>
+                    <Dropdown
+                        id='dateFormat'
+                        value={dateFormat}
+                        options={dateFormatOptions}
+                        onChange={handleDateFormatChange}
+                        className='date-format-dropdown'
+                    />
+                </div>
+
+                <div className='settings__section'>
+                    <label htmlFor='timeFormat'>{t('dashboard.dashboard.user.settings.time_format')}</label>
+                    <Dropdown
+                        id='timeFormat'
+                        value={timeFormat}
+                        options={timeFormatOptions}
+                        onChange={handleTimeFormatChange}
+                        className='time-format-dropdown'
                     />
                 </div>
 

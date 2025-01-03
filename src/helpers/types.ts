@@ -8,11 +8,13 @@ export interface User {
     surname: string;
     resetToken?: string;
     resetTokenExpiry?: string;
-    language?: string;
-    currency?: string;
     profileImage?: string;
     profileImagePublicId?: string;
     accountsOrder?: string[];
+    language?: string;
+    currency?: string;
+    dateFormat?: 'DD/MM/YYYY' | 'MM/DD/YYYY';
+    timeFormat?: '12h' | '24h';
 }
 
 // Movements

@@ -89,7 +89,9 @@
                     "image_deleted_error": "Error al eliminar la imagen de perfil",
                     "no_image": "Sin imagen",
                     "preferred_currency": "Moneda Preferida",
-                    "select_currency": "Selecciona una moneda"
+                    "select_currency": "Selecciona una moneda",
+                    "date_format": "Formato de Fecha",
+                    "time_format": "Formato de Hora"
                 },
                 "security_privacy": {
                     "title": "Configuración de seguridad y privacidad",
@@ -166,7 +168,7 @@
                 "success_message": "Categoría añadida con éxito"
             },
             "form_cat_edit": {
-                "header": "Editar {category}",
+                "header": "Editar Category",
                 "name_placeholder": "Nombre de la categoría",
                 "save_button": "Guardar",
                 "remove_button": "Eliminar",

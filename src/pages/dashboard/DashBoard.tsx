@@ -4,7 +4,6 @@ import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 
-import { getCurrentDate } from '../../helpers/functions';
 import { useUser } from '../../context/useUser';
 import { useAuth } from '../../context/useAuth';
 
@@ -94,14 +93,11 @@ export default function Dashboard() {
 
   if (!user || !authToken) return null;
 
-  const currentDate = getCurrentDate(i18n.language.startsWith('es') ? 'es' : 'en');
-
   return (
     <>
       <div className='dashboard'>
         <DashboardHeader
           onAvatarClick={handleAvatarClick}
-          currentDate={currentDate}
           userImage={user.profileImage}
           userName={user.name}
         />

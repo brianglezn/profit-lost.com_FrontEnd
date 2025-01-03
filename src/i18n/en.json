@@ -89,7 +89,9 @@
                     "image_deleted_error": "Error deleting profile image",
                     "no_image": "No image",
                     "preferred_currency": "Preferred Currency",
-                    "select_currency": "Select Currency"
+                    "select_currency": "Select Currency",
+                    "date_format": "Date Format",
+                    "time_format": "Time Format"
                 },
                 "security_privacy": {
                     "title": "Security and Privacy Settings",
@@ -166,7 +168,7 @@
                 "success_message": "Category added successfully"
             },
             "form_cat_edit": {
-                "header": "Edit {category}",
+                "header": "Edit Category",
                 "name_placeholder": "Category name",
                 "save_button": "Save",
                 "remove_button": "Delete",
