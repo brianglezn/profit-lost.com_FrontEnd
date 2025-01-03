@@ -8,16 +8,16 @@ import { getAllMovements } from '../../../../api/movements/getAllMovements';
 import { getMovementsByYear } from '../../../../api/movements/getMovementsByYear';
 import { formatCurrency } from '../../../../helpers/functions';
 import { Movements } from '../../../../helpers/types';
+import { useUser } from '../../../../context/useUser';
 
 import AnnualChart from './components/AnnualChart';
 import AnnualCategories from './components/AnnualCategories';
-import FormCategoryAdd from './components/FormCategoryAdd';
 import DownloadIcon from '../../../../components/icons/DownloadIcon';
 import UploadIcon from '../../../../components/icons/UploadIcon';
 import PigCoinIcon from '../../../../components/icons/PigCoinIcon';
+import FormCategory from './components/FormCategory';
 
 import './AnnualReport.scss';
-import { useUser } from '../../../../context/useUser';
 
 interface BalanceDisplayProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -136,7 +136,10 @@ export default function AnnualReport() {
             style={{ width: '500px' }}
             className='custom_sidebar'
           >
-            <FormCategoryAdd onCategoryAdded={reloadCategories} onClose={handleCloseModal} />
+            <FormCategory
+              onSubmit={reloadCategories}
+              onClose={handleCloseModal}
+            />
           </Sidebar>
         </div>
 

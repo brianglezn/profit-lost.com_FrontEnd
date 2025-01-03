@@ -6,13 +6,13 @@ import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { ProgressBar } from 'primereact/progressbar';
 
-import { useUser } from '../../../../../context/useUser';
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { getMovementsByYear } from '../../../../../api/movements/getMovementsByYear';
 import { formatCurrency } from '../../../../../helpers/functions';
 import { Category, Movements } from '../../../../../helpers/types';
+import { useUser } from '../../../../../context/useUser';
 
-import FormCategoryEdit from './FormCategoryEdit';
+import FormCategory from './FormCategory';
 
 import './AnnualCategories.scss';
 
@@ -52,7 +52,7 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
         try {
             const categoriesData: Category[] = await getAllCategories(token);
             const movementsData: Movements[] = await getMovementsByYear(token, year);
-            
+
             // Calculate the balance for each category
             const categoryBalances = categoriesData.map(category => {
                 const balance = movementsData.reduce((acc, movement) => {
@@ -171,11 +171,13 @@ export default function AnnualCategories({ year, reloadFlag }: AnnualCategoriesP
                 className='custom_sidebar'
             >
                 {categoryToEdit && (
-                    <FormCategoryEdit
-                        categoryId={categoryToEdit.id}
-                        categoryName={categoryToEdit.Category}
-                        categoryColor={categoryToEdit.color}
-                        onUpdate={() => {
+                    <FormCategory
+                        category={{
+                            id: categoryToEdit.id,
+                            name: categoryToEdit.Category,
+                            color: categoryToEdit.color
+                        }}
+                        onSubmit={() => {
                             fetchDataAndCalculateBalances();
                             setSidebarVisible(false);
                             toast.success(t('dashboard.annual_report.form_cat_edit.success_message_edit'));

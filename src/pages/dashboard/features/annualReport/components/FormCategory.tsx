@@ -5,6 +5,7 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { useTranslation } from 'react-i18next';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
+import { addCategory } from '../../../../../api/categories/addCategory';
 import { editCategory } from '../../../../../api/categories/editCategory';
 import { removeCategory } from '../../../../../api/categories/removeCategory';
 import { getAllMovements } from '../../../../../api/movements/getAllMovements';
@@ -14,56 +15,56 @@ import { useUser } from '../../../../../context/useUser';
 
 import './FormCategory.scss';
 
-interface FormCategoryEditProps {
-    categoryId: string;
-    categoryName: string;
-    categoryColor: string;
-    onUpdate: () => void;
+interface FormCategoryProps {
+    onSubmit: () => void;
     onClose: () => void;
-    onRemove: () => void;
+    onRemove?: () => void;
+    category?: {
+        id: string;
+        name: string;
+        color: string;
+    };
 }
 
-export default function FormCategoryEdit({ categoryId, categoryName, categoryColor, onUpdate, onClose, onRemove }: FormCategoryEditProps) {
-    const [name, setName] = useState(categoryName);
-    const [color, setColor] = useState(categoryColor);
+export default function FormCategory({ category, onSubmit, onClose, onRemove }: FormCategoryProps) {
+    const isEdit = !!category;
+    const [name, setName] = useState(category?.name || '');
+    const [color, setColor] = useState(category?.color || '#fe6f14');
     const [movementsByYear, setMovementsByYear] = useState<{ [key: string]: Movements[] }>({});
+    
     const { user } = useUser();
     const { t } = useTranslation();
 
-    // Fetch all movements related to the category
     useEffect(() => {
-        const fetchMovements = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                toast.error(t('dashboard.common.error_token'));
-                return;
-            }
+        if (isEdit) {
+            const fetchMovements = async () => {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    toast.error(t('dashboard.common.error_token'));
+                    return;
+                }
 
-            try {
-                const movements: Movements[] = await getAllMovements(token);
-                
-                // Filter movements to only include those for the given category
-                const filteredMovements = movements.filter((movement) => movement.category === categoryName);
+                try {
+                    const movements: Movements[] = await getAllMovements(token);
+                    const filteredMovements = movements.filter((movement) => movement.category === category.name);
+                    const groupedMovements = filteredMovements.reduce<{ [key: string]: Movements[] }>((acc, movement) => {
+                        const year = new Date(movement.date).getFullYear().toString();
+                        if (!acc[year]) acc[year] = [];
+                        acc[year].push(movement);
+                        return acc;
+                    }, {});
 
-                // Group movements by year
-                const groupedMovements = filteredMovements.reduce<{ [key: string]: Movements[] }>((acc, movement) => {
-                    const year = new Date(movement.date).getFullYear().toString();
-                    if (!acc[year]) acc[year] = [];
-                    acc[year].push(movement);
-                    return acc;
-                }, {});
+                    setMovementsByYear(groupedMovements);
+                } catch (error) {
+                    toast.error(t('dashboard.common.error_movements_fetch'));
+                }
+            };
 
-                setMovementsByYear(groupedMovements);
-            } catch (error) {
-                toast.error(t('dashboard.common.error_movements_fetch'));
-            }
-        };
+            fetchMovements();
+        }
+    }, [isEdit, category, t]);
 
-        fetchMovements();
-    }, [categoryId, categoryName, t]);
-
-    // Handle category edit form submission
-    const handleEditCategory = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         if (!token) {
@@ -72,32 +73,41 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
         }
 
         try {
-            // Send request to edit the category
-            await editCategory(token, categoryId, name, color);
-            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_edit'), { duration: 3000 });
+            if (isEdit && category) {
+                await editCategory(token, category.id, name, color);
+                toast.success(t('dashboard.annual_report.form_cat_edit.success_message_edit'));
+            } else {
+                await addCategory(token, name, color);
+                toast.success(t('dashboard.annual_report.form_cat_add.success_message'));
+            }
+            
             setTimeout(() => {
                 onClose();
-                onUpdate();
+                onSubmit();
             }, 500);
         } catch (error) {
             toast.error(error instanceof Error ? error.message : t('dashboard.common.error'));
         }
     };
 
-    // Show confirmation dialog before deleting the category
     const handleRemoveCategory = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isEdit || !category) return;
+
         confirmDialog({
             message: t('dashboard.annual_report.form_cat_edit.confirm_delete', { category: name }),
-            header: t('dashboard.annual_report.form_cat_edit.remove_button'),
+            header: t('dashboard.annual_report.form_cat_edit.confirm_delete_header'),
+            icon: 'pi pi-exclamation-triangle',
+            acceptLabel: t('dashboard.annual_report.form_cat_edit.confirm_delete_accept'),
+            rejectLabel: t('dashboard.annual_report.form_cat_edit.confirm_delete_reject'),
             accept: handleConfirmRemove,
-            reject: () => { },
             position: 'bottom'
         });
     };
 
-    // Confirm deletion of the category and remove it
     const handleConfirmRemove = async () => {
+        if (!isEdit || !category) return;
+        
         const token = localStorage.getItem('token');
         if (!token) {
             toast.error(t('landing.auth.common.error_token'), { duration: 3000 });
@@ -105,12 +115,11 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
         }
 
         try {
-            // Send request to remove the category
-            await removeCategory(token, categoryId);
-            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_delete', { category: name }), { duration: 3000 });
+            await removeCategory(token, category.id);
+            toast.success(t('dashboard.annual_report.form_cat_edit.success_message_delete', { category: name }));
             setTimeout(() => {
                 onClose();
-                onRemove();
+                if (onRemove) onRemove();
             }, 500);
         } catch (error) {
             toast.error(error instanceof Error ? error.message : t('common.error'));
@@ -120,8 +129,13 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
     return (
         <>
             <ConfirmDialog />
-            <form className='formCategories' onSubmit={handleEditCategory}>
-                <h2>{t('dashboard.annual_report.form_cat_edit.header', { category: name })}</h2>
+            <form className='formCategories' onSubmit={handleSubmit}>
+                <h2>
+                    {isEdit 
+                        ? t('dashboard.annual_report.form_cat_edit.header', { category: name })
+                        : t('dashboard.annual_report.form_cat_add.header')
+                    }
+                </h2>
                 <div className='formCategoriesContainer'>
                     <div className='formCategoriesContainer-colorPicker'>
                         <ColorPicker value={color} onChange={(e) => setColor(e.value as string)} />
@@ -130,20 +144,22 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
                         className='custom-input'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder={t('dashboard.annual_report.form_cat_edit.name_placeholder')}
+                        placeholder={t('dashboard.annual_report.form_cat_add.name_placeholder')}
                         autoFocus
                     />
                 </div>
                 <div className='formCategories-buttons'>
-                    <button type='button' className='custom-btn-sec' onClick={handleRemoveCategory}>
-                        {t('dashboard.annual_report.form_cat_edit.remove_button')}
-                    </button>
+                    {isEdit && (
+                        <button type='button' className='custom-btn-sec' onClick={handleRemoveCategory}>
+                            {t('dashboard.annual_report.form_cat_edit.remove_button')}
+                        </button>
+                    )}
                     <button type='submit' className='custom-btn'>
                         {t('dashboard.annual_report.form_cat_edit.save_button')}
                     </button>
                 </div>
 
-                {Object.keys(movementsByYear).length > 0 && (
+                {isEdit && Object.keys(movementsByYear).length > 0 && (
                     <div className='movementsByCategory'>
                         <Accordion multiple className='movementsByCategory-container'>
                             {Object.keys(movementsByYear)
@@ -180,4 +196,4 @@ export default function FormCategoryEdit({ categoryId, categoryName, categoryCol
             </form>
         </>
     );
-}
+} 
