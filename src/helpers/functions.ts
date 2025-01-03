@@ -13,7 +13,7 @@ const localeMap = {
 export function formatCurrency(value: number, currency: string = 'USD'): string {
     const locale = currency === 'EUR' ? 'es-ES' : 'en-US';
     return value.toLocaleString(locale, {
-        style: 'currency', 
+        style: 'currency',
         currency: currency,
         minimumFractionDigits: 2,
         useGrouping: true,
@@ -44,31 +44,31 @@ export function getCurrentDate(locale: string = 'en', dateFormat: string = 'MM/D
 }
 
 // Function to format a given date-time value in UTC to locale-specific format
-export function formatDateTime(
-    value: string, 
-    locale: string = 'en',
-    dateFormat: string = 'MM/DD/YYYY',
-    timeFormat: string = '12h'
-): string {
-    const date = new Date(value);
+export const formatDateTime = (
+    isoDate: string,
+    locale: string,
+    dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY',
+    timeFormat: '12h' | '24h'
+): string => {
+
+    // Create date keeping UTC
+    const date = new Date(isoDate);
     const utcDate = new Date(
         date.getUTCFullYear(),
         date.getUTCMonth(),
         date.getUTCDate(),
         date.getUTCHours(),
-        date.getUTCMinutes()
+        date.getUTCMinutes(),
+        date.getUTCSeconds()
     );
 
     const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
-    
-    // Determine date format according to user preference
     let formatString = dateFormat === 'DD/MM/YYYY' ? 'dd/MM/yyyy' : 'MM/dd/yyyy';
-    
-    // Determine date format according to user preference
     formatString += timeFormat === '12h' ? ', hh:mm a' : ', HH:mm';
 
-    return format(utcDate, formatString, { locale: currentLocale });
-}
+    const formattedDate = format(utcDate, formatString, { locale: currentLocale });
+    return formattedDate;
+};
 
 // Function to convert RGB values to hexadecimal format
 export function rgbToHex({ r, g, b }: ColorPickerRGBType): string {

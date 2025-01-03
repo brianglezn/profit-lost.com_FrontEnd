@@ -5,6 +5,13 @@ export const addMovement = async (token: string, movementData: {
     category: string
 }) => {
     try {
+        const localDate = new Date(movementData.date);
+        
+        const data = {
+            ...movementData,
+            date: localDate.toISOString()
+        };
+
         // Send a POST request to add a new movement
         const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/add', {
             method: 'POST',
@@ -12,7 +19,7 @@ export const addMovement = async (token: string, movementData: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication
                 'Content-Type': 'application/json', // Indicate that the body content is in JSON format
             },
-            body: JSON.stringify(movementData), // Convert the movement data object to JSON for the request body
+            body: JSON.stringify(data), // Convert the movement data object to JSON for the request body
         });
 
         // Check if the response status is not OK, and throw an error if it fails

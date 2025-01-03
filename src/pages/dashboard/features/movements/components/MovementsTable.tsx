@@ -114,50 +114,54 @@ export default function MovementsTable({ data, isDataEmpty, reloadData, categori
                 <ProgressBar mode='indeterminate' style={{ height: '0.375rem', width: '100%' }} />
             ) : (
                 <div className='movements-list'>
-                    {sortedMovements.map((transaction) => (
-                        <div
-                            key={transaction._id}
-                            className='movement-item'
-                            onClick={() => editMovement(transaction)}
-                            onMouseEnter={() => setHoveredTransactionId(transaction._id)}
-                            onMouseLeave={() => setHoveredTransactionId(null)}
-                            onTouchStart={() => setTouchedTransactionId(transaction._id)}
-                            style={{
-                                backgroundColor:
-                                    hoveredTransactionId === transaction._id || touchedTransactionId === transaction._id
-                                        ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
-                                        : 'transparent'
-                            }}
-                        >
-                            <div className='category-mobile'>
-                                <div
-                                    className='category-color-circle'
-                                    style={{ backgroundColor: getCategoryColor(transaction.category) }}
-                                ></div>
-                            </div>
-                            <div className='description-section'>
-                                <div className='description'>{transaction.description}</div>
-                                <div className='date'>
-                                    {formatDateTime(
-                                        transaction.date,
-                                        user?.language || 'en',
-                                        user?.dateFormat || 'MM/DD/YYYY',
-                                        user?.timeFormat || '12h'
-                                    )}
+                    {sortedMovements.map((transaction) => {
+                        const formattedDate = formatDateTime(
+                            transaction.date,
+                            user?.language || 'en',
+                            user?.dateFormat || 'MM/DD/YYYY',
+                            user?.timeFormat || '12h'
+                        );
+
+                        return (
+                            <div
+                                key={transaction._id}
+                                className='movement-item'
+                                onClick={() => editMovement(transaction)}
+                                onMouseEnter={() => setHoveredTransactionId(transaction._id)}
+                                onMouseLeave={() => setHoveredTransactionId(null)}
+                                onTouchStart={() => setTouchedTransactionId(transaction._id)}
+                                style={{
+                                    backgroundColor:
+                                        hoveredTransactionId === transaction._id || touchedTransactionId === transaction._id
+                                            ? colorWithOpacity(getCategoryColor(transaction.category), 0.15)
+                                            : 'transparent'
+                                }}
+                            >
+                                <div className='category-mobile'>
+                                    <div
+                                        className='category-color-circle'
+                                        style={{ backgroundColor: getCategoryColor(transaction.category) }}
+                                    ></div>
+                                </div>
+                                <div className='description-section'>
+                                    <div className='description'>{transaction.description}</div>
+                                    <div className='date'>
+                                        {formattedDate}
+                                    </div>
+                                </div>
+                                <div className='category'>
+                                    <div
+                                        className='category-color-circle'
+                                        style={{ backgroundColor: getCategoryColor(transaction.category) }}
+                                    ></div>
+                                    <span>{transaction.category}</span>
+                                </div>
+                                <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
+                                    {formatCurrency(transaction.amount, user?.currency || 'USD')}
                                 </div>
                             </div>
-                            <div className='category'>
-                                <div
-                                    className='category-color-circle'
-                                    style={{ backgroundColor: getCategoryColor(transaction.category) }}
-                                ></div>
-                                <span>{transaction.category}</span>
-                            </div>
-                            <div className={`amount ${transaction.amount >= 0 ? 'positive' : 'negative'}`}>
-                                {formatCurrency(transaction.amount, user?.currency || 'USD')}
-                            </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             )}
 

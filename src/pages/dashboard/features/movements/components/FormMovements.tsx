@@ -28,19 +28,19 @@ interface FormMovementsProps {
     onRemove?: () => void;
 }
 
-export default function FormMovements({ 
-    onSubmit, 
-    onClose, 
-    selectedYear, 
-    selectedMonth, 
+export default function FormMovements({
+    onSubmit,
+    onClose,
+    selectedYear,
+    selectedMonth,
     transaction,
-    onRemove 
+    onRemove
 }: FormMovementsProps) {
     const isEdit = !!transaction;
     const [date, setDate] = useState<string>(
-        isEdit 
+        isEdit
             ? new Date(transaction.date).toISOString().slice(0, 16)
-            : ''
+            : new Date().toISOString().slice(0, 16)
     );
     const [description, setDescription] = useState<string>(transaction?.description || '');
     const [amount, setAmount] = useState<string>(transaction ? Math.abs(transaction.amount).toString() : '');
@@ -63,7 +63,7 @@ export default function FormMovements({
             }
             try {
                 const fetchedCategories = await getAllCategories(token);
-                const sortedCategories = fetchedCategories.sort((a: Category, b: Category) => 
+                const sortedCategories = fetchedCategories.sort((a: Category, b: Category) =>
                     a.name.localeCompare(b.name)
                 );
                 setCategories(sortedCategories);
@@ -87,7 +87,7 @@ export default function FormMovements({
     useEffect(() => {
         if (!isEdit && selectedYear && selectedMonth) {
             const currentDate = new Date();
-            if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') || 
+            if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') ||
                 selectedYear !== currentDate.getFullYear().toString()) {
                 const initialDate = `${selectedYear}-${selectedMonth}-01T00:00`;
                 setDate(initialDate);
@@ -118,11 +118,11 @@ export default function FormMovements({
         }
     };
 
-    const createRecurringMovements = (movementData: { 
-        date: string; 
-        description: string; 
-        amount: number; 
-        category: string 
+    const createRecurringMovements = (movementData: {
+        date: string;
+        description: string;
+        amount: number;
+        category: string
     }) => {
         const movements = [];
         const currentDate = new Date(movementData.date);
@@ -188,13 +188,30 @@ export default function FormMovements({
             message: t('dashboard.movements.form_movements_edit.confirm_delete'),
             header: t('dashboard.movements.form_movements_edit.delete_button'),
             accept: handleConfirmRemove,
-            reject: () => {},
+            reject: () => { },
             position: 'bottom'
         });
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // Convert input date to UTC while keeping local time
+        const localDate = new Date(date);
+        const utcDate = new Date(Date.UTC(
+            localDate.getFullYear(),
+            localDate.getMonth(),
+            localDate.getDate(),
+            localDate.getHours(),
+            localDate.getMinutes()
+        ));
+
+        const movementData = {
+            date: utcDate.toISOString(),
+            description,
+            amount: Number(amount) * (isIncome ? 1 : -1),
+            category: category?._id || ''
+        };
 
         const token = localStorage.getItem('token');
         if (!token) {
@@ -222,17 +239,6 @@ export default function FormMovements({
             }
         }
 
-        const localDate = new Date(date);
-        const offsetDate = new Date(localDate.getTime() - (localDate.getTimezoneOffset() * 60000));
-        const formattedDate = offsetDate.toISOString();
-
-        const movementData = {
-            date: formattedDate,
-            description: description.trim() === '' ? (isEdit ? '---' : category.name) : description,
-            amount: Number(amount) * (isIncome ? 1 : -1),
-            category: category._id,
-        };
-
         try {
             if (isEdit && transaction) {
                 await editMovement(token, transaction._id, movementData);
@@ -258,7 +264,7 @@ export default function FormMovements({
             {isEdit && <ConfirmDialog />}
             <form onSubmit={handleSubmit} className='formMovements'>
                 <h2>
-                    {isEdit 
+                    {isEdit
                         ? t('dashboard.movements.form_movements_edit.header')
                         : t('dashboard.movements.form_movements_add.header')
                     }

@@ -45,8 +45,8 @@ export default function Movements() {
       setYearsWithData(Array.from(years).sort((a, b) => Number(b) - Number(a)));
 
       const movementsFiltered = await getMovementsByYearAndMonth(token, year, month);
-      movementsFiltered.sort((a: Movements, b: Movements) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+      movementsFiltered.sort((a: Movements, b: Movements) => new Date(b.date).getTime() - new Date(a.date).getTime());
       setDataGraph(movementsFiltered);
     } catch (error) {
       console.error('Error fetching movements data:', error);
