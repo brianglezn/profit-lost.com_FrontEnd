@@ -202,7 +202,8 @@ export default function FormMovements({
             localDate.getMonth(),
             localDate.getDate(),
             localDate.getHours(),
-            localDate.getMinutes()
+            localDate.getMinutes(),
+            localDate.getSeconds()
         ));
 
         const movementData = {
@@ -335,6 +336,8 @@ export default function FormMovements({
                     className='formMovements-datetime custom-input'
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
+                    step='1'
+                    min={new Date().toISOString().slice(0, 19)}
                     required
                 />
                 <Dropdown

@@ -50,8 +50,6 @@ export const formatDateTime = (
     dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY',
     timeFormat: '12h' | '24h'
 ): string => {
-
-    // Create date keeping UTC
     const date = new Date(isoDate);
     const utcDate = new Date(
         date.getUTCFullYear(),
@@ -64,10 +62,9 @@ export const formatDateTime = (
 
     const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
     let formatString = dateFormat === 'DD/MM/YYYY' ? 'dd/MM/yyyy' : 'MM/dd/yyyy';
-    formatString += timeFormat === '12h' ? ', hh:mm a' : ', HH:mm';
+    formatString += timeFormat === '12h' ? ', hh:mm:ss a' : ', HH:mm:ss';
 
-    const formattedDate = format(utcDate, formatString, { locale: currentLocale });
-    return formattedDate;
+    return format(utcDate, formatString, { locale: currentLocale });
 };
 
 // Function to convert RGB values to hexadecimal format
