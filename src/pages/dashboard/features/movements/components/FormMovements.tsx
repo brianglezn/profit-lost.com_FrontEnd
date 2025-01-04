@@ -39,8 +39,8 @@ export default function FormMovements({
     const isEdit = !!transaction;
     const [date, setDate] = useState<string>(
         isEdit
-            ? new Date(transaction.date).toISOString().slice(0, 16)
-            : new Date().toISOString().slice(0, 16)
+            ? new Date(transaction.date).toISOString().slice(0, 19)
+            : new Date().toISOString().slice(0, 19)
     );
     const [description, setDescription] = useState<string>(transaction?.description || '');
     const [amount, setAmount] = useState<string>(transaction ? Math.abs(transaction.amount).toString() : '');
@@ -89,12 +89,12 @@ export default function FormMovements({
             const currentDate = new Date();
             if (selectedMonth !== (currentDate.getMonth() + 1).toString().padStart(2, '0') ||
                 selectedYear !== currentDate.getFullYear().toString()) {
-                const initialDate = `${selectedYear}-${selectedMonth}-01T00:00`;
+                const initialDate = `${selectedYear}-${selectedMonth}-01T00:00:00`;
                 setDate(initialDate);
             } else {
                 const localDateTime = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000))
                     .toISOString()
-                    .slice(0, 16);
+                    .slice(0, 19);
                 setDate(localDateTime);
             }
         }
