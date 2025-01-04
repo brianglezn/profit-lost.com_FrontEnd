@@ -230,28 +230,21 @@ export default function FormMovements({
             return;
         }
 
-        // Validaciones para movimientos recurrentes
-        if (!isEdit && isRecurring) {
+        // Validations only for recurring transactions
+        if (isRecurring) {
             const currentDate = new Date();
-            const recurrenceEndDate = new Date(recurrenceEnd);
+            const recurrenceEndDate = recurrenceFrequency === 'monthly' 
+                ? new Date(recurrenceEnd) 
+                : new Date(parseInt(recurrenceEnd), 0, 1);
 
-            // Validación para recurrencia mensual
             if (recurrenceFrequency === 'monthly') {
                 const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-                
-                // Convertir la fecha de fin a inicio del mes para comparación
-                const endDateStartOfMonth = new Date(recurrenceEndDate.getFullYear(), recurrenceEndDate.getMonth(), 1);
-                
-                if (endDateStartOfMonth < nextMonth) {
+                if (recurrenceEndDate < nextMonth) {
                     toast.error(t('dashboard.movements.form_movements_add.min_month_error'));
                     return;
                 }
-            }
-
-            // Validación para recurrencia anual
-            if (recurrenceFrequency === 'yearly') {
+            } else if (recurrenceFrequency === 'yearly') {
                 const nextYear = currentDate.getFullYear() + 1;
-                
                 if (recurrenceEndDate.getFullYear() < nextYear) {
                     toast.error(t('dashboard.movements.form_movements_add.min_year_error'));
                     return;
@@ -279,7 +272,7 @@ export default function FormMovements({
         }
     };
 
-    // Validación en tiempo real para la fecha de fin
+    // Real-time validation for recurrence end date
     const handleRecurrenceEndChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         const currentDate = new Date();
@@ -336,8 +329,7 @@ export default function FormMovements({
                     className='formMovements-datetime custom-input'
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    step='1'
-                    min={new Date().toISOString().slice(0, 19)}
+                    step='60'
                     required
                 />
                 <Dropdown
