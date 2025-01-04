@@ -8,6 +8,7 @@ import ChartBarIcon from '../../../components/icons/ChartBarIcon';
 import CreditCardIcon from '../../../components/icons/CreditCardIcon';
 import NotesIcon from '../../../components/icons/NotesIcon';
 import BarsIcon from '../../../components/icons/BarsIcon';
+import CheckBoxIcon from '../../../components/icons/CheckBoxIcon';
 
 import './DashboardNav.scss';
 
@@ -48,6 +49,11 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ activeSection, handleMenuIt
                             <li onClick={() => handleMenuItemClick('Accounts')} className={activeSection === 'Accounts' ? 'active' : ''}>
                                 <CreditCardIcon />
                                 <p>{t('dashboard.dashboard.nav.accounts')}</p>
+                            </li>
+                            <li onClick={() => handleMenuItemClick('Goals')} className={activeSection === 'Goals' ? 'active' : ''}>
+                                <CheckBoxIcon />
+                                {/* <p>{t('dashboard.dashboard.nav.goals')}</p> */}
+                                <p>GOALS</p>
                             </li>
                             <li onClick={() => handleMenuItemClick('Notes')} className={activeSection === 'Notes' ? 'active' : ''}>
                                 <NotesIcon />

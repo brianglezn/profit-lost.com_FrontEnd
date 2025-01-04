@@ -54,6 +54,15 @@ export interface AccountConfiguration {
     isActive: boolean;
 }
 
+export interface Goal {
+    id: string;
+    name: string;
+    type: 'Saving' | 'Reduction of expenses' | 'Debt' | 'Investment';
+    targetAmount: number;
+    currentAmount: number;
+    deadline?: string;
+}
+
 // Notes
 export interface Note {
     _id: string;

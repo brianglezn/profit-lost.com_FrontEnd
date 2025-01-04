@@ -5,6 +5,7 @@ const DashHome = React.lazy(() => import('../features/dashHome/DashHome'));
 const Accounts = React.lazy(() => import('../features/accounts/Accounts'));
 const AnnualReport = React.lazy(() => import('../features/annualReport/AnnualReport'));
 const Movements = React.lazy(() => import('../features/movements/Movements'));
+const Goals = React.lazy(() => import('../features/goals/Goals'));
 const Notes = React.lazy(() => import('../features/notes/Notes'));
 
 import './DashboardContent.scss';
@@ -35,6 +36,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeSection }) =>
                 {activeSection === 'Movements' && <Movements />}
                 {activeSection === 'Accounts' && <Accounts />}
                 {activeSection === 'Notes' && <Notes />}
+                {activeSection === 'Goals' && <Goals />}
             </Suspense>
         </section>
     );
