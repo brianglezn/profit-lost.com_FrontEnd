@@ -61,6 +61,12 @@ export interface Goal {
     targetAmount: number;
     currentAmount: number;
     deadline?: string;
+    history: GoalHistory[];
+}
+
+export interface GoalHistory {
+    date: string;
+    amount: number;
 }
 
 // Notes

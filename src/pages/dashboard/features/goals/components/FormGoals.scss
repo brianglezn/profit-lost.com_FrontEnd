@@ -14,8 +14,7 @@
         margin-bottom: 1rem;
     }
 
-    #currentAmount,
-    #targetAmount {
+    .p-inputnumber {
         width: 90%;
     }
 
@@ -25,6 +24,11 @@
         border-radius: 8px;
         background-color: $bg-color-sec;
         box-shadow: $shadow_color 0px 1px 4px;
+
+        .form-field-title {
+            margin: 0;
+            padding: 0 0 0.5rem 0;
+        }
 
         .deadline-header {
             display: flex;
@@ -77,18 +81,104 @@
             }
         }
 
-        .deadline-field {
-            margin-top: 1rem;
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
 
-            .custom-input {
-                width: 100%;
-                padding: 0.5rem;
-                font-size: 1rem;
-                border: 1px solid #ccc;
-                border-radius: 0.5rem;
-                background-color: $bg-color;
-                box-shadow: none;
+            .form-field-title {
+                margin: 0;
+                padding: 0;
             }
+
+            .add-history-btn {
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: $text_color-grey;
+                font-size: 1.5rem;
+                padding: 0 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.3s;
+            }
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .history-item {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                .history-date {
+                    flex: 1;
+                    width: 100%;
+                    padding: 0.5rem;
+                    font-size: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 0.5rem;
+                    background-color: $bg-color;
+                    box-shadow: none;
+
+                    &:focus {
+                        outline: none;
+                        border-color: $primary_color;
+                    }
+                }
+
+                .p-inputnumber {
+                    flex: 1;
+
+                    .p-inputnumber-input {
+                        width: 100%;
+                        padding: 0.5rem;
+                        font-size: 1rem;
+                        border: 1px solid #ccc;
+                        border-radius: 0.5rem;
+                        background-color: $bg-color;
+                        box-shadow: none;
+
+                        &:focus {
+                            outline: none;
+                            border-color: $primary_color;
+                        }
+                    }
+                }
+
+                .remove-history-btn {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: $text_color-grey;
+                    font-size: 1.5rem;
+                    padding: 0 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: color 0.3s;
+                }
+            }
+        }
+
+    }
+
+    .deadline-field {
+        margin-top: 1rem;
+
+        .custom-input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            background-color: $bg-color;
+            box-shadow: none;
         }
     }
 

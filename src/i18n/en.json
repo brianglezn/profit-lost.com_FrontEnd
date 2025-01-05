@@ -295,7 +295,8 @@
                 "set_deadline": "Deadline",
                 "delete": "Delete",
                 "create": "Create",
-                "update": "Update"
+                "update": "Update",
+                "history": "History"
             },
             "types": {
                 "saving": "Saving",

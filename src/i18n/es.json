@@ -295,7 +295,8 @@
                 "set_deadline": "Fecha Límite",
                 "delete": "Eliminar",
                 "create": "Crear",
-                "update": "Actualizar"
+                "update": "Actualizar",
+                "history": "Historial"
             },
             "types": {
                 "saving": "Ahorro",

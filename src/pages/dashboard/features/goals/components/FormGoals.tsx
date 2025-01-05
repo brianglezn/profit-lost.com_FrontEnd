@@ -5,7 +5,8 @@ import { Dropdown } from 'primereact/dropdown';
 import { useTranslation } from 'react-i18next';
 
 import { useUser } from '../../../../../context/useUser';
-import type { Goal } from '../../../../../helpers/types';
+import type { Goal, GoalHistory } from '../../../../../helpers/types';
+import PlusIcon from '../../../../../components/icons/PlusIcon';
 
 import './FormGoals.scss';
 
@@ -29,6 +30,7 @@ export default function FormGoals({ selectedGoal, onSubmit, onCancel }: FormGoal
     const [currentAmount, setCurrentAmount] = useState<number>(0);
     const [deadline, setDeadline] = useState<Date | null>(null);
     const [hasDeadline, setHasDeadline] = useState(false);
+    const [history, setHistory] = useState<GoalHistory[]>([]);
 
     const goalTypes: GoalTypeOption[] = [
         { label: t('dashboard.goals.types.saving'), value: 'Saving' },
@@ -62,6 +64,14 @@ export default function FormGoals({ selectedGoal, onSubmit, onCancel }: FormGoal
         }
     }, [selectedGoal]);
 
+    useEffect(() => {
+        if (selectedGoal?.history) {
+            setHistory(selectedGoal.history);
+        } else {
+            setHistory([]);
+        }
+    }, [selectedGoal]);
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -81,12 +91,43 @@ export default function FormGoals({ selectedGoal, onSubmit, onCancel }: FormGoal
             type,
             targetAmount,
             currentAmount,
-            deadline: hasDeadline && deadline ? deadline.toISOString() : undefined
+            deadline: hasDeadline && deadline ? deadline.toISOString() : undefined,
+            history: []
         });
     };
 
     const formatDateForInput = (date: Date): string => {
         return date.toISOString().split('T')[0];
+    };
+
+    const addHistoryEntry = () => {
+        setHistory([
+            ...history,
+            {
+                date: new Date().toISOString(),
+                amount: 0
+            }
+        ]);
+    };
+
+    const updateHistoryEntry = (index: number, field: keyof GoalHistory, value: string | number) => {
+        const updatedHistory = [...history];
+        if (field === 'date') {
+            updatedHistory[index] = {
+                ...updatedHistory[index],
+                date: new Date(value as string).toISOString()
+            };
+        } else {
+            updatedHistory[index] = {
+                ...updatedHistory[index],
+                [field]: Number(value)
+            };
+        }
+        setHistory(updatedHistory);
+    };
+
+    const removeHistoryEntry = (index: number) => {
+        setHistory(history.filter((_, i) => i !== index));
     };
 
     return (
@@ -165,6 +206,48 @@ export default function FormGoals({ selectedGoal, onSubmit, onCancel }: FormGoal
                     </div>
                 )}
             </div>
+
+            {selectedGoal && (
+                <div className='form-field'>
+                    <div className='history-header'>
+                        <p className='form-field-title'>{t('dashboard.goals.form.history')}</p>
+                        <button
+                            type='button'
+                            className='add-history-btn'
+                            onClick={addHistoryEntry}
+                        >
+                            <PlusIcon width={20} height={20} />
+                        </button>
+                    </div>
+                    <div className='history-list'>
+                        {history.map((record, index) => (
+                            <div key={index} className='history-item'>
+                                <input
+                                    type='date'
+                                    className='history-date custom-input'
+                                    value={formatDateForInput(new Date(record.date))}
+                                    onChange={(e) => updateHistoryEntry(index, 'date', e.target.value)}
+                                />
+                                <InputNumber
+                                    value={record.amount}
+                                    onValueChange={(e) => updateHistoryEntry(index, 'amount', e.value || 0)}
+                                    mode="currency"
+                                    currency={user?.currency}
+                                    locale="es-ES"
+                                    className='custom-input'
+                                />
+                                <button
+                                    type='button'
+                                    className='remove-history-btn'
+                                    onClick={() => removeHistoryEntry(index)}
+                                >
+                                    ×
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <div className='formGoals-buttons'>
                 {selectedGoal && (

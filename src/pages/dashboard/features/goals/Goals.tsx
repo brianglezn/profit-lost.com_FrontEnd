@@ -19,7 +19,21 @@ export default function Goals() {
             type: 'Saving',
             targetAmount: 20000,
             currentAmount: 20000,
-            deadline: '2025-12-31T23:59:59.999Z'
+            deadline: '2025-12-31T23:59:59.999Z',
+            history: [
+                {
+                    date: '2024-01-15T10:00:00.000Z',
+                    amount: 5000
+                },
+                {
+                    date: '2024-02-15T10:00:00.000Z',
+                    amount: 5000
+                },
+                {
+                    date: '2024-03-15T10:00:00.000Z',
+                    amount: 10000
+                }
+            ]
         },
         {
             id: '2',
@@ -27,14 +41,38 @@ export default function Goals() {
             type: 'Reduction of expenses',
             targetAmount: 400,
             currentAmount: 350,
-            deadline: '2024-06-30T23:59:59.999Z'
+            deadline: '2024-06-30T23:59:59.999Z',
+            history: [
+                {
+                    date: '2024-01-01T10:00:00.000Z',
+                    amount: 50
+                },
+                {
+                    date: '2024-02-01T10:00:00.000Z',
+                    amount: 100
+                },
+                {
+                    date: '2024-03-01T10:00:00.000Z',
+                    amount: 50
+                }
+            ]
         },
         {
             id: '3',
             name: 'Emergency Fund',
             type: 'Saving',
             targetAmount: 10000,
-            currentAmount: 1000
+            currentAmount: 1000,
+            history: [
+                {
+                    date: '2024-01-01T10:00:00.000Z',
+                    amount: 500
+                },
+                {
+                    date: '2024-02-01T10:00:00.000Z',
+                    amount: 500
+                }
+            ]
         },
         {
             id: '4',
@@ -42,7 +80,21 @@ export default function Goals() {
             type: 'Investment',
             targetAmount: 50000,
             currentAmount: 15000,
-            deadline: '2025-12-30T23:59:59.999Z'
+            deadline: '2025-12-30T23:59:59.999Z',
+            history: [
+                {
+                    date: '2024-01-15T10:00:00.000Z',
+                    amount: 5000
+                },
+                {
+                    date: '2024-02-15T10:00:00.000Z',
+                    amount: 5000
+                },
+                {
+                    date: '2024-03-15T10:00:00.000Z',
+                    amount: 5000
+                }
+            ]
         },
         {
             id: '5',
@@ -50,7 +102,21 @@ export default function Goals() {
             type: 'Reduction of expenses',
             targetAmount: 500,
             currentAmount: 450,
-            deadline: '2025-06-30T23:59:59.999Z'
+            deadline: '2025-06-30T23:59:59.999Z',
+            history: [
+                {
+                    date: '2024-01-01T10:00:00.000Z',
+                    amount: 50
+                },
+                {
+                    date: '2024-02-01T10:00:00.000Z',
+                    amount: 50
+                },
+                {
+                    date: '2024-03-01T10:00:00.000Z',
+                    amount: 350
+                }
+            ]
         }
     ];
 
