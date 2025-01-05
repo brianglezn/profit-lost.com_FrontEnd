@@ -4,8 +4,7 @@
     grid-area: Content;
     width: 100%;
     min-height: calc(100vh - 122px);
-    padding-right: 1rem;
-
+    padding: 0 1rem 1rem 0;
 
     @media (max-width: 868px) {
         padding: 0 1rem;
