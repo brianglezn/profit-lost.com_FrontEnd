@@ -39,6 +39,10 @@
     }
   }
 
+  span.custom-input {
+    width: 90%;
+  }
+
   .formMovements-recurring {
     display: flex;
     flex-direction: column;
@@ -168,7 +172,8 @@
 
     input,
     .formMovements-category,
-    .form-field {
+    .form-field,
+    span.custom-input {
       width: 95%;
     }
 

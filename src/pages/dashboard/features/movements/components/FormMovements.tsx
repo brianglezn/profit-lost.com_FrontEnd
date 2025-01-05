@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
+import { InputNumber, InputNumberValueChangeEvent } from 'primereact/inputnumber';
 import { useTranslation } from 'react-i18next';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { toast } from 'react-hot-toast';
 
 import { getAllCategories } from '../../../../../api/categories/getAllCategories';
 import { addMovement } from '../../../../../api/movements/addMovement';
 import { editMovement } from '../../../../../api/movements/editMovement';
 import { removeMovement } from '../../../../../api/movements/removeMovement';
 import type { Category } from '../../../../../helpers/types';
+import { useUser } from '../../../../../context/useUser';
 
 import './FormMovements.scss';
 
@@ -36,6 +38,7 @@ export default function FormMovements({
     transaction,
     onRemove
 }: FormMovementsProps) {
+    const { user } = useUser();
     const isEdit = !!transaction;
     const [date, setDate] = useState<string>(
         isEdit
@@ -109,8 +112,8 @@ export default function FormMovements({
         setIsIncome(false);
     };
 
-    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const handleAmountChange = (e: InputNumberValueChangeEvent) => {
+        const value = e.value?.toString() || '0';
         if (isIncome) {
             setAmount(value.replace('-', ''));
         } else {
@@ -351,13 +354,16 @@ export default function FormMovements({
                     className='custom-input'
                     required={isEdit}
                 />
-                <InputText
-                    value={amount}
-                    onChange={handleAmountChange}
+                <InputNumber
+                    value={Number(amount)}
+                    onValueChange={handleAmountChange}
                     placeholder={t('dashboard.movements.form_movements_add.amount_placeholder')}
-                    type='number'
-                    step='0.01'
-                    min={isIncome ? '0' : undefined}
+                    mode="currency"
+                    currency={user?.currency || 'EUR'}
+                    locale={user?.language || 'es-ES'}
+                    minFractionDigits={2}
+                    maxFractionDigits={2}
+                    min={isIncome ? 0 : undefined}
                     required
                     className='custom-input'
                 />
