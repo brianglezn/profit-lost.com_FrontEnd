@@ -286,6 +286,34 @@
             "save_error": "Error al guardar la nota.",
             "delete_error": "Error al eliminar la nota.",
             "confirm_delete": "¿Estás seguro de que deseas eliminar \"{title}\"?"
+        },
+        "goals": {
+            "title": "Metas",
+            "add_goal": "Añadir Meta",
+            "form": {
+                "new_goal": "Nueva Meta",
+                "edit_goal": "Editar Meta",
+                "name": "Nombre de la Meta",
+                "type": "Tipo",
+                "target_amount": "Cantidad Objetivo",
+                "current_amount": "Cantidad Actual",
+                "set_deadline": "Fecha Límite",
+                "delete": "Eliminar",
+                "create": "Crear",
+                "update": "Actualizar"
+            },
+            "types": {
+                "saving": "Ahorro",
+                "reduction": "Reducción de gastos",
+                "debt": "Deuda",
+                "investment": "Inversión"
+            },
+            "status": {
+                "in_progress": "En progreso",
+                "almost_done": "Casi completado",
+                "done": "Completado",
+                "overdue": "Vencido"
+            }
         }
     }
 }

@@ -57,7 +57,7 @@ export interface AccountConfiguration {
 export interface Goal {
     id: string;
     name: string;
-    type: 'Saving' | 'Reduction of expenses' | 'Debt' | 'Investment';
+    type: string;
     targetAmount: number;
     currentAmount: number;
     deadline?: string;

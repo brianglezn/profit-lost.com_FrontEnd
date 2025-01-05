@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
+import { useTranslation } from 'react-i18next';
+
 import type { Goal } from '../../../../helpers/types';
+
 import CardGoal from './components/CardGoal';
+import FormGoals from './components/FormGoals';
+
 import './Goals.scss';
 
 export default function Goals() {
+    const { t } = useTranslation();
     const exampleGoals: Goal[] = [
         {
             id: '1',
             name: 'Save for a Car',
             type: 'Saving',
             targetAmount: 20000,
-            currentAmount: 5000,
+            currentAmount: 20000,
             deadline: '2025-12-31T23:59:59.999Z'
         },
         {
@@ -37,6 +43,14 @@ export default function Goals() {
             targetAmount: 50000,
             currentAmount: 15000,
             deadline: '2025-12-30T23:59:59.999Z'
+        },
+        {
+            id: '5',
+            name: 'Reduce Car Expenses',
+            type: 'Reduction of expenses',
+            targetAmount: 500,
+            currentAmount: 450,
+            deadline: '2025-06-30T23:59:59.999Z'
         }
     ];
 
@@ -44,12 +58,36 @@ export default function Goals() {
     const [isAddGoalOpen, setIsAddGoalOpen] = useState(false);
     const [selectedGoal, setSelectedGoal] = useState<Goal | null>(null);
 
+    const handleSubmit = (goalData: Omit<Goal, 'id'>) => {
+        if (selectedGoal) {
+            // Actualizar meta existente
+            setGoals(goals.map(goal => 
+                goal.id === selectedGoal.id 
+                    ? { ...goalData, id: goal.id }
+                    : goal
+            ));
+        } else {
+            // Crear nueva meta
+            const newGoal: Goal = {
+                ...goalData,
+                id: Date.now().toString() // Temporal, en producción usaríamos un UUID
+            };
+            setGoals([...goals, newGoal]);
+        }
+        handleClose();
+    };
+
+    const handleClose = () => {
+        setIsAddGoalOpen(false);
+        setSelectedGoal(null);
+    };
+
     return (
         <section className='goals'>
             <div className='goals__header'>
-                <h2>Financial Goals</h2>
+                <h2>{t('dashboard.goals.title')}</h2>
                 <Button
-                    label="Add Goal"
+                    label={t('dashboard.goals.add_goal')}
                     onClick={() => setIsAddGoalOpen(true)}
                 />
             </div>
@@ -66,15 +104,16 @@ export default function Goals() {
 
             <Sidebar
                 visible={isAddGoalOpen || !!selectedGoal}
-                onHide={() => {
-                    setIsAddGoalOpen(false);
-                    setSelectedGoal(null);
-                }}
+                onHide={handleClose}
                 position='right'
                 style={{ width: '500px' }}
                 className='custom_sidebar'
             >
-                {/* Aquí irá el formulario de metas */}
+                <FormGoals
+                    selectedGoal={selectedGoal}
+                    onSubmit={handleSubmit}
+                    onCancel={handleClose}
+                />
             </Sidebar>
         </section>
     );

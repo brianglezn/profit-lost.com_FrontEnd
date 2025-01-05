@@ -233,8 +233,8 @@ export default function FormMovements({
         // Validations only for recurring transactions
         if (isRecurring) {
             const currentDate = new Date();
-            const recurrenceEndDate = recurrenceFrequency === 'monthly' 
-                ? new Date(recurrenceEnd) 
+            const recurrenceEndDate = recurrenceFrequency === 'monthly'
+                ? new Date(recurrenceEnd)
                 : new Date(parseInt(recurrenceEnd), 0, 1);
 
             if (recurrenceFrequency === 'monthly') {
@@ -280,7 +280,7 @@ export default function FormMovements({
         if (recurrenceFrequency === 'monthly') {
             const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
             const endDate = new Date(value);
-            
+
             if (endDate < nextMonth) {
                 toast.error(t('dashboard.movements.form_movements_add.min_month_error'));
                 return;
@@ -288,7 +288,7 @@ export default function FormMovements({
         } else if (recurrenceFrequency === 'yearly') {
             const nextYear = currentDate.getFullYear() + 1;
             const endYear = parseInt(value);
-            
+
             if (endYear < nextYear) {
                 toast.error(t('dashboard.movements.form_movements_add.min_year_error'));
                 return;

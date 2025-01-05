@@ -287,6 +287,33 @@
             "delete_error": "Error deleting note.",
             "confirm_delete": "Are you sure you want to delete \"{title}\"?"
         },
-        "reports": {}
+        "goals": {
+            "title": "Financial Goals",
+            "add_goal": "Add Goal",
+            "form": {
+                "new_goal": "New Goal",
+                "edit_goal": "Edit Goal",
+                "name": "Goal Name",
+                "type": "Type",
+                "target_amount": "Target Amount",
+                "current_amount": "Current Amount",
+                "set_deadline": "Deadline",
+                "delete": "Delete",
+                "create": "Create",
+                "update": "Update"
+            },
+            "types": {
+                "saving": "Saving",
+                "reduction": "Reduction of expenses",
+                "debt": "Debt",
+                "investment": "Investment"
+            },
+            "status": {
+                "in_progress": "In progress",
+                "almost_done": "Almost done",
+                "done": "Done",
+                "overdue": "Overdue"
+            }
+        }
     }
 }

@@ -91,19 +91,19 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-  
+
     img {
       width: 150px;
       animation: scale 1s infinite;
     }
-  
+
     @keyframes scale {
-  
+
       0%,
       100% {
         transform: scale(1);
       }
-  
+
       50% {
         transform: scale(1.2);
       }
@@ -156,7 +156,8 @@ body {
   }
 
   input.custom-input,
-  .formDropdown {
+  .formDropdown,
+  .custom-input>input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -1583,10 +1584,6 @@ body {
 
   .p-fluid .p-inputgroup .p-button.p-button-icon-only {
     width: 2.357rem;
-  }
-
-  .p-inputnumber.p-invalid.p-component>.p-inputtext {
-    border-color: #ef9a9a;
   }
 
   .p-inputswitch {

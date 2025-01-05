@@ -1,7 +1,11 @@
 import { ProgressBar } from 'primereact/progressbar';
 import { Tag } from 'primereact/tag';
+import { useTranslation } from 'react-i18next';
 
+import { useUser } from '../../../../../context/useUser';
+import { formatCurrency, formatDateTime } from '../../../../../helpers/functions';
 import type { Goal } from '../../../../../helpers/types';
+
 import './CardGoal.scss';
 
 interface CardGoalProps {
@@ -9,48 +13,51 @@ interface CardGoalProps {
     onClick: () => void;
 }
 
+type GoalStatus = 'in_progress' | 'almost_done' | 'done' | 'overdue';
+
 export default function CardGoal({ goal, onClick }: CardGoalProps) {
-    // Function to calculate the progress of the goal
+    const { t } = useTranslation();
+    const { user } = useUser();
+
     const calculateProgress = (current: number, target: number): number => {
         return Math.min(Math.round((current / target) * 100), 100);
     };
 
-    // Function to determine the status of the goal based on progress and deadline
-    const calculateGoalStatus = (progress: number, deadline?: string): 'In progress' | 'Almost done' | 'Done' | 'Overdue' => {
-        if (progress >= 100) return 'Done';
-        
+    const calculateGoalStatus = (progress: number, deadline?: string): GoalStatus => {
+        if (progress >= 100) return 'done';
+
         if (deadline) {
             const today = new Date();
             const deadlineDate = new Date(deadline);
-            
+
             if (today > deadlineDate && progress < 100) {
-                return 'Overdue';
+                return 'overdue';
             }
 
             const timeLeft = deadlineDate.getTime() - today.getTime();
             const daysLeft = Math.ceil(timeLeft / (1000 * 3600 * 24));
 
             if (progress >= 80 || (daysLeft <= 30 && progress >= 60)) {
-                return 'Almost done';
+                return 'almost_done';
             }
         } else {
             if (progress >= 80) {
-                return 'Almost done';
+                return 'almost_done';
             }
         }
-        
-        return 'In progress';
+
+        return 'in_progress';
     };
 
-    const getStatusSeverity = (status: 'In progress' | 'Almost done' | 'Done' | 'Overdue'): 'success' | 'info' | 'warning' | 'danger' => {
+    const getStatusSeverity = (status: GoalStatus): 'success' | 'info' | 'warning' | 'danger' => {
         switch (status) {
-            case 'In progress':
+            case 'in_progress':
                 return 'info';
-            case 'Almost done':
+            case 'almost_done':
                 return 'warning';
-            case 'Done':
+            case 'done':
                 return 'success';
-            case 'Overdue':
+            case 'overdue':
                 return 'danger';
             default:
                 return 'info';
@@ -70,8 +77,8 @@ export default function CardGoal({ goal, onClick }: CardGoalProps) {
 
                 <div className='goal-card__progress-container'>
                     <div className='progress-info'>
-                        <span className='amount'>{goal.currentAmount}€</span>
-                        <span className='target'>of {goal.targetAmount}€</span>
+                        <span className='amount'>{formatCurrency(goal.currentAmount, user?.currency)}</span>
+                        <span className='target'>of {formatCurrency(goal.targetAmount, user?.currency)}</span>
                     </div>
                     <ProgressBar
                         value={progress}
@@ -85,15 +92,21 @@ export default function CardGoal({ goal, onClick }: CardGoalProps) {
                 <div className='goal-card__footer'>
                     <div className='status-container'>
                         <Tag
-                            value={status}
+                            value={t(`dashboard.goals.status.${status}`)}
                             severity={getStatusSeverity(status)}
                             rounded
                         />
                     </div>
                     {goal.deadline && (
-                        <div className={`deadline-container ${status === 'Overdue' ? 'overdue' : ''}`}>
+                        <div className={`deadline-container ${status === 'overdue' ? 'overdue' : ''}`}>
                             <i className="pi pi-calendar"></i>
-                            <span>{new Date(goal.deadline).toLocaleDateString()}</span>
+                            <span>
+                                {formatDateTime(
+                                    goal.deadline,
+                                    user?.language || 'en',
+                                    user?.dateFormat || 'MM/DD/YYYY'
+                                )}
+                            </span>
                         </div>
                     )}
                 </div>

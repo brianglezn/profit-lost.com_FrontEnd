@@ -46,9 +46,9 @@ export function getCurrentDate(locale: string = 'en', dateFormat: string = 'MM/D
 // Function to format a given date-time value in UTC to locale-specific format
 export const formatDateTime = (
     isoDate: string,
-    locale: string,
-    dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY',
-    timeFormat: '12h' | '24h'
+    locale: string = 'en',
+    dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY' = 'MM/DD/YYYY',
+    timeFormat?: '12h' | '24h' | undefined
 ): string => {
     const date = new Date(isoDate);
     const utcDate = new Date(
@@ -62,7 +62,11 @@ export const formatDateTime = (
 
     const currentLocale = localeMap[locale as 'en' | 'es'] || enUS;
     let formatString = dateFormat === 'DD/MM/YYYY' ? 'dd/MM/yyyy' : 'MM/dd/yyyy';
-    formatString += timeFormat === '12h' ? ', hh:mm:ss a' : ', HH:mm:ss';
+
+    // Solo añadir el formato de tiempo si se proporciona timeFormat y no es undefined
+    if (timeFormat !== undefined) {
+        formatString += timeFormat === '12h' ? ', hh:mm a' : ', HH:mm';
+    }
 
     return format(utcDate, formatString, { locale: currentLocale });
 };

@@ -7,6 +7,9 @@ import { useTranslation } from 'react-i18next';
 interface UserContextType {
   user: User | null;
   currency: string;
+  language: string;
+  dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY';
+  timeFormat: '12h' | '24h';
   loading: boolean;
   error: string | null;
   refreshUser: () => Promise<void>;
@@ -18,6 +21,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState({
     user: null as User | null,
     currency: 'USD',
+    language: 'en',
+    dateFormat: 'MM/DD/YYYY' as const,
+    timeFormat: '12h' as const,
     loading: true,
     error: null as string | null
   });
@@ -42,7 +48,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setState(prev => ({
         ...prev,
         user: userData,
-        currency: userData.currency || prev.currency,
         error: null,
         loading: false
       }));
