@@ -2,6 +2,7 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { Skeleton } from 'primereact/skeleton';
 
 import type { Category } from '../../../../../helpers/types';
+import PieChartIcon from '../../../../../components/icons/PieChartIcon';
 
 import './MovementsPie.scss';
 
@@ -69,9 +70,13 @@ export default function MovementsPie({ data, categories, isLoading }: MovementsP
     }));
 
     return (
-        <>
+        <div className='movements__pie-category'>
             {isLoading ? (
                 <Skeleton width="100%" height="100%" borderRadius="8px" />
+            ) : data.length === 0 ? (
+                <div className="empty-pie">
+                    <PieChartIcon width={50} height={50} />
+                </div>
             ) : (
                 <ResponsiveContainer width='100%' height='100%'>
                     <PieChart>
@@ -95,6 +100,6 @@ export default function MovementsPie({ data, categories, isLoading }: MovementsP
                     </PieChart>
                 </ResponsiveContainer>
             )}
-        </>
+        </div>
     );
 }

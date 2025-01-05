@@ -116,15 +116,17 @@ export default function Movements() {
           />
         </div>
         <div className='movements__charts-container'>
-          <div className='movements__pie-category'>
-            <MovementsPie data={incomeData} categories={categories} isLoading={isDataLoading} />
-          </div>
-          <div className='movements__pie-category'>
-            <MovementsPie data={expensesData} categories={categories} isLoading={isDataLoading} />
-          </div>
-          <div className='movements__chart'>
-            <MovementsChart dataGraph={[{ month, year: parseInt(year), Income: totalIncome, Expenses: totalExpenses }]} isDataEmpty={isDataEmpty} />
-          </div>
+          <MovementsPie data={incomeData} categories={categories} isLoading={isDataLoading} />
+          <MovementsPie data={expensesData} categories={categories} isLoading={isDataLoading} />
+          <MovementsChart 
+            dataGraph={[{ 
+              month, 
+              year: parseInt(year), 
+              Income: totalIncome, 
+              Expenses: totalExpenses 
+            }]} 
+            isDataEmpty={isDataEmpty} 
+          />
         </div>
 
         <MovementsBalance income={totalIncome} expenses={totalExpenses} />

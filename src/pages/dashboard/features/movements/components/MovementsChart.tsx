@@ -34,8 +34,8 @@ export default function MovementsChart(props: MovementsProps) {
     }));
 
     return (
-        <>
-            {isDataEmpty ? (
+        <div className='movements__chart'>
+            {isDataEmpty && dataGraph.length === 0 ? (
                 <Skeleton width="100%" height="100%" borderRadius="8px" />
             ) : (
                 <ResponsiveContainer width='100%' height={300}>
@@ -94,6 +94,6 @@ export default function MovementsChart(props: MovementsProps) {
                     </BarChart>
                 </ResponsiveContainer>
             )}
-        </>
+        </div>
     );
 }
