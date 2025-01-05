@@ -42,20 +42,27 @@
             justify-content: space-between;
             align-items: center;
 
-            span,
-            input {
+            span {
                 font-size: 1rem;
+                flex: 1;
             }
 
-            input {
-                padding: .3rem;
-                border-radius: .2rem;
-                border: 0.5px solid #e8e9ea;
-                width: 60%;
+            .p-inputnumber {
+                flex: 1;
 
-                &:focus {
-                    outline: none;
-                    border: 0.5px solid $primary_color;
+                .p-inputnumber-input {
+                    width: 100%;
+                    padding: 0.5rem;
+                    font-size: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 0.5rem;
+                    background-color: $bg-color;
+                    box-shadow: none;
+
+                    &:focus {
+                        outline: none;
+                        border-color: $primary_color;
+                    }
                 }
             }
         }

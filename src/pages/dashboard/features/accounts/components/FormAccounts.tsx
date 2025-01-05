@@ -6,7 +6,9 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dropdown } from 'primereact/dropdown';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'primereact/button';
+import { InputNumber, InputNumberValueChangeEvent } from 'primereact/inputnumber';
 
+import { useUser } from '../../../../../context/useUser';
 import { addAccount } from '../../../../../api/accounts/addAccount';
 import { editAccount } from '../../../../../api/accounts/editAccount';
 import { removeAccount } from '../../../../../api/accounts/removeAccount';
@@ -29,6 +31,7 @@ type DropdownOption = {
 };
 
 export default function FormAccounts({ mode, account, onSuccess, onClose, onRemove }: FormAccountsProps) {
+    const { user } = useUser();
     const { t, i18n } = useTranslation();
     const [accountName, setAccountName] = useState<string>(account?.accountName || '');
     const [backgroundColor, setBackgroundColor] = useState<string>(account?.configuration.backgroundColor || '#7e2a10');
@@ -39,7 +42,6 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
     const [isActive, setIsActive] = useState<boolean>(account?.configuration.isActive !== false);
     const [showCustomYearInput, setShowCustomYearInput] = useState(false);
     const [customYear, setCustomYear] = useState('');
-
     const currentYear = new Date().getFullYear();
 
     const monthNames = useMemo(() => {
@@ -256,19 +258,17 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
         }
     };
 
-    const handleInputChange = (key: string, value: string) => {
-        setTempValues(prev => {
-            const newValues = {
-                ...prev,
-                [key]: value
-            };
-            return newValues;
-        });
+    const handleInputChange = (key: string, e: InputNumberValueChangeEvent) => {
+        const value = e.value?.toString() || '0';
+        setTempValues(prev => ({
+            ...prev,
+            [key]: value
+        }));
 
         if (mode === 'edit' && account) {
             const [yearStr, month] = key.split('-');
             const year = parseInt(yearStr);
-            const normalizedValue = parseFloat(value.replace(',', '.')) || 0;
+            const normalizedValue = e.value || 0;
 
             const recordIndex = account.records.findIndex(
                 record => record.year === year && record.month === month
@@ -335,10 +335,14 @@ export default function FormAccounts({ mode, account, onSuccess, onClose, onRemo
                                     return (
                                         <div className='dataYear-row' key={month.value}>
                                             <span>{month.name}</span>
-                                            <input
-                                                type='text'
-                                                value={value}
-                                                onChange={(e) => handleInputChange(key, e.target.value)}
+                                            <InputNumber
+                                                value={Number(value)}
+                                                onValueChange={(e) => handleInputChange(key, e)}
+                                                mode="currency"
+                                                currency={user?.currency || 'EUR'}
+                                                locale={user?.language || 'es-ES'}
+                                                minFractionDigits={2}
+                                                maxFractionDigits={2}
                                             />
                                         </div>
                                     );
