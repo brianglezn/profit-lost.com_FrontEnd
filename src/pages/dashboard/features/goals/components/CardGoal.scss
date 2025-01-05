@@ -1,0 +1,90 @@
+@import '../../../../../../_variables.scss';
+
+.goal-card {
+    border-radius: 0.8rem;
+    box-shadow: $shadow_color 0px 1px 4px;
+    background-color: $bg-color-sec ;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow_color 0px 4px 12px;
+    }
+
+    .goal-card__content {
+        padding: 1.5rem;
+
+        .goal-card__header {
+            margin-bottom: 1.5rem;
+
+            h3 {
+                margin: 0 0 0.1rem 0;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: $text_color-black;
+            }
+
+            span {
+                font-size: 0.9rem;
+                color: $text_color-grey;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .goal-card__progress-container {
+            margin-bottom: 1.5rem;
+
+            .progress-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.2rem;
+
+                .amount {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: $text_color-black;
+                }
+
+                .target {
+                    color: $text_color-grey;
+                    font-size: 0.9rem;
+                }
+            }
+
+            .p-progressbar {
+                margin-bottom: 0.2rem;
+                height: 1rem;
+                background: $skeleton_color;
+            }
+
+            .progress-percentage {
+                text-align: right;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+        }
+
+        .goal-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .status-container {
+                .p-tag {
+                    font-size: 0.7rem;
+                }
+            }
+
+            .deadline-container {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: $text_color-grey;
+                font-size: 0.8rem;
+                color: $text_color-grey;
+            }
+        }
+    }
+}
