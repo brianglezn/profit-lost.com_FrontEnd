@@ -43,7 +43,7 @@
                 "movements": "Movimientos",
                 "accounts": "Cuentas",
                 "notes": "Notas",
-                "reports": "Informes",
+                "goals": "Metas",
                 "more": "Más"
             },
             "sidebar": {
@@ -59,11 +59,6 @@
                 "security": "Seguridad",
                 "help": "Ayuda",
                 "about": "Sobre nosotros"
-            },
-            "sections": {
-                "accounts": "Cuentas",
-                "notes": "Notas",
-                "reports": "Informes"
             },
             "messages": {
                 "session_closed": "Sesión cerrada con éxito",

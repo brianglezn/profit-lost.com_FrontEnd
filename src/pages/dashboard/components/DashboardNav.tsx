@@ -52,8 +52,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ activeSection, handleMenuIt
                             </li>
                             <li onClick={() => handleMenuItemClick('Goals')} className={activeSection === 'Goals' ? 'active' : ''}>
                                 <CheckBoxIcon />
-                                {/* <p>{t('dashboard.dashboard.nav.goals')}</p> */}
-                                <p>GOALS</p>
+                                <p>{t('dashboard.dashboard.nav.goals')}</p>
                             </li>
                             <li onClick={() => handleMenuItemClick('Notes')} className={activeSection === 'Notes' ? 'active' : ''}>
                                 <NotesIcon />

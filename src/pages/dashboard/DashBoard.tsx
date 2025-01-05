@@ -15,6 +15,7 @@ import CreditCardIcon from '../../components/icons/CreditCardIcon';
 import NotesIcon from '../../components/icons/NotesIcon';
 
 import './Dashboard.scss';
+import CheckBoxIcon from '../../components/icons/CheckBoxIcon';
 
 export default function Dashboard() {
   const { t } = useTranslation();
@@ -66,12 +67,17 @@ export default function Dashboard() {
 
   const menuItems = useMemo(() => [
     {
-      label: t('dashboard.dashboard.sections.accounts'),
+      label: t('dashboard.dashboard.nav.accounts'),
       icon: <CreditCardIcon />,
       command: () => handleMenuItemClick('Accounts')
     },
     {
-      label: t('dashboard.dashboard.sections.notes'),
+      label: t('dashboard.dashboard.nav.goals'),
+      icon: <CheckBoxIcon />,
+      command: () => handleMenuItemClick('Goals')
+    },
+    {
+      label: t('dashboard.dashboard.nav.notes'),
       icon: <NotesIcon />,
       command: () => handleMenuItemClick('Notes')
     }

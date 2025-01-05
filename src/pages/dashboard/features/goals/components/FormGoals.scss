@@ -97,7 +97,6 @@
         justify-content: center;
         gap: 1rem;
         width: 100%;
-        margin-top: 1rem;
 
         button {
             width: 35%;
@@ -108,12 +107,22 @@
 @media (max-width: 768px) {
     .formGoals {
         .form-field {
-            width: 95%;
             padding: 1rem;
         }
 
         .formGoals-buttons button {
             width: 40%;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .formGoals {
+
+        #currentAmount,
+        #targetAmount,
+        .form-field {
+            width: 95%;
         }
     }
 }

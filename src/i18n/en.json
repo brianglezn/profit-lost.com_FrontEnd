@@ -43,7 +43,7 @@
                 "movements": "Transactions",
                 "accounts": "Accounts",
                 "notes": "Notes",
-                "reports": "Reports",
+                "goals": "Goals",
                 "more": "More"
             },
             "sidebar": {
@@ -59,11 +59,6 @@
                 "security": "Security",
                 "help": "Help",
                 "about": "About Us"
-            },
-            "sections": {
-                "accounts": "Accounts",
-                "notes": "Notes",
-                "reports": "Reports"
             },
             "messages": {
                 "session_closed": "Session closed successfully",
