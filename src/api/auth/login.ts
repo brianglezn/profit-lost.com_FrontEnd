@@ -1,6 +1,6 @@
 export async function login(identifier: string, password: string): Promise<{ token?: string; error?: string }> {
     try {
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/auth/login', {
+        const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

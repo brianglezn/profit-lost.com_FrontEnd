@@ -2,7 +2,7 @@ import { User } from '../../helpers/types';
 
 export async function register(userData: Pick<User, 'username' | 'name' | 'surname' | 'email' | 'password'>): Promise<{ success?: boolean; error?: string }> {
   try {
-    const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/auth/register', {
+    const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

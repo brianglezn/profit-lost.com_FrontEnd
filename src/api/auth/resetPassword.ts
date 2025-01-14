@@ -1,6 +1,6 @@
 export async function resetPassword(token: string, newPassword: string): Promise<{ success?: boolean; error?: string }> {
     try {
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/auth/resetPassword', {
+        const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/auth/resetPassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

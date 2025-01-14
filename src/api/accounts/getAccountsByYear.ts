@@ -1,7 +1,7 @@
 export const getAccountsByYear = async (token: string, year: string) => {
     try {
         // Send a GET request to fetch accounts data for the specified year
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/accounts/${year}`, {
+        const response = await fetch(`https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/accounts/${year}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token in the request header

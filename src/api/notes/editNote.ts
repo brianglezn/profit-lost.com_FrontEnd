@@ -15,7 +15,7 @@ export async function editNote(noteId: string, payload: EditNotePayload): Promis
 
     try {
         // Send a PUT request to the server to update the note with the given noteId
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/notes/${noteId}`, {
+        const response = await fetch(`https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/notes/${noteId}`, {
             method: 'PUT',  // Use the PUT method to update the resource
             headers: {
                 'Authorization': `Bearer ${token}`,  // Add the Bearer token for authentication

@@ -1,7 +1,7 @@
 export const addCategory = async (token: string, name: string, color: string) => {
     try {
         // Send a POST request to add a new category to the server
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/categories/add', {
+        const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/categories/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Attach authorization token to authenticate the request

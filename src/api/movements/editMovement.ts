@@ -12,7 +12,7 @@ export const editMovement = async (token: string, movementId: string, movementDa
             date: localDate.toISOString()
         };
         // Send a PUT request to edit an existing movement
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/edit/${movementId}`, {
+        const response = await fetch(`https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/movements/edit/${movementId}`, {
             method: 'PUT', // HTTP method 'PUT' is used to update existing data
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

@@ -17,7 +17,7 @@ export async function createNote(payload: CreateNotePayload): Promise<Note> {
 
     try {
         // Send a POST request to the backend to create a new note
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/notes', {
+        const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/notes', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

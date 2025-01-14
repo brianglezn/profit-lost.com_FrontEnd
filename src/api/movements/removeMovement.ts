@@ -1,7 +1,7 @@
 export const removeMovement = async (token: string, movementId: string) => {
     try {
         // Send a DELETE request to remove a specific movement by its ID
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/remove/${movementId}`, {
+        const response = await fetch(`https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/movements/remove/${movementId}`, {
             method: 'DELETE', // HTTP DELETE method to remove the movement
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

@@ -4,7 +4,7 @@ export const changePassword = async (
 ) => {
   try {
     // Send a POST request to the server to change the user's password
-    const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/user/changePassword', {
+    const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/user/changePassword', {
       method: 'POST', // Using POST method as we're making a data change on the server
       headers: {
         'Content-Type': 'application/json', // Specifies that the content type is JSON

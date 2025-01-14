@@ -1,7 +1,7 @@
 export const getMovementsByYear = async (token: string, year: string) => {
     try {
         // Send a GET request to fetch movements for a specific year
-        const response = await fetch(`https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/${year}`, {
+        const response = await fetch(`https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/movements/${year}`, {
             method: 'GET', // HTTP GET method to retrieve data
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication

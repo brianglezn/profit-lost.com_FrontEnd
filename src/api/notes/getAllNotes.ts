@@ -12,7 +12,7 @@ export async function getAllNotes(): Promise<Note[]> {
 
     try {
         // Make a GET request to the notes API with the Bearer token in the Authorization header
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/notes', {
+        const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/notes', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

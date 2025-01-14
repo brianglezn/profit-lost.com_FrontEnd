@@ -13,7 +13,7 @@ export const addMovement = async (token: string, movementData: {
         };
 
         // Send a POST request to add a new movement
-        const response = await fetch('https://sound-harlene-brian-novoa-be9c1292.koyeb.app/api/movements/add', {
+        const response = await fetch('https://written-ashia-profit-lost-6f7f84ee.koyeb.app/api/movements/add', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Include the authorization token for authentication
